@@ -1,6 +1,5 @@
 import React from 'react'
 import { DepartmentCard } from '../components/DepartmentCard'
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 
 function Departments() {
     return (

@@ -1,144 +1,104 @@
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../components/ui/accordion";
+import {
+    Accordion,
+    AccordionItem,
+    AccordionTrigger,
+    AccordionContent,
+} from "../components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { Library, Dumbbell, Monitor, Cpu, Microscope, Satellite } from "lucide-react"; // Replace emojis with modern icons
 
 export default function AboutUs() {
     return (
-        <div className="bg-gray-100 text-gray-900 min-h-screen">
+        <div className="bg-gray-50 text-gray-900 min-h-screen">
             {/* Hero Section */}
-            <div className="bg-[#002147] text-white py-16 text-center">
-                <h1 className="text-4xl font-bold">About IIIT Nagpur</h1>
-                <p className="text-lg mt-2">An Institution of National Importance</p>
+            <div className="relative w-full text-white text-center py-14 shadow-lg bg-gradient-to-r from-[#002147] via-[#002C5F] to-[#002147]">
+                <h1 className="text-5xl font-extrabold tracking-wide">About IIIT Nagpur</h1>
+                <p className="text-lg opacity-80 mt-1">An Institution of National Importance</p>
             </div>
 
             {/* Content Sections */}
-            <div className="max-w-6xl mx-auto px-6 py-12 grid gap-8">
+            <div className="max-w-5xl mx-auto px-6 py-12 space-y-10">
+
                 {/* Act (PPP) */}
-                <Card className="shadow-lg">
-                    <CardHeader className="bg-[#E87722] text-white p-4 rounded-t-lg">
-                        <CardTitle>Act (PPP)</CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-6">
-                        <p>
-                            The Indian Institute of Information Technology (IIIT), Nagpur is one of the IIITs under the Indian Institute of Information Technology (Public-Private Partnership) Act, 2017.
-                        </p>
-                        <p className="text-blue-600 cursor-pointer">For more details Click Here</p>
-                    </CardContent>
-                </Card>
+                <InfoCard
+                    title="Act (PPP)"
+                    content="The Indian Institute of Information Technology (IIIT), Nagpur is one of the IIITs under the Indian Institute of Information Technology (Public-Private Partnership) Act, 2017."
+                />
 
                 {/* Statute */}
-                <Card className="shadow-lg">
-                    <CardHeader className="bg-[#E87722] text-white p-4 rounded-t-lg">
-                        <CardTitle>Statute</CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-6">
-                        <p>
-                            The Indian Institute of Information Technology, Nagpur governs by the Statutes formulated by GoI.
-                        </p>
-                        <p>
-                            These Statutes may be called the Statutes of the Indian Institute of Information Technology, Nagpur, 2017.
-                        </p>
-                        <p className="text-blue-600 cursor-pointer">For more details Click Here</p>
-                    </CardContent>
-                </Card>
+                <InfoCard
+                    title="Statute"
+                    content="IIIT Nagpur is governed by the Statutes formulated by the Government of India. These Statutes may be called the Statutes of the Indian Institute of Information Technology, Nagpur, 2017."
+                />
 
                 {/* Institute Profile */}
-                <Card className="shadow-lg">
-                    <CardHeader className="bg-[#E87722] text-white p-4 rounded-t-lg">
-                        <CardTitle>Institute Profile</CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-6">
-                        <p>
-                            IIIT Nagpur is one of the 20 IIITs established under the Public-Private Partnership Scheme by the
-                            Ministry of Education. It was declared an “Institution of National Importance” in 2017 and shifted to its
-                            permanent campus in Butibori, Nagpur.
-                        </p>
-                    </CardContent>
-                </Card>
+                <InfoCard
+                    title="Institute Profile"
+                    content="IIIT Nagpur is one of the 20 IIITs established under the Public-Private Partnership Scheme by the Ministry of Education. It was declared an 'Institution of National Importance' in 2017 and shifted to its permanent campus in Butibori, Nagpur."
+                />
 
-                {/* Institute Vision & Mission */}
+                {/* Vision & Mission */}
                 <div className="grid md:grid-cols-2 gap-6">
-                    <Card className="shadow-lg">
-                        <CardHeader className="bg-[#E87722] text-white p-4 rounded-t-lg">
-                            <CardTitle>Institute Vision</CardTitle>
-                        </CardHeader>
-                        <CardContent className="p-6">
-                            <p>
-                                IIIT Nagpur aspires to be a leading research institution in Information Technology and related fields,
-                                imparting futuristic education of global standards.
-                            </p>
-                        </CardContent>
-                    </Card>
-
-                    <Card className="shadow-lg">
-                        <CardHeader className="bg-[#E87722] text-white p-4 rounded-t-lg">
-                            <CardTitle>Institute Mission</CardTitle>
-                        </CardHeader>
-                        <CardContent className="p-6">
-                            <p>
-                                IIIT Nagpur is committed to conducting socially relevant research and fostering innovation with a focus on
-                                entrepreneurship and environmental sustainability.
-                            </p>
-                        </CardContent>
-                    </Card>
+                    <InfoCard
+                        title="Institute Vision"
+                        content="IIIT Nagpur aspires to be a leading research institution in Information Technology and related fields, imparting futuristic education of global standards."
+                    />
+                    <InfoCard
+                        title="Institute Mission"
+                        content="IIIT Nagpur is committed to conducting socially relevant research and fostering innovation with a focus on entrepreneurship and environmental sustainability."
+                    />
                 </div>
 
-                {/* Facilities */}
-                <Card className="shadow-lg">
+                {/* Facilities Section */}
+                <Card className="border border-gray-200 rounded-lg">
                     <CardHeader className="bg-[#E87722] text-white p-4 rounded-t-lg">
                         <CardTitle>Facilities</CardTitle>
                     </CardHeader>
-                    <CardContent className="p-6 grid grid-cols-2 md:grid-cols-3 gap-4">
-                        <p>📚 Library</p>
-                        <p>💪 Gym</p>
-                        <p>🖥️ Computer Labs</p>
-                        <p>⚙️ Microprocessor Lab</p>
-                        <p>🔬 Nano SciTech Lab</p>
-                        <p>📡 Control System Lab</p>
+                    <CardContent className="p-6 grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
+                        {[
+                            { icon: Library, label: "Library" },
+                            { icon: Dumbbell, label: "Gym" },
+                            { icon: Monitor, label: "Computer Labs" },
+                            { icon: Cpu, label: "Microprocessor Lab" },
+                            { icon: Microscope, label: "Nano SciTech Lab" },
+                            { icon: Satellite, label: "Control System Lab" },
+                        ].map(({ icon: Icon, label }, index) => (
+                            <div key={index} className="flex flex-col items-center space-y-2">
+                                <Icon className="h-8 w-8 text-gray-700" />
+                                <p className="text-gray-800 font-medium">{label}</p>
+                            </div>
+                        ))}
                     </CardContent>
                 </Card>
 
                 {/* Annual Report */}
-                <Card className="shadow-lg">
-                    <CardHeader className="bg-[#E87722] text-white p-4 rounded-t-lg">
-                        <CardTitle>Annual Report</CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-6">
-                        <p>
-                            IIIT Nagpur publishes an annual report detailing the institute’s achievements, academic progress, research contributions, and financial statements. The report provides insights into faculty and student accomplishments, collaborations, infrastructural developments, and future goals.
-                        </p>
-                        <p>
-                            It serves as a transparent record of the institute’s activities and growth, reflecting its commitment to academic excellence and research innovation.
-                        </p>
-                        <p className="text-blue-600 cursor-pointer">Annual Report Click Here</p>
-                    </CardContent>
-                </Card>
+                <InfoCard
+                    title="Annual Report"
+                    content="IIIT Nagpur publishes an annual report detailing the institute’s achievements, academic progress, research contributions, and financial statements."
+                />
 
-                {/* MoUs (Using Correct Accordion Implementation) */}
-                <Card className="shadow-lg">
+                {/* MoUs (Using Modern Accordion) */}
+                <Card className="border border-gray-200 rounded-lg">
                     <CardHeader className="bg-[#E87722] text-white p-4 rounded-t-lg">
                         <CardTitle>Memorandums of Understanding (MoUs)</CardTitle>
                     </CardHeader>
                     <CardContent className="p-6">
                         <Accordion type="single" collapsible>
-                            <AccordionItem value="mou1">
-                                <AccordionTrigger>MoU with Swargiya Dadasaheb Kalmegh Smruti Dental College</AccordionTrigger>
-                                <AccordionContent>Signed on 28th June 2022</AccordionContent>
-                            </AccordionItem>
-
-                            <AccordionItem value="mou2">
-                                <AccordionTrigger>MoU with Central India Institute of Medical Sciences (CIIMS)</AccordionTrigger>
-                                <AccordionContent>Signed on 5th January 2022</AccordionContent>
-                            </AccordionItem>
-
-                            <AccordionItem value="mou3">
-                                <AccordionTrigger>MoU with E-Spin Nanotech Pvt Ltd., IIT Kanpur</AccordionTrigger>
-                                <AccordionContent>Signed on 27th January 2021</AccordionContent>
-                            </AccordionItem>
-
-                            <AccordionItem value="mou4">
-                                <AccordionTrigger>MoU with AIIMS, Nagpur</AccordionTrigger>
-                                <AccordionContent>Signed for research collaboration in 2020</AccordionContent>
-                            </AccordionItem>
+                            {[
+                                { id: "mou1", title: "MoU with Swargiya Dadasaheb Kalmegh Smruti Dental College", date: "28th June 2022" },
+                                { id: "mou2", title: "MoU with Central India Institute of Medical Sciences (CIIMS)", date: "5th January 2022" },
+                                { id: "mou3", title: "MoU with E-Spin Nanotech Pvt Ltd., IIT Kanpur", date: "27th January 2021" },
+                                { id: "mou4", title: "MoU with AIIMS, Nagpur", date: "Research collaboration in 2020" },
+                            ].map(({ id, title, date }) => (
+                                <AccordionItem key={id} value={id} className="border-b border-gray-200">
+                                    <AccordionTrigger className="py-3 text-lg font-medium hover:text-[#E87722] transition">
+                                        {title}
+                                    </AccordionTrigger>
+                                    <AccordionContent className="p-4 text-gray-600">
+                                        Signed on {date}
+                                    </AccordionContent>
+                                </AccordionItem>
+                            ))}
                         </Accordion>
                     </CardContent>
                 </Card>
@@ -146,3 +106,20 @@ export default function AboutUs() {
         </div>
     );
 }
+
+/* Reusable Minimalist Card Component */
+interface InfoCardProps {
+    title: string;
+    content: string;
+}
+
+const InfoCard = ({ title, content }: InfoCardProps) => (
+    <Card className="border border-gray-200 rounded-lg">
+        <CardHeader className="bg-[#E87722] text-white p-4 rounded-t-lg">
+            <CardTitle>{title}</CardTitle>
+        </CardHeader>
+        <CardContent className="p-6">
+            <p className="text-gray-700">{content}</p>
+        </CardContent>
+    </Card>
+);
