@@ -12,16 +12,16 @@ function DepartmentCard({ title, description, link }: DepartmentCardProps) {
             </div>
             <div className="p-6 bg-white flex flex-col justify-between h-full">
                 <p className="text-gray-700 text-base overflow-hidden flex-grow">
-                    {description}
+                    {description} ...
                 </p>
-                <div className="mt-4">
-                    <a 
-                        href={link} 
-                        className="inline-block text-[#E87722] font-semibold text-lg hover:underline"
-                    >
-                        Learn More →
-                    </a>
-                </div>
+                
+                <a 
+                    href={link} 
+                    className="text-[#E87722] font-semibold text-lg hover:underline mt-2"
+                >
+                    Learn More →
+                </a>
+                
             </div>
         </div>
     );
