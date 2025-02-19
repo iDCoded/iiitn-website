@@ -14,6 +14,8 @@ import ELibrary from "./ELibrary/page";
 import Login from "./Login/page";
 import Initiatives from "./Initiatives/page";
 import NotFound from "./NotFound/page"; // 404 Pa/pagege
+import Administration from "./Governance/Administration/page";
+import Committee from "./Governance/Committee/page";
 
 const AppRoutes = () => {
     return (
@@ -33,6 +35,8 @@ const AppRoutes = () => {
                 <Route path="/e-library" element={<ELibrary />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/initiatives" element={<Initiatives />} />
+                <Route path="/governance/administration" element={<Administration />} />
+                <Route path="/governance/committee" element={<Committee />} />
                 <Route path="*" element={<NotFound />} /> {/* 404 page */}
             </Routes>
         </Router>
