@@ -18,7 +18,8 @@ function Departments() {
                     {/* Department 1 */}
                     <DepartmentCard 
                         title="Basic Science" 
-                        description="The Department of Basic Science at IIIT Nagpur focuses on fundamental research and education in physics, chemistry, and mathematics." 
+                        description="Department of Basic Sciences at Indian Institute of Information Technology Nagpur, established in 2016 and is currently headed by Dr. Prasad V. Joshi. The Department of Basic Sciences brings together the disciplines of Mathematics, Applied Sciences, Humanities, Social Sciences, Mechanical Engineering and Electrical Engineering under one roof.
+                        Department of Basic Sciences at Indian Institute of Information Technology Nagpur, established in 2016 and is currently headed by Dr. Prasad V." 
                         link="departments/basic-science" 
                     />
 
