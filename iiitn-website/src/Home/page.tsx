@@ -5,17 +5,21 @@ import UpcomingEvents from "../components/UpcomingEvents";
 import Admissions from "../components/Admissions";
 import Stats from "../components/Stats";
 import Testimonials from "../components/Testimonials";
+import Footer from "../components/Footer";
+import CampusLife from "../components/CampusLife";
 
 const Home = () => {
     return (
         <>
             <HeroSection />
             <NewsUpdates />
+            <CampusLife/>
             <Departments />
             <UpcomingEvents />
             <Admissions />
             <Stats />
             <Testimonials />
+            <Footer />
         </>
     );
 };

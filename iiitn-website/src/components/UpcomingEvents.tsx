@@ -20,17 +20,19 @@ const events = [
 
 const UpcomingEvents = () => {
     return (
-        <section className="py-16 px-6 bg-gray-100">
+        <section className="py-16 px-6 bg-gradient-to-b from-gray-50 to-gray-100">
             {/* Section Title */}
-            <h2 className="text-3xl font-bold text-center mb-6">
-                <span className="text-accent">|</span> Upcoming Events
-            </h2>
+            <div className="max-w-6xl mx-auto">
+                <h2 className="text-3xl font-bold text-left mb-6 text-[#002147]">
+                    <span className="text-[#E87722]">|</span> Upcoming Events
+                </h2>
 
-            {/* Events Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {events.map((event, index) => (
-                    <EventCard key={index} event={event} />
-                ))}
+                {/* Events Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {events.map((event, index) => (
+                        <EventCard key={index} event={event} />
+                    ))}
+                </div>
             </div>
         </section>
     );

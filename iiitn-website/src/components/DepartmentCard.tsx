@@ -7,7 +7,7 @@ interface DepartmentCardProps {
 
 function DepartmentCard({ title, imageSrc, overlayText, link }: DepartmentCardProps) {
     return (
-        <div className="shadow-lg w-[24rem] h-[32rem] m-6 rounded-lg overflow-hidden flex flex-col ">
+        <div className="shadow-lg w-[24rem] h-[32rem] m-6 rounded-lg overflow-hidden flex flex-col">
             <div className="bg-[#002147] text-white p-5">
                 <h2 className="text-xl font-bold">{title}</h2>
             </div>
