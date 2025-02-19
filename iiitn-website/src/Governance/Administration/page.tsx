@@ -24,7 +24,7 @@ function Administration() {
                             <p>Chairman, IIIT Nagpur</p>
                             <p>Email: <a href="mailto:chairman@iiitn.ac.in" className="text-blue-600 hover:underline">director@iiitn.ac.in</a></p>
                             <p className="mt-4">lorem ipsum</p>
-                            <p className="text-blue-600 cursor-pointer mt-4"><a href="/registrar">More about the Chairman</a></p>
+                            <p className="text-blue-600 cursor-pointer mt-4"><a href="/chairman">More about the Chairman</a></p>
 
                         </div>
                     </CardContent>
@@ -41,7 +41,7 @@ function Administration() {
                             <p>Director, IIIT Nagpur</p>
                             <p>Email: <a href="mailto:director@iiitn.ac.in" className="text-blue-600 hover:underline">director@iiitn.ac.in</a></p>
                             <p className="mt-4">Professor Prem Lal Patel took over as Director of IIIT Nagpur on 1st October 2024. He is also the Director of VNIT Nagpur...</p>
-                            <p className="text-blue-600 cursor-pointer mt-4"><a href="/registrar">More about the Director</a></p>
+                            <p className="text-blue-600 cursor-pointer mt-4"><a href="/director">More about the Director</a></p>
                         </div>
                     </CardContent>
                 </Card>
@@ -71,7 +71,7 @@ function Administration() {
                     </CardHeader>
                     <CardContent className="p-6 text-center">
                         <p>IIIT Nagpur is supported by a dedicated administrative staff that ensures smooth operations across various departments.</p>
-                        <p className="text-blue-600 cursor-pointer mt-4"><a href="/staff-directory">View Full Staff Directory</a></p>
+                        <p className="text-blue-600 cursor-pointer mt-4"><a href="/staff">View Full Staff Directory</a></p>
                     </CardContent>
                 </Card>
             </div>
