@@ -1,6 +1,5 @@
-import React from 'react'
-import { DepartmentCard } from '../components/DepartmentCard'
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import React from 'react';
+import { DepartmentCard } from '../components/DepartmentCard';
 
 function Departments() {
     return (
@@ -11,42 +10,47 @@ function Departments() {
                 <p className="text-lg mt-2">Explore the diverse academic departments at IIIT Nagpur</p>
             </div>
 
-            {/* Content Sections */}
+            {/* Introduction Section */}
+            <div className="max-w-4xl mx-auto px-6 py-8 text-center">
+                <p className="text-lg text-gray-700">
+                    IIIT Nagpur offers a wide range of academic programs through its dedicated departments. 
+                    Each department focuses on cutting-edge research, industry collaborations, and hands-on 
+                    learning experiences to equip students with the knowledge and skills required for the future. 
+                    Discover the diverse fields of study and explore the opportunities each department provides.
+                </p>
+            </div>
+
+            {/* Content Section */}
             <div className="max-w-6xl mx-auto px-6 py-12">
-                {/* First Row of Departments */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 gap-y-8 mb-8 ">
+                {/* Grid Layout for Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-48 w-full justify-items-center">
                     {/* Department 1 */}
                     <DepartmentCard 
-                        title="Basic Science" 
-                        description="Department of Basic Sciences at Indian Institute of Information Technology Nagpur, established in 2016 and is currently headed by Dr. Prasad V. Joshi. The Department of Basic Sciences brings together the disciplines of Mathematics, Applied Sciences, Humanities, Social Sciences, Mechanical Engineering and Electrical Engineering under one roof.
-                        Department of Basic Sciences at Indian Institute of Information Technology Nagpur, established in 2016 and is currently headed by Dr. Prasad V." 
+                        title="Basic Science"
+                        imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
+                        overlayText="Department of Basic Sciences at Indian Institute of Information Technology, Nagpur is a vibrant academic department." 
                         link="departments/basic-science" 
                     />
 
                     {/* Department 2 */}
                     <DepartmentCard 
                         title="Computer Science & Engineering" 
-                        description="The Department of Computer Science & Engineering offers cutting-edge research and education in computer science, software development, and AI." 
+                        imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
+                        overlayText="The Department of Computer Science & Engineering offers cutting-edge research and education in computer science, software development, and AI." 
                         link="departments/cse" 
                     />
-                </div>
 
-                {/* Second Row of Departments */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 gap-y-8 mb-8 ">
                     {/* Department 3 */}
                     <DepartmentCard 
                         title="Electronics & Communication" 
-                        description="The Department of Electronics & Communication at IIIT Nagpur is known for research in embedded systems, signal processing, and communication networks." 
+                        imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
+                        overlayText="The Department of Electronics & Communication at IIIT Nagpur is focused on advanced networking and signal processing." 
                         link="departments/ece" 
                     />
-
-                    
                 </div>
-
-                
             </div>
         </div>
-    )
+    );
 }
 
 export default Departments;
