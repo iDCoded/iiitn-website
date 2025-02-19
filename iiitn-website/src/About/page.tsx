@@ -12,6 +12,35 @@ export default function AboutUs() {
 
             {/* Content Sections */}
             <div className="max-w-6xl mx-auto px-6 py-12 grid gap-8">
+                {/* Act (PPP) */}
+                <Card className="shadow-lg">
+                    <CardHeader className="bg-[#E87722] text-white p-4 rounded-t-lg">
+                        <CardTitle>Act (PPP)</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-6">
+                        <p>
+                            The Indian Institute of Information Technology (IIIT), Nagpur is one of the IIITs under the Indian Institute of Information Technology (Public-Private Partnership) Act, 2017.
+                        </p>
+                        <p className="text-blue-600 cursor-pointer">For more details Click Here</p>
+                    </CardContent>
+                </Card>
+
+                {/* Statute */}
+                <Card className="shadow-lg">
+                    <CardHeader className="bg-[#E87722] text-white p-4 rounded-t-lg">
+                        <CardTitle>Statute</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-6">
+                        <p>
+                            The Indian Institute of Information Technology, Nagpur governs by the Statutes formulated by GoI.
+                        </p>
+                        <p>
+                            These Statutes may be called the Statutes of the Indian Institute of Information Technology, Nagpur, 2017.
+                        </p>
+                        <p className="text-blue-600 cursor-pointer">For more details Click Here</p>
+                    </CardContent>
+                </Card>
+
                 {/* Institute Profile */}
                 <Card className="shadow-lg">
                     <CardHeader className="bg-[#E87722] text-white p-4 rounded-t-lg">
@@ -65,6 +94,22 @@ export default function AboutUs() {
                         <p>⚙️ Microprocessor Lab</p>
                         <p>🔬 Nano SciTech Lab</p>
                         <p>📡 Control System Lab</p>
+                    </CardContent>
+                </Card>
+
+                {/* Annual Report */}
+                <Card className="shadow-lg">
+                    <CardHeader className="bg-[#E87722] text-white p-4 rounded-t-lg">
+                        <CardTitle>Annual Report</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-6">
+                        <p>
+                            IIIT Nagpur publishes an annual report detailing the institute’s achievements, academic progress, research contributions, and financial statements. The report provides insights into faculty and student accomplishments, collaborations, infrastructural developments, and future goals.
+                        </p>
+                        <p>
+                            It serves as a transparent record of the institute’s activities and growth, reflecting its commitment to academic excellence and research innovation.
+                        </p>
+                        <p className="text-blue-600 cursor-pointer">Annual Report Click Here</p>
                     </CardContent>
                 </Card>
 
