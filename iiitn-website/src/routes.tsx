@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home/page";
 import About from "./About/page";
+import AdminDashboard from "./Admin/page";
 import Departments from "./Departments/page";
 import Academics from "./Academics/page";
 import Admissions from "./Admissions/page";
@@ -25,38 +26,38 @@ import DepartmentPage from "./Departments/pages/page";
 import { useParams } from "react-router-dom";
 
 const PageWrapper = () => {
-    const { param } = useParams();
-    return <DepartmentPage title={param || "defaultTitle"} />;
+	const { param } = useParams();
+	return <DepartmentPage title={param || "defaultTitle"} />;
 };
 
 const AppRoutes = () => (
-    <Router>
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/departments" element={<Departments />} />
-            <Route path="/departments/:param" element={<PageWrapper />} />
-            <Route path="/academics" element={<Academics />} />
-            <Route path="/admissions" element={<Admissions />} />
-            <Route path="/placements" element={<Placements />} />
-            <Route path="/research" element={<Research />} />
-            <Route path="/students" element={<Students />} />
-            <Route path="/alumni" element={<Alumni />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/recruitments" element={<Recruitments />} />
-            <Route path="/e-library" element={<ELibrary />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/initiatives" element={<Initiatives />} />
-            <Route path="/governance/administration" element={<Administration />} />
-            <Route path="/governance/chairman" element={<Chairman />} />
-            <Route path="/governance/registrar" element={<Registrar />} />
-            <Route path="/governance/director" element={<Director />} />
-            <Route path="/governance/staff" element={<Staff />} />
-            <Route path="/governance/committee" element={<Committee />} />
-            <Route path="*" element={<NotFound />} /> {/* 404 page */}
-        </Routes>
-    </Router>
+	<Router>
+		<Routes>
+			<Route path="/" element={<Home />} />
+			<Route path="/about" element={<About />} />
+			<Route path="/admin" element={<AdminDashboard />} />
+			<Route path="/departments" element={<Departments />} />
+			<Route path="/departments/:param" element={<PageWrapper />} />
+			<Route path="/academics" element={<Academics />} />
+			<Route path="/admissions" element={<Admissions />} />
+			<Route path="/placements" element={<Placements />} />
+			<Route path="/research" element={<Research />} />
+			<Route path="/students" element={<Students />} />
+			<Route path="/alumni" element={<Alumni />} />
+			<Route path="/events" element={<Events />} />
+			<Route path="/recruitments" element={<Recruitments />} />
+			<Route path="/e-library" element={<ELibrary />} />
+			<Route path="/login" element={<Login />} />
+			<Route path="/initiatives" element={<Initiatives />} />
+			<Route path="/governance/administration" element={<Administration />} />
+			<Route path="/governance/chairman" element={<Chairman />} />
+			<Route path="/governance/registrar" element={<Registrar />} />
+			<Route path="/governance/director" element={<Director />} />
+			<Route path="/governance/staff" element={<Staff />} />
+			<Route path="/governance/committee" element={<Committee />} />
+			<Route path="*" element={<NotFound />} /> {/* 404 page */}
+		</Routes>
+	</Router>
 );
 
 export default AppRoutes;
-
