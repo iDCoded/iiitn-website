@@ -1,29 +1,34 @@
-import React from 'react'
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface StudentCardProps {
-    title: string
-    description: string
-    imageSrc: string
-    }
-
-
-function StudentCard({title, description,imageSrc}: StudentCardProps) {
-  return (
-    <>
-
-    
-<a href="#" className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-    <img className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src={imageSrc} alt={title}/>
-    <div className="flex flex-col justify-between p-4 leading-normal">
-        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{description}</p>
-    </div>
-</a>
-
-    
-    
-    </>
-  )
+  title: string;
+  description: string;
+  imageSrc: string;
 }
 
-export default StudentCard
+function StudentCard({ title, description, imageSrc }: StudentCardProps) {
+  return (
+    <Card className="relative overflow-hidden h-48 md:h-64 rounded-lg shadow-lg group">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-110"
+        style={{
+          backgroundImage: `url(${imageSrc})`,
+          zIndex: 0, // Ensure it's behind everything
+        }}
+      />
+
+      {/* Overlay using ::before pseudo-element */}
+      <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-opacity z-10" />
+
+      {/* Card Content */}
+      <CardContent className="relative flex flex-col justify-end h-full p-4 text-white z-20">
+        <h3 className="text-xl font-bold">{title}</h3>
+        <p className="text-sm opacity-80">{description}</p>
+      </CardContent>
+    </Card>
+  );
+}
+
+export default StudentCard;
