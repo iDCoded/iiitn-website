@@ -1,75 +1,86 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
+import { useState } from "react";
+import { BellRing, Calendar, ImageIcon, Home, LogOut } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { AnnouncementForm } from "@/components/form/announcement-form";
 import { EventForm } from "@/components/form/event-form";
 import { ImageUpload } from "@/components/form/image-upload";
-import { BellRing, Calendar, ImageIcon } from "lucide-react";
 
 export default function AdminDashboard() {
+	const [activeTab, setActiveTab] = useState("announcements");
+
+	const menuItems = [
+		{ id: "announcements", label: "Announcements", icon: BellRing },
+		{ id: "events", label: "Events", icon: Calendar },
+		{ id: "images", label: "Image Upload", icon: ImageIcon },
+	];
+
 	return (
-		<div className="container mx-auto p-6">
-			<h1 className="text-3xl font-bold mb-6">College Admin Dashboard</h1>
-			<Tabs defaultValue="announcements" className="space-y-4">
-				<TabsList className="grid w-full grid-cols-3">
-					<TabsTrigger value="announcements">
-						<BellRing className="mr-2 h-4 w-4" />
-						Announcements
-					</TabsTrigger>
-					<TabsTrigger value="events">
-						<Calendar className="mr-2 h-4 w-4" />
-						Events
-					</TabsTrigger>
-					<TabsTrigger value="images">
-						<ImageIcon className="mr-2 h-4 w-4" />
-						Image Upload
-					</TabsTrigger>
-				</TabsList>
-				<TabsContent value="announcements">
+		<div className="flex h-screen bg-gray-50">
+			{/* Sidebar */}
+			<div className="w-64 bg-white border-r border-gray-200 flex flex-col">
+				<div className="p-4 border-b">
+					<h1 className="text-xl font-semibold flex items-center gap-2">
+						<Home className="h-5 w-5" />
+						Admin Panel
+					</h1>
+				</div>
+
+				{/* Navigation */}
+				<nav className="flex-1 p-4">
+					<div className="space-y-1">
+						{menuItems.map((item) => (
+							<Button
+								key={item.id}
+								variant={activeTab === item.id ? "default" : "ghost"}
+								className={`w-full justify-start ${
+									activeTab === item.id ? "" : "hover:bg-gray-100"
+								}`}
+								onClick={() => setActiveTab(item.id)}>
+								<item.icon className="mr-2 h-4 w-4" />
+								{item.label}
+							</Button>
+						))}
+					</div>
+				</nav>
+
+				{/* User Profile */}
+				<div className="p-4 border-t">
+					<div className="flex items-center gap-3 mb-3">
+						<Avatar>
+							<AvatarImage src="/avatar.svg" />
+							<AvatarFallback>AD</AvatarFallback>
+						</Avatar>
+						<div className="flex-1 min-w-0">
+							<p className="text-sm font-medium">Admin User</p>
+							<p className="text-xs text-gray-500 truncate">
+								admin@iiitn.ac.in
+							</p>
+						</div>
+					</div>
+					<Button
+						variant="ghost"
+						size="sm"
+						className="w-full justify-start text-red-600 hover:text-red-600 hover:bg-red-50">
+						<LogOut className="mr-2 h-4 w-4" />
+						Logout
+					</Button>
+				</div>
+			</div>
+
+			{/* Main Content */}
+			<div className="flex-1 overflow-auto">
+				<div className="p-8">
 					<Card>
-						<CardHeader>
-							<CardTitle>Create Announcement</CardTitle>
-							<CardDescription>
-								Create a new announcement for the college website.
-							</CardDescription>
-						</CardHeader>
-						<CardContent>
-							<AnnouncementForm />
+						<CardContent className="p-6">
+							{activeTab === "announcements" && <AnnouncementForm />}
+							{activeTab === "events" && <EventForm />}
+							{activeTab === "images" && <ImageUpload />}
 						</CardContent>
 					</Card>
-				</TabsContent>
-				<TabsContent value="events">
-					<Card>
-						<CardHeader>
-							<CardTitle>Create Event</CardTitle>
-							<CardDescription>
-								Add a new event to the college calendar.
-							</CardDescription>
-						</CardHeader>
-						<CardContent>
-							<EventForm />
-						</CardContent>
-					</Card>
-				</TabsContent>
-				<TabsContent value="images">
-					<Card>
-						<CardHeader>
-							<CardTitle>Upload Image</CardTitle>
-							<CardDescription>
-								Upload images to the college website gallery.
-							</CardDescription>
-						</CardHeader>
-						<CardContent>
-							<ImageUpload />
-						</CardContent>
-					</Card>
-				</TabsContent>
-			</Tabs>
+				</div>
+			</div>
 		</div>
 	);
 }
