@@ -22,6 +22,8 @@ import Registrar from "./Governance/Administration/pages/Registrar";
 import Director from "./Governance/Administration/pages/Director";
 import Staff from "./Governance/Administration/pages/Staff";
 import FacultyandStaff from "./FacultyandStaff/page";
+
+
 // import Page from "./Departments/pages/page";
 import DepartmentPage from "./Departments/pages/page";
 import { useParams } from "react-router-dom";
