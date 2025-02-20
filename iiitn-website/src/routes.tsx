@@ -22,11 +22,15 @@ import Registrar from "./Governance/Administration/pages/Registrar";
 import Director from "./Governance/Administration/pages/Director";
 import Staff from "./Governance/Administration/pages/Staff";
 import FacultyandStaff from "./FacultyandStaff/page";
+import PlacementStudents from "./Placements/Students/page";
 
 
 // import Page from "./Departments/pages/page";
 import DepartmentPage from "./Departments/pages/page";
 import { useParams } from "react-router-dom";
+import Companies from "./Placements/Companies/page";
+import Internships from "./Placements/Internships/page";
+import Statistics from "./Placements/Statistics/page";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -44,6 +48,10 @@ const AppRoutes = () => (
 			<Route path="/academics" element={<Academics />} />
 			<Route path="/admissions" element={<Admissions />} />
 			<Route path="/placements" element={<Placements />} />
+			<Route path="/placements/companies" element={<Companies />} />
+			<Route path="/placements/internships" element={<Internships />} />
+			<Route path="/placements/statistics" element={<Statistics />} />
+			<Route path="/placements/students" element={<PlacementStudents />} />
 			<Route path="/research" element={<Research />} />
 			<Route path="/students" element={<Students />} />
 			<Route path="/facultyandstaff" element={<FacultyandStaff />} />
