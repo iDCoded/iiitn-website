@@ -21,6 +21,7 @@ import Chairman from "./Governance/Administration/pages/Chairman";
 import Registrar from "./Governance/Administration/pages/Registrar";
 import Director from "./Governance/Administration/pages/Director";
 import Staff from "./Governance/Administration/pages/Staff";
+import FacultyandStaff from "./FacultyandStaff/page";
 // import Page from "./Departments/pages/page";
 import DepartmentPage from "./Departments/pages/page";
 import { useParams } from "react-router-dom";
@@ -43,6 +44,7 @@ const AppRoutes = () => (
 			<Route path="/placements" element={<Placements />} />
 			<Route path="/research" element={<Research />} />
 			<Route path="/students" element={<Students />} />
+			<Route path="/facultyandstaff" element={<FacultyandStaff />} />
 			<Route path="/alumni" element={<Alumni />} />
 			<Route path="/events" element={<Events />} />
 			<Route path="/recruitments" element={<Recruitments />} />
