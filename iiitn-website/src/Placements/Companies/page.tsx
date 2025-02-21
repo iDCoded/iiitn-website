@@ -1,9 +1,13 @@
 import React from 'react';
 import CompanyCard from '../../components/CompanyCard';
+import PlacementNav from '@/components/PlacementNav';
+
 
 function Companies() {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
+      
+      <PlacementNav />
       {/* Header Section */}
       <div className="bg-[#002147] text-white py-16 text-center">
         <h1 className="text-4xl font-bold">Companies</h1>

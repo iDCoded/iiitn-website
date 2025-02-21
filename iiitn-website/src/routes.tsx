@@ -31,6 +31,7 @@ import { useParams } from "react-router-dom";
 import Companies from "./Placements/Companies/page";
 import Internships from "./Placements/Internships/page";
 import Statistics from "./Placements/Statistics/page";
+import ContactTP from "./Placements/ContactTP/page";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -52,6 +53,7 @@ const AppRoutes = () => (
 			<Route path="/placements/internships" element={<Internships />} />
 			<Route path="/placements/statistics" element={<Statistics />} />
 			<Route path="/placements/students" element={<PlacementStudents />} />
+			<Route path="/placements/contact" element={<ContactTP/>} />
 			<Route path="/research" element={<Research />} />
 			<Route path="/students" element={<Students />} />
 			<Route path="/facultyandstaff" element={<FacultyandStaff />} />
