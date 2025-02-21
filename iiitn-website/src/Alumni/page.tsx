@@ -11,8 +11,10 @@ function Alumni() {
             </div>
 
             {/* Form Section - Centered */}
-            <div className="flex flex-grow items-center justify-center mt-12">
-                <AlumniForm />
+            <div className="flex flex-grow items-center justify-center mt-12 px-4 sm:px-6 lg:px-8">
+                <div className="w-full max-w-md">
+                    <AlumniForm />
+                </div>
             </div>
         </div>
     );

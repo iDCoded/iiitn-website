@@ -27,11 +27,12 @@ function DepartmentCard({ title, imageSrc, overlayText, link }: DepartmentCardPr
                     
                 </div>
 
-                <a 
-                    href={link} 
-                    className="text-[#E87722] font-semibold text-lg hover:underline mt-2 p-4"
+                <a
+                    href={link}
+                    className="text-[#E87722] font-semibold text-sm sm:text-base md:text-lg hover:underline flex items-center group"
                 >
-                    Learn More →
+                    Learn More
+                    <span className="ml-2 inline-block transform rotate-[-45deg] transition-transform duration-300 ease-in-out group-hover:rotate-0">→</span>
                 </a>
             </div>
         </div>
