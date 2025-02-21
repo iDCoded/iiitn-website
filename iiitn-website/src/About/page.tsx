@@ -5,7 +5,7 @@ import {
     AccordionContent,
 } from "../components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
-import { Library, Dumbbell, Monitor, Cpu, Microscope, Satellite } from "lucide-react"; // Replace emojis with modern icons
+import { Library, Dumbbell, Monitor, Cpu, Microscope, Satellite } from "lucide-react";
 
 export default function AboutUs() {
     return (
@@ -17,19 +17,19 @@ export default function AboutUs() {
             </div>
 
             {/* Content Sections */}
-            <div className="max-w-5xl mx-auto px-6 py-12 space-y-10">
-
-                {/* Act (PPP) */}
-                <InfoCard
-                    title="Act (PPP)"
-                    content="The Indian Institute of Information Technology (IIIT), Nagpur is one of the IIITs under the Indian Institute of Information Technology (Public-Private Partnership) Act, 2017."
-                />
-
-                {/* Statute */}
-                <InfoCard
-                    title="Statute"
-                    content="IIIT Nagpur is governed by the Statutes formulated by the Government of India. These Statutes may be called the Statutes of the Indian Institute of Information Technology, Nagpur, 2017."
-                />
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-10">
+                
+                {/* Act (PPP) & Statute - Side by Side on Large Screens */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <InfoCard
+                        title="Act (PPP)"
+                        content="The Indian Institute of Information Technology (IIIT), Nagpur is one of the IIITs under the Indian Institute of Information Technology (Public-Private Partnership) Act, 2017."
+                    />
+                    <InfoCard
+                        title="Statute"
+                        content="IIIT Nagpur is governed by the Statutes formulated by the Government of India. These Statutes may be called the Statutes of the Indian Institute of Information Technology, Nagpur, 2017."
+                    />
+                </div>
 
                 {/* Institute Profile */}
                 <InfoCard
@@ -37,8 +37,8 @@ export default function AboutUs() {
                     content="IIIT Nagpur is one of the 20 IIITs established under the Public-Private Partnership Scheme by the Ministry of Education. It was declared an 'Institution of National Importance' in 2017 and shifted to its permanent campus in Butibori, Nagpur."
                 />
 
-                {/* Vision & Mission */}
-                <div className="grid md:grid-cols-2 gap-6">
+                {/* Vision & Mission - Side by Side on Large Screens */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <InfoCard
                         title="Institute Vision"
                         content="IIIT Nagpur aspires to be a leading research institution in Information Technology and related fields, imparting futuristic education of global standards."
@@ -54,7 +54,7 @@ export default function AboutUs() {
                     <CardHeader className="bg-[#E87722] text-white p-4 rounded-t-lg">
                         <CardTitle>Facilities</CardTitle>
                     </CardHeader>
-                    <CardContent className="p-6 grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
+                    <CardContent className="p-6 grid grid-cols-2 sm:grid-cols-3 gap-6 text-center">
                         {[
                             { icon: Library, label: "Library" },
                             { icon: Dumbbell, label: "Gym" },
@@ -77,7 +77,7 @@ export default function AboutUs() {
                     content="IIIT Nagpur publishes an annual report detailing the institute’s achievements, academic progress, research contributions, and financial statements."
                 />
 
-                {/* MoUs (Using Modern Accordion) */}
+                {/* MoUs - Modern Accordion */}
                 <Card className="border border-gray-200 rounded-lg">
                     <CardHeader className="bg-[#E87722] text-white p-4 rounded-t-lg">
                         <CardTitle>Memorandums of Understanding (MoUs)</CardTitle>

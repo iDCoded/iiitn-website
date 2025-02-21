@@ -3,8 +3,8 @@ import PlacementNav from '@/components/PlacementNav';
 
 function Placements() {
     return (
-       <>
-       <div className="bg-gray-100 min-h-screen flex flex-col">
+        <>
+            <div className="bg-gray-100 min-h-screen flex flex-col">
                 <PlacementNav />
                 <div className="bg-[#002147] text-white py-16 text-center">
                     <h1 className="text-5xl font-bold">Placements</h1>
@@ -14,7 +14,7 @@ function Placements() {
                 <div className='flex flex-col border-4 border-black p-6 m-4 rounded-lg bg-white shadow-lg'>
                     <h1 className="text-3xl font-semibold mb-4">About Us</h1>
                     <p className="text-gray-700 leading-relaxed">At IIITN, the Training & Placement Office is of strategic importance. It takes various initiatives to transform the students into a smart workforce. The T&P Office believes in providing quality internships and placements to all its students.
-                Consistent efforts are made to collaborate with leading organizations for joint technological development and research initiatives, internships, and placements. It acts as a Resource Centre, where students get information about various training programs, online courses, internships, and projects at various Govt Organizations in India.</p>
+                        Consistent efforts are made to collaborate with leading organizations for joint technological development and research initiatives, internships, and placements. It acts as a Resource Centre, where students get information about various training programs, online courses, internships, and projects at various Govt Organizations in India.</p>
                     <p className="mt-4">The T&P office is headed by the Sr. Office Associate T&P, Dr. Meera Jgadale, and supported by faculty In-charge Dr. Paritosh Peshwe and student representatives.</p>
                     <p className="mt-4 font-semibold text-blue-600"><a href='#' className="underline">IIIT Nagpur Training & Placement Brochure - Download</a></p>
                     <div className="p-4 border rounded-lg shadow-md bg-gray-50 mt-6">
@@ -62,8 +62,8 @@ function Placements() {
                         </div>
                     </div>
                 </div>
-        </div>
-       </>
+            </div>
+        </>
     );
 }
 
