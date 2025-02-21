@@ -1,84 +1,301 @@
-import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 
 const committees = [
     {
-        title: "Board of Governors",
-        asOnDate: "As on 19th Feb 2025",
-        members: [
-            { name: "Dr. A. P. Singh", Position: "Chairman" },
-            { name: "Prof. B. Kumar", Position: "Member" },
-            { name: "Shri C. Nair", Position: "Member" },
+        "title": "Board of Governors",
+        "asOnDate": "As on 01/10/2024",
+        "members": [
+            {
+                "name": "Shri Ravi Sharma",
+                "position": "Chairperson",
+                "details": "Chairperson - BoG, IIIT, Una. HP; President - IIT Alumni Council; Chairman - Telecom Equipment Manufacturers Association of India (TEMA); Founder - Prama Jyoti Foundation / Mission Chetna / Subodhanand Foundation."
+            },
+            {
+                "name": "Ms Saumya Gupta",
+                "position": "Member",
+                "details": "JS (Technical Education), MoE, New Delhi"
+            },
+            {
+                "name": "Dr. Vinod Mohitkar",
+                "position": "Member",
+                "details": "Director, DTE, Govt. of Maharashtra, Mumbai"
+            },
+            {
+                "name": "Shri Ajay R. Bohora",
+                "position": "Member",
+                "details": "Co-Founder, HDFC Credila Financial Services, Nashik."
+            },
+            {
+                "name": "Dr. (Mrs) B. Padma S. Rao",
+                "position": "Member",
+                "details": "Chief Scientist and Head, Environmental Audit and Policy Implementation Div., CSIR-NEERI, Nagpur."
+            },
+            {
+                "name": "Shri. V. Murlidharan",
+                "position": "Member",
+                "details": "Founder & Managing Trustee, Sevalaya, Chennai"
+            },
+            {
+                "name": "Prof Dr. Anupam Shukla",
+                "position": "Member",
+                "details": "Director, SVNIT, Surat"
+            },
+            {
+                "name": "Prof. Dr. Rajendra Patrikar",
+                "position": "Member",
+                "details": "Professor (Center of VLSI & Nanotechnology), VNIT, Nagpur"
+            },
+            {
+                "name": "Dr. Sachin Lodha",
+                "position": "Member",
+                "details": "Chief Scientist, Corporate Technology Office, TCS, Pune"
+            },
+            {
+                "name": "Professor (Dr.) Prem Lal Patel",
+                "position": "Member",
+                "details": "Director, VNIT, Nagpur"
+            },
+            {
+                "name": "Dr. Tausif Diwan",
+                "position": "Member",
+                "details": "Associate Dean, IIIT Nagpur"
+            },
+            {
+                "name": "Dr. Aatish Daryapurkar",
+                "position": "Member",
+                "details": "Assistant Professor, IIIT Nagpur"
+            },
+            {
+                "name": "Professor (Dr) Prem Lal Patel",
+                "position": "Member",
+                "details": "Director, IIIT Nagpur"
+            },
+            {
+                "name": "Shri Kailas N. Dakhale",
+                "position": "Member Secretary",
+                "details": "Registrar, IIIT Nagpur"
+            }
         ]
     },
     {
-        title: "Senate",
-        asOnDate: "As on 19th Feb 2025",
-        members: [
-            { name: "Prof. D. Sharma", Position: "Chairperson" },
-            { name: "Prof. E. Iyer", Position: "Member" },
-            { name: "Dr. F. Mehta", Position: "Member" },
+        "title": "Finance Committee",
+        "asOnDate": "As on 01/10/2024",
+        "members": [
+            {
+                "name": "Shri Ravi Sharma",
+                "position": "Chairperson",
+                "details": "Chairperson - BoG, IIIT, Una. HP; President - IIT Alumni Council; Chairman - Telecom Equipment Manufacturers Association of India (TEMA); Founder - Prama Jyoti Foundation / Mission Chetna / Subodhanand Foundation."
+            },
+            {
+                "name": "Shri. N.S. Bisht",
+                "position": "Member",
+                "details": "Dy. Secretary, IFD, MOE, New Delhi"
+            },
+            {
+                "name": "Professor (Dr) Prem Lal Patel",
+                "position": "Member",
+                "details": "Director, IIIT Nagpur"
+            },
+            {
+                "name": "Dr. Sachin Virsingh Solanki",
+                "position": "Member",
+                "details": "Joint Director, Technical Education Regional Office, DTE, Nagpur"
+            },
+            {
+                "name": "Shri Piyush Agrawal",
+                "position": "Member",
+                "details": "Services Delivery Leader, Tata Consultancy Services Industry Partner"
+            },
+            {
+                "name": "Shri Kailas N. Dakhale",
+                "position": "Member Secretary",
+                "details": "Registrar, IIIT Nagpur"
+            }
         ]
     },
     {
-        title: "Building Work Panel",
-        asOnDate: "As on 19th Feb 2025",
-        members: [
-            { name: "Mr. G. Verma", Position: "Head Architect" },
-            { name: "Eng. H. Joshi", Position: "Senior Engineer" },
-            { name: "Dr. I. Rao", Position: "Consultant" },
+        "title": "Senate",
+        "asOnDate": "As on 01/10/2024",
+        "members": [
+            {
+                "name": "Professor (Dr) Prem Lal Patel",
+                "position": "Chairman",
+                "details": "Director, IIIT Nagpur"
+            },
+            {
+                "name": "Dr A.G. Keskar",
+                "position": "Member",
+                "details": "Professor, VNIT, Nagpur"
+            },
+            {
+                "name": "Dr Arvind Kumar",
+                "position": "Member",
+                "details": "Centre Head, TATA Consultancy Services, MIHAN, Nagpur"
+            },
+            {
+                "name": "Shri Bhaskar Sharma",
+                "position": "Member",
+                "details": "TATA Consultancy Services, MIHAN, Nagpur"
+            },
+            {
+                "name": "Dr. (Mrs) Aparajeeta Ojha",
+                "position": "Member",
+                "details": "Professor (Department of Computer Science & Engineering), IIITDM, Jabalpur"
+            },
+            {
+                "name": "Dr. (Ms) Pushpa Trivedi",
+                "position": "Member",
+                "details": "Professor (Department of Humanities), Indian Institute of Technology, Bombay"
+            },
+            {
+                "name": "Dr (Mrs) B. Padma S. Rao",
+                "position": "Member",
+                "details": "Chief Scientist and Head, Environmental Audit and Policy Implementation Division, CSIR-NEERI, Nagpur"
+            },
+            {
+                "name": "Dr. Tausif Diwan",
+                "position": "Member",
+                "details": "Associate Dean, IIIT Nagpur"
+            },
+            {
+                "name": "Dr. Nishat Afshan Ansari",
+                "position": "Member",
+                "details": "HOD, CSE, IIIT Nagpur"
+            },
+            {
+                "name": "Dr. Harsh Goud",
+                "position": "Member",
+                "details": "HOD, ECE, IIIT Nagpur"
+            },
+            {
+                "name": "Dr. Prasad Joshi",
+                "position": "Member",
+                "details": "HOD, BS, IIIT Nagpur"
+            },
+            {
+                "name": "Shri Kailas N. Dakhale",
+                "position": "Member Secretary",
+                "details": "Registrar, IIIT Nagpur"
+            }
         ]
     },
     {
-        title: "Finance Committee",
-        asOnDate: "As on 19th Feb 2025",
-        members: [
-            { name: "Mr. J. Shah", Position: "Finance Head" },
-            { name: "Dr. K. Nanda", Position: "Auditor" },
-            { name: "Ms. L. Kapoor", Position: "Member" },
+        "title": "Building Works Committee",
+        "asOnDate": "As on 01/10/2024",
+        "members": [
+            {
+                "name": "Professor (Dr) Prem Lal Patel",
+                "position": "Chairman",
+                "details": "Director, IIIT Nagpur"
+            },
+            {
+                "name": "Dr. Sachin V. Solanki",
+                "position": "Member",
+                "details": "Joint Director, Technical Education Regional Office, DTE, Nagpur"
+            },
+            {
+                "name": "Dr. Praful Gharpure",
+                "position": "Member",
+                "details": "Head (Infrastructure Planning & Development), Representative of TCS"
+            },
+            {
+                "name": "Dr. Dilip Lataye",
+                "position": "Member",
+                "details": "Prof. & HOD, Civil Engg. Dept., VNIT, Nagpur"
+            },
+            {
+                "name": "Mrs. Varsha Ghushe",
+                "position": "Member",
+                "details": "Executive Engineer (Civil), Representative of Chief Engineer (Civil), PWD, Nagpur"
+            },
+            {
+                "name": "Shri R.W. Banait",
+                "position": "Member",
+                "details": "Asst. Superintending Engineer (Electrical), PWD, Nagpur"
+            },
+            {
+                "name": "Shri Kailas N. Dakhale",
+                "position": "Member Secretary",
+                "details": "Registrar, IIIT Nagpur"
+            }
         ]
     }
-];
+]
+
+
 
 function Committee() {
     return (
-        <div className="bg-gray-100 text-gray-900 min-h-screen">
+        <div className="bg-gray-50 text-gray-900 min-h-screen">
             {/* Hero Section */}
             <div className="bg-[#002147] text-white py-16 text-center">
-                <h1 className="text-4xl font-bold">Committees at IIIT Nagpur</h1>
+                <h1 className="text-3xl md:text-4xl font-bold">Committees at IIIT Nagpur</h1>
                 <p className="text-lg mt-2">Ensuring Excellence in Governance</p>
             </div>
 
-            {/* Committee Sections */}
-            <div className="max-w-6xl mx-auto px-6 py-12 grid gap-8">
-                {committees.map((committee, index) => (
-                    <Card key={index} className="shadow-lg">
-                        <CardHeader className="bg-[#E87722] text-white p-4 rounded-t-lg">
-                            <CardTitle>{committee.title}</CardTitle>
-                            <p className="text-sm mt-1">{committee.asOnDate}</p>
+            {/* Main Layout */}
+            <div className="max-w-7xl mx-auto px-4 md:px-6 py-12 flex flex-col lg:flex-row gap-8">
+                {/* Sidebar - Only visible on large screens */}
+                <aside className="lg:w-1/4 hidden lg:block sticky top-24 self-start">
+                    <Card className="shadow-md border border-gray-200">
+                        <CardHeader className="bg-[#002147] text-white p-4 rounded-t-lg">
+                            <CardTitle className="text-lg font-semibold">Quick Links</CardTitle>
                         </CardHeader>
-                        <CardContent className="p-6">
-                            <table className="w-full border-collapse border border-gray-300">
-                                <thead>
-                                    <tr className="bg-gray-200">
-                                        <th className="border border-gray-300 p-2">S.No</th>
-                                        <th className="border border-gray-300 p-2">Name</th>
-                                        <th className="border border-gray-300 p-2">Position</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {committee.members.map((member, idx) => (
-                                        <tr key={idx} className="text-center">
-                                            <td className="border border-gray-300 p-2">{idx + 1}</td>
-                                            <td className="border border-gray-300 p-2">{member.name}</td>
-                                            <td className="border border-gray-300 p-2">{member.Position}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                        <CardContent className="p-4">
+                            <ul className="space-y-2 text-sm">
+                                {committees.map((section, index) => (
+                                    <li key={index}>
+                                        <a
+                                            href={`#${section.title.replace(/\s+/g, "-")}`}
+                                            className="text-[#002147] hover:text-[#E87722] hover:underline block"
+                                        >
+                                            {section.title}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
                         </CardContent>
                     </Card>
-                ))}
+                </aside>
+
+                {/* Committee Sections */}
+                <div className="lg:w-3/4 space-y-8">
+                    {committees.map((committee, index) => (
+                        <Card key={index} id={committee.title.replace(/\s+/g, "-")} className="shadow-md border border-gray-200">
+                            <CardHeader className="bg-[#002147] text-white p-4 rounded-t-lg">
+                                <CardTitle>{committee.title}</CardTitle>
+                                <p className="text-sm mt-1">{committee.asOnDate}</p>
+                            </CardHeader>
+                            <CardContent className="p-6">
+                                <div className="overflow-x-auto">
+                                    <table className="w-full border-collapse border border-gray-300">
+                                        <thead>
+                                            <tr className="bg-gray-100 text-[#002147]">
+                                                <th className="border border-gray-300 p-3">S.No</th>
+                                                <th className="border border-gray-300 p-3">Name</th>
+                                                <th className="border border-gray-300 p-3">Position</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {committee.members.map((member, idx) => (
+                                                <tr key={idx} className="text-center">
+                                                    <td className="border border-gray-300 p-3">{idx + 1}</td>
+                                                    <td className="border border-gray-300 p-3">
+                                                        <div className="text-left">
+                                                            <p className="font-semibold text-[#002147]">{member.name}</p>
+                                                            <p className="text-sm text-gray-600">{member.details}</p>
+                                                        </div>
+                                                    </td>
+                                                    <td className="border border-gray-300 p-3">{member.position}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
             </div>
         </div>
     );

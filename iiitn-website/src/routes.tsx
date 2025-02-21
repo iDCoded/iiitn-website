@@ -17,14 +17,9 @@ import Initiatives from "./Initiatives/page";
 import NotFound from "./NotFound/page"; // 404 Pa/pagege
 import Administration from "./Governance/Administration/page";
 import Committee from "./Governance/Committee/page";
-import Chairman from "./Governance/Administration/pages/Chairman";
-import Registrar from "./Governance/Administration/pages/Registrar";
-import Director from "./Governance/Administration/pages/Director";
-import Staff from "./Governance/Administration/pages/Staff";
+import AdministrationPage from "./Governance/Administration/pages/AdministrationPage";
 import FacultyandStaff from "./FacultyandStaff/page";
 import PlacementStudents from "./Placements/Students/page";
-
-
 // import Page from "./Departments/pages/page";
 import DepartmentPage from "./Departments/pages/page";
 import { useParams } from "react-router-dom";
@@ -36,6 +31,20 @@ const PageWrapper = () => {
 	const { param } = useParams();
 	return <DepartmentPage title={param || "defaultTitle"} />;
 };
+
+const AdminWrapper = () => {
+	const { param } = useParams();
+	if (param === "chairman") {
+		return <AdministrationPage title="chairman" />;
+	} else if (param === "director") {
+		return <AdministrationPage title="director" />;
+	} else if (param === "registrar") {
+		return <AdministrationPage title="registrar" />;
+	}
+	else {
+		return <NotFound />;
+	}
+}
 
 const AppRoutes = () => (
 	<Router>
@@ -62,10 +71,7 @@ const AppRoutes = () => (
 			<Route path="/login" element={<Login />} />
 			<Route path="/initiatives" element={<Initiatives />} />
 			<Route path="/governance/administration" element={<Administration />} />
-			<Route path="/governance/chairman" element={<Chairman />} />
-			<Route path="/governance/registrar" element={<Registrar />} />
-			<Route path="/governance/director" element={<Director />} />
-			<Route path="/governance/staff" element={<Staff />} />
+			<Route path="/governance/:param" element={<AdminWrapper />} />
 			<Route path="/governance/committee" element={<Committee />} />
 			<Route path="*" element={<NotFound />} /> {/* 404 page */}
 		</Routes>
