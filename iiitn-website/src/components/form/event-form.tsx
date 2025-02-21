@@ -69,7 +69,7 @@ export function EventForm() {
 				</div>
 
 				<div className="space-y-2">
-					<Label htmlFor="content">Content</Label>
+					<Label>Content</Label>
 					<MDEditor
 						data-color-mode="light"
 						value={content}
