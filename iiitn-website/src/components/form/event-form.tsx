@@ -1,38 +1,20 @@
-import type React from "react";
-
-import { useState } from "react";
+import React, { useState } from "react";
+import MDEditor from "@uiw/react-md-editor";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/hooks/use-toast";
 import { Calendar } from "lucide-react";
 
 export function EventForm() {
 	const [title, setTitle] = useState("");
 	const [date, setDate] = useState("");
-	const [location, setLocation] = useState("");
 	const [caption, setCaption] = useState("");
-	const [description, setDescription] = useState("");
+	const [content, setContent] = useState("");
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		console.log("Event submitted:", {
-			title,
-			date,
-			location,
-			caption,
-			description,
-		});
-		toast({
-			title: "Event Created",
-			description: "Your event has been successfully created.",
-		});
-		setTitle("");
-		setDate("");
-		setLocation("");
-		setCaption("");
-		setDescription("");
+		// Send `title`, `date`, `caption`, and `content` to the backend as plain markdown text
+		console.log("Submitted content:", { title, date, caption, content });
 	};
 
 	return (
@@ -43,52 +25,38 @@ export function EventForm() {
 				</div>
 				<div>
 					<h2 className="text-2xl font-semibold">Create Event</h2>
-					<p className="text-sm text-gray-500">
-						Add a new event to the college calendar
-					</p>
+					<p className="text-sm text-gray-500">Add a new event</p>
 				</div>
 			</div>
 
 			<form onSubmit={handleSubmit} className="space-y-6">
 				<div className="space-y-2">
-					<Label htmlFor="title">Event Title</Label>
+					<Label htmlFor="title">Title</Label>
 					<Input
 						id="title"
-						placeholder="Enter event title"
+						placeholder="Enter title"
 						value={title}
 						onChange={(e) => setTitle(e.target.value)}
 						required
 					/>
 				</div>
 
-				<div className="grid grid-cols-2 gap-4">
-					<div className="space-y-2">
-						<Label htmlFor="date">Date</Label>
-						<Input
-							type="date"
-							id="date"
-							value={date}
-							onChange={(e) => setDate(e.target.value)}
-							required
-						/>
-					</div>
-					<div className="space-y-2">
-						<Label htmlFor="location">Location</Label>
-						<Input
-							id="location"
-							placeholder="Enter event location"
-							value={location}
-							onChange={(e) => setLocation(e.target.value)}
-							required
-						/>
-					</div>
+				<div className="space-y-2">
+					<Label htmlFor="date">Date</Label>
+					<Input
+						id="date"
+						type="date"
+						value={date}
+						onChange={(e) => setDate(e.target.value)}
+						required
+					/>
 				</div>
 
 				<div className="space-y-2">
 					<Label htmlFor="caption">Caption</Label>
 					<Input
 						id="caption"
-						placeholder="Enter a brief caption"
+						placeholder="Enter caption"
 						value={caption}
 						onChange={(e) => setCaption(e.target.value)}
 						required
@@ -96,19 +64,18 @@ export function EventForm() {
 				</div>
 
 				<div className="space-y-2">
-					<Label htmlFor="description">Description</Label>
-					<Textarea
-						id="description"
-						placeholder="Write your event description..."
-						value={description}
-						onChange={(e) => setDescription(e.target.value)}
-						className="min-h-[200px]"
-						required
+					<Label htmlFor="content">Content</Label>
+					<MDEditor
+						data-color-mode="light"
+						value={content}
+						onChange={(value) => setContent(value || "")}
+						height={500}
+						preview="edit"
 					/>
 				</div>
 
 				<Button type="submit" size="lg" className="w-full">
-					Create Event
+					Submit
 				</Button>
 			</form>
 		</div>

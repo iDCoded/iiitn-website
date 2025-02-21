@@ -1,28 +1,20 @@
-import type React from "react";
-
-import { useState } from "react";
+import React, { useState } from "react";
+import MDEditor from "@uiw/react-md-editor";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/hooks/use-toast";
 import { BellRing } from "lucide-react";
 
 export function AnnouncementForm() {
 	const [title, setTitle] = useState("");
+	const [date, setDate] = useState("");
 	const [caption, setCaption] = useState("");
 	const [content, setContent] = useState("");
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		console.log("Announcement submitted:", { title, caption, content });
-		toast({
-			title: "Announcement Created",
-			description: "Your announcement has been successfully created.",
-		});
-		setTitle("");
-		setCaption("");
-		setContent("");
+		// Send `title`, `date`, `caption`, and `content` to the backend as plain markdown text
+		console.log("Submitted content:", { title, date, caption, content });
 	};
 
 	return (
@@ -33,9 +25,7 @@ export function AnnouncementForm() {
 				</div>
 				<div>
 					<h2 className="text-2xl font-semibold">Create Announcement</h2>
-					<p className="text-sm text-gray-500">
-						Create a new announcement for the college website
-					</p>
+					<p className="text-sm text-gray-500">Add a new announcement</p>
 				</div>
 			</div>
 
@@ -44,9 +34,20 @@ export function AnnouncementForm() {
 					<Label htmlFor="title">Title</Label>
 					<Input
 						id="title"
-						placeholder="Enter a descriptive title"
+						placeholder="Enter title"
 						value={title}
 						onChange={(e) => setTitle(e.target.value)}
+						required
+					/>
+				</div>
+
+				<div className="space-y-2">
+					<Label htmlFor="date">Date</Label>
+					<Input
+						id="date"
+						type="date"
+						value={date}
+						onChange={(e) => setDate(e.target.value)}
 						required
 					/>
 				</div>
@@ -55,7 +56,7 @@ export function AnnouncementForm() {
 					<Label htmlFor="caption">Caption</Label>
 					<Input
 						id="caption"
-						placeholder="Enter a brief caption"
+						placeholder="Enter caption"
 						value={caption}
 						onChange={(e) => setCaption(e.target.value)}
 						required
@@ -64,18 +65,17 @@ export function AnnouncementForm() {
 
 				<div className="space-y-2">
 					<Label htmlFor="content">Content</Label>
-					<Textarea
-						id="content"
-						placeholder="Write your announcement content..."
+					<MDEditor
+						data-color-mode="light"
 						value={content}
-						onChange={(e) => setContent(e.target.value)}
-						className="min-h-[200px]"
-						required
+						onChange={(value) => setContent(value || "")}
+						height={500}
+						preview="edit"
 					/>
 				</div>
 
 				<Button type="submit" size="lg" className="w-full">
-					Publish Announcement
+					Submit
 				</Button>
 			</form>
 		</div>
