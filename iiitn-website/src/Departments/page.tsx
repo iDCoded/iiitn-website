@@ -31,7 +31,7 @@ function Departments() {
                         title="Basic Science"
                         imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
                         overlayText="Department of Basic Sciences at Indian Institute of Information Technology, Nagpur is a vibrant academic department."
-                        link="departments/basic-science"
+                        link="departments/basic_science"
                     />
 
                     {/* Department 2 */}

@@ -26,135 +26,89 @@ const prospectiveData = [
 function FacultyandStaff() {
     return (
         <div className="bg-gray-50 min-h-screen">
-            {/* Header Section */}
-            <div className="bg-[#002147] text-white py-14 text-center">
-            <h1 className="text-4xl font-bold">Faculty and Staff</h1>
-            <p className="text-lg mt-2 opacity-80">Stay connected and contribute to the growth of IIIT Nagpur.</p>
+            {/* Hero Section */}
+            <div className="bg-[#002147] text-white py-16 text-center">
+                <h1 className="text-3xl lg:text-4xl font-bold">Faculty and Staff</h1>
+                <p className="text-lg mt-3 opacity-80">Stay connected and contribute to the growth of IIIT Nagpur.</p>
             </div>
 
             {/* Main Content */}
-            <div className="container mx-auto flex flex-col lg:flex-row gap-12 px-6 py-12">
-            {/* Left Sidebar */}
-            <aside className="hidden md:block col-span-3 sticky top-20 self-start space-y-6 w-1/4">
-                <Card className="shadow-sm border border-gray-200">
-                <CardHeader>
-                    <CardTitle className="text-lg font-semibold text-[#002147]">Quick Links</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <ul className="space-y-2 text-sm">
-                    {["Faculty Directory", "Staff Directory", "Academic Policies", "Research Opportunities", "Teaching Resources"].map((item, index) => (
-                        <li key={index}>
-                        <a href="#" className="text-[#E87722] hover:underline">
-                            {item}
-                        </a>
-                        </li>
+            <div className="container mx-auto px-6 py-12 flex flex-col lg:flex-row gap-12">
+                {/* Sidebar (Quick Links, Events, Resources) */}
+                <aside className="hidden md:block w-1/4 space-y-6 top-20 self-start">
+                    {[
+                        { title: "Quick Links", items: ["Faculty Directory", "Staff Directory", "Academic Policies", "Research Opportunities", "Teaching Resources"] },
+                        { title: "Upcoming Events", items: ["Faculty Development Program", "Guest Lectures", "Research Conference", "Annual Faculty Meet", "Training Workshops"] },
+                        { title: "Resources & Services", items: ["Telephone Directory", "Campus Map", "Faculty Resources", "IT Support"] },
+                    ].map((section, index) => (
+                        <Card key={index} className="shadow-sm border border-gray-200">
+                            <CardHeader>
+                                <CardTitle className="text-lg font-semibold text-[#002147]">{section.title}</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <ul className="space-y-2 text-sm">
+                                    {section.items.map((item, i) => (
+                                        <li key={i}>
+                                            <a href="#" className="text-[#E87722] hover:underline">{item}</a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </CardContent>
+                        </Card>
                     ))}
-                    </ul>
-                </CardContent>
-                </Card>
+                    {/* Notices */}
+                    <Card className="shadow-sm border border-gray-200">
+                        <CardHeader>
+                            <CardTitle className="text-lg font-semibold text-[#002147]">Notices</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-gray-600">Important updates and announcements for faculty and staff.</p>
+                        </CardContent>
+                    </Card>
+                </aside>
 
-                <Card className="shadow-sm border border-gray-200">
-                <CardHeader>
-                    <CardTitle className="text-lg font-semibold text-[#002147]">Upcoming Events</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <ul className="space-y-2 text-sm">
-                    {["Faculty Development Program", "Guest Lectures", "Research Conference", "Annual Faculty Meet", "Training Workshops"].map((event, index) => (
-                        <li key={index}>
-                        <a href="#" className="text-[#E87722] hover:underline">
-                            {event}
-                        </a>
-                        </li>
-                    ))}
-                    </ul>
-                </CardContent>
-                </Card>
-
-                <Card className="shadow-sm border border-gray-200">
-                <CardHeader>
-                    <CardTitle className="text-lg font-semibold text-[#002147]">Resources & Services</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <ul className="space-y-2 text-sm">
-                    {["Telephone Directory", "Campus Map", "Faculty Resources", "IT Support"].map((item, index) => (
-                        <li key={index}>
-                        <a href="#" className="text-[#E87722] hover:underline">
-                            {item}
-                        </a>
-                        </li>
-                    ))}
-                    </ul>
-                </CardContent>
-                </Card>
-
-                <Card className="shadow-sm border border-gray-200">
-                <CardHeader>
-                    <CardTitle className="text-lg font-semibold text-[#002147]">Notices</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <p className="text-gray-600">Important updates and announcements for faculty and staff.</p>
-                </CardContent>
-                </Card>
-            </aside>
-
-                {/* Right Content (Main Section) */}
-                <div className="w-2/3">
-                    {/* Prospective Faculty & Staff Section */}
-                    <div className="mt-12">
-                        <h1 className="text-2xl font-semibold mb-4">
-                            Prospective Faculty & Staff
-                        </h1>
-                        <p className="mb-8">
-                            Get more details on programmes, resources, fees, and other
-                            information for prospective faculty and staff here.
+                {/* Main Section */}
+                <div className="flex-1">
+                    {/* Prospective Faculty & Staff */}
+                    <div className="mb-12">
+                        <h2 className="text-2xl font-semibold mb-4">Prospective Faculty & Staff</h2>
+                        <p className="text-gray-600 leading-relaxed">
+                            Get more details on programs, resources, fees, and other information here.
                         </p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                             {prospectiveData.map((data, index) => (
-                                <StudentCard
-                                    key={index}
-                                    title={data.title}
-                                    description={data.description}
-                                    imageSrc={data.imageSrc}
-                                />
+                                <StudentCard key={index} title={data.title} description={data.description} imageSrc={data.imageSrc} />
                             ))}
                         </div>
                     </div>
 
-                    {/* Current Faculty & Staff Section */}
-                    <div className="mt-12">
-                        <h1 className="text-2xl font-semibold mb-4">
-                            Current Faculty & Staff
-                        </h1>
-                        <p className="mb-8">
-                            Get more details on programmes, resources, and policies for
-                            current faculty and staff.
+                    {/* Current Faculty & Staff */}
+                    <div className="mb-12">
+                        <h2 className="text-2xl font-semibold mb-4">Current Faculty & Staff</h2>
+                        <p className="text-gray-600 leading-relaxed">
+                            Get more details on programs, resources, and policies for current faculty and staff.
                         </p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                             {prospectiveData.map((data, index) => (
-                                <StudentCard
-                                    key={index}
-                                    title={data.title}
-                                    description={data.description}
-                                    imageSrc={data.imageSrc}
-                                />
+                                <StudentCard key={index} title={data.title} description={data.description} imageSrc={data.imageSrc} />
                             ))}
                         </div>
                     </div>
 
-                    {/* Faculty & Staff Directories (Moved to End) */}
-                    <div className="mt-12 flex flex-row gap-12">
+                    {/* Faculty & Staff Directory */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
                         {/* Faculty Directory */}
-                        <div className="w-1/2">
-                            <h1 className="text-4xl font-bold">Faculty Directory</h1>
+                        <div>
+                            <h2 className="text-2xl font-semibold mb-4">Faculty Directory</h2>
                             <FSCard
                                 title="Dr. ABC"
                                 description="Professor"
                                 imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
                             />
                         </div>
-                        {/* Staff Section */}
-                        <div className="w-1/2">
-                            <h1 className="text-4xl font-bold">Staff</h1>
+                        {/* Staff Directory */}
+                        <div>
+                            <h2 className="text-2xl font-semibold mb-4">Staff Directory</h2>
                             <FSCard
                                 title="Dr. ABC"
                                 description="Professor"

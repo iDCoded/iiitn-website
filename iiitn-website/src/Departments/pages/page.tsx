@@ -13,8 +13,8 @@ interface DepartmentData {
     bos: string;
     achievements: string;
     research: string;
-    faculty: string[];
-    staff: string[];
+    faculty: string;
+    staff: string;
     projects: string[];
     laboratory: string[];
     events: Event[];
@@ -30,8 +30,8 @@ const departmentsDemo: Record<string, DepartmentData> = {
         bos: "The Board of Studies (BoS) of the CSE Department is responsible for designing the curriculum, evaluating academic programs, and ensuring the quality of education.",
         achievements: "The CSE Department has achieved numerous milestones in research, innovation, and academic excellence. Our faculty and students have published research papers, won awards, and participated in hackathons.",
         research: "The research focus areas of the CSE Department include artificial intelligence, machine learning, data science, computer networks, and software engineering.",
-        faculty: ["Dr. John Doe", "Dr. Jane Doe", "Dr. Alice Smith", "Dr. Bob Johnson"],
-        staff: ["Mr. John Doe", "Ms. Jane Doe", "Mr. Alice Smith", "Ms. Bob Johnson"],
+        faculty: "",
+        staff: "",
         projects: ["Project 1: AI Chatbot", "Project 2: Data Analytics Tool", "Project 3: Software Development Platform"],
         laboratory: ["Computer Networks Lab", "Artificial Intelligence Lab", "Software Engineering Lab"],
         events: [
@@ -45,8 +45,8 @@ const departmentsDemo: Record<string, DepartmentData> = {
         bos: "The Board of Studies (BoS) of the ECE Department is responsible for designing the curriculum, evaluating academic programs, and ensuring the quality of education.",
         achievements: "The ECE Department has achieved numerous milestones in research, innovation, and academic excellence. Our faculty and students have published research papers, won awards, and participated in hackathons.",
         research: "The research focus areas of the ECE Department include advanced networking, signal processing, embedded systems, and VLSI design.",
-        faculty: ["Dr. John Doe", "Dr. Jane Doe", "Dr. Alice Smith", "Dr. Bob Johnson"],
-        staff: ["Mr. John Doe", "Ms. Jane Doe", "Mr. Alice Smith", "Ms. Bob Johnson"],
+        faculty: "",
+        staff: "",
         projects: ["Project 1: IoT Applications", "Project 2: Wireless Communication", "Project 3: Embedded Systems"],
         laboratory: ["Networking Lab", "Signal Processing Lab", "VLSI Design Lab"],
         events: [
@@ -60,8 +60,8 @@ const departmentsDemo: Record<string, DepartmentData> = {
         bos: "The Board of Studies (BoS) of the Basic Sciences Department is responsible for designing the curriculum, evaluating academic programs, and ensuring the quality of education.",
         achievements: "The Basic Sciences Department has achieved numerous milestones in research, innovation, and academic excellence. Our faculty and students have published research papers, won awards, and participated in conferences.",
         research: "The research focus areas of the Basic Sciences Department include physics, chemistry, mathematics, and environmental science.",
-        faculty: ["Dr. John Doe", "Dr. Jane Doe", "Dr. Alice Smith", "Dr. Bob Johnson"],
-        staff: ["Mr. John Doe", "Ms. Jane Doe", "Mr. Alice Smith", "Ms. Bob Johnson"],
+        faculty: "",
+        staff: "",
         projects: ["Project 1: Quantum Computing", "Project 2: Nanotechnology", "Project 3: Environmental Studies"],
         laboratory: ["Physics Lab", "Chemistry Lab", "Mathematics Lab"],
         events: [
@@ -106,7 +106,7 @@ function DepartmentPage({ title }: PageProps) {
     ];
 
     return (
-        <div className="bg-gray-50 text-gray-900 min-h-screen">
+        <div className="bg-gray-50 text-gray-900 min-h-screen ">
             {/* Hero Section */}
             <div className="relative w-full text-white text-center py-14 shadow-lg bg-gradient-to-r from-[#002147] via-[#002C5F] to-[#002147]">
                 <h1 className="text-5xl font-extrabold tracking-wide">{title.toUpperCase()} Department</h1>
@@ -116,17 +116,17 @@ function DepartmentPage({ title }: PageProps) {
 
             {/* Sidebar Navigation */}
             <div className="container mx-auto max-w-6xl px-4 sm:px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-6">
-                <aside className="hidden md:block col-span-3 sticky top-20 self-start space-y-6 w-1/4">
+                <aside className="col-span-1 hidden md:block sticky top-20 self-start space-y-6 w-full">
                     <Card className="shadow-sm border border-gray-200">
                         <CardHeader>
-                            <CardTitle className="text-lg font-semibold text-[#002147]">Quick Links</CardTitle>
+                            <CardTitle className="text-lg font-semibold text-[#002147]"></CardTitle>
                         </CardHeader>
                         <CardContent>
                             <ul className="space-y-2 text-sm">
-                                {["Faculty Directory", "Staff Directory", "Academic Policies", "Research Opportunities", "Teaching Resources"].map((item, index) => (
+                                {sections.map((section, index) => (
                                     <li key={index}>
                                         <a href="#" className="text-[#E87722] hover:underline">
-                                            {item}
+                                            {section.title}
                                         </a>
                                     </li>
                                 ))}
@@ -135,46 +135,54 @@ function DepartmentPage({ title }: PageProps) {
                     </Card>
                 </aside>
 
+
                 {/* 🟠 Info Sections */}
-                <div className="gridlg:grid-cols-3 gap-8 mt-10">
+                <div className="col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
                     {sections.map((section) => (
                         <Card
                             key={section.id}
-                            className="group relative overflow-hidden bg-white dark:bg-gray-900 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 hover:scale-[1.03] hover:shadow-xl transition-all duration-300"
+                            className="group relative bg-white shadow-md hover:shadow-lg transition-all duration-300 rounded-xl border border-gray-100 dark:border-gray-700"
                         >
-                            <CardHeader className="bg-[#E87722] text-white p-5 rounded-t-lg">
-                                <CardTitle className="text-xl font-semibold tracking-wide uppercase relative">
+                            {/* Header with accent border */}
+                            <CardHeader className="p-5">
+                                <CardTitle className="text-lg font-semibold tracking-wide relative pb-2">
                                     {section.title}
-                                    <div className="absolute bottom-[-3px] left-0 w-10 h-[2px] bg-white"></div> {/* Underline Effect */}
+                                    <span className="absolute bottom-0 left-0 w-8 h-[3px] bg-[#E87722] rounded-full"></span>
                                 </CardTitle>
                             </CardHeader>
 
-                            <CardContent className="p-6 text-gray-700 dark:text-gray-300">
+                            {/* Content */}
+                            <CardContent className="p-5 text-gray-700">
                                 {Array.isArray(section.content) ? (
-                                    <ul className="list-disc list-inside space-y-2">
+                                    <ul className="space-y-2 text-sm">
                                         {section.content.map((item, index) => (
-                                            <li key={index}>{item}</li>
+                                            <li key={index} className="flex items-start gap-2">
+                                                <span className="text-[#E87722]">•</span> {item}
+                                            </li>
                                         ))}
                                     </ul>
                                 ) : (
-                                    <p>{section.content}</p>
+                                    <p className="text-sm">{section.content}</p>
                                 )}
                             </CardContent>
                         </Card>
                     ))}
                 </div>
 
+            </div>
+
+            <div className="container mx-auto max-w-6xl px-4 sm:px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-6">
                 {/* 🟠 Events Section */}
                 {data.events.length > 0 && (
-                    <div className="mt-12">
-                        <h2 className="text-3xl font-bold text-[#002147] dark:text-[#E87722] mb-6">
-                            Upcoming Events
+                    <div className="mt-12 col-span-3">
+                        <h2 className="text-3xl font-bold text-[#002147] mb-6">
+                            <span className="text-6xl font-bold text-[#E87722]">|</span>Upcoming Events
                         </h2>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 py-6">
                             {data.events.map((event, index) => (
                                 <div
                                     key={index}
-                                    className="group relative overflow-hidden rounded-xl shadow-md bg-white dark:bg-gray-800 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.05] cursor-pointer"
+                                    className="group relative overflow-hidden rounded-xl shadow-md bg-white hover:shadow-xl transition-all duration-300 transform hover:scale-[1.05] cursor-pointer"
                                 >
                                     {/* Event Image */}
                                     <div className="h-60 w-full relative overflow-hidden">
@@ -192,11 +200,11 @@ function DepartmentPage({ title }: PageProps) {
 
                                     {/* Event Details */}
                                     <div className="p-5">
-                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                                        <h3 className="text-lg font-semibold text-gray-900">
                                             {event.title}
                                         </h3>
                                         {event.time && (
-                                            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{event.time}</p>
+                                            <p className="text-sm text-gray-600 mt-1">{event.time}</p>
                                         )}
                                     </div>
                                 </div>
