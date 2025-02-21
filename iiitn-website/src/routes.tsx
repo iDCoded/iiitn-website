@@ -20,6 +20,7 @@ import Committee from "./Governance/Committee/page";
 import AdministrationPage from "./Governance/Administration/pages/AdministrationPage";
 import FacultyandStaff from "./FacultyandStaff/page";
 import PlacementStudents from "./Placements/Students/page";
+import GuestHouse from "./Pages/GuestHouse";
 // import Page from "./Departments/pages/page";
 import DepartmentPage from "./Departments/pages/page";
 import { useParams } from "react-router-dom";
@@ -27,6 +28,9 @@ import Companies from "./Placements/Companies/page";
 import Internships from "./Placements/Internships/page";
 import Statistics from "./Placements/Statistics/page";
 import ContactTP from "./Placements/ContactTP/page";
+import PressRelease from "./Pages/PressRelease";
+import OfficialDocuments from "./Pages/OfficialDocuments";
+import Tenders from "./Pages/Tenders";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -75,6 +79,10 @@ const AppRoutes = () => (
 			<Route path="/governance/administration" element={<Administration />} />
 			<Route path="/governance/:param" element={<AdminWrapper />} />
 			<Route path="/governance/committee" element={<Committee />} />
+			<Route path="/pages/guesthouse" element={<GuestHouse />} />
+			<Route path="/pages/pressrelease" element={<PressRelease />} />
+			<Route path="/pages/officialdocuments" element={<OfficialDocuments />} />
+			<Route path="/pages/tenders" element={<Tenders />} />
 			<Route path="*" element={<NotFound />} /> {/* 404 page */}
 		</Routes>
 	</Router>
