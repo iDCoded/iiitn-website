@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { BellRing, Calendar, ImageIcon, Home, LogOut } from "lucide-react";
+import {
+	BellRing,
+	Calendar,
+	ImageIcon,
+	Home,
+	LogOut,
+	Menu,
+} from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -9,6 +16,7 @@ import { ImageUpload } from "@/components/form/image-upload";
 
 export default function AdminDashboard() {
 	const [activeTab, setActiveTab] = useState("announcements");
+	const [sidebarOpen, setSidebarOpen] = useState(false);
 
 	const menuItems = [
 		{ id: "announcements", label: "Announcements", icon: BellRing },
@@ -16,10 +24,18 @@ export default function AdminDashboard() {
 		{ id: "images", label: "Image Upload", icon: ImageIcon },
 	];
 
+	const handleMenuItemClick = (id: string) => {
+		setActiveTab(id);
+		setSidebarOpen(false); // Close the sidebar
+	};
+
 	return (
 		<div className="flex h-screen bg-gray-50">
 			{/* Sidebar */}
-			<div className="w-64 bg-white border-r border-gray-200 flex flex-col">
+			<div
+				className={`fixed inset-0 z-40 lg:static lg:inset-auto lg:z-auto lg:flex lg:w-64 bg-white border-r border-gray-200 flex-col ${
+					sidebarOpen ? "block" : "hidden"
+				}`}>
 				<div className="p-4 border-b">
 					<h1 className="text-xl font-semibold flex items-center gap-2">
 						<Home className="h-5 w-5" />
@@ -37,7 +53,7 @@ export default function AdminDashboard() {
 								className={`w-full justify-start ${
 									activeTab === item.id ? "" : "hover:bg-gray-100"
 								}`}
-								onClick={() => setActiveTab(item.id)}>
+								onClick={() => handleMenuItemClick(item.id)}>
 								<item.icon className="mr-2 h-4 w-4" />
 								{item.label}
 							</Button>
@@ -72,6 +88,14 @@ export default function AdminDashboard() {
 			{/* Main Content */}
 			<div className="flex-1 overflow-auto">
 				<div className="p-8">
+					{/* Toggle Sidebar Button */}
+					<Button
+						variant="ghost"
+						className="lg:hidden mb-4"
+						onClick={() => setSidebarOpen(!sidebarOpen)}>
+						<Menu className="mr-2 h-5 w-5" />
+						Menu
+					</Button>
 					<Card>
 						<CardContent className="p-6">
 							{activeTab === "announcements" && <AnnouncementForm />}
