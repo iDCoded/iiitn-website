@@ -48,12 +48,17 @@ function Placements() {
                             <p className="text-gray-700">Various student publications are supported and encouraged.</p>
                         </div>
                         <div className="p-4 border rounded-lg shadow-md bg-gray-50">
-                            <h2 className="text-xl font-semibold">Clubs and Communities</h2>
-                            <h3 className="text-lg font-medium">Technical</h3>
+                            <h2 className="text-xl font-semibold">Technical</h2>
+                           
                             <p className="text-gray-700">Ack-Z: A white hat security club. DotSlash: Programming Community for fostering coding culture.</p>
-                            <h3 className="text-lg font-medium mt-4">Cultural</h3>
+                          
+                        </div>
+                        <div className="p-4 border rounded-lg shadow-md bg-gray-50">
+                            <h2 className="text-xl font-semibold">Cultural</h2>
                             <p className="text-gray-700">Music Club, Art Club, and Dance Club bring students together for creative expression.</p>
-                            <h3 className="text-lg font-medium mt-4">Academics and Research</h3>
+                        </div>
+                        <div className="p-4 border rounded-lg shadow-md bg-gray-50">
+                            <h2 className="text-xl font-semibold">Academics and Research</h2>
                             <p className="text-gray-700">REAP: A research club guiding students in their research interests. 7C Club: Communication and Public Speaking club.</p>
                         </div>
                         <div className="p-4 border rounded-lg shadow-md bg-gray-50">
