@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Calendar } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 export function EventForm() {
 	const [title, setTitle] = useState("");
@@ -15,6 +16,10 @@ export function EventForm() {
 		e.preventDefault();
 		// Send `title`, `date`, `caption`, and `content` to the backend as plain markdown text
 		console.log("Submitted content:", { title, date, caption, content });
+		toast({
+			title: "Created event",
+			description: "Your event has been successfully uploaded.",
+		});
 	};
 
 	return (

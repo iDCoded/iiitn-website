@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { BellRing } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 export function AnnouncementForm() {
 	const [title, setTitle] = useState("");
@@ -15,6 +16,10 @@ export function AnnouncementForm() {
 		e.preventDefault();
 		// Send `title`, `date`, `caption`, and `content` to the backend as plain markdown text
 		console.log("Submitted content:", { title, date, caption, content });
+		toast({
+			title: "Created announcement",
+			description: "The announcement has been successfully uploaded.",
+		});
 	};
 
 	return (
