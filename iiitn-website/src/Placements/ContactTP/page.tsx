@@ -1,6 +1,6 @@
 import React from 'react'
 import PlacementNav from '../../components/PlacementNav'
-import ContactCard from '@/components/ContactCard'
+import ContactCard from '../../components/ContactCard'
 const ContactTPdata = [
   {
     name: "Dr. Anil Kumar Tiwari",
