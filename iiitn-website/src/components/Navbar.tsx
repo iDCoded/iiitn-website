@@ -138,10 +138,15 @@ const Navbar = () => {
                     <div className="max-w-7xl mx-auto px-6 py-3">
                         {/* Desktop Menu */}
                         <ul className="hidden md:flex justify-center space-x-10 font-medium text-lg">
-                            <li className="hover:text-[#E87722]"><a href="/governance">Governance</a></li>
+                            <li className="relative group cursor-pointer"><a href="/governance">Governance</a>
+                            <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/governance/committee">Committee</a></li>
+                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/governance/administration">Administration</a></li>
+                                </ul>
+                            </li>
 
                             {/* 🔹 Dropdown: Academics */}
-                            <li className="relative group cursor-pointer">
+                            <li className="">
                                 <a href="/academics" className="hover:text-[#E87722]">Academics</a>
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                                     <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/academics/programs">Programs</a></li>
@@ -161,7 +166,15 @@ const Navbar = () => {
                                 </ul>
                             </li>
 
-                            <li className="hover:text-[#E87722]"><a href="/placements">Placements</a></li>
+                            <li className="relative group cursor-pointer"><a href="/placements">Placements</a>
+                            <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements">Why Recruit from IIIT Nagpur</a></li>
+                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements/internships">Internships</a></li>
+                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements/statistics">Statistics</a></li>
+                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements/companies">Companies</a></li>
+                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements/students">Students</a></li>
+                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements/contact">Contact T&P</a></li>
+                                </ul></li>
                             <li className="hover:text-[#E87722]"><a href="/about">About</a></li>
                         </ul>
                     </div>
