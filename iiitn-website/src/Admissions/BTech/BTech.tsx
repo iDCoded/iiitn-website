@@ -1,4 +1,3 @@
-import React from "react";
 
 const bTechData = {
 	year: "2024-2025",
