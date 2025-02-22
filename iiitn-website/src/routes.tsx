@@ -39,7 +39,13 @@ import Consultancy from "./Pages/Consultancy";
 import Iic from "./Pages/Iic";
 import ElectoralLiteracyClub from "./Pages/ElectoralLiteracyClub";
 import AdmissionContact from "./Admissions/BTech/Contact";
-
+import Scholarships from "./Pages/Scholarships";
+import AcademicFeeDetails from "./Pages/AcademicFeeDetails";
+import AcademicFeePayment from "./Pages/AcademicFeePayment";
+import HostelFee from "./Pages/HostelFee";
+import HostelFeePayment from "./Pages/HostelFeePayment";
+import FirstYearAcadFee from "./Admissions/BTech/FirstYearAcadFee";
+import FirstYearHosFee from "./Admissions/BTech/FirstYearHosFee";
 const PageWrapper = () => {
 	const { param } = useParams();
 	return <DepartmentPage title={param || "defaultTitle"} />;
@@ -76,6 +82,8 @@ const AppRoutes = () => (
 		<Route path="/academics/programs" element={<Programs />} />
 		<Route path="/admissions/btech" element={<AdmissionsBTech />} />
 		<Route path="/admissions/btech/contact" element={<AdmissionContact />} />
+		<Route path="/admissions/btech/acadfees" element={<FirstYearAcadFee />} />
+		<Route path="/admissions/btech/hostelfees" element={<FirstYearHosFee />} />
 		<Route path="/admissions/mtech" element={<AdmissionsMTech />} />
 		<Route path="/admissions/phd" element={<AdmissionsPhD />} />
 		<Route path="/placements" element={<Placements />} />
@@ -103,6 +111,11 @@ const AppRoutes = () => (
 		<Route path="/pages/consultancy" element={<Consultancy />} />
 		<Route path="/pages/iic" element={<Iic />} />
 		<Route path="/pages/elclub" element={<ElectoralLiteracyClub />} />
+		<Route path="/pages/academicfee" element={<AcademicFeeDetails />} />
+		<Route path="/pages/academicfeepayment" element={<AcademicFeePayment />} />
+		<Route path="/pages/hostelfee" element={<HostelFee />} />
+		<Route path="/pages/hostelfeepayment" element={<HostelFeePayment />} />
+		<Route path="/pages/scholarships" element={<Scholarships/>} />
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );
