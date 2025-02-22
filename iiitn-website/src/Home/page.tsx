@@ -7,11 +7,13 @@ import Stats from "../components/Stats";
 import Testimonials from "../components/Testimonials";
 import Footer from "../components/Footer";
 import CampusLife from "../components/CampusLife";
+import Announcements from "../components/Announcements";
 
 const Home = () => {
     return (
         <>
             <HeroSection />
+            <Announcements/>
             <NewsUpdates />
             <CampusLife/>
             <Departments />

@@ -7,7 +7,7 @@ import Courses from "./Academics/Courses";
 import Programs from "./Academics/Programs";
 import AdmissionsBTech from "./Admissions/BTech/BTech";
 import AdmissionsMTech from "./Admissions/MTech";
-import AdmissionsPhD from "./Admissions/PhD"
+import AdmissionsPhD from "./Admissions/PhD";
 import Placements from "./Placements/page";
 import Research from "./Research/page";
 import Students from "./Students/page";
@@ -16,6 +16,7 @@ import Events from "./Events/page";
 import Recruitments from "./Recruitments/page";
 import ELibrary from "./ELibrary/page";
 import Login from "./Login/page";
+import SignupPage from "./Signup/page";
 import Initiatives from "./Initiatives/page";
 import NotFound from "./NotFound/page";
 import Administration from "./Governance/Administration/page";
@@ -106,6 +107,7 @@ const AppRoutes = () => (
 		<Route path="/recruitments" element={<Recruitments />} />
 		<Route path="/e-library" element={<ELibrary />} />
 		<Route path="/login" element={<Login />} />
+		<Route path="/signup" element={<SignupPage />} />
 		<Route path="/initiatives" element={<Initiatives />} />
 		<Route path="/governance/administration" element={<Administration />} />
 		<Route path="/governance/:param" element={<AdminWrapper />} />
@@ -121,7 +123,7 @@ const AppRoutes = () => (
 		<Route path="/pages/academicfeepayment" element={<AcademicFeePayment />} />
 		<Route path="/pages/hostelfee" element={<HostelFee />} />
 		<Route path="/pages/hostelfeepayment" element={<HostelFeePayment />} />
-		<Route path="/pages/scholarships" element={<Scholarships/>} />
+		<Route path="/pages/scholarships" element={<Scholarships />} />
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );
