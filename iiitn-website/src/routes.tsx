@@ -17,7 +17,7 @@ import Recruitments from "./Recruitments/page";
 import ELibrary from "./ELibrary/page";
 import Login from "./Login/page";
 import Initiatives from "./Initiatives/page";
-import NotFound from "./NotFound/page"; // 404 Pa/pagege
+import NotFound from "./NotFound/page";
 import Administration from "./Governance/Administration/page";
 import Committee from "./Governance/Committee/page";
 import AdministrationPage from "./Governance/Administration/pages/AdministrationPage";
