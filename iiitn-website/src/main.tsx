@@ -19,7 +19,7 @@ export function App() {
 				{!isExcludedRoute && <Navbar />}
 
 				{/* Main Content */}
-				<div className="flex-grow pt-20 md:pt-24 lg:pt-32"> {/* Adjust padding for different screen sizes */}
+				<div className="flex-grow pt-20 md:pt-24 lg:pt-48"> {/* Adjust padding for different screen sizes */}
 					<AppRoutes />
 				</div>
 
