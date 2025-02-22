@@ -13,37 +13,29 @@ import {
 } from "@/components/ui/sidebar";
 import { User } from "lucide-react";
 
-const data = {
-	navMain: [
-		{
-			title: "Announcements",
-			url: "#",
-			items: [
-				{
-					title: "Events",
-					url: "#",
-					isActive: true,
-				},
-				{
-					title: "Media",
-					url: "#",
-				},
-			],
-		},
-		{
-			title: "Faculty",
-			url: "#",
-			items: [
-				{
-					title: "Manage Faculty",
-					url: "#",
-				},
-			],
-		},
-	],
-};
+interface AdminSidebarProps {
+	data?: {
+		navMain: {
+			title: string;
+			url: string;
+			items?: {
+				title: string;
+				url: string;
+			}[];
+		}[];
+	};
+	activeItem: string | null;
+}
 
-export function AdminSidebar() {
+export function AdminSidebar({
+	data = { navMain: [] },
+	activeItem,
+}: AdminSidebarProps) {
+	const handleItemClick = (url: string) => {
+		console.log("URL: ", url);
+		// Handle item click if needed
+	};
+
 	return (
 		<Sidebar>
 			<SidebarHeader>
@@ -69,16 +61,22 @@ export function AdminSidebar() {
 						{data.navMain.map((item) => (
 							<SidebarMenuItem key={item.title}>
 								<SidebarMenuButton asChild>
-									<a href={item.url} className="font-medium">
+									<a
+										href={item.url}
+										className="font-medium"
+										onClick={() => handleItemClick(item.url)}>
 										{item.title}
 									</a>
 								</SidebarMenuButton>
 								{item.items?.length ? (
 									<SidebarMenuSub>
-										{item.items.map((item) => (
-											<SidebarMenuSubItem key={item.title}>
-												<SidebarMenuSubButton asChild isActive={item.isActive}>
-													<a href={item.url}>{item.title}</a>
+										{item.items.map((subItem) => (
+											<SidebarMenuSubItem key={subItem.title}>
+												<SidebarMenuSubButton
+													asChild
+													isActive={activeItem === subItem.url}
+													onClick={() => handleItemClick(subItem.url)}>
+													<a href={subItem.url}>{subItem.title}</a>
 												</SidebarMenuSubButton>
 											</SidebarMenuSubItem>
 										))}
@@ -89,7 +87,7 @@ export function AdminSidebar() {
 					</SidebarMenu>
 				</SidebarGroup>
 			</SidebarContent>
-			<SidebarRail />
+			{data.navMain.length > 0 && <SidebarRail />}
 		</Sidebar>
 	);
 }
