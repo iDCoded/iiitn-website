@@ -1,6 +1,6 @@
 import { Card, CardContent, CardTitle } from "./ui/card";
 import { FaArrowRight } from "react-icons/fa";
-import admission from "../assets/IIIT9.jpg";    // 🎨 Image
+import admission from "../assets/IIIT9.jpg"; // 🎨 Background Image
 
 const programs = [
     {
@@ -22,37 +22,35 @@ const programs = [
 
 const Admissions = () => {
     return (
-        <section
-            className="relative bg-cover bg-center bg-no-repeat py-20 px-6" // 🎨 Background Image
-        >
-            {/* Background Image */}
+        <section className="relative py-20 px-6 flex flex-col items-center">
+            {/* Background with Glassmorphism Effect */}
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{ backgroundImage: `url(${admission})` }}
             ></div>
-            {/* Overlay for readability */}
-            <div className="absolute inset-0 bg-[#002147] opacity-50"></div>
+            <div className="absolute inset-0 bg-[#002147]/30 backdrop-blur-lg border border-white/20"></div>
 
-            <div className="relative max-w-6xl mx-auto text-center text-white">
-                <h2 className="text-5xl font-bold mb-6">
-                    Admissions & Programs
+            {/* Content */}
+            <div className="relative max-w-6xl text-left">
+                <h2 className="text-3xl font-bold text-white drop-shadow-lg">
+                    <span className="text-[#E87722]">| </span>Admissions & Programs
                 </h2>
-                <p className="mb-8 text-gray-300">
+                <p className="mt-4 text-gray-200 text-lg">
                     Enroll in our world-class education programs.
                 </p>
 
-                {/* 🔥 Glassmorphism Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Cards - Now in White! */}
+                <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
                     {programs.map((program, index) => (
                         <Card
                             key={index}
-                            className="backdrop-blur-md bg-white/10 border border-white/20 rounded-lg shadow-lg hover:shadow-xl transition-all overflow-hidden"
+                            className="bg-white shadow-lg rounded-lg border border-gray-200 hover:shadow-2xl transition-all"
                         >
                             <CardContent className="p-6 text-center">
-                                <CardTitle className="text-lg font-bold text-white">{program.title}</CardTitle>
-                                <p className="mt-2 text-gray-200">{program.description}</p>
+                                <CardTitle className="text-lg font-bold text-[#002147]">{program.title}</CardTitle>
+                                <p className="mt-2 text-gray-600">{program.description}</p>
 
-                                {/* ✅ Learn More Button */}
+                                {/* Learn More Button */}
                                 <a href={program.link}>
                                     <div className="mt-4 flex items-center justify-center text-[#E87722] font-semibold cursor-pointer hover:underline group">
                                         <span>Learn More</span>

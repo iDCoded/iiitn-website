@@ -5,23 +5,21 @@ import UpcomingEvents from "../components/UpcomingEvents";
 import Admissions from "../components/Admissions";
 import Stats from "../components/Stats";
 import Testimonials from "../components/Testimonials";
-import Footer from "../components/Footer";
 import CampusLife from "../components/CampusLife";
 import Announcements from "../components/Announcements";
 
 const Home = () => {
     return (
         <>
-            <HeroSection />
-            <Announcements/>
-            <NewsUpdates />
-            <CampusLife/>
-            <Departments />
-            <UpcomingEvents />
-            <Admissions />
-            <Stats />
-            <Testimonials />
-            <Footer />
+            <HeroSection />       {/* 🔥 Captures Attention First */}
+            <Announcements />     {/* 📢 Important Notices First */}
+            <NewsUpdates />       {/* 📰 Latest News & Happenings */}
+            <Admissions />        {/* 🎓 Admission Info for New Students */}
+            <Departments />       {/* 📚 Academic Information */}
+            <UpcomingEvents />    {/* 🎉 Upcoming College Events */}
+            <CampusLife />        {/* 🏫 Student Activities & Lifestyle */}
+            <Stats />             {/* 📊 College Achievements & Numbers */}
+            <Testimonials />      {/* 💬 Social Proof & Student Experiences */}
         </>
     );
 };
