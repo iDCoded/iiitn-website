@@ -3,8 +3,11 @@ import Home from "./Home/page";
 import About from "./About/page";
 import AdminDashboard from "./Admin/layout";
 import Departments from "./Departments/page";
-import Academics from "./Academics/page";
-import Admissions from "./Admissions/page";
+import Courses from "./Academics/Courses";
+import Programs from "./Academics/Programs";
+import AdmissionsBTech from "./Admissions/BTech";
+import AdmissionsMTech from "./Admissions/MTech";
+import AdmissionsPhD from "./Admissions/PhD"
 import Placements from "./Placements/page";
 import Research from "./Research/page";
 import Students from "./Students/page";
@@ -68,8 +71,11 @@ const AppRoutes = () => (
 		/>
 		<Route path="/departments" element={<Departments />} />
 		<Route path="/departments/:param" element={<PageWrapper />} />
-		<Route path="/academics" element={<Academics />} />
-		<Route path="/admissions" element={<Admissions />} />
+		<Route path="/academics/courses" element={<Courses />} />
+		<Route path="/academics/programs" element={<Programs />} />
+		<Route path="/admissions/btech" element={<AdmissionsBTech />} />
+		<Route path="/admissions/mtech" element={<AdmissionsMTech />} />
+		<Route path="/admissions/phd" element={<AdmissionsPhD />} />
 		<Route path="/placements" element={<Placements />} />
 		<Route path="/placements/companies" element={<Companies />} />
 		<Route path="/placements/internships" element={<Internships />} />
