@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { BellRing } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
-export function AnnouncementForm() {
+export function FacultyForm() {
 	const [title, setTitle] = useState("");
 	const [date, setDate] = useState("");
 	const [caption, setCaption] = useState("");
@@ -17,8 +17,8 @@ export function AnnouncementForm() {
 		// Send `title`, `date`, `caption`, and `content` to the backend as plain markdown text
 		console.log("Submitted content:", { title, date, caption, content });
 		toast({
-			title: "Created announcement",
-			description: "The announcement has been successfully uploaded.",
+			title: "Created faculty",
+			description: "The faculty has been successfully uploaded.",
 		});
 	};
 
@@ -29,8 +29,8 @@ export function AnnouncementForm() {
 					<BellRing className="h-6 w-6 text-primary" />
 				</div>
 				<div>
-					<h2 className="text-2xl font-semibold">Create Announcement</h2>
-					<p className="text-sm text-gray-500">Add a new announcement</p>
+					<h2 className="text-2xl font-semibold">Create faculty</h2>
+					<p className="text-sm text-gray-500">Add a new faculty member</p>
 				</div>
 			</div>
 

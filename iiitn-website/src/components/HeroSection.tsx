@@ -8,7 +8,7 @@ const HeroSection = () => {
 
             {/* Fixed Background Image */}
             <div
-                className="fixed inset-0 bg-cover bg-center bg-no-repeat z-[-1]"
+                className="fixed top-[18vh] inset-0 bg-cover bg-center bg-no-repeat z-[-1]"
                 style={{ backgroundImage: `url(${hero})` }}
             />
 

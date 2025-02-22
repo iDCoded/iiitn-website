@@ -1,9 +1,18 @@
-import React from 'react'
+import { Hammer } from "lucide-react";
 
 function NotFound() {
-    return (
-        <div className='h-screen w-screen text-red-700 text-4xl text-center'>NotFound</div>
-    )
+	return (
+		<div className="h-svh">
+			<div className="m-auto flex h-full w-full flex-col items-center justify-center gap-2">
+				<Hammer size={72} />
+				<h1 className="text-4xl font-bold leading-tight">Coming Soon 👀</h1>
+				<p className="text-center text-muted-foreground">
+					This page has not been created yet. <br />
+					Stay tuned though!
+				</p>
+			</div>
+		</div>
+	);
 }
 
-export default NotFound
+export default NotFound;
