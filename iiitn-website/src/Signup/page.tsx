@@ -1,13 +1,13 @@
-import Login from "@/components/auth/login";
+import Signup from "@/components/auth/signup";
 
-function LoginPage() {
+function SignupPage() {
 	return (
 		<div className="flex min-h-svh flex-col items-center justify-center bg-muted p-6 md:p-10">
 			<div className="w-full max-w-sm md:max-w-3xl">
-				<Login />
+				<Signup />
 			</div>
 		</div>
 	);
 }
 
-export default LoginPage;
+export default SignupPage;
