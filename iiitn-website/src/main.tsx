@@ -19,7 +19,9 @@ export function App() {
 				{!isExcludedRoute && <Navbar />}
 
 				{/* Main Content */}
-				<div className="flex-grow pt-48"> {/* Adjust `pt-20` to match navbar height */}
+				<div className={`${isExcludedRoute ? "" : "flex-grow pt-20"}`}>
+					{" "}
+					{/* Adjust `pt-20` to match navbar height */}
 					<AppRoutes />
 				</div>
 
