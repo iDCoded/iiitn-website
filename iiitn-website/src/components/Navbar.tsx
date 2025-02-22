@@ -41,9 +41,11 @@ const Navbar = () => {
                     <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
                         <div className="flex items-center space-x-4">
                             <img src="/path/to/logo.png" alt="IIITN Logo" className="h-10 w-10" />
-                            <div className="text-center">
+                            <div className="text-left">
                                 <p className="text-[#002147] font-medium">भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर</p>
                                 <p className="text-[#002147] font-medium">Indian Institute of Information Technology, Nagpur</p>
+                                <p className="text-[#E87722] font-light text-sm">An Institution of National Importance By An Act of Parliament
+                                </p>
                             </div>
                         </div>
                         <div className="flex items-center space-x-4">
