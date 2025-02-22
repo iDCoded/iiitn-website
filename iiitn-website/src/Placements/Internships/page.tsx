@@ -1,75 +1,119 @@
-import React from 'react'
-import PlacementNav from '../../components/PlacementNav'
+import React from "react";
 
-function Internships() {
+const InternshipProgram = () => {
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col">
-      
-      <PlacementNav />
-      {/* Header Section */}
-      <div className="bg-[#002147] text-white py-16 text-center">
-        <h1 className="text-4xl font-bold">Internships</h1>
-        <p className="text-lg mt-2">Stay connected and contribute to the growth of IIIT Nagpur.</p>
-      </div>
-
-      <div className="max-w-6xl mx-auto p-6 bg-white shadow-lg rounded-lg mb-10">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Summer/Winter Internship Program</h2>
-        <p className="text-gray-700 mb-4">
-          This program is designed to give an educational and professional research experience to budding Engineers.
+    <div className="max-w-7xl mx-auto p-6">
+      {/* Hero Section */}
+      <section className="text-center py-12">
+        <h1 className="text-4xl font-bold text-[#002147]">SUMMER / WINTER INTERNSHIP PROGRAM</h1>
+        <p className="text-lg text-gray-700 mt-4">
+          Gain educational and professional research experience at IIIT Nagpur.
         </p>
-        <p className="text-gray-700 mb-4">
-          To provide an opportunity to students from various disciplines to facilitate their exposure to the research environment at IIIT Nagpur.
-        </p>
+      </section>
 
-        <h3 className="text-xl font-semibold text-gray-800 mt-6">Details of the Internship Program:</h3>
-        <ul className="list-disc list-inside text-gray-700 space-y-3 mt-3">
-          <li>Interns gain deep knowledge in their chosen field under expert supervision.</li>
-          <li>Duration is flexible and determined by the candidate.</li>
-          <li>Submission of required documents is mandatory for enrollment.</li>
-          <li>Completion certificate issued upon successful project submission.</li>
-          <li>Substantial outcome required, such as research publication or software development.</li>
+      {/* Details Section */}
+      <section className="bg-white shadow-md rounded-lg p-6 my-6">
+        <h2 className="text-2xl font-bold text-[#E87722] border-b-2 pb-2">Objective</h2>
+        <p className="text-gray-700 mt-2">
+          This program is designed for B.Tech / B.E. / MSc. / MCA students across the nation
+          to enhance their research exposure at IIIT Nagpur.
+        </p>
+      </section>
+
+      {/* Internship Details */}
+      <section className="bg-gray-100 p-6 rounded-lg my-6">
+        <h2 className="text-2xl font-bold text-[#E87722] border-b-2 pb-2">Internship Details</h2>
+        <ul className="list-disc pl-5 mt-2 text-gray-700 space-y-3">
+          <li>The internship focuses on deep learning under expert faculty supervision.</li>
+          <li>Candidates decide the duration of the internship.</li>
+          <li>Required documents: Bonafide certificate, Resume, Photo, Payment receipt.</li>
+          <li>Interns must follow IIIT-N rules & submit a project report.</li>
+          <li>Expected outcomes: Research papers, software products, patents.</li>
         </ul>
+      </section>
 
-        <h3 className="text-xl font-semibold text-gray-800 mt-6">Internship Modes:</h3>
-        <ul className="list-disc list-inside text-gray-700 space-y-3 mt-3">
-          <li><strong>In-campus Internship:</strong> Students work on projects physically at IIIT Nagpur with access to resources.</li>
-          <li><strong>Online Internship:</strong> Students work remotely under expert supervision.</li>
-        </ul>
+      {/* Modes of Internship */}
+      <section className="grid md:grid-cols-2 gap-6 my-6">
+        {[
+          { title: "📍 In-campus Internship", description: "Physical presence required. Computational & Library resources provided." },
+          { title: "🌍 Online Internship", description: "Remote work with expert guidance. No need for physical presence." }
+        ].map((item, index) => (
+          <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold text-[#002147]">{item.title}</h3>
+            <p className="text-gray-700 mt-2">{item.description}</p>
+          </div>
+        ))}
+      </section>
 
-        <h3 className="text-xl font-semibold text-gray-800 mt-6">How to Apply:</h3>
-        <p className="text-gray-700 mt-3">
-          Students should directly contact faculty members via email with their latest CV and mention "Request for Internship at IIIT Nagpur" in the subject.
-        </p>
+      {/* Faculty List */}
+      <section className="bg-white p-6 rounded-lg shadow-md my-6">
+        <h2 className="text-2xl font-bold text-[#E87722] border-b-2 pb-2">Faculty List</h2>
+        <table className="w-full mt-4 border-collapse border border-gray-300">
+          <thead>
+            <tr className="bg-gray-200">
+              <th className="border p-3">Name</th>
+              <th className="border p-3">Email</th>
+              <th className="border p-3">Expertise</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { name: "Dr. Tausif Diwan", email: "tdiwan@iiitn.ac.in", expertise: "Deep Learning" },
+              { name: "Dr. Jitendra Tembhurne", email: "jtembhurne@iiitn.ac.in", expertise: "Quantum Computing, AI" },
+              { name: "Dr. Pooja Jain", email: "poojajain@iiitn.ac.in", expertise: "NLP, Machine Learning" }
+            ].map((faculty, index) => (
+              <tr key={index} className="text-center">
+                <td className="border p-3">{faculty.name}</td>
+                <td className="border p-3 text-blue-500">{faculty.email}</td>
+                <td className="border p-3">{faculty.expertise}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
 
-        <h3 className="text-xl font-semibold text-gray-800 mt-6">Faculty List:</h3>
-        <p className="text-gray-700 mt-3">Below is a list of faculty members and their areas of expertise:</p>
-        <div className="overflow-x-auto mt-4">
-          <table className="w-full border-collapse border border-gray-300">
+      {/* Registration Fee Structure */}
+      <section className="grid md:grid-cols-2 gap-6 my-6">
+        <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold text-[#E87722] border-b-2 pb-2">Registration Fee</h2>
+          <table className="w-full mt-4 border-collapse border border-gray-300">
             <thead>
               <tr className="bg-gray-200">
-                <th className="border border-gray-300 p-2">Name</th>
-                <th className="border border-gray-300 p-2">Email</th>
-                <th className="border border-gray-300 p-2">Expertise</th>
+                <th className="border p-3">Duration</th>
+                <th className="border p-3">Fee (INR)</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="border border-gray-300 p-2">Dr. Tausif Diwan</td>
-                <td className="border border-gray-300 p-2">tdiwan@iiitn.ac.in</td>
-                <td className="border border-gray-300 p-2">Deep Learning</td>
-              </tr>
-              <tr>
-                <td className="border border-gray-300 p-2">Dr. Jitendra Tembhurne</td>
-                <td className="border border-gray-300 p-2">jtembhurne@iiitn.ac.in</td>
-                <td className="border border-gray-300 p-2">Quantum Computing, AI, Data Mining</td>
-              </tr>
-              {/* Additional faculty rows here */}
+              {[
+                { duration: "2 Months", fee: "₹10,000" },
+                { duration: "6 Months", fee: "₹15,000" }
+              ].map((item, index) => (
+                <tr key={index} className="text-center">
+                  <td className="border p-3">{item.duration}</td>
+                  <td className="border p-3">{item.fee}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
-      </div>
-    </div>
-  )
-}
 
-export default Internships
+        {/* Bank Details */}
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold text-[#E87722] border-b-2 pb-2">Bank Details</h2>
+          <div className="mt-4 text-gray-700 space-y-2">
+            <p><span className="font-semibold">Account Name:</span> IIIT Nagpur</p>
+            <p><span className="font-semibold">Bank:</span> State Bank of India</p>
+            <p><span className="font-semibold">Branch:</span> IIIT Nagpur Campus</p>
+            <p><span className="font-semibold">Account Number:</span> 123456789012</p>
+            <p><span className="font-semibold">IFSC Code:</span> SBIN000XXXX</p>
+          </div>
+          <p className="text-gray-700 mt-4">
+            <span className="font-semibold">Note:</span> Please upload the payment receipt while submitting your application.
+          </p>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default InternshipProgram;
