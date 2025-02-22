@@ -9,7 +9,7 @@ const Navbar = () => {
     useEffect(() => {
         const handleScroll = () => {
             if (window.location.pathname === "/") {
-                setIsScrolled(window.scrollY > window.innerHeight - window.innerHeight * 0.05);
+                setIsScrolled(window.scrollY > window.innerHeight - window.innerHeight * 0.15);
             } else {
                 setIsScrolled(window.scrollY > 20);
             }
@@ -208,17 +208,45 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu (Sliding Drawer) */}
-            <div className={`fixed inset-0 bg-black bg-opacity-50 z-50 transform ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300`}>
-                <div className="w-3/4 max-w-sm bg-white h-full shadow-lg overflow-y-auto p-6">
-                    <button className="text-2xl text-[#002147] mb-4" onClick={() => setIsMobileMenuOpen(false)}>
-                        <FaTimes />
-                    </button>
+            <div className={`fixed inset-0 bg-black bg-opacity-50 z-50 transform transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
+                <div className="w-3/4 max-w-sm bg-white h-full shadow-lg overflow-y-auto p-6 mobile-menu transform transition-all duration-300 ease-in-out">
+                    
+                    {/* Close Button */}
+                    <div className="flex justify-between items-center mb-6">
+                        <h2 className="text-xl font-semibold text-[#002147]">Menu</h2>
+                        <button className="text-2xl text-[#002147]" onClick={() => setIsMobileMenuOpen(false)}>
+                            <FaTimes />
+                        </button>
+                    </div>
 
+                    {/* Menu Items */}
                     <ul className="space-y-4">
-                        <li>
-                            Governance
-                        </li>
-                        <li><a href="/about" className="text-[#002147] font-medium">About</a></li>
+                        {[
+                            { title: "Governance", links: [{ name: "Committee", href: "/governance/committee" }, { name: "Administration", href: "/governance/administration" }] },
+                            { title: "Academics", links: [{ name: "Programs", href: "/academics/programs" }, { name: "Departments", href: "/departments" }, { name: "Courses", href: "/academics/courses" }] },
+                            { title: "Admissions", links: [{ name: "B.Tech", href: "/admissions/btech" }, { name: "M.Tech", href: "/admissions/mtech" }, { name: "Ph.D.", href: "/admissions/phd" }] },
+                            { title: "Research", links: [{ name: "Publications", href: "/research/publications" }, { name: "Projects", href: "/research/projects" }] },
+                            { title: "Placements", links: [{ name: "Why Recruit from IIIT Nagpur", href: "/placements" }, { name: "Internships", href: "/placements/internships" }, { name: "Statistics", href: "/placements/statistics" }, { name: "Companies", href: "/placements/companies" }, { name: "Students", href: "/placements/students" }, { name: "Contact T&P", href: "/placements/contact" }] }
+                        ].map((item) => (
+                            <li key={item.title}>
+                                <button onClick={() => toggleDropdown(item.title)} className="flex justify-between items-center w-full text-[#002147] font-medium text-lg py-2">
+                                    {item.title}
+                                    <span>{openDropdown === item.title ? "▲" : "▼"}</span>
+                                </button>
+                                {openDropdown === item.title && (
+                                    <ul className="ml-4 mt-2 border-l-2 border-[#E87722] space-y-2">
+                                        {item.links.map((link) => (
+                                            <li key={link.href}>
+                                                <a href={link.href} className="block py-1 px-3 text-[#002147] text-sm hover:bg-[#E87722] hover:text-white rounded-md transition-all">
+                                                    {link.name}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </li>
+                        ))}
+                        <li><a href="/about" className="block text-[#002147] font-medium text-lg py-2 hover:bg-[#E87722] hover:text-white rounded-md px-3 transition-all">About</a></li>
                     </ul>
                 </div>
             </div>

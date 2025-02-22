@@ -1,42 +1,69 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const Announcements: React.FC = () => {
     const [announcements, setAnnouncements] = useState<string[]>([]);
 
     useEffect(() => {
         const fetchAnnouncements = async () => {
-            // Replace with your actual API call
+            // Replace with actual API call
             const newAnnouncements = await new Promise<string[]>(resolve =>
-                setTimeout(() => resolve(Array(10).fill('New Announcement')), 1000)
+                setTimeout(() => resolve([
+                    "Important Notice: Exam schedule released!",
+                    "IIIT Nagpur Hackathon registration open!",
+                    "Placement drive for 2025 batch starts next week.",
+                    "Alumni Meet 2025 - Register now!",
+                    "New research paper published by CSE Dept.",
+                    "Workshop on AI & ML this Saturday!",
+                    "Library will remain open 24x7 during exams.",
+                    "Hostel fees payment deadline extended.",
+                ]), 1000)
             );
-            setAnnouncements(prev => [...prev, ...newAnnouncements]);
+            setAnnouncements(newAnnouncements);
         };
 
         fetchAnnouncements();
     }, []);
 
     return (
-        <div className="w-full overflow-hidden bg-[#002147] text-white flex flex-row items-center z-10">
-            <div className="bg-[#e87722] text-white p-2 text-center">
-                Announcements
+        <div className="relative w-full overflow-hidden bg-[#002147] text-white flex items-center h-12">
+            {/* Announcement Label */}
+            <div className="bg-[#e87722] text-white px-4 py-2 font-semibold flex-shrink-0">
+                Announcements:
             </div>
-            <div className="marquee z-0">
-                {announcements.map((announcement, index) => (
-                    <div key={index} className="inline-block w-48 border-r border-gray-400">
-                        {announcement}
-                    </div>
-                ))}
+
+            {/* Scrolling Marquee */}
+            <div className="marquee-container flex items-center overflow-hidden">
+                <div className="marquee-content flex whitespace-nowrap">
+                    {announcements.length > 0 && (
+                        <>
+                            {/* Duplicate the list for seamless looping */}
+                            {[...announcements, ...announcements].map((announcement, index) => (
+                                <span key={index} className="px-6 border-r border-gray-400 text-sm">
+                                    {announcement}
+                                </span>
+                            ))}
+                        </>
+                    )}
+                </div>
             </div>
+
+            {/* Marquee Styling */}
             <style>{`
+                .marquee-container {
+                    flex: 1;
+                    min-width: 0;
+                    overflow: hidden;
+                    position: relative;
+                }
+                .marquee-content {
+                    display: flex;
+                    animation: marquee 15s linear infinite;
+                }
                 @keyframes marquee {
-                    0% { transform: translateX(100%); }
-                    100% { transform: translateX(-100%); }
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
                 }
-                .marquee {
-                    display: inline-block;
-                    animation: marquee 20s linear infinite;
-                }
-                .marquee:hover {
+                .marquee-container:hover .marquee-content {
                     animation-play-state: paused;
                 }
             `}</style>
