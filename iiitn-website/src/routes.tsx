@@ -5,7 +5,7 @@ import AdminDashboard from "./Admin/layout";
 import Departments from "./Departments/page";
 import Courses from "./Academics/Courses";
 import Programs from "./Academics/Programs";
-import AdmissionsBTech from "./Admissions/BTech";
+import AdmissionsBTech from "./Admissions/BTech/BTech";
 import AdmissionsMTech from "./Admissions/MTech";
 import AdmissionsPhD from "./Admissions/PhD"
 import Placements from "./Placements/page";
@@ -38,6 +38,7 @@ import AdminPage from "./Admin/page";
 import Consultancy from "./Pages/Consultancy";
 import Iic from "./Pages/Iic";
 import ElectoralLiteracyClub from "./Pages/ElectoralLiteracyClub";
+import AdmissionContact from "./Admissions/BTech/Contact";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -74,6 +75,7 @@ const AppRoutes = () => (
 		<Route path="/academics/courses" element={<Courses />} />
 		<Route path="/academics/programs" element={<Programs />} />
 		<Route path="/admissions/btech" element={<AdmissionsBTech />} />
+		<Route path="/admissions/btech/contact" element={<AdmissionContact />} />
 		<Route path="/admissions/mtech" element={<AdmissionsMTech />} />
 		<Route path="/admissions/phd" element={<AdmissionsPhD />} />
 		<Route path="/placements" element={<Placements />} />
