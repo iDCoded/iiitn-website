@@ -70,11 +70,11 @@ const Navbar = () => {
                             </li>
 
                             {/* 🔹 Dropdown: Academics */}
-                            <li className="relative group cursor-pointer">
-                                <a href="/academics" className="hover:text-[#E87722]">Academics</a>
+                            <li className="relative group cursor-pointer hover:text-[#E87722]">
+                                Academics
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                                     <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/academics/programs">Programs</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/academics/departments">Departments</a></li>
+                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/departments">Departments</a></li>
                                     <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/academics/courses">Courses</a></li>
                                 </ul>
                             </li>
@@ -89,8 +89,8 @@ const Navbar = () => {
                             </li>
 
                             {/* 🔹 Dropdown: Research */}
-                            <li className="relative group cursor-pointer">
-                                <a href="/research" className="hover:text-[#E87722]">Research</a>
+                            <li className="relative group cursor-pointer hover:text-[#E87722]">
+                                Research
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                                     <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/research/publications">Publications</a></li>
                                     <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/research/projects">Projects</a></li>
@@ -138,7 +138,7 @@ const Navbar = () => {
                     <div className="max-w-7xl mx-auto px-6 py-3">
                         {/* Desktop Menu */}
                         <ul className="hidden md:flex justify-center space-x-10 font-medium text-lg">
-                            <li className="relative group cursor-pointer"><a href="/governance">Governance</a>
+                            <li className="relative group cursor-pointer hover:text-[#E87722]">Governance
                             <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                                     <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/governance/committee">Committee</a></li>
                                     <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/governance/administration">Administration</a></li>
@@ -146,8 +146,8 @@ const Navbar = () => {
                             </li>
 
                             {/* 🔹 Dropdown: Academics */}
-                            <li className="">
-                                <a href="/academics" className="hover:text-[#E87722]">Academics</a>
+                            <li className="hover:text-[#E87722] relative group cursor-pointer">
+                                Academics
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                                     <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/academics/programs">Programs</a></li>
                                     <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/academics/departments">Departments</a></li>
@@ -155,18 +155,25 @@ const Navbar = () => {
                                 </ul>
                             </li>
 
-                            <li className="hover:text-[#E87722]"><a href="/admissions">Admissions</a></li>
+                            <li className="hover:text-[#E87722] relative group cursor-pointer">Admissions
+                            <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"> 
+                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/admissions/btech">B.Tech</a></li>
+                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/admissions/mtech">M.Tech</a></li>
+                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/admissions/phd">Ph.D.</a></li>
+                                </ul>
+                                
+                            </li>
 
                             {/* 🔹 Dropdown: Research */}
-                            <li className="relative group cursor-pointer">
-                                <a href="/research" className="hover:text-[#E87722]">Research</a>
+                            <li className="relative group cursor-pointer hover:text-[#E87722]">
+                                Research
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                                     <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/research/publications">Publications</a></li>
                                     <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/research/projects">Projects</a></li>
                                 </ul>
                             </li>
 
-                            <li className="relative group cursor-pointer"><a href="/placements">Placements</a>
+                            <li className="relative group cursor-pointer hover:text-[#E87722]">Placements
                             <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                                     <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements">Why Recruit from IIIT Nagpur</a></li>
                                     <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements/internships">Internships</a></li>
