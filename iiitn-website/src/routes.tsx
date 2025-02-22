@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home/page";
 import About from "./About/page";
-import AdminDashboard from "./Admin/page";
+import AdminDashboard from "./Admin/layout";
 import Departments from "./Departments/page";
 import Academics from "./Academics/page";
 import Admissions from "./Admissions/page";
@@ -31,6 +31,7 @@ import ContactTP from "./Placements/ContactTP/page";
 import PressRelease from "./Pages/PressRelease";
 import OfficialDocuments from "./Pages/OfficialDocuments";
 import Tenders from "./Pages/Tenders";
+import AdminPage from "./Admin/page";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -45,18 +46,24 @@ const AdminWrapper = () => {
 		return <AdministrationPage title="director" />;
 	} else if (param === "registrar") {
 		return <AdministrationPage title="registrar" />;
-	}
-	else {
+	} else {
 		return <NotFound />;
 	}
-}
+};
 
 const AppRoutes = () => (
 	<Router>
 		<Routes>
 			<Route path="/" element={<Home />} />
 			<Route path="/about" element={<About />} />
-			<Route path="/admin" element={<AdminDashboard />} />
+			<Route
+				path="/admin"
+				element={
+					<AdminDashboard>
+						<AdminPage />
+					</AdminDashboard>
+				}
+			/>
 			<Route path="/departments" element={<Departments />} />
 			<Route path="/departments/:param" element={<PageWrapper />} />
 			<Route path="/academics" element={<Academics />} />
@@ -66,7 +73,7 @@ const AppRoutes = () => (
 			<Route path="/placements/internships" element={<Internships />} />
 			<Route path="/placements/statistics" element={<Statistics />} />
 			<Route path="/placements/students" element={<PlacementStudents />} />
-			<Route path="/placements/contact" element={<ContactTP/>} />
+			<Route path="/placements/contact" element={<ContactTP />} />
 			<Route path="/research" element={<Research />} />
 			<Route path="/students" element={<Students />} />
 			<Route path="/facultyandstaff" element={<FacultyandStaff />} />
