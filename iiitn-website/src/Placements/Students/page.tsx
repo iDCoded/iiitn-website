@@ -1,11 +1,7 @@
-import React from "react";
-import PlacementNav from '@/components/PlacementNav';
-
 
 function Students() {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
-        <PlacementNav />
 
       {/* Header Section */}
       <header className="bg-[#002147] text-white py-16 text-center">

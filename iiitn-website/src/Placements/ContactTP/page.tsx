@@ -1,5 +1,3 @@
-import React from 'react'
-import PlacementNav from '../../components/PlacementNav'
 import ContactCard from '../../components/ContactCard'
 const ContactTPdata = [
   {
@@ -31,7 +29,6 @@ function ContactTP() {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       
-      <PlacementNav />
       {/* Header Section */}
       <div className="bg-[#002147] text-white py-16 text-center">
         <h1 className="text-4xl font-bold">Contact Training and Placement Cell</h1>

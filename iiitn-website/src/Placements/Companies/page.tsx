@@ -1,19 +1,16 @@
-import React from 'react';
 import CompanyCard from '../../components/CompanyCard';
-import PlacementNav from '@/components/PlacementNav';
 
 
 function Companies() {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
-      
-      <PlacementNav />
+
       {/* Header Section */}
       <div className="bg-[#002147] text-white py-16 text-center">
         <h1 className="text-4xl font-bold">Companies</h1>
         <p className="text-lg mt-2">Stay connected and contribute to the growth of IIIT Nagpur.</p>
       </div>
-           
+
       {/* Companies Visited Section */}
       <div className='flex flex-col h-auto border-4 border-black p-6 m-4 rounded-lg bg-white shadow-lg max-w-6xl mx-auto'>
         <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Companies Visited</h2>

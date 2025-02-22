@@ -8,7 +8,9 @@ import "./index.css"; // Tailwind styles
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Navbar />
-    <AppRoutes />
+    <div className="pt-[100pt]"> {/* Adjust padding based on navbar height */}
+      <AppRoutes />
+    </div>
     <Footer />
   </React.StrictMode>
 );
