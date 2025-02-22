@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./Home/page";
 import About from "./About/page";
 import AdminDashboard from "./Admin/layout";
@@ -52,47 +52,45 @@ const AdminWrapper = () => {
 };
 
 const AppRoutes = () => (
-	<Router>
-		<Routes>
-			<Route path="/" element={<Home />} />
-			<Route path="/about" element={<About />} />
-			<Route
-				path="/admin"
-				element={
-					<AdminDashboard>
-						<AdminPage />
-					</AdminDashboard>
-				}
-			/>
-			<Route path="/departments" element={<Departments />} />
-			<Route path="/departments/:param" element={<PageWrapper />} />
-			<Route path="/academics" element={<Academics />} />
-			<Route path="/admissions" element={<Admissions />} />
-			<Route path="/placements" element={<Placements />} />
-			<Route path="/placements/companies" element={<Companies />} />
-			<Route path="/placements/internships" element={<Internships />} />
-			<Route path="/placements/statistics" element={<Statistics />} />
-			<Route path="/placements/students" element={<PlacementStudents />} />
-			<Route path="/placements/contact" element={<ContactTP />} />
-			<Route path="/research" element={<Research />} />
-			<Route path="/students" element={<Students />} />
-			<Route path="/facultyandstaff" element={<FacultyandStaff />} />
-			<Route path="/alumni" element={<Alumni />} />
-			<Route path="/events" element={<Events />} />
-			<Route path="/recruitments" element={<Recruitments />} />
-			<Route path="/e-library" element={<ELibrary />} />
-			<Route path="/login" element={<Login />} />
-			<Route path="/initiatives" element={<Initiatives />} />
-			<Route path="/governance/administration" element={<Administration />} />
-			<Route path="/governance/:param" element={<AdminWrapper />} />
-			<Route path="/governance/committee" element={<Committee />} />
-			<Route path="/pages/guesthouse" element={<GuestHouse />} />
-			<Route path="/pages/pressrelease" element={<PressRelease />} />
-			<Route path="/pages/officialdocuments" element={<OfficialDocuments />} />
-			<Route path="/pages/tenders" element={<Tenders />} />
-			<Route path="*" element={<NotFound />} /> {/* 404 page */}
-		</Routes>
-	</Router>
+	<Routes>
+		<Route path="/" element={<Home />} />
+		<Route path="/about" element={<About />} />
+		<Route
+			path="/admin"
+			element={
+				<AdminDashboard>
+					<AdminPage />
+				</AdminDashboard>
+			}
+		/>
+		<Route path="/departments" element={<Departments />} />
+		<Route path="/departments/:param" element={<PageWrapper />} />
+		<Route path="/academics" element={<Academics />} />
+		<Route path="/admissions" element={<Admissions />} />
+		<Route path="/placements" element={<Placements />} />
+		<Route path="/placements/companies" element={<Companies />} />
+		<Route path="/placements/internships" element={<Internships />} />
+		<Route path="/placements/statistics" element={<Statistics />} />
+		<Route path="/placements/students" element={<PlacementStudents />} />
+		<Route path="/placements/contact" element={<ContactTP />} />
+		<Route path="/research" element={<Research />} />
+		<Route path="/students" element={<Students />} />
+		<Route path="/facultyandstaff" element={<FacultyandStaff />} />
+		<Route path="/alumni" element={<Alumni />} />
+		<Route path="/events" element={<Events />} />
+		<Route path="/recruitments" element={<Recruitments />} />
+		<Route path="/e-library" element={<ELibrary />} />
+		<Route path="/login" element={<Login />} />
+		<Route path="/initiatives" element={<Initiatives />} />
+		<Route path="/governance/administration" element={<Administration />} />
+		<Route path="/governance/:param" element={<AdminWrapper />} />
+		<Route path="/governance/committee" element={<Committee />} />
+		<Route path="/pages/guesthouse" element={<GuestHouse />} />
+		<Route path="/pages/pressrelease" element={<PressRelease />} />
+		<Route path="/pages/officialdocuments" element={<OfficialDocuments />} />
+		<Route path="/pages/tenders" element={<Tenders />} />
+		<Route path="*" element={<NotFound />} /> {/* 404 page */}
+	</Routes>
 );
 
 export default AppRoutes;
