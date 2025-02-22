@@ -1,11 +1,13 @@
-import Signup from "@/components/auth/signup";
+import Login from "@/components/auth/login";
 
-const LoginPage = () => {
+function LoginPage() {
 	return (
-		<div>
-			<Signup />
+		<div className="flex min-h-svh flex-col items-center justify-center bg-muted p-6 md:p-10">
+			<div className="w-full max-w-sm md:max-w-3xl">
+				<Login />
+			</div>
 		</div>
 	);
-};
+}
 
 export default LoginPage;
