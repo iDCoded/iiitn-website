@@ -33,6 +33,8 @@ import OfficialDocuments from "./Pages/OfficialDocuments";
 import Tenders from "./Pages/Tenders";
 import AdminPage from "./Admin/page";
 import Consultancy from "./Pages/Consultancy";
+import Iic from "./Pages/Iic";
+import ElectoralLiteracyClub from "./Pages/ElectoralLiteracyClub";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -91,6 +93,8 @@ const AppRoutes = () => (
 		<Route path="/pages/officialdocuments" element={<OfficialDocuments />} />
 		<Route path="/pages/tenders" element={<Tenders />} />
 		<Route path="/pages/consultancy" element={<Consultancy />} />
+		<Route path="/pages/iic" element={<Iic />} />
+		<Route path="/pages/elclub" element={<ElectoralLiteracyClub />} />
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );

@@ -7,20 +7,30 @@ import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import "./index.css"; // Tailwind styles
 
 export function App() {
-	const location = useLocation(); // Get the current route path
+	const location = useLocation();
 	const isExcludedRoute = ["/admin", "/login", "/signup"].some((path) =>
 		location.pathname.startsWith(path)
 	);
+
 	return (
 		<React.StrictMode>
-			{!isExcludedRoute && <Navbar />}
-			<AppRoutes />
-			{!isExcludedRoute && <Footer />}
+			<div className="flex flex-col min-h-screen">
+				{/* Navbar (Sticky at top) */}
+				{!isExcludedRoute && <Navbar />}
+
+				{/* Main Content */}
+				<div className="flex-grow pt-48"> {/* Adjust `pt-20` to match navbar height */}
+					<AppRoutes />
+				</div>
+
+				{/* Footer at the bottom */}
+				{!isExcludedRoute && <Footer />}
+			</div>
 		</React.StrictMode>
 	);
 }
 
-// Wrap the entire app with Router here
+// Wrap the entire app with Router
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<Router>
 		<App />
