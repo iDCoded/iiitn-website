@@ -46,6 +46,10 @@ import HostelFee from "./Pages/HostelFee";
 import HostelFeePayment from "./Pages/HostelFeePayment";
 import FirstYearAcadFee from "./Admissions/BTech/FirstYearAcadFee";
 import FirstYearHosFee from "./Admissions/BTech/FirstYearHosFee";
+import InstRulesAndReg from "./Admissions/BTech/InstRulesAndReg";
+import AlumniForm from "./components/AlumniForm";
+
+
 const PageWrapper = () => {
 	const { param } = useParams();
 	return <DepartmentPage title={param || "defaultTitle"} />;
@@ -84,6 +88,7 @@ const AppRoutes = () => (
 		<Route path="/admissions/btech/contact" element={<AdmissionContact />} />
 		<Route path="/admissions/btech/acadfees" element={<FirstYearAcadFee />} />
 		<Route path="/admissions/btech/hostelfees" element={<FirstYearHosFee />} />
+		<Route path="/admissions/btech/rulesandregulations" element={<InstRulesAndReg />}/>
 		<Route path="/admissions/mtech" element={<AdmissionsMTech />} />
 		<Route path="/admissions/phd" element={<AdmissionsPhD />} />
 		<Route path="/placements" element={<Placements />} />
@@ -96,6 +101,7 @@ const AppRoutes = () => (
 		<Route path="/students" element={<Students />} />
 		<Route path="/facultyandstaff" element={<FacultyandStaff />} />
 		<Route path="/alumni" element={<Alumni />} />
+		<Route path="/alumni/form" element={<AlumniForm />} />
 		<Route path="/events" element={<Events />} />
 		<Route path="/recruitments" element={<Recruitments />} />
 		<Route path="/e-library" element={<ELibrary />} />
