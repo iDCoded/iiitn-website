@@ -9,7 +9,7 @@ const Navbar = () => {
     useEffect(() => {
         const handleScroll = () => {
             if (window.location.pathname === "/") {
-                setIsScrolled(window.scrollY > window.innerHeight - window.innerHeight * 0.15);
+                setIsScrolled(window.scrollY > window.innerHeight - window.innerHeight * 0.35);
             } else {
                 setIsScrolled(window.scrollY > 20);
             }
@@ -27,7 +27,7 @@ const Navbar = () => {
     return (
         <>
             {/* Primary Navbar (Visible on Hero Section) */}
-            <div className={`transition-transform duration-200 ${isScrolled ? "-translate-y-full" : "translate-y-0"} fixed top-0 left-0 w-full z-50`}>
+            <div className={`transition-transform duration-200 fixed top-0 left-0 w-full z-50`}>
                 {/* Topmost Orange Navbar */}
                 <nav className="w-full bg-[#E87722] shadow-md">
                     <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
@@ -48,26 +48,23 @@ const Navbar = () => {
                 </nav>
 
                 {/* Middle White Navbar with IIITN Logo */}
-                <nav className="w-full bg-white shadow-md">
+                <nav className={`w-full flex flex-row justify-between ${isScrolled ? "bg-[#002147]" : "bg-transparent"}`}>
                     <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
                         <a href="/">
                             <div className="flex items-center space-x-4">
                                 <img src="/path/to/logo.png" alt="IIITN Logo" className="h-8 w-8" />
                                 <div className="text-left">
-                                    <p className="text-[#002147] font-medium">भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर</p>
-                                    <p className="text-[#002147] font-medium">Indian Institute of Information Technology, Nagpur</p>
-                                    <p className="text-[#E87722] font-light text-sm">An Institution of National Importance</p>
+                                    <p className="font-medium text-white">भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर</p>
+                                    <p className="font-medium text-white">Indian Institute of Information Technology, Nagpur</p>
+                                    <p className="font-light text-sm text-[#E87722]">An Institution of National Importance</p>
                                 </div>
                             </div>
                         </a>
                     </div>
-                </nav>
 
-                {/* Bottom Dark Blue Navbar */}
-                <nav className={`text-white ${isScrolled ? "shadow-md" : ""}`} style={{ backgroundColor: window.location.pathname === "/" ? "#00214700" : "#002147" }}>
                     <div className="max-w-7xl mx-auto px-6 py-3">
                         {/* Desktop Menu */}
-                        <ul className="hidden md:flex justify-center space-x-10 font-medium text-lg">
+                        <ul className={`hidden md:flex space-x-10 font-medium text-lg ${isScrolled ? "text-[#E87722]" : "text-white"}`}>
                             {/* 🔹 Dropdown: Governance */}
                             <li className="relative group cursor-pointer hover:text-[#E87722]">
                                 Governance
@@ -81,7 +78,6 @@ const Navbar = () => {
                             <li className="relative group cursor-pointer hover:text-[#E87722]">
                                 Academics
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    
                                     <a href="/departments"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Departments</li></a>
                                     <a href="/academics/courses"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Courses</li></a>
                                 </ul>
@@ -120,91 +116,6 @@ const Navbar = () => {
                         </ul>
                     </div>
                 </nav>
-            </div>
-
-            {/* Secondary Navbar (Visible on Scroll) */}
-            <div className={`transition-transform duration-200 ${isScrolled ? "translate-y-0" : "-translate-y-full"} fixed top-0 left-0 w-full z-50`}>
-                {/* Topmost Orange Navbar */}
-                <nav className="w-full bg-[#E87722] shadow-md">
-                    <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
-                        <a href="/">
-                            <img src="/path/to/logo.png" alt="IIITN Logo" className="h-8 w-8" />
-                        </a>
-                        <ul className="hidden md:flex space-x-6 font-medium text-[#002147]">
-                            <a href="/students"><li className="hover:text-white">Students</li></a>
-                            <a href="/facultyandstaff"><li className="hover:text-white">Faculty</li></a>
-                            <a href="/alumni"><li className="hover:text-white">Alumni</li></a>
-                            <a href="/contact"><li className="hover:text-white">Contact</li></a>
-                            <a href="/visitors"><li className="hover:text-white">Visitors</li></a>
-                        </ul>
-
-
-                        {/* Mobile Menu Icon */}
-                        <button className="md:hidden text-[#002147] text-2xl" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                            {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
-                        </button>
-                    </div>
-                </nav>
-
-                {/* bottom blue navbar */}
-                <nav className={`text-white bg-[#002147] ${isScrolled ? "shadow-md" : ""}`}>
-                    <div className="max-w-7xl mx-auto px-6 py-3">
-                        {/* Desktop Menu */}
-                        <ul className="hidden md:flex justify-center space-x-10 font-medium text-lg">
-                            {/* 🔹 Dropdown: Governance */}
-                            <li className="relative group cursor-pointer hover:text-[#E87722]">
-                                Governance
-                                <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    <a href="/governance/committee"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Committee</li></a>
-                                    <a href="/governance/administration"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Administration</li></a>
-                                </ul>
-                            </li>
-
-                            {/* 🔹 Dropdown: Academics */}
-                            <li className="relative group cursor-pointer hover:text-[#E87722]">
-                                Academics
-                                <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                <a href="/academics/programs"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Programs</li></a>
-                                <a href="/departments"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Departments</li></a>
-                                <a href="/academics/courses"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Courses</li></a>
-                                </ul>
-                            </li>
-
-                            <li className="hover:text-[#E87722] relative group cursor-pointer">
-                                Admissions
-                                <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    <a href="/admissions/btech"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">B.Tech</li></a>
-                                    <a href="/admissions/mtech"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">M.Tech</li></a>
-                                    <a href="/admissions/phd"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Ph.D.</li></a>
-                                </ul>
-                            </li>
-
-                            {/* 🔹 Dropdown: Research */}
-                            <li className="relative group cursor-pointer hover:text-[#E87722]">
-                                Research
-                                <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    <a href="/research/publications"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Publications</li></a>
-                                    <a href="/research/projects"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Projects</li></a>
-                                </ul>
-                            </li>
-
-                            <li className="hover:text-[#E87722] group cursor-pointer relative">
-                                Placements
-                                <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                <a href="/placements"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Why Recruit from IIIT Nagpur</li></a>
-                                    <a href="/placements/internships"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Internships</li></a>
-                                    <a href="/placements/statistics"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Statistics</li></a>
-                                    <a href="/placements/companies"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Companies</li></a>
-                                    <a href="/placements/students"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Students</li></a>
-                                    <a href="/placements/contact"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Contact T&P</li></a>
-                                </ul>
-                            </li>
-                            <a href="/about"><li className="hover:text-[#E87722]">About</li></a>
-                        </ul>
-                    </div>
-                </nav>
-
-
             </div>
 
             {/* Mobile Menu (Sliding Drawer) */}
