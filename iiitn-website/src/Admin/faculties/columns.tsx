@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
@@ -29,6 +30,14 @@ export const columns: ColumnDef<Faculty>[] = [
 	{
 		accessorKey: "person.email",
 		header: "Email",
+	},
+	{
+		accessorKey: "f_or_s",
+		header: "Faculty or Staff",
+		cell: ({ row }) => {
+			const post = new String(row.getValue("f_or_s"));
+			return <Badge>{post}</Badge>;
+		},
 	},
 	{
 		accessorKey: "join_year",
