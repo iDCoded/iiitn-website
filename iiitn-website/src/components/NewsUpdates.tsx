@@ -8,7 +8,7 @@ import {
     CarouselPrevious
 } from "./ui/carousel";
 
-const API_URL = "https://your-api-endpoint.com/news"; // 🔗 Replace with actual API endpoint
+const API_URL = "https://your-api-endpoint.com/news"; // Replace with actual API endpoint
 
 interface News {
     id: string;
@@ -70,6 +70,7 @@ const NewsUpdates = () => {
             category: "Category 6"
         }
     ]);
+    const [activeIndex, setActiveIndex] = useState(0);
 
     // 🎯 Fetch news from API
     useEffect(() => {
@@ -86,61 +87,70 @@ const NewsUpdates = () => {
         fetchNews();
     }, []);
 
+    // ⏳ Auto-scroll every 5 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveIndex((prevIndex) =>
+                prevIndex + 3 >= newsData.length ? 0 : prevIndex + 3
+            );
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [newsData]);
+
     return (
-        <section className="py-16 px-6 bg-gray-50">
+        <section className="py-12 px-6 bg-white">
             <div className="max-w-6xl mx-auto">
-                {/* Header */}
+                {/* 🔥 Minimalist Header */}
                 <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-3xl font-bold text-[#002147]">
-                        <span className="text-[#E87722]">|</span> News
+                    <h2 className="text-2xl font-semibold text-[#002147]">
+                        News & Updates
                     </h2>
-                    <a href="/news" className="text-[#E87722] hover:underline text-sm">
-                        View All &gt;
+                    <a href="/news" className="text-[#E87722] text-sm font-medium hover:underline">
+                        View All →
                     </a>
                 </div>
 
-                {/* 🏆 Carousel */}
-                <Carousel className="relative w-full">
-                    <CarouselContent className="-ml-4 flex">
+                {/* 🎡 Minimalist Auto-Scrolling Carousel */}
+                <Carousel className="relative overflow-hidden">
+                    <CarouselContent className="flex">
                         {newsData.length > 0 ? (
-                            newsData.map((news, index) => (
+                            newsData.slice(activeIndex, activeIndex + 3).map((news) => (
                                 <CarouselItem
-                                    key={index}
-                                    className="pl-4 basis-1/3 sm:basis-1/2 md:basis-1/3" // Shows 3 on desktop, 2 on tablet, 1 on mobile
+                                    key={news.id}
+                                    className="px-2 basis-[33%] sm:basis-[33%] md:basis-[33%] lg:basis-[33%]"
                                 >
-                                    <Card className="shadow-lg hover:shadow-xl transition-all rounded-lg overflow-hidden border border-gray-200 hover:scale-[1.02] duration-300">
-                                        {/* 🖼 News Image with Gradient Overlay */}
+                                    <Card className="bg-[#f5f5f5] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-transform hover:scale-[1.05] duration-300 w-80 h-[500px]">
+                                        {/* 📸 Image Section */}
                                         <div className="relative">
                                             <img
                                                 src={news.image}
                                                 alt={news.title}
-                                                className="w-full h-48 object-cover rounded-t-lg"
+                                                className="w-full h-[260px] object-cover rounded-t-xl"
                                             />
-                                            {/* Overlay for better text visibility */}
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                                            {/* 🏷 Category Badge */}
+                                            {/* 📌 Category Badge */}
                                             <span className="absolute top-2 left-2 bg-[#E87722] text-white text-xs font-semibold px-3 py-1 rounded-md">
                                                 {news.category}
                                             </span>
                                         </div>
 
-                                        <CardContent className="p-5">
-                                            {/* 📌 News Title */}
-                                            <CardTitle className="text-lg font-bold text-[#002147] leading-snug">
+                                        <CardContent className="p-5 flex flex-col h-[240px]">
+                                            {/* 📰 Title */}
+                                            <CardTitle className="text-lg font-semibold text-[#002147] leading-tight">
                                                 {news.title}
                                             </CardTitle>
 
                                             {/* 📝 Description */}
-                                            <p className="text-gray-600 mt-2 text-sm line-clamp-3">
+                                            <p className="text-gray-600 mt-2 text-sm line-clamp-4">
                                                 {news.description}
                                             </p>
 
                                             {/* 📅 Date + Read More */}
-                                            <div className="mt-4 flex justify-between items-center text-sm">
+                                            <div className="mt-auto flex justify-between items-center text-sm">
                                                 <span className="text-gray-500">{news.date}</span>
                                                 <a
-                                                    href={`/news/${news.id}`} // 🔗 Make it clickable
-                                                    className="text-[#E87722] hover:underline font-medium"
+                                                    href={`/news/${news.id}`}
+                                                    className="text-[#E87722] font-medium bg-[#E87722]/10 px-3 py-1 rounded-md hover:bg-[#E87722]/20 transition-all"
                                                 >
                                                     Read More →
                                                 </a>
@@ -155,9 +165,19 @@ const NewsUpdates = () => {
                         )}
                     </CarouselContent>
 
-                    {/* Navigation Controls */}
-                    <CarouselPrevious className="left-0" />
-                    <CarouselNext className="right-0" />
+                    {/* 🔄 Minimalist Navigation Controls */}
+                    <CarouselPrevious
+                        className="absolute left-0 top-1/2 transform -translate-y-1/2 text-[#E87722] text-lg hover:text-opacity-80 transition-all"
+                        onClick={() => setActiveIndex((prevIndex) => Math.max(0, prevIndex - 3))}
+                    />
+                    <CarouselNext
+                        className="absolute right-0 top-1/2 transform -translate-y-1/2 text-[#E87722] text-lg hover:text-opacity-80 transition-all"
+                        onClick={() =>
+                            setActiveIndex((prevIndex) =>
+                                prevIndex + 3 >= newsData.length ? 0 : prevIndex + 3
+                            )
+                        }
+                    />
                 </Carousel>
             </div>
         </section>
