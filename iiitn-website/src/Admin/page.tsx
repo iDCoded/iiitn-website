@@ -1,6 +1,7 @@
 import { EventForm } from "@/components/form/event-form";
 import { FacultyForm } from "@/components/form/faculty-form";
 import { ImageUpload } from "@/components/form/image-upload";
+import { AllFaculty } from "@/components/form/all-faculty";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -27,8 +28,12 @@ const sidebarData = {
 			url: "#",
 			items: [
 				{
-					title: "Manage Faculty",
+					title: "Create Faculty",
 					url: "#faculty",
+				},
+				{
+					title: "View All Faculty",
+					url: "#allfaculty",
 				},
 			],
 		},
@@ -45,7 +50,8 @@ const AdminPage = () => {
 		if (
 			location.hash === "#events" ||
 			location.hash === "#media" ||
-			location.hash === "#faculty"
+			location.hash === "#faculty" ||
+			location.hash === "#allfaculty"
 		) {
 			setSidebar(location.hash);
 			setLastSelected(location.hash);
@@ -63,6 +69,7 @@ const AdminPage = () => {
 						{sidebar === "#events" && <EventForm />}
 						{sidebar === "#media" && <ImageUpload />}
 						{sidebar === "#faculty" && <FacultyForm />}
+						{sidebar === "#allfaculty" && <AllFaculty />}
 					</CardContent>
 				</Card>
 			</div>
