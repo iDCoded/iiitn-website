@@ -89,11 +89,9 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
 			console.log("data", res_json);
 		} catch (error) {
 			console.error(error);
-		}
-
-		setTimeout(() => {
+		} finally {
 			setIsLoading(false);
-		}, 3000);
+		}
 	}
 
 	return (
