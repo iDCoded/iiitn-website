@@ -4,6 +4,7 @@ import AppRoutes from "./routes";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 import "./index.css"; // Tailwind styles
 
 export function App() {
@@ -35,9 +36,11 @@ export function App() {
 	);
 }
 
-// Wrap the entire app with Router
+// Wrap the entire app with Router and AuthProvider
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<Router>
-		<App />
+		<AuthProvider>
+			<App />
+		</AuthProvider>
 	</Router>
 );

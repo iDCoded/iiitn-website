@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/password-input";
 import { Textarea } from "@/components/ui/textarea";
+import { useAuth } from "@/context/AuthContext";
 
 type SignUpFormProps = HTMLAttributes<HTMLDivElement>;
 
@@ -56,6 +57,7 @@ const formSchema = z
 
 export function SignUpForm({ className, ...props }: SignUpFormProps) {
 	const [isLoading, setIsLoading] = useState(false);
+	const { login } = useAuth();
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -87,6 +89,7 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
 
 			const res_json = await res.json();
 			console.log("data", res_json);
+			login(res_json.user, res_json.token);
 		} catch (error) {
 			console.error(error);
 		} finally {
