@@ -35,7 +35,59 @@ function FacultyandStaff() {
             {/* Main Content */}
             <div className="container mx-auto px-6 py-12 flex flex-col lg:flex-row gap-12">
                 {/* Sidebar (Quick Links, Events, Resources) */}
-                <aside className="hidden md:block w-1/4 space-y-6 top-20 self-start">
+
+                {/* Main Section */}
+                <div className="flex-1 ">
+                    {/* Prospective Faculty & Staff */}
+                    <div className="mb-12 max-w-[80vh] mx-auto">
+                        <h2 className="text-2xl font-semibold mb-4">Prospective Faculty & Staff</h2>
+                        <p className="text-gray-600 leading-relaxed">
+                            Get more details on programs, resources, fees, and other information here.
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            {prospectiveData.map((data, index) => (
+                                <StudentCard key={index} title={data.title} description={data.description} imageSrc={data.imageSrc} />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Current Faculty & Staff */}
+                    <div className="mb-12 max-w-[80vh] mx-auto">
+                        <h2 className="text-2xl font-semibold mb-4">Current Faculty & Staff</h2>
+                        <p className="text-gray-600 leading-relaxed">
+                            Get more details on programs, resources, and policies for current faculty and staff.
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            {prospectiveData.map((data, index) => (
+                                <StudentCard key={index} title={data.title} description={data.description} imageSrc={data.imageSrc} />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Faculty & Staff Directory */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 max-w-[80vh] mx-auto">
+                        {/* Faculty Directory */}
+                        <div>
+                            <h2 className="text-2xl font-semibold mb-4">Faculty Directory</h2>
+                            <FSCard
+                                title="Dr. ABC"
+                                description="Professor"
+                                imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
+                            />
+                        </div>
+                        {/* Staff Directory */}
+                        <div>
+                            <h2 className="text-2xl font-semibold mb-4">Staff Directory</h2>
+                            <FSCard
+                                title="Dr. ABC"
+                                description="Professor"
+                                imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <aside className="hidden md:block w-1/4 space-y-6 top-20 self-start mx-auto">
                     {[
                         { title: "Quick Links", items: ["Faculty Directory", "Staff Directory", "Academic Policies", "Research Opportunities", "Teaching Resources"] },
                         { title: "Upcoming Events", items: ["Faculty Development Program", "Guest Lectures", "Research Conference", "Annual Faculty Meet", "Training Workshops"] },
@@ -66,57 +118,6 @@ function FacultyandStaff() {
                         </CardContent>
                     </Card>
                 </aside>
-
-                {/* Main Section */}
-                <div className="flex-1">
-                    {/* Prospective Faculty & Staff */}
-                    <div className="mb-12">
-                        <h2 className="text-2xl font-semibold mb-4">Prospective Faculty & Staff</h2>
-                        <p className="text-gray-600 leading-relaxed">
-                            Get more details on programs, resources, fees, and other information here.
-                        </p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                            {prospectiveData.map((data, index) => (
-                                <StudentCard key={index} title={data.title} description={data.description} imageSrc={data.imageSrc} />
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Current Faculty & Staff */}
-                    <div className="mb-12">
-                        <h2 className="text-2xl font-semibold mb-4">Current Faculty & Staff</h2>
-                        <p className="text-gray-600 leading-relaxed">
-                            Get more details on programs, resources, and policies for current faculty and staff.
-                        </p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                            {prospectiveData.map((data, index) => (
-                                <StudentCard key={index} title={data.title} description={data.description} imageSrc={data.imageSrc} />
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Faculty & Staff Directory */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
-                        {/* Faculty Directory */}
-                        <div>
-                            <h2 className="text-2xl font-semibold mb-4">Faculty Directory</h2>
-                            <FSCard
-                                title="Dr. ABC"
-                                description="Professor"
-                                imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
-                            />
-                        </div>
-                        {/* Staff Directory */}
-                        <div>
-                            <h2 className="text-2xl font-semibold mb-4">Staff Directory</h2>
-                            <FSCard
-                                title="Dr. ABC"
-                                description="Professor"
-                                imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
-                            />
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     );

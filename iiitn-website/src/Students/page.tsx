@@ -1,4 +1,3 @@
-import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // Using ShadCN Card
 import StudentCard from "../components/StudentCard";
 
@@ -49,38 +48,18 @@ function Students() {
             </div>
 
             {/* Main Content */}
-            <div className="container mx-auto flex flex-col lg:flex-row-reverse gap-8 px-4 py-10">
-                {/* Right Sidebar (Smaller Quick Links) */}
-                <aside className="lg:w-1/5 space-y-4">
-                    <Card className="shadow-sm border border-gray-200 p-3">
-                        <CardHeader>
-                            <CardTitle className="text-md font-semibold text-[#002147]">Quick Links</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <ul className="space-y-1 text-sm">
-                                {sidebarLinks.map((item, index) => (
-                                    <li key={index}>
-                                        <a href={item.link} className="text-[#E87722] hover:underline">
-                                            {item.title}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </CardContent>
-                    </Card>
-                </aside>
-
+            <div className="container mx-auto flex flex-col lg:flex-row gap-12 px-6 py-10">
                 {/* Left Content (More Space for Main Section) */}
-                <div className="lg:w-4/5 space-y-10">
+                <div className="lg:w-3/4 space-y-12">
                     {/* Prospective Students */}
-                    <section>
-                        <h2 className="text-2xl font-semibold text-[#002147]">
-                            <span className="text-3xl text-[#E87722]">| </span> Prospective Students
+                    <section className="space-y-6 max-w-6xl w-[80vh] mx-auto">
+                        <h2 className="text-3xl font-semibold text-[#002147]">
+                            <span className="text-4xl text-[#E87722]">| </span> Prospective Students
                         </h2>
                         <p className="text-gray-500 mb-4 text-sm">
                             Learn more about programs, fees, and other essential details.
                         </p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {prospectiveData.map((item, index) => (
                                 <StudentCard
                                     key={index}
@@ -93,8 +72,8 @@ function Students() {
                     </section>
 
                     {/* Current Students */}
-                    <section>
-                        <h2 className="text-2xl font-semibold text-[#002147]">Current Students</h2>
+                    <section className="space-y-6 max-w-6xl w-[80vh] mx-auto">
+                        <h2 className="text-3xl font-semibold text-[#002147]"><span className="text-4xl text-[#E87722]">| </span>Current Students</h2>
                         <p className="text-gray-500 mb-4 text-sm">
                             Find details on courses, timetables, curricula, and academic resources.
                         </p>
@@ -102,7 +81,7 @@ function Students() {
                             <div key={index} className="mb-8">
                                 <h3 className="text-lg font-semibold text-[#002147]">{section.subTitle}</h3>
                                 <p className="text-gray-500 mb-3 text-sm">{section.subDes}</p>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {section.arr.map((item, idx) => (
                                         <StudentCard
                                             key={idx}
@@ -116,6 +95,34 @@ function Students() {
                         ))}
                     </section>
                 </div>
+
+                {/* Right Sidebar (Quick Links) */}
+                <aside className="lg:w-1/4 space-y-6">
+                    <Card className="shadow-sm border border-gray-200 p-4">
+                        <CardHeader>
+                            <CardTitle className="text-lg font-semibold text-[#002147]">Quick Links</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <ul className="space-y-2 text-sm">
+                                {sidebarLinks.map((item, index) => (
+                                    <li key={index}>
+                                        <a href={item.link} className="text-[#E87722] hover:underline">
+                                            {item.title}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </CardContent>
+                    </Card>
+                    <Card className="shadow-sm border border-gray-200">
+                        <CardHeader>
+                            <CardTitle className="text-lg font-semibold text-[#002147]">Student Notices</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-gray-600">Important updates and announcements for Students.</p>
+                        </CardContent>
+                    </Card>
+                </aside>
             </div>
         </div>
     );

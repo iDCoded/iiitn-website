@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { useState, useRef, useEffect } from "react";
+import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
@@ -19,10 +19,7 @@ const newsData = [
 ];
 
 export default function NewsCarousel() {
-    const sliderRef = useRef(null);
-    const [slider, setSlider] = useState<any>(null);
-
-    const [instanceRef] = useKeenSlider({
+    const [sliderRef, instanceRef] = useKeenSlider({
         slides: {
             perView: 1,
             spacing: 10,
@@ -35,8 +32,17 @@ export default function NewsCarousel() {
                 },
             },
         },
-        created: (s) => setSlider(s),
+        loop: true,
     });
+
+    // Auto-scroll effect
+    useEffect(() => {
+        const interval = setInterval(() => {
+            instanceRef.current?.next();
+        }, 5000); // 5 sec interval
+
+        return () => clearInterval(interval);
+    }, [instanceRef]);
 
     return (
         <section className="py-10 bg-gray-100">
@@ -46,15 +52,17 @@ export default function NewsCarousel() {
                 </h2>
 
                 <div className="relative">
+                    {/* Previous Button */}
                     <button
-                        onClick={() => slider?.prev()}
+                        onClick={() => instanceRef.current?.prev()}
                         className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg p-2 rounded-full hover:bg-gray-200"
                     >
                         ◀
                     </button>
 
+                    {/* Carousel Content */}
                     <Carousel>
-                        <CarouselContent ref={instanceRef} className="keen-slider">
+                        <CarouselContent ref={sliderRef} className="keen-slider">
                             {newsData.map((news, index) => (
                                 <CarouselItem key={index} className="keen-slider__slide">
                                     <Card className="shadow-lg rounded-lg overflow-hidden">
@@ -69,8 +77,9 @@ export default function NewsCarousel() {
                         </CarouselContent>
                     </Carousel>
 
+                    {/* Next Button */}
                     <button
-                        onClick={() => slider?.next()}
+                        onClick={() => instanceRef.current?.next()}
                         className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg p-2 rounded-full hover:bg-gray-200"
                     >
                         ▶

@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
+import { ScrollArea } from "../../components/ui/scroll-area";
+import { Skeleton } from "../../components/ui/skeleton";
 
 interface Event {
     title: string;
@@ -13,8 +16,7 @@ interface DepartmentData {
     bos: string;
     achievements: string;
     research: string;
-    faculty: string;
-    staff: string;
+    facultyandstaff: string;
     projects: string[];
     laboratory: string[];
     events: Event[];
@@ -26,53 +28,47 @@ interface PageProps {
 
 const departmentsDemo: Record<string, DepartmentData> = {
     cse: {
-        about: "The Department of Computer Science and Engineering at IIIT Nagpur offers a comprehensive curriculum in computer science and engineering. The department is committed to providing quality education and research opportunities to students.",
+        about: "The Department of Computer Science and Engineering at IIIT Nagpur offers a comprehensive curriculum...",
         bos: "The Board of Studies (BoS) of the CSE Department is responsible for designing the curriculum, evaluating academic programs, and ensuring the quality of education.",
         achievements: "The CSE Department has achieved numerous milestones in research, innovation, and academic excellence. Our faculty and students have published research papers, won awards, and participated in hackathons.",
         research: "The research focus areas of the CSE Department include artificial intelligence, machine learning, data science, computer networks, and software engineering.",
-        faculty: "",
-        staff: "",
-        projects: ["Project 1: AI Chatbot", "Project 2: Data Analytics Tool", "Project 3: Software Development Platform"],
-        laboratory: ["Computer Networks Lab", "Artificial Intelligence Lab", "Software Engineering Lab"],
+        facultyandstaff: "The CSE Department has a team of highly qualified faculty members... Learn more</a>",
+        projects: ["AI Chatbot", "Data Analytics Tool", "Software Development"],
+        laboratory: ["Networks Lab", "AI Lab", "Software Engineering Lab"],
         events: [
             { title: "Hackathon 2025", date: "2025-03-15", time: "10:00 AM - 5:00 PM", image: "/hackathon.jpg" },
             { title: "Guest Lecture on AI", date: "2025-03-20", time: "2:00 PM - 3:30 PM", image: "/ai-lecture.jpg" },
-            { title: "CSE Symposium", date: "2025-04-05", time: "9:00 AM - 4:00 PM", image: "/cse-symposium.jpg" },
         ],
     },
     ece: {
-        about: "The Department of Electronics and Communication Engineering at IIIT Nagpur offers a comprehensive curriculum in electronics and communication engineering. The department is committed to providing quality education and research opportunities to students.",
-        bos: "The Board of Studies (BoS) of the ECE Department is responsible for designing the curriculum, evaluating academic programs, and ensuring the quality of education.",
-        achievements: "The ECE Department has achieved numerous milestones in research, innovation, and academic excellence. Our faculty and students have published research papers, won awards, and participated in hackathons.",
-        research: "The research focus areas of the ECE Department include advanced networking, signal processing, embedded systems, and VLSI design.",
-        faculty: "",
-        staff: "",
-        projects: ["Project 1: IoT Applications", "Project 2: Wireless Communication", "Project 3: Embedded Systems"],
-        laboratory: ["Networking Lab", "Signal Processing Lab", "VLSI Design Lab"],
+        about: "The Department of Electronics and Communication Engineering at IIIT Nagpur offers a comprehensive curriculum...",
+        bos: "The Board of Studies (BoS) of the ECE Department...",
+        achievements: "The ECE Department has achieved numerous milestones...",
+        research: "The research focus areas include VLSI, Embedded Systems, IoT...",
+        facultyandstaff: "The ECE Department has a team of highly qualified faculty members...",
+        projects: ["Embedded System Design", "IoT Applications", "VLSI Design"],
+        laboratory: ["VLSI Lab", "Embedded Systems Lab", "Communication Lab"],
         events: [
-            { title: "Guest Lecture on IoT", date: "2025-03-10", time: "2:00 PM - 3:30 PM", image: "/iot-lecture.jpg" },
-            { title: "ECE Symposium", date: "2025-03-25", time: "9:00 AM - 4:00 PM", image: "/ece-symposium.jpg" },
-            { title: "Workshop on Embedded Systems", date: "2025-04-15", time: "10:00 AM - 4:00 PM", image: "/embedded-systems.jpg" },
+            { title: "Workshop on IoT", date: "2025-03-10", time: "9:00 AM - 1:00 PM", image: "/iot-workshop.jpg" },
+            { title: "Webinar on VLSI Design", date: "2025-03-18", time: "3:00 PM - 4:30 PM", image: "/vlsi-webinar.jpg" },
         ],
     },
-    basicScience: {
-        about: "The Department of Basic Sciences at IIIT Nagpur offers a comprehensive curriculum in basic sciences. The department is committed to providing quality education and research opportunities to students.",
-        bos: "The Board of Studies (BoS) of the Basic Sciences Department is responsible for designing the curriculum, evaluating academic programs, and ensuring the quality of education.",
-        achievements: "The Basic Sciences Department has achieved numerous milestones in research, innovation, and academic excellence. Our faculty and students have published research papers, won awards, and participated in conferences.",
-        research: "The research focus areas of the Basic Sciences Department include physics, chemistry, mathematics, and environmental science.",
-        faculty: "",
-        staff: "",
-        projects: ["Project 1: Quantum Computing", "Project 2: Nanotechnology", "Project 3: Environmental Studies"],
+    basic_science: {
+        about: "The Department of Basic Sciences at IIIT Nagpur offers a comprehensive curriculum...",
+        bos: "The Board of Studies (BoS) of the Basic Sciences Department...",
+        achievements: "The Basic Sciences Department has achieved numerous milestones...",
+        research: "The research focus areas include Physics, Chemistry, Mathematics...",
+        facultyandstaff: "Basic Sciences Department has a team of highly qualified faculty members...",
+        projects: ["Mathematical Modelling", "Quantum Physics Research", "Chemical Analysis"],
         laboratory: ["Physics Lab", "Chemistry Lab", "Mathematics Lab"],
         events: [
-            { title: "Guest Lecture on Quantum Physics", date: "2025-03-05", time: "2:00 PM - 3:30 PM", image: "/quantum-physics.jpg" },
-            { title: "Science Fair 2025", date: "2025-03-15", time: "9:00 AM - 4:00 PM", image: "/science-fair.jpg" },
-            { title: "Workshop on Nanotechnology", date: "2025-04-10", time: "10:00 AM - 4:00 PM", image: "/nanotechnology.jpg" },
+            { title: "Science Quiz Competition", date: "2025-03-05", time: "11:00 AM - 1:00 PM", image: "/science-quiz.jpg" },
+            { title: "Guest Lecture on Quantum Physics", date: "2025-03-12", time: "2:00 PM - 3:30 PM", image: "/quantum-lecture.jpg" },
         ],
     },
 };
 
-function DepartmentPage({ title }: PageProps) {
+export default function DepartmentPage({ title }: PageProps) {
     const [data, setData] = useState<DepartmentData | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -90,84 +86,107 @@ function DepartmentPage({ title }: PageProps) {
             });
     }, [title]);
 
-    if (loading) return <p className="text-center text-lg text-gray-600">Loading...</p>;
-    if (error) return <p className="text-center text-lg text-red-500">{error}</p>;
-    if (!data) return <p className="text-center text-lg text-gray-600">No data available.</p>;
+    if (loading)
+        return <Skeleton className="h-60 w-full" />;
+    if (error)
+        return <p className="text-center text-red-500">{error}</p>;
+    if (!data)
+        return <p className="text-center text-gray-600">No data available.</p>;
 
     const sections = [
-        { id: "about", title: "About Department", content: data.about },
-        { id: "bos", title: "Board of Studies (BoS)", content: data.bos },
+        { id: "about", title: "About", content: data.about },
+        { id: "bos", title: "Board of Studies", content: data.bos },
         { id: "achievements", title: "Achievements", content: data.achievements },
         { id: "research", title: "Research", content: data.research },
-        { id: "faculty", title: "Faculty", content: data.faculty },
-        { id: "staff", title: "Staff", content: data.staff },
+        { id: "facultyandstaff", title: "Faculty", content: data.facultyandstaff },
         { id: "projects", title: "Projects", content: data.projects },
-        { id: "laboratory", title: "Laboratory", content: data.laboratory },
+        { id: "laboratory", title: "Laboratories", content: data.laboratory },
     ];
 
     return (
-        <div className="bg-gray-50 text-gray-900 min-h-screen ">
+        <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
-            <div className="relative w-full text-white text-center py-14 shadow-lg bg-gradient-to-r from-[#002147] via-[#002C5F] to-[#002147]">
-                <h1 className="text-5xl font-extrabold tracking-wide">{title.toUpperCase()} Department</h1>
-                <p className="text-lg opacity-80 mt-1">Explore the academic programs, research, and opportunities in {title.toUpperCase()} department.
-                </p>
-            </div>
+            <header className="bg-gradient-to-r from-[#002147] to-[#002C5F] text-white py-14 text-center shadow-lg">
+                <h1 className="text-4xl font-extrabold">{title.toUpperCase()} Department</h1>
+                <p className="opacity-80 text-lg mt-2">Explore the research and academic excellence of the {title.toUpperCase()} department.</p>
+            </header>
 
-            {/* Sidebar Navigation */}
-            <div className="container mx-auto max-w-6xl px-4 sm:px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-6">
-                <aside className="col-span-1 hidden md:block sticky top-20 self-start space-y-6 w-full">
-                    <Card className="shadow-sm border border-gray-200">
+            <div className="container mx-auto max-w-7xl px-6 py-10 grid md:grid-cols-4 gap-8">
+                {/* Sidebar Navigation */}
+                <aside className="hidden md:block sticky top-[18vh] self-start space-y-6">
+                    <Card className="border border-gray-200 shadow-sm">
                         <CardHeader>
-                            <CardTitle className="text-lg font-semibold text-[#002147]"></CardTitle>
+                            <CardTitle className="text-lg font-semibold text-[#002147]">Quick Navigation</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <ul className="space-y-2 text-sm">
-                                {sections.map((section, index) => (
-                                    <li key={index}>
-                                        <a href="#" className="text-[#E87722] hover:underline">
-                                            {section.title}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
+                            <ScrollArea className="h-60">
+                                <ul className="space-y-3 text-sm">
+                                    {sections.map((section) => (
+                                        <li key={section.id}>
+                                            <a href={`#${section.id}`} className="text-[#E87722] hover:underline">
+                                                {section.title}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </ScrollArea>
                         </CardContent>
                     </Card>
                 </aside>
 
-
-                {/* 🟠 Info Sections */}
-                <div className="col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+                {/* Department Information */}
+                <main className="md:col-span-3 space-y-10">
                     {sections.map((section) => (
-                        <Card
-                            key={section.id}
-                            className="group relative bg-white shadow-md hover:shadow-lg transition-all duration-300 rounded-xl border border-gray-100 dark:border-gray-700"
-                        >
-                            {/* Header with accent border */}
-                            <CardHeader className="p-5">
-                                <CardTitle className="text-lg font-semibold tracking-wide relative pb-2">
+                        <Card key={section.id} className="shadow-md border border-gray-100">
+                            <CardHeader>
+                                <CardTitle className="relative text-xl font-bold">
+                                    <span className="text-4xl text-[#E87722]">| </span>
                                     {section.title}
-                                    <span className="absolute bottom-0 left-0 w-8 h-[3px] bg-[#E87722] rounded-full"></span>
                                 </CardTitle>
                             </CardHeader>
-
-                            {/* Content */}
-                            <CardContent className="p-5 text-gray-700">
+                            <CardContent>
                                 {Array.isArray(section.content) ? (
-                                    <ul className="space-y-2 text-sm">
+                                    <ul className="list-disc list-inside space-y-2 text-gray-700">
                                         {section.content.map((item, index) => (
-                                            <li key={index} className="flex items-start gap-2">
-                                                <span className="text-[#E87722]">•</span> {item}
-                                            </li>
+                                            <li key={index}>{item}</li>
                                         ))}
                                     </ul>
                                 ) : (
-                                    <p className="text-sm">{section.content}</p>
+                                    <p className="text-gray-700">{section.content}</p>
+                                )}
+
+                                {/* Learn More Button for Faculty & Staff Section */}
+                                {section.id === "facultyandstaff" && (
+                                    <div className="mt-4">
+                                        <Button asChild>
+                                            <a href="/pages/directory" className="text-white">
+                                                Learn More
+                                            </a>
+                                        </Button>
+                                    </div>
+                                )}
+
+                                {/* Projects Section */}
+                                {section.id === "projects" && (
+                                    <div className="mt-4 space-y-2">
+                                        <Button asChild>
+                                            <a href="/research/projects">Learn More</a>
+                                        </Button>
+                                    </div>
+                                )}
+
+                                {/* Research Section */}
+                                {section.id === "research" && (
+                                    <div className="mt-4 space-y-2">
+                                        <Button asChild>
+                                            <a href="/research/publications">Explore Research Areas</a>
+                                        </Button>
+                                    </div>
                                 )}
                             </CardContent>
                         </Card>
                     ))}
-                </div>
+                </main>
 
             </div>
 
@@ -216,5 +235,3 @@ function DepartmentPage({ title }: PageProps) {
         </div>
     );
 }
-
-export default DepartmentPage;
