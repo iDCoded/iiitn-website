@@ -9,8 +9,9 @@ export interface Person {
 export interface Faculty {
 	f_id: number;
 	p_id: number;
+	d_id: number;
 	join_year: number;
 	positions: string;
-	f_or_s: string;
+	f_or_s: "Faculty" | "Staff";
 	person: Person;
 }

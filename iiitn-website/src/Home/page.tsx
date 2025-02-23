@@ -12,7 +12,6 @@ const Home = () => {
     return (
         <>
             <HeroSection />       {/* 🔥 Captures Attention First */}
-            <Announcements />     {/* 📢 Important Notices First */}
             <NewsUpdates />       {/* 📰 Latest News & Happenings */}
             <Admissions />        {/* 🎓 Admission Info for New Students */}
             <Departments />       {/* 📚 Academic Information */}
