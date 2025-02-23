@@ -6,13 +6,13 @@ import Departments from "./Departments/page";
 import Courses from "./Academics/Courses";
 import Programs from "./Academics/Programs";
 import AdmissionsBTech from "./Admissions/BTech/BTech";
-import AdmissionsMTech from "./Admissions/MTech";
-import AdmissionsPhD from "./Admissions/PhD";
+import AdmissionsMTech from "./Admissions/PostGraduate";
+
 import Placements from "./Placements/page";
 import Research from "./Research/page";
 import Students from "./Students/page";
 import Alumni from "./Alumni/page";
-import Events from "./Events/page";
+import Events from "./Events/StudentEvents";
 import Recruitments from "./Recruitments/page";
 import ELibrary from "./ELibrary/page";
 import Login from "./Login/page";
@@ -54,10 +54,14 @@ import Recruitment from "./Pages/Recruitments";
 import Visitors from "./Pages/Visitors";
 import ClinicalCounselling from "./Pages/ClinicalCounselling";
 import Mess from "./Pages/Mess";
-import Achievements from "./Pages/Achievements";
+import Achievements from "./Pages/StudentsAchievements";
 import Convocation from "./Pages/Convocation";
 import NIRF from "./Pages/NIRF";
-
+import HostelLife from "./Pages/HostelLife";
+import Grievance from "./Pages/Grievance";
+import GrievanceCommSCSTCell from "./Pages/GrievanceCommSCSTCell";
+import InternalCompltComm from "./Pages/InternalCompltComm";
+import EqualOppCell from "./Pages/EqualOppCell";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -99,7 +103,6 @@ const AppRoutes = () => (
 		<Route path="/admissions/btech/hostelfees" element={<FirstYearHosFee />} />
 		<Route path="/admissions/btech/rulesandregulations" element={<InstRulesAndReg />}/>
 		<Route path="/admissions/mtech" element={<AdmissionsMTech />} />
-		<Route path="/admissions/phd" element={<AdmissionsPhD />} />
 		<Route path="/placements" element={<Placements />} />
 		<Route path="/placements/companies" element={<Companies />} />
 		<Route path="/placements/internships" element={<Internships />} />
@@ -139,6 +142,11 @@ const AppRoutes = () => (
 		<Route path="/pages/achievements" element={<Achievements />} />
 		<Route path="/pages/convocation" element={<Convocation />} />
 		<Route path="/pages/nirf" element={<NIRF />} />
+		<Route path="/pages/hostellife" element={<HostelLife />} />
+		<Route path="/pages/grievance" element={<Grievance />} />
+		<Route path="/pages/grievancecomm" element={<GrievanceCommSCSTCell />} />
+		<Route path="/pages/internalcomplt" element={<InternalCompltComm />} />
+		<Route path="/pages/equalopp" element={<EqualOppCell />} />
 		<Route path="/visitors" element={<Visitors />} />
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
