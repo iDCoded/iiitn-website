@@ -33,11 +33,11 @@ const Navbar = () => {
                     <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
                         <h1 className="text-[#002147] font-bold text-xl">अ A</h1>
                         <ul className="hidden md:flex space-x-6 font-medium text-[#002147]">
-                            <li className="hover:text-white"><a href="/students">Students</a></li>
-                            <li className="hover:text-white"><a href="/facultyandstaff">Faculty</a></li>
-                            <li className="hover:text-white"><a href="/alumni">Alumni</a></li>
-                            <li className="hover:text-white"><a href="/contact">Contact</a></li>
-                            <li className="hover:text-white"><a href="/visitors">Visitors</a></li>
+                            <a href="/students"><li className="hover:text-white">Students</li></a>
+                            <a href="/facultyandstaff"><li className="hover:text-white">Faculty</li></a>
+                            <a href="/alumni"><li className="hover:text-white">Alumni</li></a>
+                            <a href="/contact"><li className="hover:text-white">Contact</li></a>
+                            <a href="/visitors"><li className="hover:text-white">Visitors</li></a>
                         </ul>
 
                         {/* Mobile Menu Icon */}
@@ -72,8 +72,8 @@ const Navbar = () => {
                             <li className="relative group cursor-pointer hover:text-[#E87722]">
                                 Governance
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/governance/committee">Committee</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/governance/administration">Administration</a></li>
+                                    <a href="/governance/committee"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Committee</li></a>
+                                    <a href="/governance/administration"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Administration</li></a>
                                 </ul>
                             </li>
 
@@ -81,18 +81,18 @@ const Navbar = () => {
                             <li className="relative group cursor-pointer hover:text-[#E87722]">
                                 Academics
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/academics/programs">Programs</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/departments">Departments</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/academics/courses">Courses</a></li>
+                                    <a href="/academics/programs"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Programs</li></a>
+                                    <a href="/departments"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Departments</li></a>
+                                    <a href="/academics/courses"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Courses</li></a>
                                 </ul>
                             </li>
 
                             <li className="hover:text-[#E87722] relative group cursor-pointer">
                                 Admissions
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/admissions/btech">B.Tech</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/admissions/mtech">M.Tech</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/admissions/phd">Ph.D.</a></li>
+                                    <a href="/admissions/btech"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">B.Tech</li></a>
+                                    <a href="/admissions/mtech"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">M.Tech</li></a>
+                                    <a href="/admissions/phd"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Ph.D.</li></a>
                                 </ul>
                             </li>
 
@@ -100,20 +100,20 @@ const Navbar = () => {
                             <li className="relative group cursor-pointer hover:text-[#E87722]">
                                 Research
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/research/publications">Publications</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/research/projects">Projects</a></li>
+                                    <a href="/research/publications"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Publications</li></a>
+                                    <a href="/research/projects"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Projects</li></a>
                                 </ul>
                             </li>
 
                             <li className="hover:text-[#E87722] group cursor-pointer relative">
                                 Placements
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements">Why Recruit from IIIT Nagpur</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements/internships">Internships</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements/statistics">Statistics</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements/companies">Companies</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements/students">Students</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements/contact">Contact T&P</a></li>
+                                    <a href="/placements"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Why Recruit from IIIT Nagpur</li></a>
+                                    <a href="/placements/internships"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Internships</li></a>
+                                    <a href="/placements/statistics"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Statistics</li></a>
+                                    <a href="/placements/companies"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Companies</li></a>
+                                    <a href="/placements/students"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Students</li></a>
+                                    <a href="/placements/contact"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Contact T&P</li></a>
                                 </ul>
                             </li>
                             <li className="hover:text-[#E87722]"><a href="/about">About</a></li>
@@ -131,13 +131,13 @@ const Navbar = () => {
                             <img src="/path/to/logo.png" alt="IIITN Logo" className="h-8 w-8" />
                         </a>
                         <ul className="hidden md:flex space-x-6 font-medium text-[#002147]">
-                            <li className="hover:text-white"><a href="/students">Students</a></li>
-                            <li className="hover:text-white"><a href="/facultyandstaff">Faculty</a></li>
-                            <li className="hover:text-white"><a href="/alumni">Alumni</a></li>
-                            <li className="hover:text-white"><a href="/contact">Contact</a></li>
-                            <li className="hover:text-white"><a href="/visitors">Visitors</a></li>
+                            <a href="/students"><li className="hover:text-white">Students</li></a>
+                            <a href="/facultyandstaff"><li className="hover:text-white">Faculty</li></a>
+                            <a href="/alumni"><li className="hover:text-white">Alumni</li></a>
+                            <a href="/contact"><li className="hover:text-white">Contact</li></a>
+                            <a href="/visitors"><li className="hover:text-white">Visitors</li></a>
                         </ul>
-                    
+
 
                         {/* Mobile Menu Icon */}
                         <button className="md:hidden text-[#002147] text-2xl" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
@@ -155,8 +155,8 @@ const Navbar = () => {
                             <li className="relative group cursor-pointer hover:text-[#E87722]">
                                 Governance
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/governance/committee">Committee</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/governance/administration">Administration</a></li>
+                                    <a href="/governance/committee"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Committee</li></a>
+                                    <a href="/governance/administration"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Administration</li></a>
                                 </ul>
                             </li>
 
@@ -164,18 +164,18 @@ const Navbar = () => {
                             <li className="relative group cursor-pointer hover:text-[#E87722]">
                                 Academics
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/academics/programs">Programs</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/departments">Departments</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/academics/courses">Courses</a></li>
+                                <a href="/academics/programs"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Programs</li></a>
+                                <a href="/departments"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Departments</li></a>
+                                <a href="/academics/courses"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Courses</li></a>
                                 </ul>
                             </li>
 
                             <li className="hover:text-[#E87722] relative group cursor-pointer">
                                 Admissions
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/admissions/btech">B.Tech</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/admissions/mtech">M.Tech</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/admissions/phd">Ph.D.</a></li>
+                                    <a href="/admissions/btech"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">B.Tech</li></a>
+                                    <a href="/admissions/mtech"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">M.Tech</li></a>
+                                    <a href="/admissions/phd"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Ph.D.</li></a>
                                 </ul>
                             </li>
 
@@ -183,34 +183,34 @@ const Navbar = () => {
                             <li className="relative group cursor-pointer hover:text-[#E87722]">
                                 Research
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/research/publications">Publications</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/research/projects">Projects</a></li>
+                                    <a href="/research/publications"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Publications</li></a>
+                                    <a href="/research/projects"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Projects</li></a>
                                 </ul>
                             </li>
 
                             <li className="hover:text-[#E87722] group cursor-pointer relative">
                                 Placements
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements">Why Recruit from IIIT Nagpur</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements/internships">Internships</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements/statistics">Statistics</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements/companies">Companies</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements/students">Students</a></li>
-                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white"><a href="/placements/contact">Contact T&P</a></li>
+                                <a href="/placements"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Why Recruit from IIIT Nagpur</li></a>
+                                    <a href="/placements/internships"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Internships</li></a>
+                                    <a href="/placements/statistics"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Statistics</li></a>
+                                    <a href="/placements/companies"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Companies</li></a>
+                                    <a href="/placements/students"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Students</li></a>
+                                    <a href="/placements/contact"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Contact T&P</li></a>
                                 </ul>
                             </li>
-                            <li className="hover:text-[#E87722]"><a href="/about">About</a></li>
+                            <a href="/about"><li className="hover:text-[#E87722]">About</li></a>
                         </ul>
                     </div>
                 </nav>
 
-                
+
             </div>
 
             {/* Mobile Menu (Sliding Drawer) */}
             <div className={`fixed inset-0 bg-black bg-opacity-50 z-50 transform transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
                 <div className="w-3/4 max-w-sm bg-white h-full shadow-lg overflow-y-auto p-6 mobile-menu transform transition-all duration-300 ease-in-out">
-                    
+
                     {/* Close Button */}
                     <div className="flex justify-between items-center mb-6">
                         <h2 className="text-xl font-semibold text-[#002147]">Menu</h2>
