@@ -153,7 +153,7 @@ const AppRoutes = () => (
 		<Route path="/visitors" element={<Visitors />} />
 		<Route path="/pages/grievance" element={<Grievance />} />
 		<Route path="/pages/grievance_committee_sc_st" element={<GrievanceCommSCSTCell />} />
-		<Route path="/pages/antiragging" element={<AntiRaggingCommittee />} />
+		
 		<Route path="/pages/icc" element={<InternalCompltComm />} />
 		<Route path="/pages/eoc" element={<EqualOppCell />} />
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}

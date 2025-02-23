@@ -1,5 +1,9 @@
 import { FaFacebook, FaLinkedin, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
+const data = [
+    "https://docs.google.com/forms/d/e/1FAIpQLSco29-RxP8WzKQkS_E5SkuHMZGaKnHxvvYj-HHWhscQ6t3G6Q/viewform"
+]
+
 const Footer = () => {
     return (
         <footer className="bg-[#002147] text-white py-10">
@@ -24,10 +28,25 @@ const Footer = () => {
                         <ul className="space-y-2 text-sm text-gray-300">
                             <li><a href="/pages/grievance" className="hover:text-white">Grievance</a></li>
                             <li><a href="/pages/grievance_committee_sc_st" className="hover:text-white">Grievance Committee SC/ST Cell</a></li>
-                            <li><a href="/pages/antiragging" className="hover:text-white">Anti-Ragging Committee</a></li>
+                            <li><a href="#" className="hover:text-white">Anti-Ragging Committee</a></li>
                             <li><a href="/pages/icc" className="hover:text-white">Internal Complaint Committee</a></li>
                             <li><a href="/pages/eoc" className="hover:text-white">Equal Opportunity Cell</a></li>
                             <li><a href="/pages/rti" className="hover:text-white">RTI</a></li>
+                            <li>
+  <a 
+    href={data[0]} 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className="hover:text-white text-blue-500 font-medium transition duration-300"
+  >
+    Networking Complaint
+  </a>
+</li>
+
+                            <li><a href="#" className="hover:text-white">Policy for Prevention of Sexual Harrasment of Women at Workplace</a></li>
+
+
+
                         </ul>
                     </div>
 
