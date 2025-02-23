@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import img1 from "../assets/IIIT22.jpg";
 import img2 from "../assets/IIIT26.jpg";
 import img3 from "../assets/IIIT21(1).jpg";
@@ -14,14 +13,22 @@ const campusLifeImages = [
 ];
 
 const CampusLife = () => {
-    const navigate = useNavigate();
 
     return (
         <section className="py-16 px-6 bg-white">
             <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl font-bold text-left mb-6 text-[#002147]">
-                    <span className="text-[#E87722]">|</span> Campus Life
-                </h2>
+                <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-3xl font-bold text-left text-[#002147]">
+                        <span className="text-[#E87722]">|</span> Campus Life
+                    </h2>
+                    <a href="/hostellife">
+                    <button
+                        className="text-white bg-[#E87722] py-2 px-4 rounded-sm font-semibold hover:underline"
+                    >
+                        More
+                    </button>
+                    </a>
+                </div>
                 <p className="text-left text-gray-600 mb-8">
                     Discover the vibrant student life at IIIT Nagpur.
                 </p>
@@ -61,15 +68,6 @@ const CampusLife = () => {
                             </div>
                         </div>
                     ))}
-                </div>
-
-                <div className="mt-10 flex justify-center">
-                    <button
-                        onClick={() => navigate("/campus-life")}
-                        className="px-6 py-3 bg-[#E87722] text-white font-semibold hover:bg-[#cc5f1a] transition"
-                    >
-                        More
-                    </button>
                 </div>
             </div>
         </section>
