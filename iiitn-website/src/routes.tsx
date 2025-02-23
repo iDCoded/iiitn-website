@@ -66,6 +66,7 @@ import HowToReach from "./Pages/HowToReach";
 import FacultyAchievements from "./Pages/FacultyAchievements";
 import StudentsClubs from "./Pages/StudentsClubs";
 import Directory from "./Pages/Directory";
+import FacultyDetail from "./Pages/FacultyDetail";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -161,6 +162,7 @@ const AppRoutes = () => (
 		<Route path="/pages/icc" element={<InternalCompltComm />} />
 		<Route path="/pages/eoc" element={<EqualOppCell />} />
 		<Route path="/pages/directory" element={<Directory />} />
+		<Route path="/faculty/:name" element={<FacultyDetail />} />
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );
