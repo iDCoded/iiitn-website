@@ -21,7 +21,7 @@ const Departments = () => {
             {/* Section Heading */}
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-3xl font-bold text-left mb-6">
-                    <span className="text-[#E87722]">|</span> Departments
+                    <span className="text-[#E87722] text-4xl">|</span> Departments
                 </h2>
             </div>
 
