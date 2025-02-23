@@ -1,3 +1,5 @@
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 
 const bTechData = {
 	year: "2024-2025",
@@ -25,109 +27,113 @@ const seatData = [
 
 function BTech() {
 	return (
-		<div className="bg-gray-100 min-h-screen flex flex-col">
-			{/* Header Section */}
-			<header className="bg-[#002147] text-white py-14 text-center">
-				<h1 className="text-3xl font-bold">B.Tech Admissions 2024-2025</h1>
+		<div className="bg-gray-50 min-h-screen flex flex-col">
+			{/* 🔷 Hero Section */}
+			<header className="bg-[#002147] text-white py-14 text-center px-4">
+				<h1 className="text-3xl md:text-4xl font-bold">B.Tech Admissions 2024-2025</h1>
+				<p className="mt-2 text-md md:text-lg text-gray-200">
+					Get all the details about IIIT Nagpur B.Tech admissions
+				</p>
 			</header>
 
-			{/* Main Content */}
-			<main className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-8">
-				{/* Important Links */}
-				<div className="space-y-4">
-					{[
-						["Revised Institute Reporting Schedule (08.08.2024)", bTechData.revisedInstituteSchedule],
-						["Latest Hostel Accommodation Availability (08.08.2024 - 04:00 PM)", bTechData.hostelAvailability],
-						["Institute Reporting Schedule 2024-2025", bTechData.instituteReportingSchedule],
-						["Important Notice for Students with PWD Status", bTechData.pwdNotice],
-						["Institute Details at a Glance 2024-25", bTechData.instituteDetails],
-					].map(([label, link], index) => (
+			{/* 📌 Main Content */}
+			<main className="max-w-5xl w-full mx-auto p-4 md:p-6">
+				{/* 🏫 Key Admission Information */}
+				<Card className="mb-6">
+					<CardContent className="p-4 md:p-6">
+						<CardTitle className="text-[#002147]">Key Admission Information</CardTitle>
+						<ul className="mt-4 space-y-3 text-gray-700">
+							<li>📌 <a href={bTechData.revisedInstituteSchedule} className="text-[#E87722] hover:underline">Revised Institute Reporting Schedule (08.08.2024)</a></li>
+							<li>🏠 <a href={bTechData.hostelAvailability} className="text-[#E87722] hover:underline">Hostel Accommodation Availability (08.08.2024)</a></li>
+							<li>🕒 <a href={bTechData.instituteReportingSchedule} className="text-[#E87722] hover:underline">Institute Reporting Schedule 2024-2025</a></li>
+							<li>♿ <a href={bTechData.pwdNotice} className="text-[#E87722] hover:underline">Notice for PWD Students</a></li>
+							<li>📊 <a href={bTechData.instituteDetails} className="text-[#E87722] hover:underline">Institute Details at a Glance</a></li>
+						</ul>
+					</CardContent>
+				</Card>
+
+				{/* 📚 Course Details */}
+				<Card className="mb-6">
+					<CardContent className="p-4 md:p-6">
+						<CardTitle className="text-[#002147]">IIIT Nagpur Undergraduate Courses</CardTitle>
+						<div className="overflow-x-auto">
+							<table className="mt-4 w-full border border-gray-300 text-gray-700 text-sm md:text-base">
+								<thead className="bg-gray-200">
+									<tr>
+										<th className="p-2 border">Sr. No.</th>
+										<th className="p-2 border">Program Name</th>
+										<th className="p-2 border">Total Seat Intake</th>
+									</tr>
+								</thead>
+								<tbody>
+									{seatData.map(([course, seats], index) => (
+										<tr key={index} className="border">
+											<td className="p-2 text-center">{index + 1}</td>
+											<td className="p-2">{course}</td>
+											<td className="p-2 text-center">{seats}</td>
+										</tr>
+									))}
+									<tr className="bg-gray-100 font-semibold">
+										<td className="p-2 text-center" colSpan={2}>Total</td>
+										<td className="p-2 text-center">637</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 						<a
-							key={index}
-							href={link}
-							className="block bg-blue-600 text-white py-2 px-4 rounded-md text-center hover:bg-blue-700 transition"
+							href={bTechData.courseDetails}
+							className="mt-4 block text-[#E87722] hover:underline text-center"
 						>
-							{label}
+							More Details About Courses
 						</a>
-					))}
-				</div>
+					</CardContent>
+				</Card>
 
-				{/* Course Details */}
-				<section className="mt-8">
-					<h2 className="text-xl font-semibold text-gray-800">IIIT Nagpur Offers the Following Undergraduate Courses:</h2>
-					<table className="mt-4 w-full border border-gray-300 text-gray-700">
-						<thead className="bg-gray-200">
-							<tr>
-								<th className="p-2 border">Sr. No.</th>
-								<th className="p-2 border">Program Name</th>
-								<th className="p-2 border">Total Seat Intake</th>
-							</tr>
-						</thead>
-						<tbody>
-							{seatData.map(([course, seats], index) => (
-								<tr key={index} className="border">
-									<td className="p-2 text-center">{index + 1}</td>
-									<td className="p-2">{course}</td>
-									<td className="p-2 text-center">{seats}</td>
-								</tr>
-							))}
-							<tr className="bg-gray-100 font-semibold">
-								<td className="p-2 text-center" colSpan={2}>
-									Total
-								</td>
-								<td className="p-2 text-center">637</td>
-							</tr>
-						</tbody>
-					</table>
-					<a
-						href={bTechData.courseDetails}
-						className="mt-4 block bg-blue-600 text-white py-2 px-4 rounded-md text-center hover:bg-blue-700 transition"
-					>
-						More Details About Courses
-					</a>
-				</section>
+				{/* 📜 Resources & Guidelines (Accordion) */}
+				<Card>
+					<CardContent className="p-4 md:p-6">
+						<CardTitle className="text-[#002147]">Resources & Guidelines</CardTitle>
+						<Accordion type="single" collapsible className="mt-4">
+							<AccordionItem value="admission-policy">
+								<AccordionTrigger>📜 Admission Cancellation & Refund Policy</AccordionTrigger>
+								<AccordionContent>
+									<a href={bTechData.admissionCancellationPolicy} className="text-[#E87722] hover:underline">
+										View Admission Cancellation Policy
+									</a>
+								</AccordionContent>
+							</AccordionItem>
 
-				{/* Additional Links */}
-				<div className="mt-8 space-y-4">
-					<a
-						href={bTechData.admissionCancellationPolicy}
-						className="block bg-blue-600 text-white py-2 px-4 rounded-md text-center hover:bg-blue-700 transition"
-					>
-						Admission Cancellation & Fees Refund Policy
-					</a>
+							<AccordionItem value="abc-id">
+								<AccordionTrigger>📄 How to Generate ABC / APPAR ID</AccordionTrigger>
+								<AccordionContent>
+									<ul className="space-y-2">
+										<li><a href={bTechData.abcIDGuide1} className="text-[#E87722] hover:underline">Guide 1</a></li>
+										<li><a href={bTechData.abcIDGuide2} className="text-[#E87722] hover:underline">Guide 2</a></li>
+									</ul>
+								</AccordionContent>
+							</AccordionItem>
 
-					<div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
-						<a
-							href={bTechData.abcIDGuide1}
-							className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md text-center hover:bg-blue-700 transition"
-						>
-							How to Generate ABC / APPAR ID (Guide 1)
-						</a>
-						<a
-							href={bTechData.abcIDGuide2}
-							className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md text-center hover:bg-blue-700 transition"
-						>
-							How to Generate ABC / APPAR ID (Guide 2)
-						</a>
-					</div>
+							<AccordionItem value="antiragging">
+								<AccordionTrigger>🚨 Antiragging Undertaking & Guidelines</AccordionTrigger>
+								<AccordionContent>
+									<a href={bTechData.antiRaggingGuidelines} className="text-[#E87722] hover:underline">
+										View Antiragging Guidelines
+									</a>
+								</AccordionContent>
+							</AccordionItem>
 
-					<a
-						href={bTechData.antiRaggingGuidelines}
-						className="block bg-blue-600 text-white py-2 px-4 rounded-md text-center hover:bg-blue-700 transition"
-					>
-						Antiragging Undertaking & Guidelines
-					</a>
-
-					<a
-						href={bTechData.onlineAdmissionPortal}
-						className="block bg-blue-600 text-white py-2 px-4 rounded-md text-center hover:bg-blue-700 transition"
-					>
-						Online Admission Portal
-					</a>
-				</div>
+							<AccordionItem value="online-admission">
+								<AccordionTrigger>🖥 Online Admission Portal</AccordionTrigger>
+								<AccordionContent>
+									<a href={bTechData.onlineAdmissionPortal} className="text-[#E87722] hover:underline">
+										Go to Admission Portal
+									</a>
+								</AccordionContent>
+							</AccordionItem>
+						</Accordion>
+					</CardContent>
+				</Card>
 			</main>
-
-			
 		</div>
 	);
 }
