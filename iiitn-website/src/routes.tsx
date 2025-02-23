@@ -49,6 +49,9 @@ import FirstYearAcadFee from "./Admissions/BTech/FirstYearAcadFee";
 import FirstYearHosFee from "./Admissions/BTech/FirstYearHosFee";
 import InstRulesAndReg from "./Admissions/BTech/InstRulesAndReg";
 import AlumniForm from "./components/AlumniForm";
+import RTI from "./Pages/RTI";
+import Recruitment from "./Pages/Recruitments";
+import Visitors from "./Pages/Visitors";
 
 
 const PageWrapper = () => {
@@ -124,6 +127,9 @@ const AppRoutes = () => (
 		<Route path="/pages/hostelfee" element={<HostelFee />} />
 		<Route path="/pages/hostelfeepayment" element={<HostelFeePayment />} />
 		<Route path="/pages/scholarships" element={<Scholarships />} />
+		<Route path="/pages/rti" element={<RTI />} />
+		<Route path="/pages/recruitment" element={<Recruitment />} />
+		<Route path="/visitors" element={<Visitors />} />
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );
