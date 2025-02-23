@@ -39,12 +39,13 @@ const achievementsData = {
 	],
 };
 
-function StudentsAchievements() {
-	return (
+
+function FacultyAchievements() {
+    return (
 		<div className="bg-gray-50 min-h-screen flex flex-col">
 			{/* 🔹 Header Section */}
 			<header className="bg-[#002147] text-white py-12 px-6 shadow-md text-left md:text-center">
-				<h1 className="text-3xl md:text-4xl font-bold">IIIT Nagpur Student Achievements</h1>
+				<h1 className="text-3xl md:text-4xl font-bold">IIIT Nagpur Faculty Achievements</h1>
 				<p className="mt-2 text-gray-200 text-lg">Celebrating success in CSE & ECE departments</p>
 			</header>
 
@@ -98,5 +99,4 @@ function StudentsAchievements() {
 	);
 }
 
-export default StudentsAchievements;
-
+export default FacultyAchievements

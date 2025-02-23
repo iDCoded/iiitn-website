@@ -12,7 +12,7 @@ import Projects from "./Research/Projects/page";
 import Publications from "./Research/Publications/page";
 import Students from "./Students/page";
 import Alumni from "./Alumni/page";
-import Events from "./Events/StudentEvents";
+import Events from "./Events/page";
 import Recruitments from "./Recruitments/page";
 import ELibrary from "./ELibrary/page";
 import Login from "./Login/page";
@@ -63,6 +63,8 @@ import GrievanceCommSCSTCell from "./Pages/GrievanceCommSCSTCell";
 import InternalCompltComm from "./Pages/InternalCompltComm";
 import EqualOppCell from "./Pages/EqualOppCell";
 import HowToReach from "./Pages/HowToReach";
+import FacultyAchievements from "./Pages/FacultyAchievements";
+import StudentsClubs from "./Pages/StudentsClubs";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -134,17 +136,18 @@ const AppRoutes = () => (
 		<Route path="/pages/elclub" element={<ElectoralLiteracyClub />} />
 		<Route path="/pages/academicfee" element={<AcademicFeeDetails />} />
 		<Route path="/pages/academicfeepayment" element={<AcademicFeePayment />} />
-		<Route path="/pages/hostelfee" element={<HostelFee />} />
+	 <Route path="/pages/hostelfee" element={<HostelFee />} />
 		<Route path="/pages/hostelfeepayment" element={<HostelFeePayment />} />
 		<Route path="/pages/scholarships" element={<Scholarships />} />
 		<Route path="/pages/rti" element={<RTI />} />
 		<Route path="/pages/recruitment" element={<Recruitment />} />
 		<Route path="/pages/clinicalcounselling" element={<ClinicalCounselling />} />
 		<Route path="/pages/mess" element={<Mess />} />
-		<Route path="/pages/achievements" element={<Achievements />} />
+		<Route path="/pages/studentachievements" element={<Achievements />} />
+		<Route path="/pages/facultyachievements" element={<FacultyAchievements />} />
 		<Route path="/pages/convocation" element={<Convocation />} />
 		<Route path="/pages/nirf" element={<NIRF />} />
-		<Route path="/pages/hostellife" element={<HostelLife />} />
+		{/* <Route path="/pages/hostellife" element={<HostelLife />} /> */}
 		<Route path="/pages/grievance" element={<Grievance />} />
 		<Route path="/pages/grievancecomm" element={<GrievanceCommSCSTCell />} />
 		<Route path="/pages/internalcomplt" element={<InternalCompltComm />} />
@@ -153,7 +156,7 @@ const AppRoutes = () => (
 		<Route path="/visitors" element={<Visitors />} />
 		<Route path="/pages/grievance" element={<Grievance />} />
 		<Route path="/pages/grievance_committee_sc_st" element={<GrievanceCommSCSTCell />} />
-		
+		<Route path="/pages/studentclubs" element={<StudentsClubs />} />		
 		<Route path="/pages/icc" element={<InternalCompltComm />} />
 		<Route path="/pages/eoc" element={<EqualOppCell />} />
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
