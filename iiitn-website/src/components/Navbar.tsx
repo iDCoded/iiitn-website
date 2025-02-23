@@ -3,13 +3,14 @@ import { FaBars, FaTimes } from "react-icons/fa"; // Icons for menu toggle
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
     const [isHomePage, setIsHomePage] = useState(window.location.pathname === "/");
 
     useEffect(() => {
         const handleScroll = () => {
             if (isHomePage) {
-                setIsScrolled(window.scrollY > window.innerHeight * 0.65);
+                setIsScrolled(window.scrollY > window.innerHeight - window.innerHeight * 0.35);
             } else {
                 setIsScrolled(window.scrollY > 20);
             }
@@ -19,81 +20,134 @@ const Navbar = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, [isHomePage]);
 
-    // Navbar Links
-    const navLinks = [
-        { title: "Students", href: "/students" },
-        { title: "Faculty", href: "/facultyandstaff" },
-        { title: "Alumni", href: "/alumni" },
-        { title: "Contact", href: "/contact" },
-        { title: "Visitors", href: "/visitors" },
-    ];
-
-    const dropdownLinks = [
-        { title: "Governance", links: [{ name: "Committee", href: "/governance/committee" }, { name: "Administration", href: "/governance/administration" }] },
-        { title: "Academics", links: [{ name: "Departments", href: "/departments" }, { name: "Courses", href: "/academics/courses" }, { name: "Curriculum", href: "/academics/curriculum" }, { name: "Time Table", href: "/academics/timetable" }, { name: "Fees", href: "/academics/fees" }] },
-        { title: "Admissions", links: [{ name: "B.Tech", href: "/admissions/btech" }, { name: "Post Graduate", href: "/admissions/mtech" }] },
-        { title: "Research", links: [{ name: "Publications", href: "/research/publications" }, { name: "Projects", href: "/research/projects" }] },
-        { title: "Placements", links: [{ name: "Why Recruit from IIIT Nagpur", href: "/placements" }, { name: "Internships", href: "/placements/internships" }, { name: "Statistics", href: "/placements/statistics" }, { name: "Companies", href: "/placements/companies" }] },
-        { title: "Others", links: [{ name: "Consultancy", href: "/pages/consultancy" }, { name: "Innovation Council", href: "/pages/iic" }, { name: "Guest House", href: "/pages/guesthouse" }] },
-    ];
+    // Toggle dropdowns
+    const toggleDropdown = (menu: string) => {
+        setOpenDropdown(openDropdown === menu ? null : menu);
+    };
 
     return (
         <>
-            {/* Transparent Overlay (Only for Home Page) */}
-            {isHomePage && <div className="absolute left-0 w-full h-[75vh] bg-gradient-to-b from-[#002147] to-transparent z-1"></div>}
+            {/* Primary Navbar (Visible on Hero Section) */}
+            {/* overlay */}
+            {isHomePage && (
+                <div className="absolute left-0 w-full max-h-screen h-[75vh] bg-gradient-to-b from-[#002147] to-transparent z-1"></div>
+            )}
 
-            {/* Fixed Navbar */}
-            <div className="fixed top-0 left-0 w-full z-50 transition-transform duration-200">
-                {/* 🔸 Top Orange Bar */}
-                <nav className="w-full bg-[#E87722] shadow-md px-6 py-2 flex justify-between items-center">
-                    <h1 className="text-[#002147] font-bold text-xl">अ A</h1>
-                    <ul className="hidden lg:flex space-x-6 font-medium text-[#002147]">
-                        {navLinks.map((link, index) => (
-                            <a key={index} href={link.href} className="hover:text-white">{link.title}</a>
-                        ))}
-                    </ul>
-                    <button className="lg:hidden text-[#002147] text-2xl" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                        {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
-                    </button>
+            <div className={`transition-transform duration-200 fixed top-0 left-0 w-full z-50`}>
+                {/* Topmost Orange Navbar */}
+                <nav className="w-full bg-[#E87722] shadow-md">
+                    <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
+                        <h1 className="text-[#002147] font-bold text-xl">अ A</h1>
+                        <ul className="hidden md:flex space-x-6 font-medium text-[#002147]">
+                            <a href="/students"><li className="hover:text-white">Students</li></a>
+                            <a href="/facultyandstaff"><li className="hover:text-white">Faculty</li></a>
+                            <a href="/alumni"><li className="hover:text-white">Alumni</li></a>
+                            <a href="/contact"><li className="hover:text-white">Contact</li></a>
+                            <a href="/visitors"><li className="hover:text-white">Visitors</li></a>
+                        </ul>
+
+                        {/* Mobile Menu Icon */}
+                        <button className="md:hidden text-[#002147] text-2xl" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                            {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+                        </button>
+                    </div>
                 </nav>
 
-                {/* 🔹 Middle Section with Logo */}
-                <nav className={`w-full px-6 py-2 flex justify-between items-center ${isHomePage && !isScrolled ? "bg-transparent" : "bg-[#002147]"}`}>
-                    <a href="/">
-                        <div className="flex items-center space-x-4">
-                            <img src="/path/to/logo.png" alt="IIITN Logo" className="h-8 w-8" />
-                            <div className="text-left">
-                                <p className="font-bold text-white text-lg">भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर</p>
-                                <p className="font-medium text-white text-base">Indian Institute of Information Technology, Nagpur</p>
-                                <p className="font-light text-sm text-[#E87722]">An Institution of National Importance</p>
+                {/* Middle White Navbar with IIITN Logo */}
+                <nav className={`w-full flex flex-row justify-between ${isHomePage && !isScrolled ? "bg-transparent" : "bg-[#002147]"}`}>
+                    <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
+                        <a href="/">
+                            <div className="flex items-center space-x-4">
+                                <img src="/path/to/logo.png" alt="IIITN Logo" className="h-8 w-8" />
+                                <div className="text-left">
+                                    <p className="font-medium text-white text-sm md:text-base lg:text-lg">भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर</p>
+                                    <p className="font-medium text-white text-sm md:text-base lg:text-lg">Indian Institute of Information Technology, Nagpur</p>
+                                    <p className="font-light text-xs md:text-sm lg:text-base text-[#E87722]">An Institution of National Importance</p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </nav>
+                        </a>
+                    </div>
 
-                {/* 🔹 Desktop Menu (Only Visible for Large Screens) */}
-                <div className="hidden lg:block bg-[#002147] px-6 py-3">
-                    <ul className="flex space-x-10 text-lg text-white font-medium">
-                        {dropdownLinks.map((item, index) => (
-                            <li key={index} className="relative group cursor-pointer hover:text-[#E87722]">
-                                {item.title}
+                    <div className="max-w-7xl mx-auto px-6 py-3">
+                        {/* Desktop Menu */}
+                        <ul className="hidden md:flex space-x-10 font-medium text-lg text-white">
+                            {/* 🔹 Dropdown: Governance */}
+                            <li className="relative group cursor-pointer hover:text-[#E87722]">
+                                Governance
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    {item.links.map((link, i) => (
-                                        <a key={i} href={link.href}>
-                                            <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">{link.name}</li>
-                                        </a>
-                                    ))}
+                                    <a href="/governance/committee"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Committee</li></a>
+                                    <a href="/governance/administration"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Administration</li></a>
                                 </ul>
                             </li>
-                        ))}
-                        <li className="hover:text-[#E87722]"><a href="/about">About</a></li>
-                    </ul>
-                </div>
+
+                            {/* 🔹 Dropdown: Academics */}
+                            <li className="relative group cursor-pointer hover:text-[#E87722]">
+                                Academics
+                                <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                    <a href="/departments"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Departments</li></a>
+                                    <a href="/academics/courses"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Courses</li></a>
+                                    <a href="/academics/courses"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Calendar</li></a>
+                                    <a href="/academics/courses"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Curricullum</li></a>
+                                    <a href="/academics/courses"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Time table</li></a>
+                                    <a href="/academics/courses"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Fees</li></a>
+
+                                </ul>
+                            </li>
+
+                            <li className="hover:text-[#E87722] relative group cursor-pointer">
+                                Admissions
+                                <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                    <a href="/admissions/btech"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">B.Tech</li></a>
+                                    <a href="/admissions/mtech"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Post Graduate</li></a>
+
+                                </ul>
+                            </li>
+
+                            {/* 🔹 Dropdown: Research */}
+                            <li className="relative group cursor-pointer hover:text-[#E87722]">
+                                Research
+                                <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                    <a href="/research/publications"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Publications</li></a>
+                                    <a href="/research/projects"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Projects</li></a>
+                                </ul>
+                            </li>
+
+                            <li className="hover:text-[#E87722] group cursor-pointer relative">
+                                Placements
+                                <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                    <a href="/placements"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Why Recruit from IIIT Nagpur</li></a>
+                                    <a href="/placements/internships"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Internships</li></a>
+                                    <a href="/placements/statistics"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Statistics</li></a>
+                                    <a href="/placements/companies"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Companies</li></a>
+                                    <a href="/placements/students"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Students</li></a>
+                                    <a href="/placements/contact"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Contact T&P</li></a>
+                                </ul>
+                            </li>
+                            <li className="relative group cursor-pointer hover:text-[#E87722]">
+                                Others
+                                <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                    <a href="/pages/consultancy"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Consultancy</li></a>
+                                    <a href="/pages/iic"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Institute Innovation Council</li></a>
+                                    <a href="/pages/elclub"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Electoral Literacy Club</li></a>
+                                    <a href="/pages/officialdocuments"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Official Documents</li></a>
+                                    <a href="/pages/guesthouse"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Guest House</li></a>
+                                    <a href="/pages/pressrelease"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Press Release</li></a>
+                                    <a href="/pages/tenders"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Tenders</li></a>
+                                    <a href="/pages/rti"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">RTI</li></a>
+                                    <a href="/pages/recruitment"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Recruitment</li></a>
+                                </ul>
+                            </li>
+                            <li className="hover:text-[#E87722]"><a href="/about">About</a></li>
+
+                        </ul>
+                    </div>
+                </nav>
             </div>
 
-            {/* 🔹 Mobile Menu Drawer (Visible on Small Screens) */}
+            {/* Mobile Menu (Sliding Drawer) */}
             <div className={`fixed inset-0 bg-black bg-opacity-50 z-50 transform transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
-                <div className="w-3/4 max-w-sm bg-white h-full shadow-lg overflow-y-auto p-6 transform transition-all duration-300 ease-in-out">
+                <div className="w-3/4 max-w-sm bg-white h-full shadow-lg overflow-y-auto p-6 mobile-menu transform transition-all duration-300 ease-in-out">
+
                     {/* Close Button */}
                     <div className="flex justify-between items-center mb-6">
                         <h2 className="text-xl font-semibold text-[#002147]">Menu</h2>
@@ -102,19 +156,35 @@ const Navbar = () => {
                         </button>
                     </div>
 
-                    {/* Mobile Menu Items */}
+                    {/* Menu Items */}
                     <ul className="space-y-4">
-                        {navLinks.map((link, index) => (
-                            <a key={index} href={link.href} className="block text-lg font-medium text-[#002147] hover:text-[#E87722]">{link.title}</a>
+                        {[
+                            { title: "Governance", links: [{ name: "Committee", href: "/governance/committee" }, { name: "Administration", href: "/governance/administration" }] },
+                            { title: "Academics", links: [{ name: "Programs", href: "/academics/programs" }, { name: "Departments", href: "/departments" }, { name: "Courses", href: "/academics/courses" }, { name: "Calendar", href: "/academics/courses" }, { name: "Curricullum", href: "/academics/courses" }, { name: "Time Table", href: "/academics/courses" }, { name: "Fees", href: "/academics/courses" }] },
+                            { title: "Admissions", links: [{ name: "B.Tech", href: "/admissions/btech" }, { name: "Post Graduate", href: "/admissions/mtech" }] },
+                            { title: "Research", links: [{ name: "Publications", href: "publications" }, { name: "/pages/iic", href: "/pages/iic" }] },
+                            { title: "Placements", links: [{ name: "Why Recruit from IIIT Nagpur", href: "/placements" }, { name: "Internships", href: "/placements/internships" }, { name: "Statistics", href: "/placements/statistics" }, { name: "Companies", href: "/placements/companies" }, { name: "Students", href: "/placements/students" }, { name: "Contact T&P", href: "/placements/contact" }] },
+                            { title: "Others", links: [{ name: "Consultancy", href: "/pages/consultancy" }, { name: "Institute Innovation Council", href: "/pages/iic" }, { name: "Electoral Literacy Club", href: "/pages/elclub" }, { name: "Official Documents", href: "/pages/officialdocuments" }, { name: "Guest House", href: "/pages/guesthouse" }, { name: "Press Release", href: "/pages/pressrelease" }, { name: "Tenders", href: "/pages/tenders" }, { name: "RTI", href: "/pages/rti" }, { name: "Recruitment", href: "/pages/recruitment" }] }
+                        ].map((item) => (
+                            <li key={item.title}>
+                                <button onClick={() => toggleDropdown(item.title)} className="flex justify-between items-center w-full text-[#002147] font-medium text-lg py-2">
+                                    {item.title}
+                                    <span>{openDropdown === item.title ? "▲" : "▼"}</span>
+                                </button>
+                                {openDropdown === item.title && (
+                                    <ul className="ml-4 mt-2 border-l-2 border-[#E87722] space-y-2">
+                                        {item.links.map((link) => (
+                                            <li key={link.href}>
+                                                <a href={link.href} className="block py-1 px-3 text-[#002147] text-sm hover:bg-[#E87722] hover:text-white rounded-md transition-all">
+                                                    {link.name}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </li>
                         ))}
-                        {dropdownLinks.map((item, index) => (
-                            <div key={index} className="space-y-2">
-                                <p className="font-semibold text-[#002147]">{item.title}</p>
-                                {item.links.map((link, i) => (
-                                    <a key={i} href={link.href} className="block pl-4 text-[#002147] hover:text-[#E87722]">{link.name}</a>
-                                ))}
-                            </div>
-                        ))}
+                        <li><a href="/about" className="block text-[#002147] font-medium text-lg py-2 hover:bg-[#E87722] hover:text-white rounded-md px-3 transition-all">About</a></li>
                     </ul>
                 </div>
             </div>
