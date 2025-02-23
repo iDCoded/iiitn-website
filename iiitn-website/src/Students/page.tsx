@@ -34,7 +34,7 @@ const sidebarLinks = [
     { title: "Cultural Activities", link: "#" },
     { title: "Student Clubs", link: "#" },
     { title: "Events and Festivities", link: "#" },
-    { title: "Dining Options", link: "#" },
+    { title: "Dining Options", link: "/pages/mess" },
 ];
 
 const events = [
