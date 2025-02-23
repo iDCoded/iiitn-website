@@ -29,7 +29,9 @@ const Navbar = () => {
         <>
             {/* Primary Navbar (Visible on Hero Section) */}
             {/* overlay */}
-            <div className="absolute left-0 w-full max-h-screen h-1/2 bg-gradient-to-b from-[#002147] to-transparent z-0"></div>
+            {isHomePage && (
+                <div className="absolute left-0 w-full max-h-screen h-1/2 bg-gradient-to-b from-[#002147] to-transparent z-0"></div>
+            )}
 
             <div className={`transition-transform duration-200 fixed top-0 left-0 w-full z-50`}>
                 {/* Topmost Orange Navbar */}
