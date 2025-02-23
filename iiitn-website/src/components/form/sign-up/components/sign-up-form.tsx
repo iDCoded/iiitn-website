@@ -14,13 +14,18 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/password-input";
+import { Textarea } from "@/components/ui/textarea";
 
 type SignUpFormProps = HTMLAttributes<HTMLDivElement>;
 
 const formSchema = z
 	.object({
 		name: z.string().min(1, { message: "Please enter your name" }),
-		email: z
+		email_pri: z
+			.string()
+			.min(1, { message: "Please enter your email" })
+			.email({ message: "Invalid email address" }),
+		email_sec: z
 			.string()
 			.min(1, { message: "Please enter your email" })
 			.email({ message: "Invalid email address" }),
@@ -33,6 +38,16 @@ const formSchema = z
 				message: "Password must be at least 7 characters long",
 			}),
 		confirmPassword: z.string(),
+		phone_no: z
+			.string()
+			.min(10, { message: "Phone number must include 10 digits" })
+			.max(10, { message: "Phone number must include 10 digits" }),
+		alt_phone_no: z
+			.string()
+			.min(10, { message: "Phone number must include 10 digits" })
+			.max(10, { message: "Phone number must include 10 digits" }),
+		curr_address: z.string().min(1, { message: "Please enter your address" }),
+		perm_address: z.string().min(1, { message: "Please enter your address" }),
 	})
 	.refine((data) => data.password === data.confirmPassword, {
 		message: "Passwords don't match.",
@@ -46,7 +61,12 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			name: "",
-			email: "",
+			email_pri: "",
+			email_sec: "",
+			phone_no: "",
+			alt_phone_no: "",
+			curr_address: "",
+			perm_address: "",
 			password: "",
 			confirmPassword: "",
 		},
@@ -54,7 +74,7 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
 
 	function onSubmit(data: z.infer<typeof formSchema>) {
 		setIsLoading(true);
-		console.log(data);
+		console.table(data);
 
 		setTimeout(() => {
 			setIsLoading(false);
@@ -81,12 +101,83 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
 						/>
 						<FormField
 							control={form.control}
-							name="email"
+							name="email_pri"
 							render={({ field }) => (
 								<FormItem className="space-y-1">
-									<FormLabel>Email</FormLabel>
+									<FormLabel>Primary Email</FormLabel>
 									<FormControl>
 										<Input placeholder="name@example.com" {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="email_sec"
+							render={({ field }) => (
+								<FormItem className="space-y-1">
+									<FormLabel>Secondary Email</FormLabel>
+									<FormControl>
+										<Input placeholder="name@example.com" {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="phone_no"
+							render={({ field }) => (
+								<FormItem className="space-y-1">
+									<FormLabel>Phone Number</FormLabel>
+									<FormControl>
+										<Input placeholder="+91 9358520775" {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="alt_phone_no"
+							render={({ field }) => (
+								<FormItem className="space-y-1">
+									<FormLabel>Alternate Phone Number</FormLabel>
+									<FormControl>
+										<Input placeholder="+91 9358520775" {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="curr_address"
+							render={({ field }) => (
+								<FormItem className="space-y-1">
+									<FormLabel>Current Address</FormLabel>
+									<FormControl>
+										<Textarea
+											placeholder="Your current residence address"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="perm_address"
+							render={({ field }) => (
+								<FormItem className="space-y-1">
+									<FormLabel>Permanent Address</FormLabel>
+									<FormControl>
+										<Textarea
+											placeholder="Your permanent residence address"
+											{...field}
+										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
