@@ -1,3 +1,23 @@
+const placementData = [
+  {
+    year: '2021-2022',
+  highestPackage: 43,
+  averagePackage: 12,
+  placementPercentage: 90,
+  companies: 50,
+  images: [
+    'https://via.placeholder.com/150',
+    'https://via.placeholder.com/150',
+    'https://via.placeholder.com/150',
+  ],
+  },
+ 
+]
+
+
+
+
+
 
 function Statistics() {
   return (

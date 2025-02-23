@@ -5,10 +5,11 @@ const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [openDropdown, setOpenDropdown] = useState<string | null>(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
+    const [isHomePage, setIsHomePage] = useState(window.location.pathname === "/");
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.location.pathname === "/") {
+            if (isHomePage) {
                 setIsScrolled(window.scrollY > window.innerHeight - window.innerHeight * 0.35);
             } else {
                 setIsScrolled(window.scrollY > 20);
@@ -17,7 +18,7 @@ const Navbar = () => {
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [isHomePage]);
 
     // Toggle dropdowns
     const toggleDropdown = (menu: string) => {
@@ -48,7 +49,7 @@ const Navbar = () => {
                 </nav>
 
                 {/* Middle White Navbar with IIITN Logo */}
-                <nav className={`w-full flex flex-row justify-between ${isScrolled ? "bg-[#002147]" : "bg-transparent"}`}>
+                <nav className={`w-full flex flex-row justify-between ${isHomePage && !isScrolled ? "bg-transparent" : "bg-[#002147]"}`}>
                     <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
                         <a href="/">
                             <div className="flex items-center space-x-4">
@@ -64,7 +65,7 @@ const Navbar = () => {
 
                     <div className="max-w-7xl mx-auto px-6 py-3">
                         {/* Desktop Menu */}
-                        <ul className={`hidden md:flex space-x-10 font-medium text-lg ${isScrolled ? "text-[#E87722]" : "text-white"}`}>
+                        <ul className="hidden md:flex space-x-10 font-medium text-lg text-white">
                             {/* 🔹 Dropdown: Governance */}
                             <li className="relative group cursor-pointer hover:text-[#E87722]">
                                 Governance
