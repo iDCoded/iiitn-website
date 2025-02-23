@@ -11,6 +11,7 @@ import {
 import { Faculty } from "@/interfaces/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
+import FacultyEditDialog from "./faculty-edit-dialog";
 
 const deleteFaculty = async (facultyId: number) => {
 	await fetch(`http://localhost:5000/faculty/faculty_staff/${facultyId}`, {
@@ -65,7 +66,7 @@ export const columns: ColumnDef<Faculty>[] = [
 							Copy faculty email
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
-						<DropdownMenuItem>Edit Faculty</DropdownMenuItem>
+						<FacultyEditDialog faculty={faculty} />
 						<DropdownMenuItem
 							className="text-red-400"
 							onClick={() => {
