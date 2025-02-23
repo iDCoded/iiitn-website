@@ -43,13 +43,24 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 		},
 	});
 
-	function onSubmit(data: z.infer<typeof formSchema>) {
+	async function onSubmit(data: z.infer<typeof formSchema>) {
 		setIsLoading(true);
-		console.log(data);
-
-		setTimeout(() => {
+		console.table(data);
+		try {
+			const res = await fetch("http://localhost:5000/auth/login", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
+			});
+			const res_json = await res.json();
+			console.log("data", res_json);
+		} catch (error) {
+			console.error(error);
+		} finally {
 			setIsLoading(false);
-		}, 3000);
+		}
 	}
 
 	return (

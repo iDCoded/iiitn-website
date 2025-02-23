@@ -72,13 +72,26 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
 		},
 	});
 
-	function onSubmit(data: z.infer<typeof formSchema>) {
+	async function onSubmit(data: z.infer<typeof formSchema>) {
 		setIsLoading(true);
 		console.table(data);
 
-		setTimeout(() => {
+		try {
+			const res = await fetch("http://localhost:5000/user/", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ ...data, role: "admin" }), // ! EVERY USER IS SET TO ADMIN. CHANGE IN PRODUCTION
+			});
+
+			const res_json = await res.json();
+			console.log("data", res_json);
+		} catch (error) {
+			console.error(error);
+		} finally {
 			setIsLoading(false);
-		}, 3000);
+		}
 	}
 
 	return (

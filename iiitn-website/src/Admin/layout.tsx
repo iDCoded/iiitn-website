@@ -9,7 +9,7 @@ export default function AdminDashboard({
 	return (
 		<SidebarProvider>
 			<div className="flex min-h-screen w-full">
-				<AdminSidebar />
+				<AdminSidebar activeItem={null} />
 				<main className="flex-1 relative">
 					<SidebarTrigger className="absolute top-4 left-4" />
 					<div className="min-h-screen py-12 px-6 flex items-center justify-center">
