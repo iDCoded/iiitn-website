@@ -7,9 +7,9 @@ import Courses from "./Academics/Courses";
 import Programs from "./Academics/Programs";
 import AdmissionsBTech from "./Admissions/BTech/BTech";
 import AdmissionsMTech from "./Admissions/PostGraduate";
-
 import Placements from "./Placements/page";
-import Research from "./Research/page";
+import Projects from "./Research/Projects/page";
+import Publications from "./Research/Publications/page";
 import Students from "./Students/page";
 import Alumni from "./Alumni/page";
 import Events from "./Events/StudentEvents";
@@ -110,7 +110,8 @@ const AppRoutes = () => (
 		<Route path="/placements/statistics" element={<Statistics />} />
 		<Route path="/placements/students" element={<PlacementStudents />} />
 		<Route path="/placements/contact" element={<ContactTP />} />
-		<Route path="/research" element={<Research />} />
+		<Route path="/research/projects" element={<Projects />} />
+		<Route path="/research/publications" element={<Publications />} />
 		<Route path="/students" element={<Students />} />
 		<Route path="/facultyandstaff" element={<FacultyandStaff />} />
 		<Route path="/alumni" element={<Alumni />} />
@@ -150,6 +151,11 @@ const AppRoutes = () => (
 		<Route path="/pages/equalopp" element={<EqualOppCell />} />
 		<Route path="/pages/howtoreach" element={<HowToReach />} />
 		<Route path="/visitors" element={<Visitors />} />
+		<Route path="/pages/grievance" element={<Grievance />} />
+		<Route path="/pages/grievance_committee_sc_st" element={<GrievanceCommSCSTCell />} />
+		<Route path="/pages/antiragging" element={<AntiRaggingCommittee />} />
+		<Route path="/pages/icc" element={<InternalCompltComm />} />
+		<Route path="/pages/eoc" element={<EqualOppCell />} />
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );

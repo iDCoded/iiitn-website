@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <footer className="bg-[#002147] text-white py-10">
             <div className="max-w-7xl mx-auto px-6">
-                
+
                 {/* Quick Links */}
                 <div className="flex flex-wrap justify-center space-x-4 text-sm text-gray-300 mb-6">
                     <a href="#" className="hover:text-white">Students</a>
@@ -16,8 +16,21 @@ const Footer = () => {
                 </div>
 
                 {/* Grid Sections */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8"> 
+
+                    {/* Important Links */}
+                    <div>
+                        <h4 className="text-lg font-semibold mb-4 text-[#E87722]">Important Links</h4>
+                        <ul className="space-y-2 text-sm text-gray-300">
+                            <li><a href="/pages/grievance" className="hover:text-white">Grievance</a></li>
+                            <li><a href="/pages/grievance_committee_sc_st" className="hover:text-white">Grievance Committee SC/ST Cell</a></li>
+                            <li><a href="/pages/antiragging" className="hover:text-white">Anti-Ragging Committee</a></li>
+                            <li><a href="/pages/icc" className="hover:text-white">Internal Complaint Committee</a></li>
+                            <li><a href="/pages/eoc" className="hover:text-white">Equal Opportunity Cell</a></li>
+                            <li><a href="/pages/rti" className="hover:text-white">RTI</a></li>
+                        </ul>
+                    </div>
+
                     {/* Academics */}
                     <div>
                         <h4 className="text-lg font-semibold mb-4 text-[#E87722]">Academics</h4>
@@ -26,18 +39,6 @@ const Footer = () => {
                             <li><a href="#" className="hover:text-white">Research</a></li>
                             <li><a href="#" className="hover:text-white">Academic Calendar</a></li>
                             <li><a href="#" className="hover:text-white">Library</a></li>
-                        </ul>
-                    </div>
-
-                    {/* Departments */}
-                    <div>
-                        <h4 className="text-lg font-semibold mb-4 text-[#E87722]">Departments</h4>
-                        <ul className="space-y-2 text-sm text-gray-300">
-                            <li><a href="#" className="hover:text-white">CSE</a></li>
-                            <li><a href="#" className="hover:text-white">ECE</a></li>
-                            <li><a href="#" className="hover:text-white">AI & DS</a></li>
-                            <li><a href="#" className="hover:text-white">Mathematics</a></li>
-                            <li><a href="#" className="hover:text-white">Humanities</a></li>
                         </ul>
                     </div>
 
