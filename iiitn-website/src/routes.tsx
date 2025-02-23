@@ -55,6 +55,8 @@ import Visitors from "./Pages/Visitors";
 import ClinicalCounselling from "./Pages/ClinicalCounselling";
 import Mess from "./Pages/Mess";
 import Achievements from "./Pages/Achievements";
+import Convocation from "./Pages/Convocation";
+import NIRF from "./Pages/NIRF";
 
 
 const PageWrapper = () => {
@@ -135,6 +137,8 @@ const AppRoutes = () => (
 		<Route path="/pages/clinicalcounselling" element={<ClinicalCounselling />} />
 		<Route path="/pages/mess" element={<Mess />} />
 		<Route path="/pages/achievements" element={<Achievements />} />
+		<Route path="/pages/convocation" element={<Convocation />} />
+		<Route path="/pages/nirf" element={<NIRF />} />
 		<Route path="/visitors" element={<Visitors />} />
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
