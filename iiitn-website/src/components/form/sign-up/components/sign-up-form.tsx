@@ -89,7 +89,7 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
 
 			const res_json = await res.json();
 			console.log("data", res_json);
-			login(res_json.user, res_json.token);
+			login(res_json.user, res_json.access_token); // TODO: Send user object from the server
 		} catch (error) {
 			console.error(error);
 		} finally {
