@@ -9,7 +9,8 @@ import AdmissionsBTech from "./Admissions/BTech/BTech";
 import AdmissionsMTech from "./Admissions/MTech";
 import AdmissionsPhD from "./Admissions/PhD";
 import Placements from "./Placements/page";
-import Research from "./Research/page";
+import Projects from "./Research/Projects/page";
+import Publications from "./Research/Publications/page";
 import Students from "./Students/page";
 import Alumni from "./Alumni/page";
 import Events from "./Events/page";
@@ -106,7 +107,8 @@ const AppRoutes = () => (
 		<Route path="/placements/statistics" element={<Statistics />} />
 		<Route path="/placements/students" element={<PlacementStudents />} />
 		<Route path="/placements/contact" element={<ContactTP />} />
-		<Route path="/research" element={<Research />} />
+		<Route path="/research/projects" element={<Projects />} />
+		<Route path="/research/publications" element={<Publications />} />
 		<Route path="/students" element={<Students />} />
 		<Route path="/facultyandstaff" element={<FacultyandStaff />} />
 		<Route path="/alumni" element={<Alumni />} />

@@ -111,6 +111,31 @@ const InternshipProgram = () => {
           </p>
         </div>
       </section>
+
+      {/* Internship Registration Form and Report Accordion */}
+      <section className="my-6">
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold text-[#E87722] border-b-2 pb-2">Internship Registration Form and Report</h2>
+          <div className="mt-4 space-y-4">
+            <div className="flex-row flex space-x-8">
+              <h3 className="text-lg text-[#002147] font-semibold">Internship Application Form</h3>
+              <a href="https://iiitn.ac.in/Downloads/internship/newformat2025/1_Application_Form_for_Internship_Program.pdf" className="text-blue-500 mt-2 block">Download</a>
+            </div>
+            <div className="flex-row flex space-x-8">
+              <h3 className="text-lg text-[#002147] font-semibold">Internship Joining Application</h3>
+              <a href="https://iiitn.ac.in/Downloads/internship/newformat2025/2_Internship_Joining_Application.pdf" className="text-blue-500 mt-2 block">Download</a>
+            </div>
+            <div className="flex-row flex space-x-8">
+              <h3 className="text-lg text-[#002147] font-semibold">Internship Report Submission Guideline</h3>
+              <a href="https://iiitn.ac.in/Downloads/internship/newformat2025/3_Internship_Report_Submission_Guidelines.docx" className="text-blue-500 mt-2 block">Download</a>
+            </div>
+            <div className="flex-row flex space-x-8">
+              <h3 className="text-lg text-[#002147] font-semibold">Internship Evaluation Form</h3>
+              <a href="https://iiitn.ac.in/Downloads/internship/newformat2025/4_Internship_Evaluation_Form.pdf" className="text-blue-500 mt-2 block">Download</a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
