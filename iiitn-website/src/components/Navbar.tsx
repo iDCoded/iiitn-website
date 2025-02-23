@@ -55,9 +55,9 @@ const Navbar = () => {
                             <div className="flex items-center space-x-4">
                                 <img src="/path/to/logo.png" alt="IIITN Logo" className="h-8 w-8" />
                                 <div className="text-left">
-                                    <p className="font-medium text-white">भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर</p>
-                                    <p className="font-medium text-white">Indian Institute of Information Technology, Nagpur</p>
-                                    <p className="font-light text-sm text-[#E87722]">An Institution of National Importance</p>
+                                    <p className="font-medium text-white text-sm md:text-base lg:text-lg">भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर</p>
+                                    <p className="font-medium text-white text-sm md:text-base lg:text-lg">Indian Institute of Information Technology, Nagpur</p>
+                                    <p className="font-light text-xs md:text-sm lg:text-base text-[#E87722]">An Institution of National Importance</p>
                                 </div>
                             </div>
                         </a>

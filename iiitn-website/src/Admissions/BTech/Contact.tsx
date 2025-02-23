@@ -15,41 +15,46 @@ const contactData = [
 
 function Contact() {
 	return (
-		<div className="bg-gray-100 min-h-screen flex flex-col">
-			{/* Header Section */}
-			<header className="bg-[#002147] text-white py-14 text-center">
-				<h1 className="text-3xl font-bold">Admission Committee Members</h1>
+		<div className="bg-gray-50 min-h-screen flex flex-col items-center">
+			{/* 🔷 Header */}
+			<header className="w-full bg-[#002147] text-white py-12 text-center">
+				<h1 className="text-3xl font-bold">Admission Committee</h1>
+				<p className="mt-1 text-gray-200">Contact details of key members</p>
 			</header>
 
-			{/* Contact Table */}
-			<main className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-8">
-				<h2 className="text-xl font-semibold text-gray-800 mb-4">Committee Members Contact Details:</h2>
-				<table className="w-full border border-gray-300 text-gray-700">
-					<thead className="bg-gray-200">
-						<tr>
-							<th className="p-3 border text-left">Role</th>
-							<th className="p-3 border text-left">Name</th>
-							<th className="p-3 border text-left">Contact</th>
-						</tr>
-					</thead>
-					<tbody>
-						{contactData.map(([role, name, phone], index) => (
-							<tr key={index} className="border">
-								<td className="p-3">{role}</td>
-								<td className="p-3">{name}</td>
-								<td className="p-3 flex items-center space-x-2">
-									<FaPhoneAlt className="text-blue-600" />
-									<a href={`tel:${phone}`} className="text-blue-600 hover:underline">
-										{phone}
-									</a>
-								</td>
+			{/* 📌 Contact Table */}
+			<main className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mt-8">
+				<h2 className="text-xl font-semibold text-gray-800 mb-4">Committee Members</h2>
+				
+				<div className="overflow-x-auto">
+					<table className="w-full border border-gray-200 rounded-lg overflow-hidden">
+						<thead className="bg-gray-100 text-gray-700 text-sm uppercase">
+							<tr>
+								<th className="p-3 text-left">Role</th>
+								<th className="p-3 text-left">Name</th>
+								<th className="p-3 text-left">Contact</th>
 							</tr>
-						))}
-					</tbody>
-				</table>
+						</thead>
+						<tbody className="divide-y divide-gray-200">
+							{contactData.map(([role, name, phone], index) => (
+								<tr key={index} className="hover:bg-gray-50">
+									<td className="p-3 text-gray-800">{role}</td>
+									<td className="p-3 text-gray-800">{name}</td>
+									<td className="p-3 flex items-center space-x-2">
+										<FaPhoneAlt className="text-[#E87722]" />
+										<a
+											href={`tel:${phone}`}
+											className="text-[#E87722] hover:underline transition duration-200"
+										>
+											{phone}
+										</a>
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
 			</main>
-
-			
 		</div>
 	);
 }

@@ -1,31 +1,32 @@
-import React from 'react'
+import React from 'react';
 
 const acadFeeData = {
-  year: 2021,
-  imgSrc: '#',
+	year: 2024, // Updated to reflect current academic year
+	imgSrc: '#', // Replace with actual image URL
 };
 
 function AcademicFeeDetails() {
-  return (
-    <div className="bg-gray-100 min-h-screen flex flex-col">
-			{/* Header Section */}
-			<header className="bg-[#002147] text-white py-14 text-center">
-				<h1 className="text-3xl font-bold">First Year Academic Fees</h1>
+	return (
+		<div className="bg-gray-50 min-h-screen flex flex-col items-center">
+			{/* 🔹 Header Section */}
+			<header className="w-full bg-[#002147] text-white py-12 text-center">
+				<h1 className="text-3xl font-bold">Academic Fee Details</h1>
+				<p className="mt-1 text-gray-200">Complete fee structure for all academic years</p>
 			</header>
 
-			{/* Main Content */}
-			<main className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-8">
+			{/* 📌 Main Content */}
+			<main className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mt-8">
 				<h2 className="text-xl font-semibold text-gray-800 text-center mb-4">
-					Academic Fee Structure for the Year {acadFeeData.year}
+					Fee Structure for the Academic Year {acadFeeData.year}
 				</h2>
 
-				{/* Fee Structure Image */}
+				{/* 📜 Fee Structure Image */}
 				<div className="flex justify-center">
-					<figure className="border rounded-lg overflow-hidden shadow-md">
+					<figure className="border rounded-lg overflow-hidden shadow-md w-full max-w-2xl">
 						<img
 							src={acadFeeData.imgSrc}
-							alt="Academic Fee Structure"
-							className="w-full h-auto"
+							alt="IIIT Nagpur Fee Structure"
+							className="w-full h-auto rounded-lg"
 						/>
 						<figcaption className="text-gray-600 mt-2 text-center text-sm p-2">
 							Official Fee Structure of IIIT Nagpur for {acadFeeData.year}
@@ -33,22 +34,18 @@ function AcademicFeeDetails() {
 					</figure>
 				</div>
 
-				{/* Action Buttons */}
-				<div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center">
-					
+				{/* 📌 Action Button */}
+				<div className="flex justify-center mt-6">
 					<a
-						href='/pages/academicfeepayment'
-					
-						className="bg-green-600 text-white px-5 py-2 rounded-md text-center hover:bg-blue-700 transition"
+						href="/pages/academicfeepayment"
+						className="bg-[#E87722] text-white px-6 py-3 rounded-md text-center hover:bg-[#d8691d] transition"
 					>
-						Academic Fee Payment Details
+						View Payment Details
 					</a>
 				</div>
 			</main>
-
-			
 		</div>
-  )
+	);
 }
 
-export default AcademicFeeDetails
+export default AcademicFeeDetails;
