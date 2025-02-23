@@ -1,27 +1,16 @@
-import { Card, CardContent, CardTitle } from "./ui/card";
 import { useNavigate } from "react-router-dom";
+import img1 from "../assets/IIIT22.jpg";
+import img2 from "../assets/IIIT26.jpg";
+import img3 from "../assets/IIIT21(1).jpg";
+import img4 from "../assets/IIIT17.jpg";
+import img5 from "../assets/IIIT12.jpg";
 
-const campusLifeItems = [
-    {
-        title: "Clubs",
-        description: "Explore various student clubs that foster creativity, innovation, and leadership.",
-        image: "/images/clubs.jpg",
-    },
-    {
-        title: "College Festivals",
-        description: "Experience the vibrant culture of IIIT Nagpur through exciting festivals and events.",
-        image: "/images/festivals.jpg",
-    },
-    {
-        title: "Sports",
-        description: "Stay active with a variety of sports activities and competitions.",
-        image: "/images/sports.jpg",
-    },
-    {
-        title: "Amenities",
-        description: "Modern facilities and amenities to support student life and learning.",
-        image: "/images/amenities.jpg",
-    },
+const campusLifeImages = [
+    { src: img1, title: "Campus", span: "col-span-2 row-span-1" },
+    { src: img2, title: "College Festivals", span: "col-span-1 row-span-2" },
+    { src: img3, title: "Sports", span: "col-span-1 row-span-1" },
+    { src: img4, title: "Amenities", span: "col-span-1 row-span-1" },
+    { src: img5, title: "Campus Life", span: "col-span-2 row-span-1" },
 ];
 
 const CampusLife = () => {
@@ -37,15 +26,40 @@ const CampusLife = () => {
                     Discover the vibrant student life at IIIT Nagpur.
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {campusLifeItems.map((item, index) => (
-                        <Card key={index} className="shadow-lg hover:shadow-xl transition-all rounded-lg border border-gray-200">
-                            <img src={item.image} alt={item.title} className="w-full h-48 object-cover rounded-t-lg" />
-                            <CardContent className="p-4 text-center">
-                                <CardTitle className="text-lg font-bold text-[#002147]">{item.title}</CardTitle>
-                                <p className="text-gray-600 mt-2">{item.description}</p>
-                            </CardContent>
-                        </Card>
+                {/* Bento Grid Layout (3+2 Images) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    {campusLifeImages.slice(0, 3).map((item, index) => (
+                        <div
+                            key={index}
+                            className="relative rounded-lg overflow-hidden shadow-lg"
+                        >
+                            <img
+                                src={item.src}
+                                alt={item.title}
+                                className="w-full h-48 sm:h-64 md:h-48 object-cover transition-transform hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-white text-lg font-semibold">
+                                {item.title}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                    {campusLifeImages.slice(3).map((item, index) => (
+                        <div
+                            key={index}
+                            className="relative rounded-lg overflow-hidden shadow-lg"
+                        >
+                            <img
+                                src={item.src}
+                                alt={item.title}
+                                className="w-full h-48 sm:h-64 md:h-48 object-cover transition-transform hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-white text-lg font-semibold">
+                                {item.title}
+                            </div>
+                        </div>
                     ))}
                 </div>
 

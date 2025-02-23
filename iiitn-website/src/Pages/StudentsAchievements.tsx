@@ -39,12 +39,12 @@ const achievementsData = {
 	],
 };
 
-function Achievements() {
+function StudentsAchievements() {
 	return (
 		<div className="bg-gray-50 min-h-screen flex flex-col">
 			{/* 🔹 Header Section */}
 			<header className="bg-[#002147] text-white py-12 px-6 shadow-md text-left md:text-center">
-				<h1 className="text-3xl md:text-4xl font-bold">IIIT Nagpur Achievements</h1>
+				<h1 className="text-3xl md:text-4xl font-bold">IIIT Nagpur Student Achievements</h1>
 				<p className="mt-2 text-gray-200 text-lg">Celebrating success in CSE & ECE departments</p>
 			</header>
 
@@ -53,7 +53,7 @@ function Achievements() {
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 					{/* 🎓 CSE Achievements */}
 					<section>
-						<h2 className="text-2xl font-semibold text-gray-800 mb-6">🎓 CSE Achievements</h2>
+						<h2 className="text-2xl font-semibold text-gray-800 mb-6"><span className="text-[#E87722] text-4xl">| </span> CSE Achievements</h2>
 						{achievementsData.CSE.map((item) => (
 							<Card key={item.year} className="mb-6 shadow-md border border-blue-300">
 								<CardHeader className="bg-blue-50 border-b-2 border-blue-600 rounded-t-lg">
@@ -74,7 +74,7 @@ function Achievements() {
 
 					{/* 📡 ECE Achievements (Updated Color: Orange - #E87722) */}
 					<section>
-						<h2 className="text-2xl font-semibold text-gray-800 mb-6">📡 ECE Achievements</h2>
+						<h2 className="text-2xl font-semibold text-gray-800 mb-6"><span className="text-[#E87722] text-4xl">| </span> ECE Achievements</h2>
 						{achievementsData.ECE.map((item) => (
 							<Card key={item.year} className="mb-6 shadow-md border border-[#E87722]">
 								<CardHeader className="bg-orange-50 border-b-2 border-[#E87722] rounded-t-lg">
@@ -98,4 +98,5 @@ function Achievements() {
 	);
 }
 
-export default Achievements;
+export default StudentsAchievements;
+

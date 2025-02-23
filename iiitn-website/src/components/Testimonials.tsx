@@ -8,7 +8,7 @@ const Testimonials = () => {
         <section className="py-16 px-6 bg-gradient-to-b from-white to-gray-100">
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-3xl font-bold text-left text-[#002147]">
-                    <span className="text-[#E87722]">|</span> What Our Students Say
+                    <span className="text-[#E87722] text-4xl">|</span> What Our Students Say
                 </h2>
 
                 {/* Testimonials Grid */}

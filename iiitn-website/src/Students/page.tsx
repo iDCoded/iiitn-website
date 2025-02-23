@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // Using ShadCN Card
 import StudentCard from "../components/StudentCard";
+import { title } from "process";
 
 const prospectiveData = [
     { title: "Academic Curricula", description: "Semester Dates and Deadlines" },
@@ -30,13 +31,15 @@ const currentData = [
 
 const sidebarLinks = [
     { title: "Hostel Life", link: "/pages/hostellife" },
-    { title: "Sports & Recreation", link: "#" },
-    { title: "Cultural Activities", link: "#" },
-    { title: "Student Clubs", link: "#" },
+    { title: "Sports & Recreation", link: "/pages/recreation" },
+    { title: "Student Clubs", link: "/pages/studentclubs" },
     { title: "Events and Festivities", link: "/events" },
+    { title: "Achievements", link: "/pages/studentachievements" },
     { title: "Dining Options", link: "/pages/mess" },
-    { title: "Academic Fees", link: "/pages/academicfee" },
+    { title: "Academic Fees", link: "/pages/academicfee" },   
     { title: "Hostel Fees", link: "/pages/hostelfee" },
+   
+
 ];
 
 
