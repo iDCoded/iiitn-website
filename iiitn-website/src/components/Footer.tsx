@@ -42,11 +42,7 @@ const Footer = () => {
                                     Networking Complaint
                                 </a>
                             </li>
-
                             <li><a href="#" className="hover:text-white">Policy for Prevention of Sexual Harrasment of Women at Workplace</a></li>
-
-
-
                         </ul>
                     </div>
 
