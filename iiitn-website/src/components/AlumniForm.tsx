@@ -1,6 +1,11 @@
 function AlumniForm() {
   return (
     <>
+    <div className="bg-gray-100 min-h-screen flex flex-col">
+			{/* Header Section */}
+			<header className="bg-[#002147] text-white py-14 text-center">
+				<h1 className="text-3xl font-bold">Alumni Data</h1>
+			</header>
       <form action="" className="max-w-lg mx-auto p-4">
         {/* Name and Branch */}
         <div className="flex flex-col md:flex-row gap-x-6 mb-6">
@@ -112,6 +117,7 @@ function AlumniForm() {
           Submit
         </button>
       </form>
+      </div>
     </>
   );
 }
