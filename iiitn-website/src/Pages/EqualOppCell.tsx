@@ -21,17 +21,17 @@ function EqualOpportunityCell() {
 
       {/* Introduction Section */}
       <section className="max-w-5xl mx-auto bg-white p-6 shadow-lg rounded-lg mt-10">
-        <h2 className="text-3xl font-semibold text-[#002147]">📌 About the Cell</h2>
-        <p className="text-gray-700 mt-3 leading-relaxed">
+        <h2 className="text-3xl font-semibold text-[#002147]"><span className="text-[#E87722] text-4xl">| </span> About the Cell</h2>
+        <p className="text-gray-700 mt-6 leading-relaxed">
           The **Equal Opportunity Cell (EOC)** is established to cater to the day-to-day needs of **differently-abled persons** at IIIT Nagpur.  
           The committee includes **teachers, staff, students, and parents** to create an **inclusive environment** and address accessibility concerns.
         </p>
       </section>
 
       {/* Committee Members Table */}
-      <section className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-        <h2 className="text-3xl font-semibold text-[#002147]">🏛️ Committee Members</h2>
-        <div className="overflow-x-auto mt-4">
+      <section className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg w-full">
+        <h2 className="text-3xl font-semibold text-[#002147]"><span className="text-[#E87722] text-4xl">| </span> Committee Members</h2>
+        <div className="overflow-x-auto mt-6">
           <table className="min-w-full bg-white border border-gray-300 shadow-sm rounded-lg">
             <thead className="bg-[#002147] text-white">
               <tr>
@@ -55,8 +55,8 @@ function EqualOpportunityCell() {
 
       {/* Contact Information */}
       <section className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-        <h2 className="text-3xl font-semibold text-[#002147]">📞 Contact Information</h2>
-        <p className="text-gray-700 mt-3 leading-relaxed">
+        <h2 className="text-3xl font-semibold text-[#002147]"><span className="text-[#E87722] text-4xl">| </span> Contact Information</h2>
+        <p className="text-gray-700 mt-6 leading-relaxed">
           For any queries or assistance regarding **equal opportunity and accessibility**, please reach out to the **Equal Opportunity Cell**.  
           The committee is committed to ensuring that every individual receives **equal treatment and support**.
         </p>

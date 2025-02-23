@@ -20,7 +20,7 @@ const Footer = () => {
                 </div>
 
                 {/* Grid Sections */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8"> 
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
 
                     {/* Important Links */}
                     <div>
@@ -33,20 +33,16 @@ const Footer = () => {
                             <li><a href="/pages/eoc" className="hover:text-white">Equal Opportunity Cell</a></li>
                             <li><a href="/pages/rti" className="hover:text-white">RTI</a></li>
                             <li>
-  <a 
-    href={data[0]} 
-    target="_blank" 
-    rel="noopener noreferrer" 
-    className="hover:text-white text-blue-500 font-medium transition duration-300"
-  >
-    Networking Complaint
-  </a>
-</li>
-
+                                <a
+                                    href={data[0]}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-white font-medium transition duration-300"
+                                >
+                                    Networking Complaint
+                                </a>
+                            </li>
                             <li><a href="#" className="hover:text-white">Policy for Prevention of Sexual Harrasment of Women at Workplace</a></li>
-
-
-
                         </ul>
                     </div>
 
