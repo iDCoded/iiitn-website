@@ -81,6 +81,11 @@ const Navbar = () => {
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                                     <a href="/departments"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Departments</li></a>
                                     <a href="/academics/courses"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Courses</li></a>
+                                    <a href="/academics/courses"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Calendar</li></a>
+                                    <a href="/academics/courses"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Curricullum</li></a>
+                                    <a href="/academics/courses"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Time table</li></a>
+                                    <a href="/academics/courses"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Fees</li></a>
+                                  
                                 </ul>
                             </li>
 
@@ -88,8 +93,8 @@ const Navbar = () => {
                                 Admissions
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                                     <a href="/admissions/btech"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">B.Tech</li></a>
-                                    <a href="/admissions/mtech"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">M.Tech</li></a>
-                                    <a href="/admissions/phd"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Ph.D.</li></a>
+                                    <a href="/admissions/mtech"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Post Graduate</li></a>
+                                    
                                 </ul>
                             </li>
 
@@ -135,8 +140,8 @@ const Navbar = () => {
                     <ul className="space-y-4">
                         {[
                             { title: "Governance", links: [{ name: "Committee", href: "/governance/committee" }, { name: "Administration", href: "/governance/administration" }] },
-                            { title: "Academics", links: [{ name: "Programs", href: "/academics/programs" }, { name: "Departments", href: "/departments" }, { name: "Courses", href: "/academics/courses" }] },
-                            { title: "Admissions", links: [{ name: "B.Tech", href: "/admissions/btech" }, { name: "M.Tech", href: "/admissions/mtech" }, { name: "Ph.D.", href: "/admissions/phd" }] },
+                            { title: "Academics", links: [{ name: "Programs", href: "/academics/programs" }, { name: "Departments", href: "/departments" }, { name: "Courses", href: "/academics/courses" },{ name: "Calendar", href: "/academics/courses" },{ name: "Curricullum", href: "/academics/courses" },{ name: "Time Table", href: "/academics/courses" },{ name: "Fees", href: "/academics/courses" }] },
+                            { title: "Admissions", links: [{ name: "B.Tech", href: "/admissions/btech" }, { name: "Post Graduate", href: "/admissions/mtech" }] },
                             { title: "Research", links: [{ name: "Publications", href: "/research/publications" }, { name: "Projects", href: "/research/projects" }] },
                             { title: "Placements", links: [{ name: "Why Recruit from IIIT Nagpur", href: "/placements" }, { name: "Internships", href: "/placements/internships" }, { name: "Statistics", href: "/placements/statistics" }, { name: "Companies", href: "/placements/companies" }, { name: "Students", href: "/placements/students" }, { name: "Contact T&P", href: "/placements/contact" }] }
                         ].map((item) => (

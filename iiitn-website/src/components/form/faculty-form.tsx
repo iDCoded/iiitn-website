@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { User } from "lucide-react";
-import { toast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,7 +21,8 @@ import {
 } from "@/components/ui/select";
 
 const formSchema = z.object({
-	p_id: z.number().int().nonnegative({ message: "Please enter a valid ID" }),
+	p_id: z.string(),
+	d_id: z.string(),
 	join_year: z
 		.string()
 		.regex(/^\d{4}$/, { message: "Please enter a valid year" }),
@@ -36,20 +36,24 @@ export function FacultyForm() {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			p_id: 0,
+			p_id: "0",
+			d_id: "0",
 			join_year: "",
 			positions: "",
 			f_or_s: "Faculty",
 		},
 	});
 
-	const handleSubmit = (data: z.infer<typeof formSchema>) => {
-		// Send `data` to the backend as plain markdown text
-		console.log("Submitted content:", data);
-		toast({
-			title: "Created faculty",
-			description: "The faculty has been successfully uploaded.",
+	const handleSubmit = async (data: z.infer<typeof formSchema>) => {
+		const res = await fetch("http://localhost:5000/faculty/faculty_staff", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data),
 		});
+		const res_json = await res.json();
+		console.log("Res", res_json);
 	};
 
 	return (
@@ -72,6 +76,19 @@ export function FacultyForm() {
 						render={({ field }) => (
 							<FormItem className="space-y-2">
 								<FormLabel htmlFor="p_id">ID</FormLabel>
+								<FormControl>
+									<Input id="p_id" placeholder="Enter ID" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="d_id"
+						render={({ field }) => (
+							<FormItem className="space-y-2">
+								<FormLabel htmlFor="p_id">Department ID</FormLabel>
 								<FormControl>
 									<Input id="p_id" placeholder="Enter ID" {...field} />
 								</FormControl>

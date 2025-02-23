@@ -29,22 +29,17 @@ const currentData = [
 ];
 
 const sidebarLinks = [
-    { title: "Hostel Life", link: "#" },
+    { title: "Hostel Life", link: "/pages/hostellife" },
     { title: "Sports & Recreation", link: "#" },
     { title: "Cultural Activities", link: "#" },
     { title: "Student Clubs", link: "#" },
-    { title: "Events and Festivities", link: "#" },
+    { title: "Events and Festivities", link: "/events" },
     { title: "Dining Options", link: "/pages/mess" },
+    { title: "Academic Fees", link: "/pages/academicfee" },
+    { title: "Hostel Fees", link: "/pages/hostelfee" },
 ];
 
-const events = [
-    { title: "Annual Tech Fest", link: "#" },
-    { title: "Cultural Night", link: "#" },
-    { title: "Sports Tournament", link: "#" },
-    { title: "Guest Lecture Series", link: "#" },
-    { title: "Hackathon", link: "#" },
-    { title: "Alumni Meet", link: "#" },
-];
+
 
 function Students() {
     return (
@@ -61,7 +56,7 @@ function Students() {
                 <aside className="lg:w-1/4 space-y-6">
                     <Card className="shadow-sm border border-gray-200">
                         <CardHeader>
-                            <CardTitle className="text-lg font-semibold text-[#002147]">Campus Life</CardTitle>
+                            <CardTitle className="text-lg font-semibold text-[#002147]">Quick Links</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <ul className="space-y-2 text-sm">
@@ -76,22 +71,7 @@ function Students() {
                         </CardContent>
                     </Card>
 
-                    <Card className="shadow-sm border border-gray-200">
-                        <CardHeader>
-                            <CardTitle className="text-lg font-semibold text-[#002147]">Upcoming Events</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <ul className="space-y-2 text-sm">
-                                {events.map((event, index) => (
-                                    <li key={index}>
-                                        <a href={event.link} className="text-[#E87722] hover:underline">
-                                            {event.title}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </CardContent>
-                    </Card>
+                    
                 </aside>
 
                 {/* Right Content */}
