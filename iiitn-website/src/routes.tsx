@@ -7,7 +7,6 @@ import Courses from "./Academics/Courses";
 import Programs from "./Academics/Programs";
 import AdmissionsBTech from "./Admissions/BTech/BTech";
 import AdmissionsMTech from "./Admissions/PostGraduate";
-
 import Placements from "./Placements/page";
 import Projects from "./Research/Projects/page";
 import Publications from "./Research/Publications/page";
@@ -63,6 +62,7 @@ import Grievance from "./Pages/Grievance";
 import GrievanceCommSCSTCell from "./Pages/GrievanceCommSCSTCell";
 import InternalCompltComm from "./Pages/InternalCompltComm";
 import EqualOppCell from "./Pages/EqualOppCell";
+import AntiRaggingCommittee from "./Pages/AntiRaggingCommittee";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -150,6 +150,11 @@ const AppRoutes = () => (
 		<Route path="/pages/internalcomplt" element={<InternalCompltComm />} />
 		<Route path="/pages/equalopp" element={<EqualOppCell />} />
 		<Route path="/visitors" element={<Visitors />} />
+		<Route path="/pages/grievance" element={<Grievance />} />
+		<Route path="/pages/grievance_committee_sc_st" element={<GrievanceCommSCSTCell />} />
+		<Route path="/pages/antiragging" element={<AntiRaggingCommittee />} />
+		<Route path="/pages/icc" element={<InternalCompltComm />} />
+		<Route path="/pages/eoc" element={<EqualOppCell />} />
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );
