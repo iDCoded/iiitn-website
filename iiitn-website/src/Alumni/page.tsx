@@ -60,21 +60,35 @@ function Alumni() {
 			</div>
 
 
-			<div className="w-full mx-auto mt-10 px-4 border-black border-4">
-				<h2 className="text-2xl font-semibold text-gray-800 text-center mb-4">Upcoming Events</h2>
-				<div className="grid grid-cols-1 sm:grid-cols-1 gap-4 ml-24 mb-12">
+			<div className="w-full mx-auto mt-10 px-4 border-black border-4 ">
+			<div className="relative max-w-6xl text-left mt-8">
+                <h2 className="text-3xl font-bold text-black drop-shadow-lg">
+                    <span className="text-[#E87722]">| </span>Upcoming Events
+                </h2>
+                </div>
+				<div className="grid grid-cols-1 sm:grid-cols-1 gap-4 ml-24 mb-12 mt-16">
 					{events.map((event, index) => (
 						<AlumniEventCard key={index} {...event} />
 					))}
 				</div>
 			</div>
-			<div className="w-full flex flex-col mx-auto mt-10 px-4 border-black border-4 justify-center items-center">
-				<h2 className="text-2xl font-semibold text-gray-800 text-center mb-4">Memories</h2>
-				<AlumniCarousel />
+			<div className="w-full flex flex-col mx-auto mt-10 px-4 border-black border-4 ">
+			<div className="relative max-w-6xl text-left mt-8">
+                <h2 className="text-3xl font-bold text-black drop-shadow-lg">
+                    <span className="text-[#E87722]">| </span>Memories
+                </h2>
+                </div>
+				<div className="flex flex-col items-center justify-center mt-8">
+                <AlumniCarousel />
+                </div>
 			</div>
 			<div className="w-full mx-auto mt-10 px-4 border-black border-4">
-				<h2 className="text-2xl font-semibold text-gray-800 text-center mb-4">Past Events</h2>
-				<div className="grid grid-cols-1 sm:grid-cols-1 gap-4 ml-24 mb-12">
+			<div className="relative max-w-6xl text-left mt-8">
+                <h2 className="text-3xl font-bold text-black drop-shadow-lg">
+                    <span className="text-[#E87722]">| </span>Past Events
+                </h2>
+                </div>
+				<div className="grid grid-cols-1 sm:grid-cols-1 gap-4 ml-24 mb-12 mt-16">
 					{pastEvents.map((event, index) => (
 						<AlumniEventCard key={index} {...event} />
 					))}

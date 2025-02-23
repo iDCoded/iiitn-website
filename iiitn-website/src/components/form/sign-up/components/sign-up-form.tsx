@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/password-input";
 import { Textarea } from "@/components/ui/textarea";
 import { useAuth } from "@/context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 type SignUpFormProps = HTMLAttributes<HTMLDivElement>;
 
@@ -56,6 +57,8 @@ const formSchema = z
 	});
 
 export function SignUpForm({ className, ...props }: SignUpFormProps) {
+	const navigate = useNavigate();
+
 	const [isLoading, setIsLoading] = useState(false);
 	const { login } = useAuth();
 
@@ -89,7 +92,10 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
 
 			const res_json = await res.json();
 			console.log("data", res_json);
-			login(res_json.user, res_json.token);
+			if (res.ok) {
+				login(res_json.user, res_json.access_token); // TODO: Send user object from the server
+				navigate("/admin");
+			}
 		} catch (error) {
 			console.error(error);
 		} finally {
