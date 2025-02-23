@@ -4,6 +4,7 @@ import AppRoutes from "./routes";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 import "./index.css"; // Tailwind styles
 
 export function App() {
@@ -19,7 +20,12 @@ export function App() {
 				{!isExcludedRoute && <Navbar />}
 
 				{/* Main Content */}
-				<div className="flex-grow pt-20 md:pt-24 lg:pt-32"> {/* Adjust padding for different screen sizes */}
+				<div
+					className={`${
+						isExcludedRoute ? "" : "flex-grow pt-20 md:pt-24 lg:pt-32"
+					}`}>
+					{" "}
+					{/* Adjust padding for different screen sizes */}
 					<AppRoutes />
 				</div>
 
@@ -30,9 +36,11 @@ export function App() {
 	);
 }
 
-// Wrap the entire app with Router
+// Wrap the entire app with Router and AuthProvider
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<Router>
-		<App />
+		<AuthProvider>
+			<App />
+		</AuthProvider>
 	</Router>
 );

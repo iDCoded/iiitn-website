@@ -1,5 +1,6 @@
 import { Card } from "../ui/card";
 import { LoginForm } from "../form/sign-in/components/login-form";
+import { Link } from "react-router-dom";
 
 function Login() {
 	return (
@@ -9,6 +10,14 @@ function Login() {
 				<p className="text-sm text-muted-foreground">
 					Enter your email and password below <br />
 					to log into your account
+				</p>
+				<p className="text-sm text-muted-foreground">
+					Don't have an account?{" "}
+					<Link
+						to="/signup"
+						className="underline underline-offset-4 hover:text-primary">
+						Sign Up
+					</Link>
 				</p>
 			</div>
 			<LoginForm />
