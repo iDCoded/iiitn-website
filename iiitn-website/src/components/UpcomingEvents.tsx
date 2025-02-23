@@ -1,37 +1,52 @@
-import EventCard from "./EventCard";
+import HomeEventCard from "./HomeEventCard";
 
 const events = [
     {
-        image: "/images/tech-symposium.jpg",
-        title: "Tech Symposium",
-        time: "March 10, 2025 | 10:00 AM",
+        image: "/images/abhivyakti.jpg",
+        title: "Abhivyakti - The Cultural Fest of IIITN",
+        description: "A grand cultural fest with music, dance, and fun activities.",
+        time: "09:00 PM",
+        date: "19 Feb",
+        large: true,
     },
     {
-        image: "/images/alumni-meet.jpg",
-        title: "Alumni Meet",
-        time: "April 5, 2025 | 5:00 PM",
+        image: "/images/small-event-1.jpg",
+        title: "Smaller event with less importance",
+        time: "19 Feb",
+        date: "19 Feb",
+        large: false,
     },
     {
-        image: "/images/hackathon.jpg",
-        title: "Hackathon 2025",
-        time: "May 20, 2025 | 9:00 AM",
+        image: "/images/small-event-2.jpg",
+        title: "Smaller event with less importance",
+        time: "19 Feb",
+        date: "19 Feb",
+        large: false,
     },
 ];
 
 const UpcomingEvents = () => {
     return (
-        <section className="py-16 px-6 bg-gradient-to-b from-gray-50 to-gray-100">
-            {/* Section Title */}
-            <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl font-bold text-left mb-6 text-[#002147]">
-                    <span className="text-[#E87722]">|</span> Upcoming Events
+        <section className="py-16 px-8 md:px-12 lg:px-16 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen">
+            {/* Section Wrapper */}
+            <div className="max-w-6xl mx-auto flex flex-col h-full">
+                {/* Section Title */}
+                <h2 className="text-3xl font-bold text-left mb-8 text-[#002147]">
+                    <span className="text-[#E87722]">|</span> Events
                 </h2>
 
                 {/* Events Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {events.map((event, index) => (
-                        <EventCard key={index} event={event} />
-                    ))}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 flex-grow">
+                    {/* Large Event (Takes full height) */}
+                    <div className="md:col-span-2 flex flex-col">
+                        <HomeEventCard event={events[0]} />
+                    </div>
+
+                    {/* Small Events (Stacked on Mobile, Side-by-Side on Desktop) */}
+                    <div className="flex flex-col gap-8">
+                        <HomeEventCard event={events[1]} />
+                        <HomeEventCard event={events[2]} />
+                    </div>
                 </div>
             </div>
         </section>

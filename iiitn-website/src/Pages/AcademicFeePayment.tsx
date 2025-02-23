@@ -1,4 +1,5 @@
-import React from "react";
+import { FaUniversity } from "react-icons/fa";
+import { AiOutlineLink } from "react-icons/ai";
 
 const academicFeeData = {
 	accountName: "Indian Institute of Information Technology, Nagpur General",
@@ -6,24 +7,26 @@ const academicFeeData = {
 	ifscCode: "SBIN0006702",
 	branchName: "VRCE BRANCH",
 	qrCodeImg: "#", // Replace with actual QR code image URL
-	paymentLink: "#", // Replace with actual payment link
-
+	paymentLink: "https://www.onlinesbi.sbi/sbicollect/icollecthome.htm", // Replace with actual payment link
 };
 
 function AcademicFeePayment() {
 	return (
-		<div className="bg-gray-100 min-h-screen flex flex-col">
-			{/* Header Section */}
-			<header className="bg-[#002147] text-white py-14 text-center">
-				<h1 className="text-3xl font-bold">Academic Fee Payment Details</h1>
+		<div className="bg-gray-50 min-h-screen flex flex-col items-center">
+			{/* 🔹 Header Section */}
+			<header className="w-full bg-[#002147] text-white py-12 text-center shadow-md">
+				<h1 className="text-3xl md:text-4xl font-bold tracking-wide">Academic Fee Payment</h1>
+				<p className="mt-1 text-gray-200 text-lg">Secure and easy online payment options</p>
 			</header>
 
-			{/* Main Content */}
-			<main className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-8">
-				{/* Institute Bank Details */}
-				<section className="mb-6">
-					<h2 className="text-xl font-semibold text-gray-800 mb-3">Institute Bank Details</h2>
-					<div className="bg-gray-100 p-4 rounded-md shadow-sm">
+			{/* 📌 Main Content */}
+			<main className="w-full max-w-4xl bg-white shadow-lg rounded-xl p-6 md:p-10 mt-8">
+				{/* 🏦 Institute Bank Details */}
+				<section className="mb-10">
+					<h2 className="text-2xl font-semibold text-gray-800 flex items-center gap-2 mb-6">
+						<FaUniversity className="text-[#E87722]" /> Institute Bank Details
+					</h2>
+					<div className="bg-gray-100 p-6 rounded-lg shadow-sm grid grid-cols-1 md:grid-cols-2 gap-6">
 						<p className="text-gray-700"><strong>Name of Account:</strong> {academicFeeData.accountName}</p>
 						<p className="text-gray-700"><strong>Account No:</strong> {academicFeeData.accountNumber}</p>
 						<p className="text-gray-700"><strong>IFSC Code:</strong> {academicFeeData.ifscCode}</p>
@@ -31,47 +34,49 @@ function AcademicFeePayment() {
 					</div>
 				</section>
 
-				{/* Online Payment Link */}
-				<section className="mb-6 text-center">
+				{/* 🔗 Online Payment Button */}
+				<section className="mb-10 text-center">
 					<a
 						href={academicFeeData.paymentLink}
-						className="bg-blue-600 text-white px-6 py-2 rounded-md text-lg hover:bg-blue-700 transition"
+						className="inline-flex items-center gap-2 bg-[#E87722] text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#d8691d] transition duration-300 shadow-md"
 					>
-						Online Payment Link
+						<AiOutlineLink className="text-xl" /> Pay Online
 					</a>
 				</section>
 
-				{/* QR Code for Payment */}
-				<section className="mb-6">
-					<h2 className="text-xl font-semibold text-gray-800 text-center">Institute Academic Fees QR Code</h2>
-					<div className="flex justify-center mt-4">
-						<img
-							src={academicFeeData.qrCodeImg}
-							alt="Academic Fee QR Code"
-							className="w-48 h-48 border rounded-md shadow-md"
-						/>
+				{/* 📜 QR Code Section */}
+				<section className="mb-10 text-center">
+					<h2 className="text-2xl font-semibold text-gray-800 mb-4">Scan to Pay</h2>
+					<div className="flex justify-center">
+						<figure className="border rounded-lg overflow-hidden shadow-md bg-gray-200 p-4 w-full max-w-xs">
+							<img
+								src={academicFeeData.qrCodeImg}
+								alt="Academic Fee QR Code"
+								className="w-full h-auto rounded-lg"
+							/>
+							<figcaption className="text-gray-600 mt-2 text-center text-sm p-2">
+								Scan the QR Code to make the payment
+							</figcaption>
+						</figure>
 					</div>
 				</section>
 
-				{/* Additional Links */}
-				<section className="mt-6 space-y-4 text-center">
+				{/* 📌 Additional Links */}
+				<section className="mt-10 space-y-4 text-center">
 					<a
 						href="/admissions/btech/acadfees"
-						className="block bg-gray-700 text-white px-6 py-2 rounded-md text-lg hover:bg-gray-800 transition"
+						className="block bg-[#002147] text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#001a35] transition duration-300 shadow-md"
 					>
 						First Year Academic Fee Structure
 					</a>
 					<a
 						href="pages/academicfee"
-						className="block bg-green-600 text-white px-6 py-2 rounded-md text-lg hover:bg-green-700 transition"
+						className="block bg-green-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition duration-300 shadow-md"
 					>
 						Complete Academic Fee Structure
 					</a>
 				</section>
 			</main>
-
-			{/* Footer */}
-		
 		</div>
 	);
 }
