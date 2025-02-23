@@ -50,7 +50,7 @@ function NIRF() {
           {nirfData.map((data, index) => (
             <div
               key={index}
-              className="bg-white p-6 shadow-lg rounded-lg transition-transform hover:scale-105 border-l-4 border-blue-600"
+              className="bg-white p-6 shadow-lg rounded-lg transition-transform hover:scale-105 border-l-4 border-orange-600"
             >
               <h3 className="text-2xl font-bold text-[#002147]">📅 {data.year}</h3>
               <div className="mt-4">
@@ -58,9 +58,9 @@ function NIRF() {
                   <a
                     key={docIndex}
                     href={doc.link}
-                    className="flex items-center text-blue-600 hover:text-blue-800 mt-2 text-lg font-medium"
+                    className="flex items-center text-orange-600 hover:text-orange-800 mt-2 text-lg font-medium"
                   >
-                    <FaFilePdf className="mr-2 text-red-600" />
+                    <FaFilePdf className="mr-2 text-blue-600" />
                     {doc.title}
                   </a>
                 ))}

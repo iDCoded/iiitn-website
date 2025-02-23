@@ -60,7 +60,7 @@ function Alumni() {
 			</div>
 
 
-			<div className="w-full mx-auto mt-10 px-4 border-black border-4 ">
+			<div className="w-full mx-auto mt-10 px-4 ">
 			<div className="relative max-w-6xl text-left mt-8">
                 <h2 className="text-3xl font-bold text-black drop-shadow-lg">
                     <span className="text-[#E87722]">| </span>Upcoming Events
@@ -72,7 +72,7 @@ function Alumni() {
 					))}
 				</div>
 			</div>
-			<div className="w-full flex flex-col mx-auto mt-10 px-4 border-black border-4 ">
+			<div className="w-full flex flex-col mx-auto mt-10 px-4 ">
 			<div className="relative max-w-6xl text-left mt-8">
                 <h2 className="text-3xl font-bold text-black drop-shadow-lg">
                     <span className="text-[#E87722]">| </span>Memories
@@ -82,7 +82,7 @@ function Alumni() {
                 <AlumniCarousel />
                 </div>
 			</div>
-			<div className="w-full mx-auto mt-10 px-4 border-black border-4">
+			<div className="w-full mx-auto mt-10 px-4">
 			<div className="relative max-w-6xl text-left mt-8">
                 <h2 className="text-3xl font-bold text-black drop-shadow-lg">
                     <span className="text-[#E87722]">| </span>Past Events
