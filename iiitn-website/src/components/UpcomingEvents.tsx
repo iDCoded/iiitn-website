@@ -31,9 +31,14 @@ const UpcomingEvents = () => {
             {/* Section Wrapper */}
             <div className="max-w-6xl mx-auto flex flex-col h-full">
                 {/* Section Title */}
-                <h2 className="text-3xl font-bold text-left mb-8 text-[#002147]">
-                    <span className="text-[#E87722]">|</span> Events
-                </h2>
+                <div className="flex justify-between items-center mb-8">
+                    <h2 className="text-3xl font-bold text-left text-[#002147]">
+                        <span className="text-4xl text-[#E87722]">|</span> Events
+                    </h2>
+                    <a href="/events"><button className="text-[#E87722] font-semibold hover:underline">
+                        View All
+                    </button></a>
+                </div>
 
                 {/* Events Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 flex-grow">
