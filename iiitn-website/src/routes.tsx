@@ -65,6 +65,7 @@ import EqualOppCell from "./Pages/EqualOppCell";
 import HowToReach from "./Pages/HowToReach";
 import FacultyAchievements from "./Pages/FacultyAchievements";
 import StudentsClubs from "./Pages/StudentsClubs";
+import Directory from "./Pages/Directory";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -159,6 +160,7 @@ const AppRoutes = () => (
 		<Route path="/pages/studentclubs" element={<StudentsClubs />} />		
 		<Route path="/pages/icc" element={<InternalCompltComm />} />
 		<Route path="/pages/eoc" element={<EqualOppCell />} />
+		<Route path="/pages/directory" element={<Directory />} />
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );
