@@ -1,189 +1,82 @@
-import { useState, useEffect } from "react";
-import { Card, CardContent, CardTitle } from "./ui/card";
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious
-} from "./ui/carousel";
+"use client";
 
-const API_URL = "https://your-api-endpoint.com/news"; // Replace with actual API endpoint
+import { useState, useRef } from "react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Card, CardContent } from "@/components/ui/card";
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
 
-interface News {
-    id: string;
-    image: string;
-    title: string;
-    description: string;
-    date: string;
-    category: string;
-}
+const newsData = [
+    { title: "Hackathon 2025 Announced!", description: "Join the biggest coding event at IIIT Nagpur.", image: "https://source.unsplash.com/400x250/?coding" },
+    { title: "New Hostel Block Inaugurated", description: "The latest hostel block is now open for students.", image: "https://source.unsplash.com/400x250/?hostel" },
+    { title: "AI Lab Now Open", description: "IIIT Nagpur introduces a state-of-the-art AI lab.", image: "https://source.unsplash.com/400x250/?technology" },
+    { title: "College Fest Registrations Open", description: "Register now for one of the biggest college fests!", image: "https://source.unsplash.com/400x250/?festival" },
+    { title: "Scholarship Applications Open", description: "Apply for financial aid and merit scholarships.", image: "https://source.unsplash.com/400x250/?scholarship" },
+    { title: "Placement Season Begins!", description: "Top companies visiting campus for recruitments.", image: "https://source.unsplash.com/400x250/?office" },
+    { title: "New Courses Introduced", description: "Check out the latest courses introduced this semester.", image: "https://source.unsplash.com/400x250/?books" },
+    { title: "Student Council Elections", description: "Participate in the student council elections.", image: "https://source.unsplash.com/400x250/?election" },
+    { title: "Alumni Meet 2025", description: "Join the alumni meet and connect with your batchmates.", image: "https://source.unsplash.com/400x250/?alumni" },
+];
 
-const NewsUpdates = () => {
-    const [newsData, setNewsData] = useState<News[]>([
-        {
-            id: "1",
-            image: "https://via.placeholder.com/150",
-            title: "Default News 1",
-            description: "This is the description for default news 1.",
-            date: "2023-01-01",
-            category: "Category 1"
+export default function NewsCarousel() {
+    const sliderRef = useRef(null);
+    const [slider, setSlider] = useState<any>(null);
+
+    const [instanceRef] = useKeenSlider({
+        slides: {
+            perView: 1,
+            spacing: 10,
         },
-        {
-            id: "2",
-            image: "https://via.placeholder.com/150",
-            title: "Default News 2",
-            description: "This is the description for default news 2.",
-            date: "2023-01-02",
-            category: "Category 2"
+        breakpoints: {
+            "(min-width: 768px)": {
+                slides: {
+                    perView: 3,
+                    spacing: 20,
+                },
+            },
         },
-        {
-            id: "3",
-            image: "https://via.placeholder.com/150",
-            title: "Default News 3",
-            description: "This is the description for default news 3.",
-            date: "2023-01-03",
-            category: "Category 3"
-        },
-        {
-            id: "4",
-            image: "https://via.placeholder.com/150",
-            title: "Default News 4",
-            description: "This is the description for default news 4.",
-            date: "2023-01-04",
-            category: "Category 4"
-        },
-        {
-            id: "5",
-            image: "https://via.placeholder.com/150",
-            title: "Default News 5",
-            description: "This is the description for default news 5.",
-            date: "2023-01-05",
-            category: "Category 5"
-        },
-        {
-            id: "6",
-            image: "https://via.placeholder.com/150",
-            title: "Default News 6",
-            description: "This is the description for default news 6.",
-            date: "2023-01-06",
-            category: "Category 6"
-        }
-    ]);
-    const [activeIndex, setActiveIndex] = useState(0);
-
-    // 🎯 Fetch news from API
-    useEffect(() => {
-        const fetchNews = async () => {
-            try {
-                const response = await fetch(API_URL);
-                const data = await response.json();
-                setNewsData(data);
-            } catch (error) {
-                console.error("Error fetching news:", error);
-            }
-        };
-
-        fetchNews();
-    }, []);
-
-    // ⏳ Auto-scroll every 5 seconds
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setActiveIndex((prevIndex) =>
-                prevIndex + 3 >= newsData.length ? 0 : prevIndex + 3
-            );
-        }, 5000);
-
-        return () => clearInterval(interval);
-    }, [newsData]);
+        created: (s) => setSlider(s),
+    });
 
     return (
-        <section className="py-12 px-6 bg-white">
-            <div className="max-w-6xl mx-auto">
-                {/* 🔥 Minimalist Header */}
-                <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-2xl font-semibold text-[#002147]">
-                        News & Updates
-                    </h2>
-                    <a href="/news" className="text-[#E87722] text-sm font-medium hover:underline">
-                        View All →
-                    </a>
-                </div>
+        <section className="py-10 bg-gray-100">
+            <div className="max-w-6xl mx-auto px-6">
+                <h2 className="text-3xl font-bold text-[#002147] mb-6">
+                    <span className="text-[#E87722]">|</span> Latest News & Updates
+                </h2>
 
-                {/* 🎡 Minimalist Auto-Scrolling Carousel */}
-                <Carousel className="relative overflow-hidden">
-                    <CarouselContent className="flex">
-                        {newsData.length > 0 ? (
-                            newsData.slice(activeIndex, activeIndex + 3).map((news) => (
-                                <CarouselItem
-                                    key={news.id}
-                                    className="px-2 basis-[33%] sm:basis-[33%] md:basis-[33%] lg:basis-[33%]"
-                                >
-                                    <Card className="bg-[#f5f5f5] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-transform hover:scale-[1.05] duration-300 w-80 h-[300px]">
-                                        {/* 📸 Image Section with 3:4 Aspect Ratio */}
-                                        <div className="relative bg-[#002147] w-full aspect-[16/9] flex items-center justify-center overflow-hidden rounded-t-xl">
-                                            <img
-                                                src={news.image}
-                                                alt={news.title}
-                                                className="w-full h-full object-contain"
-                                            />
-                                            {/* 📌 Category Badge */}
-                                            <span className="absolute top-2 left-2 bg-[#E87722] text-white text-xs font-semibold px-3 py-1 rounded-md">
-                                                {news.category}
-                                            </span>
-                                        </div>
+                <div className="relative">
+                    <button
+                        onClick={() => slider?.prev()}
+                        className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg p-2 rounded-full hover:bg-gray-200"
+                    >
+                        ◀
+                    </button>
 
-                                        {/* 📑 Card Content */}
-                                        <CardContent className="p-5 flex flex-col h-[calc(100%-75%)]">
-                                            {/* 📰 Title */}
-                                            <CardTitle className="text-lg font-semibold text-[#002147] leading-tight">
-                                                {news.title}
-                                            </CardTitle>
-
-                                            {/* 📝 Description */}
-                                            <p className="text-gray-600 mt-2 text-sm line-clamp-4">
-                                                {news.description}
-                                            </p>
-
-                                            {/* 📅 Date + Read More */}
-                                            <div className="mt-auto flex justify-between items-center text-sm">
-                                                <span className="text-gray-500">{news.date}</span>
-                                                <a
-                                                    href={`/news/${news.id}`}
-                                                    className="text-[#E87722] font-medium bg-[#E87722]/10 px-3 py-1 rounded-md hover:bg-[#E87722]/20 transition-all"
-                                                >
-                                                    Read More →
-                                                </a>
-                                            </div>
+                    <Carousel>
+                        <CarouselContent ref={instanceRef} className="keen-slider">
+                            {newsData.map((news, index) => (
+                                <CarouselItem key={index} className="keen-slider__slide">
+                                    <Card className="shadow-lg rounded-lg overflow-hidden">
+                                        <img src={news.image} alt={news.title} className="w-full h-40 object-cover" />
+                                        <CardContent className="p-4">
+                                            <h3 className="text-lg font-semibold text-[#002147]">{news.title}</h3>
+                                            <p className="text-sm text-gray-600">{news.description}</p>
                                         </CardContent>
                                     </Card>
-
-
                                 </CarouselItem>
-                            ))
-                        ) : (
-                            <p className="text-center text-gray-500 w-full">Loading news...</p>
-                        )}
-                    </CarouselContent>
+                            ))}
+                        </CarouselContent>
+                    </Carousel>
 
-                    {/* 🔄 Minimalist Navigation Controls */}
-                    <CarouselPrevious
-                        className="absolute left-0 top-1/2 transform -translate-y-1/2 text-[#E87722] text-lg hover:text-opacity-80 transition-all"
-                        onClick={() => setActiveIndex((prevIndex) => Math.max(0, prevIndex - 3))}
-                    />
-                    <CarouselNext
-                        className="absolute right-0 top-1/2 transform -translate-y-1/2 text-[#E87722] text-lg hover:text-opacity-80 transition-all"
-                        onClick={() =>
-                            setActiveIndex((prevIndex) =>
-                                prevIndex + 3 >= newsData.length ? 0 : prevIndex + 3
-                            )
-                        }
-                    />
-                </Carousel>
+                    <button
+                        onClick={() => slider?.next()}
+                        className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg p-2 rounded-full hover:bg-gray-200"
+                    >
+                        ▶
+                    </button>
+                </div>
             </div>
         </section>
     );
-};
-
-export default NewsUpdates;
+}

@@ -10,7 +10,7 @@ const Navbar = () => {
     useEffect(() => {
         const handleScroll = () => {
             if (isHomePage) {
-                setIsScrolled(window.scrollY > window.innerHeight - window.innerHeight * 0.75);
+                setIsScrolled(window.scrollY > window.innerHeight - window.innerHeight * 0.35);
             } else {
                 setIsScrolled(window.scrollY > 20);
             }
@@ -30,7 +30,7 @@ const Navbar = () => {
             {/* Primary Navbar (Visible on Hero Section) */}
             {/* overlay */}
             {isHomePage && (
-                <div className="absolute left-0 w-full max-h-screen h-1/2 bg-gradient-to-b from-[#002147] to-transparent z-0"></div>
+                <div className="absolute left-0 w-full max-h-screen h-[75vh] bg-gradient-to-b from-[#002147] to-transparent z-1"></div>
             )}
 
             <div className={`transition-transform duration-200 fixed top-0 left-0 w-full z-50`}>
