@@ -81,7 +81,7 @@ const Navbar = () => {
                             <li className="relative group cursor-pointer hover:text-[#E87722]">
                                 Academics
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    <a href="/academics/programs"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Programs</li></a>
+                                    
                                     <a href="/departments"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Departments</li></a>
                                     <a href="/academics/courses"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Courses</li></a>
                                 </ul>
