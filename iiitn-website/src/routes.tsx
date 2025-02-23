@@ -62,6 +62,7 @@ import Grievance from "./Pages/Grievance";
 import GrievanceCommSCSTCell from "./Pages/GrievanceCommSCSTCell";
 import InternalCompltComm from "./Pages/InternalCompltComm";
 import EqualOppCell from "./Pages/EqualOppCell";
+import HowToReach from "./Pages/HowToReach";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -147,6 +148,7 @@ const AppRoutes = () => (
 		<Route path="/pages/grievancecomm" element={<GrievanceCommSCSTCell />} />
 		<Route path="/pages/internalcomplt" element={<InternalCompltComm />} />
 		<Route path="/pages/equalopp" element={<EqualOppCell />} />
+		<Route path="/pages/howtoreach" element={<HowToReach />} />
 		<Route path="/visitors" element={<Visitors />} />
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>

@@ -102,8 +102,8 @@ const Navbar = () => {
                             <li className="relative group cursor-pointer hover:text-[#E87722]">
                                 Research
                                 <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    <a href="/research/publications"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Publications</li></a>
-                                    <a href="/research/projects"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Projects</li></a>
+                                    <a href="publications"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Publications</li></a>
+                                    <a href="/pages/iic"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">/pages/iic</li></a>
                                 </ul>
                             </li>
 
@@ -118,7 +118,22 @@ const Navbar = () => {
                                     <a href="/placements/contact"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Contact T&P</li></a>
                                 </ul>
                             </li>
+                            <li className="relative group cursor-pointer hover:text-[#E87722]">
+                                Others
+                                <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                    <a href="/pages/consultancy"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Consultancy</li></a>
+                                    <a href="/pages/iic"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Institute Innovation Council</li></a>
+                                    <a href="/pages/elclub"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Electoral Literacy Club</li></a>
+                                    <a href="/pages/officialdocuments"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Official Documents</li></a>
+                                    <a href="/pages/guesthouse"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Guest House</li></a>
+                                    <a href="/pages/pressrelease"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Press Release</li></a>
+                                    <a href="/pages/tenders"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Tenders</li></a>
+                                    <a href="/pages/rti"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">RTI</li></a>
+                                    <a href="/pages/recruitment"><li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">Recruitment</li></a>
+                                </ul>
+                            </li>
                             <li className="hover:text-[#E87722]"><a href="/about">About</a></li>
+                           
                         </ul>
                     </div>
                 </nav>
@@ -142,8 +157,9 @@ const Navbar = () => {
                             { title: "Governance", links: [{ name: "Committee", href: "/governance/committee" }, { name: "Administration", href: "/governance/administration" }] },
                             { title: "Academics", links: [{ name: "Programs", href: "/academics/programs" }, { name: "Departments", href: "/departments" }, { name: "Courses", href: "/academics/courses" },{ name: "Calendar", href: "/academics/courses" },{ name: "Curricullum", href: "/academics/courses" },{ name: "Time Table", href: "/academics/courses" },{ name: "Fees", href: "/academics/courses" }] },
                             { title: "Admissions", links: [{ name: "B.Tech", href: "/admissions/btech" }, { name: "Post Graduate", href: "/admissions/mtech" }] },
-                            { title: "Research", links: [{ name: "Publications", href: "/research/publications" }, { name: "Projects", href: "/research/projects" }] },
-                            { title: "Placements", links: [{ name: "Why Recruit from IIIT Nagpur", href: "/placements" }, { name: "Internships", href: "/placements/internships" }, { name: "Statistics", href: "/placements/statistics" }, { name: "Companies", href: "/placements/companies" }, { name: "Students", href: "/placements/students" }, { name: "Contact T&P", href: "/placements/contact" }] }
+                            { title: "Research", links: [{ name: "Publications", href: "publications" }, { name: "/pages/iic", href: "/pages/iic" }] },
+                            { title: "Placements", links: [{ name: "Why Recruit from IIIT Nagpur", href: "/placements" }, { name: "Internships", href: "/placements/internships" }, { name: "Statistics", href: "/placements/statistics" }, { name: "Companies", href: "/placements/companies" }, { name: "Students", href: "/placements/students" }, { name: "Contact T&P", href: "/placements/contact" }] },
+                            { title: "Others", links: [{ name: "Consultancy", href: "/pages/consultancy" }, { name: "Institute Innovation Council", href: "/pages/iic" }, { name: "Electoral Literacy Club", href: "/pages/elclub" }, { name: "Official Documents", href: "/pages/officialdocuments" }, { name: "Guest House", href: "/pages/guesthouse" }, { name: "Press Release", href: "/pages/pressrelease" }, { name: "Tenders", href: "/pages/tenders" }, { name: "RTI", href: "/pages/rti" }, { name: "Recruitment", href: "/pages/recruitment" }] }
                         ].map((item) => (
                             <li key={item.title}>
                                 <button onClick={() => toggleDropdown(item.title)} className="flex justify-between items-center w-full text-[#002147] font-medium text-lg py-2">
