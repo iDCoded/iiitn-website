@@ -120,13 +120,13 @@ const NewsUpdates = () => {
                                     key={news.id}
                                     className="px-2 basis-[33%] sm:basis-[33%] md:basis-[33%] lg:basis-[33%]"
                                 >
-                                    <Card className="bg-[#f5f5f5] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-transform hover:scale-[1.05] duration-300 w-80 h-[500px]">
-                                        {/* 📸 Image Section */}
-                                        <div className="relative">
+                                    <Card className="bg-[#f5f5f5] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-transform hover:scale-[1.05] duration-300 w-80 h-[300px]">
+                                        {/* 📸 Image Section with 3:4 Aspect Ratio */}
+                                        <div className="relative bg-[#002147] w-full aspect-[16/9] flex items-center justify-center overflow-hidden rounded-t-xl">
                                             <img
                                                 src={news.image}
                                                 alt={news.title}
-                                                className="w-full h-[260px] object-cover rounded-t-xl"
+                                                className="w-full h-full object-contain"
                                             />
                                             {/* 📌 Category Badge */}
                                             <span className="absolute top-2 left-2 bg-[#E87722] text-white text-xs font-semibold px-3 py-1 rounded-md">
@@ -134,7 +134,8 @@ const NewsUpdates = () => {
                                             </span>
                                         </div>
 
-                                        <CardContent className="p-5 flex flex-col h-[240px]">
+                                        {/* 📑 Card Content */}
+                                        <CardContent className="p-5 flex flex-col h-[calc(100%-75%)]">
                                             {/* 📰 Title */}
                                             <CardTitle className="text-lg font-semibold text-[#002147] leading-tight">
                                                 {news.title}
@@ -157,6 +158,7 @@ const NewsUpdates = () => {
                                             </div>
                                         </CardContent>
                                     </Card>
+
 
                                 </CarouselItem>
                             ))
