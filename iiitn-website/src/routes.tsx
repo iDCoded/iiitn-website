@@ -4,9 +4,8 @@ import About from "./About/page";
 import AdminDashboard from "./Admin/layout";
 import Departments from "./Departments/page";
 import Courses from "./Academics/Courses";
-import Programs from "./Academics/Programs";
 import AdmissionsBTech from "./Admissions/BTech/BTech";
-import AdmissionsMTech from "./Admissions/PostGraduate";
+// import AdmissionsMTech from "./Admissions/PostGraduate";
 import Placements from "./Placements/page";
 import Projects from "./Research/Projects/page";
 import Publications from "./Research/Publications/page";
@@ -100,14 +99,13 @@ const AppRoutes = () => (
 		/>
 		<Route path="/departments" element={<Departments />} />
 		<Route path="/departments/:param" element={<PageWrapper />} />
-		<Route path="/academics/courses" element={<Courses />} />
-		<Route path="/academics/programs" element={<Programs />} />
+		{/* <Route path="/academics/courses" element={<Courses />} /> */}
 		<Route path="/admissions/btech" element={<AdmissionsBTech />} />
 		<Route path="/admissions/btech/contact" element={<AdmissionContact />} />
 		<Route path="/admissions/btech/acadfees" element={<FirstYearAcadFee />} />
 		<Route path="/admissions/btech/hostelfees" element={<FirstYearHosFee />} />
-		<Route path="/admissions/btech/rulesandregulations" element={<InstRulesAndReg />}/>
-		<Route path="/admissions/mtech" element={<AdmissionsMTech />} />
+		<Route path="/admissions/btech/rulesandregulations" element={<InstRulesAndReg />} />
+		{/* <Route path="/admissions/mtech" element={<AdmissionsMTech />} /> */}
 		<Route path="/placements" element={<Placements />} />
 		<Route path="/placements/companies" element={<Companies />} />
 		<Route path="/placements/internships" element={<Internships />} />
@@ -138,7 +136,7 @@ const AppRoutes = () => (
 		<Route path="/pages/elclub" element={<ElectoralLiteracyClub />} />
 		<Route path="/pages/academicfee" element={<AcademicFeeDetails />} />
 		<Route path="/pages/academicfeepayment" element={<AcademicFeePayment />} />
-	 <Route path="/pages/hostelfee" element={<HostelFee />} />
+		<Route path="/pages/hostelfee" element={<HostelFee />} />
 		<Route path="/pages/hostelfeepayment" element={<HostelFeePayment />} />
 		<Route path="/pages/scholarships" element={<Scholarships />} />
 		<Route path="/pages/rti" element={<RTI />} />
@@ -158,7 +156,7 @@ const AppRoutes = () => (
 		<Route path="/visitors" element={<Visitors />} />
 		<Route path="/pages/grievance" element={<Grievance />} />
 		<Route path="/pages/grievance_committee_sc_st" element={<GrievanceCommSCSTCell />} />
-		<Route path="/pages/studentclubs" element={<StudentsClubs />} />		
+		<Route path="/pages/studentclubs" element={<StudentsClubs />} />
 		<Route path="/pages/icc" element={<InternalCompltComm />} />
 		<Route path="/pages/eoc" element={<EqualOppCell />} />
 		<Route path="/pages/directory" element={<Directory />} />

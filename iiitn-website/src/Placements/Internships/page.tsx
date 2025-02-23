@@ -94,6 +94,7 @@ const InternshipProgram = () => {
               ))}
             </tbody>
           </table>
+          Note: 
         </div>
 
         {/* Bank Details */}
