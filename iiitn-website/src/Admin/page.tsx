@@ -1,11 +1,11 @@
 import { EventForm } from "@/components/form/event-form";
 import { FacultyForm } from "@/components/form/faculty-form";
 import { ImageUpload } from "@/components/form/image-upload";
-import { AllFaculty } from "@/components/form/all-faculty";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AdminSidebar } from "./admin-sidebar";
+import FacultyTablePage from "./faculties/page";
 
 const sidebarData = {
 	navMain: [
@@ -64,14 +64,17 @@ const AdminPage = () => {
 		<>
 			<div className="px-8 flex justify-center items-center">
 				<AdminSidebar data={sidebarData} activeItem={sidebar} />
-				<Card className="w-5xl">
-					<CardContent className="p-6">
-						{sidebar === "#events" && <EventForm />}
-						{sidebar === "#media" && <ImageUpload />}
-						{sidebar === "#faculty" && <FacultyForm />}
-						{sidebar === "#allfaculty" && <AllFaculty />}
-					</CardContent>
-				</Card>
+				{sidebar !== "#allfaculty" && (
+					<Card className="w-5xl">
+						<CardContent className="p-6">
+							{sidebar === "#events" && <EventForm />}
+							{sidebar === "#media" && <ImageUpload />}
+							{sidebar === "#faculty" && <FacultyForm />}
+						</CardContent>
+					</Card>
+				)}
+
+				{sidebar === "#allfaculty" && <FacultyTablePage />}
 			</div>
 		</>
 	);
