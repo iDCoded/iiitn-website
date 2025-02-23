@@ -1,4 +1,3 @@
-import React from 'react';
 
 const acadFeeData = {
 	year: 2024, // Updated to reflect current academic year
