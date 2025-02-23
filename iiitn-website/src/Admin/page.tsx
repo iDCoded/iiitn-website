@@ -28,7 +28,7 @@ const sidebarData = {
 			url: "#",
 			items: [
 				{
-					title: "Manage Faculty",
+					title: "Create Faculty",
 					url: "#faculty",
 				},
 				{
