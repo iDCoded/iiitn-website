@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const newsData = [
     {
-        id: "news-1",
+        id: "news",
         category: "News",
         image: "https://static.toiimg.com/thumb/msid-117532524,imgsize-38444,width-400,height-225,resizemode-72/117532524.jpg",
         title: "Duo from IIIT Nagpur invited as special guests for Republic Day parade",
