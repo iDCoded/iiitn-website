@@ -69,7 +69,7 @@ export default function NewsCarousel() {
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/cards`);
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/card/cards`);
                 if (!res.ok) throw new Error("Failed to fetch news");
                 const data = await res.json();
 
