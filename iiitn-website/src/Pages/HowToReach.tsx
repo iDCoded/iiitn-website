@@ -60,9 +60,6 @@ function HowToReach() {
           ></iframe>
         </div>
       </section>
-
-      {/* Footer */}
-     
     </div>
   );
 }

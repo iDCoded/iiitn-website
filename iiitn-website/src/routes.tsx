@@ -68,6 +68,11 @@ import Directory from "./Pages/Directory";
 import FacultyDetail from "./Pages/FacultyDetail";
 import Facilities from "./Pages/Facilities";
 import InstitutesProfile from "./Pages/InstitutesProfile";
+import Formats from "./Pages/Formats";
+import AnnualAccountAndReports from "./Pages/AnnualAccountAndReports";
+import RtiDetailsAndReports from "./Pages/RtiDetailsAndReports";
+import MinutesOfMeeting from "./Pages/MinutesOfMeeting";
+import ImmutableProperty from "./Pages/ImmutableProperty";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -147,6 +152,7 @@ const AppRoutes = () => (
 		<Route path="/pages/studentachievements" element={<Achievements />} />
 		<Route path="/pages/facultyachievements" element={<FacultyAchievements />} />
 		<Route path="/pages/convocation" element={<Convocation />} />
+		<Route path="/pages/formats" element={<Formats />} />
 		<Route path="/pages/nirf" element={<NIRF />} />
 		{/* <Route path="/pages/hostellife" element={<HostelLife />} /> */}
 		<Route path="/pages/grievance" element={<Grievance />} />
@@ -165,6 +171,10 @@ const AppRoutes = () => (
 		<Route path="/faculty/:name" element={<FacultyDetail />} />
 		<Route path="/institute/facilities" element={<Facilities />} />
 		<Route path="/institute/institutesprofile" element={<InstitutesProfile />} />
+		{/* <Route path="/institute/annualreports" element={<AnnualAccountAndReports />}></Route>
+		<Route path="/institute/rtireports" element={<RtiDetailsAndReports />}></Route>
+		<Route path="/institute/minutesofmeeting" element={<MinutesOfMeeting/>}></Route>
+		<Route path="/institute/immutableproperties" element={<ImmutableProperty/>}></Route>  */}
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );

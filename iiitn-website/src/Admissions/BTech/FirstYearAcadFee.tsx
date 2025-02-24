@@ -1,8 +1,7 @@
-import React from "react";
 
 const acadFeeData = {
 	year: "2024-2025",
-	imgSrc: "#", // Replace with actual image URL
+	imgSrc: "https://iiitn.ac.in/images/admission2024/Academic.jpg",
 };
 
 function FirstYearAcadFee() {

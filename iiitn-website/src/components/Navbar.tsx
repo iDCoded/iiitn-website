@@ -8,6 +8,9 @@ const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isHomePage, setIsHomePage] = useState(window.location.pathname === "/");
+    const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+    const [openSubmenu, setOpenSubmenu] = useState<number | null>(null);
+    const [openNestedSubmenu, setOpenNestedSubmenu] = useState<number | null>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -33,10 +36,35 @@ const Navbar = () => {
 
     const dropdownLinks = [
         {
-            title: "Governance",
+            title: "The Institue",
             links: [
-                { name: "Committee", href: "/governance/committee" },
-                { name: "Administration", href: "/governance/administration" }
+                {
+                    name: "About Us",
+                    subLinks: [
+                        { name: "Overview", href: "/about" },
+                        { name: "Annual accounts and reports", href: "/institute/annual-accounts-and-reports" },
+                        { name: "RTI Details and Reports", href: "/institute/rti-details-and-reports" },
+                        { name: "Minutes of Meeting", href: "/institute/minutes-of-meeting" },
+                        { name: "Immutable Properties", href: "/institute/immutable-properties" },
+                    ]
+                },
+                { name: "Institute Profile ", href: " /institute/institutesprofile" },
+                {
+                    name: "Administration ",
+                    subLinks: [
+                        { name: "Board Of Governors", href: "/governance/committee#Board-of-Governors" },
+                        { name: "Finance Committee", href: "/governance/committee#Finance-Committee" },
+                        { name: "Senate", href: "/governance/committee#Senate" },
+                        { name: "Building Works Committee", href: "/governance/committee#Building-Works-Committee" },
+                        { name: "Academic Administration", href: "/governance/administration" },
+                        { name: "Grievance Committee SC/ST Cell", href: "/pages/grievancecomm" },
+                        { name: "Anti-Ragging Committee", href: "/administration/anti-ragging-committee" },
+                        { name: "Internal Complaint Committee", href: "/pages/icc" }
+                    ]
+                },
+                { name: "Campus Photo Gallery", href: "/pages/campusphotogallery" },
+                { name: "NIRF", href: "/pages/nirf" },
+                { name: "Facilities", href: "/institute/facilities" },
             ]
         },
         {
@@ -44,8 +72,8 @@ const Navbar = () => {
             links: [
                 { name: "Departments", href: "/departments" },
                 { name: "Courses", href: "/academics/courses" },
-                { name: "Curriculum", href: "/academics/curriculum" },
-                { name: "Time Table", href: "/academics/timetable" },
+                { name: "Academic Curricula", href: "/academics/curriculum" },
+                { name: "Time Table", href: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link" },
                 { name: "Fees", href: "/pages/academicfee" }
             ]
         },
@@ -54,11 +82,29 @@ const Navbar = () => {
             links: [
                 {
                     name: "B.Tech",
-                    href: "/admissions/btech",
                     subLinks: [
-                        { name: "Admission Process", href: "/admissions/btech/process" },
-                        { name: "Eligibility", href: "/admissions/btech/eligibility" },
-                        { name: "Seat Matrix", href: "/admissions/btech/seat-matrix" }
+                        { name: "Admission Process", href: "/admissions/btech" },
+                        { name: "Fees", href: "/admissions/btech/acadfees" },
+                        { name: "Scholarships", href: "/pages/scholarships" },
+                        { name: "Academic Rule Book", href: "https://iiitn.ac.in/Downloads/AcademicRuleBook/Academic%20Rule%20Book_B.Tech_2024-25%20Onwards.pdf" },
+                        { name: "Last Year Cut-Off", href: "https://iiitn.ac.in/images/admission2024/CUT%20OOFF.pdf" },
+                        { name: "Formats", href: "/pages/formats" },
+                        {
+                            name: "Loan Schemes", nestedLinks: [
+                                {
+                                    name: "SBI", href: "https://iiitn.ac.in/images/admission2025/SBI_SCHL.jpg"
+                                },
+                                {
+                                    name: "Canara Bank", href: "https://iiitn.ac.in/images/admission2024/CANARA_BANK_LOAN_SCHEME%20%282%29.pdf"
+                                },
+                                {
+                                    name: "PNB", href: "https://iiitn.ac.in/images/admission2024/PNB%20Bank%20_Loan%20Doc.pdf"
+                                },
+                                {
+                                    name: "Bank of Maharashtra", href: "https://iiitn.ac.in/images/admission2024/Edu%20loan%20flyer%20General-1.pdf"
+                                }
+                            ]
+                        }
                     ]
                 },
                 { name: "Post Graduate", href: "/admissions/mtech" }
@@ -76,7 +122,7 @@ const Navbar = () => {
             links: [
                 { name: "Why Recruit from IIIT Nagpur", href: "/placements" },
                 { name: "Internships", href: "/placements/internships" },
-                { name: "Statistics", href: "/placements/statistics" },
+                { name: "Statistics", href: "https://iiitn.ac.in/page/placement-statistics/45/" },
                 { name: "Companies", href: "/placements/companies" }
             ]
         },
@@ -94,7 +140,6 @@ const Navbar = () => {
             ]
         }
     ];
-
 
     return (
         <>
@@ -134,18 +179,79 @@ const Navbar = () => {
                     <div className="hidden lg:block px-6 py-3">
                         <ul className="flex space-x-10 text-lg text-white font-medium">
                             {dropdownLinks.map((item, index) => (
-                                <li key={index} className="relative group cursor-pointer hover:text-[#E87722]">
+                                <li
+                                    key={index}
+                                    className="relative group cursor-pointer hover:text-[#E87722]"
+                                    onMouseEnter={() => setOpenDropdown(index)}
+                                    onMouseLeave={() => setOpenDropdown(null)}
+                                >
                                     {item.title}
-                                    <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                    {/* Dropdown Menu */}
+                                    <ul className={`absolute top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md transition-all duration-200 
+                                    ${index === dropdownLinks.length - 1 ? "right-0" : "left-0"} 
+                                    ${openDropdown === index ? "opacity-100 visible" : "opacity-0 invisible"}`}
+                                    >
+
                                         {item.links.map((link, i) => (
-                                            <a key={i} href={link.href}>
-                                                <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">{link.name}</li>
-                                            </a>
+                                            <div
+                                                key={i}
+                                                className="relative group"
+                                                onMouseEnter={() => setOpenSubmenu(i)}
+                                                onMouseLeave={() => setOpenSubmenu(null)}
+                                            >
+                                                <a href={link.href}>
+                                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:rounded-sm hover:text-white">
+                                                        {link.name}
+                                                    </li>
+                                                </a>
+                                                {link.subLinks && (
+                                                    <ul className={`absolute top-0 mt-0 w-48 bg-white text-[#002147] border shadow-lg rounded-md transition-all duration-200 
+                                                    ${index === dropdownLinks.length - 1 ? "right-full" : "left-full"} 
+                                                    ${openSubmenu === i ? "opacity-100 visible" : "opacity-0 invisible"}`}
+                                                    >
+                                                        {link.subLinks.map((subLink, j) => (
+                                                            <li
+                                                                key={j}
+                                                                className="relative group"
+                                                                onMouseEnter={() => setOpenNestedSubmenu(j)}
+                                                                onMouseLeave={() => setOpenNestedSubmenu(null)}
+                                                            >
+                                                                <a
+                                                                    href={subLink.href}
+                                                                    className="block px-4 py-2 hover:bg-[#E87722] hover:text-white rounded-sm"
+                                                                >
+                                                                    {subLink.name}
+                                                                </a>
+
+                                                                {/* Nested Submenu (if exists) */}
+                                                                {subLink.nestedLinks && (
+                                                                    <ul
+                                                                        className={`absolute top-0 mt-0 w-48 bg-white text-[#002147] border shadow-lg rounded-md transition-all duration-200 
+                ${j === link.subLinks.length - 1 ? "right-full" : "left-full"} 
+                ${openNestedSubmenu === j ? "opacity-100 visible" : "opacity-0 invisible"}`}
+                                                                    >
+                                                                        {subLink.nestedLinks && subLink.nestedLinks.map((nestedLink, k) => (
+                                                                            <li key={k}>
+                                                                                <a
+                                                                                    href={nestedLink.href}
+                                                                                    className="block px-4 py-2 hover:bg-[#E87722] hover:text-white rounded-md"
+                                                                                >
+                                                                                    {nestedLink.name}
+                                                                                </a>
+                                                                            </li>
+                                                                        ))}
+                                                                    </ul>
+                                                                )}
+                                                            </li>
+                                                        ))}
+
+                                                    </ul>
+                                                )}
+                                            </div>
                                         ))}
                                     </ul>
                                 </li>
                             ))}
-                            <li className="hover:text-[#E87722]"><a href="/about">About</a></li>
                         </ul>
                     </div>
                 </nav>
