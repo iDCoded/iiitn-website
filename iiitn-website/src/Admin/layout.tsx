@@ -36,6 +36,11 @@ const sidebarData = {
 	],
 };
 
+// Extract valid hashes dynamically from sidebarData
+const validHashes = sidebarData.navMain.flatMap((section) =>
+	section.items.map((item) => item.url)
+);
+
 export default function AdminDashboard({
 	children,
 }: {
@@ -45,14 +50,9 @@ export default function AdminDashboard({
 	const [lastSelected, setLastSelected] = useState<string | null>("#card");
 
 	const location = useLocation();
+
 	useEffect(() => {
-		console.log("hash", location.hash);
-		if (
-			location.hash === "#card" ||
-			location.hash === "#media" ||
-			location.hash === "#faculty" ||
-			location.hash === "#allfaculty"
-		) {
+		if (validHashes.includes(location.hash)) {
 			setSidebar(location.hash);
 			setLastSelected(location.hash);
 		} else {
