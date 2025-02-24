@@ -40,7 +40,21 @@ const EventDetail = () => {
     const [event, setEvent] = useState<{ id: string; image: string; title: string; content: string; date: string; location: string; large: boolean; } | null>(null);
 
     useEffect(() => {
-        // Fetch the event details from the database or use local data
+        const fetchEvent = async () => {
+            try {
+                const response = await fetch(`${process.env.REACT_APP_BASE_URL}/cards/${eventid}`);
+                if (!response.ok) {
+                    throw new Error("Event not found");
+                }
+                const data = await response.json();
+                setEvent(data);
+            } catch (error) {
+                // console.error("Error fetching event:", error);
+                setEvent(eventsData.find((e) => e.id === eventid) || null);
+            }
+        };
+
+        fetchEvent();
         const foundEvent = eventsData.find((e) => e.id === eventid);
         setEvent(foundEvent || null);
     }, [eventid]);

@@ -28,8 +28,23 @@ function DetailedNews() {
   const [news, setNews] = useState<{ id: string; title: string; image: string; content: string } | null>(null);
 
   useEffect(() => {
-    const selectedNews = newsData.find((item) => item.id === newsId);
-    setNews(selectedNews || null);
+    const fetchNews = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/cards/${newsId}`);
+        if (!response.ok) {
+          throw new Error("Event not found");
+        }
+        const data = await response.json();
+        setNews(data);
+      } catch (error) {
+        // console.error("Error fetching event:", error);
+        setNews(newsData.find((e) => e.id === newsId) || null);
+      }
+    };
+
+    fetchNews();
+    const foundEvent = newsData.find((e) => e.id === newsId);
+    setNews(foundEvent || null);
   }, [newsId]);
 
   if (!news) {
