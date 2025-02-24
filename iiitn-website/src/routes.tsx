@@ -68,6 +68,10 @@ import Directory from "./Pages/Directory";
 import FacultyDetail from "./Pages/FacultyDetail";
 import Facilities from "./Pages/Facilities";
 import InstitutesProfile from "./Pages/InstitutesProfile";
+import AnnualAccountAndReports from "./Pages/AnnualAccountAndReports";
+import RtiDetailsAndReports from "./Pages/RtiDetailsAndReports";
+import MinutesOfMeeting from "./Pages/MinutesOfMeeting";
+import ImmutableProperty from "./Pages/ImmutableProperty";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -165,6 +169,10 @@ const AppRoutes = () => (
 		<Route path="/faculty/:name" element={<FacultyDetail />} />
 		<Route path="/institute/facilities" element={<Facilities />} />
 		<Route path="/institute/institutesprofile" element={<InstitutesProfile />} />
+		<Route path="/institute/annual-accounts-and-reports" element={<AnnualAccountAndReports />}></Route>
+		<Route path="/institute/rti-details-and-reports" element={<RtiDetailsAndReports />}></Route>
+		<Route path="/institute/minutes-of-meeting" element={<MinutesOfMeeting/>}></Route>
+		<Route path="/institute/immutable-properties" element={<ImmutableProperty/>}></Route> 
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );
