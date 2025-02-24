@@ -1,7 +1,9 @@
+import acadfee from '../assets/acadfee.jpg';
+
 
 const acadFeeData = {
 	year: 2024, // Updated to reflect current academic year
-	imgSrc: '#', // Replace with actual image URL
+	imgSrc: acadfee, // Replace with actual image URL
 };
 
 function AcademicFeeDetails() {
