@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa"; // Icons for menu toggle
+import logo from "../assets/logo.png"; // Logo Image
 
-const imgSrc = "https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png";
+const imgSrc = logo;
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -84,12 +85,12 @@ const Navbar = () => {
             links: [
                 { name: "Consultancy", href: "/pages/consultancy" },
                 { name: "Institution Innovation Council", href: "/pages/iic" },
-                {name: "Electoral Literacy Club", href: "/pages/elclub" },
+                { name: "Electoral Literacy Club", href: "/pages/elclub" },
                 { name: "Guest House", href: "/pages/guesthouse" },
                 { name: "Press Release", href: "/pages/pressrelease" },
                 { name: "Tenders", href: "/pages/tenders" },
-                {name: "RTI", href: "/pages/rti" },
-                {name:"Official Documents" , href:"/pages/officialdocuments" },
+                { name: "RTI", href: "/pages/rti" },
+                { name: "Official Documents", href: "/pages/officialdocuments" },
             ]
         }
     ];
@@ -98,7 +99,7 @@ const Navbar = () => {
     return (
         <>
             {/* Transparent Overlay (Only for Home Page) */}
-            {isHomePage && <div className="absolute left-0 w-full h-[75vh] bg-gradient-to-b from-[#002147] to-transparent z-1"></div>}
+            {isHomePage && <div className="absolute left-0 top-5 w-full h-[33vh] bg-gradient-to-b from-[#002147] via-[#7BA4D4] to-transparent z-1"></div>}
 
             {/* Fixed Navbar */}
             <div className="fixed top-0 left-0 w-full z-50 transition-transform duration-200">
