@@ -4,14 +4,17 @@ const departments = [
     {
         title: "Computer Science",
         image: "/images/cse.jpg",
+        link: "/departments/cse",
     },
     {
         title: "Electronics & Communication",
         image: "/images/ece.jpg",
+        link: "/departments/ece",
     },
     {
         title: "Basic Sciences",
         image: "/images/basic-sciences.jpg",
+        link: "/departments/basic_science",
     },
 ];
 
@@ -28,7 +31,7 @@ const Departments = () => {
             {/* Departments Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 {departments.map((dept, index) => (
-                    <a href={`/departments/${dept.title}`} key={index} className="group relative">
+                    <a href={dept.link} key={index} className="group relative">
                         <Card className="relative overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 rounded-lg">
                             {/* Image with Hover Effect */}
                             <div className="relative overflow-hidden rounded-lg">
