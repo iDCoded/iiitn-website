@@ -6,7 +6,7 @@ import img5 from "../assets/IIIT12.jpg";
 
 const campusLifeImages = [
     { src: img1, title: "Campus", span: "col-span-2 row-span-1" },
-    { src: img2, title: "College Festivals", span: "col-span-1 row-span-2" },
+    { src: img2, title: "Lab", span: "col-span-1 row-span-2" },
     { src: img3, title: "Sports", span: "col-span-1 row-span-1" },
     { src: img4, title: "Amenities", span: "col-span-1 row-span-1" },
     { src: img5, title: "Campus Life", span: "col-span-2 row-span-1" },
