@@ -49,7 +49,7 @@ import FirstYearHosFee from "./Admissions/BTech/FirstYearHosFee";
 import InstRulesAndReg from "./Admissions/BTech/InstRulesAndReg";
 import AlumniForm from "./components/AlumniForm";
 import RTI from "./Pages/RTI";
-import Recruitment from "./Pages/Recruitments";
+
 import Visitors from "./Pages/Visitors";
 import ClinicalCounselling from "./Pages/ClinicalCounselling";
 import Mess from "./Pages/Mess";
@@ -66,6 +66,7 @@ import FacultyAchievements from "./Pages/FacultyAchievements";
 import StudentsClubs from "./Pages/StudentsClubs";
 import Directory from "./Pages/Directory";
 import FacultyDetail from "./Pages/FacultyDetail";
+import Facilities from "./Pages/Facilities";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -140,7 +141,6 @@ const AppRoutes = () => (
 		<Route path="/pages/hostelfeepayment" element={<HostelFeePayment />} />
 		<Route path="/pages/scholarships" element={<Scholarships />} />
 		<Route path="/pages/rti" element={<RTI />} />
-		<Route path="/pages/recruitment" element={<Recruitment />} />
 		<Route path="/pages/clinicalcounselling" element={<ClinicalCounselling />} />
 		<Route path="/pages/mess" element={<Mess />} />
 		<Route path="/pages/studentachievements" element={<Achievements />} />
@@ -162,6 +162,7 @@ const AppRoutes = () => (
 		<Route path="/pages/directory" element={<Directory />} />
 		<Route path="/pages/directory" element={<Directory />} />
 		<Route path="/faculty/:name" element={<FacultyDetail />} />
+		<Route path="/about/facilities" element={<Facilities />} />
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );
