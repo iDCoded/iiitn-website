@@ -19,7 +19,6 @@ export const columns: ColumnDef<IMedia>[] = [
 			return (
 				<div>
 					<Eye />
-					<p>{media.title}</p>
 				</div>
 			);
 		},

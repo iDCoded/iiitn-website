@@ -9,7 +9,7 @@ function Placements() {
                     <p className="text-xl mt-2">Stay connected and contribute to the growth of IIIT Nagpur.</p>
                 </div>
 
-                <div className='flex flex-col border-4 border-black p-6 m-4 rounded-lg bg-white shadow-lg'>
+                <div className='flex flex-col  p-6 m-4 rounded-lg bg-white shadow-lg'>
                     <h1 className="text-3xl font-semibold mb-4">About Us</h1>
                     <p className="text-gray-700 leading-relaxed">At IIITN, the Training & Placement Office is of strategic importance. It takes various initiatives to transform the students into a smart workforce. The T&P Office believes in providing quality internships and placements to all its students.
                         Consistent efforts are made to collaborate with leading organizations for joint technological development and research initiatives, internships, and placements. It acts as a Resource Centre, where students get information about various training programs, online courses, internships, and projects at various Govt Organizations in India.</p>
@@ -21,7 +21,7 @@ function Placements() {
                     </div>
                 </div>
 
-                <div className='flex flex-col border-4 border-black p-6 m-4 rounded-lg bg-white shadow-lg'>
+                <div className='flex flex-col  p-6 m-4 rounded-lg bg-white shadow-lg'>
                     <h1 className="text-3xl font-semibold mb-4">Why Recruit from IIIT Nagpur</h1>
                     <p className="text-gray-700 leading-relaxed">IIIT Nagpur is home to highly skilled and innovative students trained in various domains of technology and research. The rigorous academic curriculum and hands-on industry exposure ensure that our students are ready to contribute effectively in the corporate world.</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
