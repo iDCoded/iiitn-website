@@ -16,10 +16,15 @@ export interface Faculty {
 	f_id: number;
 	p_id: number;
 	d_id: number;
+	pub_id: number;
+	media_img_id: number;
 	join_year: number;
 	positions: string;
+	education: string;
+	experience: string;
+	teaching: string;
+	research: string;
 	f_or_s: "Faculty" | "Staff";
-	person: Person;
 }
 
 export interface ICard {
