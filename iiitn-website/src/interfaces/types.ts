@@ -32,3 +32,17 @@ export interface ICard {
 	added_by: number;
 	media?: FileList;
 }
+
+export interface IMedia {
+	m_id: number;
+	m_category: string;
+	m_sub_category: string;
+	title: string;
+	media_img_id?: number | null;
+	media_vid_id?: number | null;
+	media_doc_id?: number | null;
+	updated_by?: number | null;
+	updated_time?: Date;
+	added_by?: number | null;
+	added_time?: Date;
+}
