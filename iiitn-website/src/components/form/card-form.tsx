@@ -19,7 +19,7 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { ImageIcon } from "lucide-react";
-import { Textarea } from "../ui/textarea";
+import MDEditor from "@uiw/react-md-editor";
 
 const formSchema = z.object({
 	title: z.string().min(1, "Title is required"),
@@ -151,9 +151,11 @@ export function CardForm() {
 							<FormItem>
 								<FormLabel>Content</FormLabel>
 								<FormControl>
-									<Textarea
-										placeholder="Enter the content for the card"
-										{...field}
+									<MDEditor
+										value={field.value}
+										onChange={field.onChange}
+										data-color-mode="light"
+										preview="edit"
 									/>
 								</FormControl>
 								<FormMessage />

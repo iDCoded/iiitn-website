@@ -1,21 +1,15 @@
+import { Button } from "@/components/ui/button";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Card } from "@/interfaces/types";
 import { ColumnDef } from "@tanstack/react-table";
-
-export type Card = {
-	c_id: string;
-	title: string;
-	caption: string;
-	content: string;
-	location: string;
-	c_category: string;
-	c_sub_category: string;
-	date: Date;
-	media_img_id: number;
-	media_vid_id: number;
-	media_doc_id: number;
-	updated_by: number;
-	added_by: number;
-	media?: FileList;
-};
+import { MoreHorizontal } from "lucide-react";
+import CardEditDialog from "./card-edit-dialog";
 
 export const columns: ColumnDef<Card>[] = [
 	{
@@ -37,5 +31,33 @@ export const columns: ColumnDef<Card>[] = [
 	{
 		accessorKey: "date",
 		header: "Date",
+	},
+	{
+		id: "actions",
+		cell: ({ row }) => {
+			const card = row.original;
+
+			return (
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<Button variant="ghost" className="h-8 w-8 p-0">
+							<span className="sr-only">Open menu</span>
+							<MoreHorizontal className="h-4 w-4" />
+						</Button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent align="end">
+						<DropdownMenuLabel>Actions</DropdownMenuLabel>
+						<CardEditDialog card={card} />
+						<DropdownMenuItem
+							className="text-red-400"
+							onClick={() => {
+								console.log(`Deleted ${card.c_id}`);
+							}}>
+							Delete Card
+						</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
+			);
+		},
 	},
 ];
