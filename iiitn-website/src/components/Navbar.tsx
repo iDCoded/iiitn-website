@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa"; // Icons for menu toggle
+import logo from "../assets/logo.png"; // Logo Image
 
-const imgSrc = "https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png";
+const imgSrc = logo;
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -45,7 +46,7 @@ const Navbar = () => {
                 { name: "Courses", href: "/academics/courses" },
                 { name: "Curriculum", href: "/academics/curriculum" },
                 { name: "Time Table", href: "/academics/timetable" },
-                { name: "Fees", href: "/academics/fees" }
+                { name: "Fees", href: "/pages/academicfee" }
             ]
         },
         {
@@ -53,7 +54,7 @@ const Navbar = () => {
             links: [
                 {
                     name: "B.Tech",
-                    href: "#",
+                    href: "/admissions/btech",
                     subLinks: [
                         { name: "Admission Process", href: "/admissions/btech/process" },
                         { name: "Eligibility", href: "/admissions/btech/eligibility" },
@@ -83,17 +84,22 @@ const Navbar = () => {
             title: "Others",
             links: [
                 { name: "Consultancy", href: "/pages/consultancy" },
-                { name: "Innovation Council", href: "/pages/iic" },
-                { name: "Guest House", href: "/pages/guesthouse" }
+                { name: "Institution Innovation Council", href: "/pages/iic" },
+                { name: "Electoral Literacy Club", href: "/pages/elclub" },
+                { name: "Guest House", href: "/pages/guesthouse" },
+                { name: "Press Release", href: "/pages/pressrelease" },
+                { name: "Tenders", href: "/pages/tenders" },
+                { name: "RTI", href: "/pages/rti" },
+                { name: "Official Documents", href: "/pages/officialdocuments" },
             ]
         }
     ];
-    
+
 
     return (
         <>
             {/* Transparent Overlay (Only for Home Page) */}
-            {isHomePage && <div className="absolute left-0 w-full h-[75vh] bg-gradient-to-b from-[#002147] to-transparent z-1"></div>}
+            {isHomePage && <div className="absolute left-0 top-5 w-full h-[33vh] bg-gradient-to-b from-[#002147] via-[#7BA4D4] to-transparent z-1"></div>}
 
             {/* Fixed Navbar */}
             <div className="fixed top-0 left-0 w-full z-50 transition-transform duration-200">
@@ -108,7 +114,7 @@ const Navbar = () => {
                 </nav>
 
                 {/* 🔹 Middle Section with Logo and Mobile Menu Button */}
-                <nav className={`w-full px-6 py-2 flex justify-between items-center ${isHomePage && !isScrolled ? "bg-transparent" : "bg-[#002147]"}`}>
+                <nav className={`w-full px-8 py-2 flex justify-between items-center ${isHomePage && !isScrolled ? "bg-transparent" : "bg-[#002147]"}`}>
                     <a href="/">
                         <div className="flex items-center space-x-4">
                             <img src={imgSrc} alt="IIITN Logo" className="h-16 w-16" />

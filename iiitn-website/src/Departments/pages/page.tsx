@@ -98,7 +98,7 @@ export default function DepartmentPage({ title }: PageProps) {
         { id: "bos", title: "Board of Studies", content: data.bos },
         { id: "achievements", title: "Achievements", content: data.achievements },
         { id: "research", title: "Research", content: data.research },
-        { id: "facultyandstaff", title: "Faculty", content: data.facultyandstaff },
+        { id: "facultyandstaff", title: "Faculty & Staff", content: data.facultyandstaff },
         { id: "projects", title: "Projects", content: data.projects },
         { id: "laboratory", title: "Laboratories", content: data.laboratory },
     ];
@@ -159,7 +159,7 @@ export default function DepartmentPage({ title }: PageProps) {
                                 {section.id === "facultyandstaff" && (
                                     <div className="mt-4">
                                         <Button asChild>
-                                            <a href="/pages/directory" className="text-white">
+                                            <a href={`/pages/directory?department=${title}`} className="text-white">
                                                 Learn More
                                             </a>
                                         </Button>

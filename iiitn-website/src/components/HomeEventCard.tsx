@@ -1,3 +1,4 @@
+
 type Event = {
     image?: string;
     title: string;
@@ -12,11 +13,11 @@ const HomeEventCard = ({ event }: { event: Event }) => (
             ${event.large ? "md:h-full" : "md:h-[200px]"} min-h-[250px] sm:min-h-[300px] flex flex-col`}
     >
         {/* Event Image */}
-        <div className="absolute inset-0 overflow-hidden rounded-lg">
+        <div className="absolute inset-0 overflow-hidden rounded-lg bg-black">
             <img
                 src={event.image || "/default-event.jpg"}
                 alt={event.title}
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                className="w-full h-full object-fit transition-transform duration-500 hover:scale-105"
             />
         </div>
 

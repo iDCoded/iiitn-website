@@ -160,6 +160,7 @@ const AppRoutes = () => (
 		<Route path="/pages/icc" element={<InternalCompltComm />} />
 		<Route path="/pages/eoc" element={<EqualOppCell />} />
 		<Route path="/pages/directory" element={<Directory />} />
+		<Route path="/pages/directory" element={<Directory />} />
 		<Route path="/faculty/:name" element={<FacultyDetail />} />
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
