@@ -2,24 +2,34 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const newsData = [
-  {
-    id: "ai-research",
-    title: "IIIT Nagpur Achieves Milestone in AI Research",
-    image: "https://source.unsplash.com/800x400/?news,technology",
-    content: `IIIT Nagpur has recently made significant advancements in AI research.
-    
-    The institute has developed a cutting-edge machine learning model that outperforms previous benchmarks in natural language processing tasks.
-    
-    This breakthrough marks a new era for artificial intelligence applications in India.`,
-  },
-  {
-    id: "fest-2024",
-    title: "IIIT Nagpur Hosts Grand Tech Fest 2024",
-    image: "https://source.unsplash.com/800x400/?event,technology",
-    content: `The annual tech fest witnessed participation from over 1000 students across various institutions.
-    
-    Keynote speakers from leading tech companies shared insights on the latest industry trends, including AI, Blockchain, and Quantum Computing.`,
-  },
+    {
+        id: "news",
+        category: "News",
+        image: "https://static.toiimg.com/thumb/msid-117532524,imgsize-38444,width-400,height-225,resizemode-72/117532524.jpg",
+        title: "Duo from IIIT Nagpur invited as special guests for Republic Day parade",
+        description: "IIIT Nagpur has signed an MoU with the Maharashtra government to promote AI and ML in the state.",
+    },
+    {
+        id: "updates-1",
+        category: "Updates",
+        image: "https://imgs.search.brave.com/WE_FzZkUn2nRyWQI6BE3eBdqnhN49qmN4f_7EdEcY4s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9paWl0/bi5hYy5pbi9pbWFn/ZXMvTmV3c0V2ZW50/cy83ODUvTmV3c0lt/YWdlLkpQRw",
+        title: "2nd Convocation Ceremony",
+        description: "IIIT Nagpur recently held its 2nd convocation ceremony with students receiving their degrees and awards.",
+    },
+    {
+        id: "news-2",
+        category: "News",
+        image: "https://imgs.search.brave.com/MWacu6ain-mbYnq57K9WQV5xJ2T422cSdSePqObriBs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9paWl0/bi5hYy5pbi9pbWFn/ZXMvU2xpZGVyLzIz/MC9TbGlkZXItMjMw/LmpwZw",
+        title: "Training on Public Procurement",
+        description: "Training on Public Procurement during Vigilance Awareness Week at IIIT Nagpur.",
+    },
+    {
+        id: "updates-2",
+        category: "Updates",
+        image: "https://iiitn.ac.in/images/album/republic-day-2025//ThumbnailImage.jpg",
+        title: "76th Republic Day Celebration",
+        description: "IIIT Nagpur celebrated the 76th Republic Day with patriotic fervor and enthusiasm.",
+    },
 ];
 
 function DetailedNews() {
@@ -38,13 +48,32 @@ function DetailedNews() {
         setNews(data);
       } catch (error) {
         // console.error("Error fetching event:", error);
-        setNews(newsData.find((e) => e.id === newsId) || null);
+        const foundEvent = newsData.find((e) => e.id === newsId);
+        if (foundEvent) {
+          setNews({
+            id: foundEvent.id,
+            title: foundEvent.title,
+            image: foundEvent.image,
+            content: foundEvent.description,
+          });
+        } else {
+          setNews(null);
+        }
       }
     };
 
     fetchNews();
     const foundEvent = newsData.find((e) => e.id === newsId);
-    setNews(foundEvent || null);
+    setNews(
+      foundEvent
+        ? {
+            id: foundEvent.id,
+            title: foundEvent.title,
+            image: foundEvent.image,
+            content: foundEvent.description,
+          }
+        : null
+    );
   }, [newsId]);
 
   if (!news) {
