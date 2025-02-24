@@ -45,7 +45,6 @@ const Navbar = () => {
                         { name: "RTI Details and Reports", href: "/institute/rti-details-and-reports" },
                         { name: "Minutes of Meeting", href: "/institute/minutes-of-meeting" },
                         { name: "Immutable Properties", href: "/institute/immutable-properties" },
-                        { name: "Facilities", href: "/institute/facilities" },
                     ]
                 },
                 { name: "Institute Profile ", href: " /institute/institutesprofile" },
@@ -57,13 +56,13 @@ const Navbar = () => {
                         { name: "Senate", href: "/governance/committee#Senate" },
                         { name: "Building Works Committee", href: "/governance/committee#Building-Works-Committee" },
                         { name: "Academic Administration", href: "/governance/administration" },
-                        { name: "Grievance Committee SC/ST Cell", href: "/administration/grievance-committee-sc-st-cell" },
+                        { name: "Grievance Committee SC/ST Cell", href: "/pages/grievancecomm" },
                         { name: "Anti-Ragging Committee", href: "/administration/anti-ragging-committee" },
-                        { name: "Internal Complaint Committee", href: "/administration/internal-complaint-committee" }
+                        { name: "Internal Complaint Committee", href: "/pages/icc" }
                     ]
                 },
-                { name: "NIRF", href: "/institute/nirf" },
-
+                { name: "NIRF", href: "/pages/nirf" },
+                { name: "Facilities", href: "/institute/facilities" },
             ]
         },
         {
