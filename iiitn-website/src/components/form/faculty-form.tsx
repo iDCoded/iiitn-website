@@ -19,45 +19,71 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
+import { Faculty } from "@/interfaces/types";
 
 const formSchema = z.object({
+	f_id: z.string(),
 	p_id: z.string(),
 	d_id: z.string(),
-	join_year: z
-		.string()
-		.regex(/^\d{4}$/, { message: "Please enter a valid year" }),
+	pub_id: z.string(),
+	media_img_id: z.string(),
+	join_year: z.coerce.number().int().gte(1900).lte(new Date().getFullYear()),
 	positions: z.string().min(1, { message: "Please enter the positions" }),
 	f_or_s: z.enum(["Faculty", "Staff"], {
 		message: "Please select Faculty or Staff",
 	}),
+	education: z.string().min(1, { message: "Please enter the education" }),
+	experience: z.coerce.number(),
+	teaching: z.string().min(1, { message: "Please enter the teaching" }),
+	research: z.string().min(1, { message: "Please enter the research" }),
 });
 
 export function FacultyForm() {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			p_id: "0",
-			d_id: "0",
-			join_year: "",
+			f_id: "",
+			p_id: "",
+			d_id: "",
+			pub_id: "",
+			media_img_id: "",
+			join_year: new Date().getFullYear(),
 			positions: "",
 			f_or_s: "Faculty",
+			education: "",
+			experience: 0,
+			teaching: "",
+			research: "",
 		},
 	});
 
 	const handleSubmit = async (data: z.infer<typeof formSchema>) => {
-		const res = await fetch("http://localhost:5000/faculty/faculty_staff", {
+		const facultyData: Faculty = {
+			f_id: "1",
+			p_id: "1",
+			d_id: "2",
+			pub_id: "1",
+			media_img_id: 1,
+			join_year: data.join_year,
+			positions: data.positions,
+			f_or_s: data.f_or_s,
+			education: data.education,
+			experience: data.experience,
+			teaching: data.teaching,
+			research: data.research,
+		};
+
+		await fetch("http://localhost:5000/faculty/faculty_staff", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(data),
+			body: JSON.stringify(facultyData),
 		});
-		const res_json = await res.json();
-		console.log("Res", res_json);
 	};
 
 	return (
-		<div className="max-w-3xl mx-auto">
+		<div className=" mx-auto">
 			<div className="flex items-center gap-3 mb-8">
 				<div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center">
 					<User className="h-6 w-6 text-primary" />
@@ -70,32 +96,6 @@ export function FacultyForm() {
 
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
-					<FormField
-						control={form.control}
-						name="p_id"
-						render={({ field }) => (
-							<FormItem className="space-y-2">
-								<FormLabel htmlFor="p_id">ID</FormLabel>
-								<FormControl>
-									<Input id="p_id" placeholder="Enter ID" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="d_id"
-						render={({ field }) => (
-							<FormItem className="space-y-2">
-								<FormLabel htmlFor="p_id">Department ID</FormLabel>
-								<FormControl>
-									<Input id="p_id" placeholder="Enter ID" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
 					<FormField
 						control={form.control}
 						name="join_year"
@@ -128,14 +128,80 @@ export function FacultyForm() {
 					/>
 					<FormField
 						control={form.control}
+						name="education"
+						render={({ field }) => (
+							<FormItem className="space-y-2">
+								<FormLabel htmlFor="education">Education</FormLabel>
+								<FormControl>
+									<Input
+										id="education"
+										placeholder="Enter education"
+										{...field}
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="experience"
+						render={({ field }) => (
+							<FormItem className="space-y-2">
+								<FormLabel htmlFor="experience">Experience</FormLabel>
+								<FormControl>
+									<Input
+										id="experience"
+										placeholder="Enter experience"
+										{...field}
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="teaching"
+						render={({ field }) => (
+							<FormItem className="space-y-2">
+								<FormLabel htmlFor="teaching">Teaching</FormLabel>
+								<FormControl>
+									<Input
+										id="teaching"
+										placeholder="Enter teaching"
+										{...field}
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="research"
+						render={({ field }) => (
+							<FormItem className="space-y-2">
+								<FormLabel htmlFor="research">Research</FormLabel>
+								<FormControl>
+									<Input
+										id="research"
+										placeholder="Enter research"
+										{...field}
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
 						name="f_or_s"
 						render={({ field }) => (
 							<FormItem className="space-y-2">
 								<FormLabel htmlFor="f_or_s">Faculty or Staff</FormLabel>
 								<FormControl>
-									<Select
-										onValueChange={field.onChange}
-										defaultValue={field.value}>
+									<Select onValueChange={field.onChange} value={field.value}>
 										<SelectTrigger>
 											<SelectValue placeholder="Select Faculty or Staff" />
 										</SelectTrigger>
