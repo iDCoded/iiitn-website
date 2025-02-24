@@ -9,7 +9,7 @@ import CardTablePage from "./cards/page";
 const validHashes = ["#card", "#media", "#faculty", "#allfaculty"];
 
 const AdminPage = () => {
-	const [sidebar, setSidebar] = useState<string | null>("#events");
+	const [sidebar, setSidebar] = useState<string | null>("#card");
 	const location = useLocation();
 
 	useEffect(() => {
