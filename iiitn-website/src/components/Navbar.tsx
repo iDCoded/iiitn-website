@@ -10,6 +10,7 @@ const Navbar = () => {
     const [isHomePage, setIsHomePage] = useState(window.location.pathname === "/");
     const [openDropdown, setOpenDropdown] = useState<number | null>(null);
     const [openSubmenu, setOpenSubmenu] = useState<number | null>(null);
+    const [openNestedSubmenu, setOpenNestedSubmenu] = useState<number | null>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -61,6 +62,7 @@ const Navbar = () => {
                         { name: "Internal Complaint Committee", href: "/pages/icc" }
                     ]
                 },
+                { name: "Campus Photo Gallery", href: "/pages/campusphotogallery" },
                 { name: "NIRF", href: "/pages/nirf" },
                 { name: "Facilities", href: "/institute/facilities" },
             ]
@@ -80,11 +82,29 @@ const Navbar = () => {
             links: [
                 {
                     name: "B.Tech",
-                    // href: "/admissions/btech",
                     subLinks: [
                         { name: "Admission Process", href: "/admissions/btech" },
-                        { name: "Eligibility", href: "/admissions/btech" },
-                        { name: "Seat Matrix", href: "/admissions/btech/seat-matrix" }
+                        { name: "Fees", href: "/admissions/btech/acadfees" },
+                        { name: "Scholarships", href: "/pages/scholarships" },
+                        { name: "Academic Rule Book", href: "https://iiitn.ac.in/Downloads/AcademicRuleBook/Academic%20Rule%20Book_B.Tech_2024-25%20Onwards.pdf" },
+                        { name: "Last Year Cut-Off", href: "https://iiitn.ac.in/images/admission2024/CUT%20OOFF.pdf" },
+                        { name: "Formats", href: "/pages/formats" },
+                        {
+                            name: "Loan Schemes", nestedLinks: [
+                                {
+                                    name: "SBI", href: "https://iiitn.ac.in/images/admission2025/SBI_SCHL.jpg"
+                                },
+                                {
+                                    name: "Canara Bank", href: "https://iiitn.ac.in/images/admission2024/CANARA_BANK_LOAN_SCHEME%20%282%29.pdf"
+                                },
+                                {
+                                    name: "PNB", href: "https://iiitn.ac.in/images/admission2024/PNB%20Bank%20_Loan%20Doc.pdf"
+                                },
+                                {
+                                    name: "Bank of Maharashtra", href: "https://iiitn.ac.in/images/admission2024/Edu%20loan%20flyer%20General-1.pdf"
+                                }
+                            ]
+                        }
                     ]
                 },
                 { name: "Post Graduate", href: "/admissions/mtech" }
@@ -120,7 +140,6 @@ const Navbar = () => {
             ]
         }
     ];
-
 
     return (
         <>
@@ -185,19 +204,47 @@ const Navbar = () => {
                                                         {link.name}
                                                     </li>
                                                 </a>
-                                                {/* Submenu */}
                                                 {link.subLinks && (
                                                     <ul className={`absolute top-0 mt-0 w-48 bg-white text-[#002147] border shadow-lg rounded-md transition-all duration-200 
                                                     ${index === dropdownLinks.length - 1 ? "right-full" : "left-full"} 
                                                     ${openSubmenu === i ? "opacity-100 visible" : "opacity-0 invisible"}`}
                                                     >
                                                         {link.subLinks.map((subLink, j) => (
-                                                            <a key={j} href={subLink.href}>
-                                                                <li className="px-4 py-2 hover:bg-[#E87722] hover:rounded-sm hover:text-white">
+                                                            <li
+                                                                key={j}
+                                                                className="relative group"
+                                                                onMouseEnter={() => setOpenNestedSubmenu(j)}
+                                                                onMouseLeave={() => setOpenNestedSubmenu(null)}
+                                                            >
+                                                                <a
+                                                                    href={subLink.href}
+                                                                    className="block px-4 py-2 hover:bg-[#E87722] hover:text-white rounded-sm"
+                                                                >
                                                                     {subLink.name}
-                                                                </li>
-                                                            </a>
+                                                                </a>
+
+                                                                {/* Nested Submenu (if exists) */}
+                                                                {subLink.nestedLinks && (
+                                                                    <ul
+                                                                        className={`absolute top-0 mt-0 w-48 bg-white text-[#002147] border shadow-lg rounded-md transition-all duration-200 
+                ${j === link.subLinks.length - 1 ? "right-full" : "left-full"} 
+                ${openNestedSubmenu === j ? "opacity-100 visible" : "opacity-0 invisible"}`}
+                                                                    >
+                                                                        {subLink.nestedLinks && subLink.nestedLinks.map((nestedLink, k) => (
+                                                                            <li key={k}>
+                                                                                <a
+                                                                                    href={nestedLink.href}
+                                                                                    className="block px-4 py-2 hover:bg-[#E87722] hover:text-white rounded-md"
+                                                                                >
+                                                                                    {nestedLink.name}
+                                                                                </a>
+                                                                            </li>
+                                                                        ))}
+                                                                    </ul>
+                                                                )}
+                                                            </li>
                                                         ))}
+
                                                     </ul>
                                                 )}
                                             </div>
