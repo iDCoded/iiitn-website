@@ -36,25 +36,30 @@ const UpcomingEvents = () => {
     // Default fallback events if API doesn't provide any
     const defaultEvents = [
         {
+            id: "abhivyakti",
             image: abhivyakti,
             title: "Abhivyakti - The Cultural Fest of IIITN",
-            description: "A grand cultural fest with music, dance, and fun activities.",
-            time: "09:00 PM",
+            content: "Annual gathering of students, faculty, and staff. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             date: "28 Feb",
+            location: "IIIT Nagpur Campus",
             large: true,
         },
         {
+            id: "tantrafiesta",
             image: tf,
             title: "Tantrafiesta",
-            time: "27 Aug",
+            content: "Annual gathering of students, faculty, and staff. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             date: "27 Aug",
+            location: "IIIT Nagpur Campus",
             large: false,
         },
         {
+            id: "institute-gathering",
             image: kshitij,
             title: "Institute Gathering",
-            time: "30 Jan",
+            content: "Annual gathering of students, faculty, and staff. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             date: "30 Jan",
+            location: "IIIT Nagpur Campus",
             large: false,
         },
     ];

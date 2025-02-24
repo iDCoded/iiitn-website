@@ -74,6 +74,7 @@ import AnnualAccountAndReports from "./Pages/AnnualAccountAndReports";
 import RtiDetailsAndReports from "./Pages/RtiDetailsAndReports";
 import MinutesOfMeeting from "./Pages/MinutesOfMeeting";
 import ImmutableProperty from "./Pages/ImmutableProperty";
+import EventDetail from "./Events/pages/page";
 
 
 const PageWrapper = () => {
@@ -171,7 +172,7 @@ const AppRoutes = () => (
 		<Route path="/pages/directory" element={<Directory />} />
 		<Route path="/pages/directory" element={<Directory />} />
 		<Route path="/news/:newsId" element={<DetailedNews />} />
-
+		<Route path="/events/:eventid" element={<EventDetail />} />
 		<Route path="/faculty/:name" element={<FacultyDetail />} />
 		<Route path="/institute/facilities" element={<Facilities />} />
 		<Route path="/institute/institutesprofile" element={<InstitutesProfile />} />
