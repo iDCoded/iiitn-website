@@ -1,5 +1,8 @@
 import React from "react";
 import { DepartmentCard } from "../components/DepartmentCard";
+import cse from "../assets/cse.jpeg";
+import ece from "../assets/ece.jpeg";
+import basic from "../assets/basic.jpeg";
 
 function Departments() {
     return (
@@ -29,24 +32,24 @@ function Departments() {
                     {/* Department 1 */}
                     <DepartmentCard
                         title="Basic Science"
-                        imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
-                        overlayText="Department of Basic Sciences at Indian Institute of Information Technology, Nagpur is a vibrant academic department."
+                        imageSrc={basic}
+                        description="Department of Basic Sciences at Indian Institute of Information Technology, Nagpur is a vibrant academic department."
                         link="departments/basic_science"
                     />
 
                     {/* Department 2 */}
                     <DepartmentCard
                         title="Computer Science & Engineering"
-                        imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
-                        overlayText="The Department of Computer Science & Engineering offers cutting-edge research and education in computer science, software development, and AI."
+                        imageSrc={cse}  
+                        description="The Department of Computer Science & Engineering offers cutting-edge research and education in computer science, software development, and AI."
                         link="departments/cse"
                     />
 
                     {/* Department 3 */}
                     <DepartmentCard
                         title="Electronics & Communication"
-                        imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
-                        overlayText="The Department of Electronics & Communication at IIIT Nagpur is focused on advanced networking and signal processing."
+                        imageSrc={ece}
+                        description="The Department of Electronics & Communication at IIIT Nagpur is focused on advanced networking and signal processing."
                         link="departments/ece"
                     />
                 </div>

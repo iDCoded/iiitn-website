@@ -1,7 +1,8 @@
 import React from "react";
+import rti from "../assets/rti.png";
 
 const rtiData = {
-	imageSrc: "#",
+	imageSrc: rti,
 	rtiEng: "#",
 	rtiHindi: "#",
 	rtiMarathi: "#",
@@ -86,7 +87,7 @@ function RTI() {
 				</div>
 
 				{/* Right Side - Image */}
-				<div className="lg:w-1/3 w-full p-6 flex justify-center">
+				<div className="lg:w-2/3 w-full p-6 flex justify-center">
 					<img src={rtiData.imageSrc} alt="RTI Illustration" className="rounded-lg shadow-lg w-full" />
 				</div>
 			</main>
