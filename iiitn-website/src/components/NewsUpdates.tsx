@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { useKeenSlider } from "keen-slider/react";
@@ -8,6 +9,7 @@ import "keen-slider/keen-slider.min.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 interface NewsItem {
+    id: string;
     category: string;
     image: string;
     title: string;
@@ -17,30 +19,35 @@ interface NewsItem {
 export default function NewsCarousel() {
     const [newsData, setNewsData] = useState<NewsItem[]>([
         {
+            id: "news-1",
             category: "News",
             image: "https://static.toiimg.com/thumb/msid-117532524,imgsize-38444,width-400,height-225,resizemode-72/117532524.jpg",
             title: "Duo from IIIT Nagpur invited as special guests for Republic Day parade",
             description: "IIIT Nagpur has signed an MoU with the Maharashtra government to promote AI and ML in the state.",
         },
         {
+            id: "updates-1",
             category: "Updates",
             image: "https://imgs.search.brave.com/WE_FzZkUn2nRyWQI6BE3eBdqnhN49qmN4f_7EdEcY4s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9paWl0/bi5hYy5pbi9pbWFn/ZXMvTmV3c0V2ZW50/cy83ODUvTmV3c0lt/YWdlLkpQRw",
             title: "2nd Convocation Ceremony",
             description: "IIIT Nagpur recently held its 2nd convocation ceremony with students receiving their degrees and awards.",
         },
         {
+            id: "news-2",
             category: "News",
             image: "https://imgs.search.brave.com/MWacu6ain-mbYnq57K9WQV5xJ2T422cSdSePqObriBs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9paWl0/bi5hYy5pbi9pbWFn/ZXMvU2xpZGVyLzIz/MC9TbGlkZXItMjMw/LmpwZw",
             title: "Training on Public Procurement",
             description: "Training on Public Procurement during Vigilance Awareness Week at IIIT Nagpur.",
         },
         {
+            id: "updates-2",
             category: "Updates",
             image: "https://iiitn.ac.in/images/album/republic-day-2025//ThumbnailImage.jpg",
             title: "76th Republic Day Celebration",
             description: "IIIT Nagpur celebrated the 76th Republic Day with patriotic fervor and enthusiasm.",
         },
     ]);
+    
 
     const [sliderRef, instanceRef] = useKeenSlider({
         slides: {
@@ -68,6 +75,7 @@ export default function NewsCarousel() {
 
                 // Filter only "news" and "updates"
                 interface NewsItem {
+                    id: string;
                     category: string;
                     image: string;
                     title: string;
@@ -124,6 +132,7 @@ export default function NewsCarousel() {
                         <CarouselContent ref={sliderRef} className="keen-slider">
                             {newsData.map((news, index) => (
                                 <CarouselItem key={index} className="keen-slider__slide">
+                                   <Link to={`/news/${news.id}`}>
                                     <Card className="shadow-lg rounded-lg overflow-hidden h-[50vh]">
                                         <div className="h-[30vh] bg-black">
                                             <img src={news.image} alt={news.title} className="w-full h-full object-fit" />
@@ -133,6 +142,7 @@ export default function NewsCarousel() {
                                             <p className="text-sm text-gray-600">{news.description}</p>
                                         </CardContent>
                                     </Card>
+                                    </Link>
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
