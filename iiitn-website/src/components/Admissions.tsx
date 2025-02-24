@@ -11,12 +11,12 @@ const programs = [
     {
         title: "Postgraduate (M.Tech/MBA)",
         description: "Master's programs in engineering, management, and more.",
-        link: "/admissions/pg",
+        link: "https://iiitn.ac.in/page/postgraduate/41/",
     },
     {
         title: "Doctoral Programs (Ph.D.)",
         description: "Research opportunities in various cutting-edge fields.",
-        link: "/admissions/phd",
+        link: "https://iiitn.ac.in/page/postgraduate/41/",
     },
 ];
 
