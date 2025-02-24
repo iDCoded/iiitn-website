@@ -40,7 +40,7 @@ function DetailedNews() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/cards/${newsId}`);
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/card/cards/${newsId}`);
         if (!response.ok) {
           throw new Error("Event not found");
         }
