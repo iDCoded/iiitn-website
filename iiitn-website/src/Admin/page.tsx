@@ -32,7 +32,7 @@ const AdminPage = () => {
 				{sidebar !== "#allfaculty" && (
 					<Card className="w-5xl">
 						<CardContent className="p-6">
-							{sidebar === "#card" && <CardForm onSubmit={undefined} />}
+							{sidebar === "#card" && <CardForm />}
 							{sidebar === "#media" && <ImageUpload />}
 							{sidebar === "#faculty" && <FacultyForm />}
 						</CardContent>
