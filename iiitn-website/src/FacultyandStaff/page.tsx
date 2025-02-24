@@ -40,7 +40,7 @@ function FacultyandStaff() {
                 <div className="flex-1 ">
                     {/* Prospective Faculty & Staff */}
                     <div className="mb-12 max-w-[80vh] mx-auto">
-                        <h2 className="text-2xl font-semibold mb-4">Prospective Faculty & Staff</h2>
+                        <h2 className="text-2xl font-semibold mb-4"><span className="text-[#E87722] text-4xl">| </span>Prospective Faculty & Staff</h2>
                         <p className="text-gray-600 leading-relaxed">
                             Get more details on programs, resources, fees, and other information here.
                         </p>
@@ -53,7 +53,7 @@ function FacultyandStaff() {
 
                     {/* Current Faculty & Staff */}
                     <div className="mb-12 max-w-[80vh] mx-auto">
-                        <h2 className="text-2xl font-semibold mb-4">Current Faculty & Staff</h2>
+                        <h2 className="text-2xl font-semibold mb-4"><span className="text-[#E87722] text-4xl">| </span>Current Faculty & Staff</h2>
                         <p className="text-gray-600 leading-relaxed">
                             Get more details on programs, resources, and policies for current faculty and staff.
                         </p>
@@ -68,7 +68,7 @@ function FacultyandStaff() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 max-w-[80vh] mx-auto">
                         {/* Faculty Directory */}
                         <div>
-                            <h2 className="text-2xl font-semibold mb-4">Faculty Directory</h2>
+                            <h2 className="text-2xl font-semibold mb-4"><span className="text-[#E87722] text-4xl">| </span>Faculty Directory</h2>
                             <FSCard
                                 title="Dr. ABC"
                                 description="Professor"
@@ -77,7 +77,7 @@ function FacultyandStaff() {
                         </div>
                         {/* Staff Directory */}
                         <div>
-                            <h2 className="text-2xl font-semibold mb-4">Staff Directory</h2>
+                            <h2 className="text-2xl font-semibold mb-4"><span className="text-[#E87722] text-4xl">| </span>Staff Directory</h2>
                             <FSCard
                                 title="Dr. ABC"
                                 description="Professor"
