@@ -116,9 +116,12 @@ function BTech() {
 							<AccordionItem value="antiragging">
 								<AccordionTrigger>🚨 Antiragging Undertaking & Guidelines</AccordionTrigger>
 								<AccordionContent>
-									<a href={bTechData.antiRaggingGuidelines} className="text-[#E87722] hover:underline">
+									<p><a href="https://antiragging.in/affidavit_university_form.php" className="text-[#E87722] hover:underline">
+										Fill the Antiragging Undertaking Form
+									</a></p>
+									<p><a href="https://iiitn.ac.in/images/admission2024/Antiragging%20Undertaking%20Guidlines.pdf" className="text-[#E87722] hover:underline">
 										View Antiragging Guidelines
-									</a>
+									</a></p>
 								</AccordionContent>
 							</AccordionItem>
 
