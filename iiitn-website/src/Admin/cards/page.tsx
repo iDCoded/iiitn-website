@@ -16,7 +16,7 @@ import { CardForm } from "@/components/form/card-form";
 function CardTablePage() {
 	const [cardData, setCardData] = useState<ICard[]>([]);
 	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
+	const [error, setError] = useState("");
 
 	useEffect(() => {
 		const fetchCardData = async () => {
@@ -24,19 +24,20 @@ function CardTablePage() {
 				const response = await fetch("http://localhost:5000/card/cards");
 				if (!response.ok) throw new Error("Failed to fetch card data");
 
-				const data: ICard[] = await response.json();
-				setCardData(data);
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			} catch (err: any) {
+				if (response.ok) {
+					const data: ICard[] = await response.json();
+					setCardData(data);
+				}
+			} catch (err: unknown) {
 				console.error(err);
-				setError(err);
+				setError("Unable to fetch data. Please try again later.");
 			} finally {
 				setLoading(false);
 			}
 		};
 
 		fetchCardData();
-	});
+	}, []);
 
 	if (loading) return <p className="text-center text-gray-500">Loading...</p>;
 	if (error) return <p className="text-center text-red-500">Error: {error}</p>;
