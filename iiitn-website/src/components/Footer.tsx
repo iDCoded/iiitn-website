@@ -1,4 +1,9 @@
 import { FaFacebook, FaLinkedin, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import logo from "../assets/logo.png"; // Logo Image
+
+const imgSrc = logo;
+
+
 
 const data = [
     "https://docs.google.com/forms/d/e/1FAIpQLSco29-RxP8WzKQkS_E5SkuHMZGaKnHxvvYj-HHWhscQ6t3G6Q/viewform"
@@ -92,7 +97,7 @@ const Footer = () => {
 
                 {/* Institute Logo and Info */}
                 <div className="flex flex-col items-center space-y-3">
-                    <img src="/logo.png" alt="IIIT Nagpur Logo" className="h-12" />
+                    <img src={imgSrc} alt="IIIT Nagpur Logo" className="h-12" />
                     <p className="text-gray-400 text-sm">Indian Institute of Information Technology, Nagpur</p>
                 </div>
 
