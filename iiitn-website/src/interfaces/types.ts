@@ -1,9 +1,15 @@
 export interface Person {
+	p_id: number;
+	email_pri: string;
+	email_sec: string;
 	name: string;
-	email: string;
-	phone?: string;
-	imageUrl?: string;
-	department: string;
+	phone_no: string;
+	alt_phone_no: string;
+	curr_address: string;
+	perm_address: string;
+	password: string;
+	role: "admin" | "student" | "faculty";
+	sm_id: string | null;
 }
 
 export interface Faculty {
