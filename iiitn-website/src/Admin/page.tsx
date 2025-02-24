@@ -1,4 +1,4 @@
-import CardForm from "@/components/form/event-form";
+import { CardForm } from "@/components/form/card-form";
 import { FacultyForm } from "@/components/form/faculty-form";
 import { ImageUpload } from "@/components/form/image-upload";
 import { Card, CardContent } from "@/components/ui/card";
