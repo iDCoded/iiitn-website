@@ -12,7 +12,7 @@ function Companies() {
       </div>
 
       {/* Companies Visited Section */}
-      <div className='flex flex-col h-auto border-4 border-black p-6 m-4 rounded-lg bg-white shadow-lg max-w-6xl mx-auto'>
+      <div className='flex flex-col h-auto  p-6 m-4 rounded-lg bg-white shadow-lg max-w-6xl mx-auto'>
         <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Companies Visited</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
           <CompanyCard title='TCS' imageSrc='https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png' description='Tata Consultancy Services Limited is an Indian multinational information technology services and consulting company headquartered in Mumbai, Maharashtra, India.' />

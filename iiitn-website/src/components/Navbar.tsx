@@ -122,7 +122,7 @@ const Navbar = () => {
             links: [
                 { name: "Why Recruit from IIIT Nagpur", href: "/placements" },
                 { name: "Internships", href: "/placements/internships" },
-                { name: "Statistics", href: "/placements/statistics" },
+                { name: "Statistics", href: "https://iiitn.ac.in/page/placement-statistics/45/" },
                 { name: "Companies", href: "/placements/companies" }
             ]
         },
