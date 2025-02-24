@@ -1,18 +1,12 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useMemo } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
-type Faculty = {
-    name: string;
-    designation: string;
-    role: "HOD" | "Member";
-    image: string;
-    department: "CSE" | "ECE" | "BASIC";
-};
-
-const facultyData: Faculty[] = [
+const facultyData = [
     { name: "Dr. John Doe", designation: "Professor & HOD", role: "HOD", image: "/hod.jpg", department: "CSE" },
+    { name: "Dr. John Doe", designation: "Professor & HOD", role: "HOD", image: "/hod.jpg", department: "ECE" },
+    { name: "Dr. John Doe", designation: "Professor & HOD", role: "HOD", image: "/hod.jpg", department: "BASIC" },
     { name: "Dr. Alice Smith", designation: "Associate Professor", role: "Member", image: "/faculty1.jpg", department: "ECE" },
     { name: "Dr. Bob Williams", designation: "Assistant Professor", role: "Member", image: "/faculty2.jpg", department: "BASIC" },
     { name: "Dr. Jane Brown", designation: "Assistant Professor", role: "Member", image: "/faculty3.jpg", department: "CSE" },
@@ -21,17 +15,7 @@ const facultyData: Faculty[] = [
     { name: "Dr. David Kim", designation: "Assistant Professor", role: "Member", image: "/faculty6.jpg", department: "CSE" },
 ];
 
-
-type Staff = {
-    name: string;
-    designation: string;
-    qualification: string;
-    contact: string;
-    image: string;
-    department: "CSE" | "ECE" | "BASIC";
-};
-
-const staffData: Staff[] = [
+const staffData = [
     { name: "Mr. Steve Johnson", designation: "Lab Technician", qualification: "B.Sc. Physics", contact: "steve@example.com", image: "/staff1.jpg", department: "BASIC" },
     { name: "Mrs. Emily Davis", designation: "Admin Assistant", qualification: "MBA", contact: "emily@example.com", image: "/staff2.jpg", department: "CSE" },
     { name: "Mr. Robert White", designation: "Lab Technician", qualification: "B.Tech ECE", contact: "robert@example.com", image: "/staff3.jpg", department: "ECE" },
@@ -40,30 +24,42 @@ const staffData: Staff[] = [
     { name: "Mrs. Sophia Clark", designation: "Office Assistant", qualification: "Diploma", contact: "sophia@example.com", image: "/staff6.jpg", department: "ECE" },
 ];
 
-
 const Directory = () => {
     const [selectedTab, setSelectedTab] = useState<"faculty" | "staff">("faculty");
     const navigate = useNavigate();
+    const location = useLocation();
+
+    // Extract department from query params
+    const queryParams = new URLSearchParams(location.search);
+    const department = queryParams.get("department")?.toUpperCase() as "CSE" | "ECE" | "BASIC" | null;
+
+    // Filter faculty and staff based on department
+    const filteredFaculty = useMemo(() => {
+        return department ? facultyData.filter((f) => f.department === department) : facultyData;
+    }, [department]);
+
+    const filteredStaff = useMemo(() => {
+        return department ? staffData.filter((s) => s.department === department) : staffData;
+    }, [department]);
 
     return (
         <div className="max-w-6xl mx-auto px-6 py-10">
-            {/* Heading */}
             <h1 className="text-3xl font-bold mb-6 flex items-center">
                 <span className="text-[#E87722] text-4xl mr-2">|</span> Faculty & Staff Directory
             </h1>
 
             {/* Tabs */}
             <div className="flex gap-4 mb-6 border-b border-gray-300">
-                {["faculty", "staff"].map((dept) => (
+                {["faculty", "staff"].map((tab) => (
                     <button
-                        key={dept}
+                        key={tab}
                         className={`relative px-6 py-2 text-lg font-medium transition-all duration-300 ${
-                            selectedTab === dept ? "text-[#E87722] font-bold" : "text-gray-500 hover:text-gray-700"
+                            selectedTab === tab ? "text-[#E87722] font-bold" : "text-gray-500 hover:text-gray-700"
                         }`}
-                        onClick={() => setSelectedTab(dept as "faculty" | "staff")}
+                        onClick={() => setSelectedTab(tab as "faculty" | "staff")}
                     >
-                        {dept.toUpperCase()}
-                        {selectedTab === dept && (
+                        {tab.toUpperCase()}
+                        {selectedTab === tab && (
                             <motion.div layoutId="underline" className="absolute left-0 bottom-0 h-[3px] bg-[#E87722] w-full" />
                         )}
                     </button>
@@ -80,8 +76,7 @@ const Directory = () => {
                     transition={{ duration: 0.3 }}
                     className="flex flex-col gap-6"
                 >
-                    {/* HOD Section */}
-                    {facultyData
+                    {filteredFaculty
                         .filter((faculty) => faculty.role === "HOD")
                         .map((faculty, index) => (
                             <Card
@@ -92,23 +87,19 @@ const Directory = () => {
                                 <CardHeader className="text-center">
                                     <h2 className="text-xl font-bold text-[#E87722]">Head of Department (HOD)</h2>
                                     <div className="flex justify-center">
-                                        <img
-                                            src={faculty.image}
-                                            alt={faculty.name}
-                                            className="w-40 h-40 rounded-full object-cover shadow-md"
-                                        />
+                                        <img src={faculty.image} alt={faculty.name} className="w-40 h-40 rounded-full object-cover shadow-md" />
                                     </div>
                                 </CardHeader>
                                 <CardContent className="text-center">
                                     <h3 className="text-lg font-semibold">{faculty.name}</h3>
                                     <p className="text-gray-600">{faculty.designation}</p>
+                                    <p className="text-gray-600">{faculty.department}</p>
                                 </CardContent>
                             </Card>
                         ))}
 
-                    {/* Faculty Members */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {facultyData
+                        {filteredFaculty
                             .filter((faculty) => faculty.role === "Member")
                             .map((faculty, index) => (
                                 <Card
@@ -118,16 +109,13 @@ const Directory = () => {
                                 >
                                     <CardHeader className="text-center">
                                         <div className="flex justify-center">
-                                            <img
-                                                src={faculty.image}
-                                                alt={faculty.name}
-                                                className="w-24 h-24 rounded-full object-cover shadow-sm"
-                                            />
+                                            <img src={faculty.image} alt={faculty.name} className="w-24 h-24 rounded-full object-cover shadow-sm" />
                                         </div>
                                     </CardHeader>
                                     <CardContent className="text-center">
                                         <h3 className="text-lg font-semibold">{faculty.name}</h3>
                                         <p className="text-gray-600">{faculty.designation}</p>
+                                        <p className="text-gray-600">{faculty.department}</p>
                                     </CardContent>
                                 </Card>
                             ))}
@@ -145,22 +133,17 @@ const Directory = () => {
                     transition={{ duration: 0.3 }}
                     className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
                 >
-                    {staffData.map((staff, index) => (
-                        <Card key={index} className="shadow-md">
+                    {filteredStaff.map((staff, index) => (
+                        <Card key={index} className="shadow-md cursor-pointer hover:shadow-lg transition">
                             <CardHeader className="text-center">
                                 <div className="flex justify-center">
-                                    <img
-                                        src={staff.image}
-                                        alt={staff.name}
-                                        className="w-24 h-24 rounded-full object-cover shadow-sm"
-                                    />
+                                    <img src={staff.image} alt={staff.name} className="w-24 h-24 rounded-full object-cover shadow-sm" />
                                 </div>
                             </CardHeader>
                             <CardContent className="text-center">
                                 <h3 className="text-lg font-semibold">{staff.name}</h3>
                                 <p className="text-gray-600">{staff.designation}</p>
-                                <p className="text-gray-500 text-sm">Qualification: {staff.qualification}</p>
-                                <p className="text-blue-500 text-sm">{staff.contact}</p>
+                                <p className="text-gray-600">{staff.department}</p>
                             </CardContent>
                         </Card>
                     ))}
