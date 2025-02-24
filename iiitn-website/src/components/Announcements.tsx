@@ -32,6 +32,7 @@ const Announcements: React.FC = () => {
             </div>
 
             {/* Scrolling Marquee */}
+            <a href="/announcements">
             <div className="marquee-container flex items-center overflow-hidden">
                 <div className="marquee-content flex whitespace-nowrap">
                     {announcements.length > 0 && (
@@ -46,6 +47,7 @@ const Announcements: React.FC = () => {
                     )}
                 </div>
             </div>
+            </a>
 
             {/* Marquee Styling */}
             <style>{`
