@@ -4,24 +4,24 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const facultyData = [
-    { name: "Dr. John Doe", designation: "Professor & HOD", role: "HOD", image: "/hod.jpg", department: "CSE" },
-    { name: "Dr. John Doe", designation: "Professor & HOD", role: "HOD", image: "/hod.jpg", department: "ECE" },
-    { name: "Dr. John Doe", designation: "Professor & HOD", role: "HOD", image: "/hod.jpg", department: "BASIC" },
-    { name: "Dr. Alice Smith", designation: "Associate Professor", role: "Member", image: "/faculty1.jpg", department: "ECE" },
-    { name: "Dr. Bob Williams", designation: "Assistant Professor", role: "Member", image: "/faculty2.jpg", department: "BASIC" },
-    { name: "Dr. Jane Brown", designation: "Assistant Professor", role: "Member", image: "/faculty3.jpg", department: "CSE" },
-    { name: "Dr. Mark Wilson", designation: "Assistant Professor", role: "Member", image: "/faculty4.jpg", department: "ECE" },
-    { name: "Dr. Sarah Lee", designation: "Assistant Professor", role: "Member", image: "/faculty5.jpg", department: "BASIC" },
-    { name: "Dr. David Kim", designation: "Assistant Professor", role: "Member", image: "/faculty6.jpg", department: "CSE" },
+    { name: "Dr. John Doe", designation: "Professor & HOD", role: "HOD", image: "/hod.jpg", department: "cse" },
+    { name: "Dr. John Doe", designation: "Professor & HOD", role: "HOD", image: "/hod.jpg", department: "ece" },
+    { name: "Dr. John Doe", designation: "Professor & HOD", role: "HOD", image: "/hod.jpg", department: "basic_science" },
+    { name: "Dr. Alice Smith", designation: "Associate Professor", role: "Member", image: "/faculty1.jpg", department: "ece" },
+    { name: "Dr. Bob Williams", designation: "Assistant Professor", role: "Member", image: "/faculty2.jpg", department: "basic_science" },
+    { name: "Dr. Jane Brown", designation: "Assistant Professor", role: "Member", image: "/faculty3.jpg", department: "cse" },
+    { name: "Dr. Mark Wilson", designation: "Assistant Professor", role: "Member", image: "/faculty4.jpg", department: "ece" },
+    { name: "Dr. Sarah Lee", designation: "Assistant Professor", role: "Member", image: "/faculty5.jpg", department: "basic_science" },
+    { name: "Dr. David Kim", designation: "Assistant Professor", role: "Member", image: "/faculty6.jpg", department: "cse" },
 ];
 
 const staffData = [
-    { name: "Mr. Steve Johnson", designation: "Lab Technician", qualification: "B.Sc. Physics", contact: "steve@example.com", image: "/staff1.jpg", department: "BASIC" },
-    { name: "Mrs. Emily Davis", designation: "Admin Assistant", qualification: "MBA", contact: "emily@example.com", image: "/staff2.jpg", department: "CSE" },
-    { name: "Mr. Robert White", designation: "Lab Technician", qualification: "B.Tech ECE", contact: "robert@example.com", image: "/staff3.jpg", department: "ECE" },
-    { name: "Ms. Olivia Martin", designation: "Technical Assistant", qualification: "M.Sc. Physics", contact: "olivia@example.com", image: "/staff4.jpg", department: "BASIC" },
-    { name: "Mr. Daniel Harris", designation: "Senior Lab Technician", qualification: "B.Tech CSE", contact: "daniel@example.com", image: "/staff5.jpg", department: "CSE" },
-    { name: "Mrs. Sophia Clark", designation: "Office Assistant", qualification: "Diploma", contact: "sophia@example.com", image: "/staff6.jpg", department: "ECE" },
+    { name: "Mr. Steve Johnson", designation: "Lab Technician", qualification: "B.Sc. Physics", contact: "steve@example.com", image: "/staff1.jpg", department: "basic_science" },
+    { name: "Mrs. Emily Davis", designation: "Admin Assistant", qualification: "MBA", contact: "emily@example.com", image: "/staff2.jpg", department: "cse" },
+    { name: "Mr. Robert White", designation: "Lab Technician", qualification: "B.Tech ECE", contact: "robert@example.com", image: "/staff3.jpg", department: "ece" },
+    { name: "Ms. Olivia Martin", designation: "Technical Assistant", qualification: "M.Sc. Physics", contact: "olivia@example.com", image: "/staff4.jpg", department: "basic_science" },
+    { name: "Mr. Daniel Harris", designation: "Senior Lab Technician", qualification: "B.Tech CSE", contact: "daniel@example.com", image: "/staff5.jpg", department: "cse" },
+    { name: "Mrs. Sophia Clark", designation: "Office Assistant", qualification: "Diploma", contact: "sophia@example.com", image: "/staff6.jpg", department: "ece" },
 ];
 
 const Directory = () => {
@@ -31,7 +31,7 @@ const Directory = () => {
 
     // Extract department from query params
     const queryParams = new URLSearchParams(location.search);
-    const department = queryParams.get("department")?.toUpperCase() as "CSE" | "ECE" | "BASIC" | null;
+    const department = queryParams.get("department") as "cse" | "ece" | "basic_science" | null;
 
     // Filter faculty and staff based on department
     const filteredFaculty = useMemo(() => {
@@ -53,9 +53,8 @@ const Directory = () => {
                 {["faculty", "staff"].map((tab) => (
                     <button
                         key={tab}
-                        className={`relative px-6 py-2 text-lg font-medium transition-all duration-300 ${
-                            selectedTab === tab ? "text-[#E87722] font-bold" : "text-gray-500 hover:text-gray-700"
-                        }`}
+                        className={`relative px-6 py-2 text-lg font-medium transition-all duration-300 ${selectedTab === tab ? "text-[#E87722] font-bold" : "text-gray-500 hover:text-gray-700"
+                            }`}
                         onClick={() => setSelectedTab(tab as "faculty" | "staff")}
                     >
                         {tab.toUpperCase()}
@@ -76,28 +75,31 @@ const Directory = () => {
                     transition={{ duration: 0.3 }}
                     className="flex flex-col gap-6"
                 >
-                    {filteredFaculty
-                        .filter((faculty) => faculty.role === "HOD")
-                        .map((faculty, index) => (
-                            <Card
-                                key={index}
-                                className="shadow-lg border-2 border-[#E87722] mx-auto max-w-3xl cursor-pointer hover:shadow-xl transition"
-                                onClick={() => navigate(`/faculty/${encodeURIComponent(faculty.name)}`)}
-                            >
-                                <CardHeader className="text-center">
-                                    <h2 className="text-xl font-bold text-[#E87722]">Head of Department (HOD)</h2>
-                                    <div className="flex justify-center">
-                                        <img src={faculty.image} alt={faculty.name} className="w-40 h-40 rounded-full object-cover shadow-md" />
-                                    </div>
-                                </CardHeader>
-                                <CardContent className="text-center">
-                                    <h3 className="text-lg font-semibold">{faculty.name}</h3>
-                                    <p className="text-gray-600">{faculty.designation}</p>
-                                    <p className="text-gray-600">{faculty.department}</p>
-                                </CardContent>
-                            </Card>
-                        ))}
-
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                        {filteredFaculty
+                            .filter((faculty) => faculty.role === "HOD")
+                            .map((faculty, index) => (
+                                <div className="flex flex-col" key={index}>
+                                    <Card
+                                        key={index}
+                                        className="shadow-lg border-2 border-[#E87722] mx-auto max-w-3xl cursor-pointer hover:shadow-xl transition"
+                                        onClick={() => navigate(`/faculty/${encodeURIComponent(faculty.name)}`)}
+                                    >
+                                        <CardHeader className="text-center">
+                                            <h2 className="text-xl font-bold text-[#E87722]">Head of Department (HOD)</h2>
+                                            <div className="flex justify-center">
+                                                <img src={faculty.image} alt={faculty.name} className="w-40 h-40 rounded-full object-cover shadow-md" />
+                                            </div>
+                                        </CardHeader>
+                                        <CardContent className="text-center">
+                                            <h3 className="text-lg font-semibold">{faculty.name}</h3>
+                                            <p className="text-gray-600">{faculty.designation}</p>
+                                            <p className="text-gray-600">{faculty.department}</p>
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                            ))}
+                    </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {filteredFaculty
                             .filter((faculty) => faculty.role === "Member")
