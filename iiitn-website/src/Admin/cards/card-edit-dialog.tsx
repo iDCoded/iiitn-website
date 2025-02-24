@@ -48,7 +48,7 @@ const CardEditDialog = ({ card }: { card: ICard }) => {
 	});
 
 	const onSubmit = async (data: FormData) => {
-		await fetch(`http://localhost:5000/cards/${card.c_id}`, {
+		await fetch(`http://localhost:5000/card/cards/${card.c_id}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
