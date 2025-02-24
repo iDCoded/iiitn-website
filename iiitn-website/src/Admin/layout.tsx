@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 const sidebarData = {
 	navMain: [
 		{
-			title: "Announcements",
+			title: "Updates",
 			url: "#",
 			items: [
 				{
@@ -20,7 +20,7 @@ const sidebarData = {
 			],
 		},
 		{
-			title: "Faculty",
+			title: "Profiles",
 			url: "#",
 			items: [
 				{

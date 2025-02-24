@@ -1,10 +1,10 @@
 import { FacultyForm } from "@/components/form/faculty-form";
-import { ImageUpload } from "@/components/form/image-upload";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import FacultyTablePage from "./faculties/page";
 import CardTablePage from "./cards/page";
+import MediaTablePage from "./media/page";
 
 const validHashes = ["#card", "#media", "#faculty", "#allfaculty"];
 
@@ -20,13 +20,6 @@ const AdminPage = () => {
 
 	return (
 		<div className="px-8 flex justify-center items-center">
-			{sidebar === "#media" && (
-				<Card className="w-5xl">
-					<CardContent className="p-6">
-						<ImageUpload />
-					</CardContent>
-				</Card>
-			)}
 			{sidebar === "#faculty" && (
 				<Card className="w-5xl">
 					<CardContent className="p-6">
@@ -35,6 +28,7 @@ const AdminPage = () => {
 				</Card>
 			)}
 			{sidebar === "#card" && <CardTablePage />}
+			{sidebar === "#media" && <MediaTablePage />}
 			{sidebar === "#allfaculty" && <FacultyTablePage />}
 		</div>
 	);

@@ -3,6 +3,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/ca
 import { Button } from "../../components/ui/button";
 import { ScrollArea } from "../../components/ui/scroll-area";
 import { Skeleton } from "../../components/ui/skeleton";
+import BS from "../../assets/BS.png";
+import CSE from "../../assets/CSE_grp.png";
+import ECE from "../../assets/ECE_grp.png";
 
 interface Event {
     title: string;
@@ -12,6 +15,7 @@ interface Event {
 }
 
 interface DepartmentData {
+    heroimage: string;
     about: string;
     bos: string;
     achievements: string;
@@ -28,6 +32,7 @@ interface PageProps {
 
 const departmentsDemo: Record<string, DepartmentData> = {
     cse: {
+        heroimage: CSE,
         about: "The Department of Computer Science and Engineering at IIIT Nagpur offers a comprehensive curriculum...",
         bos: "The Board of Studies (BoS) of the CSE Department is responsible for designing the curriculum, evaluating academic programs, and ensuring the quality of education.",
         achievements: "The CSE Department has achieved numerous milestones in research, innovation, and academic excellence. Our faculty and students have published research papers, won awards, and participated in hackathons.",
@@ -41,6 +46,7 @@ const departmentsDemo: Record<string, DepartmentData> = {
         ],
     },
     ece: {
+        heroimage: ECE,
         about: "The Department of Electronics and Communication Engineering at IIIT Nagpur offers a comprehensive curriculum...",
         bos: "The Board of Studies (BoS) of the ECE Department...",
         achievements: "The ECE Department has achieved numerous milestones...",
@@ -54,6 +60,7 @@ const departmentsDemo: Record<string, DepartmentData> = {
         ],
     },
     basic_science: {
+        heroimage: BS,
         about: "The Department of Basic Sciences at IIIT Nagpur offers a comprehensive curriculum...",
         bos: "The Board of Studies (BoS) of the Basic Sciences Department...",
         achievements: "The Basic Sciences Department has achieved numerous milestones...",
@@ -106,10 +113,27 @@ export default function DepartmentPage({ title }: PageProps) {
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
-            <header className="bg-gradient-to-r from-[#002147] to-[#002C5F] text-white py-14 text-center shadow-lg">
-                <h1 className="text-4xl font-extrabold">{title.toUpperCase()} Department</h1>
-                <p className="opacity-80 text-lg mt-2">Explore the research and academic excellence of the {title.toUpperCase()} department.</p>
+            {/* Hero Section */}
+            <header
+                className="relative w-full h-64 flex flex-col justify-center items-center text-white text-center shadow-lg"
+                style={{
+                    backgroundImage: `url(${data.heroimage})`, // Replace with actual image path
+                    backgroundSize: "cover",
+                    backgroundPosition: "center"
+                }}
+            >
+                {/* Dark Overlay for Readability */}
+                <div className="absolute inset-0 bg-black/50"></div>
+
+                {/* Text Content */}
+                <div className="relative z-10 px-6">
+                    <h1 className="text-4xl font-extrabold drop-shadow-lg">{title.toUpperCase()} Department</h1>
+                    <p className="opacity-90 text-lg mt-2 drop-shadow-md">
+                        Explore the research and academic excellence of the {title.toUpperCase()} department.
+                    </p>
+                </div>
             </header>
+
 
             <div className="container mx-auto max-w-7xl px-6 py-10 grid md:grid-cols-4 gap-8">
                 {/* Sidebar Navigation */}
