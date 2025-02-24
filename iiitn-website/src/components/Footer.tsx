@@ -16,12 +16,12 @@ const Footer = () => {
 
                 {/* Quick Links */}
                 <div className="flex flex-wrap justify-center space-x-4 text-sm text-gray-300 mb-6">
-                    <a href="#" className="hover:text-white">Students</a>
-                    <a href="#" className="hover:text-white">Faculty & Staff</a>
-                    <a href="#" className="hover:text-white">Alumni</a>
-                    <a href="#" className="hover:text-white">Industry</a>
-                    <a href="#" className="hover:text-white">Directory</a>
-                    <a href="#" className="hover:text-white">Contact</a>
+                    <a href="/students" className="hover:text-white">Students</a>
+                    <a href="/facultyandstaff" className="hover:text-white">Faculty & Staff</a>
+                    <a href="/alumni" className="hover:text-white">Alumni</a>
+                    
+                    <a href="/pages/directory" className="hover:text-white">Directory</a>
+                    <a href="/contact" className="hover:text-white">Contact</a>
                 </div>
 
                 {/* Grid Sections */}
