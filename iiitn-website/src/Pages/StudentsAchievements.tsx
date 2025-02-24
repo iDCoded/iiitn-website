@@ -1,102 +1,83 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const achievementsData = {
-	CSE: [
-		{
-			year: 2024,
-			achievements: [
-				"🏆 Secured 1st place in Smart India Hackathon 2024",
-				"📄 Published 5 research papers in top AI journals",
-				"🤖 Developed an AI-powered chatbot for campus queries",
-			],
-		},
-		{
-			year: 2023,
-			achievements: [
-				"☁️ Winner of Google Cloud Hackathon 2023",
-				"💼 Students placed in FAANG companies",
-				"⭐ Launched an open-source project with 1000+ GitHub stars",
-			],
-		},
-	],
-	ECE: [
-		{
-			year: 2024,
-			achievements: [
-				"🚦 Developed an IoT-based Smart Traffic Management System",
-				"🤖 Won 2nd place in the National Robotics Championship",
-				"📡 Published a research paper on 5G Communication",
-			],
-		},
-		{
-			year: 2023,
-			achievements: [
-				"⚡ Designed an energy-efficient VLSI circuit",
-				"💊 Secured funding for an IoT-based healthcare project",
-				"🚀 Interned at ISRO for satellite communication research",
-			],
-		},
-	],
+type Achievement = {
+    title: string;
+    researcher: string;
+    description: string;
 };
 
-function StudentsAchievements() {
-	return (
-		<div className="bg-gray-50 min-h-screen flex flex-col">
-			{/* 🔹 Header Section */}
-			<header className="bg-[#002147] text-white py-12 px-6 shadow-md text-left md:text-center">
-				<h1 className="text-3xl md:text-4xl font-bold">IIIT Nagpur Student Achievements</h1>
-				<p className="mt-2 text-gray-200 text-lg">Celebrating success in CSE & ECE departments</p>
-			</header>
+const achievementsData: Record<"cse" | "ece" , Achievement[]> = {
+    cse: [
+        { title: "Best Paper Award at AI Conference", researcher: "Dr. ABC", description: "Awarded for groundbreaking research in AI-powered learning systems." },
+        { title: "Patent Granted on Blockchain Security", researcher: "Dr. XYZ", description: "Patent received for innovative methods in blockchain-based authentication." },
+        { title: "Quantum Computing Breakthrough", researcher: "Dr. PQR", description: "Recognized for advancements in quantum algorithms for faster computations." }
+    ],
+    ece: [
+        { title: "5G Innovation Grant", researcher: "Dr. XYZ", description: "Awarded for developing new 5G-based IoT applications in smart cities." },
+        { title: "NASA Collaboration for Satellite Research", researcher: "Dr. MNO", description: "Selected for an exclusive project with NASA on satellite communications." },
+        { title: "Best Research Paper in Renewable Energy", researcher: "Dr. ABC", description: "Honored for contributions to smart grids and renewable energy systems." }
+    ],
+   
+};
 
-			{/* 📌 Main Content */}
-			<main className="w-full max-w-7xl mx-auto px-4 md:px-8 py-12">
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-					{/* 🎓 CSE Achievements */}
-					<section>
-						<h2 className="text-2xl font-semibold text-gray-800 mb-6"><span className="text-[#E87722] text-4xl">| </span> CSE Achievements</h2>
-						{achievementsData.CSE.map((item) => (
-							<Card key={item.year} className="mb-6 shadow-md border border-blue-300">
-								<CardHeader className="bg-blue-50 border-b-2 border-blue-600 rounded-t-lg">
-									<CardTitle className="text-lg font-semibold text-blue-700">
-										Year {item.year}
-									</CardTitle>
-								</CardHeader>
-								<CardContent className="p-6">
-									<ul className="list-disc pl-6 text-gray-700 space-y-2">
-										{item.achievements.map((achievement, index) => (
-											<li key={index}>{achievement}</li>
-										))}
-									</ul>
-								</CardContent>
-							</Card>
-						))}
-					</section>
+const StudentAchievements = () => {
+    const [selectedTab, setSelectedTab] = useState<"cse" | "ece" >("cse");
 
-					{/* 📡 ECE Achievements (Updated Color: Orange - #E87722) */}
-					<section>
-						<h2 className="text-2xl font-semibold text-gray-800 mb-6"><span className="text-[#E87722] text-4xl">| </span> ECE Achievements</h2>
-						{achievementsData.ECE.map((item) => (
-							<Card key={item.year} className="mb-6 shadow-md border border-[#E87722]">
-								<CardHeader className="bg-orange-50 border-b-2 border-[#E87722] rounded-t-lg">
-									<CardTitle className="text-lg font-semibold text-[#E87722]">
-										Year {item.year}
-									</CardTitle>
-								</CardHeader>
-								<CardContent className="p-6">
-									<ul className="list-disc pl-6 text-gray-700 space-y-2">
-										{item.achievements.map((achievement, index) => (
-											<li key={index}>{achievement}</li>
-										))}
-									</ul>
-								</CardContent>
-							</Card>
-						))}
-					</section>
-				</div>
-			</main>
-		</div>
-	);
-}
+    return (
+        <div className="max-w-6xl mx-auto px-6 py-10">
+            {/* Heading */}
+            <h1 className="text-3xl font-bold mb-6 flex items-center">
+                <span className="text-[#E87722] text-4xl mr-2">|</span> Student Achievements & Awards
+            </h1>
 
-export default StudentsAchievements;
+            {/* Tabs */}
+            <div className="flex gap-4 mb-6 border-b border-gray-300">
+                {["cse", "ece"].map((dept) => (
+                    <button
+                        key={dept}
+                        className={`relative px-6 py-2 text-lg font-medium transition-all duration-300 ${selectedTab === dept
+                                ? "text-[#E87722] font-bold"
+                                : "text-gray-500 hover:text-gray-700"
+                            }`}
+                        onClick={() => setSelectedTab(dept as "cse" | "ece" )}
+                    >
+                        {dept.toUpperCase()}
+                        {selectedTab === dept && (
+                            <motion.div
+                                layoutId="underline"
+                                className="absolute left-0 bottom-0 h-[3px] bg-[#E87722] w-full"
+                            />
+                        )}
+                    </button>
+                ))}
+            </div>
 
+            {/* Achievements List with Animation */}
+            <motion.div
+                key={selectedTab}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
+                {achievementsData[selectedTab].map((achievement, index) => (
+                    <Card key={index} className="shadow-md">
+                        <CardHeader>
+                            <CardTitle className="text-lg">{achievement.title}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-gray-600">Lead Researcher: <span className="font-medium">{achievement.researcher}</span></p>
+                            <p className="text-gray-700 mt-2">{achievement.description}</p>
+                            <a href="#" className="text-blue-500 mt-2 inline-block">Read More →</a>
+                        </CardContent>
+                    </Card>
+                ))}
+            </motion.div>
+        </div>
+    );
+};
+
+export default StudentAchievements;

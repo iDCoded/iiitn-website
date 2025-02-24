@@ -24,11 +24,10 @@ const HomeEventCard = ({ event }: { event: Event }) => (
         <div className="absolute bottom-0 w-full bg-[#002147] p-4 bg-opacity-90">
             <h3 className="text-white font-semibold text-lg">{event.title}</h3>
             {event.time && <p className="text-sm text-gray-300 mt-1">{event.time}</p>}
-        </div>
-
-        {/* Event Date Badge */}
-        <div className="absolute bottom-4 right-4 bg-[#E87722] text-white text-center px-3 py-2 rounded-md font-bold">
-            {event.date}
+            {/* Event Date Badge */}
+            <div className="absolute top-[-3vh] right-4 bg-[#E87722] text-white text-center px-2 py-1 rounded-md font-bold">
+                {event.date}
+            </div>
         </div>
     </div>
 );
