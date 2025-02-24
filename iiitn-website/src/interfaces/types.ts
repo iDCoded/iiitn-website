@@ -16,7 +16,7 @@ export interface Faculty {
 	person: Person;
 }
 
-export type Card = {
+export interface ICard {
 	c_id: string;
 	title: string;
 	caption: string;
@@ -31,4 +31,4 @@ export type Card = {
 	updated_by: number;
 	added_by: number;
 	media?: FileList;
-};
+}
