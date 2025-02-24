@@ -11,13 +11,6 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/components/ui/form";
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/components/ui/select";
 import { ImageIcon } from "lucide-react";
 import MDEditor from "@uiw/react-md-editor";
 
@@ -221,17 +214,7 @@ export function CardForm() {
 								<FormItem className="w-full">
 									<FormLabel>Category</FormLabel>
 									<FormControl>
-										<Select
-											onValueChange={field.onChange}
-											defaultValue={field.value}>
-											<SelectTrigger>
-												<SelectValue placeholder="Select a category" />
-											</SelectTrigger>
-											<SelectContent>
-												<SelectItem value="category1">Category 1</SelectItem>
-												<SelectItem value="category2">Category 2</SelectItem>
-											</SelectContent>
-										</Select>
+										<Input placeholder="Enter the category" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -244,17 +227,7 @@ export function CardForm() {
 								<FormItem className="w-full">
 									<FormLabel>Sub-category</FormLabel>
 									<FormControl>
-										<Select
-											onValueChange={field.onChange}
-											defaultValue={field.value}>
-											<SelectTrigger>
-												<SelectValue placeholder="Select a sub-category" />
-											</SelectTrigger>
-											<SelectContent>
-												<SelectItem value="sub1">Sub-category 1</SelectItem>
-												<SelectItem value="sub2">Sub-category 2</SelectItem>
-											</SelectContent>
-										</Select>
+										<Input placeholder="Enter the sub-category" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
