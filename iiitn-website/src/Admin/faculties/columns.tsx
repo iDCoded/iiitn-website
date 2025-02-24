@@ -33,6 +33,10 @@ export const columns: ColumnDef<Faculty>[] = [
 		header: "Positions",
 	},
 	{
+		accessorKey: "research",
+		header: "Research",
+	},
+	{
 		accessorKey: "f_or_s",
 		header: "Faculty or Staff",
 		cell: ({ row }) => {
