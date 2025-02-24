@@ -8,6 +8,8 @@ const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isHomePage, setIsHomePage] = useState(window.location.pathname === "/");
+    const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+    const [openSubmenu, setOpenSubmenu] = useState<number | null>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -33,10 +35,22 @@ const Navbar = () => {
 
     const dropdownLinks = [
         {
-            title: "Governance",
+            title: "The Institue",
             links: [
-                { name: "Committee", href: "/governance/committee" },
-                { name: "Administration", href: "/governance/administration" }
+                { name: "About Us", href: "/about" },
+                { name: "Institute Profile ", href: " /institute/institutesprofile" },
+                {name: "Administration ",
+                    subLinks:[
+                        { name: "Board Of Governors", href: "/governance/committee#Board-of-Governors" },
+                        { name: "Finance Committee", href: "/governance/committee#Finance-Committee" },
+                        { name: "Senate", href: "/governance/committee#Senate" },
+                        { name: "Building Works Committee", href: "/governance/committee#Building-Works-Committee" },
+                        { name: "Academic Administration", href: "/governance/administration" },
+                        { name: "Grievance Committee SC/ST Cell", href: "/administration/grievance-committee-sc-st-cell" },
+                        { name: "Anti-Ragging Committee", href: "/administration/anti-ragging-committee" },
+                        { name: "Internal Complaint Committee", href: "/administration/internal-complaint-committee" }
+                    ]
+                },
             ]
         },
         {
@@ -54,7 +68,7 @@ const Navbar = () => {
             links: [
                 {
                     name: "B.Tech",
-                    href: "/admissions/btech",
+                    // href: "/admissions/btech",
                     subLinks: [
                         { name: "Admission Process", href: "/admissions/btech/process" },
                         { name: "Eligibility", href: "/admissions/btech/eligibility" },
@@ -134,18 +148,50 @@ const Navbar = () => {
                     <div className="hidden lg:block px-6 py-3">
                         <ul className="flex space-x-10 text-lg text-white font-medium">
                             {dropdownLinks.map((item, index) => (
-                                <li key={index} className="relative group cursor-pointer hover:text-[#E87722]">
+                                <li
+                                    key={index}
+                                    className="relative group cursor-pointer hover:text-[#E87722]"
+                                    onMouseEnter={() => setOpenDropdown(index)}
+                                    onMouseLeave={() => setOpenDropdown(null)}
+                                >
                                     {item.title}
-                                    <ul className="absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                    {/* Dropdown Menu */}
+                                    <ul
+                                        className={`absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md transition-all duration-200 ${openDropdown === index ? "opacity-100 visible" : "opacity-0 invisible"
+                                            }`}
+                                    >
                                         {item.links.map((link, i) => (
-                                            <a key={i} href={link.href}>
-                                                <li className="px-4 py-2 hover:bg-[#E87722] hover:text-white">{link.name}</li>
-                                            </a>
+                                            <div
+                                                key={i}
+                                                className="relative group"
+                                                onMouseEnter={() => setOpenSubmenu(i)}
+                                                onMouseLeave={() => setOpenSubmenu(null)}
+                                            >
+                                                <a href={link.href}>
+                                                    <li className="px-4 py-2 hover:bg-[#E87722] hover:rounded-sm hover:text-white">
+                                                        {link.name}
+                                                    </li>
+                                                </a>
+                                                {/* Submenu */}
+                                                {link.subLinks && (
+                                                    <ul
+                                                        className={`absolute left-full top-0 mt-0 w-48 bg-white text-[#002147] border shadow-lg rounded-md transition-all duration-200 ${openSubmenu === i ? "opacity-100 visible" : "opacity-0 invisible"
+                                                            }`}
+                                                    >
+                                                        {link.subLinks.map((subLink, j) => (
+                                                            <a key={j} href={subLink.href}>
+                                                                <li className="px-4 py-2 hover:bg-[#E87722] hover:rounded-sm hover:text-white">
+                                                                    {subLink.name}
+                                                                </li>
+                                                            </a>
+                                                        ))}
+                                                    </ul>
+                                                )}
+                                            </div>
                                         ))}
                                     </ul>
                                 </li>
                             ))}
-                            <li className="hover:text-[#E87722]"><a href="/about">About</a></li>
                         </ul>
                     </div>
                 </nav>

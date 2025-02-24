@@ -113,7 +113,6 @@ export default function DepartmentPage({ title }: PageProps) {
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
-            {/* Hero Section */}
             <header
                 className="relative w-full h-64 flex flex-col justify-center items-center text-white text-center shadow-lg"
                 style={{
