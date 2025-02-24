@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa"; // Icons for menu toggle
 
+const imgSrc = "https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png";
+
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -109,7 +111,7 @@ const Navbar = () => {
                 <nav className={`w-full px-6 py-2 flex justify-between items-center ${isHomePage && !isScrolled ? "bg-transparent" : "bg-[#002147]"}`}>
                     <a href="/">
                         <div className="flex items-center space-x-4">
-                            <img src="/path/to/logo.png" alt="IIITN Logo" className="h-8 w-8" />
+                            <img src={imgSrc} alt="IIITN Logo" className="h-16 w-16" />
                             <div className="text-left">
                                 <p className="font-bold text-white text-lg">भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर</p>
                                 <p className="font-medium text-white text-base">Indian Institute of Information Technology, Nagpur</p>
