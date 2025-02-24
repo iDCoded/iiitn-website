@@ -4,9 +4,8 @@ import Departments from "../components/Departments";
 import UpcomingEvents from "../components/UpcomingEvents";
 import Admissions from "../components/Admissions";
 import Stats from "../components/Stats";
-import Testimonials from "../components/Testimonials";
 import CampusLife from "../components/CampusLife";
-import Announcements from "../components/Announcements";
+import { Testimonials } from "../components/Testimonials";
 
 const Home = () => {
     return (
