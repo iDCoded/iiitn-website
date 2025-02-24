@@ -72,8 +72,8 @@ const Navbar = () => {
             links: [
                 { name: "Departments", href: "/departments" },
                 { name: "Courses", href: "/academics/courses" },
-                { name: "Curriculum", href: "/academics/curriculum" },
-                { name: "Time Table", href: "/academics/timetable" },
+                { name: "Academic Curricula", href: "/academics/curriculum" },
+                { name: "Time Table", href: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link" },
                 { name: "Fees", href: "/pages/academicfee" }
             ]
         },
