@@ -1,5 +1,7 @@
 import HomeEventCard from "./HomeEventCard";
 import abhivyakti from "../assets/abhivyakti.jpeg";
+import tf from "../assets/tf.jpeg";
+import kshitij from "../assets/kshitij.jpeg";
 
 const events = [
     {
@@ -7,21 +9,21 @@ const events = [
         title: "Abhivyakti - The Cultural Fest of IIITN",
         description: "A grand cultural fest with music, dance, and fun activities.",
         time: "09:00 PM",
-        date: "19 Feb",
+        date: "28 Feb",
         large: true,
     },
     {
-        image: "/images/small-event-1.jpg",
-        title: "Smaller event with less importance",
-        time: "19 Feb",
-        date: "19 Feb",
+        image: tf,
+        title: "Tantrafiesta",
+        time: "27 Aug",
+        date: "27 Aug",
         large: false,
     },
     {
-        image: "/images/small-event-2.jpg",
-        title: "Smaller event with less importance",
-        time: "19 Feb",
-        date: "19 Feb",
+        image: kshitij,
+        title: "Institute Gathering",
+        time: "30 Jan",
+        date: "30 Jan",
         large: false,
     },
 ];
