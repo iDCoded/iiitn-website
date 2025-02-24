@@ -51,11 +51,11 @@ function MediaTablePage() {
 							<Plus />
 						</Button>
 					</DialogTrigger>
-					<DialogContent>
+					<DialogContent className="max-h-[80vh] overflow-y-auto">
 						<DialogHeader>
 							<DialogTitle>Create Card</DialogTitle>
 						</DialogHeader>
-						<CardForm />
+						<CardForm /> {/* // ! Create media creation form */}
 					</DialogContent>
 				</Dialog>
 				<DataTable columns={columns} data={mediaData} />

@@ -24,8 +24,8 @@ const sidebarData = {
 			url: "#",
 			items: [
 				{
-					title: "Create Faculty",
-					url: "#faculty",
+					title: "View All Users",
+					url: "#users",
 				},
 				{
 					title: "View All Faculty",
