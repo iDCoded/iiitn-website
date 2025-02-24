@@ -69,6 +69,7 @@ import FacultyDetail from "./Pages/FacultyDetail";
 import Facilities from "./Pages/Facilities";
 import InstitutesProfile from "./Pages/InstitutesProfile";
 import Formats from "./Pages/Formats";
+import DetailedNews from "./Pages/DetailedNews";
 import AnnualAccountAndReports from "./Pages/AnnualAccountAndReports";
 import RtiDetailsAndReports from "./Pages/RtiDetailsAndReports";
 import MinutesOfMeeting from "./Pages/MinutesOfMeeting";
@@ -169,6 +170,8 @@ const AppRoutes = () => (
 		<Route path="/pages/eoc" element={<EqualOppCell />} />
 		<Route path="/pages/directory" element={<Directory />} />
 		<Route path="/pages/directory" element={<Directory />} />
+		<Route path="/news/:newsId" element={<DetailedNews />} />
+
 		<Route path="/faculty/:name" element={<FacultyDetail />} />
 		<Route path="/institute/facilities" element={<Facilities />} />
 		<Route path="/institute/institutesprofile" element={<InstitutesProfile />} />
