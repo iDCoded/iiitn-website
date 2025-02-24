@@ -42,10 +42,10 @@ const Navbar = () => {
                     name: "About Us",
                     subLinks: [
                         { name: "Overview", href: "/about" },
-                        { name: "Annual accounts and reports", href: "/institute/annual-accounts-and-reports" },
-                        { name: "RTI Details and Reports", href: "/institute/rti-details-and-reports" },
-                        { name: "Minutes of Meeting", href: "/institute/minutes-of-meeting" },
-                        { name: "Immutable Properties", href: "/institute/immutable-properties" },
+                        { name: "Annual accounts and reports", href: "https://iiitn.ac.in/rti.php?id=395" },
+                        { name: "RTI Details and Reports", href: "https://iiitn.ac.in/rti.php?id=395" },
+                        { name: "Minutes of Meeting", href: "https://iiitn.ac.in/rti.php?id=395" },
+                        { name: "Immutable Properties", href: "https://iiitn.ac.in/rti.php?id=395" },
                     ]
                 },
                 { name: "Institute Profile ", href: " /institute/institutesprofile" },

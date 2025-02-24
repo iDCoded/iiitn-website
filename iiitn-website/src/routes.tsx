@@ -74,6 +74,7 @@ import RtiDetailsAndReports from "./Pages/RtiDetailsAndReports";
 import MinutesOfMeeting from "./Pages/MinutesOfMeeting";
 import ImmutableProperty from "./Pages/ImmutableProperty";
 
+
 const PageWrapper = () => {
 	const { param } = useParams();
 	return <DepartmentPage title={param || "defaultTitle"} />;
@@ -106,7 +107,7 @@ const AppRoutes = () => (
 		/>
 		<Route path="/departments" element={<Departments />} />
 		<Route path="/departments/:param" element={<PageWrapper />} />
-		{/* <Route path="/academics/courses" element={<Courses />} /> */}
+	    <Route path="/academics/courses" element={<Courses />} /> 
 		<Route path="/admissions/btech" element={<AdmissionsBTech />} />
 		<Route path="/admissions/btech/contact" element={<AdmissionContact />} />
 		<Route path="/admissions/btech/acadfees" element={<FirstYearAcadFee />} />

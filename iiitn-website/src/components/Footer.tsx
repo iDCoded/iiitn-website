@@ -65,7 +65,7 @@ const Footer = () => {
                     <div>
                         <h4 className="text-lg font-semibold mb-4 text-[#E87722]">Academics</h4>
                         <ul className="space-y-2 text-sm text-gray-300">
-                            <li><a href="/pages/courses" className="hover:text-white">Courses</a></li>
+                            <li><a href="/academics/courses" className="hover:text-white">Courses</a></li>
                             <li><a href="/research/projects" className="hover:text-white">Projects</a></li>
                             <li><a href="/research/publications" className="hover:text-white">Publications</a></li>
                             <li><a href="#" className="hover:text-white">Academic Calendar</a></li>
