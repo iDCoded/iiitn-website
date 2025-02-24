@@ -2,7 +2,7 @@ import HomeEventCard from "./HomeEventCard";
 
 const events = [
     {
-        image: "/images/abhivyakti.jpg",
+        image: "https://www.abhivyaktifest.in/assets/logo.png",
         title: "Abhivyakti - The Cultural Fest of IIITN",
         description: "A grand cultural fest with music, dance, and fun activities.",
         time: "09:00 PM",

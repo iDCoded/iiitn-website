@@ -81,12 +81,17 @@ const Navbar = () => {
             title: "Others",
             links: [
                 { name: "Consultancy", href: "/pages/consultancy" },
-                { name: "Innovation Council", href: "/pages/iic" },
-                { name: "Guest House", href: "/pages/guesthouse" }
+                { name: "Institution Innovation Council", href: "/pages/iic" },
+                {name: "Electoral Literacy Club", href: "/pages/elclub" },
+                { name: "Guest House", href: "/pages/guesthouse" },
+                { name: "Press Release", href: "/pages/pressrelease" },
+                { name: "Tenders", href: "/pages/tenders" },
+                {name: "RTI", href: "/pages/rti" },
+                {name:"Official Documents" , href:"/pages/officialdocuments" },
             ]
         }
     ];
-    
+
 
     return (
         <>
