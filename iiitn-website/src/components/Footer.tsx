@@ -33,7 +33,12 @@ const Footer = () => {
                         <ul className="space-y-2 text-sm text-gray-300">
                             <li><a href="/pages/grievance" className="hover:text-white">Grievance</a></li>
                             <li><a href="/pages/grievance_committee_sc_st" className="hover:text-white">Grievance Committee SC/ST Cell</a></li>
-                            <li><a href="#" className="hover:text-white">Anti-Ragging Committee</a></li>
+                            <li> <a
+                                    href={data[0]}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-white font-medium transition duration-300"
+                                >Anti-Ragging Committee</a></li>
                             <li><a href="/pages/icc" className="hover:text-white">Internal Complaint Committee</a></li>
                             <li><a href="/pages/eoc" className="hover:text-white">Equal Opportunity Cell</a></li>
                             <li><a href="/pages/rti" className="hover:text-white">RTI</a></li>
@@ -47,7 +52,12 @@ const Footer = () => {
                                     Networking Complaint
                                 </a>
                             </li>
-                            <li><a href="#" className="hover:text-white">Policy for Prevention of Sexual Harrasment of Women at Workplace</a></li>
+                            <li> <a
+                                    href={data[0]}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-white font-medium transition duration-300">
+                                        Policy for Prevention of Sexual Harrasment of Women at Workplace</a></li>
                         </ul>
                     </div>
 
@@ -55,10 +65,11 @@ const Footer = () => {
                     <div>
                         <h4 className="text-lg font-semibold mb-4 text-[#E87722]">Academics</h4>
                         <ul className="space-y-2 text-sm text-gray-300">
-                            <li><a href="#" className="hover:text-white">Programs</a></li>
-                            <li><a href="#" className="hover:text-white">Research</a></li>
+                            <li><a href="/pages/courses" className="hover:text-white">Courses</a></li>
+                            <li><a href="/research/projects" className="hover:text-white">Projects</a></li>
+                            <li><a href="/research/publications" className="hover:text-white">Publications</a></li>
                             <li><a href="#" className="hover:text-white">Academic Calendar</a></li>
-                            <li><a href="#" className="hover:text-white">Library</a></li>
+                            <li><a href="/pages/library" className="hover:text-white">Library</a></li>
                         </ul>
                     </div>
 
@@ -66,10 +77,10 @@ const Footer = () => {
                     <div>
                         <h4 className="text-lg font-semibold mb-4 text-[#E87722]">Campus Life</h4>
                         <ul className="space-y-2 text-sm text-gray-300">
-                            <li><a href="#" className="hover:text-white">Clubs</a></li>
-                            <li><a href="#" className="hover:text-white">Festivals</a></li>
-                            <li><a href="#" className="hover:text-white">Sports</a></li>
-                            <li><a href="#" className="hover:text-white">Student Governance</a></li>
+                            <li><a href="/pages/studentclubs" className="hover:text-white">Clubs</a></li>
+                            <li><a href="/pages/festivals" className="hover:text-white">Festivals</a></li>
+                            <li><a href="/pages/sports" className="hover:text-white">Sports</a></li>
+                            <li><a href="/pages/studentgovernance" className="hover:text-white">Student Governance</a></li>
                         </ul>
                     </div>
 
@@ -77,9 +88,10 @@ const Footer = () => {
                     <div>
                         <h4 className="text-lg font-semibold mb-4 text-[#E87722]">Happenings</h4>
                         <ul className="space-y-2 text-sm text-gray-300">
-                            <li><a href="#" className="hover:text-white">Events</a></li>
-                            <li><a href="#" className="hover:text-white">News</a></li>
-                            <li><a href="#" className="hover:text-white">Achievements</a></li>
+                            <li><a href="/events" className="hover:text-white">Events</a></li>
+                            <li><a href="/news" className="hover:text-white">News</a></li>
+                            <li><a href="/pages/studentachievements" className="hover:text-white">Student Achievements</a></li>
+                            <li><a href="/pages/facultyachievements" className="hover:text-white">Faculty Achievements</a></li>
                         </ul>
                     </div>
                 </div>
@@ -89,10 +101,11 @@ const Footer = () => {
 
                 {/* Bottom Links */}
                 <div className="flex flex-wrap justify-center space-x-4 text-sm text-gray-300 mb-6">
-                    <a href="#" className="hover:text-white">Annual Reports</a>
-                    <a href="#" className="hover:text-white">Budget</a>
-                    <a href="#" className="hover:text-white">Act & Statutes</a>
-                    <a href="#" className="hover:text-white">Quality Policy</a>
+                    
+                    <a href="/about" className="hover:text-white">Act & Statutes</a>
+                    <a href="/pages/annualreports" className="hover:text-white">Annual Reports</a>
+                    <a href="/pages/rtireports" className="hover:text-white">RTI Reports</a>
+                    
                 </div>
 
                 {/* Institute Logo and Info */}
