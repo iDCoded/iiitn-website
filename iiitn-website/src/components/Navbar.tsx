@@ -40,12 +40,11 @@ const Navbar = () => {
                 {
                     name: "About Us",
                     subLinks: [
-                        { name: "Overview", href: "/institute/aboutus" },
+                        { name: "Overview", href: "/about" },
                         { name: "Annual accounts and reports", href: "/institute/annual-accounts-and-reports" },
                         { name: "RTI Details and Reports", href: "/institute/rti-details-and-reports" },
                         { name: "Minutes of Meeting", href: "/institute/minutes-of-meeting" },
                         { name: "Immutable Properties", href: "/institute/immutable-properties" },
-                        { name: "Facilities", href: "/institute/facilities" },
                     ]
                 },
                 { name: "Institute Profile ", href: " /institute/institutesprofile" },
@@ -57,13 +56,13 @@ const Navbar = () => {
                         { name: "Senate", href: "/governance/committee#Senate" },
                         { name: "Building Works Committee", href: "/governance/committee#Building-Works-Committee" },
                         { name: "Academic Administration", href: "/governance/administration" },
-                        { name: "Grievance Committee SC/ST Cell", href: "/administration/grievance-committee-sc-st-cell" },
+                        { name: "Grievance Committee SC/ST Cell", href: "/pages/grievancecomm" },
                         { name: "Anti-Ragging Committee", href: "/administration/anti-ragging-committee" },
-                        { name: "Internal Complaint Committee", href: "/administration/internal-complaint-committee" }
+                        { name: "Internal Complaint Committee", href: "/pages/icc" }
                     ]
                 },
-                { name: "NIRF", href: "/institute/nirf" },
-
+                { name: "NIRF", href: "/pages/nirf" },
+                { name: "Facilities", href: "/institute/facilities" },
             ]
         },
         {
@@ -169,10 +168,11 @@ const Navbar = () => {
                                 >
                                     {item.title}
                                     {/* Dropdown Menu */}
-                                    <ul
-                                        className={`absolute left-0 top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md transition-all duration-200 ${openDropdown === index ? "opacity-100 visible" : "opacity-0 invisible"
-                                            }`}
+                                    <ul className={`absolute top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md transition-all duration-200 
+                                    ${index === dropdownLinks.length - 1 ? "right-0" : "left-0"} 
+                                    ${openDropdown === index ? "opacity-100 visible" : "opacity-0 invisible"}`}
                                     >
+
                                         {item.links.map((link, i) => (
                                             <div
                                                 key={i}
@@ -187,9 +187,9 @@ const Navbar = () => {
                                                 </a>
                                                 {/* Submenu */}
                                                 {link.subLinks && (
-                                                    <ul
-                                                        className={`absolute left-full top-0 mt-0 w-48 bg-white text-[#002147] border shadow-lg rounded-md transition-all duration-200 ${openSubmenu === i ? "opacity-100 visible" : "opacity-0 invisible"
-                                                            }`}
+                                                    <ul className={`absolute top-0 mt-0 w-48 bg-white text-[#002147] border shadow-lg rounded-md transition-all duration-200 
+                                                    ${index === dropdownLinks.length - 1 ? "right-full" : "left-full"} 
+                                                    ${openSubmenu === i ? "opacity-100 visible" : "opacity-0 invisible"}`}
                                                     >
                                                         {link.subLinks.map((subLink, j) => (
                                                             <a key={j} href={subLink.href}>
