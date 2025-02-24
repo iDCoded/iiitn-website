@@ -13,13 +13,18 @@ export interface Person {
 }
 
 export interface Faculty {
-	f_id: number;
-	p_id: number;
-	d_id: number;
+	f_id: string;
+	p_id: string;
+	d_id: string;
+	pub_id: string;
+	media_img_id: number;
 	join_year: number;
 	positions: string;
+	education: string;
+	experience: number;
+	teaching: string;
+	research: string;
 	f_or_s: "Faculty" | "Staff";
-	person: Person;
 }
 
 export interface ICard {
