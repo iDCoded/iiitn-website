@@ -64,9 +64,8 @@ function FacultyandStaff() {
                         </div>
                     </div>
 
-                    {/* Faculty & Staff Directory */}
+                    {/* Faculty & Staff Directory
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 max-w-[80vh] mx-auto">
-                        {/* Faculty Directory */}
                         <div>
                             <h2 className="text-2xl font-semibold mb-4"><span className="text-[#E87722] text-4xl">| </span>Faculty Directory</h2>
                             <FSCard
@@ -75,7 +74,6 @@ function FacultyandStaff() {
                                 imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
                             />
                         </div>
-                        {/* Staff Directory */}
                         <div>
                             <h2 className="text-2xl font-semibold mb-4"><span className="text-[#E87722] text-4xl">| </span>Staff Directory</h2>
                             <FSCard
@@ -84,14 +82,22 @@ function FacultyandStaff() {
                                 imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
                             />
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
                 <aside className="hidden md:block w-1/4 space-y-6 top-20 self-start mx-auto">
                     {[
-                        { title: "Quick Links", items: ["Faculty Directory", "Staff Directory", "Academic Policies", "Research Opportunities", "Teaching Resources"] },
-                        { title: "Upcoming Events", items: ["Faculty Development Program", "Guest Lectures", "Research Conference", "Annual Faculty Meet", "Training Workshops"] },
-                        { title: "Resources & Services", items: ["Telephone Directory", "Campus Map", "Faculty Resources", "IT Support"] },
+                        { 
+                            title: "Quick Links", 
+                            items: [
+                                { name: "Faculty & Staff Directory", link: "/pages/directory" },
+                                { name: "Academic Curricula", link: "https://iiitn.ac.in/Downloads/academic/2025/BTech-CSE-Syllabus-1.pdf" },
+                                { name: "Time Table", link: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link" },
+                                {name: "Faculty Achievements", link: "/pages/facultyachievements"},
+                                { name: "Research Publications", link: "/research/publications" },
+                                { name: "Research Projects", link: "/research/projects" },
+                            ] 
+                        }
                     ].map((section, index) => (
                         <Card key={index} className="shadow-sm border border-gray-200">
                             <CardHeader>
@@ -101,7 +107,7 @@ function FacultyandStaff() {
                                 <ul className="space-y-2 text-sm">
                                     {section.items.map((item, i) => (
                                         <li key={i}>
-                                            <a href="#" className="text-[#E87722] hover:underline">{item}</a>
+                                            <a href={item.link} className="text-[#E87722] hover:underline">{item.name}</a>
                                         </li>
                                     ))}
                                 </ul>

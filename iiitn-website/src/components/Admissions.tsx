@@ -16,7 +16,7 @@ const programs = [
     {
         title: "Doctoral Programs (Ph.D.)",
         description: "Research opportunities in various cutting-edge fields.",
-        link: "/admissions/pg",
+        link: "/admissions/phd",
     },
 ];
 
@@ -31,28 +31,35 @@ const Admissions = () => {
             <div className="absolute inset-0 bg-[#002147]/30 backdrop-blur-lg border border-white/20"></div>
 
             {/* Content */}
-            <div className="relative max-w-6xl text-left">
-                <h2 className="text-3xl font-bold text-white drop-shadow-lg">
+            <div className="relative max-w-6xl text-left text-center">
+                <h2 className="text-4xl font-bold text-white drop-shadow-lg tracking-wide">
                     <span className="text-[#E87722]">| </span>Admissions & Programs
                 </h2>
                 <p className="mt-4 text-gray-200 text-lg">
                     Enroll in our world-class education programs.
                 </p>
 
-                {/* Cards - Now in White! */}
+                {/* Cards - Hover Effects Added! */}
                 <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
                     {programs.map((program, index) => (
                         <Card
                             key={index}
-                            className="bg-white shadow-lg rounded-lg border border-gray-200 hover:shadow-2xl transition-all"
+                            className="relative overflow-hidden bg-white shadow-lg rounded-lg border border-gray-200 transition-transform duration-300 ease-in-out transform hover:scale-[1.05] hover:shadow-2xl"
                         >
-                            <CardContent className="p-6 text-center">
-                                <CardTitle className="text-lg font-bold text-[#002147]">{program.title}</CardTitle>
-                                <p className="mt-2 text-gray-600">{program.description}</p>
+                            {/* Hover Overlay Effect */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#E87722]/90 to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100"></div>
+
+                            <CardContent className="p-6 text-center relative z-10">
+                                <CardTitle className="text-lg font-bold text-[#002147] transition-colors duration-300 group-hover:text-white">
+                                    {program.title}
+                                </CardTitle>
+                                <p className="mt-2 text-gray-600 group-hover:text-gray-100 transition-colors duration-300">
+                                    {program.description}
+                                </p>
 
                                 {/* Learn More Button */}
                                 <a href={program.link}>
-                                    <div className="mt-4 flex items-center justify-center text-[#E87722] font-semibold cursor-pointer hover:underline group">
+                                    <div className="mt-4 flex items-center justify-center text-[#E87722] font-semibold cursor-pointer group-hover:text-white transition-colors duration-300">
                                         <span>Learn More</span>
                                         <FaArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
                                     </div>
