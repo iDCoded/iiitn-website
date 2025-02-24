@@ -1,6 +1,17 @@
 import { useEffect, useState } from "react";
-import { Card, columns } from "./columns";
+import { columns } from "./columns";
 import { DataTable } from "./data-table";
+import { Card } from "@/interfaces/types";
+import { Plus } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "@/components/ui/dialog";
+import { CardForm } from "@/components/form/card-form";
 
 function CardTablePage() {
 	const [cardData, setCardData] = useState<Card[]>([]);
@@ -31,8 +42,23 @@ function CardTablePage() {
 	if (error) return <p className="text-center text-red-500">Error: {error}</p>;
 
 	return (
-		<div className="container mx-auto py-10">
-			<DataTable columns={columns} data={cardData} />
+		<div className="container mx-auto py-10 h-screen">
+			<div className="flex flex-col items-end gap-8">
+				<Dialog>
+					<DialogTrigger asChild>
+						<Button variant={"outline"} size={"icon"}>
+							<Plus />
+						</Button>
+					</DialogTrigger>
+					<DialogContent>
+						<DialogHeader>
+							<DialogTitle>Create Card</DialogTitle>
+						</DialogHeader>
+						<CardForm />
+					</DialogContent>
+				</Dialog>
+				<DataTable columns={columns} data={cardData} />
+			</div>
 		</div>
 	);
 }
