@@ -34,6 +34,7 @@ const sidebarLinks = [
     { title: "Events and Festivities", link: "/events" },
     { title: "Achievements", link: "/pages/studentachievements" },
     { title: "Dining Options", link: "/pages/mess" },
+    { title: "Clinical Counselling", link: "/pages/clinicalcounselling" },
     { title: "Academic Fees", link: "/pages/academicfee" },
     { title: "Hostel Fees", link: "/pages/hostelfee" },
 ];

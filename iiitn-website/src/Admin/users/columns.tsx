@@ -6,40 +6,27 @@ import {
 	DropdownMenuLabel,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { IMedia } from "@/interfaces/types";
+import { Person } from "@/interfaces/types";
 import { ColumnDef } from "@tanstack/react-table";
-import { Eye, MoreHorizontal } from "lucide-react";
+import { MoreHorizontal } from "lucide-react";
 
-export const columns: ColumnDef<IMedia>[] = [
+export const columns: ColumnDef<Person>[] = [
 	{
-		id: "view",
-		cell: ({ row }) => {
-			const media = row.original;
-			console.log(media);
-
-			return (
-				<div>
-					<Eye />
-				</div>
-			);
-		},
+		accessorKey: "name",
+		header: "Name",
 	},
 	{
-		accessorKey: "title",
-		header: "Title",
+		accessorKey: "email_pri",
+		header: "Email",
 	},
 	{
-		accessorKey: "m_category",
-		header: "Category",
-	},
-	{
-		accessorKey: "m_sub_category",
-		header: "Sub Category",
+		accessorKey: "phone_no",
+		header: "Phone Number",
 	},
 	{
 		id: "actions",
 		cell: ({ row }) => {
-			const media = row.original;
+			const user = row.original;
 
 			return (
 				<DropdownMenu>
@@ -54,9 +41,9 @@ export const columns: ColumnDef<IMedia>[] = [
 						<DropdownMenuItem
 							className="text-red-400"
 							onClick={() => {
-								console.log(`Deleted Media: ${media.m_id}`);
+								console.log(`Deleted User: ${user.name}`);
 							}}>
-							Delete Media
+							Delete User
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>

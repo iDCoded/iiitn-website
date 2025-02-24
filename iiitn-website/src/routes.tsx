@@ -67,6 +67,7 @@ import StudentsClubs from "./Pages/StudentsClubs";
 import Directory from "./Pages/Directory";
 import FacultyDetail from "./Pages/FacultyDetail";
 import Facilities from "./Pages/Facilities";
+import InstitutesProfile from "./Pages/InstitutesProfile";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -162,7 +163,8 @@ const AppRoutes = () => (
 		<Route path="/pages/directory" element={<Directory />} />
 		<Route path="/pages/directory" element={<Directory />} />
 		<Route path="/faculty/:name" element={<FacultyDetail />} />
-		<Route path="/about/facilities" element={<Facilities />} />
+		<Route path="/institute/facilities" element={<Facilities />} />
+		<Route path="/institute/institutesprofile" element={<InstitutesProfile />} />
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );

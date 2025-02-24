@@ -51,7 +51,7 @@ function CardTablePage() {
 							<Plus />
 						</Button>
 					</DialogTrigger>
-					<DialogContent>
+					<DialogContent className="max-h-[80vh] overflow-y-auto">
 						<DialogHeader>
 							<DialogTitle>Create Card</DialogTitle>
 						</DialogHeader>
