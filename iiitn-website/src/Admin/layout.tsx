@@ -42,7 +42,7 @@ export default function AdminDashboard({
 	children: React.ReactNode;
 }) {
 	const [sidebar, setSidebar] = useState<string | null>(null);
-	const [lastSelected, setLastSelected] = useState<string | null>("#events");
+	const [lastSelected, setLastSelected] = useState<string | null>("#card");
 
 	const location = useLocation();
 	useEffect(() => {
