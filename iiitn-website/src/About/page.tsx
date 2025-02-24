@@ -75,6 +75,7 @@ export default function AboutUs() {
                 <InfoCard
                     title="Annual Report"
                     content="IIIT Nagpur publishes an annual report detailing academic progress, research contributions, and financial statements."
+                    
                 />
 
                 {/* MoUs Section */}
