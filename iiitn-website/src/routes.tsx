@@ -74,6 +74,7 @@ import RtiDetailsAndReports from "./Pages/RtiDetailsAndReports";
 import MinutesOfMeeting from "./Pages/MinutesOfMeeting";
 import ImmutableProperty from "./Pages/ImmutableProperty";
 
+
 const PageWrapper = () => {
 	const { param } = useParams();
 	return <DepartmentPage title={param || "defaultTitle"} />;
@@ -106,7 +107,7 @@ const AppRoutes = () => (
 		/>
 		<Route path="/departments" element={<Departments />} />
 		<Route path="/departments/:param" element={<PageWrapper />} />
-		{/* <Route path="/academics/courses" element={<Courses />} /> */}
+	    <Route path="/academics/courses" element={<Courses />} /> 
 		<Route path="/admissions/btech" element={<AdmissionsBTech />} />
 		<Route path="/admissions/btech/contact" element={<AdmissionContact />} />
 		<Route path="/admissions/btech/acadfees" element={<FirstYearAcadFee />} />
@@ -171,10 +172,10 @@ const AppRoutes = () => (
 		<Route path="/faculty/:name" element={<FacultyDetail />} />
 		<Route path="/institute/facilities" element={<Facilities />} />
 		<Route path="/institute/institutesprofile" element={<InstitutesProfile />} />
-		{/* <Route path="/institute/annual-accounts-and-reports" element={<AnnualAccountAndReports />}></Route>
-		<Route path="/institute/rti-details-and-reports" element={<RtiDetailsAndReports />}></Route>
-		<Route path="/institute/minutes-of-meeting" element={<MinutesOfMeeting/>}></Route>
-		<Route path="/institute/immutable-properties" element={<ImmutableProperty/>}></Route>  */}
+		{/* <Route path="/institute/annualreports" element={<AnnualAccountAndReports />}></Route>
+		<Route path="/institute/rtireports" element={<RtiDetailsAndReports />}></Route>
+		<Route path="/institute/minutesofmeeting" element={<MinutesOfMeeting/>}></Route>
+		<Route path="/institute/immutableproperties" element={<ImmutableProperty/>}></Route>  */}
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );

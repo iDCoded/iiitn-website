@@ -27,39 +27,64 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 
-const schema = z.object({
-	p_id: z.number(),
+// ! Editing faculty details not working
+const formSchema = z.object({
+	f_id: z.string(),
+	p_id: z.string(),
 	d_id: z.string(),
-	join_year: z
-		.string()
-		.regex(/^\d{4}$/, { message: "Please enter a valid year" }),
+	pub_id: z.string(),
+	media_img_id: z.number(),
+	join_year: z.coerce
+		.number()
+		.int()
+		.gte(1900)
+		.lte(new Date().getFullYear())
+		.default(new Date().getFullYear()),
 	positions: z.string().min(1, { message: "Please enter the positions" }),
 	f_or_s: z.enum(["Faculty", "Staff"], {
 		message: "Please select Faculty or Staff",
 	}),
+	education: z.string().min(1, { message: "Please enter the education" }),
+	experience: z.coerce
+		.number()
+		.min(1, { message: "Please enter the experience" })
+		.default(0),
+	teaching: z.string().min(1, { message: "Please enter the teaching" }),
+	research: z.string().min(1, { message: "Please enter the research" }),
 });
 
-type FormData = z.infer<typeof schema>;
+type FormData = z.infer<typeof formSchema>;
 
 const FacultyEditDialog = ({ faculty }: { faculty: Faculty }) => {
-	const form = useForm<FormData>({
-		resolver: zodResolver(schema),
-		defaultValues: {
-			p_id: faculty.p_id,
-			d_id: faculty.d_id?.toString(),
-			join_year: faculty.join_year.toString(),
-			positions: faculty.positions,
-			f_or_s: faculty.f_or_s,
-		},
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
+		defaultValues: { ...faculty },
 	});
 
 	const onSubmit = async (data: FormData) => {
+		console.log("please wokr");
+		const facultyData: Faculty = {
+			f_id: "1",
+			p_id: "1",
+			d_id: "2",
+			pub_id: "1",
+			media_img_id: 1,
+			join_year: data.join_year,
+			positions: data.positions,
+			f_or_s: data.f_or_s,
+			education: data.education,
+			experience: data.experience,
+			teaching: data.teaching,
+			research: data.research,
+		};
+		console.table(facultyData);
+
 		await fetch(`http://localhost:5000/faculty/faculty_staff/${faculty.f_id}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(data),
+			body: JSON.stringify(facultyData),
 		});
 	};
 
@@ -74,42 +99,6 @@ const FacultyEditDialog = ({ faculty }: { faculty: Faculty }) => {
 				</DialogHeader>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-						<FormField
-							control={form.control}
-							name="p_id"
-							render={({ field }) => (
-								<FormItem className="space-y-2">
-									<FormLabel htmlFor="p_id">ID</FormLabel>
-									<FormControl>
-										<Input
-											id="p_id"
-											placeholder="Enter ID"
-											{...field}
-											type="number"
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-						<FormField
-							control={form.control}
-							name="d_id"
-							render={({ field }) => (
-								<FormItem className="space-y-2">
-									<FormLabel htmlFor="d_id">Department ID</FormLabel>
-									<FormControl>
-										<Input
-											type="number"
-											id="d_id"
-											placeholder="Enter Department ID"
-											{...field}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
 						<FormField
 							control={form.control}
 							name="join_year"
@@ -142,14 +131,80 @@ const FacultyEditDialog = ({ faculty }: { faculty: Faculty }) => {
 						/>
 						<FormField
 							control={form.control}
+							name="education"
+							render={({ field }) => (
+								<FormItem className="space-y-2">
+									<FormLabel htmlFor="positions">Education</FormLabel>
+									<FormControl>
+										<Input
+											id="education"
+											placeholder="Enter education"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="experience"
+							render={({ field }) => (
+								<FormItem className="space-y-2">
+									<FormLabel htmlFor="positions">Experience</FormLabel>
+									<FormControl>
+										<Input
+											id="experience"
+											placeholder="Enter experience"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="teaching"
+							render={({ field }) => (
+								<FormItem className="space-y-2">
+									<FormLabel htmlFor="positions">Teaching</FormLabel>
+									<FormControl>
+										<Input
+											id="teaching"
+											placeholder="Enter teaching"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="research"
+							render={({ field }) => (
+								<FormItem className="space-y-2">
+									<FormLabel htmlFor="positions">Research</FormLabel>
+									<FormControl>
+										<Input
+											id="research"
+											placeholder="Enter research"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
 							name="f_or_s"
 							render={({ field }) => (
 								<FormItem className="space-y-2">
 									<FormLabel htmlFor="f_or_s">Faculty or Staff</FormLabel>
 									<FormControl>
-										<Select
-											onValueChange={field.onChange}
-											defaultValue={field.value}>
+										<Select onValueChange={field.onChange} value={field.value}>
 											<SelectTrigger>
 												<SelectValue placeholder="Select Faculty or Staff" />
 											</SelectTrigger>
