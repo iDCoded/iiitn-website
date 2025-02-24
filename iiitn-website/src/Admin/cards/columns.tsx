@@ -6,12 +6,25 @@ import {
 	DropdownMenuLabel,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Card } from "@/interfaces/types";
+import { ICard } from "@/interfaces/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import CardEditDialog from "./card-edit-dialog";
+import ViewCardDialog from "./card-view-dialog";
 
-export const columns: ColumnDef<Card>[] = [
+export const columns: ColumnDef<ICard>[] = [
+	{
+		id: "view",
+		cell: ({ row }) => {
+			const card = row.original;
+
+			return (
+				<div>
+					<ViewCardDialog card={card} />
+				</div>
+			);
+		},
+	},
 	{
 		accessorKey: "title",
 		header: "Title",
