@@ -53,7 +53,7 @@ const Navbar = () => {
             links: [
                 {
                     name: "B.Tech",
-                    href: "#",
+                    href: "/admissions/btech",
                     subLinks: [
                         { name: "Admission Process", href: "/admissions/btech/process" },
                         { name: "Eligibility", href: "/admissions/btech/eligibility" },
