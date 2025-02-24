@@ -12,6 +12,12 @@ import { MoreHorizontal } from "lucide-react";
 import CardEditDialog from "./card-edit-dialog";
 import ViewCardDialog from "./card-view-dialog";
 
+async function deleteCard(c_id: string) {
+	await fetch(`http://localhost:5000/card/cards/${c_id}`, {
+		method: "DELETE",
+	});
+}
+
 export const columns: ColumnDef<ICard>[] = [
 	{
 		id: "view",
@@ -64,7 +70,7 @@ export const columns: ColumnDef<ICard>[] = [
 						<DropdownMenuItem
 							className="text-red-400"
 							onClick={() => {
-								console.log(`Deleted ${card.c_id}`);
+								deleteCard(card.c_id);
 							}}>
 							Delete Card
 						</DropdownMenuItem>
