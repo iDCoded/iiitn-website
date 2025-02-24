@@ -42,7 +42,7 @@ const EventDetail = () => {
     useEffect(() => {
         const fetchEvent = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_BASE_URL}/cards/${eventid}`);
+                const response = await fetch(`${process.env.REACT_APP_BASE_URL}/card/cards/${eventid}`);
                 if (!response.ok) {
                     throw new Error("Event not found");
                 }
