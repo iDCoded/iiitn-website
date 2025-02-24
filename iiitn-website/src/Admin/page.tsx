@@ -1,44 +1,10 @@
-import { EventForm } from "@/components/form/event-form";
+import CardForm from "@/components/form/event-form";
 import { FacultyForm } from "@/components/form/faculty-form";
 import { ImageUpload } from "@/components/form/image-upload";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { AdminSidebar } from "./admin-sidebar";
 import FacultyTablePage from "./faculties/page";
-
-const sidebarData = {
-	navMain: [
-		{
-			title: "Announcements",
-			url: "#",
-			items: [
-				{
-					title: "Events",
-					url: "#events",
-				},
-				{
-					title: "Media",
-					url: "#media",
-				},
-			],
-		},
-		{
-			title: "Faculty",
-			url: "#",
-			items: [
-				{
-					title: "Create Faculty",
-					url: "#faculty",
-				},
-				{
-					title: "View All Faculty",
-					url: "#allfaculty",
-				},
-			],
-		},
-	],
-};
 
 const AdminPage = () => {
 	const [sidebar, setSidebar] = useState<string | null>(null);
@@ -48,7 +14,7 @@ const AdminPage = () => {
 	useEffect(() => {
 		console.log("hash", location.hash);
 		if (
-			location.hash === "#events" ||
+			location.hash === "#card" ||
 			location.hash === "#media" ||
 			location.hash === "#faculty" ||
 			location.hash === "#allfaculty"
@@ -63,11 +29,10 @@ const AdminPage = () => {
 	return (
 		<>
 			<div className="px-8 flex justify-center items-center">
-				<AdminSidebar data={sidebarData} activeItem={sidebar} />
 				{sidebar !== "#allfaculty" && (
 					<Card className="w-5xl">
 						<CardContent className="p-6">
-							{sidebar === "#events" && <EventForm />}
+							{sidebar === "#card" && <CardForm />}
 							{sidebar === "#media" && <ImageUpload />}
 							{sidebar === "#faculty" && <FacultyForm />}
 						</CardContent>
