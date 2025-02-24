@@ -45,7 +45,7 @@ const Navbar = () => {
                 { name: "Courses", href: "/academics/courses" },
                 { name: "Curriculum", href: "/academics/curriculum" },
                 { name: "Time Table", href: "/academics/timetable" },
-                { name: "Fees", href: "/academics/fees" }
+                { name: "Fees", href: "/pages/academicfee" }
             ]
         },
         {

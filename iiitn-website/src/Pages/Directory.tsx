@@ -3,41 +3,43 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
-// Faculty Data
 type Faculty = {
     name: string;
     designation: string;
     role: "HOD" | "Member";
     image: string;
+    department: "CSE" | "ECE" | "BASIC";
 };
 
 const facultyData: Faculty[] = [
-    { name: "Dr. John Doe", designation: "Professor & HOD", role: "HOD", image: "/hod.jpg" },
-    { name: "Dr. Alice Smith", designation: "Associate Professor", role: "Member", image: "/faculty1.jpg" },
-    { name: "Dr. Bob Williams", designation: "Assistant Professor", role: "Member", image: "/faculty2.jpg" },
-    { name: "Dr. Bob Williams", designation: "Assistant Professor", role: "Member", image: "/faculty2.jpg" },
-    { name: "Dr. Bob Williams", designation: "Assistant Professor", role: "Member", image: "/faculty2.jpg" },
-    { name: "Dr. Bob Williams", designation: "Assistant Professor", role: "Member", image: "/faculty2.jpg" },
-    { name: "Dr. Bob Williams", designation: "Assistant Professor", role: "Member", image: "/faculty2.jpg" },
+    { name: "Dr. John Doe", designation: "Professor & HOD", role: "HOD", image: "/hod.jpg", department: "CSE" },
+    { name: "Dr. Alice Smith", designation: "Associate Professor", role: "Member", image: "/faculty1.jpg", department: "ECE" },
+    { name: "Dr. Bob Williams", designation: "Assistant Professor", role: "Member", image: "/faculty2.jpg", department: "BASIC" },
+    { name: "Dr. Jane Brown", designation: "Assistant Professor", role: "Member", image: "/faculty3.jpg", department: "CSE" },
+    { name: "Dr. Mark Wilson", designation: "Assistant Professor", role: "Member", image: "/faculty4.jpg", department: "ECE" },
+    { name: "Dr. Sarah Lee", designation: "Assistant Professor", role: "Member", image: "/faculty5.jpg", department: "BASIC" },
+    { name: "Dr. David Kim", designation: "Assistant Professor", role: "Member", image: "/faculty6.jpg", department: "CSE" },
 ];
 
-// Staff Data
+
 type Staff = {
     name: string;
     designation: string;
     qualification: string;
     contact: string;
     image: string;
+    department: "CSE" | "ECE" | "BASIC";
 };
 
 const staffData: Staff[] = [
-    { name: "Mr. Steve Johnson", designation: "Lab Technician", qualification: "B.Sc. Physics", contact: "steve@example.com", image: "/staff1.jpg" },
-    { name: "Mrs. Emily Davis", designation: "Admin Assistant", qualification: "MBA", contact: "emily@example.com", image: "/staff2.jpg" },
-    { name: "Mr. Steve Johnson", designation: "Lab Technician", qualification: "B.Sc. Physics", contact: "steve@example.com", image: "/staff1.jpg" },
-    { name: "Mr. Steve Johnson", designation: "Lab Technician", qualification: "B.Sc. Physics", contact: "steve@example.com", image: "/staff1.jpg" },
-    { name: "Mr. Steve Johnson", designation: "Lab Technician", qualification: "B.Sc. Physics", contact: "steve@example.com", image: "/staff1.jpg" },
-    { name: "Mr. Steve Johnson", designation: "Lab Technician", qualification: "B.Sc. Physics", contact: "steve@example.com", image: "/staff1.jpg" },
+    { name: "Mr. Steve Johnson", designation: "Lab Technician", qualification: "B.Sc. Physics", contact: "steve@example.com", image: "/staff1.jpg", department: "BASIC" },
+    { name: "Mrs. Emily Davis", designation: "Admin Assistant", qualification: "MBA", contact: "emily@example.com", image: "/staff2.jpg", department: "CSE" },
+    { name: "Mr. Robert White", designation: "Lab Technician", qualification: "B.Tech ECE", contact: "robert@example.com", image: "/staff3.jpg", department: "ECE" },
+    { name: "Ms. Olivia Martin", designation: "Technical Assistant", qualification: "M.Sc. Physics", contact: "olivia@example.com", image: "/staff4.jpg", department: "BASIC" },
+    { name: "Mr. Daniel Harris", designation: "Senior Lab Technician", qualification: "B.Tech CSE", contact: "daniel@example.com", image: "/staff5.jpg", department: "CSE" },
+    { name: "Mrs. Sophia Clark", designation: "Office Assistant", qualification: "Diploma", contact: "sophia@example.com", image: "/staff6.jpg", department: "ECE" },
 ];
+
 
 const Directory = () => {
     const [selectedTab, setSelectedTab] = useState<"faculty" | "staff">("faculty");
