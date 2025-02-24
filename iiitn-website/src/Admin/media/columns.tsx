@@ -15,6 +15,7 @@ export const columns: ColumnDef<IMedia>[] = [
 		id: "view",
 		cell: ({ row }) => {
 			const media = row.original;
+			console.log(media);
 
 			return (
 				<div>
