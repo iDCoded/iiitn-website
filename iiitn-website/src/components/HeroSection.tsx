@@ -3,7 +3,7 @@ import Announcements from "./Announcements";
 
 const HeroSection = () => {
     return (
-        <section className="relative h-[83vh] w-full flex flex-col justify-center items-center text-center px-4 md:px-6 overflow-hidden">
+        <section className="relative h-[85vh] w-full flex flex-col justify-center items-center text-center px-4 md:px-6 overflow-hidden">
             {/* Fixed Background Image */}
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"

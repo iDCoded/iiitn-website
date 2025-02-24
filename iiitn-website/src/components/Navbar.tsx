@@ -114,7 +114,7 @@ const Navbar = () => {
                 </nav>
 
                 {/* 🔹 Middle Section with Logo and Mobile Menu Button */}
-                <nav className={`w-full px-6 py-2 flex justify-between items-center ${isHomePage && !isScrolled ? "bg-transparent" : "bg-[#002147]"}`}>
+                <nav className={`w-full px-8 py-2 flex justify-between items-center ${isHomePage && !isScrolled ? "bg-transparent" : "bg-[#002147]"}`}>
                     <a href="/">
                         <div className="flex items-center space-x-4">
                             <img src={imgSrc} alt="IIITN Logo" className="h-16 w-16" />
