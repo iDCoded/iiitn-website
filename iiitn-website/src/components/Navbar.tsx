@@ -37,10 +37,21 @@ const Navbar = () => {
         {
             title: "The Institue",
             links: [
-                { name: "About Us", href: "/about" },
+                {
+                    name: "About Us",
+                    subLinks: [
+                        { name: "Overview", href: "/institute/aboutus" },
+                        { name: "Annual accounts and reports", href: "/institute/annual-accounts-and-reports" },
+                        { name: "RTI Details and Reports", href: "/institute/rti-details-and-reports" },
+                        { name: "Minutes of Meeting", href: "/institute/minutes-of-meeting" },
+                        { name: "Immutable Properties", href: "/institute/immutable-properties" },
+                        { name: "Facilities", href: "/institute/facilities" },
+                    ]
+                },
                 { name: "Institute Profile ", href: " /institute/institutesprofile" },
-                {name: "Administration ",
-                    subLinks:[
+                {
+                    name: "Administration ",
+                    subLinks: [
                         { name: "Board Of Governors", href: "/governance/committee#Board-of-Governors" },
                         { name: "Finance Committee", href: "/governance/committee#Finance-Committee" },
                         { name: "Senate", href: "/governance/committee#Senate" },
@@ -51,6 +62,8 @@ const Navbar = () => {
                         { name: "Internal Complaint Committee", href: "/administration/internal-complaint-committee" }
                     ]
                 },
+                { name: "NIRF", href: "/institute/nirf" },
+
             ]
         },
         {
@@ -70,8 +83,8 @@ const Navbar = () => {
                     name: "B.Tech",
                     // href: "/admissions/btech",
                     subLinks: [
-                        { name: "Admission Process", href: "/admissions/btech/process" },
-                        { name: "Eligibility", href: "/admissions/btech/eligibility" },
+                        { name: "Admission Process", href: "/admissions/btech" },
+                        { name: "Eligibility", href: "/admissions/btech" },
                         { name: "Seat Matrix", href: "/admissions/btech/seat-matrix" }
                     ]
                 },
