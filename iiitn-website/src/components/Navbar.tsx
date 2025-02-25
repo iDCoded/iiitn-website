@@ -48,19 +48,19 @@ const Navbar = () => {
 						{ name: "Overview", href: "/about" },
 						{
 							name: "Annual accounts and reports",
-							href: "https://iiitn.ac.in/rti.php?id=395",
+							href: "/institute/annualreports",
 						},
 						{
 							name: "RTI Details and Reports",
-							href: "https://iiitn.ac.in/rti.php?id=395",
+							href: "/institute/rtireports",
 						},
 						{
 							name: "Minutes of Meeting",
-							href: "https://iiitn.ac.in/rti.php?id=395",
+							href: "/institute/minutesofmeeting",
 						},
 						{
 							name: "Immutable Properties",
-							href: "https://iiitn.ac.in/rti.php?id=395",
+							href: "/institute/immutableproperties",
 						},
 					],
 				},

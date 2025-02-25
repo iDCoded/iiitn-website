@@ -176,10 +176,10 @@ const AppRoutes = () => (
 		<Route path="/faculty/:name" element={<FacultyDetail />} />
 		<Route path="/institute/facilities" element={<Facilities />} />
 		<Route path="/institute/institutesprofile" element={<InstitutesProfile />} />
-		{/* <Route path="/institute/annualreports" element={<AnnualAccountAndReports />}></Route>
+		 <Route path="/institute/annualreports" element={<AnnualAccountAndReports />}></Route>
 		<Route path="/institute/rtireports" element={<RtiDetailsAndReports />}></Route>
 		<Route path="/institute/minutesofmeeting" element={<MinutesOfMeeting/>}></Route>
-		<Route path="/institute/immutableproperties" element={<ImmutableProperty/>}></Route>  */}
+		<Route path="/institute/immutableproperties" element={<ImmutableProperty/>}></Route> 
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );

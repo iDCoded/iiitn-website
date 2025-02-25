@@ -1,6 +1,6 @@
 import HeroSection from "../components/HeroSection";
 import NewsUpdates from "../components/NewsUpdates";
-import Departments from "../components/Departments";
+import ResearchInnovation from "../components/ResearchInnovation";
 import UpcomingEvents from "../components/UpcomingEvents";
 import Admissions from "../components/Admissions";
 import Stats from "../components/Stats";
@@ -10,10 +10,11 @@ import Testimonials from "../components/Testimonials";
 const Home = () => {
     return (
         <>
-            <HeroSection />       {/* 🔥 Captures Attention First */}
+        
+            <HeroSection />      
             <NewsUpdates />       {/* 📰 Latest News & Happenings */}
             <Admissions />        {/* 🎓 Admission Info for New Students */}
-            <Departments />       {/* 📚 Academic Information */}
+           <ResearchInnovation/>     {/* 📚 Academic Information */}
             <UpcomingEvents />    {/* 🎉 Upcoming College Events */}
             <CampusLife />        {/* 🏫 Student Activities & Lifestyle */}
             <Stats />             {/* 📊 College Achievements & Numbers */}

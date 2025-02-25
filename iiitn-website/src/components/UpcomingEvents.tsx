@@ -91,7 +91,7 @@ const UpcomingEvents = () => {
                 {/* Section Title */}
                 <div className="flex justify-between items-center mb-8">
                     <h2 className="text-3xl font-bold text-left text-primary">
-                        <span className="text-4xl text-accent">|</span> Events
+                        <span className="text-4xl text-accent">|</span> Events & Clubs
                     </h2>
                     <a href="/events">
                         <Button className="text-accent font-semibold hover:underline bg-transparent hover:bg-transparent">View All <FaArrowRight /></Button>
