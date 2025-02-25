@@ -1,18 +1,21 @@
 import AlumniEventCard from "../components/AlumniEventCard";
 import AlumniCarousel from "../components/AlumniCarousel";
-
+import alum_meet from "../assets/alumni meet.png"
+import carrer_guidance from "../assets/carrer_giud2.png"
+import past_reunion from "../assets/alum_past.png"
+import past_te_talk from "../assets/past_techtalk.png"
 const events = [
 	{
 		title: "Alumni Meet 2024",
 		date: "August 15, 2024",
 		description: "Reconnect with old friends and network with fellow alumni.",
-		image: "/images/event1.jpg",
+		image: alum_meet,
 	},
 	{
 		title: "Career Guidance Webinar",
 		date: "July 22, 2024",
 		description: "Experts from various industries will guide the students.",
-		image: "/images/event2.jpg",
+		image: carrer_guidance,
 	},
 ];
 
@@ -21,13 +24,13 @@ const pastEvents = [
 		title: "IIITN Alumni Reunion 2023",
 		date: "December 10, 2023",
 		description: "An evening filled with nostalgia and networking.",
-		image: "/images/past1.jpg",
+		image: past_reunion,
 	},
 	{
 		title: "Tech Talk with Alumni",
 		date: "September 18, 2023",
 		description: "Alumni shared their insights on industry trends.",
-		image: "/images/past2.jpg",
+		image: past_te_talk,
 	},
 ];
 
