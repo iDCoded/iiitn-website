@@ -17,7 +17,37 @@ interface NewsItem {
 }
 
 export default function NewsCarousel() {
-    const [newsData, setNewsData] = useState<NewsItem[]>([]);
+    const [newsData, setNewsData] = useState<NewsItem[]>([
+        {
+            id: "news",
+            category: "News",
+            image: "https://static.toiimg.com/thumb/msid-117532524,imgsize-38444,width-400,height-225,resizemode-72/117532524.jpg",
+            title: "Duo from IIIT Nagpur invited as special guests for Republic Day parade",
+            description: "IIIT Nagpur has signed an MoU with the Maharashtra government to promote AI and ML in the state.",
+        },
+        {
+            id: "updates-1",
+            category: "Updates",
+            image: "https://imgs.search.brave.com/WE_FzZkUn2nRyWQI6BE3eBdqnhN49qmN4f_7EdEcY4s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9paWl0/bi5hYy5pbi9pbWFn/ZXMvTmV3c0V2ZW50/cy83ODUvTmV3c0lt/YWdlLkpQRw",
+            title: "2nd Convocation Ceremony",
+            description: "IIIT Nagpur recently held its 2nd convocation ceremony with students receiving their degrees and awards.",
+        },
+        {
+            id: "news-2",
+            category: "News",
+            image: "https://imgs.search.brave.com/MWacu6ain-mbYnq57K9WQV5xJ2T422cSdSePqObriBs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9paWl0/bi5hYy5pbi9pbWFn/ZXMvU2xpZGVyLzIz/MC9TbGlkZXItMjMw/LmpwZw",
+            title: "Training on Public Procurement",
+            description: "Training on Public Procurement during Vigilance Awareness Week at IIIT Nagpur.",
+        },
+        {
+            id: "updates-2",
+            category: "Updates",
+            image: "https://iiitn.ac.in/images/album/republic-day-2025//ThumbnailImage.jpg",
+            title: "76th Republic Day Celebration",
+            description: "IIIT Nagpur celebrated the 76th Republic Day with patriotic fervor and enthusiasm.",
+        },
+    ]);
+
 
     const [sliderRef, instanceRef] = useKeenSlider({
         slides: {
@@ -35,24 +65,28 @@ export default function NewsCarousel() {
         loop: true,
     });
 
+    // Fetch data from API
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const res = await fetch("http://localhost:5000/card/cards/category/news");
-
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/card/cards`);
                 if (!res.ok) throw new Error("Failed to fetch news");
-
                 const data = await res.json();
-                console.log(data);
-                const formattedData = data.map((item: any) => ({
-                    id: item.c_id,
-                    category: item.c_category,
-                    image: item.media_img_path,
-                    title: item.title,
-                    description: item.caption,
-                }));
-                setNewsData(formattedData);
-                console.log(newsData);
+
+                // Filter only "news" and "updates"
+                interface NewsItem {
+                    id: string;
+                    category: string;
+                    image: string;
+                    title: string;
+                    description: string;
+                }
+
+                const filteredNews: NewsItem[] = data.filter((item: NewsItem) =>
+                    item.category.toLowerCase() === "news" || item.category.toLowerCase() === "updates"
+                );
+
+                setNewsData(filteredNews);
             } catch (error) {
                 console.error("Error fetching news:", error);
             }

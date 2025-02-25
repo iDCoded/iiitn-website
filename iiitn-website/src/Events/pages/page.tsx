@@ -46,9 +46,6 @@ const EventDetail = () => {
         const fetchEvent = async () => {
             try {
                 const response = await fetch("http://localhost:5000/card/cards/${eventid}");
-                if (!response.ok) {
-                    throw new Error("Event not found");
-                }
                 const data = await response.json();
                 console.log(data);
                 setEvent({
@@ -64,7 +61,7 @@ const EventDetail = () => {
                 console.log(event);
             } catch (error) {
                 console.error("Error fetching event:", error);
-                setEvent(eventsData.find((e) => e.id === eventid) || null);
+                setEvent(eventsData.find((event) => event.id === eventid) || null);
             }
         };
 
