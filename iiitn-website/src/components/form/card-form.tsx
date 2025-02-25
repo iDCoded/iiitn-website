@@ -163,7 +163,22 @@ export function CardForm() {
 							<FormItem>
 								<FormLabel>Media</FormLabel>
 								<FormControl>
-									<Input type="file" {...fileRef} placeholder="Upload Media" />
+									<div className="flex items-center gap-3">
+										<Input
+											type="file"
+											id="image"
+											accept="image/*"
+											{...fileRef}
+											placeholder="Upload Media"
+										/>
+										<Button
+											type="button"
+											variant="outline"
+											onClick={() => document.getElementById("image")?.click()}>
+											<ImageIcon className="mr-2 h-4 w-4" />
+											Browse
+										</Button>
+									</div>
 								</FormControl>
 							</FormItem>
 						)}
