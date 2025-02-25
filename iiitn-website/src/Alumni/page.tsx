@@ -3,7 +3,7 @@ import AlumniCarousel from "../components/AlumniCarousel";
 import alum_meet from "../assets/alumni meet.png"
 import carrer_guidance from "../assets/carrer_giud2.png"
 import past_reunion from "../assets/alum_past.png"
-import past_te_talk from "../assets/past_techtalk.png"
+import past_te_talk from "../assets/pst_techtalk3.jpg"
 const events = [
 	{
 		title: "Alumni Meet 2024",
