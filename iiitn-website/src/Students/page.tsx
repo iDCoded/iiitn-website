@@ -70,8 +70,8 @@ function Students() {
                 <div className="lg:w-3/4 space-y-12">
                     {/* Prospective Students */}
                     <section className="space-y-6 max-w-6xl w-[80vh] mx-auto">
-                        <h2 className="text-3xl font-semibold text-[#002147]">
-                            <span className="text-4xl text-[#E87722]">| </span> Prospective Students
+                        <h2 className="text-3xl font-semibold text-primary">
+                            <span className="text-4xl text-accent">| </span> Prospective Students
                         </h2>
                         <p className="text-gray-500 mb-4 text-sm">
                             Learn more about programs, fees, and other essential details.
@@ -90,13 +90,13 @@ function Students() {
 
                     {/* Current Students */}
                     <section className="space-y-6 max-w-6xl w-[80vh] mx-auto">
-                        <h2 className="text-3xl font-semibold text-[#002147]"><span className="text-4xl text-[#E87722]">| </span>Current Students</h2>
+                        <h2 className="text-3xl font-semibold text-primary"><span className="text-4xl text-accent">| </span>Current Students</h2>
                         <p className="text-gray-500 mb-4 text-sm">
                             Find details on courses, timetables, curricula, and academic resources.
                         </p>
                         {currentData.map((section, index) => (
                             <div key={index} className="mb-8">
-                                <h3 className="text-lg font-semibold text-[#002147]">{section.subTitle}</h3>
+                                <h3 className="text-lg font-semibold text-primary">{section.subTitle}</h3>
                                 <p className="text-gray-500 mb-3 text-sm">{section.subDes}</p>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {section.arr.map((item, idx) => (
@@ -117,13 +117,13 @@ function Students() {
                 <aside className="lg:w-1/4 space-y-6">
                     <Card className="shadow-sm border border-gray-200 p-4">
                         <CardHeader>
-                            <CardTitle className="text-lg font-semibold text-[#002147]">Quick Links</CardTitle>
+                            <CardTitle className="text-lg font-semibold text-primary">Quick Links</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <ul className="space-y-2 text-sm">
                                 {sidebarLinks.map((item, index) => (
                                     <li key={index}>
-                                        <a href={item.link} className="text-[#E87722] hover:underline">
+                                        <a href={item.link} className="text-accent hover:underline">
                                             {item.title}
                                         </a>
                                     </li>
@@ -133,7 +133,7 @@ function Students() {
                     </Card>
                     <Card className="shadow-sm border border-gray-200">
                         <CardHeader>
-                            <CardTitle className="text-lg font-semibold text-[#002147]">Student Notices</CardTitle>
+                            <CardTitle className="text-lg font-semibold text-primary">Student Notices</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <p className="text-gray-600">Important updates and announcements for Students.</p>

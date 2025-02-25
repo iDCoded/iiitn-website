@@ -13,7 +13,7 @@ function Facilities() {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center text-gray-800">
       {/* Header Section */}
-      <header className="bg-[#002147] text-white py-16 text-center w-full">
+      <header className="bg-primary text-white py-16 text-center w-full">
         <h1 className="text-5xl font-bold">Facilities</h1>
         <p className="text-lg mt-2 italic">
           "Ensuring transparency and accountability in IIIT Nagpur."
@@ -22,7 +22,7 @@ function Facilities() {
 
       {/* Main Content Section */}
       <div className="max-w-6xl bg-white shadow-lg rounded-lg p-8 my-10">
-        <h2 className="text-3xl font-semibold text-[#002147] mb-6">Campus Facilities</h2>
+        <h2 className="text-3xl font-semibold text-primary mb-6">Campus Facilities</h2>
         
         <div className="grid md:grid-cols-2 gap-10">
           {[
@@ -38,7 +38,7 @@ function Facilities() {
           ].map((facility, index) => (
             <div key={index} className="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col items-center">
               <img src={facility.img} alt={facility.title} className="w-48 h-32 rounded-lg shadow-md mb-4" />
-              <h3 className="text-2xl font-semibold text-[#002147]">{facility.title}</h3>
+              <h3 className="text-2xl font-semibold text-primary">{facility.title}</h3>
               <p className="mt-2 text-center">{facility.description}</p>
             </div>
           ))}

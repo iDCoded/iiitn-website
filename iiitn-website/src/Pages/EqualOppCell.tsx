@@ -14,14 +14,14 @@ function EqualOpportunityCell() {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       {/* Header Section */}
-      <header className="bg-[#002147] text-white py-16 text-center">
+      <header className="bg-primary text-white py-16 text-center">
         <h1 className="text-5xl font-bold">Equal Opportunity Cell</h1>
         <p className="text-lg mt-2 italic">"Ensuring inclusivity and accessibility for all."</p>
       </header>
 
       {/* Introduction Section */}
       <section className="max-w-5xl mx-auto bg-white p-6 shadow-lg rounded-lg mt-10">
-        <h2 className="text-3xl font-semibold text-[#002147]"><span className="text-[#E87722] text-4xl">| </span> About the Cell</h2>
+        <h2 className="text-3xl font-semibold text-primary"><span className="text-accent text-4xl">| </span> About the Cell</h2>
         <p className="text-gray-700 mt-6 leading-relaxed">
           The **Equal Opportunity Cell (EOC)** is established to cater to the day-to-day needs of **differently-abled persons** at IIIT Nagpur.  
           The committee includes **teachers, staff, students, and parents** to create an **inclusive environment** and address accessibility concerns.
@@ -30,10 +30,10 @@ function EqualOpportunityCell() {
 
       {/* Committee Members Table */}
       <section className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg w-full">
-        <h2 className="text-3xl font-semibold text-[#002147]"><span className="text-[#E87722] text-4xl">| </span> Committee Members</h2>
+        <h2 className="text-3xl font-semibold text-primary"><span className="text-accent text-4xl">| </span> Committee Members</h2>
         <div className="overflow-x-auto mt-6">
           <table className="min-w-full bg-white border border-gray-300 shadow-sm rounded-lg">
-            <thead className="bg-[#002147] text-white">
+            <thead className="bg-primary text-white">
               <tr>
                 <th className="py-3 px-6 text-left">#</th>
                 <th className="py-3 px-6 text-left">Name</th>
@@ -55,7 +55,7 @@ function EqualOpportunityCell() {
 
       {/* Contact Information */}
       <section className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-        <h2 className="text-3xl font-semibold text-[#002147]"><span className="text-[#E87722] text-4xl">| </span> Contact Information</h2>
+        <h2 className="text-3xl font-semibold text-primary"><span className="text-accent text-4xl">| </span> Contact Information</h2>
         <p className="text-gray-700 mt-6 leading-relaxed">
           For any queries or assistance regarding **equal opportunity and accessibility**, please reach out to the **Equal Opportunity Cell**.  
           The committee is committed to ensuring that every individual receives **equal treatment and support**.

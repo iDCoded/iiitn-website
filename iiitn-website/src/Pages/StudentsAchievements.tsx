@@ -29,7 +29,7 @@ const StudentAchievements = () => {
         <div className="max-w-6xl mx-auto px-6 py-10">
             {/* Heading */}
             <h1 className="text-3xl font-bold mb-6 flex items-center">
-                <span className="text-[#E87722] text-4xl mr-2">|</span> Student Achievements & Awards
+                <span className="text-accent text-4xl mr-2">|</span> Student Achievements & Awards
             </h1>
 
             {/* Tabs */}
@@ -38,7 +38,7 @@ const StudentAchievements = () => {
                     <button
                         key={dept}
                         className={`relative px-6 py-2 text-lg font-medium transition-all duration-300 ${selectedTab === dept
-                                ? "text-[#E87722] font-bold"
+                                ? "text-accent font-bold"
                                 : "text-gray-500 hover:text-gray-700"
                             }`}
                         onClick={() => setSelectedTab(dept as "cse" | "ece" )}
@@ -47,7 +47,7 @@ const StudentAchievements = () => {
                         {selectedTab === dept && (
                             <motion.div
                                 layoutId="underline"
-                                className="absolute left-0 bottom-0 h-[3px] bg-[#E87722] w-full"
+                                className="absolute left-0 bottom-0 h-[3px] bg-accent w-full"
                             />
                         )}
                     </button>

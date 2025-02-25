@@ -28,7 +28,7 @@ function Administration() {
                 <aside className="hidden md:block md:w-1/4 space-y-6 sticky top-20 self-start">
                     <Card className="shadow-sm border border-gray-200">
                         <CardHeader>
-                            <CardTitle className="text-lg font-semibold text-[#002147]">
+                            <CardTitle className="text-lg font-semibold text-primary">
                                 Quick Links
                             </CardTitle>
                         </CardHeader>
@@ -36,7 +36,7 @@ function Administration() {
                             <ul className="space-y-2 text-sm">
                                 {["Chairman", "Director", "Registrar", "Staff Directory"].map((item, index) => (
                                     <li key={index}>
-                                        <a href={`#${item.toLowerCase().replace(/\s/g, "-")}`} className="text-[#E87722] hover:underline">
+                                        <a href={`#${item.toLowerCase().replace(/\s/g, "-")}`} className="text-accent hover:underline">
                                             {item}
                                         </a>
                                     </li>
@@ -82,7 +82,7 @@ function Administration() {
                         },
                     ].map((person) => (
                         <Card key={person.id} id={person.id} className="shadow-lg">
-                            <CardHeader className="bg-[#002147] text-white p-4 rounded-t-lg">
+                            <CardHeader className="bg-primary text-white p-4 rounded-t-lg">
                                 <CardTitle>{person.title}</CardTitle>
                             </CardHeader>
                             <CardContent className="p-6 flex flex-col md:flex-row items-center md:items-start text-center md:text-left  space-x-6">
@@ -111,7 +111,7 @@ function Administration() {
                                         </p>
                                     )}
                                     <p className="mt-4">{person.desc}</p>
-                                    <p className="text-[#E87722] cursor-pointer mt-4">
+                                    <p className="text-accent cursor-pointer mt-4">
                                         <a href={person.link}>More about {person.title}</a>
                                     </p>
                                 </div>
@@ -121,12 +121,12 @@ function Administration() {
 
                     {/* Staff Directory */}
                     <Card id="staff-directory" className="shadow-lg">
-                        <CardHeader className="bg-[#002147] text-white p-4 rounded-t-lg">
+                        <CardHeader className="bg-primary text-white p-4 rounded-t-lg">
                             <CardTitle>Staff Directory</CardTitle>
                         </CardHeader>
                         <CardContent className="p-6 text-center">
                             <p>IIIT Nagpur is supported by a dedicated administrative staff that ensures smooth operations across various departments.</p>
-                            <p className="text-[#E87722] cursor-pointer mt-4">
+                            <p className="text-accent cursor-pointer mt-4">
                                 <a href="/staff">View Full Staff Directory</a>
                             </p>
                         </CardContent>

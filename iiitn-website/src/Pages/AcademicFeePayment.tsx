@@ -14,7 +14,7 @@ function AcademicFeePayment() {
 	return (
 		<div className="bg-gray-50 min-h-screen flex flex-col items-center">
 			{/* 🔹 Header Section */}
-			<header className="w-full bg-[#002147] text-white py-12 text-center shadow-md">
+			<header className="w-full bg-primary text-white py-12 text-center shadow-md">
 				<h1 className="text-3xl md:text-4xl font-bold tracking-wide">Academic Fee Payment</h1>
 				<p className="mt-1 text-gray-200 text-lg">Secure and easy online payment options</p>
 			</header>
@@ -24,7 +24,7 @@ function AcademicFeePayment() {
 				{/* 🏦 Institute Bank Details */}
 				<section className="mb-10">
 					<h2 className="text-2xl font-semibold text-gray-800 flex items-center gap-2 mb-6">
-						<FaUniversity className="text-[#E87722]" /> Institute Bank Details
+						<FaUniversity className="text-accent" /> Institute Bank Details
 					</h2>
 					<div className="bg-gray-100 p-6 rounded-lg shadow-sm grid grid-cols-1 md:grid-cols-2 gap-6">
 						<p className="text-gray-700"><strong>Name of Account:</strong> {academicFeeData.accountName}</p>
@@ -38,7 +38,7 @@ function AcademicFeePayment() {
 				<section className="mb-10 text-center">
 					<a
 						href={academicFeeData.paymentLink}
-						className="inline-flex items-center gap-2 bg-[#E87722] text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#d8691d] transition duration-300 shadow-md"
+						className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#d8691d] transition duration-300 shadow-md"
 					>
 						<AiOutlineLink className="text-xl" /> Pay Online
 					</a>
@@ -65,7 +65,7 @@ function AcademicFeePayment() {
 				<section className="mt-10 space-y-4 text-center">
 					<a
 						href="/admissions/btech/acadfees"
-						className="block bg-[#002147] text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#001a35] transition duration-300 shadow-md"
+						className="block bg-primary text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#001a35] transition duration-300 shadow-md"
 					>
 						First Year Academic Fee Structure
 					</a>

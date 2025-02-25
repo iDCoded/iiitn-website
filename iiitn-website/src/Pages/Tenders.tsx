@@ -25,7 +25,7 @@ function Tenders() {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       {/* Header Section */}
-      <div className="bg-[#002147] text-white py-16 text-center">
+      <div className="bg-primary text-white py-16 text-center">
         <h1 className="text-4xl font-bold">Tenders</h1>
         <p className="text-lg mt-2">Stay updated with the latest tenders from IIIT Nagpur.</p>
       </div>
@@ -35,7 +35,7 @@ function Tenders() {
         <div className="overflow-x-auto">
           <table className="w-full max-w-7xl mx-auto border-collapse bg-white shadow-lg rounded-lg">
             <thead>
-              <tr className="bg-[#002147] text-white text-left">
+              <tr className="bg-primary text-white text-left">
                 <th className="p-5">Sr.No</th>
                 <th className="p-5">Tender Particulars</th>
                 <th className="p-5">Last Date</th>

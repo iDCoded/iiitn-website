@@ -22,13 +22,13 @@ const EventCard = ({ event }: { event: Event }) => (
         </div>
 
         {/* Event Details */}
-        <div className={`absolute bottom-0 w-full ${event.large ? "bg-[#002147] p-4" : "bg-[#002147] p-2"}`}>
+        <div className={`absolute bottom-0 w-full ${event.large ? "bg-primary p-4" : "bg-primary p-2"}`}>
             <h3 className={`text-white font-semibold ${event.large ? "text-lg" : "text-sm"}`}>{event.title}</h3>
             {event.time && event.large && <p className="text-sm text-gray-300 mt-1">{event.time}</p>}
         </div>
 
         {/* Event Date Badge */}
-        <div className="absolute bottom-4 right-4 bg-[#E87722] text-white text-center px-3 py-2 rounded-md font-bold">
+        <div className="absolute bottom-4 right-4 bg-accent text-white text-center px-3 py-2 rounded-md font-bold">
             {event.date}
         </div>
     </div>

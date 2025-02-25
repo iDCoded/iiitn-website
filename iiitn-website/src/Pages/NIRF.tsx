@@ -29,14 +29,14 @@ function NIRF() {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Header Section */}
-      <header className="bg-[#002147] text-white py-16 text-center">
+      <header className="bg-primary text-white py-16 text-center">
         <h1 className="text-5xl font-bold">📊 NIRF Rankings</h1>
         <p className="text-lg mt-2 italic">"Recognizing Excellence in Academics & Research"</p>
       </header>
 
       {/* Introduction Section */}
       <section className="max-w-5xl mx-auto bg-white p-6 shadow-lg rounded-lg mt-10">
-        <h2 className="text-3xl font-semibold text-[#002147]">What is NIRF?</h2>
+        <h2 className="text-3xl font-semibold text-primary">What is NIRF?</h2>
         <p className="text-gray-700 mt-3 leading-relaxed">
           The <strong>National Institutional Ranking Framework (NIRF)</strong> was launched by the Government of India to rank higher education institutions based on various parameters such as Teaching, Research, Placements, and Outreach.
           IIIT Nagpur has consistently performed well in these rankings, reflecting its commitment to academic excellence.
@@ -45,14 +45,14 @@ function NIRF() {
 
       {/* NIRF Reports Section */}
       <main className="max-w-6xl mx-auto mt-10 p-6">
-        <h2 className="text-3xl font-bold text-[#002147] mb-6 text-center">📑 NIRF Reports by Year</h2>
+        <h2 className="text-3xl font-bold text-primary mb-6 text-center">📑 NIRF Reports by Year</h2>
         <div className="grid md:grid-cols-2 gap-8">
           {nirfData.map((data, index) => (
             <div
               key={index}
               className="bg-white p-6 shadow-lg rounded-lg transition-transform hover:scale-105 border-l-4 border-orange-600"
             >
-              <h3 className="text-2xl font-bold text-[#002147]">📅 {data.year}</h3>
+              <h3 className="text-2xl font-bold text-primary">📅 {data.year}</h3>
               <div className="mt-4">
                 {data.documents.map((doc, docIndex) => (
                   <a

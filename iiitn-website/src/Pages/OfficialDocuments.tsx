@@ -26,7 +26,7 @@ function OfficialDocuments() {
     return (
         <div className="bg-gray-100 min-h-screen flex flex-col">
             {/* Header Section */}
-            <div className="bg-[#002147] text-white py-16 text-center">
+            <div className="bg-primary text-white py-16 text-center">
                 <h1 className="text-4xl font-bold">Official Documents</h1>
                 <p className="text-lg mt-2">Stay connected and contribute to the growth of IIIT Nagpur.</p>
             </div>
@@ -35,11 +35,11 @@ function OfficialDocuments() {
             <div className="w-full max-w-7xl mx-auto p-6">
                 {sections.map((section, secIndex) => (
                     <div key={secIndex} className="mb-8">
-                        <h2 className="text-2xl font-semibold text-[#002147] mb-4">{section.title}</h2>
+                        <h2 className="text-2xl font-semibold text-primary mb-4">{section.title}</h2>
                         <div className="bg-white shadow-lg rounded-lg p-5 overflow-x-auto">
                             <table className="w-full border-collapse table-auto">
                                 <thead>
-                                    <tr className="bg-[#002147] text-white text-left">
+                                    <tr className="bg-primary text-white text-left">
                                         <th className="py-3 px-6 w-16">Sr.No</th>
                                         <th className="py-3 px-6">Document Name</th>
                                         <th className="py-3 px-6 w-40">Download</th>
@@ -51,7 +51,7 @@ function OfficialDocuments() {
                                             <td className="py-3 px-6">{index + 1}</td>
                                             <td className="py-3 px-6">{doc.documentName}</td>
                                             <td className="py-3 px-6">
-                                                <a href={doc.documentLink} target="_blank" rel="noopener noreferrer" className="text-[#E87722] hover:text-orange-600 font-medium">
+                                                <a href={doc.documentLink} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-orange-600 font-medium">
                                                     View PDF →
                                                 </a>
                                             </td>

@@ -29,7 +29,7 @@ function BTech() {
 	return (
 		<div className="bg-gray-50 min-h-screen flex flex-col">
 			{/* 🔷 Hero Section */}
-			<header className="bg-[#002147] text-white py-14 text-center px-4">
+			<header className="bg-primary text-white py-14 text-center px-4">
 				<h1 className="text-3xl md:text-4xl font-bold">B.Tech Admissions 2024-2025</h1>
 				<p className="mt-2 text-md md:text-lg text-gray-200">
 					Get all the details about IIIT Nagpur B.Tech admissions
@@ -41,13 +41,13 @@ function BTech() {
 				{/* 🏫 Key Admission Information */}
 				<Card className="mb-6">
 					<CardContent className="p-4 md:p-6">
-						<CardTitle className="text-[#002147]">Key Admission Information</CardTitle>
+						<CardTitle className="text-primary">Key Admission Information</CardTitle>
 						<ul className="mt-4 space-y-3 text-gray-700">
-							<li>📌 <a href={bTechData.revisedInstituteSchedule} className="text-[#E87722] hover:underline">Revised Institute Reporting Schedule (08.08.2024)</a></li>
-							<li>🏠 <a href={bTechData.hostelAvailability} className="text-[#E87722] hover:underline">Hostel Accommodation Availability (08.08.2024)</a></li>
-							<li>🕒 <a href={bTechData.instituteReportingSchedule} className="text-[#E87722] hover:underline">Institute Reporting Schedule 2024-2025</a></li>
-							<li>♿ <a href={bTechData.pwdNotice} className="text-[#E87722] hover:underline">Notice for PWD Students</a></li>
-							<li>📊 <a href={bTechData.instituteDetails} className="text-[#E87722] hover:underline">Institute Details at a Glance</a></li>
+							<li>📌 <a href={bTechData.revisedInstituteSchedule} className="text-accent hover:underline">Revised Institute Reporting Schedule (08.08.2024)</a></li>
+							<li>🏠 <a href={bTechData.hostelAvailability} className="text-accent hover:underline">Hostel Accommodation Availability (08.08.2024)</a></li>
+							<li>🕒 <a href={bTechData.instituteReportingSchedule} className="text-accent hover:underline">Institute Reporting Schedule 2024-2025</a></li>
+							<li>♿ <a href={bTechData.pwdNotice} className="text-accent hover:underline">Notice for PWD Students</a></li>
+							<li>📊 <a href={bTechData.instituteDetails} className="text-accent hover:underline">Institute Details at a Glance</a></li>
 						</ul>
 					</CardContent>
 				</Card>
@@ -55,7 +55,7 @@ function BTech() {
 				{/* 📚 Course Details */}
 				<Card className="mb-6">
 					<CardContent className="p-4 md:p-6">
-						<CardTitle className="text-[#002147]">IIIT Nagpur Undergraduate Courses</CardTitle>
+						<CardTitle className="text-primary">IIIT Nagpur Undergraduate Courses</CardTitle>
 						<div className="overflow-x-auto">
 							<table className="mt-4 w-full border border-gray-300 text-gray-700 text-sm md:text-base">
 								<thead className="bg-gray-200">
@@ -82,7 +82,7 @@ function BTech() {
 						</div>
 						<a
 							href={bTechData.courseDetails}
-							className="mt-4 block text-[#E87722] hover:underline text-center"
+							className="mt-4 block text-accent hover:underline text-center"
 						>
 							More Details About Courses
 						</a>
@@ -92,12 +92,12 @@ function BTech() {
 				{/* 📜 Resources & Guidelines (Accordion) */}
 				<Card>
 					<CardContent className="p-4 md:p-6">
-						<CardTitle className="text-[#002147]">Resources & Guidelines</CardTitle>
+						<CardTitle className="text-primary">Resources & Guidelines</CardTitle>
 						<Accordion type="single" collapsible className="mt-4">
 							<AccordionItem value="admission-policy">
 								<AccordionTrigger>📜 Admission Cancellation & Refund Policy</AccordionTrigger>
 								<AccordionContent>
-									<a href={bTechData.admissionCancellationPolicy} className="text-[#E87722] hover:underline">
+									<a href={bTechData.admissionCancellationPolicy} className="text-accent hover:underline">
 										View Admission Cancellation Policy
 									</a>
 								</AccordionContent>
@@ -107,8 +107,8 @@ function BTech() {
 								<AccordionTrigger>📄 How to Generate ABC / APPAR ID</AccordionTrigger>
 								<AccordionContent>
 									<ul className="space-y-2">
-										<li><a href={bTechData.abcIDGuide1} className="text-[#E87722] hover:underline">Guide 1</a></li>
-										<li><a href={bTechData.abcIDGuide2} className="text-[#E87722] hover:underline">Guide 2</a></li>
+										<li><a href={bTechData.abcIDGuide1} className="text-accent hover:underline">Guide 1</a></li>
+										<li><a href={bTechData.abcIDGuide2} className="text-accent hover:underline">Guide 2</a></li>
 									</ul>
 								</AccordionContent>
 							</AccordionItem>
@@ -116,10 +116,10 @@ function BTech() {
 							<AccordionItem value="antiragging">
 								<AccordionTrigger>🚨 Antiragging Undertaking & Guidelines</AccordionTrigger>
 								<AccordionContent>
-									<p><a href="https://antiragging.in/affidavit_university_form.php" className="text-[#E87722] hover:underline">
+									<p><a href="https://antiragging.in/affidavit_university_form.php" className="text-accent hover:underline">
 										Fill the Antiragging Undertaking Form
 									</a></p>
-									<p><a href="https://iiitn.ac.in/images/admission2024/Antiragging%20Undertaking%20Guidlines.pdf" className="text-[#E87722] hover:underline">
+									<p><a href="https://iiitn.ac.in/images/admission2024/Antiragging%20Undertaking%20Guidlines.pdf" className="text-accent hover:underline">
 										View Antiragging Guidelines
 									</a></p>
 								</AccordionContent>
@@ -128,7 +128,7 @@ function BTech() {
 							<AccordionItem value="online-admission">
 								<AccordionTrigger>🖥 Online Admission Portal</AccordionTrigger>
 								<AccordionContent>
-									<a href={bTechData.onlineAdmissionPortal} className="text-[#E87722] hover:underline">
+									<a href={bTechData.onlineAdmissionPortal} className="text-accent hover:underline">
 										Go to Admission Portal
 									</a>
 								</AccordionContent>

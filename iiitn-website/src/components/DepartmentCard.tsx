@@ -22,7 +22,7 @@ function DepartmentCard({ title, imageSrc, description, link }: DepartmentCardPr
             {/* Content Section */}
             <div className="p-6 flex flex-col flex-grow">
                 {/* Title */}
-                <h2 className="text-2xl font-bold text-[#002147] transition-colors duration-300 group-hover:text-[#E87722]">
+                <h2 className="text-2xl font-bold text-primary transition-colors duration-300 group-hover:text-accent">
                     {title}
                 </h2>
 
@@ -35,7 +35,7 @@ function DepartmentCard({ title, imageSrc, description, link }: DepartmentCardPr
                 <div className="mt-4">
                     <a
                         href={link}
-                        className="inline-flex items-center justify-center w-full py-2 text-white bg-[#E87722] font-semibold text-base rounded-md transition-all duration-300 hover:bg-[#d1651d] hover:shadow-md"
+                        className="inline-flex items-center justify-center w-full py-2 text-white bg-accent font-semibold text-base rounded-md transition-all duration-300 hover:bg-[#d1651d] hover:shadow-md"
                     >
                         Learn More
                         <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">

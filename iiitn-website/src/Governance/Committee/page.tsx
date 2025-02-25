@@ -250,7 +250,7 @@ function Committee() {
                 {/* Sidebar - Only visible on large screens */}
                 <aside className="lg:w-1/4 hidden lg:block sticky top-24 self-start">
                     <Card className="shadow-md border border-gray-200">
-                        <CardHeader className="bg-[#002147] text-white p-4 rounded-t-lg">
+                        <CardHeader className="bg-primary text-white p-4 rounded-t-lg">
                             <CardTitle className="text-lg font-semibold">Quick Links</CardTitle>
                         </CardHeader>
                         <CardContent className="p-4">
@@ -259,7 +259,7 @@ function Committee() {
                                     <li key={index}>
                                         <a
                                             href={`#${section.title.replace(/\s+/g, "-")}`}
-                                            className="text-[#002147] hover:text-[#E87722] hover:underline block"
+                                            className="text-primary hover:text-accent hover:underline block"
                                         >
                                             {section.title}
                                         </a>
@@ -274,7 +274,7 @@ function Committee() {
                 <div className="lg:w-3/4 space-y-8">
                     {committees.map((committee, index) => (
                         <Card key={index} id={committee.title.replace(/\s+/g, "-")} className="shadow-md border border-gray-200">
-                            <CardHeader className="bg-[#002147] text-white p-4 rounded-t-lg">
+                            <CardHeader className="bg-primary text-white p-4 rounded-t-lg">
                                 <CardTitle>{committee.title}</CardTitle>
                                 <p className="text-sm mt-1">{committee.asOnDate}</p>
                             </CardHeader>
@@ -282,7 +282,7 @@ function Committee() {
                                 <div className="overflow-x-auto">
                                     <table className="w-full border-collapse border border-gray-300">
                                         <thead>
-                                            <tr className="bg-gray-100 text-[#002147]">
+                                            <tr className="bg-gray-100 text-primary">
                                                 <th className="border border-gray-300 p-3">S.No</th>
                                                 <th className="border border-gray-300 p-3">Name</th>
                                                 <th className="border border-gray-300 p-3">Position</th>
@@ -294,7 +294,7 @@ function Committee() {
                                                     <td className="border border-gray-300 p-3">{idx + 1}</td>
                                                     <td className="border border-gray-300 p-3">
                                                         <div className="text-left">
-                                                            <p className="font-semibold text-[#002147]">{member.name}</p>
+                                                            <p className="font-semibold text-primary">{member.name}</p>
                                                             <p className="text-sm text-gray-600">{member.details}</p>
                                                         </div>
                                                     </td>

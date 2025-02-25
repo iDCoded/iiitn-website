@@ -11,7 +11,7 @@ const data = [
 
 const Footer = () => {
     return (
-        <footer className="bg-[#002147] text-white py-10">
+        <footer className="bg-primary text-white py-10">
             <div className="max-w-7xl mx-auto px-6">
 
                 {/* Quick Links */}
@@ -29,7 +29,7 @@ const Footer = () => {
 
                     {/* Important Links */}
                     <div>
-                        <h4 className="text-lg font-semibold mb-4 text-[#E87722]">Important Links</h4>
+                        <h4 className="text-lg font-semibold mb-4 text-accent">Important Links</h4>
                         <ul className="space-y-2 text-sm text-gray-300">
                             <li><a href="/pages/grievance" className="hover:text-white">Grievance</a></li>
                             <li><a href="/pages/grievance_committee_sc_st" className="hover:text-white">Grievance Committee SC/ST Cell</a></li>
@@ -63,7 +63,7 @@ const Footer = () => {
 
                     {/* Academics */}
                     <div>
-                        <h4 className="text-lg font-semibold mb-4 text-[#E87722]">Academics</h4>
+                        <h4 className="text-lg font-semibold mb-4 text-accent">Academics</h4>
                         <ul className="space-y-2 text-sm text-gray-300">
                             <li><a href="/academics/courses" className="hover:text-white">Courses</a></li>
                             <li><a href="/research/projects" className="hover:text-white">Projects</a></li>
@@ -75,7 +75,7 @@ const Footer = () => {
 
                     {/* Campus Life */}
                     <div>
-                        <h4 className="text-lg font-semibold mb-4 text-[#E87722]">Campus Life</h4>
+                        <h4 className="text-lg font-semibold mb-4 text-accent">Campus Life</h4>
                         <ul className="space-y-2 text-sm text-gray-300">
                             <li><a href="/pages/studentclubs" className="hover:text-white">Clubs</a></li>
                             <li><a href="/pages/festivals" className="hover:text-white">Festivals</a></li>
@@ -86,7 +86,7 @@ const Footer = () => {
 
                     {/* Happenings */}
                     <div>
-                        <h4 className="text-lg font-semibold mb-4 text-[#E87722]">Happenings</h4>
+                        <h4 className="text-lg font-semibold mb-4 text-accent">Happenings</h4>
                         <ul className="space-y-2 text-sm text-gray-300">
                             <li><a href="/events" className="hover:text-white">Events</a></li>
                             <li><a href="/news" className="hover:text-white">News</a></li>
@@ -116,11 +116,11 @@ const Footer = () => {
 
                 {/* Social Media */}
                 <div className="flex justify-center space-x-4 text-xl mt-4">
-                    <a href="#" className="hover:text-[#E87722]"><FaFacebook /></a>
-                    <a href="#" className="hover:text-[#E87722]"><FaLinkedin /></a>
-                    <a href="#" className="hover:text-[#E87722]"><FaTwitter /></a>
-                    <a href="#" className="hover:text-[#E87722]"><FaInstagram /></a>
-                    <a href="#" className="hover:text-[#E87722]"><FaYoutube /></a>
+                    <a href="#" className="hover:text-accent"><FaFacebook /></a>
+                    <a href="#" className="hover:text-accent"><FaLinkedin /></a>
+                    <a href="#" className="hover:text-accent"><FaTwitter /></a>
+                    <a href="#" className="hover:text-accent"><FaInstagram /></a>
+                    <a href="#" className="hover:text-accent"><FaYoutube /></a>
                 </div>
 
                 {/* Divider */}

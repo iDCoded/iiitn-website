@@ -25,9 +25,9 @@ const Announcements: React.FC = () => {
     }, []);
 
     return (
-        <div className="relative w-full overflow-hidden bg-[#002147] text-white flex items-center h-12">
+        <div className="relative w-full overflow-hidden bg-primary text-white flex items-center h-12">
             {/* Announcement Label */}
-            <div className="bg-[#e87722] text-white px-4 py-2 font-semibold flex-shrink-0">
+            <div className="bg-accent text-white px-4 py-2 font-semibold flex-shrink-0">
                 Announcements:
             </div>
 

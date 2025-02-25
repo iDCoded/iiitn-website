@@ -27,7 +27,7 @@ function FacultyandStaff() {
     return (
         <div className="bg-gray-50 min-h-screen">
             {/* Hero Section */}
-            <div className="bg-[#002147] text-white py-16 text-center">
+            <div className="bg-primary text-white py-16 text-center">
                 <h1 className="text-3xl lg:text-4xl font-bold">Faculty and Staff</h1>
                 <p className="text-lg mt-3 opacity-80">Stay connected and contribute to the growth of IIIT Nagpur.</p>
             </div>
@@ -40,7 +40,7 @@ function FacultyandStaff() {
                 <div className="flex-1 ">
                     {/* Prospective Faculty & Staff */}
                     <div className="mb-12 max-w-[80vh] mx-auto">
-                        <h2 className="text-2xl font-semibold mb-4"><span className="text-[#E87722] text-4xl">| </span>Prospective Faculty & Staff</h2>
+                        <h2 className="text-2xl font-semibold mb-4"><span className="text-accent text-4xl">| </span>Prospective Faculty & Staff</h2>
                         <p className="text-gray-600 leading-relaxed">
                             Get more details on programs, resources, fees, and other information here.
                         </p>
@@ -53,7 +53,7 @@ function FacultyandStaff() {
 
                     {/* Current Faculty & Staff */}
                     <div className="mb-12 max-w-[80vh] mx-auto">
-                        <h2 className="text-2xl font-semibold mb-4"><span className="text-[#E87722] text-4xl">| </span>Current Faculty & Staff</h2>
+                        <h2 className="text-2xl font-semibold mb-4"><span className="text-accent text-4xl">| </span>Current Faculty & Staff</h2>
                         <p className="text-gray-600 leading-relaxed">
                             Get more details on programs, resources, and policies for current faculty and staff.
                         </p>
@@ -67,7 +67,7 @@ function FacultyandStaff() {
                     {/* Faculty & Staff Directory
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 max-w-[80vh] mx-auto">
                         <div>
-                            <h2 className="text-2xl font-semibold mb-4"><span className="text-[#E87722] text-4xl">| </span>Faculty Directory</h2>
+                            <h2 className="text-2xl font-semibold mb-4"><span className="text-accent text-4xl">| </span>Faculty Directory</h2>
                             <FSCard
                                 title="Dr. ABC"
                                 description="Professor"
@@ -75,7 +75,7 @@ function FacultyandStaff() {
                             />
                         </div>
                         <div>
-                            <h2 className="text-2xl font-semibold mb-4"><span className="text-[#E87722] text-4xl">| </span>Staff Directory</h2>
+                            <h2 className="text-2xl font-semibold mb-4"><span className="text-accent text-4xl">| </span>Staff Directory</h2>
                             <FSCard
                                 title="Dr. ABC"
                                 description="Professor"
@@ -101,13 +101,13 @@ function FacultyandStaff() {
                     ].map((section, index) => (
                         <Card key={index} className="shadow-sm border border-gray-200">
                             <CardHeader>
-                                <CardTitle className="text-lg font-semibold text-[#002147]">{section.title}</CardTitle>
+                                <CardTitle className="text-lg font-semibold text-primary">{section.title}</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <ul className="space-y-2 text-sm">
                                     {section.items.map((item, i) => (
                                         <li key={i}>
-                                            <a href={item.link} className="text-[#E87722] hover:underline">{item.name}</a>
+                                            <a href={item.link} className="text-accent hover:underline">{item.name}</a>
                                         </li>
                                     ))}
                                 </ul>
@@ -117,7 +117,7 @@ function FacultyandStaff() {
                     {/* Notices */}
                     <Card className="shadow-sm border border-gray-200">
                         <CardHeader>
-                            <CardTitle className="text-lg font-semibold text-[#002147]">Notices</CardTitle>
+                            <CardTitle className="text-lg font-semibold text-primary">Notices</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <p className="text-gray-600">Important updates and announcements for faculty and staff.</p>

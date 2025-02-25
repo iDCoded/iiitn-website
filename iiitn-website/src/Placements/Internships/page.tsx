@@ -4,7 +4,7 @@ const InternshipProgram = () => {
     <div className="max-w-7xl mx-auto p-6">
       {/* Hero Section */}
       <section className="text-center py-12">
-        <h1 className="text-4xl font-bold text-[#002147]">SUMMER / WINTER INTERNSHIP PROGRAM</h1>
+        <h1 className="text-4xl font-bold text-primary">SUMMER / WINTER INTERNSHIP PROGRAM</h1>
         <p className="text-lg text-gray-700 mt-4">
           Gain educational and professional research experience at IIIT Nagpur.
         </p>
@@ -12,7 +12,7 @@ const InternshipProgram = () => {
 
       {/* Details Section */}
       <section className="bg-white shadow-md rounded-lg p-6 my-6">
-        <h2 className="text-2xl font-bold text-[#E87722] border-b-2 pb-2">Objective</h2>
+        <h2 className="text-2xl font-bold text-accent border-b-2 pb-2">Objective</h2>
         <p className="text-gray-700 mt-2">
           This program is designed for B.Tech / B.E. / MSc. / MCA students across the nation
           to enhance their research exposure at IIIT Nagpur.
@@ -21,7 +21,7 @@ const InternshipProgram = () => {
 
       {/* Internship Details */}
       <section className="bg-gray-100 p-6 rounded-lg my-6">
-        <h2 className="text-2xl font-bold text-[#E87722] border-b-2 pb-2">Internship Details</h2>
+        <h2 className="text-2xl font-bold text-accent border-b-2 pb-2">Internship Details</h2>
         <ul className="list-disc pl-5 mt-2 text-gray-700 space-y-3">
           <li>The internship focuses on deep learning under expert faculty supervision.</li>
           <li>Candidates decide the duration of the internship.</li>
@@ -38,7 +38,7 @@ const InternshipProgram = () => {
           { title: "🌍 Online Internship", description: "Remote work with expert guidance. No need for physical presence." }
         ].map((item, index) => (
           <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold text-[#002147]">{item.title}</h3>
+            <h3 className="text-xl font-semibold text-primary">{item.title}</h3>
             <p className="text-gray-700 mt-2">{item.description}</p>
           </div>
         ))}
@@ -46,7 +46,7 @@ const InternshipProgram = () => {
 
       {/* Faculty List */}
       <section className="bg-white p-6 rounded-lg shadow-md my-6">
-        <h2 className="text-2xl font-bold text-[#E87722] border-b-2 pb-2">Faculty List</h2>
+        <h2 className="text-2xl font-bold text-accent border-b-2 pb-2">Faculty List</h2>
         <table className="w-full mt-4 border-collapse border border-gray-300">
           <thead>
             <tr className="bg-gray-200">
@@ -74,7 +74,7 @@ const InternshipProgram = () => {
       {/* Registration Fee Structure */}
       <section className="grid md:grid-cols-2 gap-6 my-6">
         <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold text-[#E87722] border-b-2 pb-2">Registration Fee</h2>
+          <h2 className="text-2xl font-bold text-accent border-b-2 pb-2">Registration Fee</h2>
           <table className="w-full mt-4 border-collapse border border-gray-300">
             <thead>
               <tr className="bg-gray-200">
@@ -99,7 +99,7 @@ const InternshipProgram = () => {
 
         {/* Bank Details */}
         <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold text-[#E87722] border-b-2 pb-2">Bank Details</h2>
+          <h2 className="text-2xl font-bold text-accent border-b-2 pb-2">Bank Details</h2>
           <div className="mt-4 text-gray-700 space-y-2">
             <p><span className="font-semibold">Account Name:</span> IIIT Nagpur</p>
             <p><span className="font-semibold">Bank:</span> State Bank of India</p>
@@ -116,22 +116,22 @@ const InternshipProgram = () => {
       {/* Internship Registration Form and Report Accordion */}
       <section className="my-6">
         <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold text-[#E87722] border-b-2 pb-2">Internship Registration Form and Report</h2>
+          <h2 className="text-2xl font-bold text-accent border-b-2 pb-2">Internship Registration Form and Report</h2>
           <div className="mt-4 space-y-4">
             <div className="flex-row flex space-x-8">
-              <h3 className="text-lg text-[#002147] font-semibold">Internship Application Form</h3>
+              <h3 className="text-lg text-primary font-semibold">Internship Application Form</h3>
               <a href="https://iiitn.ac.in/Downloads/internship/newformat2025/1_Application_Form_for_Internship_Program.pdf" className="text-blue-500 mt-2 block">Download</a>
             </div>
             <div className="flex-row flex space-x-8">
-              <h3 className="text-lg text-[#002147] font-semibold">Internship Joining Application</h3>
+              <h3 className="text-lg text-primary font-semibold">Internship Joining Application</h3>
               <a href="https://iiitn.ac.in/Downloads/internship/newformat2025/2_Internship_Joining_Application.pdf" className="text-blue-500 mt-2 block">Download</a>
             </div>
             <div className="flex-row flex space-x-8">
-              <h3 className="text-lg text-[#002147] font-semibold">Internship Report Submission Guideline</h3>
+              <h3 className="text-lg text-primary font-semibold">Internship Report Submission Guideline</h3>
               <a href="https://iiitn.ac.in/Downloads/internship/newformat2025/3_Internship_Report_Submission_Guidelines.docx" className="text-blue-500 mt-2 block">Download</a>
             </div>
             <div className="flex-row flex space-x-8">
-              <h3 className="text-lg text-[#002147] font-semibold">Internship Evaluation Form</h3>
+              <h3 className="text-lg text-primary font-semibold">Internship Evaluation Form</h3>
               <a href="https://iiitn.ac.in/Downloads/internship/newformat2025/4_Internship_Evaluation_Form.pdf" className="text-blue-500 mt-2 block">Download</a>
             </div>
           </div>

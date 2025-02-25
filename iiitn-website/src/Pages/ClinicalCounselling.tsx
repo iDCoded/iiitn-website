@@ -5,7 +5,7 @@ function ClinicalCounselling() {
 	return (
 		<div className="bg-gray-50 min-h-screen flex flex-col">
 			{/* 🔹 Header Section */}
-			<header className="bg-[#002147] text-white py-12 px-6 shadow-md text-left md:text-center">
+			<header className="bg-primary text-white py-12 px-6 shadow-md text-left md:text-center">
 				<h1 className="text-3xl md:text-4xl font-bold">Clinical Counselling</h1>
 				<p className="mt-2 text-gray-200 text-lg">Supporting student well-being at IIIT Nagpur</p>
 			</header>
@@ -15,7 +15,7 @@ function ClinicalCounselling() {
 				{/* 📅 Availability Section */}
 				<section className="mb-8">
 					<h2 className="text-2xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-						<FaCalendarAlt className="text-[#002147]" /> Availability
+						<FaCalendarAlt className="text-primary" /> Availability
 					</h2>
 					<p className="text-gray-700">
 						The institute's <b>Clinical Counselor</b> will be available <b>in-person</b> at the institute as follows:
@@ -33,21 +33,21 @@ function ClinicalCounselling() {
 				{/* ☎️ Contact Section */}
 				<section className="mb-8">
 					<h2 className="text-2xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-						<FaPhoneAlt className="text-[#002147]" /> Contact Information
+						<FaPhoneAlt className="text-primary" /> Contact Information
 					</h2>
 					<p className="text-gray-700">If you need mental health support, the counselor can be reached through the following:</p>
 					<ul className="list-none mt-3 text-gray-700 space-y-3">
 						<li className="flex items-center gap-2">
-							<FaEnvelope className="text-[#002147]" />
+							<FaEnvelope className="text-primary" />
 							Email:
-							<a href="mailto:counselor@iiitn.ac.in" className="text-[#002147] font-semibold hover:underline">
+							<a href="mailto:counselor@iiitn.ac.in" className="text-primary font-semibold hover:underline">
 								counselor@iiitn.ac.in
 							</a>
 						</li>
 						<li className="flex items-center gap-2">
-							<FaPhoneAlt className="text-[#002147]" />
+							<FaPhoneAlt className="text-primary" />
 							Phone:
-							<a href="tel:+919970303386" className="text-[#002147] font-semibold hover:underline">
+							<a href="tel:+919970303386" className="text-primary font-semibold hover:underline">
 								+91 9970303386
 							</a>
 							(Only for clinical counselling)
@@ -56,9 +56,9 @@ function ClinicalCounselling() {
 				</section>
 
 				{/* ⚠️ Important Note */}
-				<section className="p-4 bg-orange-50 border-l-4 border-[#E87722] rounded-lg">
+				<section className="p-4 bg-orange-50 border-l-4 border-accent rounded-lg">
 					<h2 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
-						<FaInfoCircle className="text-[#E87722]" /> Important Notice
+						<FaInfoCircle className="text-accent" /> Important Notice
 					</h2>
 					<p className="text-gray-700 mt-2">
 						📢 <strong>This contact number is strictly for clinical counselling purposes.</strong>

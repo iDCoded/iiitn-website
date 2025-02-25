@@ -8,7 +8,7 @@ function FirstYearAcadFee() {
 	return (
 		<div className="bg-gray-50 min-h-screen flex flex-col items-center">
 			{/* 🔷 Header */}
-			<header className="w-full bg-[#002147] text-white py-12 text-center">
+			<header className="w-full bg-primary text-white py-12 text-center">
 				<h1 className="text-3xl font-bold">First Year Academic Fees</h1>
 				<p className="mt-1 text-gray-200">Fee structure and payment details</p>
 			</header>
@@ -37,13 +37,13 @@ function FirstYearAcadFee() {
 				<div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center">
 					<a
 						href="/pages/academicfee"
-						className="bg-[#002147] text-white px-5 py-2 rounded-md text-center hover:bg-[#001a36] transition"
+						className="bg-primary text-white px-5 py-2 rounded-md text-center hover:bg-[#001a36] transition"
 					>
 						View Complete Fee Structure
 					</a>
 					<a
 						href="/pages/academicfeepayment"
-						className="bg-[#E87722] text-white px-5 py-2 rounded-md text-center hover:bg-[#d8691d] transition"
+						className="bg-accent text-white px-5 py-2 rounded-md text-center hover:bg-[#d8691d] transition"
 					>
 						Academic Fee Payment Details
 					</a>

@@ -52,7 +52,7 @@ function ElectoralLiteracyClub() {
 	return (
 		<div className="bg-gray-100 min-h-screen">
 			{/* Header Section */}
-			<header className="bg-[#002147] text-white py-16 text-center">
+			<header className="bg-primary text-white py-16 text-center">
 				<h1 className="text-4xl font-bold">Electoral Literacy Club</h1>
 				<p className="text-lg mt-2">
 					Promoting voter awareness and democratic participation.
@@ -64,7 +64,7 @@ function ElectoralLiteracyClub() {
 				{/* About Section */}
 				<section className="bg-white shadow-md rounded-lg p-8">
 					<h2 className="text-3xl font-semibold text-gray-900 mb-4">
-					<span className="text-[#E87722] font-bold text-4xl">| </span>About Electoral Literacy Club
+					<span className="text-accent font-bold text-4xl">| </span>About Electoral Literacy Club
 					</h2>
 					<p className="text-gray-700 leading-relaxed">
 						The Election Commission of India is an autonomous constitutional authority responsible for administering
@@ -73,7 +73,7 @@ function ElectoralLiteracyClub() {
 					</p>
 					<a
 						href="#"
-						className="inline-block mt-4 px-6 py-2 bg-[#002147] text-white font-medium rounded-lg shadow hover:bg-[#001730] transition"
+						className="inline-block mt-4 px-6 py-2 bg-primary text-white font-medium rounded-lg shadow hover:bg-[#001730] transition"
 					>
 						Learn More
 					</a>
@@ -82,7 +82,7 @@ function ElectoralLiteracyClub() {
 				{/* Contest Section */}
 				<section className="bg-white shadow-md rounded-lg p-8">
 					<h2 className="text-3xl font-semibold text-gray-900 mb-6">
-					<span className="text-[#E87722] font-bold text-4xl">| </span>Contests & Initiatives
+					<span className="text-accent font-bold text-4xl">| </span>Contests & Initiatives
 					</h2>
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 						{contestData.map((contest, index) => (
@@ -97,7 +97,7 @@ function ElectoralLiteracyClub() {
 										<a
 											key={i}
 											href={link.url}
-											className="block text-[#002147] font-medium hover:underline"
+											className="block text-primary font-medium hover:underline"
 										>
 											➤ {link.title}
 										</a>
@@ -111,7 +111,7 @@ function ElectoralLiteracyClub() {
 				{/* Events Section */}
 				<section className="bg-white shadow-md rounded-lg p-8">
 					<h2 className="text-3xl font-semibold text-gray-900 mb-6">
-					<span className="text-4xl text-[#E87722] font-bold">| </span>Upcoming & Past Events
+					<span className="text-4xl text-accent font-bold">| </span>Upcoming & Past Events
 					</h2>
 					<p className="text-gray-700 mb-6">
 						Here is a list of events organized by the Electoral Literacy Club to spread awareness and encourage civic
@@ -127,7 +127,7 @@ function ElectoralLiteracyClub() {
 								<p className="text-gray-700 mt-2">
 									<span className="font-semibold">Date:</span> {event.date}
 								</p>
-								<a href={event.link} className="block text-[#002147] font-medium hover:underline mt-2">
+								<a href={event.link} className="block text-primary font-medium hover:underline mt-2">
 									➤ More Details
 								</a>
 							</div>

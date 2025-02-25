@@ -90,7 +90,7 @@ function DetailedNews() {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Header Section */}
-      <header className="bg-[#002147] text-white py-16 text-center">
+      <header className="bg-primary text-white py-16 text-center">
         <h1 className="text-5xl font-bold">Detailed News</h1>
         <p className="text-lg mt-2 italic">
           "Celebrating Excellence & Inspiring the Future"
@@ -107,7 +107,7 @@ function DetailedNews() {
         />
 
         {/* News Title */}
-        <h2 className="text-3xl font-bold text-[#002147] mb-4">{news.title}</h2>
+        <h2 className="text-3xl font-bold text-primary mb-4">{news.title}</h2>
 
         {/* News Content */}
         <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">
@@ -117,7 +117,7 @@ function DetailedNews() {
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
-          className="mt-6 px-6 py-2 bg-[#002147] text-white rounded-md shadow-md hover:bg-[#001530] transition duration-300"
+          className="mt-6 px-6 py-2 bg-primary text-white rounded-md shadow-md hover:bg-[#001530] transition duration-300"
         >
           ← Back
         </button>

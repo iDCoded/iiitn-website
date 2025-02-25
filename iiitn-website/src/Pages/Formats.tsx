@@ -23,7 +23,7 @@ function Formats() {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Header Section */}
-      <header className="bg-[#002147] text-white py-16 text-center">
+      <header className="bg-primary text-white py-16 text-center">
         <h1 className="text-5xl font-bold">Formats</h1>
         <p className="text-lg mt-2 italic">"Ensuring a fair and transparent resolution process"</p>
       </header>
@@ -31,10 +31,10 @@ function Formats() {
       {/* Content Section */}
       <div className="max-w-4xl mx-auto py-10">
         {/* Institute Formats Table */}
-        <h2 className="text-2xl font-semibold text-[#002147] mb-4">Institute Formats</h2>
+        <h2 className="text-2xl font-semibold text-primary mb-4">Institute Formats</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border rounded-lg shadow-md">
-            <thead className="bg-[#002147] text-white">
+            <thead className="bg-primary text-white">
               <tr>
                 <th className="px-4 py-3">Sr. No.</th>
                 <th className="px-4 py-3 text-left">Format</th>
@@ -58,10 +58,10 @@ function Formats() {
         </div>
 
         {/* Category Formats Table */}
-        <h2 className="text-2xl font-semibold text-[#002147] mt-10 mb-4">Central Formats</h2>
+        <h2 className="text-2xl font-semibold text-primary mt-10 mb-4">Central Formats</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border rounded-lg shadow-md">
-            <thead className="bg-[#002147] text-white">
+            <thead className="bg-primary text-white">
               <tr>
                 <th className="px-4 py-3">Sr. No.</th>
                 <th className="px-4 py-3 text-left">Format</th>
