@@ -19,7 +19,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { Faculty } from "@/interfaces/types";
+import { Person } from "@/interfaces/types";
 
 const formSchema = z.object({
 	f_id: z.string(),
@@ -38,13 +38,13 @@ const formSchema = z.object({
 	research: z.string().min(1, { message: "Please enter the research" }),
 });
 
-export function FacultyForm() {
+export function FacultyForm({ user }: { user: Person }) {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			f_id: "",
 			p_id: "",
-			d_id: "",
+			d_id: (Math.floor(Math.random() * 2) + 1).toString(), // Random number b/w 1 - 2.
 			pub_id: "",
 			media_img_id: "",
 			join_year: new Date().getFullYear(),
@@ -58,10 +58,9 @@ export function FacultyForm() {
 	});
 
 	const handleSubmit = async (data: z.infer<typeof formSchema>) => {
-		const facultyData: Faculty = {
-			f_id: "1",
-			p_id: "1",
-			d_id: "2",
+		const facultyData = {
+			p_id: user.p_id.toString(),
+			d_id: (Math.floor(Math.random() * 2) + 1).toString(), // ! Remove in production -> Random number b/w 1 - 2
 			pub_id: "1",
 			media_img_id: 1,
 			join_year: data.join_year,
@@ -73,13 +72,15 @@ export function FacultyForm() {
 			research: data.research,
 		};
 
-		await fetch("http://localhost:5000/faculty/faculty_staff", {
+		const res = await fetch("http://localhost:5000/faculty/faculty_staff", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(facultyData),
 		});
+		const res_json = await res.json();
+		console.log("res_json", res_json);
 	};
 
 	return (
