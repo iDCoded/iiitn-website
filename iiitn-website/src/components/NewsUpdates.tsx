@@ -43,13 +43,16 @@ export default function NewsCarousel() {
                 if (!res.ok) throw new Error("Failed to fetch news");
 
                 const data = await res.json();
-                setNewsData([
-                    data.id,
-                    data.category,
-                    data.image,
-                    data.title,
-                    data.description,
-                ]);
+                console.log(data);
+                const formattedData = data.map((item: any) => ({
+                    id: item.c_id,
+                    category: item.c_category,
+                    image: item.media_img_path,
+                    title: item.title,
+                    description: item.caption,
+                }));
+                setNewsData(formattedData);
+                console.log(newsData);
             } catch (error) {
                 console.error("Error fetching news:", error);
             }

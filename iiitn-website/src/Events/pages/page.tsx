@@ -40,7 +40,7 @@ const eventsData = [
 
 const EventDetail = () => {
     const { eventid } = useParams();
-    const [event, setEvent] = useState<{ id: string; image: string; title: string; content: string; date: string; location: string; large: boolean; } | null>(null);
+    const [event, setEvent] = useState<{ id: string; image: string; title: string; caption: string; content: string; date: string; location: string; large: boolean; } | null>(null);
 
     useEffect(() => {
         const fetchEvent = async () => {
@@ -50,7 +50,18 @@ const EventDetail = () => {
                     throw new Error("Event not found");
                 }
                 const data = await response.json();
-                setEvent(data);
+                console.log(data);
+                setEvent({
+                    id: data.c_id,
+                    image: data.media_img_path,
+                    title: data.title,
+                    caption: data.caption,
+                    content: data.content,
+                    date: data.date,
+                    location: data.location,
+                    large: false,
+                });
+                console.log(event);
             } catch (error) {
                 console.error("Error fetching event:", error);
                 setEvent(eventsData.find((e) => e.id === eventid) || null);
@@ -58,8 +69,6 @@ const EventDetail = () => {
         };
 
         fetchEvent();
-        const foundEvent = eventsData.find((e) => e.id === eventid);
-        setEvent(foundEvent || null);
     }, [eventid]);
 
     if (!event) {

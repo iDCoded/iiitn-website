@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const newsData = [
@@ -45,17 +45,25 @@ function DetailedNews() {
           throw new Error("Event not found");
         }
         const data = await response.json();
-        setNews(data);
+        setNews(
+          {
+            id: data.c_id,
+            title: data.title,
+            image: data.media_img_path,
+            content: data.content,
+          }
+        );
+        console.log(data);
       } catch (error) {
         // console.error("Error fetching event:", error);
         const foundEvent = newsData.find((e) => e.id === newsId);
         if (foundEvent) {
-          setNews({
+            setNews({
             id: foundEvent.id,
             title: foundEvent.title,
             image: foundEvent.image,
             content: foundEvent.description,
-          });
+            });
         } else {
           setNews(null);
         }
