@@ -35,7 +35,7 @@ const events = [
 
 export function CarouselDemo() {
   return (
-    <Carousel className="w-full max-w-screen mx-auto mt-10">
+    <Carousel className="w-full max-w-[75vh] mx-auto mt-10">
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index}>
