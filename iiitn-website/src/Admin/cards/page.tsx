@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { columns } from "./columns";
-import { DataTable } from "./data-table";
+import { DataTable } from "../data-table";
 import { ICard } from "@/interfaces/types";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
