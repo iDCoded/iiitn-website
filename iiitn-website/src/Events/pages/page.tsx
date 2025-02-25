@@ -42,14 +42,14 @@ const EventDetail = () => {
     useEffect(() => {
         const fetchEvent = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_BASE_URL}/card/cards/${eventid}`);
+                const response = await fetch("http://localhost:5000/card/cards/${eventid}");
                 if (!response.ok) {
                     throw new Error("Event not found");
                 }
                 const data = await response.json();
                 setEvent(data);
             } catch (error) {
-                // console.error("Error fetching event:", error);
+                console.error("Error fetching event:", error);
                 setEvent(eventsData.find((e) => e.id === eventid) || null);
             }
         };
