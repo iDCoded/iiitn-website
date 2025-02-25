@@ -3,7 +3,7 @@ import { Button } from "./ui/button"
 import HomeEventCard from "./HomeEventCard";
 import abhivyakti from "../assets/abhivyakti.jpeg";
 import tf from "../assets/tf.jpeg";
-import kshitij from "../assets/kshitij.jpeg";
+import workshop from "../assets/workshop.jpg";
 import { FaArrowRight } from "react-icons/fa";
 
 const UpcomingEvents = () => {
@@ -71,13 +71,13 @@ const UpcomingEvents = () => {
             large: false,
         },
         {
-            id: "institute-gathering",
-            image: kshitij,
-            title: "Institute Gathering",
-            caption: "Annual sports gathering of IIITN",
-            content: "Annual gathering of students, faculty, and staff. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            date: "30 Jan",
-            location: "IIIT Nagpur Campus",
+            id: "Foundations-of-Cybersecurity",
+            image: workshop, // Make sure to replace with the actual image import
+            title: "Foundations of Cybersecurity - Online Certificate Programme",
+            caption: "Enhance your cybersecurity skills with IIIT Nagpur",
+            content: "The Department of Computer Science & Engineering at IIIT Nagpur presents an exclusive online certification program on Cybersecurity. This program is designed to equip participants with essential cybersecurity skills, covering topics such as network security, cryptography, threat detection, and ethical hacking. Gain industry-relevant knowledge from experts in the field and earn a valuable certification upon completion.",
+            date: "22nd March",
+            location: "Online (Hosted by IIIT Nagpur)",
             large: false,
         },
     ];
