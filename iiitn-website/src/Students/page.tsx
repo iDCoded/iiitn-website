@@ -1,6 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // Using ShadCN Card
 import StudentCard from "../components/StudentCard";
 import heroimage from "../assets/studentBanner.png";
+import acad_curr from "../assets/academic_curri.jpg"
+import curr_acad from "../assets/college_fees.png"
+
 
 const prospectiveData = [
     { title: "Academic Curricula", description: "Semester Dates and Deadlines" },
@@ -79,7 +82,7 @@ function Students() {
                                     key={index}
                                     title={item.title}
                                     description={item.description}
-                                    imageSrc="https://iiitn.ac.in/images/main-logo-90x90.png"
+                                    imageSrc={acad_curr}
                                 />
                             ))}
                         </div>
@@ -101,7 +104,7 @@ function Students() {
                                             key={idx}
                                             title={item.title}
                                             description={item.description}
-                                            imageSrc="https://iiitn.ac.in/images/main-logo-90x90.png"
+                                            imageSrc={curr_acad}
                                         />
                                     ))}
                                 </div>
