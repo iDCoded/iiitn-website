@@ -9,18 +9,14 @@ import {
 import { Person } from "@/interfaces/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
-
-async function assignRole(user: Person, role: Person["role"]) {
-	const { p_id, ...updatedUser } = user; // Exclude p_id from the user object
-
-	await fetch(`http://localhost:5000/user/${p_id}`, {
-		method: "PUT",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ ...updatedUser, role }),
-	});
-}
+import {
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+} from "@/components/ui/dialog";
+import { FacultyForm } from "@/components/form/faculty-form";
+import { useState } from "react";
 
 export const columns: ColumnDef<Person>[] = [
 	{
@@ -40,28 +36,50 @@ export const columns: ColumnDef<Person>[] = [
 		header: "Role",
 		cell: ({ row }) => {
 			const user = row.original;
+			// eslint-disable-next-line react-hooks/rules-of-hooks
+			const [openFacultyDialog, setOpenFacultyDialog] = useState(false);
+
+			async function assignRole(user: Person, role: Person["role"]) {
+				const { p_id, ...updatedUser } = user;
+				if (role === "admin") {
+					await fetch(`http://localhost:5000/user/${p_id}`, {
+						method: "PUT",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({ ...updatedUser, role }),
+					});
+				} else if (role === "faculty") {
+					setOpenFacultyDialog(true);
+				}
+			}
 
 			return (
-				<DropdownMenu>
-					<DropdownMenuTrigger asChild>
-						<Button variant="secondary">Assign Role</Button>
-					</DropdownMenuTrigger>
-					<DropdownMenuContent align="end">
-						<DropdownMenuLabel>Roles</DropdownMenuLabel>
-						<DropdownMenuItem
-							onClick={() => {
-								assignRole(user, "admin");
-							}}>
-							Admin
-						</DropdownMenuItem>
-						<DropdownMenuItem
-							onClick={() => {
-								assignRole(user, "faculty");
-							}}>
-							Faculty
-						</DropdownMenuItem>
-					</DropdownMenuContent>
-				</DropdownMenu>
+				<>
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<Button variant="secondary">Assign Role</Button>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent align="end">
+							<DropdownMenuLabel>Roles</DropdownMenuLabel>
+							<DropdownMenuItem onClick={() => assignRole(user, "admin")}>
+								Admin
+							</DropdownMenuItem>
+							<DropdownMenuItem onClick={() => assignRole(user, "faculty")}>
+								Faculty
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
+
+					<Dialog open={openFacultyDialog} onOpenChange={setOpenFacultyDialog}>
+						<DialogContent>
+							<DialogHeader>
+								<DialogTitle>Assign Faculty Role</DialogTitle>
+							</DialogHeader>
+							<FacultyForm user={user} />
+						</DialogContent>
+					</Dialog>
+				</>
 			);
 		},
 	},
