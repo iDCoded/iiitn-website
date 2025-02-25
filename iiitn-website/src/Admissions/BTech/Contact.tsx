@@ -17,7 +17,7 @@ function Contact() {
 	return (
 		<div className="bg-gray-50 min-h-screen flex flex-col items-center">
 			{/* 🔷 Header */}
-			<header className="w-full bg-[#002147] text-white py-12 text-center">
+			<header className="w-full bg-primary text-white py-12 text-center">
 				<h1 className="text-3xl font-bold">Admission Committee</h1>
 				<p className="mt-1 text-gray-200">Contact details of key members</p>
 			</header>
@@ -41,10 +41,10 @@ function Contact() {
 									<td className="p-3 text-gray-800">{role}</td>
 									<td className="p-3 text-gray-800">{name}</td>
 									<td className="p-3 flex items-center space-x-2">
-										<FaPhoneAlt className="text-[#E87722]" />
+										<FaPhoneAlt className="text-accent" />
 										<a
 											href={`tel:${phone}`}
-											className="text-[#E87722] hover:underline transition duration-200"
+											className="text-accent hover:underline transition duration-200"
 										>
 											{phone}
 										</a>

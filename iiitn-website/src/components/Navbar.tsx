@@ -199,15 +199,15 @@ const Navbar = () => {
 		<>
 			{/* Transparent Overlay (Only for Home Page) */}
 			{isHomePage && (
-				<div className="absolute left-0 top-5 w-full h-[33vh] bg-gradient-to-b from-[#002147] via-[#7BA4D4] to-transparent z-1"></div>
+				<div className="absolute left-0 top-5 w-full h-[33vh] bg-gradient-to-b from-primary via-[#7BA4D4] to-transparent z-1"></div>
 			)}
 
 			{/* Fixed Navbar */}
 			<div className="fixed top-0 left-0 w-full z-50 transition-transform duration-200">
 				{/* 🔸 Top Orange Bar */}
-				<nav className="w-full bg-[#E87722] shadow-md px-6 py-2 flex justify-between items-center">
-					<h1 className="text-[#002147] font-bold text-xl">अ A</h1>
-					<ul className="hidden lg:flex space-x-6 font-medium text-[#002147]">
+				<nav className="w-full bg-accent shadow-md px-6 py-2 flex justify-between items-center">
+					<h1 className="text-primary font-bold text-xl">अ A</h1>
+					<ul className="hidden lg:flex space-x-6 font-medium text-primary">
 						{navLinks.map((link, index) => (
 							<a key={index} href={link.href} className="hover:text-white">
 								{link.title}
@@ -219,7 +219,7 @@ const Navbar = () => {
 				{/* 🔹 Middle Section with Logo and Mobile Menu Button */}
 				<nav
 					className={`w-full px-8 py-2 flex justify-between items-center ${
-						isHomePage && !isScrolled ? "bg-transparent" : "bg-[#002147]"
+						isHomePage && !isScrolled ? "bg-transparent" : "bg-primary"
 					}`}>
 					<a href="/">
 						<div className="flex items-center space-x-4">
@@ -231,7 +231,7 @@ const Navbar = () => {
 								<p className="font-medium text-white text-base">
 									Indian Institute of Information Technology, Nagpur
 								</p>
-								<p className="font-light text-sm text-[#E87722]">
+								<p className="font-light text-sm text-white">
 									An Institution of National Importance
 								</p>
 							</div>
@@ -250,13 +250,13 @@ const Navbar = () => {
 							{dropdownLinks.map((item, index) => (
 								<li
 									key={index}
-									className="relative group cursor-pointer hover:text-[#E87722]"
+									className="relative group cursor-pointer hover:text-accent"
 									onMouseEnter={() => setOpenDropdown(index)}
 									onMouseLeave={() => setOpenDropdown(null)}>
 									{item.title}
 									{/* Dropdown Menu */}
 									<ul
-										className={`absolute top-full mt-2 w-48 bg-white text-[#002147] border shadow-lg rounded-md transition-all duration-200 
+										className={`absolute top-full mt-2 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
                                     ${
 																			index === dropdownLinks.length - 1
 																				? "right-0"
@@ -274,13 +274,13 @@ const Navbar = () => {
 												onMouseEnter={() => setOpenSubmenu(i)}
 												onMouseLeave={() => setOpenSubmenu(null)}>
 												<a href={link.href}>
-													<li className="px-4 py-2 hover:bg-[#E87722] hover:rounded-sm hover:text-white">
+													<li className="px-4 py-2 hover:bg-accent hover:rounded-sm hover:text-white">
 														{link.name}
 													</li>
 												</a>
 												{link.subLinks && (
 													<ul
-														className={`absolute top-0 mt-0 w-48 bg-white text-[#002147] border shadow-lg rounded-md transition-all duration-200 
+														className={`absolute top-0 mt-0 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
                                                     ${
 																											index ===
 																											dropdownLinks.length - 1
@@ -300,14 +300,14 @@ const Navbar = () => {
 																onMouseLeave={() => setOpenNestedSubmenu(null)}>
 																<a
 																	href={subLink.href}
-																	className="block px-4 py-2 hover:bg-[#E87722] hover:text-white rounded-sm">
+																	className="block px-4 py-2 hover:bg-accent hover:text-white rounded-sm">
 																	{subLink.name}
 																</a>
 
 																{/* Nested Submenu (if exists) */}
 																{subLink.nestedLinks && (
 																	<ul
-																		className={`absolute top-0 mt-0 w-48 bg-white text-[#002147] border shadow-lg rounded-md transition-all duration-200 
+																		className={`absolute top-0 mt-0 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
                 ${j === link.subLinks.length - 1 ? "right-full" : "left-full"} 
                 ${
 									openNestedSubmenu === j
@@ -320,7 +320,7 @@ const Navbar = () => {
 																					<li key={k}>
 																						<a
 																							href={nestedLink.href}
-																							className="block px-4 py-2 hover:bg-[#E87722] hover:text-white rounded-md">
+																							className="block px-4 py-2 hover:bg-accent hover:text-white rounded-md">
 																							{nestedLink.name}
 																						</a>
 																					</li>
@@ -352,7 +352,7 @@ const Navbar = () => {
 				<div className="w-3/4 max-w-sm bg-white h-full shadow-lg overflow-y-auto p-6 transform transition-all duration-300 ease-in-out">
 					{/* Close Button */}
 					<button
-						className="text-2xl text-[#002147] mb-4 flex-row"
+						className="text-2xl text-primary mb-4 flex-row"
 						onClick={() => setIsMobileMenuOpen(false)}>
 						Menu <FaTimes />
 					</button>
@@ -362,18 +362,18 @@ const Navbar = () => {
 							<a
 								key={index}
 								href={link.href}
-								className="block text-lg font-medium text-[#002147] hover:text-[#E87722]">
+								className="block text-lg font-medium text-primary hover:text-accent">
 								{link.title}
 							</a>
 						))}
 						{dropdownLinks.map((item, index) => (
 							<div key={index} className="space-y-2">
-								<p className="font-semibold text-[#002147]">{item.title}</p>
+								<p className="font-semibold text-primary">{item.title}</p>
 								{item.links.map((link, i) => (
 									<a
 										key={i}
 										href={link.href}
-										className="block pl-4 text-[#002147] hover:text-[#E87722]">
+										className="block pl-4 text-primary hover:text-accent">
 										{link.name}
 									</a>
 								))}

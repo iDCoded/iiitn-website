@@ -14,7 +14,7 @@ function InternalCompltComm() {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       {/* Header */}
-      <header className="bg-[#002147] text-white py-16 text-center">
+      <header className="bg-primary text-white py-16 text-center">
         <h1 className="text-5xl font-bold">Internal Complaint Committee</h1>
 
         <p className="text-lg mt-2 italic">"Ensuring a safe and inclusive environment for all."</p>
@@ -22,7 +22,7 @@ function InternalCompltComm() {
 
       {/* About Section */}
       <section className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-        <h2 className="text-3xl font-semibold text-[#002147]"><span className="text-[#E87722] text-4xl">| </span> About the Committee</h2>
+        <h2 className="text-3xl font-semibold text-primary"><span className="text-accent text-4xl">| </span> About the Committee</h2>
         <p className="text-gray-700 mt-6 leading-relaxed">
           The <strong>Internal Complaint Committee (ICC)</strong> of <strong>IIIT Nagpur</strong> is constituted to address and resolve complaints related to
           <strong>harassment and grievances</strong>. The committee ensures a <strong>safe and respectful work and study environment</strong> for all individuals.
@@ -31,10 +31,10 @@ function InternalCompltComm() {
 
       {/* Committee Members Table */}
       <section className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-        <h2 className="text-3xl font-semibold text-[#002147] text-left"><span className="text-[#E87722] text-4xl">| </span> Committee Members</h2>
+        <h2 className="text-3xl font-semibold text-primary text-left"><span className="text-accent text-4xl">| </span> Committee Members</h2>
         <div className="overflow-x-auto mt-6">
           <table className="min-w-full bg-white border border-gray-300 shadow-sm rounded-lg">
-            <thead className="bg-[#002147] text-white">
+            <thead className="bg-primary text-white">
               <tr>
                 <th className="py-3 px-6 text-left">#</th>
                 <th className="py-3 px-6 text-left">Name</th>
@@ -62,7 +62,7 @@ function InternalCompltComm() {
 
       {/* Contact Information */}
       <section className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-        <h2 className="text-3xl font-semibold text-[#002147]"><span className="text-[#E87722] text-4xl">| </span>Contact Information</h2>
+        <h2 className="text-3xl font-semibold text-primary"><span className="text-accent text-4xl">| </span>Contact Information</h2>
         <p className="text-gray-700 mt-6 leading-relaxed">
           For complaints or concerns, please contact the **Internal Complaint Committee** via email. The committee ensures
           **confidentiality** and a fair resolution process.

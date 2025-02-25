@@ -2,14 +2,15 @@ import React from 'react'
 
 // Data
 const hostelFeeData = {
-  year: 2022,
-  imgSrc: '#',}
+	year: 2022,
+	imgSrc: '#',
+}
 
 function HostelFee() {
-  return (
-    <div className="bg-gray-100 min-h-screen flex flex-col">
+	return (
+		<div className="bg-gray-100 min-h-screen flex flex-col">
 			{/* Header Section */}
-			<header className="bg-[#002147] text-white py-14 text-center">
+			<header className="bg-primary text-white py-14 text-center">
 				<h1 className="text-3xl font-bold">Hostel Fees</h1>
 			</header>
 
@@ -35,10 +36,10 @@ function HostelFee() {
 
 				{/* Action Buttons */}
 				<div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center">
-					
+
 					<a
 						href="/pages/hostelfeepayment"
-						
+
 						className="bg-green-600 text-white px-5 py-2 rounded-md text-center hover:bg-green-700 transition"
 					>
 						Hostel Fee Payment Details
@@ -46,9 +47,9 @@ function HostelFee() {
 				</div>
 			</main>
 
-		
+
 		</div>
-  )
+	)
 }
 
 export default HostelFee

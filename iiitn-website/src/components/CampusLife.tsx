@@ -18,12 +18,12 @@ const CampusLife = () => {
         <section className="py-16 px-6 bg-white">
             <div className="max-w-6xl mx-auto">
                 <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-3xl font-bold text-left text-[#002147]">
-                        <span className="text-[#E87722]">|</span> Campus Life
+                    <h2 className="text-3xl font-bold text-left text-primary">
+                        <span className="text-accent">|</span> Campus Life
                     </h2>
                     <a href="/hostellife">
                     <button
-                        className="text-white bg-[#E87722] py-2 px-4 rounded-sm font-semibold hover:underline"
+                        className="text-white bg-accent py-2 px-4 rounded-sm font-semibold hover:underline"
                     >
                         More
                     </button>

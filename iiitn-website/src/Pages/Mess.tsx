@@ -5,7 +5,7 @@ function Mess() {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       {/* Header Section */}
-      <header className="bg-[#002147] text-white py-16 text-center">
+      <header className="bg-primary text-white py-16 text-center">
         <h1 className="text-4xl font-bold">IIIT Nagpur Mess</h1>
         <p className="text-lg mt-2">Healthy & hygienic meals for a better campus life.</p>
       </header>
@@ -15,11 +15,11 @@ function Mess() {
         {/* Mess Timings */}
         <section className="mb-8">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-            <FaClock className="text-[#002147]" /> Mess Timings
+            <FaClock className="text-primary" /> Mess Timings
           </h2>
           <table className="w-full border-collapse border border-gray-300 text-gray-700">
             <thead>
-              <tr className="bg-[#002147] text-white">
+              <tr className="bg-primary text-white">
                 <th className="p-3 border border-gray-300">Meal</th>
                 <th className="p-3 border border-gray-300">Timings</th>
               </tr>
@@ -48,10 +48,10 @@ function Mess() {
         {/* Mess Menu Section */}
         <section className="mb-8">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-            <FaUtensils className="text-[#002147]" /> Weekly Menu
+            <FaUtensils className="text-primary" /> Weekly Menu
           </h2>
           <p className="text-gray-700">Check out the delicious and nutritious meals served in the mess:</p>
-          <a href="#" className="block mt-3 text-white text-center bg-[#002147] py-3 rounded-md hover:bg-[#001730] transition">
+          <a href="#" className="block mt-3 text-white text-center bg-primary py-3 rounded-md hover:bg-[#001730] transition">
             📄 View Mess Menu
           </a>
         </section>
@@ -59,7 +59,7 @@ function Mess() {
         {/* Mess Rules Section */}
         <section className="mb-8">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-            <FaClipboardList className="text-[#002147]" /> Mess Rules & Guidelines
+            <FaClipboardList className="text-primary" /> Mess Rules & Guidelines
           </h2>
           <ul className="list-disc pl-6 text-gray-700 space-y-2">
             <li>Students must carry their <b>ID Cards</b> to enter the mess.</li>
@@ -73,10 +73,10 @@ function Mess() {
         {/* Feedback Section */}
         <section>
           <h2 className="text-2xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-            <FaCommentDots className="text-[#002147]" /> Student Feedback
+            <FaCommentDots className="text-primary" /> Student Feedback
           </h2>
           <p className="text-gray-700">Your feedback helps us improve the mess experience. Share your suggestions:</p>
-          <a href="#" className="block mt-3 text-white text-center bg-[#002147] py-3 rounded-md hover:bg-[#001730] transition">
+          <a href="#" className="block mt-3 text-white text-center bg-primary py-3 rounded-md hover:bg-[#001730] transition">
             ✍️ Give Feedback
           </a>
         </section>

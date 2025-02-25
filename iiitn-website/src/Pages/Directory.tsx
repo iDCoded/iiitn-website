@@ -424,7 +424,7 @@ const Directory = () => {
     return (
         <div className="max-w-6xl mx-auto px-6 py-10">
             <h1 className="text-3xl font-bold mb-6 flex items-center">
-                <span className="text-[#E87722] text-4xl mr-2">|</span> Faculty & Staff Directory
+                <span className="text-accent text-4xl mr-2">|</span> Faculty & Staff Directory
             </h1>
 
             {/* Tabs */}
@@ -432,13 +432,13 @@ const Directory = () => {
                 {["faculty", "staff"].map((tab) => (
                     <button
                         key={tab}
-                        className={`relative px-6 py-2 text-lg font-medium transition-all duration-300 ${selectedTab === tab ? "text-[#E87722] font-bold" : "text-gray-500 hover:text-gray-700"
+                        className={`relative px-6 py-2 text-lg font-medium transition-all duration-300 ${selectedTab === tab ? "text-accent font-bold" : "text-gray-500 hover:text-gray-700"
                             }`}
                         onClick={() => setSelectedTab(tab as "faculty" | "staff")}
                     >
                         {tab.toUpperCase()}
                         {selectedTab === tab && (
-                            <motion.div layoutId="underline" className="absolute left-0 bottom-0 h-[3px] bg-[#E87722] w-full" />
+                            <motion.div layoutId="underline" className="absolute left-0 bottom-0 h-[3px] bg-accent w-full" />
                         )}
                     </button>
                 ))}
@@ -461,11 +461,11 @@ const Directory = () => {
                                 <div className="flex flex-col" key={index}>
                                     <Card
                                         key={index}
-                                        className="shadow-lg border-2 border-[#E87722] mx-auto max-w-3xl cursor-pointer hover:shadow-xl transition"
+                                        className="shadow-lg border-2 border-accent mx-auto max-w-3xl cursor-pointer hover:shadow-xl transition"
                                         onClick={() => navigate(`/faculty/${encodeURIComponent(faculty.name)}`)}
                                     >
                                         <CardHeader className="text-center">
-                                            <h2 className="text-xl font-bold text-[#E87722]">Head of Department (HOD)</h2>
+                                            <h2 className="text-xl font-bold text-accent">Head of Department (HOD)</h2>
                                             <div className="flex justify-center">
                                                 <img src={faculty.image} alt={faculty.name} className="w-40 h-40 rounded-full object-cover shadow-md" />
                                             </div>

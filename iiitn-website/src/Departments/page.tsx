@@ -8,7 +8,7 @@ function Departments() {
     return (
         <div className="bg-gray-100 text-gray-900 min-h-screen">
             {/* Hero Section */}
-            <div className="bg-[#002147] text-white py-12 md:py-16 text-center">
+            <div className="bg-primary text-white py-12 md:py-16 text-center">
                 <h1 className="text-3xl md:text-4xl font-bold">Departments at IIIT Nagpur</h1>
                 <p className="text-base md:text-lg mt-2">
                     Explore the diverse academic departments at IIIT Nagpur

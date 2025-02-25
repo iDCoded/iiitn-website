@@ -14,7 +14,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sections }) => {
                         <li key={section.id} className="pt-2">
                             <a
                                 href={`#${section.id}`}
-                                className="block text-gray-700 hover:text-[#E87722] transition"
+                                className="block text-gray-700 hover:text-accent transition"
                             >
                                 {section.title}
                             </a>

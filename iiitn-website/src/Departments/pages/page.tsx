@@ -139,14 +139,14 @@ export default function DepartmentPage({ title }: PageProps) {
                 <aside className="hidden md:block sticky top-[18vh] self-start space-y-6">
                     <Card className="border border-gray-200 shadow-sm">
                         <CardHeader>
-                            <CardTitle className="text-lg font-semibold text-[#002147]">Quick Navigation</CardTitle>
+                            <CardTitle className="text-lg font-semibold text-primary">Quick Navigation</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <ScrollArea className="h-60">
                                 <ul className="space-y-3 text-sm">
                                     {sections.map((section) => (
                                         <li key={section.id}>
-                                            <a href={`#${section.id}`} className="text-[#E87722] hover:underline">
+                                            <a href={`#${section.id}`} className="text-accent hover:underline">
                                                 {section.title}
                                             </a>
                                         </li>
@@ -163,7 +163,7 @@ export default function DepartmentPage({ title }: PageProps) {
                         <Card key={section.id} className="shadow-md border border-gray-100">
                             <CardHeader>
                                 <CardTitle className="relative text-xl font-bold">
-                                    <span className="text-4xl text-[#E87722]">| </span>
+                                    <span className="text-4xl text-accent">| </span>
                                     {section.title}
                                 </CardTitle>
                             </CardHeader>
@@ -217,8 +217,8 @@ export default function DepartmentPage({ title }: PageProps) {
                 {/* 🟠 Events Section */}
                 {data.events.length > 0 && (
                     <div className="mt-12 col-span-3">
-                        <h2 className="text-3xl font-bold text-[#002147] mb-6">
-                            <span className="text-6xl font-bold text-[#E87722]">|</span>Upcoming Events
+                        <h2 className="text-3xl font-bold text-primary mb-6">
+                            <span className="text-6xl font-bold text-accent">|</span>Upcoming Events
                         </h2>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 py-6">
                             {data.events.map((event, index) => (
@@ -235,7 +235,7 @@ export default function DepartmentPage({ title }: PageProps) {
                                         />
 
                                         {/* Animated Date Badge */}
-                                        <div className="absolute top-3 left-3 bg-[#002147] text-white text-sm font-bold px-3 py-2 rounded-md shadow-lg transition-all duration-300 transform group-hover:scale-110 group-hover:bg-[#E87722]">
+                                        <div className="absolute top-3 left-3 bg-primary text-white text-sm font-bold px-3 py-2 rounded-md shadow-lg transition-all duration-300 transform group-hover:scale-110 group-hover:bg-accent">
                                             {event.date ? new Date(event.date).toLocaleDateString('en-US', { month: 'short', day: '2-digit' }) : "TBD"}
                                         </div>
                                     </div>

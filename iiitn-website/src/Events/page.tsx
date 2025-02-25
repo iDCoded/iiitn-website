@@ -68,14 +68,14 @@ function Events() {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       {/* Header Section */}
-      <header className="bg-[#002147] text-white py-16 text-center">
+      <header className="bg-primary text-white py-16 text-center">
         <h1 className="text-4xl font-bold">Events</h1>
         <p className="text-lg mt-2">Explore past and upcoming events at IIIT Nagpur.</p>
       </header>
 
       {/* Annual Events Section */}
       <div className="max-w-5xl mx-auto px-6 py-12">
-        <h2 className="text-2xl font-semibold text-[#002147] mb-6">Annual Events</h2>
+        <h2 className="text-2xl font-semibold text-primary mb-6">Annual Events</h2>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {annualEvents.map((event, index) => (
@@ -83,11 +83,11 @@ function Events() {
               key={index}
               className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition duration-300"
             >
-              <h3 className="text-xl font-bold text-[#002147]">{event.name}</h3>
+              <h3 className="text-xl font-bold text-primary">{event.name}</h3>
               <p className="text-gray-600 mt-2">{event.description}</p>
               <a
                 href={event.link}
-                className="inline-block mt-4 bg-[#002147] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#001a36] transition"
+                className="inline-block mt-4 bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#001a36] transition"
               >
                 Learn More
               </a>
@@ -98,7 +98,7 @@ function Events() {
 
       {/* Upcoming Events Section */}
       <div className="max-w-5xl mx-auto px-6 pb-12">
-        <h2 className="text-2xl font-semibold text-[#002147] mb-6">Upcoming Events</h2>
+        <h2 className="text-2xl font-semibold text-primary mb-6">Upcoming Events</h2>
 
         <div className="grid md:grid-cols-2 gap-6">
           {upcomingEvents.map((event, index) => (
@@ -106,11 +106,11 @@ function Events() {
               key={index}
               className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition duration-300"
             >
-              <h3 className="text-xl font-bold text-[#002147]">{event.title}</h3>
+              <h3 className="text-xl font-bold text-primary">{event.title}</h3>
               <p className="text-gray-500 mt-1">{event.date}</p>
               <a
                 href={event.link}
-                className="inline-block mt-4 bg-[#002147] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#001a36] transition"
+                className="inline-block mt-4 bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#001a36] transition"
               >
                 View Details
               </a>
@@ -121,7 +121,7 @@ function Events() {
 
       {/* Past Events Section */}
       <div className="max-w-5xl mx-auto px-6 pb-12">
-        <h2 className="text-2xl font-semibold text-[#002147] mb-6">Past Events</h2>
+        <h2 className="text-2xl font-semibold text-primary mb-6">Past Events</h2>
 
         <div className="grid md:grid-cols-2 gap-6">
           {pastEvents.map((event, index) => (
@@ -129,7 +129,7 @@ function Events() {
               key={index}
               className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition duration-300"
             >
-              <h3 className="text-xl font-bold text-[#002147]">{event.title}</h3>
+              <h3 className="text-xl font-bold text-primary">{event.title}</h3>
               <p className="text-gray-500 mt-1">{event.date}</p>
               <a
                 href={event.link}

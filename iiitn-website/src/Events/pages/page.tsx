@@ -92,10 +92,10 @@ const EventDetail = () => {
                 eventid === "Foundations-of-Cybersecurity" &&
                 (
                     <div className="flex flex-col md:flex-row justify-center gap-6">
-                        <a href="https://iiitn.ac.in/images/workshop/2025/Cyber-Security-Certification%40iiitn-2025.pdf" className="bg-[#E87722] text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 text-center">
+                        <a href="https://iiitn.ac.in/images/workshop/2025/Cyber-Security-Certification%40iiitn-2025.pdf" className="bg-accent text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 text-center">
                             📄 Download Brochure
                         </a>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfwGrRjL36Azfvk2JJjIfJSiHg5Wmg5jPcS_t3jcnFWHz5XuQ/viewform" className="bg-[#002147] text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 text-center">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfwGrRjL36Azfvk2JJjIfJSiHg5Wmg5jPcS_t3jcnFWHz5XuQ/viewform" className="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 text-center">
                             📝 Register Now
                         </a>
                     </div>
@@ -104,7 +104,7 @@ const EventDetail = () => {
 
             {/* Back to Events Button */}
             <div className="mt-8">
-                <a href="/events" className="text-[#E87722] font-semibold hover:underline">
+                <a href="/events" className="text-accent font-semibold hover:underline">
                     ← Back to Events
                 </a>
             </div>

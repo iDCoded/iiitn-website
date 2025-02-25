@@ -88,14 +88,14 @@ function LeadershipPage({ title }: LeadershipPageProps) {
     return (
         <div className="bg-gray-50 text-gray-900 min-h-screen">
             {/* Hero Section */}
-            <div className="bg-[#002147] text-white py-16 text-center">
+            <div className="bg-primary text-white py-16 text-center">
                 <h1 className="text-4xl font-bold capitalize">{title}</h1>
                 <p className="text-lg mt-2">Leadership at IIIT Nagpur</p>
             </div>
 
             {/* Mobile Sidebar Toggle */}
             <button
-                className="md:hidden fixed top-4 left-4 bg-[#E87722] text-white p-2 rounded-full z-50"
+                className="md:hidden fixed top-4 left-4 bg-accent text-white p-2 rounded-full z-50"
                 onClick={toggleSidebar}
             >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -104,7 +104,7 @@ function LeadershipPage({ title }: LeadershipPageProps) {
             {/* Main Content */}
             <div className="max-w-6xl mx-auto px-6 py-12">
                 <Card className="shadow-lg bg-white rounded-xl overflow-hidden">
-                    <CardHeader className="bg-[#E87722] text-white p-4">
+                    <CardHeader className="bg-accent text-white p-4">
                         <CardTitle className="text-2xl">{title}</CardTitle>
                     </CardHeader>
                     <CardContent className="p-6">

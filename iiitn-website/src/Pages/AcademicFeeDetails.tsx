@@ -10,7 +10,7 @@ function AcademicFeeDetails() {
 	return (
 		<div className="bg-gray-50 min-h-screen flex flex-col items-center">
 			{/* 🔹 Header Section */}
-			<header className="w-full bg-[#002147] text-white py-12 text-center">
+			<header className="w-full bg-primary text-white py-12 text-center">
 				<h1 className="text-3xl font-bold">Academic Fee Details</h1>
 				<p className="mt-1 text-gray-200">Complete fee structure for all academic years</p>
 			</header>
@@ -39,7 +39,7 @@ function AcademicFeeDetails() {
 				<div className="flex justify-center mt-6">
 					<a
 						href="/pages/academicfeepayment"
-						className="bg-[#E87722] text-white px-6 py-3 rounded-md text-center hover:bg-[#d8691d] transition"
+						className="bg-accent text-white px-6 py-3 rounded-md text-center hover:bg-[#d8691d] transition"
 					>
 						View Payment Details
 					</a>

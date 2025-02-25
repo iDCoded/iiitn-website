@@ -27,7 +27,7 @@ const Departments = () => {
             {/* Section Heading */}
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-3xl font-bold text-left mb-6">
-                    <span className="text-[#E87722] text-4xl">|</span> Departments
+                    <span className="text-accent text-4xl">|</span> Departments
                 </h2>
             </div>
 
@@ -44,7 +44,7 @@ const Departments = () => {
                                     className="w-full h-56 object-cover transform group-hover:scale-110 transition-all duration-500"
                                 />
                                 {/* Overlay with View More */}
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-[#002147]/50 group-hover:backdrop-blur-sm flex items-center justify-center transition-all duration-500">
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-primary/50 group-hover:backdrop-blur-sm flex items-center justify-center transition-all duration-500">
                                     <span className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300">
                                         View More →
                                     </span>
@@ -53,7 +53,7 @@ const Departments = () => {
 
                             {/* Card Content */}
                             <CardContent className="p-5 text-center">
-                                <CardTitle className="text-lg font-bold text-[#002147]">
+                                <CardTitle className="text-lg font-bold text-primary">
                                     {dept.title}
                                 </CardTitle>
                             </CardContent>

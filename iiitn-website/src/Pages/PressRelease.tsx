@@ -33,7 +33,7 @@ function PressRelease() {
     return (
         <div className="bg-gray-100 min-h-screen flex flex-col">
             {/* Header Section */}
-            <div className="bg-[#002147] text-white py-16 text-center">
+            <div className="bg-primary text-white py-16 text-center">
                 <h1 className="text-4xl font-bold">Press Releases</h1>
                 <p className="text-lg mt-2">Stay updated with the latest news and events at IIIT Nagpur.</p>
             </div>
@@ -44,7 +44,7 @@ function PressRelease() {
                     <div key={index} className="bg-white shadow-lg p-5 rounded-lg hover:shadow-2xl transition-shadow duration-300">
                         <h2 className="text-xl font-semibold text-gray-800">{press.title}</h2>
                         <p className="text-sm text-gray-500 mt-1">{press.date}</p>
-                        <a href={press.link} className="text-[#E87722] hover:text-orange-600 font-medium mt-2 inline-block">
+                        <a href={press.link} className="text-accent hover:text-orange-600 font-medium mt-2 inline-block">
                             Read More →
                         </a>
                     </div>

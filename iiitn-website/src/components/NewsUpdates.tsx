@@ -109,10 +109,10 @@ export default function NewsCarousel() {
             <div className="max-w-6xl mx-auto px-6">
 
                 <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-3xl font-bold text-[#002147]">
-                        <span className="text-[#E87722]">|</span> Latest News & Updates
+                    <h2 className="text-3xl font-bold text-primary">
+                        <span className="text-accent">|</span> Latest News & Updates
                     </h2>
-                    <a href="/news" className="text-[#E87722] hover:underline flex flex-row">
+                    <a href="/news" className="text-accent hover:underline flex flex-row">
                         View All <span className="ml-2"><FaArrowRight /></span>
                     </a>
                 </div>
@@ -138,7 +138,7 @@ export default function NewsCarousel() {
                                                 <img src={news.image} alt={news.title} className="w-full h-full object-fit" />
                                             </div>
                                             <CardContent className="p-4">
-                                                <h3 className="text-lg font-semibold text-[#002147]">{news.title}</h3>
+                                                <h3 className="text-lg font-semibold text-primary">{news.title}</h3>
                                                 <p className="text-sm text-gray-600">{news.description}</p>
                                             </CardContent>
                                         </Card>

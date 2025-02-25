@@ -53,7 +53,7 @@ function Alumni() {
 					<h1 className="text-5xl font-extrabold drop-shadow-lg">Welcome, Alumni of IIIT Nagpur!</h1>
 					<p className="text-xl font-medium mt-2">Stay connected, cherish old memories, and contribute to the growth of IIIT Nagpur.</p>
 					<p className="mt-6">
-						<a href="/alumni/form" target="_blank" rel="noreferrer" className="bg-white text-[#002147] px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-[#E87722] hover:text-white transition">Join the Alumni Network</a>
+						<a href="/alumni/form" target="_blank" rel="noreferrer" className="bg-white text-primary px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-accent hover:text-white transition">Join the Alumni Network</a>
 					</p>
 				</div>
 			</header>
@@ -61,7 +61,7 @@ function Alumni() {
 			{/* Upcoming Events */}
 			<section className="max-w-6xl mx-auto py-16 px-6">
 				<h2 className="text-3xl font-bold text-gray-900">
-					<span className="text-[#E87722]">| </span>Upcoming Events
+					<span className="text-accent">| </span>Upcoming Events
 				</h2>
 				<div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10">
 					{events.map((event, index) => (
@@ -74,7 +74,7 @@ function Alumni() {
 			<section className="bg-gray-200 py-16 px-6">
 				<div className="max-w-6xl mx-auto w-full">
 					<h2 className="text-3xl font-bold text-gray-900">
-						<span className="text-[#E87722]">| </span>Memories
+						<span className="text-accent">| </span>Memories
 					</h2>
 					<div className="flex flex-col items-center justify-center mt-10 w-full">
 						<AlumniCarousel />
@@ -85,7 +85,7 @@ function Alumni() {
 			{/* Past Events */}
 			<section className="max-w-6xl mx-auto py-16 px-6">
 				<h2 className="text-3xl font-bold text-gray-900">
-					<span className="text-[#E87722]">| </span>Past Events
+					<span className="text-accent">| </span>Past Events
 				</h2>
 				<div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10">
 					{pastEvents.map((event, index) => (
@@ -95,7 +95,7 @@ function Alumni() {
 			</section>
 
 			{/* Call to Action */}
-			<div className="bg-[#002147] text-white text-center py-16">
+			<div className="bg-primary text-white text-center py-16">
 				<h2 className="text-4xl font-bold">Be a Part of the IIIT Nagpur Legacy</h2>
 				<p className="text-lg mt-4 max-w-3xl mx-auto opacity-90">
 					Join the alumni community, mentor students, and keep in touch with the latest developments at IIIT Nagpur.
@@ -105,7 +105,7 @@ function Alumni() {
 						href="/alumni/form"
 						target="_blank"
 						rel="noreferrer"
-						className="bg-white text-[#002147] px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-gray-200 transition"
+						className="bg-white text-primary px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-gray-200 transition"
 					>
 						Sign Up Now
 					</a>

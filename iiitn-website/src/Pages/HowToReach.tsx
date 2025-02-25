@@ -4,7 +4,7 @@ function HowToReach() {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       {/* Header Section */}
-      <header className="bg-[#002147] text-white py-16 text-center">
+      <header className="bg-primary text-white py-16 text-center">
         <h1 className="text-5xl font-bold">📍 How to Reach IIIT Nagpur</h1>
         <p className="text-lg mt-2 italic">
           "Navigate your way to IIIT Nagpur with ease."
@@ -13,30 +13,30 @@ function HowToReach() {
 
       {/* Location Details Section */}
       <section className="max-w-5xl mx-auto bg-white p-6 shadow-lg rounded-lg mt-10">
-        <h2 className="text-3xl font-semibold text-[#002147]">🗺️ Location & Accessibility</h2>
+        <h2 className="text-3xl font-semibold text-primary">🗺️ Location & Accessibility</h2>
         <p className="text-gray-700 mt-3 leading-relaxed">
           The campus is located in <b>Waranga, Buti Bori, Nagpur</b>, well connected by <b>rail, air, and road transport</b>.
         </p>
 
         <div className="mt-4">
-          <h3 className="text-2xl font-semibold text-[#002147]">🚉 By Rail</h3>
+          <h3 className="text-2xl font-semibold text-primary">🚉 By Rail</h3>
           <p className="text-gray-700 mt-1">Nagpur Main Railway Station - <b>20 KM</b></p>
         </div>
 
         <div className="mt-4">
-          <h3 className="text-2xl font-semibold text-[#002147]">✈️ By Air</h3>
+          <h3 className="text-2xl font-semibold text-primary">✈️ By Air</h3>
           <p className="text-gray-700 mt-1">Dr. Babasaheb Ambedkar International Airport (Nagpur) - <b>8 KM</b></p>
         </div>
 
         <div className="mt-4">
-          <h3 className="text-2xl font-semibold text-[#002147]">🚌 By Road</h3>
+          <h3 className="text-2xl font-semibold text-primary">🚌 By Road</h3>
           <p className="text-gray-700 mt-1">Nagpur Central Bus Stand - <b>22 KM</b></p>
         </div>
       </section>
 
       {/* Official Address Section */}
       <section className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-        <h2 className="text-3xl font-semibold text-[#002147]">🏫 Official Address</h2>
+        <h2 className="text-3xl font-semibold text-primary">🏫 Official Address</h2>
         <p className="text-gray-700 mt-3 leading-relaxed">
           <b>IIIT Nagpur</b>  
           <br /> Survey No. 140, 141/1,  
@@ -49,7 +49,7 @@ function HowToReach() {
 
       {/* Google Maps Section */}
       <section className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-        <h2 className="text-3xl font-semibold text-[#002147]">🗺️ Find Us on Google Maps</h2>
+        <h2 className="text-3xl font-semibold text-primary">🗺️ Find Us on Google Maps</h2>
         <div className="mt-4">
           <iframe
             title="IIIT Nagpur Location"

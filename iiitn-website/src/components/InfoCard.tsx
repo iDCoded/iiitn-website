@@ -2,7 +2,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
 
 const InfoCard = ({ title, content }: { title: string; content: string | string[] }) => (
     <Card className="shadow-lg rounded-lg border border-gray-200 hover:shadow-xl transition-all">
-        <CardHeader className="bg-[#E87722] text-white p-5 rounded-t-lg">
+        <CardHeader className="bg-accent text-white p-5 rounded-t-lg">
             <CardTitle className="text-xl font-semibold">{title}</CardTitle>
         </CardHeader>
         <CardContent className="p-6 text-gray-700">

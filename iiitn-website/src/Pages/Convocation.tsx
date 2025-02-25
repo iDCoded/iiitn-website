@@ -42,7 +42,7 @@ function Convocation() {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Header Section */}
-      <header className="bg-[#002147] text-white py-16 text-center">
+      <header className="bg-primary text-white py-16 text-center">
         <h1 className="text-5xl font-bold">🎓 Convocation at IIIT Nagpur</h1>
         <p className="text-lg mt-2 italic">"Celebrating Excellence & Inspiring the Future"</p>
       </header>
@@ -54,7 +54,7 @@ function Convocation() {
           {convocationData.map((convocation, index) => (
             <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform hover:scale-105">
               <div className="p-6">
-                <h2 className="text-3xl font-bold text-[#002147]">{convocation.year} Convocation</h2>
+                <h2 className="text-3xl font-bold text-primary">{convocation.year} Convocation</h2>
                 <p className="text-gray-600 mt-2">{convocation.date} | 📍 {convocation.venue}</p>
                 <p className="text-gray-700 mt-4">{convocation.description}</p>
                 <p className="text-gray-800 font-semibold mt-2">👨‍🏫 Chief Guest: {convocation.chiefGuest}</p>

@@ -34,8 +34,8 @@ export default function AboutUs() {
                 {/* MoUs Section */}
                 <div className="space-y-8">
                     {/* Section Title */}
-                    <h2 className="text-3xl font-bold text-[#002147] flex items-center">
-                        <span className="text-[#E87722] mr-3 text-4xl">|</span> Memorandums of Understanding (MoUs)
+                    <h2 className="text-3xl font-bold text-primary flex items-center">
+                        <span className="text-accent mr-3 text-4xl">|</span> Memorandums of Understanding (MoUs)
                     </h2>
 
                     {/* MoUs List */}
@@ -53,7 +53,7 @@ export default function AboutUs() {
                             { id: "mou10", title: "MoU with Datta Meghe Institute of Medical Sciences, Sawangi Meghe, Wardha for Research Collaboration", date: "2020" },
                         ].map(({ id, title, date, details }) => (
                             <AccordionItem key={id} value={id} className="border-b border-gray-200">
-                                <AccordionTrigger className="py-4 text-lg font-semibold hover:text-[#E87722] transition duration-200">
+                                <AccordionTrigger className="py-4 text-lg font-semibold hover:text-accent transition duration-200">
                                     {title}
                                 </AccordionTrigger>
                                 <AccordionContent className="p-5 text-gray-700 leading-relaxed">
@@ -79,12 +79,12 @@ interface SectionProps {
 
 const Section = ({ title, content, link }: SectionProps) => (
     <div className="space-y-6">
-        <h2 className="text-3xl font-bold text-[#002147] flex items-center">
-            <span className="text-[#E87722] mr-3 text-4xl">|</span> {title}
+        <h2 className="text-3xl font-bold text-primary flex items-center">
+            <span className="text-accent mr-3 text-4xl">|</span> {title}
         </h2>
         <p className="text-gray-700 leading-relaxed text-lg">{content}</p>
         {link && (
-            <a href={link} className="text-[#E87722] hover:underline">
+            <a href={link} className="text-accent hover:underline">
                 Learn more
             </a>
         )}

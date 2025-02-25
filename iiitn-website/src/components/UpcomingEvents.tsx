@@ -90,11 +90,11 @@ const UpcomingEvents = () => {
             <div className="max-w-6xl mx-auto flex flex-col h-full">
                 {/* Section Title */}
                 <div className="flex justify-between items-center mb-8">
-                    <h2 className="text-3xl font-bold text-left text-[#002147]">
-                        <span className="text-4xl text-[#E87722]">|</span> Events
+                    <h2 className="text-3xl font-bold text-left text-primary">
+                        <span className="text-4xl text-accent">|</span> Events
                     </h2>
                     <a href="/events">
-                        <Button className="text-[#E87722] font-semibold hover:underline bg-transparent hover:bg-transparent">View All <FaArrowRight /></Button>
+                        <Button className="text-accent font-semibold hover:underline bg-transparent hover:bg-transparent">View All <FaArrowRight /></Button>
                     </a>
                 </div>
 

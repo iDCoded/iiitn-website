@@ -98,7 +98,7 @@ function Courses() {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Header Section */}
-      <header className="bg-[#002147] text-white py-16 text-center">
+      <header className="bg-primary text-white py-16 text-center">
         <h1 className="text-5xl font-bold">Courses at IIIT Nagpur</h1>
         <p className="text-lg mt-2 italic">
           "Celebrating Excellence & Inspiring the Future"
@@ -109,7 +109,7 @@ function Courses() {
       <div className="max-w-6xl mx-auto py-10 px-5">
         {courses.map((dept, index) => (
           <div key={index} className="mb-12">
-            <h2 className="text-3xl font-semibold text-[#002147] mb-6">
+            <h2 className="text-3xl font-semibold text-primary mb-6">
               {dept.department}
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
@@ -118,7 +118,7 @@ function Courses() {
                   key={idx}
                   className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition"
                 >
-                  <h3 className="text-xl font-semibold text-[#E87722] mb-2">
+                  <h3 className="text-xl font-semibold text-accent mb-2">
                     {course.name}
                   </h3>
                   <ul className="text-gray-700 mb-4 list-disc list-inside">
