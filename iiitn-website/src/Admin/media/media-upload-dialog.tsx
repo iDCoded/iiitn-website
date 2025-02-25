@@ -19,7 +19,7 @@ export function MediaUpload() {
 			</DialogTrigger>
 			<DialogContent className="max-h-[80vh] overflow-y-auto">
 				<DialogHeader>
-					<DialogTitle>Create Card</DialogTitle>
+					<DialogTitle>&nbsp;</DialogTitle>
 				</DialogHeader>
 				<ImageUploadForm />
 			</DialogContent>

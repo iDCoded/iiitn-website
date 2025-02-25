@@ -2,50 +2,69 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { ImageIcon, Upload } from "lucide-react";
 
 export function ImageUploadForm() {
 	const [file, setFile] = useState<File | null>(null);
 	const [title, setTitle] = useState("");
-	const [caption, setCaption] = useState("");
-	const [description, setDescription] = useState("");
+	const [category, setCategory] = useState("");
+	const [subCategory, setSubCategory] = useState("");
 
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files) {
 			setFile(e.target.files[0]);
 		}
 	};
-
+	// ! Use zod + react-hook-form & Shadcn Form
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (file) {
-			const mediaData = {
-				title: file.name,
-				m_category: caption,
-				m_sub_category: description,
-				added_time: new Date(file.lastModified),
-				added_by: 1,
-				updated_time: new Date(file.lastModified),
-				updated_by: 1,
-				media_img_id: 1,
-			};
+			// Create FormData for the selected image file.
+			const formData = new FormData();
 
-			console.table(mediaData);
-			const res = await fetch("http://localhost:5000/media/media", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(mediaData),
-			});
-			const data = await res.json();
-			console.log("Media upload data", data);
+			formData.append("file", file);
+			formData.append("media_type", "image");
+
+			try {
+				// Upload the image and get it's media id (m_id)
+				const media_upload_req = await fetch(
+					"http://localhost:5000/media/upload",
+					{
+						method: "POST",
+						body: formData,
+					}
+				);
+				const media_upload_res = await media_upload_req.json();
+				if (media_upload_req.ok) {
+					const mediaData = {
+						title: file.name,
+						m_category: category,
+						m_sub_category: subCategory,
+						added_time: new Date(file.lastModified),
+						added_by: 1,
+						updated_time: new Date(file.lastModified),
+						updated_by: 1,
+						media_img_id: media_upload_res.media_id,
+					};
+
+					await fetch("http://localhost:5000/media/media", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify(mediaData),
+					});
+				} else {
+					console.error(media_upload_res.error);
+				}
+			} catch (media_req_error) {
+				console.error("Error while uploading image.", media_req_error);
+			}
 
 			setFile(null);
 			setTitle("");
-			setCaption("");
-			setDescription("");
+			setCategory("");
+			setSubCategory("");
 		}
 	};
 
@@ -112,24 +131,23 @@ export function ImageUploadForm() {
 				)}
 
 				<div className="space-y-2">
-					<Label htmlFor="caption">Caption</Label>
+					<Label htmlFor="caption">Category</Label>
 					<Input
 						id="caption"
-						placeholder="Enter a brief caption"
-						value={caption}
-						onChange={(e) => setCaption(e.target.value)}
+						placeholder="Enter the category"
+						value={category}
+						onChange={(e) => setCategory(e.target.value)}
 						required
 					/>
 				</div>
 
 				<div className="space-y-2">
-					<Label htmlFor="description">Description</Label>
-					<Textarea
+					<Label htmlFor="description">Sub Category</Label>
+					<Input
 						id="description"
-						placeholder="Write your image description..."
-						value={description}
-						onChange={(e) => setDescription(e.target.value)}
-						className="min-h-[200px]"
+						placeholder="Enter the sub category"
+						value={subCategory}
+						onChange={(e) => setSubCategory(e.target.value)}
 						required
 					/>
 				</div>
