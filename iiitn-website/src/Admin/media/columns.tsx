@@ -8,18 +8,18 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { IMedia } from "@/interfaces/types";
 import { ColumnDef } from "@tanstack/react-table";
-import { Eye, MoreHorizontal } from "lucide-react";
+import { MoreHorizontal } from "lucide-react";
+import ViewMediaDialog from "./media-view-dialog";
 
 export const columns: ColumnDef<IMedia>[] = [
 	{
 		id: "view",
 		cell: ({ row }) => {
 			const media = row.original;
-			console.table(media);
 
 			return (
 				<div>
-					<Eye />
+					<ViewMediaDialog media={media} />
 				</div>
 			);
 		},
