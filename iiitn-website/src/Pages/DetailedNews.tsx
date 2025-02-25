@@ -63,17 +63,6 @@ function DetailedNews() {
     };
 
     fetchNews();
-    const foundEvent = newsData.find((e) => e.id === newsId);
-    setNews(
-      foundEvent
-        ? {
-            id: foundEvent.id,
-            title: foundEvent.title,
-            image: foundEvent.image,
-            content: foundEvent.description,
-          }
-        : null
-    );
   }, [newsId]);
 
   if (!news) {
