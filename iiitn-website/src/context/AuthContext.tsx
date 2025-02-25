@@ -1,9 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Person } from "@/interfaces/types";
 import { createContext, useState, useContext, ReactNode } from "react";
 
 interface AuthContextType {
-	user: any;
+	user: Person | null;
 	token: string | null;
 	login: (user: any, token: string) => void;
 	logout: () => void;
@@ -12,7 +13,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-	const [user, setUser] = useState<any>(null);
+	const [user, setUser] = useState<Person | null>(null);
 	const [token, setToken] = useState<string | null>(null);
 
 	const login = (user: any, token: string) => {
