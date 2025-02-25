@@ -69,24 +69,11 @@ export default function NewsCarousel() {
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/card/cards`);
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/card/cards/category/news`);
                 if (!res.ok) throw new Error("Failed to fetch news");
                 const data = await res.json();
 
-                // Filter only "news" and "updates"
-                interface NewsItem {
-                    id: string;
-                    category: string;
-                    image: string;
-                    title: string;
-                    description: string;
-                }
-
-                const filteredNews: NewsItem[] = data.filter((item: NewsItem) =>
-                    item.category.toLowerCase() === "news" || item.category.toLowerCase() === "updates"
-                );
-
-                setNewsData(filteredNews);
+                setNewsData(data);
             } catch (error) {
                 console.error("Error fetching news:", error);
             }
