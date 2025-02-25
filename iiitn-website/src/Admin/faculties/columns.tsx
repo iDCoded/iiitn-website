@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Faculty } from "@/interfaces/types";
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import FacultyEditDialog from "./faculty-edit-dialog";
 
 const deleteFaculty = async (facultyId: string) => {
@@ -26,7 +26,16 @@ export const columns: ColumnDef<Faculty>[] = [
 	},
 	{
 		accessorKey: "experience",
-		header: "Experience",
+		header: ({ column }) => {
+			return (
+				<Button
+					variant={"ghost"}
+					onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+					Experience
+					<ArrowUpDown />
+				</Button>
+			);
+		},
 	},
 	{
 		accessorKey: "positions",
@@ -46,7 +55,16 @@ export const columns: ColumnDef<Faculty>[] = [
 	},
 	{
 		accessorKey: "join_year",
-		header: "Joining Year",
+		header: ({ column }) => {
+			return (
+				<Button
+					variant={"ghost"}
+					onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+					Join Year
+					<ArrowUpDown />
+				</Button>
+			);
+		},
 	},
 	{
 		id: "actions",

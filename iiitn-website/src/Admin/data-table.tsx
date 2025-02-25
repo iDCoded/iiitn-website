@@ -2,6 +2,7 @@ import {
 	ColumnDef,
 	flexRender,
 	getCoreRowModel,
+	getSortedRowModel,
 	useReactTable,
 } from "@tanstack/react-table";
 
@@ -27,6 +28,7 @@ export function DataTable<TData, TValue>({
 		data,
 		columns,
 		getCoreRowModel: getCoreRowModel(),
+		getSortedRowModel: getSortedRowModel(),
 	});
 
 	return (
