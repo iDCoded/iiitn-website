@@ -7,9 +7,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 interface NewsItem {
     id: string;
