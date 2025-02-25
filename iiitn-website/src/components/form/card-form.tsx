@@ -163,7 +163,43 @@ export function CardForm() {
 							<FormItem>
 								<FormLabel>Media</FormLabel>
 								<FormControl>
-									<Input type="file" {...fileRef} placeholder="Upload Media" />
+									<div className="flex flex-col gap-4">
+										<div className="flex items-center gap-3">
+											<Input
+												type="file"
+												id={field.name}
+												accept="image/*"
+												{...fileRef}
+												placeholder="Upload Media"
+											/>
+											<Button
+												type="button"
+												variant="outline"
+												onClick={() =>
+													document.getElementById("image")?.click()
+												}>
+												<ImageIcon className="mr-2 h-4 w-4" />
+												Browse
+											</Button>
+										</div>
+										{field.value && (
+											<div className="rounded-lg border bg-card">
+												<img
+													src={
+														URL.createObjectURL(field.value[0]) ||
+														"/placeholder.svg"
+													}
+													alt="Preview"
+													className="w-full h-[200px] object-cover rounded-t-lg"
+												/>
+												<div className="p-3">
+													<p className="text-sm text-gray-500">
+														Selected file: {field.value[0].name}
+													</p>
+												</div>
+											</div>
+										)}{" "}
+									</div>
 								</FormControl>
 							</FormItem>
 						)}
