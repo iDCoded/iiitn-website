@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { ImageIcon, Upload } from "lucide-react";
 
-export function ImageUpload() {
+export function ImageUploadForm() {
 	const [file, setFile] = useState<File | null>(null);
 	const [title, setTitle] = useState("");
 	const [caption, setCaption] = useState("");
