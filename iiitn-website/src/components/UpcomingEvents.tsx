@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Button } from "./ui/button"
 import HomeEventCard from "./HomeEventCard";
 import abhivyakti from "../assets/abhivyakti.jpeg";
 import tf from "../assets/tf.jpeg";
 import kshitij from "../assets/kshitij.jpeg";
+import { FaArrowRight } from "react-icons/fa";
 
 const UpcomingEvents = () => {
     const [events, setEvents] = useState([]);
@@ -39,6 +41,7 @@ const UpcomingEvents = () => {
             id: "abhivyakti",
             image: abhivyakti,
             title: "Abhivyakti - The Cultural Fest of IIITN",
+            caption: "The cultural fest of IIITN",
             content: "Annual gathering of students, faculty, and staff. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             date: "28 Feb",
             location: "IIIT Nagpur Campus",
@@ -48,6 +51,7 @@ const UpcomingEvents = () => {
             id: "tantrafiesta",
             image: tf,
             title: "Tantrafiesta",
+            caption: "The technical fest of IIITN",
             content: "Annual gathering of students, faculty, and staff. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             date: "27 Aug",
             location: "IIIT Nagpur Campus",
@@ -57,6 +61,7 @@ const UpcomingEvents = () => {
             id: "institute-gathering",
             image: kshitij,
             title: "Institute Gathering",
+            caption: "Annual sports gathering of IIITN",
             content: "Annual gathering of students, faculty, and staff. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             date: "30 Jan",
             location: "IIIT Nagpur Campus",
@@ -76,7 +81,7 @@ const UpcomingEvents = () => {
                         <span className="text-4xl text-[#E87722]">|</span> Events
                     </h2>
                     <a href="/events">
-                        <button className="text-[#E87722] font-semibold hover:underline">View All</button>
+                        <Button className="text-[#E87722] font-semibold hover:underline bg-transparent hover:bg-transparent">View All <FaArrowRight /></Button>
                     </a>
                 </div>
 
@@ -90,7 +95,9 @@ const UpcomingEvents = () => {
                     {/* Small Events (Stacked on Mobile, Side-by-Side on Desktop) */}
                     <div className="flex flex-col gap-8">
                         {displayedEvents.slice(1).map((event, index) => (
-                            <HomeEventCard key={index} event={event} />
+                            <a href={`/events/${event.id}`}>
+                                <HomeEventCard key={index} event={event} />
+                            </a>
                         ))}
                     </div>
                 </div>

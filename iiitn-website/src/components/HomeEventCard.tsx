@@ -3,6 +3,7 @@ type Event = {
     id: string;
     image?: string;
     title: string;
+    caption?: string;
     content?: string;
     date: string;
     location?: string;
@@ -27,7 +28,7 @@ const HomeEventCard = ({ event }: { event: Event }) => (
         {/* Event Details */}
         <div className="absolute bottom-0 w-full bg-[#002147] p-4 bg-opacity-90">
             <h3 className="text-white font-semibold text-lg">{event.title}</h3>
-            <p className="text-white text-sm">{event.content}</p>
+            <p className="text-white text-sm">{event.caption}</p>
 
             {/* Event Location */}
             <p className="text-white text-sm mt-1">
@@ -37,6 +38,14 @@ const HomeEventCard = ({ event }: { event: Event }) => (
             <div className="absolute top-[-3vh] right-4 bg-[#E87722] text-white text-center px-2 py-1 rounded-md font-bold">
                 {event.date}
             </div>
+
+            {/* Event Link */}
+            <a
+                href={`/events/${event.id}`}
+                className="bg-white text-[#002147] px-4 py-2 rounded-lg font-semibold shadow-md hover:bg-gray-200 transition mt-2 justify-self-end flex"
+            >
+                View Details
+            </a>
         </div>
     </div>
 );
