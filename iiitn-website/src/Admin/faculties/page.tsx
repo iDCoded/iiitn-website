@@ -3,16 +3,6 @@ import { useState, useEffect } from "react";
 import { DataTable } from "./data-table";
 import { columns } from "./columns";
 import { Faculty } from "@/interfaces/types";
-import {
-	Dialog,
-	DialogContent,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
-import { FacultyForm } from "@/components/form/faculty-form";
 
 function FacultyTablePage() {
 	const [facultyData, setFacultyData] = useState<Faculty[]>([]);
