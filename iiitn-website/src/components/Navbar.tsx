@@ -231,7 +231,7 @@ const Navbar = () => {
 								<p className="font-medium text-white text-base">
 									Indian Institute of Information Technology, Nagpur
 								</p>
-								<p className="font-light text-sm text-accent">
+								<p className="font-light text-sm text-white">
 									An Institution of National Importance
 								</p>
 							</div>
