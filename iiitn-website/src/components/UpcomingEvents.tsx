@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Button } from "./ui/button"
 import HomeEventCard from "./HomeEventCard";
 import abhivyakti from "../assets/abhivyakti.jpeg";
 import tf from "../assets/tf.jpeg";
 import kshitij from "../assets/kshitij.jpeg";
+import { FaArrowRight } from "react-icons/fa";
 
 const UpcomingEvents = () => {
     const [events, setEvents] = useState([]);
@@ -79,7 +81,7 @@ const UpcomingEvents = () => {
                         <span className="text-4xl text-[#E87722]">|</span> Events
                     </h2>
                     <a href="/events">
-                        <button className="text-[#E87722] font-semibold hover:underline">View All</button>
+                        <Button className="text-[#E87722] font-semibold hover:underline bg-transparent hover:bg-transparent">View All <FaArrowRight /></Button>
                     </a>
                 </div>
 
@@ -93,7 +95,9 @@ const UpcomingEvents = () => {
                     {/* Small Events (Stacked on Mobile, Side-by-Side on Desktop) */}
                     <div className="flex flex-col gap-8">
                         {displayedEvents.slice(1).map((event, index) => (
-                            <HomeEventCard key={index} event={event} />
+                            <a href={`/events/${event.id}`}>
+                                <HomeEventCard key={index} event={event} />
+                            </a>
                         ))}
                     </div>
                 </div>
