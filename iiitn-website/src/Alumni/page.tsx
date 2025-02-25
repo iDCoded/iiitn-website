@@ -1,5 +1,6 @@
 import AlumniEventCard from "../components/AlumniEventCard";
 import AlumniCarousel from "../components/AlumniCarousel";
+import heroimage from "../assets/alumBanner.png";
 import alum_meet from "../assets/alumni meet.png"
 import carrer_guidance from "../assets/carrer_giud2.png"
 import past_reunion from "../assets/alum_past.png"
@@ -38,24 +39,24 @@ function Alumni() {
 	return (
 		<div className="bg-gray-50 min-h-screen">
 			{/* Hero Section */}
-			<div className="bg-gradient-to-r from-[#002147] to-[#003366] text-white py-20 text-center">
-				<h1 className="text-5xl font-extrabold tracking-wide">
-					Welcome, Alumni of IIIT Nagpur!
-				</h1>
-				<p className="text-lg mt-4 max-w-3xl mx-auto opacity-80">
-					Stay connected, cherish old memories, and contribute to the growth of IIIT Nagpur.
-				</p>
-				<p className="mt-6">
-					<a
-						href="/alumni/form"
-						target="_blank"
-						rel="noreferrer"
-						className="bg-white text-[#002147] px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-gray-200 transition"
-					>
-						Join the Alumni Network
-					</a>
-				</p>
-			</div>
+			<header
+				className="relative w-full h-75 flex flex-col justify-center items-center text-white text-center shadow-lg"
+				style={{
+					backgroundImage: `url(${heroimage})`,
+					backgroundSize: "cover",
+					backgroundPosition: "center"
+				}}
+			>
+				{/* Overlay */}
+				<div className="absolute inset-0 bg-black opacity-50"></div>
+				<div className="relative z-10">
+					<h1 className="text-5xl font-extrabold drop-shadow-lg">Welcome, Alumni of IIIT Nagpur!</h1>
+					<p className="text-xl font-medium mt-2">Stay connected, cherish old memories, and contribute to the growth of IIIT Nagpur.</p>
+					<p className="mt-6">
+						<a href="/alumni/form" target="_blank" rel="noreferrer" className="bg-white text-[#002147] px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-[#E87722] hover:text-white transition">Join the Alumni Network</a>
+					</p>
+				</div>
+			</header>
 
 			{/* Upcoming Events */}
 			<section className="max-w-6xl mx-auto py-16 px-6">
@@ -110,7 +111,7 @@ function Alumni() {
 					</a>
 				</p>
 			</div>
-		</div>
+		</div >
 	);
 }
 

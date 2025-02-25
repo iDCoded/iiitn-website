@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // Using ShadCN Card
 import StudentCard from "../components/StudentCard";
+import heroimage from "../assets/studentBanner.png";
 
 const prospectiveData = [
     { title: "Academic Curricula", description: "Semester Dates and Deadlines" },
@@ -43,10 +44,22 @@ function Students() {
     return (
         <div className="bg-gray-50 min-h-screen">
             {/* Header Section */}
-            <div className="bg-[#002147] text-white py-14 text-center">
-                <h1 className="text-4xl font-bold">Students</h1>
-                <p className="text-lg mt-2 opacity-80">Stay connected and contribute to IIIT Nagpur.</p>
-            </div>
+            <header
+                className="relative w-full h-75 flex flex-col justify-center items-center text-white text-center shadow-lg"
+                style={{
+                    backgroundImage: `url(${heroimage})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center"
+                }}
+            >
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black opacity-50"></div>
+                <div className="relative z-10">
+                    <h1 className="text-4xl font-bold">Students</h1>
+                    <p className="text-lg mt-2">Stay onnected and contribute to IIIT Nagpur.</p>
+                </div>
+            </header>
+
 
             {/* Main Content */}
             <div className="container mx-auto flex flex-col lg:flex-row gap-12 px-6 py-10">

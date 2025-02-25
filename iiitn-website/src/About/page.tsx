@@ -18,8 +18,12 @@ export default function AboutUs() {
                     backgroundPosition: "center"
                 }}
             >
-                <h1 className="text-5xl font-extrabold tracking-wide">About IIIT Nagpur</h1>
-                <p className="text-lg mt-4 opacity-90">An Institution of National Importance</p>
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/30"></div>
+                <div className="relative z-10">
+                    <h1 className="text-5xl font-extrabold drop-shadow-lg">About IIIT Nagpur</h1>
+                    <p className="text-xl font-medium mt-2">An Institute of National Importance</p>
+                </div>
             </header>
             {/* Main Content */}
             <div className="max-w-6xl mx-auto px-8 py-16 space-y-16">

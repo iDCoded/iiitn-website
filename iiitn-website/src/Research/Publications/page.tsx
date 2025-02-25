@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import heroimage from "@/assets/researchBanner.jpg";
 
 type Publication = {
     title: string;
@@ -29,7 +30,22 @@ const publicationsData: Record<"cse" | "ece" | "basic", Publication[]> = {
 const Publications = () => {
     const [selectedTab, setSelectedTab] = useState<"cse" | "ece" | "basic">("cse");
 
-    return (
+    return (<>
+        <header
+            className="relative w-full h-75 flex flex-col justify-center items-center text-white text-center shadow-lg z-100"
+            style={{
+                backgroundImage: `url(${heroimage})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center"
+            }}
+        >
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black opacity-50"></div>
+            <div className="relative z-10">
+                <h1 className="text-5xl font-extrabold drop-shadow-lg">Research Publications</h1>
+                <p className="text-xl font-medium mt-2">Explore the Latest Research</p>
+            </div>
+        </header>
         <div className="max-w-6xl mx-auto px-6 py-10">
             {/* Heading */}
             <h1 className="text-3xl font-bold mb-6 flex items-center">
@@ -42,8 +58,8 @@ const Publications = () => {
                     <button
                         key={dept}
                         className={`relative px-6 py-2 text-lg font-medium transition-all duration-300 ${selectedTab === dept
-                                ? "text-[#E87722] font-bold"
-                                : "text-gray-500 hover:text-gray-700"
+                            ? "text-[#E87722] font-bold"
+                            : "text-gray-500 hover:text-gray-700"
                             }`}
                         onClick={() => setSelectedTab(dept as "cse" | "ece" | "basic")}
                     >
@@ -80,6 +96,7 @@ const Publications = () => {
                 ))}
             </motion.div>
         </div>
+    </>
     );
 };
 

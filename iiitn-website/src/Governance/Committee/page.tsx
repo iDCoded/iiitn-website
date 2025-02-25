@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
+import heroimage from "../../assets/adminBanner.png";   
 
 const committees = [
     {
@@ -228,10 +229,21 @@ function Committee() {
     return (
         <div className="bg-gray-50 text-gray-900 min-h-screen">
             {/* Hero Section */}
-            <div className="bg-[#002147] text-white py-16 text-center">
-                <h1 className="text-3xl md:text-4xl font-bold">Committees at IIIT Nagpur</h1>
-                <p className="text-lg mt-2">Ensuring Excellence in Governance</p>
-            </div>
+            <header
+                className="relative w-full h-75 flex flex-col justify-center items-center text-white text-center shadow-lg"
+                style={{
+                    backgroundImage: `url(${heroimage})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center"
+                }}
+            >
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black opacity-50"></div>
+                <div className="relative z-10">
+                    <h1 className="text-5xl font-extrabold drop-shadow-lg">Committees at IIIT Nagpur</h1>
+                    <p className="text-xl font-medium mt-2">Ensuring Excellence in Leadership</p>
+                </div>
+            </header>
 
             {/* Main Layout */}
             <div className="max-w-7xl mx-auto px-4 md:px-6 py-12 flex flex-col lg:flex-row gap-8">
