@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Button } from "./ui/button"
 import HomeEventCard from "./HomeEventCard";
 import abhivyakti from "../assets/abhivyakti.jpeg";
@@ -17,7 +17,20 @@ const UpcomingEvents = () => {
                 const res = await fetch("http://localhost:5000/card/cards/category/events");
                 if (!res.ok) throw new Error("Failed to fetch events");
                 const data = await res.json();
-                setEvents(data);
+                setEvents(
+                    data.map((event: any) => ({
+                        id: event.c_id,
+                        image: event.media_img_path ? `http://localhost:5000/${event.media_img_path}` : null,
+                        title: event.title,
+                        caption: event.caption,
+                        content: event.content,
+                        date: event.date,
+                        location: event.location,
+                        large: false,
+                    }))
+                );
+
+                console.log(events);
             } catch (error) {
                 console.error("Error fetching events:", error);
             }
