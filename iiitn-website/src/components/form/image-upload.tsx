@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/hooks/use-toast";
 import { ImageIcon, Upload } from "lucide-react";
 
 export function ImageUpload() {
@@ -18,14 +17,31 @@ export function ImageUpload() {
 		}
 	};
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (file) {
-			console.log("Image upload:", { file, title, caption, description });
-			toast({
-				title: "Image Uploaded",
-				description: "Your image has been successfully uploaded.",
+			const mediaData = {
+				title: file.name,
+				m_category: caption,
+				m_sub_category: description,
+				added_time: new Date(file.lastModified),
+				added_by: 1,
+				updated_time: new Date(file.lastModified),
+				updated_by: 1,
+				media_img_id: 1,
+			};
+
+			console.table(mediaData);
+			const res = await fetch("http://localhost:5000/media/media", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(mediaData),
 			});
+			const data = await res.json();
+			console.log("Media upload data", data);
+
 			setFile(null);
 			setTitle("");
 			setCaption("");
