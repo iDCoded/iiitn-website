@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState, useRef } from "react";
 import { Button } from "./ui/button";
 import HomeEventCard from "./HomeEventCard";
@@ -5,10 +6,12 @@ import abhivyakti from "../assets/abhivyakti.jpeg";
 import tf from "../assets/tf.jpeg";
 import workshop from "../assets/workshop.jpg";
 import { FaArrowRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const UpcomingEvents = () => {
-	const [events, setEvents] = useState([]);
+	const [events, setEvents] = useState<any[]>([]);
 	const instanceRef = useRef<{ next: () => void } | null>(null);
+	const navigate = useNavigate();
 
 	// Fetch data from API
 	useEffect(() => {
@@ -34,8 +37,6 @@ const UpcomingEvents = () => {
 					media_img_path: event.media_img_path, // Store the image path for later use
 				}));
 
-				// setEvents(eventList);
-
 				// Fetch images for each event asynchronously
 				const updatedEvents = await Promise.all(
 					eventList.map(async (event: any) => {
@@ -47,7 +48,6 @@ const UpcomingEvents = () => {
 
 								if (!imgReq.ok) throw new Error("Failed to fetch image");
 								const imgRes = await imgReq.json();
-								console.log(`Image for ${event.id}:`, imgRes);
 
 								return { ...event, image: imgRes.url };
 							} catch (err) {
@@ -55,14 +55,14 @@ const UpcomingEvents = () => {
 									`Error fetching image for event ${event.id}:`,
 									err
 								);
-								return event; // Return without modifying image if fetch fails
+								return event;
 							}
 						}
 						return event;
 					})
 				);
 
-				console.log(updatedEvents);
+				setEvents(updatedEvents);
 			} catch (error) {
 				console.error("Error fetching events:", error);
 			}
@@ -145,9 +145,13 @@ const UpcomingEvents = () => {
 					{/* Small Events (Stacked on Mobile, Side-by-Side on Desktop) */}
 					<div className="flex flex-col gap-8">
 						{displayedEvents.slice(1).map((event, index) => (
-							<a href={`/events/${event.id}`} key={index}>
+							<div
+								key={index}
+								onClick={() => {
+									navigate(`/events/${event.id}`);
+								}}>
 								<HomeEventCard event={event} />
-							</a>
+							</div>
 						))}
 					</div>
 				</div>
