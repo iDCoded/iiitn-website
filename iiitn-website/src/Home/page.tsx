@@ -10,11 +10,11 @@ import Testimonials from "../components/Testimonials";
 const Home = () => {
     return (
         <>
-        
-            <HeroSection />      
+
+            <HeroSection />
             <NewsUpdates />       {/* 📰 Latest News & Happenings */}
             <Admissions />        {/* 🎓 Admission Info for New Students */}
-           <ResearchInnovation/>     {/* 📚 Academic Information */}
+            <ResearchInnovation />     {/* 📚 Academic Information */}
             <UpcomingEvents />    {/* 🎉 Upcoming College Events */}
             <CampusLife />        {/* 🏫 Student Activities & Lifestyle */}
             <Stats />             {/* 📊 College Achievements & Numbers */}
