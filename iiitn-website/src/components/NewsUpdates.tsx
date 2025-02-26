@@ -112,9 +112,9 @@ export default function NewsCarousel() {
                     <h2 className="text-3xl font-bold text-primary">
                         <span className="text-accent">|</span> Latest News & Updates
                     </h2>
-                    <a href="/news" className="text-accent hover:underline flex flex-row">
+                    <Link to="/news" className="text-accent hover:underline flex flex-row">
                         View All <span className="ml-2"><FaArrowRight /></span>
-                    </a>
+                    </Link>
                 </div>
 
                 {/* Carousel */}
@@ -122,7 +122,7 @@ export default function NewsCarousel() {
                     {/* Previous Button */}
                     <button
                         onClick={() => instanceRef.current?.prev()}
-                        className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg p-2 rounded-full hover:bg-gray-200"
+                        className="absolute left-[-2rem] md:left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg p-2 rounded-full hover:bg-gray-200"
                     >
                         <FaArrowLeft />
                     </button>
@@ -135,7 +135,7 @@ export default function NewsCarousel() {
                                     <Link to={`/news/${news.id}`}>
                                         <Card className="shadow-lg rounded-lg overflow-hidden h-[50vh]">
                                             <div className="h-[30vh] bg-black">
-                                                <img src={news.image} alt={news.title} className="w-full h-full object-fit" />
+                                            <img src={news.image} alt={news.title} className="w-full h-full object-cover" />
                                             </div>
                                             <CardContent className="p-4">
                                                 <h3 className="text-lg font-semibold text-primary">{news.title}</h3>

@@ -14,10 +14,10 @@ const Home = () => {
             <HeroSection />
             <NewsUpdates />       {/* 📰 Latest News & Happenings */}
             <Admissions />        {/* 🎓 Admission Info for New Students */}
-            <ResearchInnovation />     {/* 📚 Academic Information */}
             <UpcomingEvents />    {/* 🎉 Upcoming College Events */}
-            <CampusLife />        {/* 🏫 Student Activities & Lifestyle */}
+            <ResearchInnovation />     {/* 📚 Academic Information */}
             <Stats />             {/* 📊 College Achievements & Numbers */}
+            <CampusLife />        {/* 🏫 Student Activities & Lifestyle */}
             <Testimonials />      {/* 💬 Social Proof & Student Experiences */}
         </>
     );

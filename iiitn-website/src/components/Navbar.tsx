@@ -16,7 +16,7 @@ const Navbar = () => {
 	const [openNestedSubmenu, setOpenNestedSubmenu] = useState<number | null>(
 		null
 	);
-
+	
 	useEffect(() => {
 		const handleScroll = () => {
 			if (isHomePage) {
@@ -206,7 +206,7 @@ const Navbar = () => {
 			{/* Fixed Navbar */}
 			<div className="fixed top-0 left-0 w-full z-50 transition-transform duration-200">
 				{/* 🔸 Top Orange Bar */}
-				<nav className="w-full bg-accent shadow-md px-6 py-2 flex justify-between items-center">
+				<nav className="w-full bg-accent shadow-md px-6 py-2 flex justify-between items-center hidden lg:flex">
 					<h1 className="text-primary font-bold text-xl">अ A</h1>
 					<ul className="hidden lg:flex space-x-6 font-medium text-primary">
 						{navLinks.map((link, index) => (
@@ -227,7 +227,7 @@ const Navbar = () => {
 						<div className="flex items-center space-x-4">
 							<img src={imgSrc} alt="IIITN Logo" className="h-16 w-16" />
 							<div className="text-left">
-								<p className="font-bold text-white text-lg">
+								<p className="font-bold text-white text-lg hidden lg:block">
 									भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर
 								</p>
 								<p className="font-medium text-white text-base">
@@ -259,16 +259,16 @@ const Navbar = () => {
 									{/* Dropdown Menu */}
 									<ul
 										className={`absolute top-full mt-2 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
-                                    ${
-																			index === dropdownLinks.length - 1
-																				? "right-0"
-																				: "left-0"
-																		} 
-                                    ${
-																			openDropdown === index
-																				? "opacity-100 visible"
-																				: "opacity-0 invisible"
-																		}`}>
+									${
+										index === dropdownLinks.length - 1
+											? "right-0"
+											: "left-0"
+									} 
+									${
+										openDropdown === index
+											? "opacity-100 visible"
+											: "opacity-0 invisible"
+									}`}>
 										{item.links.map((link, i) => (
 											<div
 												key={i}
@@ -283,17 +283,17 @@ const Navbar = () => {
 												{link.subLinks && (
 													<ul
 														className={`absolute top-0 mt-0 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
-                                                    ${
-																											index ===
-																											dropdownLinks.length - 1
-																												? "right-full"
-																												: "left-full"
-																										} 
-                                                    ${
-																											openSubmenu === i
-																												? "opacity-100 visible"
-																												: "opacity-0 invisible"
-																										}`}>
+													${
+														index ===
+														dropdownLinks.length - 1
+															? "right-full"
+															: "left-full"
+													} 
+													${
+														openSubmenu === i
+															? "opacity-100 visible"
+															: "opacity-0 invisible"
+													}`}>
 														{link.subLinks.map((subLink, j) => (
 															<li
 																key={j}
@@ -310,12 +310,12 @@ const Navbar = () => {
 																{subLink.nestedLinks && (
 																	<ul
 																		className={`absolute top-0 mt-0 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
-                ${j === link.subLinks.length - 1 ? "right-full" : "left-full"} 
-                ${
-									openNestedSubmenu === j
-										? "opacity-100 visible"
-										: "opacity-0 invisible"
-								}`}>
+				${j === link.subLinks.length - 1 ? "right-full" : "left-full"} 
+				${
+					openNestedSubmenu === j
+						? "opacity-100 visible"
+						: "opacity-0 invisible"
+				}`}>
 																		{subLink.nestedLinks &&
 																			subLink.nestedLinks.map(
 																				(nestedLink, k) => (

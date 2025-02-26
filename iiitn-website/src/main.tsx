@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import "./index.css"; // Tailwind styles
+import "./index.css";
 
 export function App() {
 	const location = useLocation();
