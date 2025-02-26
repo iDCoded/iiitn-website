@@ -13,6 +13,12 @@ import CardEditDialog from "./card-edit-dialog";
 import ViewCardDialog from "./card-view-dialog";
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 async function updateCardVisibility(
 	card: ICard,
@@ -37,7 +43,16 @@ async function deleteCard(c_id: string) {
 export const columns: ColumnDef<ICard>[] = [
 	{
 		id: "visibilty",
-		header: "Visible",
+		header: () => {
+			return (
+				<TooltipProvider>
+					<Tooltip>
+						<TooltipTrigger>Visible</TooltipTrigger>
+						<TooltipContent>Display on homepage?</TooltipContent>
+					</Tooltip>
+				</TooltipProvider>
+			);
+		},
 		cell: ({ row }) => {
 			const card = row.original;
 			// eslint-disable-next-line react-hooks/rules-of-hooks
