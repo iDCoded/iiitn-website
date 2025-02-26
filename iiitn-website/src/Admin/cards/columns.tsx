@@ -12,6 +12,21 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import CardEditDialog from "./card-edit-dialog";
 import ViewCardDialog from "./card-view-dialog";
 import { Switch } from "@/components/ui/switch";
+import { useState } from "react";
+
+async function updateCardVisibility(
+	card: ICard,
+	c_id: string,
+	visible: boolean
+) {
+	await fetch(`http://localhost:5000/card/cards/${c_id}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ ...card, visibility: visible }),
+	});
+}
 
 async function deleteCard(c_id: string) {
 	await fetch(`http://localhost:5000/card/cards/${c_id}`, {
@@ -23,10 +38,20 @@ export const columns: ColumnDef<ICard>[] = [
 	{
 		id: "visibilty",
 		header: "Visible",
-		cell: () => {
+		cell: ({ row }) => {
+			const card = row.original;
+			// eslint-disable-next-line react-hooks/rules-of-hooks
+			const [isVisible, setIsVisible] = useState(card.visibility);
+
+			const handleToggle = async () => {
+				const newVisibility = !isVisible;
+				setIsVisible(newVisibility);
+				await updateCardVisibility(card, card.c_id, newVisibility);
+			};
+
 			return (
 				<div className="flex justify-center items-center">
-					<Switch />
+					<Switch checked={isVisible} onCheckedChange={handleToggle} />
 				</div>
 			);
 		},
