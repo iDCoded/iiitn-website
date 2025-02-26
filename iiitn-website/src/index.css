@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap'); */
 
 @plugin "tailwindcss-animate";
 
@@ -19,39 +19,39 @@
 }
 
 :root {
-	--background: #F4F4F4; /* Soft Gray */
-	--foreground: #31363F; /* Dark Slate */
+	--background: #f4f4f4; /* Soft Gray */
+	--foreground: #31363f; /* Dark Slate */
 	--card: #222831; /* Deep Graphite */
-	--card-foreground: #F4F4F4;
+	--card-foreground: #f4f4f4;
 	--popover: #222831;
-	--popover-foreground: #F4F4F4;
+	--popover-foreground: #f4f4f4;
 	--primary: #222831; /* Deep Graphite */
-	--primary-foreground: #F4F4F4;
-	--secondary: #393E46; /* Muted Black-Blue */
-	--secondary-foreground: #F4F4F4;
-	--muted: #F4F4F4;
-	--muted-foreground: #31363F; /* Dark Slate */
-	--accent: #F05454; /* Soft Tomato Red for CTAs */
-	--accent-foreground: #F4F4F4;
-	--destructive: #EF4444;
-	--destructive-foreground: #F4F4F4;
-	--border: #1F2937;
-	--input: #1F2937;
-	--ring: #EF4444;
-	--chart-1: #1F2937;
-	--chart-2: #6B7280;
-	--chart-3: #EF4444;
-	--chart-4: #F4F4F4;
+	--primary-foreground: #f4f4f4;
+	--secondary: #393e46; /* Muted Black-Blue */
+	--secondary-foreground: #f4f4f4;
+	--muted: #f4f4f4;
+	--muted-foreground: #31363f; /* Dark Slate */
+	--accent: #f05454; /* Soft Tomato Red for CTAs */
+	--accent-foreground: #f4f4f4;
+	--destructive: #ef4444;
+	--destructive-foreground: #f4f4f4;
+	--border: #1f2937;
+	--input: #1f2937;
+	--ring: #ef4444;
+	--chart-1: #1f2937;
+	--chart-2: #6b7280;
+	--chart-3: #ef4444;
+	--chart-4: #f4f4f4;
 	--chart-5: #374151;
 	--radius: 0.6rem;
-	--sidebar: #1F2937;
-	--sidebar-foreground: #F4F4F4;
-	--sidebar-primary: #1F2937;
-	--sidebar-primary-foreground: #F4F4F4;
-	--sidebar-accent: #EF4444;
-	--sidebar-accent-foreground: #F4F4F4;
-	--sidebar-border: #1F2937;
-	--sidebar-ring: #EF4444;
+	--sidebar: #1f2937;
+	--sidebar-foreground: #f4f4f4;
+	--sidebar-primary: #1f2937;
+	--sidebar-primary-foreground: #f4f4f4;
+	--sidebar-accent: #ef4444;
+	--sidebar-accent-foreground: #f4f4f4;
+	--sidebar-border: #1f2937;
+	--sidebar-ring: #ef4444;
 }
 
 .dark {
@@ -138,22 +138,22 @@
 }
 
 @keyframes rippleEffect {
-    from {
-        width: 0;
-        height: 0;
-        opacity: 1;
-    }
-    to {
-        width: 300vh; /* Adjust for card size */
-        height: 300vh;
-        opacity: 1;
-    }
+	from {
+		width: 0;
+		height: 0;
+		opacity: 1;
+	}
+	to {
+		width: 300vh; /* Adjust for card size */
+		height: 300vh;
+		opacity: 1;
+	}
 }
 
 .animate-ripple {
-    position: absolute;
-    width: 0;
-    height: 0;
-    background: rgb(0, 0, 0); /* Adjust for better contrast */
-    animation: rippleEffect 0.6s linear forwards;
+	position: absolute;
+	width: 0;
+	height: 0;
+	background: rgb(0, 0, 0); /* Adjust for better contrast */
+	animation: rippleEffect 0.6s linear forwards;
 }
