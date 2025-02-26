@@ -45,6 +45,7 @@ export interface ICard {
 	updated_by: number;
 	added_by: number;
 	media?: FileList;
+	visibility: boolean;
 }
 
 export interface IMedia {

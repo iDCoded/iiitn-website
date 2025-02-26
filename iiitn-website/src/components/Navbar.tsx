@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa"; // Icons for menu toggle
 import logo from "../assets/logo.png"; // Logo Image
+import Search from "@/search";
 
 const imgSrc = logo;
 
@@ -214,6 +215,7 @@ const Navbar = () => {
 							</a>
 						))}
 					</ul>
+					<Search />
 				</nav>
 
 				{/* 🔹 Middle Section with Logo and Mobile Menu Button */}
