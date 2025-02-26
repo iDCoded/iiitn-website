@@ -11,6 +11,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import CardEditDialog from "./card-edit-dialog";
 import ViewCardDialog from "./card-view-dialog";
+import { Checkbox } from "@/components/ui/checkbox";
 
 async function deleteCard(c_id: string) {
 	await fetch(`http://localhost:5000/card/cards/${c_id}`, {
@@ -19,6 +20,17 @@ async function deleteCard(c_id: string) {
 }
 
 export const columns: ColumnDef<ICard>[] = [
+	{
+		id: "visibilty",
+		header: "Visible",
+		cell: () => {
+			return (
+				<div className="flex justify-center items-center">
+					<Checkbox />
+				</div>
+			);
+		},
+	},
 	{
 		id: "view",
 		cell: ({ row }) => {
