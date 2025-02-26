@@ -21,8 +21,16 @@ const deleteFaculty = async (facultyId: string) => {
 
 export const columns: ColumnDef<Faculty>[] = [
 	{
-		accessorKey: "f_id",
-		header: "Faculty ID",
+		accessorKey: "name",
+		header: "Name",
+	},
+	{
+		accessorKey: "email",
+		header: "Email",
+	},
+	{
+		accessorKey: "phone_no",
+		header: "Phone Number",
 	},
 	{
 		accessorKey: "experience",
@@ -46,14 +54,6 @@ export const columns: ColumnDef<Faculty>[] = [
 		header: "Research",
 	},
 	{
-		accessorKey: "f_or_s",
-		header: "Faculty or Staff",
-		cell: ({ row }) => {
-			const post = new String(row.getValue("f_or_s"));
-			return <Badge>{post}</Badge>;
-		},
-	},
-	{
 		accessorKey: "join_year",
 		header: ({ column }) => {
 			return (
@@ -64,6 +64,14 @@ export const columns: ColumnDef<Faculty>[] = [
 					<ArrowUpDown />
 				</Button>
 			);
+		},
+	},
+	{
+		accessorKey: "f_or_s",
+		header: "Faculty or Staff",
+		cell: ({ row }) => {
+			const post = new String(row.getValue("f_or_s"));
+			return <Badge>{post}</Badge>;
 		},
 	},
 	{
