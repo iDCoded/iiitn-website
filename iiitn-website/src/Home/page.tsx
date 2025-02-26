@@ -16,8 +16,8 @@ const Home = () => {
             <Admissions />        {/* 🎓 Admission Info for New Students */}
             <UpcomingEvents />    {/* 🎉 Upcoming College Events */}
             <ResearchInnovation />     {/* 📚 Academic Information */}
-            <CampusLife />        {/* 🏫 Student Activities & Lifestyle */}
             <Stats />             {/* 📊 College Achievements & Numbers */}
+            <CampusLife />        {/* 🏫 Student Activities & Lifestyle */}
             <Testimonials />      {/* 💬 Social Proof & Student Experiences */}
         </>
     );
