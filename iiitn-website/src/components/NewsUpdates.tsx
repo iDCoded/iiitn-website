@@ -7,18 +7,19 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 interface NewsItem {
-	id: string;
-	category: string;
-	image: string;
-	title: string;
-	description: string;
+    id: string;
+    category: string;
+    image: string;
+    title: string;
+    description: string;
 }
 
 export default function NewsCarousel() {
-	const [newsData, setNewsData] = useState<NewsItem[]>([
-		{
+    const [newsData, setNewsData] = useState<NewsItem[]>([
+        {
 			id: "news",
 			category: "News",
 			image:
@@ -55,126 +56,138 @@ export default function NewsCarousel() {
 			description:
 				"IIIT Nagpur celebrated the 76th Republic Day with patriotic fervor and enthusiasm.",
 		},
-	]);
+    ]);
 
-	const [sliderRef, instanceRef] = useKeenSlider({
-		slides: {
-			perView: 1,
-			spacing: 10,
-		},
-		breakpoints: {
-			"(min-width: 768px)": {
-				slides: {
-					perView: 3,
-					spacing: 20,
-				},
-			},
-		},
-		loop: true,
-	});
+    const [sliderRef, instanceRef] = useKeenSlider({
+        slides: {
+            perView: 1,
+            spacing: 10,
+        },
+        breakpoints: {
+            "(min-width: 768px)": {
+                slides: {
+                    perView: 3,
+                    spacing: 20,
+                },
+            },
+        },
+        loop: true,
+    });
 
-	// Fetch data from API
-	useEffect(() => {
-		const fetchNews = async () => {
-			try {
-				const res = await fetch(`http://localhost:5000/card/cards`);
-				if (!res.ok) throw new Error("Failed to fetch news");
-				const data = await res.json();
+    // Fetch data from API
+    useEffect(() => {
+        const fetchNews = async () => {
+            try {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/card/cards`);
+                if (!res.ok) throw new Error("Failed to fetch news");
+                const data = await res.json();
 
-				// Filter only "news" and "updates"
-				interface NewsItem {
-					id: string;
-					category: string;
-					image: string;
-					title: string;
-					description: string;
-				}
+                const filteredNews: NewsItem[] = data.filter((item: NewsItem) =>
+                    item.category.toLowerCase() === "news" || item.category.toLowerCase() === "updates"
+                );
 
-				const filteredNews: NewsItem[] = data.filter(
-					(item: NewsItem) =>
-						item.category.toLowerCase() === "news" ||
-						item.category.toLowerCase() === "updates"
-				);
+                setNewsData(filteredNews);
+            } catch (error) {
+                console.error("Error fetching news:", error);
+            }
+        };
 
-				setNewsData(filteredNews);
-			} catch (error) {
-				console.error("Error fetching news:", error);
-			}
-		};
+        fetchNews();
+    }, []);
 
-		fetchNews();
-	}, []);
+    // Auto-scroll effect
+    useEffect(() => {
+        const interval = setInterval(() => {
+            instanceRef.current?.next();
+        }, 5000); // 5 sec interval
 
-	// Auto-scroll effect
-	useEffect(() => {
-		const interval = setInterval(() => {
-			instanceRef.current?.next();
-		}, 5000); // 5 sec interval
+        return () => clearInterval(interval);
+    }, [instanceRef]);
 
-		return () => clearInterval(interval);
-	}, [instanceRef]);
+    return (
+        <motion.section
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="h-screen bg-gray-100 flex items-center justify-center"
+        >
+            <div className="max-w-7xl mx-auto px-6 w-full">
 
-	return (
-		<section className="py-10 bg-gray-100 h-[80vh]">
-			<div className="max-w-6xl mx-auto px-6">
-				<div className="flex justify-between items-center mb-6">
-					<h2 className="text-3xl font-bold text-primary">
-						<span className="text-accent">|</span> Latest News & Updates
-					</h2>
-					<a href="/news" className="text-accent hover:underline flex flex-row">
-						View All{" "}
-						<span className="ml-2">
-							<FaArrowRight />
-						</span>
-					</a>
-				</div>
+                {/* Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: -30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true }}
+                    className="flex justify-between items-center mb-6"
+                >
+                    <h2 className="text-4xl font-bold text-primary">
+                        <span className="text-accent">|</span> Latest News & Updates
+                    </h2>
+                    <a href="/news" className="text-accent hover:underline flex items-center text-lg font-medium">
+                        View All <FaArrowRight className="ml-2" />
+                    </a>
+                </motion.div>
 
-				{/* Carousel */}
-				<div className="relative">
-					{/* Previous Button */}
-					<button
-						onClick={() => instanceRef.current?.prev()}
-						className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg p-2 rounded-full hover:bg-gray-200">
-						<FaArrowLeft />
-					</button>
+                {/* Carousel */}
+                <div className="relative">
+                    {/* Previous Button */}
+                    <button
+                        onClick={() => instanceRef.current?.prev()}
+                        className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg p-3 rounded-full hover:bg-gray-200 transition"
+                    >
+                        <FaArrowLeft className="text-primary text-xl" />
+                    </button>
 
-					{/* Carousel Content */}
-					<Carousel>
-						<CarouselContent ref={sliderRef} className="keen-slider">
-							{newsData.map((news, index) => (
-								<CarouselItem key={index} className="keen-slider__slide">
-									<Link to={`/news/${news.id}`}>
-										<Card className="shadow-lg rounded-lg overflow-hidden h-[50vh]">
-											<div className="h-[30vh] bg-black">
-												<img
-													src={news.image}
-													alt={news.title}
-													className="w-full h-full object-fit"
-												/>
-											</div>
-											<CardContent className="p-4">
-												<h3 className="text-lg font-semibold text-primary">
-													{news.title}
-												</h3>
-												<p className="text-sm text-gray-600">
-													{news.description}
-												</p>
-											</CardContent>
-										</Card>
-									</Link>
-								</CarouselItem>
-							))}
-						</CarouselContent>
-					</Carousel>
+                    {/* Carousel Content */}
+                    <Carousel>
+                        <CarouselContent ref={sliderRef} className="keen-slider">
+                            {newsData.map((news, index) => (
+                                <CarouselItem key={index} className="keen-slider__slide">
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        transition={{ duration: 0.6 }}
+                                        viewport={{ once: true }}
+                                    >
+                                        <Link to={`/news/${news.id}`}>
+                                            <motion.div
+                                                whileHover={{ scale: 1.05, boxShadow: "0px 10px 20px rgba(0,0,0,0.2)" }}
+                                                transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                                                className="shadow-lg rounded-lg overflow-hidden h-[60vh] bg-white transition-all"
+                                            >
+                                                {/* Image with Zoom Effect */}
+                                                <motion.div className="h-[35vh] overflow-hidden">
+                                                    <motion.img
+                                                        src={news.image}
+                                                        alt={news.title}
+                                                        className="w-full h-full object-cover transition-transform duration-300"
+                                                        whileHover={{ scale: 1.1 }}
+                                                    />
+                                                </motion.div>
 
-					{/* Next Button */}
-					<button
-						onClick={() => instanceRef.current?.next()}
-						className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg p-2 rounded-full hover:bg-gray-200">
-						<FaArrowRight />
-					</button>
-				</div>
-			</div>
-		</section>
-	);
+                                                {/* Text Content */}
+                                                <CardContent className="p-5">
+                                                    <h3 className="text-xl font-semibold text-gray-900">{news.title}</h3>
+                                                    <p className="text-md text-gray-700 mt-2">{news.description}</p>
+                                                </CardContent>
+                                            </motion.div>
+                                        </Link>
+                                    </motion.div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                    </Carousel>
+
+                    {/* Next Button */}
+                    <button
+                        onClick={() => instanceRef.current?.next()}
+                        className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg p-3 rounded-full hover:bg-gray-200 transition"
+                    >
+                        <FaArrowRight className="text-primary text-xl" />
+                    </button>
+                </div>
+            </div>
+        </motion.section>
+    );
 }
