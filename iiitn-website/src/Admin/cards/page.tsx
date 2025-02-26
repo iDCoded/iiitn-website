@@ -47,8 +47,9 @@ function CardTablePage() {
 			<div className="flex flex-col items-end gap-8">
 				<Dialog>
 					<DialogTrigger asChild>
-						<Button variant={"outline"} size={"icon"}>
-							<Plus />
+						<Button variant={"outline"} size={"lg"}>
+							<Plus strokeWidth={4} />
+							<p>Add a card</p>
 						</Button>
 					</DialogTrigger>
 					<DialogContent className="max-h-[80vh] overflow-y-auto">

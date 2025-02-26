@@ -11,6 +11,12 @@ import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import ViewMediaDialog from "./media-view-dialog";
 
+const deleteMedia = async (mediaId: number) => {
+	await fetch(`http://localhost:5000/media/media/${mediaId}`, {
+		method: "DELETE",
+	});
+};
+
 export const columns: ColumnDef<IMedia>[] = [
 	{
 		id: "view",
@@ -54,7 +60,7 @@ export const columns: ColumnDef<IMedia>[] = [
 						<DropdownMenuItem
 							className="text-red-400"
 							onClick={() => {
-								console.log(`Deleted Media: ${media.m_id}`);
+								deleteMedia(media.m_id);
 							}}>
 							Delete Media
 						</DropdownMenuItem>

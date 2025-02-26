@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -8,9 +9,6 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Faculty } from "@/interfaces/types";
-import { Input } from "@/components/ui/input";
 import {
 	Form,
 	FormControl,
@@ -19,6 +17,8 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
 	Select,
 	SelectContent,
@@ -26,87 +26,69 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
+import { Faculty } from "@/interfaces/types";
 
-// ! Editing faculty details not working
 const formSchema = z.object({
-	f_id: z.string(),
-	p_id: z.string(),
-	d_id: z.string(),
-	pub_id: z.string(),
-	media_img_id: z.number(),
-	join_year: z.coerce
-		.number()
-		.int()
-		.gte(1900)
-		.lte(new Date().getFullYear())
-		.default(new Date().getFullYear()),
-	positions: z.string().min(1, { message: "Please enter the positions" }),
+	join_year: z.coerce.number().int().gte(1900).lte(new Date().getFullYear()),
+	positions: z.string().min(1, "Please enter the positions"),
+	education: z.string().min(1, "Please enter the education"),
+	experience: z.coerce.number().min(0, "Please enter the experience"),
+	teaching: z.string().min(1, "Please enter the teaching"),
+	research: z.string().min(1, "Please enter the research"),
 	f_or_s: z.enum(["Faculty", "Staff"], {
 		message: "Please select Faculty or Staff",
 	}),
-	education: z.string().min(1, { message: "Please enter the education" }),
-	experience: z.coerce
-		.number()
-		.min(1, { message: "Please enter the experience" })
-		.default(0),
-	teaching: z.string().min(1, { message: "Please enter the teaching" }),
-	research: z.string().min(1, { message: "Please enter the research" }),
 });
 
 type FormData = z.infer<typeof formSchema>;
 
 const FacultyEditDialog = ({ faculty }: { faculty: Faculty }) => {
-	const form = useForm<z.infer<typeof formSchema>>({
+	const form = useForm<FormData>({
 		resolver: zodResolver(formSchema),
-		defaultValues: { ...faculty },
+		defaultValues: {
+			...faculty,
+		},
 	});
 
-	const onSubmit = async (data: FormData) => {
-		console.log("please wokr");
-		const facultyData: Faculty = {
-			f_id: "1",
-			p_id: "1",
-			d_id: "2",
-			pub_id: "1",
-			media_img_id: 1,
-			join_year: data.join_year,
-			positions: data.positions,
-			f_or_s: data.f_or_s,
-			education: data.education,
-			experience: data.experience,
-			teaching: data.teaching,
-			research: data.research,
-		};
-		console.table(facultyData);
+	useEffect(() => {
+		form.reset(faculty);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [faculty]);
 
+	const onSubmit = async (data: FormData) => {
+		console.table(data);
 		await fetch(`http://localhost:5000/faculty/faculty_staff/${faculty.f_id}`, {
 			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(facultyData),
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data),
 		});
 	};
 
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button variant="ghost">Edit Faculty</Button>
+				<Button variant="outline" className="bg-primary">
+					Edit Faculty
+				</Button>
 			</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle>Edit Faculty</DialogTitle>
 				</DialogHeader>
 				<Form {...form}>
-					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
 						<FormField
 							control={form.control}
 							name="join_year"
 							render={({ field }) => (
-								<FormItem className="space-y-2">
-									<FormLabel htmlFor="join_year">Year of Joining</FormLabel>
+								<FormItem>
+									<FormLabel>Year of Joining</FormLabel>
 									<FormControl>
-										<Input id="join_year" placeholder="Enter year" {...field} />
+										<Input
+											type="number"
+											{...field}
+											onChange={(e) => field.onChange(Number(e.target.value))}
+										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -116,14 +98,10 @@ const FacultyEditDialog = ({ faculty }: { faculty: Faculty }) => {
 							control={form.control}
 							name="positions"
 							render={({ field }) => (
-								<FormItem className="space-y-2">
-									<FormLabel htmlFor="positions">Positions</FormLabel>
+								<FormItem>
+									<FormLabel>Positions</FormLabel>
 									<FormControl>
-										<Input
-											id="positions"
-											placeholder="Enter positions"
-											{...field}
-										/>
+										<Input {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -133,14 +111,10 @@ const FacultyEditDialog = ({ faculty }: { faculty: Faculty }) => {
 							control={form.control}
 							name="education"
 							render={({ field }) => (
-								<FormItem className="space-y-2">
-									<FormLabel htmlFor="positions">Education</FormLabel>
+								<FormItem>
+									<FormLabel>Education</FormLabel>
 									<FormControl>
-										<Input
-											id="education"
-											placeholder="Enter education"
-											{...field}
-										/>
+										<Input {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -150,13 +124,13 @@ const FacultyEditDialog = ({ faculty }: { faculty: Faculty }) => {
 							control={form.control}
 							name="experience"
 							render={({ field }) => (
-								<FormItem className="space-y-2">
-									<FormLabel htmlFor="positions">Experience</FormLabel>
+								<FormItem>
+									<FormLabel>Experience</FormLabel>
 									<FormControl>
 										<Input
-											id="experience"
-											placeholder="Enter experience"
+											type="number"
 											{...field}
+											onChange={(e) => field.onChange(Number(e.target.value))}
 										/>
 									</FormControl>
 									<FormMessage />
@@ -167,14 +141,10 @@ const FacultyEditDialog = ({ faculty }: { faculty: Faculty }) => {
 							control={form.control}
 							name="teaching"
 							render={({ field }) => (
-								<FormItem className="space-y-2">
-									<FormLabel htmlFor="positions">Teaching</FormLabel>
+								<FormItem>
+									<FormLabel>Teaching</FormLabel>
 									<FormControl>
-										<Input
-											id="teaching"
-											placeholder="Enter teaching"
-											{...field}
-										/>
+										<Input {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -184,14 +154,10 @@ const FacultyEditDialog = ({ faculty }: { faculty: Faculty }) => {
 							control={form.control}
 							name="research"
 							render={({ field }) => (
-								<FormItem className="space-y-2">
-									<FormLabel htmlFor="positions">Research</FormLabel>
+								<FormItem>
+									<FormLabel>Research</FormLabel>
 									<FormControl>
-										<Input
-											id="research"
-											placeholder="Enter research"
-											{...field}
-										/>
+										<Input {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -201,12 +167,14 @@ const FacultyEditDialog = ({ faculty }: { faculty: Faculty }) => {
 							control={form.control}
 							name="f_or_s"
 							render={({ field }) => (
-								<FormItem className="space-y-2">
-									<FormLabel htmlFor="f_or_s">Faculty or Staff</FormLabel>
+								<FormItem>
+									<FormLabel>Faculty or Staff</FormLabel>
 									<FormControl>
-										<Select onValueChange={field.onChange} value={field.value}>
+										<Select
+											onValueChange={field.onChange}
+											defaultValue={field.value}>
 											<SelectTrigger>
-												<SelectValue placeholder="Select Faculty or Staff" />
+												<SelectValue placeholder="Select" />
 											</SelectTrigger>
 											<SelectContent>
 												<SelectItem value="Faculty">Faculty</SelectItem>
@@ -218,7 +186,7 @@ const FacultyEditDialog = ({ faculty }: { faculty: Faculty }) => {
 								</FormItem>
 							)}
 						/>
-						<Button type="submit" size="lg" className="w-full">
+						<Button type="submit" className="w-full">
 							Save
 						</Button>
 					</form>

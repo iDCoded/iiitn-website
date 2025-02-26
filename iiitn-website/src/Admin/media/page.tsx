@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { columns } from "./columns";
-import { DataTable } from "./data-table";
+import { DataTable } from "../data-table";
 import { IMedia } from "@/interfaces/types";
 import { MediaUpload } from "@/Admin/media/media-upload-dialog";
 

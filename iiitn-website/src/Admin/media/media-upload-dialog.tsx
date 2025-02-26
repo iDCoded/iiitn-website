@@ -13,8 +13,9 @@ export function MediaUpload() {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button variant={"outline"} size={"icon"}>
+				<Button variant={"outline"}>
 					<Plus />
+					Upload Media
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="max-h-[80vh] overflow-y-auto">
