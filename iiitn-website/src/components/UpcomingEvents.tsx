@@ -145,9 +145,13 @@ const UpcomingEvents = () => {
 					{/* Small Events (Stacked on Mobile, Side-by-Side on Desktop) */}
 					<div className="flex flex-col gap-8">
 						{displayedEvents.slice(1).map((event, index) => (
-							<a href={`/events/${event.id}`} key={index}>
+							<div
+								key={index}
+								onClick={() => {
+									navigate(`/events/${event.id}`);
+								}}>
 								<HomeEventCard event={event} />
-							</a>
+							</div>
 						))}
 					</div>
 				</div>
