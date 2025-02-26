@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ICard } from "@/interfaces/types";
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import CardEditDialog from "./card-edit-dialog";
 import ViewCardDialog from "./card-view-dialog";
 
@@ -49,7 +49,24 @@ export const columns: ColumnDef<ICard>[] = [
 	},
 	{
 		accessorKey: "date",
-		header: "Date",
+		header: ({ column }) => {
+			return (
+				<Button
+					variant={"ghost"}
+					onClick={() => {
+						column.toggleSorting(column.getIsSorted() === "asc");
+					}}>
+					Date
+					<ArrowUpDown />
+				</Button>
+			);
+		},
+		cell: ({ row }) => {
+			const { date } = row.original;
+			const displayDate = new Date(date);
+
+			return <p>{displayDate.toDateString()}</p>;
+		},
 	},
 	{
 		id: "actions",
