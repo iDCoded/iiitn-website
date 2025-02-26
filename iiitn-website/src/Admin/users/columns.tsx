@@ -51,6 +51,13 @@ export const columns: ColumnDef<Person>[] = [
 					});
 				} else if (role === "faculty") {
 					setOpenFacultyDialog(true);
+					await fetch(`http://localhost:5000/user/${p_id}`, {
+						method: "PUT",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({ ...updatedUser, role }),
+					});
 				}
 			}
 
