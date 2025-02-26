@@ -19,6 +19,9 @@ import {
 } from "@/components/ui/table";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { RefreshCw } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
@@ -46,9 +49,11 @@ export function DataTable<TData, TValue>({
 		},
 	});
 
+	const navigate = useNavigate();
+
 	return (
 		<div>
-			<div className="flex items-center py-4">
+			<div className="flex items-center py-4 justify-between">
 				<Input
 					placeholder="Search by name..."
 					value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
@@ -57,6 +62,14 @@ export function DataTable<TData, TValue>({
 					}
 					className="max-w-sm"
 				/>
+				<Button
+					variant={"ghost"}
+					size={"icon"}
+					onClick={() => {
+						navigate(0);
+					}}>
+					<RefreshCw />
+				</Button>
 			</div>
 
 			<div className="rounded-md border min-w-4xl">
