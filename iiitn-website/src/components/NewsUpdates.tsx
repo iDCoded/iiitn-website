@@ -1,5 +1,4 @@
-"use client";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
@@ -10,50 +9,49 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 interface NewsItem {
-    id: string;
-    category: string;
-    image: string;
-    title: string;
-    description: string;
+	id: string;
+	c_category: string;
+	image: string;
+	title: string;
+	caption: string;
 }
 
 export default function NewsCarousel() {
     const [newsData, setNewsData] = useState<NewsItem[]>([
         {
 			id: "news",
-			category: "News",
+			c_category: "News",
 			image:
 				"https://static.toiimg.com/thumb/msid-117532524,imgsize-38444,width-400,height-225,resizemode-72/117532524.jpg",
 			title:
 				"Duo from IIIT Nagpur invited as special guests for Republic Day parade",
-			description:
-				"IIIT Nagpur has signed an MoU with the Maharashtra government to promote AI and ML in the state.",
+            caption: "Students from IIIT Nagpur were invited to the Republic Day parade as special guests.",
 		},
 		{
 			id: "updates-1",
-			category: "Updates",
+			c_category: "Updates",
 			image:
 				"https://imgs.search.brave.com/WE_FzZkUn2nRyWQI6BE3eBdqnhN49qmN4f_7EdEcY4s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9paWl0/bi5hYy5pbi9pbWFn/ZXMvTmV3c0V2ZW50/cy83ODUvTmV3c0lt/YWdlLkpQRw",
 			title: "2nd Convocation Ceremony",
-			description:
+			caption:
 				"IIIT Nagpur recently held its 2nd convocation ceremony with students receiving their degrees and awards.",
 		},
 		{
 			id: "news-2",
-			category: "News",
+			c_category: "News",
 			image:
 				"https://imgs.search.brave.com/MWacu6ain-mbYnq57K9WQV5xJ2T422cSdSePqObriBs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9paWl0/bi5hYy5pbi9pbWFn/ZXMvU2xpZGVyLzIz/MC9TbGlkZXItMjMw/LmpwZw",
 			title: "Training on Public Procurement",
-			description:
+			caption:
 				"Training on Public Procurement during Vigilance Awareness Week at IIIT Nagpur.",
 		},
 		{
 			id: "updates-2",
-			category: "Updates",
+			c_category: "Updates",
 			image:
 				"https://iiitn.ac.in/images/album/republic-day-2025//ThumbnailImage.jpg",
 			title: "76th Republic Day Celebration",
-			description:
+			caption:
 				"IIIT Nagpur celebrated the 76th Republic Day with patriotic fervor and enthusiasm.",
 		},
     ]);
@@ -74,23 +72,60 @@ export default function NewsCarousel() {
         loop: true,
     });
 
-    // Fetch data from API
-    useEffect(() => {
-        const fetchNews = async () => {
-            try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/card/cards`);
-                if (!res.ok) throw new Error("Failed to fetch news");
-                const data = await res.json();
+	// Fetch data from API
+	useEffect(() => {
+		const fetchNews = async () => {
+			try {
+				const res = await fetch(
+					`http://localhost:5000/card/cards/category/news`
+				);
+				if (!res.ok) throw new Error("Failed to fetch news");
+				const data = await res.json();
 
-                const filteredNews: NewsItem[] = data.filter((item: NewsItem) =>
-                    item.category.toLowerCase() === "news" || item.category.toLowerCase() === "updates"
-                );
+				// Filter only "news" and "updates"
+				const filteredNews = data
+					.filter(
+						(item: any) =>
+							item.c_category.toLowerCase() === "news" ||
+							item.c_category.toLowerCase() === "updates"
+					)
+					.map((news: any) => ({
+						id: news.c_id,
+						image: null, // Will be updated after fetching
+						title: news.title,
+						caption: news.caption,
+						content: news.content,
+						date: news.date,
+						location: news.location,
+						large: false,
+						media_img_path: news.media_img_path, // Store image path for later
+					}));
 
-                setNewsData(filteredNews);
-            } catch (error) {
-                console.error("Error fetching news:", error);
-            }
-        };
+				// Fetch images asynchronously
+				const updatedNews = await Promise.all(
+					filteredNews.map(async (news: any) => {
+						if (news.media_img_path) {
+							try {
+								const imgReq = await fetch(
+									`http://localhost:5000/media/${news.media_img_path}`
+								);
+								if (!imgReq.ok) throw new Error("Failed to fetch image");
+								const imgRes = await imgReq.json();
+								return { ...news, image: imgRes.url };
+							} catch (err) {
+								console.error(`Error fetching image for news ${news.id}:`, err);
+								return news;
+							}
+						}
+						return news;
+					})
+				);
+
+				setNewsData(updatedNews);
+			} catch (error) {
+				console.error("Error fetching news:", error);
+			}
+		};
 
         fetchNews();
     }, []);
@@ -139,45 +174,32 @@ export default function NewsCarousel() {
                         <FaArrowLeft className="text-primary text-xl" />
                     </button>
 
-                    {/* Carousel Content */}
-                    <Carousel>
-                        <CarouselContent ref={sliderRef} className="keen-slider">
-                            {newsData.map((news, index) => (
-                                <CarouselItem key={index} className="keen-slider__slide">
-                                    <motion.div
-                                        initial={{ opacity: 0, scale: 0.9 }}
-                                        whileInView={{ opacity: 1, scale: 1 }}
-                                        transition={{ duration: 0.6 }}
-                                        viewport={{ once: true }}
-                                    >
-                                        <Link to={`/news/${news.id}`}>
-                                            <motion.div
-                                                whileHover={{ scale: 1.05, boxShadow: "0px 10px 20px rgba(0,0,0,0.2)" }}
-                                                transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                                                className="shadow-lg rounded-lg overflow-hidden h-[60vh] bg-white transition-all"
-                                            >
-                                                {/* Image with Zoom Effect */}
-                                                <motion.div className="h-[35vh] overflow-hidden">
-                                                    <motion.img
-                                                        src={news.image}
-                                                        alt={news.title}
-                                                        className="w-full h-full object-cover transition-transform duration-300"
-                                                        whileHover={{ scale: 1.1 }}
-                                                    />
-                                                </motion.div>
-
-                                                {/* Text Content */}
-                                                <CardContent className="p-5">
-                                                    <h3 className="text-xl font-semibold text-gray-900">{news.title}</h3>
-                                                    <p className="text-md text-gray-700 mt-2">{news.description}</p>
-                                                </CardContent>
-                                            </motion.div>
-                                        </Link>
-                                    </motion.div>
-                                </CarouselItem>
-                            ))}
-                        </CarouselContent>
-                    </Carousel>
+					{/* Carousel Content */}
+					<Carousel>
+						<CarouselContent ref={sliderRef} className="keen-slider">
+							{newsData.map((news, index) => (
+								<CarouselItem key={index} className="keen-slider__slide">
+									<Link to={`/news/${news.id}`}>
+										<Card className="shadow-lg rounded-lg overflow-hidden h-[50vh]">
+											<div className="h-[30vh] bg-black">
+												<img
+													src={news.image}
+													alt={news.title}
+													className="w-full h-full object-fit"
+												/>
+											</div>
+											<CardContent className="p-4">
+												<h3 className="text-lg font-semibold text-primary">
+													{news.title}
+												</h3>
+												<p className="text-sm text-gray-600">{news.caption}</p>
+											</CardContent>
+										</Card>
+									</Link>
+								</CarouselItem>
+							))}
+						</CarouselContent>
+					</Carousel>
 
                     {/* Next Button */}
                     <button

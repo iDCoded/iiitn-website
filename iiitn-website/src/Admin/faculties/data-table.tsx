@@ -20,8 +20,8 @@ import {
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { RefreshCw } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { RefreshCw } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
@@ -55,12 +55,10 @@ export function DataTable<TData, TValue>({
 		<div>
 			<div className="flex items-center py-4 justify-between">
 				<Input
-					placeholder="Filter by category..."
-					value={
-						(table.getColumn("c_category")?.getFilterValue() as string) ?? ""
-					}
+					placeholder="Search by name..."
+					value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
 					onChange={(event) =>
-						table.getColumn("c_category")?.setFilterValue(event.target.value)
+						table.getColumn("name")?.setFilterValue(event.target.value)
 					}
 					className="max-w-sm"
 				/>

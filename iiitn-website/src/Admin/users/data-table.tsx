@@ -34,6 +34,8 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const [globalFilter, setGlobalFilter] = useState<any>([]);
 
 	const table = useReactTable({
 		data,
@@ -42,10 +44,12 @@ export function DataTable<TData, TValue>({
 		getSortedRowModel: getSortedRowModel(),
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
+		onGlobalFilterChange: setGlobalFilter,
 		getFilteredRowModel: getFilteredRowModel(),
 		state: {
 			sorting,
 			columnFilters,
+			globalFilter,
 		},
 	});
 
@@ -55,13 +59,9 @@ export function DataTable<TData, TValue>({
 		<div>
 			<div className="flex items-center py-4 justify-between">
 				<Input
-					placeholder="Filter by category..."
-					value={
-						(table.getColumn("c_category")?.getFilterValue() as string) ?? ""
-					}
-					onChange={(event) =>
-						table.getColumn("c_category")?.setFilterValue(event.target.value)
-					}
+					placeholder="Search for users..."
+					value={globalFilter ?? ""}
+					onChange={(e) => table.setGlobalFilter(String(e.target.value))}
 					className="max-w-sm"
 				/>
 				<Button

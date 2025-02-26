@@ -1,9 +1,7 @@
 import {
 	ColumnDef,
-	ColumnFiltersState,
 	flexRender,
 	getCoreRowModel,
-	getFilteredRowModel,
 	getSortedRowModel,
 	SortingState,
 	useReactTable,
@@ -18,10 +16,10 @@ import {
 	TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Input } from "@/components/ui/input";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
@@ -33,7 +31,6 @@ export function DataTable<TData, TValue>({
 	data,
 }: DataTableProps<TData, TValue>) {
 	const [sorting, setSorting] = useState<SortingState>([]);
-	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
 	const table = useReactTable({
 		data,
@@ -41,11 +38,8 @@ export function DataTable<TData, TValue>({
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
 		onSortingChange: setSorting,
-		onColumnFiltersChange: setColumnFilters,
-		getFilteredRowModel: getFilteredRowModel(),
 		state: {
 			sorting,
-			columnFilters,
 		},
 	});
 
@@ -55,12 +49,10 @@ export function DataTable<TData, TValue>({
 		<div>
 			<div className="flex items-center py-4 justify-between">
 				<Input
-					placeholder="Filter by category..."
-					value={
-						(table.getColumn("c_category")?.getFilterValue() as string) ?? ""
-					}
+					placeholder="Filter by title..."
+					value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
 					onChange={(event) =>
-						table.getColumn("c_category")?.setFilterValue(event.target.value)
+						table.getColumn("title")?.setFilterValue(event.target.value)
 					}
 					className="max-w-sm"
 				/>
@@ -73,7 +65,6 @@ export function DataTable<TData, TValue>({
 					<RefreshCw />
 				</Button>
 			</div>
-
 			<div className="rounded-md border min-w-4xl">
 				<Table>
 					<TableHeader>

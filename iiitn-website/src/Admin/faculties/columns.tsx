@@ -44,6 +44,9 @@ export const columns: ColumnDef<Faculty>[] = [
 				</Button>
 			);
 		},
+		cell: ({ row }) => {
+			return <p className="text-center">{row.original.experience}</p>;
+		},
 	},
 	{
 		accessorKey: "positions",
@@ -64,6 +67,9 @@ export const columns: ColumnDef<Faculty>[] = [
 					<ArrowUpDown />
 				</Button>
 			);
+		},
+		cell: ({ row }) => {
+			return <p className="text-center">{row.original.join_year}</p>;
 		},
 	},
 	{
