@@ -39,7 +39,7 @@ const Admissions = () => {
     const scale = useTransform(scrollYProgress, [0, 0.5], [1, 2]);
 
     return (
-        <section ref={ref} className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+        <section ref={ref} className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
             {/* 📌 Background with Scroll-Zoom Effect */}
             <motion.div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat h-screen"
@@ -75,7 +75,7 @@ const Admissions = () => {
 
                 {/* Cards with Staggered Fade-in Effect */}
                 <motion.div
-                    className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6"
+                    className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
                     initial="hidden"
                     animate={inView ? "visible" : "hidden"}
                     variants={{
