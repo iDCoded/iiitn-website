@@ -14,8 +14,8 @@ const Home = () => {
             <HeroSection />
             <NewsUpdates />       {/* 📰 Latest News & Happenings */}
             <Admissions />        {/* 🎓 Admission Info for New Students */}
-            <ResearchInnovation />     {/* 📚 Academic Information */}
             <UpcomingEvents />    {/* 🎉 Upcoming College Events */}
+            <ResearchInnovation />     {/* 📚 Academic Information */}
             <CampusLife />        {/* 🏫 Student Activities & Lifestyle */}
             <Stats />             {/* 📊 College Achievements & Numbers */}
             <Testimonials />      {/* 💬 Social Proof & Student Experiences */}
