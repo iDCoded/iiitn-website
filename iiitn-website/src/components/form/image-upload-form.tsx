@@ -37,7 +37,7 @@ export function ImageUploadForm() {
 				const media_upload_res = await media_upload_req.json();
 				if (media_upload_req.ok) {
 					const mediaData = {
-						title: file.name,
+						title: title,
 						m_category: category,
 						m_sub_category: subCategory,
 						added_time: new Date(file.lastModified),

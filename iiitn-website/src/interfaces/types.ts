@@ -17,6 +17,9 @@ export interface Faculty {
 	p_id: string;
 	d_id: string;
 	pub_id: string;
+	name: string;
+	email: string;
+	phone_no: string;
 	media_img_id: number;
 	join_year: number;
 	positions: string;
