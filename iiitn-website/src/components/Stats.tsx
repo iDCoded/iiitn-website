@@ -9,22 +9,27 @@ const stats = [
 
 const Stats = () => {
     const { ref, inView } = useInView({
-        triggerOnce: true, // Ensures animation runs only once
-        threshold: 0.3, // Starts animation when 30% visible
+        triggerOnce: true, // Ensures animation runs only once when it enters the viewport
     });
 
     return (
-        <section className="py-20 px-6 bg-gray-100">
-            <div className="max-w-6xl m-auto">
-                <h2 className="text-3xl font-bold text-center">Our Achievements</h2>
+        <section className="py-16 px-6 bg-gray-50">
+            <div className="max-w-6xl mx-auto text-left">
+                <h2 className="text-3xl font-bold mb-4">
+                    <span className="text-accent text-4xl">|</span> Our Achievements
+                </h2>
+                <p className="text-gray-600 text-lg mb-10">
+                    A glimpse into our impact through numbers.
+                </p>
 
-                <div ref={ref} className="mt-10 flex flex-col md:flex-row justify-around gap-10 md:gap-20">
+                {/* Stats Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8" ref={ref}>
                     {stats.map((stat, index) => (
-                        <div key={index} className="text-center space-y-3">
+                        <div key={index} className="bg-white shadow-md p-8 rounded-xl text-center">
                             <h3 className="text-5xl font-bold text-primary">
-                                {inView ? <CountUp start={0} end={stat.value} duration={2} separator="," /> : 0}+
+                                {inView ? <CountUp end={stat.value} duration={2.5} /> : "..."}+
                             </h3>
-                            <p className="text-xl">{stat.label}</p>
+                            <p className="text-gray-600 text-lg mt-2">{stat.label}</p>
                         </div>
                     ))}
                 </div>
