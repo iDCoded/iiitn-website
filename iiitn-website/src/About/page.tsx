@@ -8,12 +8,12 @@ import heroimage from "../assets/aboutBanner.jpg";
 
 export default function AboutUs() {
     return (
-        <div className="bg-white text-gray-900 min-h-screen">
+        <div className="bg-white text-text min-h-screen">
             {/* Hero Section */}
             <header
                 className="relative w-full h-64 flex flex-col justify-center items-center text-white text-center shadow-lg"
                 style={{
-                    backgroundImage: `url(${heroimage})`, // Replace with actual image path
+                    backgroundImage: `url(${heroimage})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center"
                 }}
@@ -56,7 +56,7 @@ export default function AboutUs() {
                                 <AccordionTrigger className="py-4 text-lg font-semibold hover:text-accent transition duration-200">
                                     {title}
                                 </AccordionTrigger>
-                                <AccordionContent className="p-5 text-gray-700 leading-relaxed">
+                                <AccordionContent className="p-5 text-text leading-relaxed">
                                     Signed on {date}
                                     {details && <p className="mt-2 text-gray-600 text-sm">{details}</p>}
                                 </AccordionContent>
@@ -70,7 +70,7 @@ export default function AboutUs() {
     );
 }
 
-/* Reusable Section Component */
+/* Reusable Section Component */    
 interface SectionProps {
     title: string;
     content: string;
@@ -82,7 +82,7 @@ const Section = ({ title, content, link }: SectionProps) => (
         <h2 className="text-3xl font-bold text-primary flex items-center">
             <span className="text-accent mr-3 text-4xl">|</span> {title}
         </h2>
-        <p className="text-gray-700 leading-relaxed text-lg">{content}</p>
+        <p className="text-text leading-relaxed text-lg">{content}</p>
         {link && (
             <a href={link} className="text-accent hover:underline">
                 Learn more

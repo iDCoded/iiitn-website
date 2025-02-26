@@ -1,47 +1,53 @@
 import React from "react";
 
+const consultancyProjects = [
+	{
+		title: "Measurement using Vector Network Analyzer",
+		link: "#",
+	},
+	{
+		title: "Nano SciTech Laboratory Facility",
+		link: "#",
+	},
+];
+
+const completedProjects = [
+	{ name: "Department of Basic Sciences", link: "/departments/basic_sciences/projects" },
+	{ name: "Department of CSE", link: "/departments/cse/projects" },
+	{ name: "Department of ECE", link: "/departments/ece/projects" },
+];
+
 function Consultancy() {
 	return (
 		<div className="bg-gray-100 min-h-screen flex flex-col">
 			{/* Header Section */}
 			<header className="bg-primary text-white py-16 text-center">
 				<h1 className="text-4xl font-bold">Consultancy</h1>
-				<p className="text-lg mt-2">
-					Stay updated with the latest consultancy services from IIIT Nagpur.
-				</p>
+				<p className="text-lg mt-2">Stay updated with the latest consultancy services from IIIT Nagpur.</p>
 			</header>
 
-			{/* Main Content Section */}
+			{/* Main Content */}
 			<main className="max-w-6xl mx-auto p-6 space-y-10">
-				{/* Measurement Facilities */}
+				{/* Measurement Facility */}
 				<section className="bg-white shadow-lg rounded-lg p-6 border-t-4 border-accent">
-					<h2 className="text-2xl font-semibold text-primary mb-4">
-						Measurement Facility
-					</h2>
+					<h2 className="text-2xl font-semibold text-primary mb-6">Measurement Facility</h2>
 					<ul className="space-y-3 text-gray-700">
-						<li className="flex justify-between items-center border-b pb-3">
-							<span className="font-medium">Measurement using Vector Network Analyzer</span>
-							<a href="#" className="px-4 py-2 text-white bg-accent rounded-md hover:bg-[#c2651c] transition">
-								More Details
-							</a>
-						</li>
-						<li className="flex justify-between items-center">
-							<span className="font-medium">Nano SciTech Laboratory Facility</span>
-							<a href="#" className="px-4 py-2 text-white bg-accent rounded-md hover:bg-[#c2651c] transition">
-								More Details
-							</a>
-						</li>
+						{consultancyProjects.map((project, index) => (
+							<li key={index} className="flex justify-between items-center border-b pb-3">
+								<span className="font-medium">{project.title}</span>
+								<a href={project.link} className="px-4 py-2 text-white bg-accent rounded-md hover:bg-[#c2651c] transition">
+									More Details
+								</a>
+							</li>
+						))}
 					</ul>
 				</section>
 
-				{/* Industrial Research & Consultancy */}
+				{/* Industrial Research */}
 				<section className="bg-white shadow-lg rounded-lg p-6 border-l-4 border-primary">
-					<h2 className="text-2xl font-semibold text-primary mb-4">
-						Industrial Research & Consultancy
-					</h2>
+					<h2 className="text-2xl font-semibold text-primary mb-6">Industrial Research & Consultancy</h2>
 					<p className="text-gray-700 leading-relaxed">
-						IIIT Nagpur collaborates with industries to enhance research quality,
-						solve real-life industrial problems, and explore emerging areas.
+						IIIT Nagpur collaborates with industries to enhance research quality, solve real-life industrial problems, and explore emerging areas.
 					</p>
 					<ul className="mt-4 space-y-2 text-gray-700 list-disc list-inside">
 						<li>Identifying new & emerging research areas</li>
@@ -76,34 +82,17 @@ function Consultancy() {
 
 				{/* Completed & Ongoing Projects */}
 				<section className="bg-white shadow-lg rounded-lg p-6 border-l-4 border-primary">
-					<h2 className="text-2xl font-semibold text-primary mb-4">Completed & Ongoing Projects</h2>
+					<h2 className="text-2xl font-semibold text-primary mb-6">Completed & Ongoing Projects</h2>
 					<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-						<a href="/departments/basic_sciences/projects" className="block bg-[#00336c] text-white p-4 rounded-md shadow-md text-center hover:bg-[#011c3c] transition">
-							Department of Basic Sciences
-						</a>
-						<a href="/departments/cse/projects" className="block bg-[#00336c] text-white p-4 rounded-md shadow-md text-center hover:bg-[#011c3c] transition">
-							Department of Computer Science & Engineering
-						</a>
-						<a href="/departments/ece/projects" className="block bg-[#00336c] text-white p-4 rounded-md shadow-md text-center hover:bg-[#011c3c] transition">
-							Department of Electronics & Communication
-						</a>
-					</div>
-				</section>
-
-				{/* Sponsored Research Labs */}
-				<section className="bg-white shadow-lg rounded-lg p-6 border-t-4 border-accent">
-					<h2 className="text-2xl font-semibold text-primary mb-4">Sponsored Research Labs & Facilities</h2>
-					<p className="text-gray-700 leading-relaxed">
-						Industries can sponsor research labs at IIIT Nagpur, supporting research infrastructure and fostering
-						industry-academia collaborations.
-					</p>
-					<div className="grid sm:grid-cols-2 gap-4 mt-4">
-						<a href="#" className="block bg-accent text-white p-4 rounded-md shadow-md text-center hover:bg-[#c2651c] transition">
-							Nano SciTech Laboratory
-						</a>
-						<a href="#" className="block bg-accent text-white p-4 rounded-md shadow-md text-center hover:bg-[#c2651c] transition">
-							Areas of Expertise
-						</a>
+						{completedProjects.map((project, index) => (
+							<a
+								key={index}
+								href={project.link}
+								className="block bg-primary text-white p-4 rounded-md shadow-md text-center hover:bg-[#011c3c] transition"
+							>
+								{project.name}
+							</a>
+						))}
 					</div>
 				</section>
 			</main>
