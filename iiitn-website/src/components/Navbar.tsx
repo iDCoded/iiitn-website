@@ -16,7 +16,7 @@ const Navbar = () => {
 	const [openNestedSubmenu, setOpenNestedSubmenu] = useState<number | null>(
 		null
 	);
-	
+
 	useEffect(() => {
 		const handleScroll = () => {
 			if (isHomePage) {
@@ -206,7 +206,7 @@ const Navbar = () => {
 			{/* Fixed Navbar */}
 			<div className="fixed top-0 left-0 w-full z-50 transition-transform duration-200">
 				{/* 🔸 Top Orange Bar */}
-				<nav className="w-full bg-accent shadow-md px-6 py-2 flex justify-between items-center hidden lg:flex">
+				<nav className="w-full bg-accent shadow-md px-6 py-2 flex justify-between items-center lg:flex">
 					<h1 className="text-primary font-bold text-xl">अ A</h1>
 					<ul className="hidden lg:flex space-x-6 font-medium text-primary">
 						{navLinks.map((link, index) => (
@@ -220,9 +220,8 @@ const Navbar = () => {
 
 				{/* 🔹 Middle Section with Logo and Mobile Menu Button */}
 				<nav
-					className={`w-full px-8 py-2 flex justify-between items-center ${
-						isHomePage && !isScrolled ? "bg-transparent" : "bg-primary"
-					}`}>
+					className={`w-full px-8 py-2 flex justify-between items-center ${isHomePage && !isScrolled ? "bg-transparent" : "bg-primary"
+						}`}>
 					<a href="/">
 						<div className="flex items-center space-x-4">
 							<img src={imgSrc} alt="IIITN Logo" className="h-16 w-16" />
@@ -252,23 +251,27 @@ const Navbar = () => {
 							{dropdownLinks.map((item, index) => (
 								<li
 									key={index}
-									className="relative group cursor-pointer hover:text-accent"
+									className="relative group cursor-pointer transition-all duration-300 ease-in-out"
 									onMouseEnter={() => setOpenDropdown(index)}
-									onMouseLeave={() => setOpenDropdown(null)}>
-									{item.title}
+									onMouseLeave={() => setOpenDropdown(null)}
+								>
+									<span className="relative inline-block pb-1 text-white transition-all duration-300 ease-in-out group-hover:text-accent group-hover:scale-110">
+										{item.title}
+										{/* Underline Animation */}
+										<span className="absolute left-0 bottom-0 w-0 h-[3px] bg-accent transition-all duration-500 ease-out group-hover:w-full group-hover:opacity-100 opacity-0"></span>
+									</span>
+
 									{/* Dropdown Menu */}
 									<ul
 										className={`absolute top-full mt-2 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
-									${
-										index === dropdownLinks.length - 1
-											? "right-0"
-											: "left-0"
-									} 
-									${
-										openDropdown === index
-											? "opacity-100 visible"
-											: "opacity-0 invisible"
-									}`}>
+									${index === dropdownLinks.length - 1
+												? "right-0"
+												: "left-0"
+											} 
+									${openDropdown === index
+												? "opacity-100 visible"
+												: "opacity-0 invisible"
+											}`}>
 										{item.links.map((link, i) => (
 											<div
 												key={i}
@@ -283,17 +286,15 @@ const Navbar = () => {
 												{link.subLinks && (
 													<ul
 														className={`absolute top-0 mt-0 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
-													${
-														index ===
-														dropdownLinks.length - 1
-															? "right-full"
-															: "left-full"
-													} 
-													${
-														openSubmenu === i
-															? "opacity-100 visible"
-															: "opacity-0 invisible"
-													}`}>
+													${index ===
+																dropdownLinks.length - 1
+																? "right-full"
+																: "left-full"
+															} 
+													${openSubmenu === i
+																? "opacity-100 visible"
+																: "opacity-0 invisible"
+															}`}>
 														{link.subLinks.map((subLink, j) => (
 															<li
 																key={j}
@@ -311,11 +312,10 @@ const Navbar = () => {
 																	<ul
 																		className={`absolute top-0 mt-0 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
 				${j === link.subLinks.length - 1 ? "right-full" : "left-full"} 
-				${
-					openNestedSubmenu === j
-						? "opacity-100 visible"
-						: "opacity-0 invisible"
-				}`}>
+				${openNestedSubmenu === j
+																				? "opacity-100 visible"
+																				: "opacity-0 invisible"
+																			}`}>
 																		{subLink.nestedLinks &&
 																			subLink.nestedLinks.map(
 																				(nestedLink, k) => (
@@ -348,9 +348,8 @@ const Navbar = () => {
 
 			{/* 🔹 Mobile Menu Drawer (Visible on Small Screens) */}
 			<div
-				className={`fixed inset-0 bg-black bg-opacity-50 z-50 transform transition-transform duration-300 ${
-					isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-				}`}>
+				className={`fixed inset-0 bg-black bg-opacity-50 z-50 transform transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+					}`}>
 				<div className="w-3/4 max-w-sm bg-white h-full shadow-lg overflow-y-auto p-6 transform transition-all duration-300 ease-in-out">
 					{/* Close Button */}
 					<button
