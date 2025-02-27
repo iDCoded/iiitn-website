@@ -46,7 +46,7 @@ const departmentsDemo: Record<string, DepartmentData> = {
 		research:
 			"The research focus areas of the CSE Department include artificial intelligence, machine learning, data science, computer networks, and software engineering.",
 		facultyandstaff:
-			"The CSE Department has a team of highly qualified faculty members... Learn more",
+			"The CSE Department has a team of highly qualified faculty members...",
 		projects: ["AI Chatbot", "Data Analytics Tool", "Software Development"],
 		laboratory: ["Networks Lab", "AI Lab", "Software Engineering Lab"],
 		events: [
@@ -216,7 +216,10 @@ export default function DepartmentPage({ title }: PageProps) {
 				{/* Department Information */}
 				<main className="md:col-span-3 space-y-10">
 					{sections.map((section) => (
-						<Card key={section.id} className="shadow-md border border-gray-100">
+						<Card
+							key={section.id}
+							id={section.id}
+							className="shadow-md border border-gray-100">
 							<CardHeader>
 								<CardTitle className="relative text-xl font-bold">
 									<span className="text-4xl text-accent">| </span>
