@@ -23,7 +23,9 @@ const UpcomingEvents = () => {
 	useEffect(() => {
 		const fetchEvents = async () => {
 			try {
-				const res = await fetch("http://localhost:5000/card/cards/category/events");
+				const res = await fetch(
+					"http://localhost:5000/card/cards/category/events"
+				);
 				if (!res.ok) throw new Error("Failed to fetch events");
 				const data = await res.json();
 
@@ -43,13 +45,18 @@ const UpcomingEvents = () => {
 					eventList.map(async (event: any) => {
 						if (event.media_img_path) {
 							try {
-								const imgReq = await fetch(`http://localhost:5000/media/${event.media_img_path}`);
+								const imgReq = await fetch(
+									`http://localhost:5000/media/${event.media_img_path}`
+								);
 								if (!imgReq.ok) throw new Error("Failed to fetch image");
 								const imgRes = await imgReq.json();
 
 								return { ...event, image: imgRes.url };
 							} catch (err) {
-								console.error(`Error fetching image for event ${event.id}:`, err);
+								console.error(
+									`Error fetching image for event ${event.id}:`,
+									err
+								);
 								return event;
 							}
 						}
@@ -103,7 +110,8 @@ const UpcomingEvents = () => {
 			image: workshop,
 			title: "Cybersecurity - Online Programme",
 			caption: "Enhance your cybersecurity skills with IIIT Nagpur",
-			content: "The Department of Computer Science & Engineering at IIIT Nagpur presents an exclusive online certification program on Cybersecurity.",
+			content:
+				"The Department of Computer Science & Engineering at IIIT Nagpur presents an exclusive online certification program on Cybersecurity.",
 			date: "22nd March",
 			location: "Online (Hosted by IIIT Nagpur)",
 			large: false,
@@ -113,21 +121,21 @@ const UpcomingEvents = () => {
 	const displayedEvents = events.length > 0 ? events : defaultEvents;
 
 	return (
-		<section ref={sectionRef} className="py-16 px-8 md:px-12 lg:px-16 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen overflow-y-auto">
+		<section
+			ref={sectionRef}
+			className="py-16 px-8 md:px-12 lg:px-16 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen overflow-y-auto">
 			{/* Section Wrapper */}
 			<motion.div
 				initial={{ opacity: 0, y: 50 }}
 				animate={isInView ? { opacity: 1, y: 0 } : {}}
 				transition={{ duration: 0.8, ease: "easeOut" }}
-				className="max-w-6xl mx-auto flex flex-col h-full"
-			>
+				className="max-w-6xl mx-auto flex flex-col h-full">
 				{/* Section Title */}
 				<motion.div
 					initial={{ opacity: 0, y: -20 }}
 					animate={isInView ? { opacity: 1, y: 0 } : {}}
 					transition={{ duration: 0.6 }}
-					className="flex justify-between items-center mb-8"
-				>
+					className="flex justify-between items-center mb-8">
 					<h2 className="text-3xl font-bold text-left text-primary">
 						<span className="text-4xl text-accent">|</span> Events & Clubs
 					</h2>
@@ -146,9 +154,8 @@ const UpcomingEvents = () => {
 						initial={{ opacity: 0, x: -30 }}
 						animate={isInView ? { opacity: 1, x: 0 } : {}}
 						transition={{ duration: 0.6, ease: "easeOut" }}
-						className="md:col-span-2 flex flex-col"
-					>
-						<HomeEventCard event={displayedEvents[0]} />
+						className="md:col-span-2 flex flex-col">
+						<HomeEventCard event={{ ...displayedEvents[0], large: true }} />
 					</motion.div>
 
 					{/* Small Events */}
@@ -161,8 +168,7 @@ const UpcomingEvents = () => {
 								animate={isInView ? { opacity: 1, x: 0 } : {}}
 								transition={{ duration: 0.6, delay: index * 0.2 }}
 								onClick={() => navigate(`/events/${event.id}`)}
-								className="cursor-pointer transition-all duration-300 hover:shadow-lg rounded-lg"
-							>
+								className="cursor-pointer transition-all duration-300 hover:shadow-lg rounded-lg">
 								<HomeEventCard event={event} />
 							</motion.div>
 						))}
