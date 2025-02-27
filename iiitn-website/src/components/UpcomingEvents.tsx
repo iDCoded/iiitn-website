@@ -140,7 +140,7 @@ const UpcomingEvents = () => {
 						<span className="text-4xl text-accent">|</span> Events & Clubs
 					</h2>
 					<a href="/events">
-						<Button className="text-accent font-semibold hover:underline bg-transparent hover:bg-transparent transition-all duration-300">
+						<Button className="text-accent font-semibold hover:underline bg-transparent transition-all duration-300 hover:bg-primary hover:text-white">
 							View All <FaArrowRight />
 						</Button>
 					</a>

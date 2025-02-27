@@ -16,7 +16,29 @@ interface NewsItem {
 }
 
 export default function NewsCarousel() {
-	const [newsData, setNewsData] = useState<NewsItem[]>([]);
+	const [newsData, setNewsData] = useState<NewsItem[]>([
+        {
+            id: "1",
+            c_category: "news",
+            image: "/default-news.jpg",
+            title: "News Title",
+            caption: "News Caption",
+        },
+        {
+            id: "2",
+            c_category: "news",
+            image: "/default-news.jpg",
+            title: "News Title",
+            caption: "News Caption",
+        },
+        {
+            id: "3",
+            c_category: "news",
+            image: "/default-news.jpg",
+            title: "News Title",
+            caption: "News Caption",
+        },
+    ]);
 
 	const [sliderRef, instanceRef] = useKeenSlider({
 		slides: {

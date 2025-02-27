@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaSearch } from "react-icons/fa"; // Importing a search icon
 
 const routes = {
 	"/": "Home",
@@ -80,6 +81,7 @@ const routes = {
 export default function Search() {
 	const [query, setQuery] = useState("");
 	const [filteredRoutes, setFilteredRoutes] = useState<[string, string][]>([]);
+	const [isOpen, setIsOpen] = useState(false); // State to control visibility
 	const navigate = useNavigate();
 
 	const handleChange = (e: any) => {
@@ -98,41 +100,53 @@ export default function Search() {
 		setQuery(routes[route]);
 		setFilteredRoutes([]);
 		navigate(route);
+		setIsOpen(false); // Close the search box after selection
 	};
 
 	return (
-		<div>
-			<div style={{ position: "relative", display: "inline-block" }}>
-				<input
-					type="text"
-					placeholder="Search anything..."
-					value={query}
-					onChange={handleChange}
-					style={{ padding: "5px", width: "200px", border: "1px solid #ccc" }}
-				/>
-				{filteredRoutes.length > 0 && (
-					<ul
-						style={{
-							listStyle: "none",
-							padding: "0",
-							margin: "0",
-							position: "absolute",
-							background: "white",
-							border: "1px solid #ccc",
-							width: "100%",
-							zIndex: 10,
-						}}>
-						{filteredRoutes.map(([route, label]) => (
-							<li
-								key={route}
-								onClick={() => handleSelect(route as keyof typeof routes)}
-								style={{ padding: "5px", cursor: "pointer" }}>
-								{label}
-							</li>
-						))}
-					</ul>
-				)}
-			</div>
+		<div style={{ position: "relative", display: "flex", alignItems: "center" }}>
+			{/* Search Icon */}
+			<FaSearch
+				onClick={() => setIsOpen((prev) => !prev)}
+				style={{ cursor: "pointer", fontSize: "20px", marginRight: "10px" }}
+			/>
+
+			{/* Search Box (Shown only when isOpen is true) */}
+			{isOpen && (
+				<div style={{ position: "relative" }} className="bg-background rounded-sm border-none">
+					<input
+						type="text"
+						placeholder="Search anything..."
+						value={query}
+						onChange={handleChange}
+						style={{ padding: "5px", width: "200px"}}
+					/>
+					{filteredRoutes.length > 0 && (
+						<ul
+							style={{
+								listStyle: "none",
+								padding: "0",
+								margin: "0",
+								position: "absolute",
+								background: "white",
+								border: "1px solid #ccc",
+								width: "100%",
+								zIndex: 10,
+							}}
+						>
+							{filteredRoutes.map(([route, label]) => (
+								<li
+									key={route}
+									onClick={() => handleSelect(route as keyof typeof routes)}
+									style={{ padding: "5px", cursor: "pointer" }}
+								>
+									{label}
+								</li>
+							))}
+						</ul>
+					)}
+				</div>
+			)}
 		</div>
 	);
 }

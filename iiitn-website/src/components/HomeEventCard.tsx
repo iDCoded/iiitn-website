@@ -42,7 +42,7 @@ const HomeEventCard = ({ event }: { event: Event }) => (
 			{/* Event Link */}
 			<a
 				href={`/events/${event.id}`}
-				className="bg-white text-primary px-4 py-2 rounded-lg font-semibold shadow-md hover:bg-gray-200 transition mt-2 justify-self-end flex">
+				className="bg-white text-primary px-4 py-2 rounded-lg font-semibold shadow-md hover:bg-accent hover:text-white transition mt-2 justify-self-end flex">
 				View Details
 			</a>
 		</div>
