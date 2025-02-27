@@ -6,6 +6,15 @@ import img2 from "../assets/IIIT26.jpg";
 import img3 from "../assets/IIIT21(1).jpg";
 import img4 from "../assets/gym.jpg";
 import img5 from "../assets/IIIT12.jpg";
+import { Button } from "./ui/button";
+import {
+	DialogContent,
+	DialogHeader,
+	DialogTrigger,
+	Dialog,
+	DialogDescription,
+	DialogTitle,
+} from "./ui/dialog";
 
 const campusLifeImages = [
 	{ src: img1, title: "Campus" },
@@ -30,11 +39,36 @@ const CampusLife = () => {
 					<h2 className="text-3xl font-bold text-left text-primary">
 						<span className="text-accent">|</span> Campus Life
 					</h2>
-					<a href="/hostellife">
-						<button className="text-white bg-accent py-2 px-4 rounded-sm font-semibold hover:underline">
-							More
-						</button>
-					</a>
+					<div className="flex flex-row gap-6">
+						<Dialog>
+							<DialogTrigger asChild>
+								<Button>Campus Tour</Button>
+							</DialogTrigger>
+							<DialogContent className="max-w-screen-lg w-full">
+								<DialogHeader>
+									<DialogTitle>Campus Tour</DialogTitle>
+									<DialogDescription>Tour of the campus</DialogDescription>
+								</DialogHeader>
+								<div className="flex justify-center items-center">
+									<iframe
+										width="860"
+										height="615"
+										src="https://www.youtube.com/embed/wAOXk7KdkXo?si=3NWKnwWrvMdvGolD"
+										title="YouTube video player"
+										frameBorder="0"
+										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+										// referrerpolicy="strict-origin-when-cross-origin"
+										// allowfullscreen
+									/>
+								</div>
+							</DialogContent>
+						</Dialog>
+						<a href="/hostellife">
+							<button className="text-white bg-accent py-2 px-4 rounded-sm font-semibold hover:underline">
+								More
+							</button>
+						</a>
+					</div>
 				</div>
 				<p className="text-left text-gray-600 mb-8">
 					Discover the vibrant student life at IIIT Nagpur.
