@@ -1,99 +1,103 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const routes = [
-	"/",
-	"/about",
-	"/admin",
-	"/departments",
-	"/departments/:param",
-	"/academics/courses",
-	"/admissions/btech",
-	"/admissions/btech/contact",
-	"/admissions/btech/acadfees",
-	"/admissions/btech/hostelfees",
-	"/admissions/btech/rulesandregulations",
-	"/placements",
-	"/placements/companies",
-	"/placements/internships",
-	"/placements/statistics",
-	"/placements/students",
-	"/placements/contact",
-	"/research/projects",
-	"/research/publications",
-	"/students",
-	"/facultyandstaff",
-	"/alumni",
-	"/alumni/form",
-	"/events",
-	"/recruitments",
-	"/e-library",
-	"/login",
-	"/signup",
-	"/initiatives",
-	"/governance/administration",
-	"/governance/:param",
-	"/governance/committee",
-	"/pages/guesthouse",
-	"/pages/pressrelease",
-	"/pages/officialdocuments",
-	"/pages/tenders",
-	"/pages/consultancy",
-	"/pages/iic",
-	"/pages/elclub",
-	"/pages/academicfee",
-	"/pages/academicfeepayment",
-	"/pages/hostelfee",
-	"/pages/hostelfeepayment",
-	"/pages/scholarships",
-	"/pages/rti",
-	"/pages/clinicalcounselling",
-	"/pages/mess",
-	"/pages/studentachievements",
-	"/pages/facultyachievements",
-	"/pages/convocation",
-	"/pages/formats",
-	"/pages/nirf",
-	"/pages/grievance",
-	"/pages/grievancecomm",
-	"/pages/internalcomplt",
-	"/pages/equalopp",
-	"/pages/howtoreach",
-	"/visitors",
-	"/pages/grievance_committee_sc_st",
-	"/pages/studentclubs",
-	"/pages/icc",
-	"/pages/eoc",
-	"/pages/directory",
-	"/news/:newsId",
-	"/events/:eventid",
-	"/faculty/:name",
-	"/institute/facilities",
-	"/institute/institutesprofile",
-	"/institute/annualreports",
-	"/institute/rtireports",
-	"/institute/minutesofmeeting",
-	"/institute/immutableproperties",
-	"*", // 404 page
-]; // Add your valid routes here
+const routes = {
+	"/": "Home",
+	"/about": "About Us",
+	"/admin": "Admin Panel",
+	"/departments": "Departments",
+	"/departments/:param": "Department Details",
+	"/academics/courses": "Courses Offered",
+	"/admissions/btech": "B.Tech Admissions",
+	"/admissions/btech/contact": "B.Tech Admissions Contact",
+	"/admissions/btech/acadfees": "B.Tech Academic Fees",
+	"/admissions/btech/hostelfees": "B.Tech Hostel Fees",
+	"/admissions/btech/rulesandregulations": "B.Tech Rules & Regulations",
+	"/placements": "Placements",
+	"/placements/companies": "Recruiting Companies",
+	"/placements/internships": "Internship Opportunities",
+	"/placements/statistics": "Placement Statistics",
+	"/placements/students": "Student Placements",
+	"/placements/contact": "Placement Office Contact",
+	"/research/projects": "Research Projects",
+	"/research/publications": "Research Publications",
+	"/students": "Student Resources",
+	"/facultyandstaff": "Faculty & Staff",
+	"/alumni": "Alumni Network",
+	"/alumni/form": "Alumni Registration Form",
+	"/events": "Upcoming Events",
+	"/recruitments": "Recruitment Notices",
+	"/e-library": "E-Library",
+	"/login": "Login",
+	"/signup": "Sign Up",
+	"/initiatives": "Institute Initiatives",
+	"/governance/administration": "Administration",
+	"/governance/:param": "Governance Details",
+	"/governance/committee": "Governance Committee",
+	"/pages/guesthouse": "Guest House",
+	"/pages/pressrelease": "Press Releases",
+	"/pages/officialdocuments": "Official Documents",
+	"/pages/tenders": "Tenders",
+	"/pages/consultancy": "Consultancy Services",
+	"/pages/iic": "Innovation & Incubation Center",
+	"/pages/elclub": "E-Learning Club",
+	"/pages/academicfee": "Academic Fee Details",
+	"/pages/academicfeepayment": "Academic Fee Payment",
+	"/pages/hostelfee": "Hostel Fee Details",
+	"/pages/hostelfeepayment": "Hostel Fee Payment",
+	"/pages/scholarships": "Scholarships",
+	"/pages/rti": "RTI Information",
+	"/pages/clinicalcounselling": "Clinical Counselling",
+	"/pages/mess": "Mess Facilities",
+	"/pages/studentachievements": "Student Achievements",
+	"/pages/facultyachievements": "Faculty Achievements",
+	"/pages/convocation": "Convocation",
+	"/pages/formats": "Document Formats",
+	"/pages/nirf": "NIRF Rankings",
+	"/pages/grievance": "Grievance Portal",
+	"/pages/grievancecomm": "Grievance Committee",
+	"/pages/internalcomplt": "Internal Complaints",
+	"/pages/equalopp": "Equal Opportunity Cell",
+	"/pages/howtoreach": "How to Reach",
+	"/visitors": "Visitor Information",
+	"/pages/grievance_committee_sc_st": "SC/ST Grievance Committee",
+	"/pages/studentclubs": "Student Clubs",
+	"/pages/icc": "Internal Complaints Committee (ICC)",
+	"/pages/eoc": "Equal Opportunity Cell",
+	"/pages/directory": "Directory",
+	"/news/:newsId": "News Article",
+	"/events/:eventid": "Event Details",
+	"/faculty/:name": "Faculty Profile",
+	"/institute/facilities": "Institute Facilities",
+	"/institute/institutesprofile": "Institute Profile",
+	"/institute/annualreports": "Annual Reports",
+	"/institute/rtireports": "RTI Reports",
+	"/institute/minutesofmeeting": "Minutes of Meetings",
+	"/institute/immutableproperties": "Immutable Properties",
+	"*": "404 - Page Not Found",
+};
 
 export default function Search() {
 	const [query, setQuery] = useState("");
-	const [filteredRoutes, setFilteredRoutes] = useState<string[]>([]);
+	const [filteredRoutes, setFilteredRoutes] = useState<[string, string][]>([]);
 	const navigate = useNavigate();
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChange = (e: any) => {
 		const value = e.target.value.toLowerCase();
 		setQuery(value);
 		setFilteredRoutes(
-			value ? routes.filter((route) => route.includes(value)) : []
+			value
+				? Object.entries(routes).filter(([, label]) =>
+						label.toLowerCase().includes(value)
+				  )
+				: []
 		);
 	};
 
-	const handleSelect = (route: string) => {
-		setQuery(route);
+	const handleSelect = (route: keyof typeof routes) => {
+		setQuery(routes[route]);
 		setFilteredRoutes([]);
-		navigate(`${route}`);
+		navigate(route);
 	};
 
 	return (
@@ -118,15 +122,12 @@ export default function Search() {
 							width: "100%",
 							zIndex: 10,
 						}}>
-						{filteredRoutes.map((route) => (
+						{filteredRoutes.map(([route, label]) => (
 							<li
 								key={route}
-								onClick={() => handleSelect(route)}
-								style={{
-									padding: "5px",
-									cursor: "pointer",
-								}}>
-								{route}
+								onClick={() => handleSelect(route as keyof typeof routes)}
+								style={{ padding: "5px", cursor: "pointer" }}>
+								{label}
 							</li>
 						))}
 					</ul>
