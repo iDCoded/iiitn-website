@@ -49,7 +49,7 @@ const CampusLife = () => {
 									<DialogTitle>Campus Tour</DialogTitle>
 									<DialogDescription>Tour of the campus</DialogDescription>
 								</DialogHeader>
-								<div className="flex justify-center items-center">
+								<div className="flex justify-center items-center overflow-hidden">
 									<iframe
 										width="860"
 										height="615"
