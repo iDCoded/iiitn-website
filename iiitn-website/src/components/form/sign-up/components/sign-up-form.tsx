@@ -17,6 +17,7 @@ import { PasswordInput } from "@/components/password-input";
 import { Textarea } from "@/components/ui/textarea";
 import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Checkbox } from "@/components/ui/checkbox";
 
 type SignUpFormProps = HTMLAttributes<HTMLDivElement>;
 
@@ -50,6 +51,9 @@ const formSchema = z
 			.max(10, { message: "Phone number must include 10 digits" }),
 		curr_address: z.string().min(1, { message: "Please enter your address" }),
 		perm_address: z.string().min(1, { message: "Please enter your address" }),
+		isAlumni: z.boolean().default(false).optional(),
+		alumniCurrOrg: z.string().optional(),
+		alumniBrief: z.string().optional(),
 	})
 	.refine((data) => data.password === data.confirmPassword, {
 		message: "Passwords don't match.",
@@ -74,6 +78,9 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
 			perm_address: "",
 			password: "",
 			confirmPassword: "",
+			isAlumni: false,
+			alumniCurrOrg: "",
+			alumniBrief: "",
 		},
 	});
 
@@ -231,7 +238,59 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
 								</FormItem>
 							)}
 						/>
-						<Button className="mt-2" disabled={isLoading}>
+						<FormField
+							control={form.control}
+							name="isAlumni"
+							render={({ field }) => (
+								<FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border py-4">
+									<FormLabel>Are you an alumni?</FormLabel>
+									<FormControl>
+										<Checkbox
+											checked={field.value}
+											onCheckedChange={field.onChange}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						{form.watch("isAlumni") && (
+							<>
+								<FormField
+									control={form.control}
+									name="alumniCurrOrg"
+									render={({ field }) => (
+										<FormItem className="space-y-1">
+											<FormLabel>Where do you work</FormLabel>
+											<FormControl>
+												<Input placeholder="Organisation name" {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="alumniBrief"
+									render={({ field }) => (
+										<FormItem className="space-y-1">
+											<FormLabel>Brief</FormLabel>
+											<FormControl>
+												<Input
+													placeholder="Provide a brief information"
+													{...field}
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+							</>
+						)}
+
+						<Button
+							className="mt-2 bg-accent-foreground text-foreground"
+							disabled={isLoading}>
 							Create Account
 						</Button>
 					</div>

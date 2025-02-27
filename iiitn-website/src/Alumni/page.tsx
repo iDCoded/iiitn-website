@@ -1,10 +1,10 @@
 import AlumniEventCard from "../components/AlumniEventCard";
 import AlumniCarousel from "../components/AlumniCarousel";
 import heroimage from "../assets/alumBanner.png";
-import alum_meet from "../assets/alumni meet.png"
-import carrer_guidance from "../assets/carrer_giud2.png"
-import past_reunion from "../assets/alum_past.png"
-import past_te_talk from "../assets/pst_techtalk3.jpg"
+import alum_meet from "../assets/alumni meet.png";
+import carrer_guidance from "../assets/carrer_giud2.png";
+import past_reunion from "../assets/alum_past.png";
+import past_te_talk from "../assets/pst_techtalk3.jpg";
 const events = [
 	{
 		title: "Alumni Meet 2024",
@@ -44,16 +44,26 @@ function Alumni() {
 				style={{
 					backgroundImage: `url(${heroimage})`,
 					backgroundSize: "cover",
-					backgroundPosition: "center"
-				}}
-			>
+					backgroundPosition: "center",
+				}}>
 				{/* Overlay */}
 				<div className="absolute inset-0 bg-black opacity-50"></div>
 				<div className="relative z-10">
-					<h1 className="text-5xl font-extrabold drop-shadow-lg">Welcome, Alumni of IIIT Nagpur!</h1>
-					<p className="text-xl font-medium mt-2">Stay connected, cherish old memories, and contribute to the growth of IIIT Nagpur.</p>
+					<h1 className="text-5xl font-extrabold drop-shadow-lg">
+						Welcome, Alumni of IIIT Nagpur!
+					</h1>
+					<p className="text-xl font-medium mt-2">
+						Stay connected, cherish old memories, and contribute to the growth
+						of IIIT Nagpur.
+					</p>
 					<p className="mt-6">
-						<a href="/alumni/form" target="_blank" rel="noreferrer" className="bg-white text-primary px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-accent hover:text-white transition">Join the Alumni Network</a>
+						<a
+							href="/signup"
+							target="_blank"
+							rel="noreferrer"
+							className="bg-white text-primary px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-accent hover:text-white transition">
+							Join the Alumni Network
+						</a>
 					</p>
 				</div>
 			</header>
@@ -96,22 +106,24 @@ function Alumni() {
 
 			{/* Call to Action */}
 			<div className="bg-primary text-white text-center py-16">
-				<h2 className="text-4xl font-bold">Be a Part of the IIIT Nagpur Legacy</h2>
+				<h2 className="text-4xl font-bold">
+					Be a Part of the IIIT Nagpur Legacy
+				</h2>
 				<p className="text-lg mt-4 max-w-3xl mx-auto opacity-90">
-					Join the alumni community, mentor students, and keep in touch with the latest developments at IIIT Nagpur.
+					Join the alumni community, mentor students, and keep in touch with the
+					latest developments at IIIT Nagpur.
 				</p>
 				<p className="mt-6">
 					<a
 						href="/alumni/form"
 						target="_blank"
 						rel="noreferrer"
-						className="bg-white text-primary px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-gray-200 transition"
-					>
+						className="bg-white text-primary px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-gray-200 transition">
 						Sign Up Now
 					</a>
 				</p>
 			</div>
-		</div >
+		</div>
 	);
 }
 
