@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
 const testimonials = [
-    { id: 1, text: "IIIT Nagpur transformed my career!", name: "Akshith" },
-    { id: 2, text: "The faculty is amazing and very supportive.", name: "Sandesh Lavshetty" },
-    { id: 3, text: "The best institute for research and innovation.", name: "John Doe" },
-    { id: 4, text: "The campus life is vibrant and full of opportunities!", name: "Jane Smith" },
+    { id: 1, text: "IIIT Nagpur transformed my career!", name: "Aditya Singh", bt_id:"BT23CSE040" },
+    { id: 2, text: "The faculty is amazing and very supportive.", name: "Pratham Dwivedi", bt_id:"BT22CSA026" },
+    { id: 3, text: "The best institute for research and innovation.", name: "Aryan Thakur",bt_id:"BT21CSH040" },
+    { id: 4, text: "The campus life is vibrant and full of opportunities!", name: "Manikanta Bojja",bt_id:"BT24ECE021" },
 ];
 
 const InfiniteMovingCards = ({
@@ -52,6 +52,7 @@ const InfiniteMovingCards = ({
                         {/* Quote Icons */}
                         <FaQuoteLeft className="text-5xl text-accent absolute top-4 left-4 opacity-30" />
                         <p className="text-xl text-gray-700 italic mt-8">"{item.text}"</p>
+                        <p className="text-xl text-gray-700 italic mt-8">"{item.bt_id}"</p>
                         <p className="text-primary mt-4 text-lg font-semibold">- {item.name}</p>
                         <FaQuoteRight className="text-5xl text-accent absolute bottom-4 right-4 opacity-30" />
                     </div>
