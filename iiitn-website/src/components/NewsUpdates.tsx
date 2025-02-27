@@ -120,7 +120,7 @@ export default function NewsCarousel() {
 				<div className="relative">
 					{/* Previous Button */}
 					<button
-						onClick={() => instanceRef.current?.prev()}
+						onClick={() => instanceRef.current && instanceRef.current?.prev()}
 						className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg p-2 rounded-full hover:bg-gray-200">
 						<FaArrowLeft />
 					</button>
@@ -154,7 +154,7 @@ export default function NewsCarousel() {
 
 					{/* Next Button */}
 					<button
-						onClick={() => instanceRef.current?.next()}
+						onClick={() => instanceRef.current && instanceRef.current?.next()}
 						className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg p-2 rounded-full hover:bg-gray-200">
 						<FaArrowRight />
 					</button>
