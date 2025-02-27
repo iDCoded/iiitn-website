@@ -59,7 +59,7 @@ function Students() {
                 <div className="absolute inset-0 bg-black opacity-50"></div>
                 <div className="relative z-10">
                     <h1 className="text-4xl font-bold">Students</h1>
-                    <p className="text-lg mt-2">Stay onnected and contribute to IIIT Nagpur.</p>
+                    <p className="text-lg mt-2">Stay connected and contribute to IIIT Nagpur.</p>
                 </div>
             </header>
 

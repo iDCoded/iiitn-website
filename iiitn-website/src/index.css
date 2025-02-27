@@ -21,8 +21,8 @@
 :root {
 	--background: #f4f4f4; /* Soft Gray */
 	--foreground: #31363f; /* Dark Slate */
-	--card: #222831; /* Deep Graphite */
-	--card-foreground: #f4f4f4;
+	--card: #f4f4f4; /* Deep Graphite */
+	--card-foreground: #222831;
 	--popover: #222831;
 	--popover-foreground: #f4f4f4;
 	--primary: #222831; /* Deep Graphite */

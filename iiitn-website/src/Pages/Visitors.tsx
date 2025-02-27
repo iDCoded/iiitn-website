@@ -1,16 +1,24 @@
-import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionItem } from "@/components/ui/accordion";
+import heroimage from "../assets/visitorsBanner.jpeg";
 
 
 function Visitors() {
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col">
+    <section className="bg-gray-100 min-h-screen flex flex-col">
       {/* Header Section */}
-      <div className="bg-primary text-white py-16 text-center">
-        <h1 className="text-4xl font-bold">Visitors</h1>
+      <header
+                className="relative w-full h-75 flex flex-col justify-center items-center text-white text-center shadow-lg"
+                style={{
+                    backgroundImage: `url(${heroimage})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center"
+                }}
+            >
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black opacity-50"></div>        <h1 className="text-4xl font-bold">Visitors</h1>
         <p className="text-lg mt-2">Stay updated with the latest tenders from IIIT Nagpur.</p>
-      </div>
+      </header>
 
       <section className="max-w-5xl mx-auto bg-white p-6 shadow-lg rounded-lg mt-10">
         <h2 className="text-3xl font-semibold text-primary">🗺️ Location & Accessibility</h2>
@@ -150,7 +158,7 @@ function Visitors() {
 
 
 
-    </div>
+    </section>
   )
 }
 

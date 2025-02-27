@@ -1,5 +1,4 @@
-import { motion, useAnimation } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
 const testimonials = [
@@ -39,107 +38,57 @@ const testimonials = [
 		name: "Neha Gupta",
 		bt_id: "BT23ECE015",
 	},
-	{
-		id: 7,
-		text: "It has been a great experience learning and growing at this institute.",
-		name: "Rohit Sharma",
-		bt_id: "BT22IT024",
-	},
-	{
-		id: 8,
-		text: "The exposure to technology and research is unparalleled!",
-		name: "Priya Reddy",
-		bt_id: "BT21CSE034",
-	},
-	{
-		id: 9,
-		text: "IIIT Nagpur has been a gateway to new opportunities and growth.",
-		name: "Amit Joshi",
-		bt_id: "BT24CSA019",
-	},
-	{
-		id: 10,
-		text: "A place where innovation and creativity are encouraged!",
-		name: "Sanya Deshmukh",
-		bt_id: "BT23CSH020",
-	},
 ];
 
-const InfiniteMovingCards = ({
-	items,
-	speed = 10, // Adjust scrolling speed
-	direction = "left",
-}: {
-	items: { id: number; text: string; name: string; bt_id: string }[];
-	speed?: number;
-	direction?: "left" | "right";
-}) => {
-	const controls = useAnimation();
-	const [isPaused, setIsPaused] = useState(false);
+interface Testimonial {
+	id: number;
+	text: string;
+	name: string;
+	bt_id: string;
+}
 
-	// Function to start infinite animation
-	const startAnimation = async () => {
-		// Calculate the duration based on the speed
-		const cardWidth = 320; // Approximate width of one card (in px)
-		const distance = cardWidth * items.length; // Distance all items will move
-		const duration = distance / speed; // Calculate duration based on speed
-
-		await controls.start({
-			x:
-				direction === "left"
-					? ["0%", `-${distance}%`]
-					: [`-${distance}%`, "0%"],
-			transition: { repeat: Infinity, duration: duration, ease: "linear" },
-		});
-	};
-
-	// Start animation when component mounts or resumes
-	useEffect(() => {
-		if (!isPaused) {
-			startAnimation();
-		}
-	}, [isPaused]);
+const InfiniteMovingCards = ({ items, speed = 30, direction = "left" }: { items: Testimonial[], speed?: number, direction?: string }) => {
+	const duplicateItems = [...items, ...items, ...items]; // Duplicate to ensure seamless scrolling
 
 	return (
-		<motion.div
-			className="relative w-full overflow-hidden py-10 flex justify-center"
-			whileInView={{ opacity: 1, y: 0 }} // Reveal on scroll
-			initial={{ opacity: 0, y: 50 }}
-			transition={{ duration: 0.6, ease: "easeOut" }}>
-			<motion.div className="flex space-x-6" animate={controls}>
-				{[...items, ...items, ...items].map((item, index) => (
+		<div className="relative w-full overflow-hidden py-10 flex justify-center">
+			<motion.div
+				className="flex space-x-6 min-w-max"
+				initial={{ x: direction === "left" ? 0 : "-100%" }}
+				animate={{ x: direction === "left" ? "-100%" : "0%" }}
+				transition={{ repeat: Infinity, duration: speed, ease: "linear" }}
+			>
+				{duplicateItems.map((item, index) => (
 					<div
 						key={index}
-						className="w-80 h-72 bg-white shadow-lg rounded-lg border border-gray-200 p-8 flex-shrink-0 text-center relative flex flex-col justify-center md:w-96 md:h-80">
-						{/* Quote Icons */}
+						className="w-80 h-72 bg-white shadow-lg rounded-lg border border-gray-200 p-8 flex-shrink-0 text-center relative flex flex-col justify-center md:w-96 md:h-80"
+					>
 						<FaQuoteLeft className="text-5xl text-accent absolute top-4 left-4 opacity-30" />
 						<p className="text-xl text-gray-700 italic mt-8">"{item.text}"</p>
-						<p className="text-xl text-gray-700 italic mt-8">"{item.bt_id}"</p>
-						<p className="text-primary mt-4 text-lg font-semibold">
-							- {item.name}
-						</p>
+						<p className="text-primary mt-4 text-lg font-semibold">- {item.name}</p>
+                        <p className="text-gray-500 text-sm">{item.bt_id}</p>
 						<FaQuoteRight className="text-5xl text-accent absolute bottom-4 right-4 opacity-30" />
 					</div>
 				))}
 			</motion.div>
-		</motion.div>
+		</div>
 	);
 };
 
 const TestimonialsSection = () => {
 	return (
-		<section className="relative flex flex-col items-center space-y-10 h-screen px-4 md:px-10 justify-center">
-			{/* Heading Reveal Animation */}
+		<section className="relative flex flex-col items-center space-y-10 h-screen px-4 md:px-10 justify-center bg-background">
 			<motion.h2
 				className="text-3xl md:text-5xl font-bold text-primary tracking-wide text-center"
 				whileInView={{ opacity: 1, y: 0 }}
 				initial={{ opacity: 0, y: -50 }}
-				transition={{ duration: 0.6, ease: "easeOut" }}>
+				transition={{ duration: 0.6, ease: "easeOut" }}
+			>
 				<span className="text-accent">| </span>What Our Students Say
 			</motion.h2>
 
-			{/* Moving Cards - One moving left */}
-			<InfiniteMovingCards items={testimonials} speed={2} direction="left" />
+			{/* Moving Testimonials */}
+			<InfiniteMovingCards items={testimonials} speed={25} direction="left" />
 		</section>
 	);
 };
