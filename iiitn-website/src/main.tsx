@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import AppRoutes from "./routes";
 import Navbar from "./components/Navbar";
@@ -36,9 +36,20 @@ export function App() {
 	);
 }
 
+export default function ScrollToTop() {
+	const { pathname } = useLocation();
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [pathname]);
+
+	return null;
+}
+
 // Wrap the entire app with Router and AuthProvider
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<Router>
+		<ScrollToTop />
 		<AuthProvider>
 			<App />
 		</AuthProvider>
