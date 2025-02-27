@@ -137,7 +137,6 @@ export default function DepartmentPage({ title }: PageProps) {
 				setLoading(false);
 			})
 			.catch((error) => {
-				setError(error);
 				setData(departmentsDemo[title]); // Fallback to demo data
 				setLoading(false);
 			})
