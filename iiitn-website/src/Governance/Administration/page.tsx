@@ -1,5 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import heroimage from "../../assets/BoGBanner.jpg";
+import chairman from "../../assets/chairman.jpg"
+import director from "../../assets/director.jpg"
+import registrar from "../../assets/registrar.jpg"
+
 
 function Administration() {
     return (
@@ -57,7 +61,7 @@ function Administration() {
                             email: "chairman@iiitn.ac.in",
                             desc: "An accomplished former CEO, Ravi Sharma is now a mentor & philanthropist with a mission of 'Spreading Goodness' by supporting initiatives towards...",
                             link: "/governance/chairman",
-                            imageSrc: "/assets/chairman.jpg",
+                            imageSrc: chairman,
                         },
                         {
                             id: "director",
@@ -67,7 +71,7 @@ function Administration() {
                             email: "director@iiitn.ac.in",
                             desc: "Professor Prem Lal Patel took over as Director of IIIT Nagpur on 1st October 2024. He is also the Director of VNIT Nagpur...",
                             link: "/governance/director",
-                            imageSrc: "/assets/director.jpg",
+                            imageSrc: director,
                         },
                         {
                             id: "registrar",
@@ -78,7 +82,7 @@ function Administration() {
                             phone: "+91 9421995010",
                             desc: "With over 30 years of experience in administration and academics...",
                             link: "/governance/registrar",
-                            imageSrc: "/assets/registrar.jpg",
+                            imageSrc: registrar,
                         },
                     ].map((person) => (
                         <Card key={person.id} id={person.id} className="shadow-lg">
