@@ -105,7 +105,9 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 								</FormItem>
 							)}
 						/>
-						<Button className="mt-2" disabled={isLoading}>
+						<Button
+							className="mt-2 bg-accent-foreground text-foreground"
+							disabled={isLoading}>
 							Login
 						</Button>
 					</div>
