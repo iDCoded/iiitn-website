@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import img1 from "../assets/IIIT22.jpg";
 import img2 from "../assets/IIIT26.jpg";
 import img3 from "../assets/IIIT21(1).jpg";
-import img4 from "../assets/IIIT17.jpg";
+import img4 from "../assets/gym.jpg";
 import img5 from "../assets/IIIT12.jpg";
 
 const campusLifeImages = [
