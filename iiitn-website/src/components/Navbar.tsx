@@ -8,7 +8,7 @@ const imgSrc = logo;
 const Navbar = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const isHomePage = window.location.pathname === "/";
+	const [isHomePage,setIsHomePage] = useState(window.location.pathname === "/");
 	const [openDropdown, setOpenDropdown] = useState<number | null>(null);
 	const [isEnglish, setIsEnglish] = useState(false); // Define the isEnglish variable
 	const [openSubmenu, setOpenSubmenu] = useState<number | null>(null);
