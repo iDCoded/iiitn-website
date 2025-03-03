@@ -73,47 +73,66 @@ const Footer = () => {
 
                     {/* Academics */}
                     <motion.div variants={fadeInUp}>
-                        <h4 className="text-lg font-semibold mb-4 text-accent">Academics</h4>
-                        <ul className="space-y-2 text-sm text-gray-300">
-                            {["Courses", "Projects", "Publications", "Academic Calendar", "Library"].map((item, index) => (
-                                <li key={index}>
-                                    <a href={`/academics/${item.toLowerCase().replace(" ", "")}`} className="relative group block">
-                                        {item}
-                                        <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
+                    <h4 className="text-lg font-semibold mb-4 text-accent">Academics</h4>
+<ul className="space-y-2 text-sm text-gray-300">
+    {[
+        { name: "Courses", link: "/academics/courses" },
+        { name: "Projects", link: "/academics/projects" },
+        { name: "Publications", link: "/academics/publications" },
+        { name: "Academic Calendar", link: "/academics/academic-calendar" },
+        { name: "Library", link: "/academics/library" }
+    ].map((item, index) => (
+        <li key={index}>
+            <a href={item.link} className="relative group block">
+                {item.name}
+                <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+            </a>
+        </li>
+    ))}
+</ul>
+
                     </motion.div>
 
                     {/* Campus Life */}
                     <motion.div variants={fadeInUp}>
-                        <h4 className="text-lg font-semibold mb-4 text-accent">Campus Life</h4>
-                        <ul className="space-y-2 text-sm text-gray-300">
-                            {["Clubs", "Festivals", "Sports", "Student Governance"].map((item, index) => (
-                                <li key={index}>
-                                    <a href={`/pages/${item.toLowerCase().replace(" ", "")}`} className="relative group block">
-                                        {item}
-                                        <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
+                    <h4 className="text-lg font-semibold mb-4 text-accent">Campus Life</h4>
+<ul className="space-y-2 text-sm text-gray-300">
+    {[
+        { name: "Clubs", link: "/pages/studentclubs" },
+        { name: "Festivals", link: "/campus-life/festivals" },
+        { name: "Sports", link: "/campus-life/sports" },
+        { name: "Student Governance", link: "/campus-life/student-governance" }
+    ].map((item, index) => (
+        <li key={index}>
+            <a href={item.link} className="relative group block">
+                {item.name}
+                <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+            </a>
+        </li>
+    ))}
+</ul>
+
                     </motion.div>
 
                     {/* Happenings */}
                     <motion.div variants={fadeInUp}>
-                        <h4 className="text-lg font-semibold mb-4 text-accent">Happenings</h4>
-                        <ul className="space-y-2 text-sm text-gray-300">
-                            {["Events", "News", "Student Achievements", "Faculty Achievements"].map((item, index) => (
-                                <li key={index}>
-                                    <a href={`/pages/${item.toLowerCase().replace(" ", "")}`} className="relative group block">
-                                        {item}
-                                        <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
+                    <h4 className="text-lg font-semibold mb-4 text-accent">Happenings</h4>
+<ul className="space-y-2 text-sm text-gray-300">
+    {[
+        { name: "Events", link: "/happenings/events" },
+        { name: "News", link: "/happenings/news" },
+        { name: "Student Achievements", link: "/happenings/student-achievements" },
+        { name: "Faculty Achievements", link: "/happenings/faculty-achievements" }
+    ].map((item, index) => (
+        <li key={index}>
+            <a href={item.link} className="relative group block">
+                {item.name}
+                <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+            </a>
+        </li>
+    ))}
+</ul>
+
                     </motion.div>
                 </motion.div>
 
