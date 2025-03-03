@@ -8,14 +8,29 @@ const imgSrc = logo;
 const Navbar = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const [isHomePage, setIsHomePage] = useState(
-		window.location.pathname === "/"
-	);
+	const isHomePage = window.location.pathname === "/";
 	const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+	const [isEnglish, setIsEnglish] = useState(false); // Define the isEnglish variable
 	const [openSubmenu, setOpenSubmenu] = useState<number | null>(null);
 	const [openNestedSubmenu, setOpenNestedSubmenu] = useState<number | null>(
 		null
 	);
+
+	useEffect(() => {
+		const toggleLanguage = () => {
+			setTimeout(() => {
+				setIsEnglish(true);
+				setTimeout(() => {
+					setIsEnglish(false);
+					setTimeout(() => {
+						setIsEnglish(true);
+					}, 5000);
+				}, 5000);
+			}, 5000);
+		};
+
+		toggleLanguage();
+	}, []);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -220,18 +235,14 @@ const Navbar = () => {
 
 				{/* 🔹 Middle Section with Logo and Mobile Menu Button */}
 				<nav
-					className={`w-full px-8 py-2 flex justify-between items-center ${
-						isHomePage && !isScrolled ? "bg-transparent" : "bg-primary"
-					}`}>
+					className={`w-full px-8 py-2 flex justify-between items-center ${isHomePage && !isScrolled ? "bg-transparent" : "bg-primary"
+						}`}>
 					<a href="/">
 						<div className="flex items-center space-x-4">
 							<img src={imgSrc} alt="IIITN Logo" className="h-16 w-16" />
 							<div className="text-left">
-								<p className="font-bold text-white text-lg hidden lg:block">
-									भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर
-								</p>
-								<p className="font-medium text-white text-base">
-									Indian Institute of Information Technology, Nagpur
+								<p className="font-bold text-white hidden lg:block text-2xl">
+									{isEnglish ? "Indian Institute of Information Technology, Nagpur" : "भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर"}
 								</p>
 								<p className="font-light text-sm text-white">
 									An Institution of National Importance
@@ -332,9 +343,8 @@ const Navbar = () => {
 
 			{/* 🔹 Mobile Menu Drawer (Visible on Small Screens) */}
 			<div
-				className={`fixed inset-0 bg-black bg-opacity-50 z-50 transform transition-transform duration-300 ${
-					isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-				}`}>
+				className={`fixed inset-0 bg-black bg-opacity-50 z-50 transform transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+					}`}>
 				<div className="w-3/4 max-w-sm bg-white h-full shadow-lg overflow-y-auto p-6 transform transition-all duration-300 ease-in-out">
 					{/* Close Button */}
 					<button
