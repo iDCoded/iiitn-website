@@ -16,22 +16,7 @@ const Navbar = () => {
 		null
 	);
 
-	useEffect(() => {
-		const toggleLanguage = () => {
-			setTimeout(() => {
-				setIsEnglish(true);
-				setTimeout(() => {
-					setIsEnglish(false);
-					setTimeout(() => {
-						setIsEnglish(true);
-					}, 5000);
-				}, 5000);
-			}, 5000);
-		};
-
-		toggleLanguage();
-	}, []);
-
+	
 	useEffect(() => {
 		const handleScroll = () => {
 			if (isHomePage) {
