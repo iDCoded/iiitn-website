@@ -10,7 +10,7 @@ const Navbar = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [isHomePage,setIsHomePage] = useState(window.location.pathname === "/");
 	const [openDropdown, setOpenDropdown] = useState<number | null>(null);
-	const [isEnglish, setIsEnglish] = useState(false); // Define the isEnglish variable
+	
 	const [openSubmenu, setOpenSubmenu] = useState<number | null>(null);
 	const [openNestedSubmenu, setOpenNestedSubmenu] = useState<number | null>(
 		null
