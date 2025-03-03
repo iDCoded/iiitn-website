@@ -65,10 +65,10 @@ const EventDetail = () => {
 
 				console.table(data);
 
-				// Initialize event data with image as null
+				// Initialize event data with image as an empty string
 				const eventData = {
 					id: data.c_id,
-					image: null, // Will be updated after fetching
+					image: "", // Will be updated after fetching
 					title: data.title,
 					caption: data.caption,
 					content: data.content,

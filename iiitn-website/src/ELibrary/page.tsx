@@ -1,9 +1,5 @@
-import React from 'react'
-
 function ELibrary() {
-    return (
-        <div>ELibrary</div>
-    )
+	return <div>ELibrary</div>;
 }
 
-export default ELibrary
+export default ELibrary;

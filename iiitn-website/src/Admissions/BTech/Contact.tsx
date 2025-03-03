@@ -1,4 +1,3 @@
-import React from "react";
 import { FaPhoneAlt } from "react-icons/fa";
 
 const contactData = [
@@ -24,8 +23,10 @@ function Contact() {
 
 			{/* 📌 Contact Table */}
 			<main className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mt-8">
-				<h2 className="text-xl font-semibold text-gray-800 mb-4">Committee Members</h2>
-				
+				<h2 className="text-xl font-semibold text-gray-800 mb-4">
+					Committee Members
+				</h2>
+
 				<div className="overflow-x-auto">
 					<table className="w-full border border-gray-200 rounded-lg overflow-hidden">
 						<thead className="bg-gray-100 text-gray-700 text-sm uppercase">
@@ -44,8 +45,7 @@ function Contact() {
 										<FaPhoneAlt className="text-accent" />
 										<a
 											href={`tel:${phone}`}
-											className="text-accent hover:underline transition duration-200"
-										>
+											className="text-accent hover:underline transition duration-200">
 											{phone}
 										</a>
 									</td>

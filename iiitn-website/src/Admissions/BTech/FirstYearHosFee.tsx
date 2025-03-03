@@ -1,5 +1,3 @@
-import React from "react";
-
 const hostelFeeData = {
 	year: "2024-2025",
 	imgSrc: "#", // Replace with actual image URL
@@ -28,7 +26,8 @@ function FirstYearHosFee() {
 							className="w-full h-auto"
 						/>
 						<figcaption className="text-gray-600 mt-2 text-center text-sm p-2">
-							Official Hostel Fee Structure of IIIT Nagpur for {hostelFeeData.year}
+							Official Hostel Fee Structure of IIIT Nagpur for{" "}
+							{hostelFeeData.year}
 						</figcaption>
 					</figure>
 				</div>
@@ -37,22 +36,16 @@ function FirstYearHosFee() {
 				<div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center">
 					<a
 						href="/pages/hostelfee"
-						
-						className="bg-blue-600 text-white px-5 py-2 rounded-md text-center hover:bg-blue-700 transition"
-					>
+						className="bg-blue-600 text-white px-5 py-2 rounded-md text-center hover:bg-blue-700 transition">
 						View Complete Hostel Fee Structure
 					</a>
 					<a
 						href="/pages/hostelfeepayment"
-						
-						className="bg-green-600 text-white px-5 py-2 rounded-md text-center hover:bg-green-700 transition"
-					>
+						className="bg-green-600 text-white px-5 py-2 rounded-md text-center hover:bg-green-700 transition">
 						Hostel Fee Payment Details
 					</a>
 				</div>
 			</main>
-
-		
 		</div>
 	);
 }
