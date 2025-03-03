@@ -6,12 +6,10 @@ import AA from "../assets/AA.jpeg";
 import AB from "../assets/AB.jpeg";
 import AC from "../assets/AC.jpeg";
 import AD from "../assets/AD.jpeg";
-import e from "../assets/e.jpg"; 
+import e from "../assets/e.jpg";
 import AF from "../assets/AF.jpeg";
 import AG from "../assets/AG.jpeg";
 import h from "../assets/h.jpg";
-import abc from "../assets/abc.jpg";
-
 
 const alumniData = [
     {
@@ -84,8 +82,8 @@ const AlumniSection = () => {
     }, []);
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white w-full" style={{ backgroundImage: `url(${abc})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-            <div className="relative w-full max-w-xl p-6 bg-white/10 backdrop-filter backdrop-blur-lg rounded-lg shadow-lg">
+        <div className="flex flex-col items-center justify-center h-screen bg-white text-black w-full">
+            <div className="relative w-full max-w-xl p-6 bg-gray-100 rounded-lg shadow-lg">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={index}
@@ -96,14 +94,16 @@ const AlumniSection = () => {
                         className="flex flex-col items-center text-center"
                     >
                         <div
-                            className="w-28 h-28 rounded-full bg-cover bg-center border-4 border-white"
+                            className="w-28 h-28 rounded-full bg-cover bg-center border-4 border-gray-300"
                             style={{ backgroundImage: `url(${alumniData[index].image})` }}
                         ></div>
                         <h2 className="mt-4 text-2xl font-bold">{alumniData[index].name}</h2>
-                        <p className="mt-1 text-orange-400 text-lg font-semibold italic">
+                        <p className="mt-1 text-orange-500 text-lg font-semibold italic">
                             {alumniData[index].position}
                         </p>
-                        <p className="mt-3 text-lg font-medium px-6">{alumniData[index].quote}</p>
+                        <p className="mt-3 text-lg font-medium px-6 text-gray-700">
+                            {alumniData[index].quote}
+                        </p>
                     </motion.div>
                 </AnimatePresence>
             </div>
