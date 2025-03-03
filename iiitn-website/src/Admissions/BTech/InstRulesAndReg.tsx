@@ -1,5 +1,3 @@
-import React from "react";
-
 const rules = [
 	{ title: "Anti-Ragging Rules", link: "#" },
 	{ title: "Institute Rules", link: "#" },
@@ -12,7 +10,9 @@ function InstRulesAndReg() {
 		<div className="bg-gray-100 min-h-screen flex flex-col">
 			{/* Header Section */}
 			<header className="bg-primary text-white py-14 text-center">
-				<h1 className="text-3xl font-bold">Institute's Rules and Regulations</h1>
+				<h1 className="text-3xl font-bold">
+					Institute's Rules and Regulations
+				</h1>
 			</header>
 
 			{/* Main Content */}
@@ -24,20 +24,21 @@ function InstRulesAndReg() {
 				{/* Rules List */}
 				<ul className="space-y-4">
 					{rules.map((rule, index) => (
-						<li key={index} className="bg-gray-200 p-4 rounded-md shadow-sm flex justify-between items-center">
-							<span className="text-lg font-medium text-gray-700">{rule.title}</span>
+						<li
+							key={index}
+							className="bg-gray-200 p-4 rounded-md shadow-sm flex justify-between items-center">
+							<span className="text-lg font-medium text-gray-700">
+								{rule.title}
+							</span>
 							<a
 								href={rule.link}
-								className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition"
-							>
+								className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition">
 								View Details
 							</a>
 						</li>
 					))}
 				</ul>
 			</main>
-
-		
 		</div>
 	);
 }

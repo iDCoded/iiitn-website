@@ -41,6 +41,8 @@ const Navbar = () => {
 			}
 		};
 
+		setIsHomePage(window.location.pathname === "/");
+
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, [isHomePage]);
@@ -122,7 +124,10 @@ const Navbar = () => {
 			links: [
 				{ name: "Departments", href: "/departments" },
 				{ name: "Courses", href: "/academics/courses" },
-				{ name: "Academic Curricula", href: "https://iiitn.ac.in/page.php?id=259" },
+				{
+					name: "Academic Curricula",
+					href: "https://iiitn.ac.in/page.php?id=259",
+				},
 				{
 					name: "Time Table",
 					href: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link",
