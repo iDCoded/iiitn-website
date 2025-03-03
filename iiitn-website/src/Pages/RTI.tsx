@@ -1,4 +1,3 @@
-import React from "react";
 import rti from "../assets/rti.png";
 
 const rtiData = {
@@ -30,9 +29,11 @@ function RTI() {
 							<span className="text-accent text-4xl">| </span> What is RTI?
 						</h2>
 						<p className="text-gray-700 mt-3 leading-relaxed">
-							The <strong>Right to Information (RTI) Act</strong> is a law enacted by the Indian Parliament in 2005, providing
-							citizens the right to access information from public authorities. As an Autonomous Government Body,{" "}
-							<strong>IIIT Nagpur</strong> falls under this act.
+							The <strong>Right to Information (RTI) Act</strong> is a law
+							enacted by the Indian Parliament in 2005, providing citizens the
+							right to access information from public authorities. As an
+							Autonomous Government Body, <strong>IIIT Nagpur</strong> falls
+							under this act.
 						</p>
 					</section>
 
@@ -44,26 +45,22 @@ function RTI() {
 						<div className="grid md:grid-cols-2 gap-4 mt-4">
 							<a
 								href={rtiData.rtiEng}
-								className="block bg-primary text-white text-center py-3 rounded-md hover:bg-[#001730] transition"
-							>
+								className="block bg-primary text-white text-center py-3 rounded-md hover:bg-[#001730] transition">
 								📄 RTI Act, 2005 (English)
 							</a>
 							<a
 								href={rtiData.rtiHindi}
-								className="block bg-primary text-white text-center py-3 rounded-md hover:bg-[#001730] transition"
-							>
+								className="block bg-primary text-white text-center py-3 rounded-md hover:bg-[#001730] transition">
 								📄 RTI Act, 2005 (Hindi)
 							</a>
 							<a
 								href={rtiData.rtiMarathi}
-								className="block bg-primary text-white text-center py-3 rounded-md hover:bg-[#001730] transition"
-							>
+								className="block bg-primary text-white text-center py-3 rounded-md hover:bg-[#001730] transition">
 								📄 RTI Act, 2005 (Marathi)
 							</a>
 							<a
 								href={rtiData.rtiGuide}
-								className="block bg-primary text-white text-center py-3 rounded-md hover:bg-[#001730] transition"
-							>
+								className="block bg-primary text-white text-center py-3 rounded-md hover:bg-[#001730] transition">
 								📖 Guide to RTI Act (English)
 							</a>
 						</div>
@@ -75,7 +72,8 @@ function RTI() {
 							<span className="text-accent text-4xl">| </span> Definition of RTI
 						</h2>
 						<p className="text-gray-700 mt-3 leading-relaxed">
-							The <b>Right To Information</b> means the right to access information held by any public authority, which includes:
+							The <b>Right To Information</b> means the right to access
+							information held by any public authority, which includes:
 						</p>
 						<ul className="list-disc pl-6 mt-3 text-gray-700 space-y-2">
 							<li>📌 Inspection of work, documents, and records</li>
@@ -88,7 +86,11 @@ function RTI() {
 
 				{/* Right Side - Image */}
 				<div className="lg:w-2/3 w-full p-6 flex justify-center">
-					<img src={rtiData.imageSrc} alt="RTI Illustration" className="rounded-lg shadow-lg w-full" />
+					<img
+						src={rtiData.imageSrc}
+						alt="RTI Illustration"
+						className="rounded-lg shadow-lg w-full"
+					/>
 				</div>
 			</main>
 		</div>

@@ -139,9 +139,11 @@ export default function DepartmentPage({ title }: PageProps) {
 			.catch((error) => {
 				setData(departmentsDemo[title]); // Fallback to demo data
 				setLoading(false);
+				setError(error);
 			})
 			.finally(() => {
 				setLoading(false);
+				setError(null);
 			});
 	}, [title]);
 
