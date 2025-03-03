@@ -17,28 +17,28 @@ interface NewsItem {
 
 export default function NewsCarousel() {
 	const [newsData, setNewsData] = useState<NewsItem[]>([
-        {
-            id: "1",
-            c_category: "news",
-            image: "/default-news.jpg",
-            title: "News Title",
-            caption: "News Caption",
-        },
-        {
-            id: "2",
-            c_category: "news",
-            image: "/default-news.jpg",
-            title: "News Title",
-            caption: "News Caption",
-        },
-        {
-            id: "3",
-            c_category: "news",
-            image: "/default-news.jpg",
-            title: "News Title",
-            caption: "News Caption",
-        },
-    ]);
+		{
+			id: "1",
+			c_category: "news",
+			image: "/default-news.jpg",
+			title: "News Title",
+			caption: "News Caption",
+		},
+		{
+			id: "2",
+			c_category: "news",
+			image: "/default-news.jpg",
+			title: "News Title",
+			caption: "News Caption",
+		},
+		{
+			id: "3",
+			c_category: "news",
+			image: "/default-news.jpg",
+			title: "News Title",
+			caption: "News Caption",
+		},
+	]);
 
 	const [sliderRef, instanceRef] = useKeenSlider({
 		slides: {
@@ -61,7 +61,7 @@ export default function NewsCarousel() {
 		const fetchNews = async () => {
 			try {
 				const res = await fetch(
-					`http://localhost:5000/card/cards/category/news`
+					`${import.meta.env.VITE_API_BASE_URL}/card/cards/category/news`
 				);
 				if (!res.ok) throw new Error("Failed to fetch news");
 				const data = await res.json();
@@ -91,7 +91,9 @@ export default function NewsCarousel() {
 						if (news.media_img_path) {
 							try {
 								const imgReq = await fetch(
-									`http://localhost:5000/media/${news.media_img_path}`
+									`${import.meta.env.VITE_API_BASE_URL}/media/${
+										news.media_img_path
+									}`
 								);
 								if (!imgReq.ok) throw new Error("Failed to fetch image");
 								const imgRes = await imgReq.json();

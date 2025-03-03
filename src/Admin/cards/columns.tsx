@@ -25,7 +25,7 @@ async function updateCardVisibility(
 	c_id: string,
 	visible: boolean
 ) {
-	await fetch(`http://localhost:5000/card/cards/${c_id}`, {
+	await fetch(`${import.meta.env.VITE_API_BASE_URL}/card/cards/${c_id}`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
@@ -35,7 +35,7 @@ async function updateCardVisibility(
 }
 
 async function deleteCard(c_id: string) {
-	await fetch(`http://localhost:5000/card/cards/${c_id}`, {
+	await fetch(`${import.meta.env.VITE_API_BASE_URL}/card/cards/${c_id}`, {
 		method: "DELETE",
 	});
 }

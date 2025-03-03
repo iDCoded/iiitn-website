@@ -72,13 +72,16 @@ export function FacultyForm({ user }: { user: Person }) {
 			research: data.research,
 		};
 
-		const res = await fetch("http://localhost:5000/faculty/faculty_staff", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(facultyData),
-		});
+		const res = await fetch(
+			`${import.meta.env.VITE_API_BASE_URL}/faculty/faculty_staff`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(facultyData),
+			}
+		);
 		const res_json = await res.json();
 		console.log("res_json", res_json);
 	};

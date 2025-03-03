@@ -13,7 +13,7 @@ function FacultyTablePage() {
 		const fetchFacultyData = async () => {
 			try {
 				const response = await fetch(
-					"http://localhost:5000/faculty/faculty_staff"
+					`${import.meta.env.VITE_API_BASE_URL}/faculty/faculty_staff`
 				);
 				if (!response.ok) throw new Error("Failed to fetch faculty data");
 

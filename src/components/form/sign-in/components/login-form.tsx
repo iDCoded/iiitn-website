@@ -52,13 +52,16 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 		setIsLoading(true);
 		console.table(data);
 		try {
-			const res = await fetch("http://localhost:5000/auth/login", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(data),
-			});
+			const res = await fetch(
+				`${import.meta.env.VITE_API_BASE_URL}/auth/login`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(data),
+				}
+			);
 			const res_json = await res.json();
 			console.log("data", res_json);
 			if (res.ok) {

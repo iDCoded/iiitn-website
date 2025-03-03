@@ -12,7 +12,7 @@ import { MoreHorizontal } from "lucide-react";
 import ViewMediaDialog from "./media-view-dialog";
 
 const deleteMedia = async (mediaId: number) => {
-	await fetch(`http://localhost:5000/media/media/${mediaId}`, {
+	await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/${mediaId}`, {
 		method: "DELETE",
 	});
 };

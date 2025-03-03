@@ -12,7 +12,9 @@ function MediaTablePage() {
 	useEffect(() => {
 		const fetchCardData = async () => {
 			try {
-				const response = await fetch("http://localhost:5000/media/media");
+				const response = await fetch(
+					`${import.meta.env.VITE_API_BASE_URL}/media/media`
+				);
 				if (!response.ok) throw new Error("Failed to fetch media data");
 
 				if (response.ok) {

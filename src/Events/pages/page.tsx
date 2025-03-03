@@ -60,7 +60,9 @@ const EventDetail = () => {
 	useEffect(() => {
 		const fetchEvent = async () => {
 			try {
-				const response = await fetch(`http://localhost:5000/card/cards/${eventid}`);
+				const response = await fetch(
+					`${import.meta.env.VITE_API_BASE_URL}/card/cards/${eventid}`
+				);
 				if (!response.ok) throw new Error("Failed to fetch event data");
 
 				const data = await response.json();
@@ -71,7 +73,11 @@ const EventDetail = () => {
 				// If media_img_path exists, try fetching the image
 				if (data.media_img_path) {
 					try {
-						const imgReq = await fetch(`http://localhost:5000/media/${data.media_img_path}`);
+						const imgReq = await fetch(
+							`${import.meta.env.VITE_API_BASE_URL}/media/${
+								data.media_img_path
+							}`
+						);
 						if (!imgReq.ok) throw new Error("Failed to fetch image");
 
 						// Check if the response is an image (blob) or JSON
@@ -157,8 +163,7 @@ const EventDetail = () => {
 			<div className="mt-8">
 				<button
 					onClick={() => navigate(-1)} // Go to previous page
-					className="text-accent font-semibold hover:underline"
-				>
+					className="text-accent font-semibold hover:underline">
 					← Back
 				</button>
 			</div>

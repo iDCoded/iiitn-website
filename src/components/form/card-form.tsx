@@ -59,10 +59,13 @@ export function CardForm() {
 		formData.append("media_type", "image");
 
 		try {
-			const media_request = await fetch("http://localhost:5000/media/upload", {
-				method: "POST",
-				body: formData,
-			});
+			const media_request = await fetch(
+				`${import.meta.env.VITE_API_BASE_URL}/media/upload`,
+				{
+					method: "POST",
+					body: formData,
+				}
+			);
 			const media_res = await media_request.json();
 
 			if (media_request.ok) {
@@ -82,13 +85,16 @@ export function CardForm() {
 				};
 				console.log(card_data);
 
-				const card_req = await fetch("http://localhost:5000/card/cards", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(card_data),
-				});
+				const card_req = await fetch(
+					"${import.meta.env.VITE_API_BASE_URL}/card/cards",
+					{
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify(card_data),
+					}
+				);
 
 				const card_res = await card_req.json();
 

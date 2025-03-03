@@ -14,9 +14,12 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import FacultyEditDialog from "./faculty-edit-dialog";
 
 const deleteFaculty = async (facultyId: string) => {
-	await fetch(`http://localhost:5000/faculty/faculty_staff/${facultyId}`, {
-		method: "DELETE",
-	});
+	await fetch(
+		`${import.meta.env.VITE_API_BASE_URL}/faculty/faculty_staff/${facultyId}`,
+		{
+			method: "DELETE",
+		}
+	);
 };
 
 export const columns: ColumnDef<Faculty>[] = [

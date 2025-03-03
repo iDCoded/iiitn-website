@@ -48,13 +48,16 @@ const CardEditDialog = ({ card }: { card: ICard }) => {
 	});
 
 	const onSubmit = async (data: FormData) => {
-		await fetch(`http://localhost:5000/card/cards/${card.c_id}`, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(data),
-		});
+		await fetch(
+			`${import.meta.env.VITE_API_BASE_URL}/card/cards/${card.c_id}`,
+			{
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
+			}
+		);
 	};
 
 	return (

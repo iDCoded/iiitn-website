@@ -11,7 +11,9 @@ function UserTablePage() {
 	useEffect(() => {
 		const fetchCardData = async () => {
 			try {
-				const response = await fetch("http://localhost:5000/user");
+				const response = await fetch(
+					`${import.meta.env.VITE_API_BASE_URL}/user`
+				);
 				if (!response.ok) throw new Error("Failed to fetch user data");
 
 				if (response.ok) {

@@ -50,15 +50,18 @@ export function ImageUploadForm() {
 			formData.append("media_type", "image");
 
 			try {
-				const mediaRes = await fetch("http://localhost:5000/media/upload", {
-					method: "POST",
-					body: formData,
-				});
+				const mediaRes = await fetch(
+					`${import.meta.env.VITE_API_BASE_URL}/media/upload`,
+					{
+						method: "POST",
+						body: formData,
+					}
+				);
 				const mediaData = await mediaRes.json();
 
 				if (mediaRes.ok) {
 					try {
-						await fetch("http://localhost:5000/media/media", {
+						await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media`, {
 							method: "POST",
 							headers: { "Content-Type": "application/json" },
 							body: JSON.stringify({

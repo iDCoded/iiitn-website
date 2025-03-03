@@ -24,7 +24,7 @@ const UpcomingEvents = () => {
 		const fetchEvents = async () => {
 			try {
 				const res = await fetch(
-					"http://localhost:5000/card/cards/category/events"
+					`${import.meta.env.VITE_API_BASE_URL}/card/cards/category/events`
 				);
 				if (!res.ok) throw new Error("Failed to fetch events");
 				const data = await res.json();
@@ -46,7 +46,9 @@ const UpcomingEvents = () => {
 						if (event.media_img_path) {
 							try {
 								const imgReq = await fetch(
-									`http://localhost:5000/media/${event.media_img_path}`
+									`${import.meta.env.VITE_API_BASE_URL}/media/${
+										event.media_img_path
+									}`
 								);
 								if (!imgReq.ok) throw new Error("Failed to fetch image");
 								const imgRes = await imgReq.json();

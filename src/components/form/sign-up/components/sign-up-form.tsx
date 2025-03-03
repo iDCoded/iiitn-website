@@ -89,7 +89,7 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
 		console.table(data);
 
 		try {
-			const res = await fetch("http://localhost:5000/user/", {
+			const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/user/`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
