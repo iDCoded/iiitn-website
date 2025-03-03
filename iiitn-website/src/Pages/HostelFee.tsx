@@ -1,10 +1,8 @@
-import React from 'react'
-
 // Data
 const hostelFeeData = {
 	year: 2022,
-	imgSrc: '#',
-}
+	imgSrc: "#",
+};
 
 function HostelFee() {
 	return (
@@ -29,27 +27,23 @@ function HostelFee() {
 							className="w-full h-auto"
 						/>
 						<figcaption className="text-gray-600 mt-2 text-center text-sm p-2">
-							Official Hostel Fee Structure of IIIT Nagpur for {hostelFeeData.year}
+							Official Hostel Fee Structure of IIIT Nagpur for{" "}
+							{hostelFeeData.year}
 						</figcaption>
 					</figure>
 				</div>
 
 				{/* Action Buttons */}
 				<div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center">
-
 					<a
 						href="/pages/hostelfeepayment"
-
-						className="bg-green-600 text-white px-5 py-2 rounded-md text-center hover:bg-green-700 transition"
-					>
+						className="bg-green-600 text-white px-5 py-2 rounded-md text-center hover:bg-green-700 transition">
 						Hostel Fee Payment Details
 					</a>
 				</div>
 			</main>
-
-
 		</div>
-	)
+	);
 }
 
-export default HostelFee
+export default HostelFee;
