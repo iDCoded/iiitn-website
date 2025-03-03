@@ -2,8 +2,8 @@
 import { useEffect, useState, useRef } from "react";
 import { Button } from "./ui/button";
 import HomeEventCard from "./HomeEventCard";
-import abhivyakti from "../assets/abhivyakti.jpeg";
-import tf from "../assets/tf.jpeg";
+import abhivyakti from "../assets/abhivyakti.jpg";
+import tf from "../assets/gpt.jpg";
 import workshop from "../assets/workshop.jpg";
 import { FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";

@@ -8,10 +8,9 @@ const imgSrc = logo;
 const Navbar = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const [isHomePage, setIsHomePage] = useState(
-		window.location.pathname === "/"
-	);
+	const [isHomePage, setIsHomePage] = useState(window.location.pathname === "/");
 	const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+
 	const [openSubmenu, setOpenSubmenu] = useState<number | null>(null);
 	const [openNestedSubmenu, setOpenNestedSubmenu] = useState<number | null>(
 		null
@@ -20,7 +19,7 @@ const Navbar = () => {
 	useEffect(() => {
 		const handleScroll = () => {
 			if (isHomePage) {
-				setIsScrolled(window.scrollY > window.innerHeight * 0.65);
+				setIsScrolled(window.scrollY > window.innerHeight * 0.7);
 			} else {
 				setIsScrolled(window.scrollY > 20);
 			}
@@ -205,8 +204,9 @@ const Navbar = () => {
 		<>
 			{/* Transparent Overlay (Only for Home Page) */}
 			{isHomePage && (
-				<div className="absolute left-0 top-5 w-full h-[18vh] bg-gradient-to-b from-primary via-[#7BA4D4] to-transparent z-1"></div>
+				<div className="absolute left-0 top-5 w-full h-[18vh] bg-gradient-to-b from-[#002147] via-[#4D79A6] to-transparent z-1"></div>
 			)}
+
 
 			{/* Fixed Navbar */}
 			<div className="fixed top-0 left-0 w-full z-50 transition-transform duration-200">
@@ -225,23 +225,12 @@ const Navbar = () => {
 
 				{/* 🔹 Middle Section with Logo and Mobile Menu Button */}
 				<nav
-					className={`w-full px-8 py-2 flex justify-between items-center ${
-						isHomePage && !isScrolled ? "bg-transparent" : "bg-primary"
-					}`}>
+					className={`w-full px-8 py-2 flex justify-between items-center ${isHomePage && !isScrolled ? "bg-transparent" : "bg-primary"
+						}`}>
 					<a href="/">
 						<div className="flex items-center space-x-4">
 							<img src={imgSrc} alt="IIITN Logo" className="h-16 w-16" />
-							<div className="text-left">
-								<p className="font-bold text-white text-lg hidden lg:block">
-									भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर
-								</p>
-								<p className="font-medium text-white text-base">
-									Indian Institute of Information Technology, Nagpur
-								</p>
-								<p className="font-light text-sm text-white">
-									An Institution of National Importance
-								</p>
-							</div>
+
 						</div>
 					</a>
 
@@ -337,9 +326,8 @@ const Navbar = () => {
 
 			{/* 🔹 Mobile Menu Drawer (Visible on Small Screens) */}
 			<div
-				className={`fixed inset-0 bg-black bg-opacity-50 z-50 transform transition-transform duration-300 ${
-					isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-				}`}>
+				className={`fixed inset-0 bg-black bg-opacity-50 z-50 transform transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+					}`}>
 				<div className="w-3/4 max-w-sm bg-white h-full shadow-lg overflow-y-auto p-6 transform transition-all duration-300 ease-in-out">
 					{/* Close Button */}
 					<button
