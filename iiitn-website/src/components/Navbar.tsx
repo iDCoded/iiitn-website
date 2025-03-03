@@ -200,7 +200,7 @@ const Navbar = () => {
 		<>
 			{/* Transparent Overlay (Only for Home Page) */}
 			{isHomePage && (
-				<div className="absolute left-0 top-5 w-full h-[33vh] bg-gradient-to-b from-primary via-[#7BA4D4] to-transparent z-1"></div>
+				<div className="absolute left-0 top-5 w-full h-[18vh] bg-gradient-to-b from-primary via-[#7BA4D4] to-transparent z-1"></div>
 			)}
 
 			{/* Fixed Navbar */}
