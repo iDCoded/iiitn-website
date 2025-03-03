@@ -10,6 +10,16 @@ const HeroSection = () => {
                 style={{ backgroundImage: `url(${hero})` }}
             />
 
+            {/* Enhanced Text for Visibility */}
+            <div className="absolute top-[30%] text-white drop-shadow-lg">
+                <p className="font-extrabold text-5xl lg:text-6xl">
+                    Indian Institute of Information Technology Nagpur
+                </p>
+                <p className="font-medium text-xl lg:text-2xl mt-2">
+                    An Institution of National Importance
+                </p>
+            </div>
+
             {/* Hero Content (Optional) */}
             <div className="relative z-10">
                 {/* Add content if needed */}

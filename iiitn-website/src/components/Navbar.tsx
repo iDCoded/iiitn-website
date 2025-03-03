@@ -245,14 +245,7 @@ const Navbar = () => {
 					<a href="/">
 						<div className="flex items-center space-x-4">
 							<img src={imgSrc} alt="IIITN Logo" className="h-16 w-16" />
-							<div className="text-left">
-								<p className="font-bold text-white hidden lg:block text-2xl">
-									{isEnglish ? "Indian Institute of Information Technology, Nagpur" : "भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर"}
-								</p>
-								<p className="font-light text-sm text-white">
-									An Institution of National Importance
-								</p>
-							</div>
+							
 						</div>
 					</a>
 
