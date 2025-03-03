@@ -36,7 +36,7 @@ const HeroSection = () => {
             {/* 🎯 Hero Content */}
             <div className="relative z-10">
                 <div className="text-center">
-                    <p className="font-bold text-white hidden lg:block text-5xl">
+                    <p className="font-extrabold text-white  text-4xl lg:text-5xl">
                         {isEnglish
                             ? "Indian Institute of Information Technology, Nagpur"
                             : "भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर"}
