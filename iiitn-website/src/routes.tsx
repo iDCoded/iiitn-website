@@ -74,6 +74,7 @@ import RtiDetailsAndReports from "./Pages/RtiDetailsAndReports";
 import MinutesOfMeeting from "./Pages/MinutesOfMeeting";
 import ImmutableProperty from "./Pages/ImmutableProperty";
 import EventDetail from "./Events/pages/page";
+import DetailedAnnouncements from "./Pages/DetailedAnnouncements";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -183,6 +184,7 @@ const AppRoutes = () => (
 		<Route path="/pages/directory" element={<Directory />} />
 		<Route path="/news/:newsId" element={<DetailedNews />} />
 		<Route path="/events/:eventid" element={<EventDetail />} />
+		<Route path="/announcements/:announcementid" element={<DetailedAnnouncements />} />
 		<Route path="/faculty/:name" element={<FacultyDetail />} />
 		<Route path="/institute/facilities" element={<Facilities />} />
 		<Route
