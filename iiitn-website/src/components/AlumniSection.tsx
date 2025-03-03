@@ -94,7 +94,7 @@ const AlumniSection = () => {
                         className="flex flex-col items-center text-center"
                     >
                         <div
-                            className="w-28 h-28 rounded-full bg-cover bg-center border-4 border-gray-300"
+                            className="w-48 h-48 rounded-full bg-cover bg-center border-4 border-gray-300"
                             style={{ backgroundImage: `url(${alumniData[index].image})` }}
                         ></div>
                         <h2 className="mt-4 text-2xl font-bold">{alumniData[index].name}</h2>

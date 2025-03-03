@@ -1,6 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import abhivyakti from "../../assets/abhivyakti.jpeg";
+import abhivyakti from "../../assets/abhivyakti.jpg";
 import tf from "../../assets/tf.jpeg";
 import workshop from "../../assets/workshop.jpg";
 import MarkdownPreview from "@uiw/react-markdown-preview";
@@ -12,7 +12,7 @@ const eventsData = [
 		title: "Abhivyakti - The Cultural Fest of IIITN",
 		caption: "The cultural fest of IIITN",
 		content:
-			"Annual gathering of students, faculty, and staff. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+			"Annual gathering of students, faculty, and staff. Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
 		date: "28 Feb",
 		location: "IIIT Nagpur Campus",
 		large: true,
@@ -23,75 +23,83 @@ const eventsData = [
 		title: "Tantrafiesta",
 		caption: "The technical fest of IIITN",
 		content:
-			"Annual gathering of students, faculty, and staff. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+			"Annual gathering of students, faculty, and staff. Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
 		date: "27 Aug",
 		location: "IIIT Nagpur Campus",
 		large: false,
 	},
 	{
 		id: "Foundations-of-Cybersecurity",
-		image: workshop, // Make sure to replace with the actual image import
+		image: workshop,
 		title: "Foundations of Cybersecurity - Online Certificate Programme",
 		caption: "Enhance your cybersecurity skills with IIIT Nagpur",
 		content:
-			"The Department of Computer Science & Engineering at IIIT Nagpur presents an exclusive online certification program on Cybersecurity. This program is designed to equip participants with essential cybersecurity skills, covering topics such as network security, cryptography, threat detection, and ethical hacking. Gain industry-relevant knowledge from experts in the field and earn a valuable certification upon completion.",
+			"The Department of Computer Science & Engineering at IIIT Nagpur presents an exclusive online certification program...",
 		date: "22nd March",
 		location: "Online (Hosted by IIIT Nagpur)",
 		large: false,
 	},
 ];
 
+interface Event {
+	id: string;
+	image: string;
+	title: string;
+	caption: string;
+	content: string;
+	date: string;
+	location: string;
+	large: boolean;
+}
+
 const EventDetail = () => {
 	const { eventid } = useParams();
-	const [event, setEvent] = useState<{
-		id: string;
-		image: string;
-		title: string;
-		caption: string;
-		content: string;
-		date: string;
-		location: string;
-		large: boolean;
-	} | null>(null);
+	const navigate = useNavigate(); // Hook for navigating back
+	const [event, setEvent] = useState<Event | null>(null);
 
 	useEffect(() => {
 		const fetchEvent = async () => {
 			try {
-				const response = await fetch(
-					`http://localhost:5000/card/cards/${eventid}`
-				);
-				if (!response.ok) throw new Error("Failed to fetch event");
-				const data = await response.json();
+				const response = await fetch(`http://localhost:5000/card/cards/${eventid}`);
+				if (!response.ok) throw new Error("Failed to fetch event data");
 
+				const data = await response.json();
 				console.table(data);
 
-				// Initialize event data with image as an empty string
-				const eventData = {
+				let imageUrl = "";
+
+				// If media_img_path exists, try fetching the image
+				if (data.media_img_path) {
+					try {
+						const imgReq = await fetch(`http://localhost:5000/media/${data.media_img_path}`);
+						if (!imgReq.ok) throw new Error("Failed to fetch image");
+
+						// Check if the response is an image (blob) or JSON
+						const contentType = imgReq.headers.get("content-type");
+						if (contentType && contentType.startsWith("image")) {
+							imageUrl = URL.createObjectURL(await imgReq.blob());
+						} else {
+							const imgRes = await imgReq.json();
+							if (imgRes.url) {
+								imageUrl = imgRes.url;
+							}
+						}
+					} catch (err) {
+						console.error(`Error fetching image for event ${eventid}:`, err);
+					}
+				}
+
+				// Set event data including image
+				setEvent({
 					id: data.c_id,
-					image: "", // Will be updated after fetching
+					image: imageUrl || "", // If image URL is empty, fallback to ""
 					title: data.title,
 					caption: data.caption,
 					content: data.content,
 					date: data.date,
 					location: data.location,
 					large: false,
-				};
-
-				// Fetch event image if available
-				if (data.media_img_path) {
-					try {
-						const imgReq = await fetch(
-							`http://localhost:5000/media/${data.media_img_path}`
-						);
-						if (!imgReq.ok) throw new Error("Failed to fetch image");
-						const imgRes = await imgReq.json();
-						eventData.image = imgRes.url;
-					} catch (err) {
-						console.error(`Error fetching image for event ${eventid}:`, err);
-					}
-				}
-
-				setEvent(eventData);
+				});
 			} catch (error) {
 				console.error("Error fetching event:", error);
 				setEvent(eventsData.find((event) => event.id === eventid) || null);
@@ -113,13 +121,15 @@ const EventDetail = () => {
 			</p>
 
 			{/* Event Image */}
-			{/* <div className="mt-6">
-				<img
-					src={event.image}
-					alt={event.title}
-					className="w-full h-128 object-cover rounded-lg shadow-md"
-				/>
-			</div> */}
+			{event.image && (
+				<div className="mt-6">
+					<img
+						src={event.image}
+						alt={event.title}
+						className="w-full h-96 object-cover rounded-lg shadow-md"
+					/>
+				</div>
+			)}
 
 			{/* Event Description */}
 			<MarkdownPreview
@@ -143,11 +153,14 @@ const EventDetail = () => {
 				</div>
 			)}
 
-			{/* Back to Events Button */}
+			{/* Back Button (Goes to Previous Page) */}
 			<div className="mt-8">
-				<a href="/events" className="text-accent font-semibold hover:underline">
-					← Back to Events
-				</a>
+				<button
+					onClick={() => navigate(-1)} // Go to previous page
+					className="text-accent font-semibold hover:underline"
+				>
+					← Back
+				</button>
 			</div>
 		</section>
 	);
