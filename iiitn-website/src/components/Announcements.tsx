@@ -59,7 +59,7 @@ const Announcements: React.FC = () => {
                 }
                 .marquee-content {
                     display: flex;
-                    animation: marquee 15s linear infinite;
+                    animation: marquee 30s linear infinite;
                 }
                 @keyframes marquee {
                     0% { transform: translateX(0); }
