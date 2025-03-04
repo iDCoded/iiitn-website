@@ -61,7 +61,8 @@ const Announcements: React.FC = () => {
         const fetchAnnouncements = async () => {
             try {
                 const response = await axios.get("/card/cards/category/announcements");
-                setAnnouncements(response.data.map((announcement: any) => ({
+                const announcementsArray = Array.isArray(response.data) ? response.data : [];
+                setAnnouncements(announcementsArray.map((announcement: any) => ({
                     id: announcement.c_id,
                     title: announcement.title,
                 })));
