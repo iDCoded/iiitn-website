@@ -69,6 +69,44 @@ function DetailedNews() {
 					content: data.content,
 				});
 				console.log(data);
+
+				let imageUrl = "";
+
+				// If media_img_path exists, try fetching the image
+				if (data.media_img_path) {
+					try {
+						const imgReq = await fetch(
+							`${import.meta.env.VITE_API_BASE_URL}/media/${
+								data.media_img_path
+							}`
+						);
+						if (!imgReq.ok) throw new Error("Failed to fetch image");
+						const imgRes = await imgReq.json();
+
+						imageUrl = imgRes.url;
+						console.log(imageUrl);
+
+						// Check if the response is an image (blob) or JSON
+						// // const contentType = imgReq.headers.get("content-type");
+						// // if (contentType && contentType.startsWith("image")) {
+						// // 	imageUrl = URL.createObjectURL(await imgReq.blob());
+						// // } else {
+						// // 	const imgRes = await imgReq.json();
+						// // 	if (imgRes.url) {
+						// // 		imageUrl = imgRes.url;
+						// // 	}
+						// // }
+					} catch (err) {
+						console.error(`Error fetching image for news ${newsId}:`, err);
+					}
+				}
+
+				setNews({
+					id: data.c_id,
+					title: data.title,
+					image: imageUrl || "/placeholder.svg",
+					content: data.content,
+				});
 			} catch (error) {
 				// console.error("Error fetching event:", error);
 				const foundEvent = newsData.find((e) => e.id === newsId);
