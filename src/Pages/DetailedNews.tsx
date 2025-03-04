@@ -85,17 +85,6 @@ function DetailedNews() {
 
 						imageUrl = imgRes.url;
 						console.log(imageUrl);
-
-						// Check if the response is an image (blob) or JSON
-						// // const contentType = imgReq.headers.get("content-type");
-						// // if (contentType && contentType.startsWith("image")) {
-						// // 	imageUrl = URL.createObjectURL(await imgReq.blob());
-						// // } else {
-						// // 	const imgRes = await imgReq.json();
-						// // 	if (imgRes.url) {
-						// // 		imageUrl = imgRes.url;
-						// // 	}
-						// // }
 					} catch (err) {
 						console.error(`Error fetching image for news ${newsId}:`, err);
 					}
