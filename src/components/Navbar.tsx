@@ -215,15 +215,19 @@ const Navbar = () => {
 				<nav className={`w-full px-6 py-2 flex justify-between items-center lg:flex ${isHomePage && !isScrolled ? "bg-transparent shadow-none text-white" : "bg-accent shadow-md text-primary"
 					}`}>
 					<h1 className={`font-bold text-xl ${isHomePage && !isScrolled ? "text-white" : "text-primary"
-						}`}>अ A</h1>
-					<ul className={`hidden lg:flex space-x-6 font-medium ${isHomePage && !isScrolled ? "text-white" : "text-primary"
-						}`}>
-						{navLinks.map((link, index) => (
-							<a key={index} href={link.href} className="hover:text-white">
-								{link.title}
-							</a>
-						))}
-					</ul>
+						}`}>अ A
+					</h1>
+					<div className="flex items-center space-x-6">
+						<h1 className="font-medium text-xl">Information for: </h1>
+						<ul className={`hidden lg:flex space-x-6 font-medium ${isHomePage && !isScrolled ? "text-white" : "text-primary"
+							}`}>
+							{navLinks.map((link, index) => (
+								<a key={index} href={link.href} className="hover:text-white">
+									{link.title}
+								</a>
+							))}
+						</ul>
+					</div>
 					<Search />
 				</nav>
 
