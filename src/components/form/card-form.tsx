@@ -34,18 +34,19 @@ const formSchema = z.object({
 		.refine((fileList) => fileList.length > 0, { message: "No file selected" }),
 });
 
+const deafultSubCategories = {
+	News: ["Local", "Global", "College"],
+	Events: ["Seminar", "Conference", "Workshop"],
+	Announcements: ["Product", "Company", "Industry"],
+	Projects: ["Internal", "Client", "Research"],
+};
+
+const defaultCategories = ["News", "Events", "Announcements", "Projects"];
+
 export function CardForm() {
-	const [categories, setCategories] = useState<string[]>([
-		"News",
-		"Events",
-		"Announcements",
-		"Projects",
-	]);
+	const [categories, setCategories] = useState<string[]>([]);
 	const [subcategories, setSubcategories] = useState<Record<string, string[]>>({
-		News: ["Local", "Global", "College"],
-		Events: ["Seminar", "Conference", "Workshop"],
-		Announcements: ["Product", "Company", "Industry"],
-		Projects: ["Internal", "Client", "Research"],
+		"": [],
 	});
 
 	const [categoryInput, setCategoryInput] = useState("");
@@ -80,6 +81,11 @@ export function CardForm() {
 	});
 
 	const fileRef = form.register("media");
+
+	useEffect(() => {
+		setCategories(defaultCategories);
+		setSubcategories(deafultSubCategories);
+	}, []);
 
 	// Handle outside clicks to close suggestion dropdowns
 	useEffect(() => {
