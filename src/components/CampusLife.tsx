@@ -21,7 +21,7 @@ const campusLifeImages = [
 	{ src: img2, title: "Lab" },
 	{ src: img3, title: "Sports" },
 	{ src: img4, title: "Amenities" },
-	{ src: img5, title: "Campus Life" },
+	{ src: img5, title: "Library" },
 ];
 
 const CampusLife = () => {

@@ -113,7 +113,7 @@ export default function Search() {
 
 			{/* Search Box (Shown only when isOpen is true) */}
 			{isOpen && (
-				<div style={{ position: "relative" }} className="bg-background rounded-sm border-none">
+				<div style={{ position: "relative" }} className="bg-background rounded-sm border-none text-primary">
 					<input
 						type="text"
 						placeholder="Search anything..."
