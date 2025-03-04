@@ -86,7 +86,7 @@ export function CardForm() {
 				console.log(card_data);
 
 				const card_req = await fetch(
-					"${import.meta.env.VITE_API_BASE_URL}/card/cards",
+					`${import.meta.env.VITE_API_BASE_URL}/card/cards`,
 					{
 						method: "POST",
 						headers: {
