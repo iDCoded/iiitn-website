@@ -121,6 +121,17 @@ const EventDetail = () => {
 		return <div className="text-center text-xl mt-10">Loading...</div>;
 	}
 
+	if(error) {
+		return (
+			<div className="text-center text-xl mt-10">
+				Failed to fetch event data.{" "}
+				<button onClick={() => window.location.reload()} className="underline">
+					Retry
+				</button>
+			</div>
+		);
+	}
+
 	return (
 		<section className="max-w-4xl mx-auto py-10 px-6">
 			<h1 className="text-3xl font-bold text-primary">{event.title}</h1>
