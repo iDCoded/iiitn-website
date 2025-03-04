@@ -11,8 +11,10 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/components/ui/form";
-import { ImageIcon } from "lucide-react";
+import { Check, ImageIcon, PlusCircle } from "lucide-react";
 import MDEditor from "@uiw/react-md-editor";
+import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
 	title: z.string().min(1, "Title is required"),
@@ -33,6 +35,34 @@ const formSchema = z.object({
 });
 
 export function CardForm() {
+	const [categories, setCategories] = useState<string[]>([
+		"News",
+		"Events",
+		"Announcements",
+		"Projects",
+	]);
+	const [subcategories, setSubcategories] = useState<Record<string, string[]>>({
+		News: ["Local", "Global", "College"],
+		Events: ["Seminar", "Conference", "Workshop"],
+		Announcements: ["Product", "Company", "Industry"],
+		Projects: ["Internal", "Client", "Research"],
+	});
+
+	const [categoryInput, setCategoryInput] = useState("");
+	const [subcategoryInput, setSubcategoryInput] = useState("");
+	const [showCategorySuggestions, setShowCategorySuggestions] = useState(false);
+	const [showSubcategorySuggestions, setShowSubcategorySuggestions] =
+		useState(false);
+	const [filteredCategories, setFilteredCategories] = useState<string[]>([]);
+	const [filteredSubcategories, setFilteredSubcategories] = useState<string[]>(
+		[]
+	);
+	const [isNewCategory, setIsNewCategory] = useState(false);
+	const [isNewSubcategory, setIsNewSubcategory] = useState(false);
+
+	const categoryRef = useRef<HTMLDivElement>(null);
+	const subcategoryRef = useRef<HTMLDivElement>(null);
+
 	const form = useForm({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -50,6 +80,91 @@ export function CardForm() {
 	});
 
 	const fileRef = form.register("media");
+
+	// Handle outside clicks to close suggestion dropdowns
+	useEffect(() => {
+		function handleClickOutside(event: MouseEvent) {
+			if (
+				categoryRef.current &&
+				!categoryRef.current.contains(event.target as Node)
+			) {
+				setShowCategorySuggestions(false);
+			}
+			if (
+				subcategoryRef.current &&
+				!subcategoryRef.current.contains(event.target as Node)
+			) {
+				setShowSubcategorySuggestions(false);
+			}
+		}
+
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, []);
+
+	// Filter categories based on input
+	useEffect(() => {
+		if (categoryInput) {
+			const filtered = categories.filter((cat) =>
+				cat.toLowerCase().includes(categoryInput.toLowerCase())
+			);
+			setFilteredCategories(filtered);
+			setIsNewCategory(
+				filtered.length === 0 || !filtered.includes(categoryInput)
+			);
+		} else {
+			setFilteredCategories(categories);
+			setIsNewCategory(false);
+		}
+	}, [categoryInput, categories]);
+
+	// Filter subcategories based on input and selected category
+	useEffect(() => {
+		const currentCategory = form.getValues("c_category");
+		if (subcategoryInput && currentCategory && subcategories[currentCategory]) {
+			const filtered = subcategories[currentCategory].filter((subcat) =>
+				subcat.toLowerCase().includes(subcategoryInput.toLowerCase())
+			);
+			setFilteredSubcategories(filtered);
+			setIsNewSubcategory(
+				filtered.length === 0 || !filtered.includes(subcategoryInput)
+			);
+		} else if (currentCategory && subcategories[currentCategory]) {
+			setFilteredSubcategories(subcategories[currentCategory]);
+			setIsNewSubcategory(false);
+		} else {
+			setFilteredSubcategories([]);
+			setIsNewSubcategory(false);
+		}
+	}, [subcategoryInput, form, subcategories]);
+
+	// Reset subcategory when category changes
+	useEffect(() => {
+		const subscription = form.watch((_value, { name }) => {
+			if (name === "c_category") {
+				form.setValue("c_sub_category", "");
+				setSubcategoryInput("");
+			}
+		});
+
+		return () => subscription.unsubscribe();
+	}, [form]);
+
+	const handleCategorySelect = (category: string) => {
+		form.setValue("c_category", category);
+		setCategoryInput(category);
+		setShowCategorySuggestions(false);
+		setIsNewCategory(false);
+	};
+
+	const handleSubcategorySelect = (subcategory: string) => {
+		form.setValue("c_sub_category", subcategory);
+		setSubcategoryInput(subcategory);
+		setShowSubcategorySuggestions(false);
+		setIsNewSubcategory(false);
+	};
 
 	const handleSubmit = async (data: z.infer<typeof formSchema>) => {
 		const file = data.media[0];
@@ -248,16 +363,60 @@ export function CardForm() {
 							)}
 						/>
 					</div>
+
 					<div className="flex flex-row justify-around gap-2">
 						<FormField
 							control={form.control}
 							name="c_category"
 							render={({ field }) => (
-								<FormItem className="w-full">
+								<FormItem className="w-full relative" ref={categoryRef}>
 									<FormLabel>Category</FormLabel>
 									<FormControl>
-										<Input placeholder="Enter the category" {...field} />
+										<div>
+											<Input
+												placeholder="Enter or select category"
+												value={categoryInput}
+												onChange={(e) => {
+													setCategoryInput(e.target.value);
+													field.onChange(e.target.value);
+													setShowCategorySuggestions(true);
+												}}
+												onFocus={() => setShowCategorySuggestions(true)}
+											/>
+											{showCategorySuggestions && (
+												<div className="absolute z-10 w-full mt-1 bg-white border rounded-md shadow-lg max-h-60 overflow-auto">
+													{filteredCategories.length > 0 ? (
+														filteredCategories.map((category) => (
+															<div
+																key={category}
+																className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center"
+																onClick={() => handleCategorySelect(category)}>
+																<Check
+																	className={cn(
+																		"mr-2 h-4 w-4",
+																		field.value === category
+																			? "opacity-100"
+																			: "opacity-0"
+																	)}
+																/>
+																{category}
+															</div>
+														))
+													) : (
+														<div className="px-4 py-2 text-sm flex items-center gap-2">
+															<PlusCircle className="h-4 w-4" />
+															<span>Create "{categoryInput}"</span>
+														</div>
+													)}
+												</div>
+											)}
+										</div>
 									</FormControl>
+									{isNewCategory && categoryInput && (
+										<p className="text-xs text-blue-500 mt-1">
+											New category will be created upon submission
+										</p>
+									)}
 									<FormMessage />
 								</FormItem>
 							)}
@@ -266,11 +425,62 @@ export function CardForm() {
 							control={form.control}
 							name="c_sub_category"
 							render={({ field }) => (
-								<FormItem className="w-full">
+								<FormItem className="w-full relative" ref={subcategoryRef}>
 									<FormLabel>Sub-category</FormLabel>
 									<FormControl>
-										<Input placeholder="Enter the sub-category" {...field} />
+										<div>
+											<Input
+												placeholder="Enter or select sub-category"
+												value={subcategoryInput}
+												onChange={(e) => {
+													setSubcategoryInput(e.target.value);
+													field.onChange(e.target.value);
+													setShowSubcategorySuggestions(true);
+												}}
+												onFocus={() => setShowSubcategorySuggestions(true)}
+												disabled={!form.getValues("c_category")}
+											/>
+											{showSubcategorySuggestions &&
+												form.getValues("c_category") && (
+													<div className="absolute z-10 w-full mt-1 bg-white border rounded-md shadow-lg max-h-60 overflow-auto">
+														{filteredSubcategories.length > 0 ? (
+															filteredSubcategories.map((subcategory) => (
+																<div
+																	key={subcategory}
+																	className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center"
+																	onClick={() =>
+																		handleSubcategorySelect(subcategory)
+																	}>
+																	<Check
+																		className={cn(
+																			"mr-2 h-4 w-4",
+																			field.value === subcategory
+																				? "opacity-100"
+																				: "opacity-0"
+																		)}
+																	/>
+																	{subcategory}
+																</div>
+															))
+														) : subcategoryInput ? (
+															<div className="px-4 py-2 text-sm flex items-center gap-2">
+																<PlusCircle className="h-4 w-4" />
+																<span>Create "{subcategoryInput}"</span>
+															</div>
+														) : (
+															<div className="px-4 py-2 text-sm">
+																No subcategories available
+															</div>
+														)}
+													</div>
+												)}
+										</div>
 									</FormControl>
+									{isNewSubcategory && subcategoryInput && (
+										<p className="text-xs text-blue-500 mt-1">
+											New subcategory will be created upon submission
+										</p>
+									)}
 									<FormMessage />
 								</FormItem>
 							)}
