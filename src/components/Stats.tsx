@@ -3,9 +3,9 @@ import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
 const stats = [
-    { label: "Students", value: 2 },
-    { label: "Professors", value: 50 },
-    { label: "Research", value: 75 },
+    { label: "Students", value: 2, description: "Students Enrolled" },
+    { label: "Professors", value: 50, description: "Professors & Lecturers" },
+    { label: "Research", value: 75, description: "Research Papers Published" },
 ];
 
 const Stats = () => {
@@ -51,8 +51,7 @@ const Stats = () => {
 
                             {/* Description */}
                             <p className="font-lora text-gray-600 mt-4 text-center max-w-sm leading-relaxed">
-                                At present, there are five departments within the faculty:
-                                Department of Geography and Environment.
+                                {stat.description}
                             </p>
 
                             {/* Vertical Divider */}

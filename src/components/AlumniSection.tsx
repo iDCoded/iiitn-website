@@ -10,7 +10,7 @@ import e from "../assets/e.jpg";
 import AF from "../assets/AF.jpeg";
 import AG from "../assets/AG.jpeg";
 import h from "../assets/h.jpg";
-import abc from "../assets/alum2.jpeg";
+import abc from "../assets/abc.jpg";
 
 const alumniData = [
     {
