@@ -11,7 +11,7 @@ const announcementsData = [
 		image: "",
 		description:
 			"The final exam schedule for all branches has been released. Check the official notice for details.",
-		link: "/announcements/exam-schedule",
+		link: "/announcements/examschedule",
 		content:
 			"The final exam schedule for all courses has been published. Students are advised to check their respective timetables and prepare accordingly. Ensure you follow the guidelines mentioned in the official notice.",
 		date: "March 5, 2025",
@@ -33,7 +33,7 @@ const announcementsData = [
 		image: "",
 		description:
 			"Top companies are coming for recruitment. Prepare well and check the schedule.",
-		link: "/announcements/placement-drive",
+		link: "/announcements/placementdrive",
 		content:
 			"The placement drive for the 2025 batch will begin next week. Several top companies will be visiting the campus for recruitment. Students are encouraged to update their resumes and prepare for interviews.",
 		date: "March 15, 2025",
@@ -44,7 +44,7 @@ const announcementsData = [
 		image: "",
 		description:
 			"Reconnect with your batchmates and network with alumni from various industries.",
-		link: "/announcements/alumni-meet",
+		link: "/announcements/alumnimeet",
 		content:
 			"IIIT Nagpur invites all alumni to the grand Alumni Meet 2025. This is a great opportunity to reconnect, network, and relive memories with old friends and faculty members.",
 		date: "March 20, 2025",
@@ -55,7 +55,7 @@ const announcementsData = [
 		image: "",
 		description:
 			"A special workshop on Artificial Intelligence and Machine Learning. Don't miss it!",
-		link: "/announcements/ai-workshop",
+		link: "/announcements/aiworkshop",
 		content:
 			"Join us for an insightful workshop on Artificial Intelligence and Machine Learning, conducted by industry experts. Learn about the latest trends and advancements in AI & ML.",
 		date: "March 22, 2025",
@@ -196,7 +196,7 @@ const DetailedAnnouncement = () => {
 					initial={{ opacity: 0, y: 10 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ delay: 0.6, duration: 0.5 }}
-					className="mt-6 text-primary/50 text-lg leading-relaxed mb-6"
+					className="mt-6 text-primary text-lg leading-relaxed mb-6"
 				>
 					{announcement.content}
 				</motion.div>
@@ -213,20 +213,6 @@ const DetailedAnnouncement = () => {
 				>
 					← Go Back
 				</motion.button>
-
-				{/* External Link (if available) */}
-				{announcement.link && (
-					<motion.a
-						whileHover={{ scale: 1.05 }}
-						whileTap={{ scale: 0.95 }}
-						href={announcement.link}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="bg-primary text-white px-5 py-2 rounded-lg font-semibold transition-all duration-300 hover:bg-blue-700"
-					>
-						Read More →
-					</motion.a>
-				)}
 			</div>
 		</motion.section>
 	);
