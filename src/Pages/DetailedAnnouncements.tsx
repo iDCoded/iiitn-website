@@ -32,19 +32,43 @@ const DetailedAnnouncement = () => {
 				if (!response.ok) throw new Error("Failed to fetch announcement");
 
 				const data = await response.json();
-				const imageUrl = data.media_img_path
-					? `${import.meta.env.VITE_API_BASE_URL}/media/${data.media_img_path}`
-					: "";
+				let imageUrl = "";
+				if (data.media_img_path) {
+					try {
+						const imgReq = await fetch(
+							`${import.meta.env.VITE_API_BASE_URL}/media/${data.media_img_path
+							}`
+						);
+						if (!imgReq.ok) throw new Error("Failed to fetch image");
+						const imgRes = await imgReq.json();
 
-				setAnnouncement({
-					id: data.id || "",
-					title: data.title || "No Title Available",
-					image: imageUrl || "",
-					description: data.description || "",
-					link: data.link || "#",
-					content: data.content || "No content available.",
-					date: data.date || "Unknown Date",
-				});
+						imageUrl = imgRes.url;
+						console.log(imageUrl);
+
+						// Check if the response is an image (blob) or JSON
+						// // const contentType = imgReq.headers.get("content-type");
+						// // if (contentType && contentType.startsWith("image")) {
+						// // 	imageUrl = URL.createObjectURL(await imgReq.blob());
+						// // } else {
+						// // 	const imgRes = await imgReq.json();
+						// // 	if (imgRes.url) {
+						// // 		imageUrl = imgRes.url;
+						// // 	}
+						// // }
+					} catch (err) {
+						console.error(`Error fetching image for announcement ${announcementid}:`, err);
+					}
+
+					setAnnouncement({
+						id: data.id || "",
+						title: data.title || "No Title Available",
+						image: imageUrl || "",
+						description: data.description || "",
+						link: data.link || "#",
+						content: data.content || "No content available.",
+						date: data.date || "Unknown Date",
+					});
+				}
 			} catch (error) {
 				console.error("Error fetching announcement:", error);
 				setError("Failed to load announcement.");
@@ -52,7 +76,7 @@ const DetailedAnnouncement = () => {
 				setLoading(false);
 			}
 		};
-
+		
 		fetchAnnouncement();
 	}, [announcementid]);
 
