@@ -85,7 +85,7 @@ const DetailedAnnouncement = () => {
 			setLoading(true);
 			try {
 				const response = await fetch(
-					`${import.meta.env.VITE_API_BASE_URL}/announcements/${announcementid}`
+					`${import.meta.env.VITE_API_BASE_URL}/card/cards/${announcementid}`
 				);
 				if (!response.ok) throw new Error("Failed to fetch announcement");
 
