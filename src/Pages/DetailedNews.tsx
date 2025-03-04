@@ -108,7 +108,7 @@ function DetailedNews() {
 					content: data.content,
 				});
 			} catch (error) {
-				// console.error("Error fetching event:", error);
+				console.error("Error fetching event:", error);
 				const foundEvent = newsData.find((e) => e.id === newsId);
 				if (foundEvent) {
 					setNews({

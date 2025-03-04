@@ -1,66 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-
-// Sample announcements as fallback data
-
-const announcementsData = [
-	{
-		id: "examschedule",
-		title: "Important Notice: Exam schedule released!",
-		image: "",
-		description:
-			"The final exam schedule for all branches has been released. Check the official notice for details.",
-		link: "/announcements/examschedule",
-		content:
-			"The final exam schedule for all courses has been published. Students are advised to check their respective timetables and prepare accordingly. Ensure you follow the guidelines mentioned in the official notice.",
-		date: "March 5, 2025",
-	},
-	{
-		id: "hackathon",
-		title: "IIIT Nagpur Hackathon registration open!",
-		image: "",
-		description:
-			"Join the annual Hackathon and showcase your coding skills. Register now!",
-		link: "/announcements/hackathon",
-		content:
-			"IIIT Nagpur is organizing its annual hackathon where participants will solve real-world problems using technology. Get ready for exciting challenges, mentorship, and amazing prizes!",
-		date: "March 10, 2025",
-	},
-	{
-		id: "placementdrive",
-		title: "Placement drive for 2025 batch starts next week.",
-		image: "",
-		description:
-			"Top companies are coming for recruitment. Prepare well and check the schedule.",
-		link: "/announcements/placementdrive",
-		content:
-			"The placement drive for the 2025 batch will begin next week. Several top companies will be visiting the campus for recruitment. Students are encouraged to update their resumes and prepare for interviews.",
-		date: "March 15, 2025",
-	},
-	{
-		id: "alumnimeet",
-		title: "Alumni Meet 2025 - Register now!",
-		image: "",
-		description:
-			"Reconnect with your batchmates and network with alumni from various industries.",
-		link: "/announcements/alumnimeet",
-		content:
-			"IIIT Nagpur invites all alumni to the grand Alumni Meet 2025. This is a great opportunity to reconnect, network, and relive memories with old friends and faculty members.",
-		date: "March 20, 2025",
-	},
-	{
-		id: "aiworkshop",
-		title: "Workshop on AI & ML this Saturday!",
-		image: "",
-		description:
-			"A special workshop on Artificial Intelligence and Machine Learning. Don't miss it!",
-		link: "/announcements/aiworkshop",
-		content:
-			"Join us for an insightful workshop on Artificial Intelligence and Machine Learning, conducted by industry experts. Learn about the latest trends and advancements in AI & ML.",
-		date: "March 22, 2025",
-	},
-];
+import MarkdownPreview from "@uiw/react-markdown-preview";
 
 // Interface for Announcement
 interface Announcement {
@@ -75,14 +16,15 @@ interface Announcement {
 
 const DetailedAnnouncement = () => {
 	const { announcementid } = useParams();
-	console.log(announcementid);
 	const navigate = useNavigate();
 	const [announcement, setAnnouncement] = useState<Announcement | null>(null);
 	const [loading, setLoading] = useState<boolean>(true);
+	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
 		const fetchAnnouncement = async () => {
 			setLoading(true);
+			setError(null);
 			try {
 				const response = await fetch(
 					`${import.meta.env.VITE_API_BASE_URL}/card/cards/${announcementid}`
@@ -97,17 +39,15 @@ const DetailedAnnouncement = () => {
 				setAnnouncement({
 					id: data.id || "",
 					title: data.title || "No Title Available",
-					image: imageUrl || "", // No fallback image
+					image: imageUrl || "",
 					description: data.description || "",
 					link: data.link || "#",
-					content: data.content || "",
+					content: data.content || "No content available.",
 					date: data.date || "Unknown Date",
 				});
 			} catch (error) {
 				console.error("Error fetching announcement:", error);
-				setAnnouncement(
-					announcementsData.find((a) => a.id === announcementid) || null
-				);
+				setError("Failed to load announcement.");
 			} finally {
 				setLoading(false);
 			}
@@ -116,11 +56,20 @@ const DetailedAnnouncement = () => {
 		fetchAnnouncement();
 	}, [announcementid]);
 
-	// Show loading state
+	// Loading state
 	if (loading) {
 		return (
-			<div className="text-center text-xl mt-10">
+			<div className="flex justify-center items-center h-screen text-xl text-primary">
 				Loading announcement... ⏳
+			</div>
+		);
+	}
+
+	// Error state
+	if (error) {
+		return (
+			<div className="text-center text-xl text-red-500 mt-10">
+				{error} 😢
 			</div>
 		);
 	}
@@ -128,7 +77,9 @@ const DetailedAnnouncement = () => {
 	// If announcement is not found
 	if (!announcement) {
 		return (
-			<div className="text-center text-xl mt-10">Announcement Not Found 😢</div>
+			<div className="text-center text-xl mt-10 text-gray-500">
+				Announcement Not Found 😢
+			</div>
 		);
 	}
 
@@ -157,7 +108,7 @@ const DetailedAnnouncement = () => {
 						transition={{ delay: 0.3, duration: 0.5 }}
 						className="text-primary mt-2 text-lg"
 					>
-						{announcement.date}
+						📅 {announcement.date}
 					</motion.p>
 				)}
 			</div>
@@ -198,7 +149,11 @@ const DetailedAnnouncement = () => {
 					transition={{ delay: 0.6, duration: 0.5 }}
 					className="mt-6 text-primary text-lg leading-relaxed mb-6"
 				>
-					{announcement.content}
+					<MarkdownPreview
+						source={announcement.content}
+						wrapperElement={{ "data-color-mode": "light" }}
+						style={{ padding: 16 }}
+					/>
 				</motion.div>
 			)}
 
