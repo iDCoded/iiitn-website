@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa"; // Icons for menu toggle
+import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io"; // Icons for dropdowns
 import logo from "../assets/logo.png"; // Logo Image
 import Search from "@/search";
 
@@ -212,7 +213,7 @@ const Navbar = () => {
 			<div className="fixed top-0 left-0 w-full z-50 transition-transform duration-200">
 				{/* 🔸 Top Orange Bar */}
 				<nav className={`w-full px-6 py-2 flex justify-between items-center lg:flex ${isHomePage && !isScrolled ? "bg-transparent shadow-none text-white" : "bg-accent shadow-md text-primary"
-						}`}>
+					}`}>
 					<h1 className={`font-bold text-xl ${isHomePage && !isScrolled ? "text-white" : "text-primary"
 						}`}>अ A</h1>
 					<ul className={`hidden lg:flex space-x-6 font-medium ${isHomePage && !isScrolled ? "text-white" : "text-primary"
@@ -253,7 +254,9 @@ const Navbar = () => {
 									onMouseEnter={() => setOpenDropdown(index)}
 									onMouseLeave={() => setOpenDropdown(null)}>
 									<span className="relative inline-block pb-1 text-white transition-all duration-300 ease-in-out group-hover:text-accent group-hover:scale-110">
-										{item.title}
+										<span className="flex items-center">
+											{item.title} <IoIosArrowDown className="ml-1" />
+										</span>
 										{/* Underline Animation */}
 										<span className="absolute left-0 bottom-0 w-0 h-[3px] bg-accent transition-all duration-500 ease-out group-hover:w-full group-hover:opacity-100 opacity-0"></span>
 									</span>
@@ -270,8 +273,9 @@ const Navbar = () => {
 												onMouseEnter={() => setOpenSubmenu(i)}
 												onMouseLeave={() => setOpenSubmenu(null)}>
 												<a href={link.href}>
-													<li className="px-4 py-2 hover:bg-accent hover:rounded-sm hover:text-white">
+													<li className="px-4 py-2 hover:bg-accent hover:rounded-sm hover:text-white flex justify-between items-center">
 														{link.name}
+														{link.subLinks && <IoIosArrowForward />}
 													</li>
 												</a>
 												{link.subLinks && (
@@ -287,8 +291,9 @@ const Navbar = () => {
 																onMouseLeave={() => setOpenNestedSubmenu(null)}>
 																<a
 																	href={subLink.href}
-																	className="block px-4 py-2 hover:bg-accent hover:text-white rounded-sm">
+																	className="px-4 py-2 hover:bg-accent hover:text-white rounded-sm flex justify-between items-center">
 																	{subLink.name}
+																	{subLink.nestedLinks && <IoIosArrowForward />}
 																</a>
 
 																{/* Nested Submenu (if exists) */}
