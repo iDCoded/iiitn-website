@@ -10,7 +10,7 @@ import e from "../assets/e.jpg";
 import AF from "../assets/AF.jpeg";
 import AG from "../assets/AG.jpeg";
 import h from "../assets/h.jpg";
-import abc from "../assets/abc.jpg";
+import abc from "../assets/alum2.jpeg";
 
 const alumniData = [
     {
@@ -83,9 +83,13 @@ const AlumniSection = () => {
     }, []);
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen w-full bg-gradient-to-br from-[#002147] via-[#19376D] to-[#070F2B] text-white" style={{ backgroundImage: `url(${abc})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="relative flex flex-col items-center justify-center min-h-screen w-full bg-gradient-to-br from-[#002147] via-[#19376D] to-[#070F2B] text-white">
+            {/* Background Image with Glass Morph Overlay */}
+            <div className="absolute inset-0 bg-cover bg-center h-full" style={{ backgroundImage: `url(${abc})` }}></div>
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
             {/* Glassmorphic Card */}
-            <div className="relative w-full max-w-2xl p-6 rounded-xl bg-white/10 backdrop-blur-lg shadow-lg border border-white/20">
+            <div className="relative w-full max-w-2xl p-6 rounded-xl bg-white/20 backdrop-blur-lg shadow-lg border border-white/30">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={index}
