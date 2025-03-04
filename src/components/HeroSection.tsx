@@ -34,11 +34,11 @@ const HeroSection = () => {
             </div>
 
             {/* 🎯 Hero Content */}
-            <div className="relative z-10">
+            <div className="fixed z-[-1]">
                 <div className="text-center">
                     <p className="font-extrabold text-white  text-4xl lg:text-5xl">
                         {isEnglish
-                            ? "Indian Institute of Information Technology, Nagpur"
+                            ? "Indian Institute of Information Technology Nagpur"
                             : "भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर"}
                     </p>
                     <p className="font-light text-lg text-white">

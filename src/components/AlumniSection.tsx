@@ -10,6 +10,7 @@ import e from "../assets/e.jpg";
 import AF from "../assets/AF.jpeg";
 import AG from "../assets/AG.jpeg";
 import h from "../assets/h.jpg";
+import abc from "../assets/abc.jpg";
 
 const alumniData = [
     {
@@ -82,27 +83,33 @@ const AlumniSection = () => {
     }, []);
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-white text-black w-full">
-            <div className="relative w-full max-w-xl p-6 bg-gray-100 rounded-lg shadow-lg">
+        <div className="flex flex-col items-center justify-center min-h-screen w-full bg-gradient-to-br from-[#002147] via-[#19376D] to-[#070F2B] text-white" style={{ backgroundImage: `url(${abc})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            {/* Glassmorphic Card */}
+            <div className="relative w-full max-w-2xl p-6 rounded-xl bg-white/10 backdrop-blur-lg shadow-lg border border-white/20">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={index}
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -50 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.6 }}
                         className="flex flex-col items-center text-center"
                     >
+                        {/* Profile Image with Glass Effect */}
                         <div
-                            className="w-48 h-48 rounded-full bg-cover bg-center border-4 border-gray-300"
+                            className="w-32 h-32 rounded-full bg-cover bg-center border-4 border-white/50 shadow-lg"
                             style={{ backgroundImage: `url(${alumniData[index].image})` }}
                         ></div>
+
+                        {/* Alumni Name & Position */}
                         <h2 className="mt-4 text-2xl font-bold">{alumniData[index].name}</h2>
-                        <p className="mt-1 text-orange-500 text-lg font-semibold italic">
+                        <p className="mt-1 text-orange-400 text-lg font-semibold italic">
                             {alumniData[index].position}
                         </p>
-                        <p className="mt-3 text-lg font-medium px-6 text-gray-700">
-                            {alumniData[index].quote}
+
+                        {/* Alumni Quote */}
+                        <p className="mt-4 text-lg font-medium text-white/80 px-6 leading-relaxed">
+                            "{alumniData[index].quote}"
                         </p>
                     </motion.div>
                 </AnimatePresence>

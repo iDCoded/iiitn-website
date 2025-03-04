@@ -204,16 +204,19 @@ const Navbar = () => {
 		<>
 			{/* Transparent Overlay (Only for Home Page) */}
 			{isHomePage && (
-				<div className="absolute left-0 top-5 w-full h-[18vh] bg-gradient-to-b from-[#002147] via-[#4D79A6] to-transparent z-1"></div>
+				<div className="fixed left-0 top-0 w-full h-[18vh] bg-gradient-to-b from-[#002147] via-[#4D79A6] to-transparent z-1"></div>
 			)}
 
 
 			{/* Fixed Navbar */}
 			<div className="fixed top-0 left-0 w-full z-50 transition-transform duration-200">
 				{/* 🔸 Top Orange Bar */}
-				<nav className="w-full bg-accent shadow-md px-6 py-2 flex justify-between items-center lg:flex">
-					<h1 className="text-primary font-bold text-xl">अ A</h1>
-					<ul className="hidden lg:flex space-x-6 font-medium text-primary">
+				<nav className={`w-full px-6 py-2 flex justify-between items-center lg:flex ${isHomePage && !isScrolled ? "bg-transparent shadow-none text-white" : "bg-accent shadow-md text-primary"
+						}`}>
+					<h1 className={`font-bold text-xl ${isHomePage && !isScrolled ? "text-white" : "text-primary"
+						}`}>अ A</h1>
+					<ul className={`hidden lg:flex space-x-6 font-medium ${isHomePage && !isScrolled ? "text-white" : "text-primary"
+						}`}>
 						{navLinks.map((link, index) => (
 							<a key={index} href={link.href} className="hover:text-white">
 								{link.title}
