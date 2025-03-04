@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import axios from "axios";
 
 const announcementsData = [
     {
@@ -60,8 +59,9 @@ const Announcements: React.FC = () => {
     useEffect(() => {
         const fetchAnnouncements = async () => {
             try {
-                const response = await axios.get("/card/cards/category/announcements");
-                const announcementsArray = Array.isArray(response.data) ? response.data : [];
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/card/cards/category/announcements`);
+                const data = await response.json();
+                const announcementsArray = Array.isArray(data) ? data : [];
                 setAnnouncements(announcementsArray.map((announcement: any) => ({
                     id: announcement.c_id,
                     title: announcement.title,
