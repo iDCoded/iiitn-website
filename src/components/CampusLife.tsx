@@ -35,12 +35,13 @@ const CampusLife = () => {
 				transition={{ duration: 0.8, ease: "easeOut" }}
 				className="max-w-6xl mx-auto">
 				{/* Section Header */}
-				<div className="flex justify-between items-center mb-6">
-					<h2 className="text-3xl font-bold text-left text-primary">
+				<div className="flex flex-col sm:flex-row justify-between items-center mb-6">
+					<h2 className="text-3xl font-bold text-primary flex items-center gap-2">
 						<span className="text-accent">|</span> Campus Life
 					</h2>
-					<div className="flex flex-row gap-6">
+					<div className="flex gap-4 mt-4 sm:mt-0">
 						<Dialog>
+
 							<DialogTrigger asChild>
 								<Button>Campus Tour</Button>
 							</DialogTrigger>

@@ -76,6 +76,7 @@ import MinutesOfMeeting from "./Pages/MinutesOfMeeting";
 import ImmutableProperty from "./Pages/ImmutableProperty";
 import EventDetail from "./Events/pages/page";
 import DetailedAnnouncements from "./Pages/DetailedAnnouncements";
+import DetailedDirectory from "./Pages/DetailedDirectory";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -182,7 +183,7 @@ const AppRoutes = () => (
 		<Route path="/pages/icc" element={<InternalCompltComm />} />
 		<Route path="/pages/eoc" element={<EqualOppCell />} />
 		<Route path="/pages/directory" element={<Directory />} />
-		<Route path="/pages/directory" element={<Directory />} />
+		<Route path="/pages/directory/:id" element={<DetailedDirectory />} />
 		<Route path="/news" element={<News/>}></Route>
 		<Route path="/news/:newsId" element={<DetailedNews />} />
 		<Route path="/events/:eventid" element={<EventDetail />} />

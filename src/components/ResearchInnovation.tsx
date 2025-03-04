@@ -27,10 +27,10 @@ const Departments = () => {
 				className="text-center max-w-4xl"
 			>
 				<h2 className="text-5xl font-extrabold tracking-tight mb-4">
-					<span className="text-accent">| </span> Explore Our Departments
+					<span className="text-accent">| </span> Research & Innovation 
 				</h2>
 				<p className="text-gray-300 text-lg">
-					Advancing knowledge through research and innovation.
+					Explore our research departments and academic programs.
 				</p>
 			</motion.div>
 

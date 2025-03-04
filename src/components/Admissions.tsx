@@ -31,19 +31,16 @@ const Admissions = () => {
         index: null,
     });
 
-    // Scroll Detection for Animations
+    // Scroll Animation Trigger
     const { ref, inView } = useInView({
         triggerOnce: true,
-        threshold: 0.2, // Trigger animation when 20% of section is visible
+        threshold: 0.2,
     });
 
-    // Track Scroll Position
+    // Scroll-Zoom Effect
     const { scrollYProgress } = useScroll();
-
-    // Scroll-Zoom Effect (Dynamically scales from 1x to 1.5x)
     const scale = useTransform(scrollYProgress, [0, 0.5], [1, 2]);
 
-    // Function to create ripple at mouse position
     const handleMouseEnter = (event: React.MouseEvent<HTMLDivElement>, index: number) => {
         const rect = event.currentTarget.getBoundingClientRect();
         const x = event.clientX - rect.left;
@@ -55,40 +52,45 @@ const Admissions = () => {
     return (
         <section
             ref={ref}
-            className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
-            {/* 📌 Background with Scroll-Zoom Effect */}
+            className="relative flex flex-col items-center justify-center h-screen overflow-hidden px-4 sm:px-6 lg:px-8">
+            
+            {/* 📌 Background Image with Scroll-Zoom */}
             <motion.div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat h-screen"
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{ backgroundImage: `url(${admission})`, scale }}
             />
 
-            {/* Overlay for better readability */}
-            <div className="absolute inset-0 bg-primary/40 backdrop-blur-lg border border-white/20 h-screen"></div>
+            {/* Overlay for Better Readability */}
+            <div className="absolute inset-0 bg-primary/40 backdrop-blur-lg border border-white/20"></div>
 
             {/* Content */}
             <motion.div
-                className="relative max-w-6xl text-left px-6"
+                className="relative max-w-6xl text-left text-white px-4 sm:px-6"
                 initial={{ opacity: 0, y: 50 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 1, ease: "easeOut" }}>
+                
+                {/* Section Title */}
                 <motion.h2
-                    className="text-4xl font-bold text-white drop-shadow-lg tracking-wide"
+                    className="text-2xl sm:text-4xl font-bold drop-shadow-lg tracking-wide"
                     initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}>
                     <span className="text-accent">| </span>Admissions & Programs
                 </motion.h2>
+
+                {/* Description */}
                 <motion.p
-                    className="mt-4 text-gray-200 text-lg"
+                    className="mt-2 sm:mt-4 text-gray-200 text-sm sm:text-lg"
                     initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}>
                     Enroll in our world-class education programs.
                 </motion.p>
 
-                {/* Cards with Staggered Fade-in Effect */}
+                {/* Cards - Responsive Grid */}
                 <motion.div
-                    className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6"
+                    className="mt-6 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6"
                     initial="hidden"
                     animate={inView ? "visible" : "hidden"}
                     variants={{
@@ -106,18 +108,17 @@ const Admissions = () => {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                         >
                             <Card
-                                key={index}
-                                className="h-64 relative overflow-hidden bg-white shadow-lg rounded-lg border border-gray-200 transition-transform duration-300 ease-in-out transform hover:scale-[1.05] hover:shadow-2xl"
+                                className="h-48 sm:h-64 relative overflow-hidden bg-white shadow-lg rounded-lg border border-gray-200 transition-transform duration-300 ease-in-out transform hover:scale-[1.05] hover:shadow-2xl"
                                 onMouseEnter={(e) => {
-                                    handleMouseEnter(e, index)
-                                    setHovered(index)
-                                }} // Trigger ripple
+                                    handleMouseEnter(e, index);
+                                    setHovered(index);
+                                }}
                                 onMouseLeave={() => {
-                                    setHovered(null)
-                                    setRipple({ x: 0, y: 0, index: null })
-                                }} // Remove ripple
+                                    setHovered(null);
+                                    setRipple({ x: 0, y: 0, index: null });
+                                }}
                             >
-                                {/* Circular Expanding Ripple Effect */}
+                                {/* Ripple Effect */}
                                 {ripple.index === index && (
                                     <div
                                         className="absolute bg-accent rounded-full opacity-60 animate-ripple"
@@ -129,25 +130,23 @@ const Admissions = () => {
                                     ></div>
                                 )}
 
-                                <CardContent className="p-6 text-center relative z-10">
+                                <CardContent className="p-4 sm:p-6 text-center relative z-10">
                                     <CardTitle
-                                        className={`text-lg font-bold text-primary transition-colors duration-300 ${hovered === index && "text-[#f4f4f4]"
-                                            }`}
+                                        className={`text-sm sm:text-lg font-bold text-primary transition-colors duration-300 ${hovered === index ? "text-[#f4f4f4]" : ""}`}
                                     >
                                         {program.title}
                                     </CardTitle>
                                     <p
-                                        className={`mt-2 text-gray-600 transition-colors duration-300 ${hovered === index && "text-white/50"
-                                            }`}
+                                        className={`mt-1 sm:mt-2 text-gray-600 text-xs sm:text-base transition-colors duration-300 ${hovered === index ? "text-white/50" : ""}`}
                                     >
                                         {program.description}
                                     </p>
 
                                     {/* Learn More Button */}
                                     <a href={program.link}>
-                                        <div className="mt-4 flex items-center justify-center text-accent font-semibold cursor-pointer transition-colors duration-300">
+                                        <div className="mt-2 sm:mt-4 flex items-center justify-center text-accent font-semibold cursor-pointer transition-colors duration-300">
                                             <span>Learn More</span>
-                                            <FaArrowRight className="ml-2 transform transition-transform duration-300" />
+                                            <FaArrowRight className="ml-1 sm:ml-2 transform transition-transform duration-300" />
                                         </div>
                                     </a>
                                 </CardContent>
