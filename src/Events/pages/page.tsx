@@ -1,45 +1,45 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import abhivyakti from "../../assets/abhivyakti.jpg";
-import tf from "../../assets/tf.jpeg";
-import workshop from "../../assets/workshop.jpg";
+// import abhivyakti from "../../assets/abhivyakti.jpg";
+// import tf from "../../assets/tf.jpeg";
+// import workshop from "../../assets/workshop.jpg";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 
-const eventsData = [
-	{
-		id: "abhivyakti",
-		image: abhivyakti,
-		title: "Abhivyakti - The Cultural Fest of IIITN",
-		caption: "The cultural fest of IIITN",
-		content:
-			"Annual gathering of students, faculty, and staff. Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-		date: "28 Feb",
-		location: "IIIT Nagpur Campus",
-		large: true,
-	},
-	{
-		id: "tantrafiesta",
-		image: tf,
-		title: "Tantrafiesta",
-		caption: "The technical fest of IIITN",
-		content:
-			"Annual gathering of students, faculty, and staff. Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-		date: "27 Aug",
-		location: "IIIT Nagpur Campus",
-		large: false,
-	},
-	{
-		id: "Foundations-of-Cybersecurity",
-		image: workshop,
-		title: "Foundations of Cybersecurity - Online Certificate Programme",
-		caption: "Enhance your cybersecurity skills with IIIT Nagpur",
-		content:
-			"The Department of Computer Science & Engineering at IIIT Nagpur presents an exclusive online certification program...",
-		date: "22nd March",
-		location: "Online (Hosted by IIIT Nagpur)",
-		large: false,
-	},
-];
+// const eventsData = [
+// 	{
+// 		id: "abhivyakti",
+// 		image: abhivyakti,
+// 		title: "Abhivyakti - The Cultural Fest of IIITN",
+// 		caption: "The cultural fest of IIITN",
+// 		content:
+// 			"Annual gathering of students, faculty, and staff. Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+// 		date: "28 Feb",
+// 		location: "IIIT Nagpur Campus",
+// 		large: true,
+// 	},
+// 	{
+// 		id: "tantrafiesta",
+// 		image: tf,
+// 		title: "Tantrafiesta",
+// 		caption: "The technical fest of IIITN",
+// 		content:
+// 			"Annual gathering of students, faculty, and staff. Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+// 		date: "27 Aug",
+// 		location: "IIIT Nagpur Campus",
+// 		large: false,
+// 	},
+// 	{
+// 		id: "Foundations-of-Cybersecurity",
+// 		image: workshop,
+// 		title: "Foundations of Cybersecurity - Online Certificate Programme",
+// 		caption: "Enhance your cybersecurity skills with IIIT Nagpur",
+// 		content:
+// 			"The Department of Computer Science & Engineering at IIIT Nagpur presents an exclusive online certification program...",
+// 		date: "22nd March",
+// 		location: "Online (Hosted by IIIT Nagpur)",
+// 		large: false,
+// 	},
+// ];
 
 interface Event {
 	id: string;
@@ -94,6 +94,7 @@ const EventDetail = () => {
 						}
 					} catch (err) {
 						console.error(`Error fetching image for event ${eventid}:`, err);
+						setError(err as Error);
 					}
 				}
 
