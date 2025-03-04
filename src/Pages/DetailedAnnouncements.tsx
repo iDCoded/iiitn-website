@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 // Sample announcements as fallback data
 
@@ -132,39 +133,102 @@ const DetailedAnnouncement = () => {
 	}
 
 	return (
-		<section className="max-w-4xl mx-auto py-10 px-6">
-			<h1 className="text-3xl font-bold text-primary">{announcement.title}</h1>
-			{announcement.date && (
-				<p className="text-gray-600 mt-2 text-lg">{announcement.date}</p>
-			)}
+		<motion.section
+			initial={{ opacity: 0, y: 50 }}
+			animate={{ opacity: 1, y: 0 }}
+			exit={{ opacity: 0, y: -50 }}
+			transition={{ duration: 0.5, ease: "easeInOut" }}
+			className="max-w-4xl mx-auto p-6 md:p-10 bg-white/10 backdrop-blur-lg shadow-lg rounded-2xl my-10"
+		>
+			{/* Title & Date */}
+			<div className="text-center mb-6">
+				<motion.h1
+					initial={{ opacity: 0, y: -20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ delay: 0.2, duration: 0.5 }}
+					className="text-3xl md:text-4xl font-bold text-primary"
+				>
+					{announcement.title}
+				</motion.h1>
+				{announcement.date && (
+					<motion.p
+						initial={{ opacity: 0, y: -10 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ delay: 0.3, duration: 0.5 }}
+						className="text-primary mt-2 text-lg"
+					>
+						{announcement.date}
+					</motion.p>
+				)}
+			</div>
 
-			{/* Image (only if available) */}
+			{/* Image (if available) */}
 			{announcement.image && (
-				<div className="mt-6">
+				<motion.div
+					initial={{ opacity: 0, scale: 0.9 }}
+					animate={{ opacity: 1, scale: 1 }}
+					transition={{ delay: 0.4, duration: 0.5 }}
+					className="mt-6 rounded-lg overflow-hidden shadow-md mb-6"
+				>
 					<img
 						src={announcement.image}
 						alt={announcement.title}
-						className="w-full h-96 object-cover rounded-lg shadow-md"
+						className="w-full h-80 object-cover rounded-lg"
 					/>
-				</div>
+				</motion.div>
 			)}
 
+			{/* Description */}
 			{announcement.description && (
-				<p className="text-gray-600 mt-4 text-lg">{announcement.description}</p>
-			)}
-			{announcement.content && (
-				<div className="mt-6 text-gray-800 text-lg">{announcement.content}</div>
+				<motion.p
+					initial={{ opacity: 0, y: 10 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ delay: 0.5, duration: 0.5 }}
+					className="text-primary/50 mt-4 text-lg text-center px-4 mb-6"
+				>
+					{announcement.description}
+				</motion.p>
 			)}
 
-			{/* Back Button */}
-			<div className="mt-8">
-				<button
+			{/* Content */}
+			{announcement.content && (
+				<motion.div
+					initial={{ opacity: 0, y: 10 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ delay: 0.6, duration: 0.5 }}
+					className="mt-6 text-primary/50 text-lg leading-relaxed mb-6"
+				>
+					{announcement.content}
+				</motion.div>
+			)}
+
+			{/* Action Buttons */}
+			<div className="mt-8 flex justify-center gap-4">
+				{/* Go Back Button */}
+				<motion.button
+					whileHover={{ scale: 1.05 }}
+					whileTap={{ scale: 0.95 }}
 					onClick={() => navigate(-1)}
-					className="bg-gray-200 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300">
+					className="bg-gray-800 text-white px-5 py-2 rounded-lg font-semibold transition-all duration-300 hover:bg-gray-700 flex items-center gap-2"
+				>
 					← Go Back
-				</button>
+				</motion.button>
+
+				{/* External Link (if available) */}
+				{announcement.link && (
+					<motion.a
+						whileHover={{ scale: 1.05 }}
+						whileTap={{ scale: 0.95 }}
+						href={announcement.link}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="bg-primary text-white px-5 py-2 rounded-lg font-semibold transition-all duration-300 hover:bg-blue-700"
+					>
+						Read More →
+					</motion.a>
+				)}
 			</div>
-		</section>
+		</motion.section>
 	);
 };
 
