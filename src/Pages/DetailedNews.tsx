@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import MarkdownPreview from "@uiw/react-markdown-preview";
 
 const newsData = [
 	{
@@ -123,9 +124,13 @@ function DetailedNews() {
 				<h2 className="text-3xl font-bold text-primary mb-4">{news.title}</h2>
 
 				{/* News Content */}
-				<p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">
-					{news.content}
-				</p>
+				<div className="leading-relaxed whitespace-pre-line">
+					<MarkdownPreview
+						source={news.content}
+						wrapperElement={{ "data-color-mode": "light" }}
+						style={{ padding: 16 }}
+					/>
+				</div>
 
 				{/* Back Button */}
 				<button
