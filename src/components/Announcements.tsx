@@ -1,6 +1,8 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 
 const announcementsData = [
     {
@@ -53,7 +55,24 @@ const announcementsData = [
 
 const Announcements: React.FC = () => {
     const navigate = useNavigate();
-    const [announcements] = useState(announcementsData);
+    const [announcements, setAnnouncements] = useState<{ id: string; title: string; }[]>([]);
+
+    useEffect(() => {
+        const fetchAnnouncements = async () => {
+            try {
+                const response = await axios.get("/card/cards/category/announcements");
+                setAnnouncements(response.data.map((announcement: any) => ({
+                    id: announcement.c_id,
+                    title: announcement.title,
+                })));
+            } catch (error) {
+                console.error("Error fetching announcements:", error);
+                setAnnouncements(announcementsData);
+            }
+        };
+
+        fetchAnnouncements();
+    }, []);
 
     return (
         <div className="relative w-full overflow-hidden bg-primary text-white flex items-center h-12">

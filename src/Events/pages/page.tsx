@@ -54,8 +54,10 @@ interface Event {
 
 const EventDetail = () => {
 	const { eventid } = useParams();
+	console.log(eventid);
 	const navigate = useNavigate(); // Hook for navigating back
 	const [event, setEvent] = useState<Event | null>(null);
+	const [error, setError] = useState<Error | null>(null);
 
 	useEffect(() => {
 		const fetchEvent = async () => {
@@ -108,7 +110,6 @@ const EventDetail = () => {
 				});
 			} catch (error) {
 				console.error("Error fetching event:", error);
-				setEvent(eventsData.find((event) => event.id === eventid) || null);
 			}
 		};
 
@@ -116,7 +117,7 @@ const EventDetail = () => {
 	}, [eventid]);
 
 	if (!event) {
-		return <div className="text-center text-xl mt-10">Event Not Found 😢</div>;
+		return <div className="text-center text-xl mt-10">Loading...</div>;
 	}
 
 	return (
