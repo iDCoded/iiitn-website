@@ -28,13 +28,18 @@ const Footer = () => {
                     className="flex flex-wrap justify-center space-x-4 text-sm text-gray-300 mb-6"
                     variants={fadeInUp}
                 >
-                    {["Students", "Faculty & Staff", "Alumni", "Directory", "Contact"].map((item, index) => (
+                    {[{ title: "Students", href: "/students" },
+                    { title: "Faculty & Staff", href: "/facultyandstaff" },
+                    { title: "Alumni", href: "/alumni" },
+                    { title: "Directory", href: "/pages/directory" },
+                    { title: "Contact", href: "/contact" }
+                    ].map((item, index) => (
                         <a
                             key={index}
-                            href={`/${item.toLowerCase().replace(/ & /g, "and")}`}
+                            href={item.href}
                             className="relative group"
                         >
-                            {item}
+                            {item.title}
                             <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
                         </a>
                     ))}
@@ -54,7 +59,7 @@ const Footer = () => {
                                 { name: "Equal Opportunity Cell", link: "/pages/eoc" },
                                 { name: "RTI", link: "/pages/rti" },
                                 { name: "Networking Complaint", link: data[0] },
-                                { name: "Policy for Prevention of Sexual Harassment", link:"https://iiitn.ac.in/Downloads/Policy%20of%20Prevention%20of%20Sexual%20Harassment%20of%20Women%20at%20Workplace.pdf      " }
+                                { name: "Policy for Prevention of Sexual Harassment", link: "https://iiitn.ac.in/Downloads/Policy%20of%20Prevention%20of%20Sexual%20Harassment%20of%20Women%20at%20Workplace.pdf      " }
                             ].map((item, index) => (
                                 <li key={index}>
                                     <a
@@ -73,65 +78,65 @@ const Footer = () => {
 
                     {/* Academics */}
                     <motion.div variants={fadeInUp}>
-                    <h4 className="text-lg font-semibold mb-4 text-accent">Academics</h4>
-<ul className="space-y-2 text-sm text-gray-300">
-    {[
-        { name: "Courses", link: "/academics/courses" },
-        { name: "Projects", link: "/research/projects" },
-        { name: "Publications", link: "/research/publications" },
-        { name: "Academic Calendar", link: "/academics/calendar" },
-        { name: "Library", link: "/academics/library" }
-    ].map((item, index) => (
-        <li key={index}>
-            <a href={item.link} className="relative group block">
-                {item.name}
-                <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-            </a>
-        </li>
-    ))}
-</ul>
+                        <h4 className="text-lg font-semibold mb-4 text-accent">Academics</h4>
+                        <ul className="space-y-2 text-sm text-gray-300">
+                            {[
+                                { name: "Courses", link: "/academics/courses" },
+                                { name: "Projects", link: "/research/projects" },
+                                { name: "Publications", link: "/research/publications" },
+                                { name: "Academic Calendar", link: "/academics/calendar" },
+                                { name: "Library", link: "/academics/library" }
+                            ].map((item, index) => (
+                                <li key={index}>
+                                    <a href={item.link} className="relative group block">
+                                        {item.name}
+                                        <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
 
                     </motion.div>
 
                     {/* Campus Life */}
                     <motion.div variants={fadeInUp}>
-                    <h4 className="text-lg font-semibold mb-4 text-accent">Campus Life</h4>
-<ul className="space-y-2 text-sm text-gray-300">
-    {[
-        { name: "Clubs", link: "/pages/studentclubs" },
-        { name: "Festivals", link: "/campus-life/festivals" },
-        { name: "Sports", link: "/campus-life/sports" },
-        { name: "Student Governance", link: "/campus-life/student-governance" }
-    ].map((item, index) => (
-        <li key={index}>
-            <a href={item.link} className="relative group block">
-                {item.name}
-                <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-            </a>
-        </li>
-    ))}
-</ul>
+                        <h4 className="text-lg font-semibold mb-4 text-accent">Campus Life</h4>
+                        <ul className="space-y-2 text-sm text-gray-300">
+                            {[
+                                { name: "Clubs", link: "/pages/studentclubs" },
+                                { name: "Festivals", link: "/campus-life/festivals" },
+                                { name: "Sports", link: "/campus-life/sports" },
+                                { name: "Student Governance", link: "/campus-life/student-governance" }
+                            ].map((item, index) => (
+                                <li key={index}>
+                                    <a href={item.link} className="relative group block">
+                                        {item.name}
+                                        <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
 
                     </motion.div>
 
                     {/* Happenings */}
                     <motion.div variants={fadeInUp}>
-                    <h4 className="text-lg font-semibold mb-4 text-accent">Happenings</h4>
-<ul className="space-y-2 text-sm text-gray-300">
-    {[
-        { name: "Events", link: "/events" },
-        { name: "News", link: "/news" },
-        { name: "Student Achievements", link: "/pages/studentachievements" },
-        { name: "Faculty Achievements", link: "/pages/facultyachievements" }
-    ].map((item, index) => (
-        <li key={index}>
-            <a href={item.link} className="relative group block">
-                {item.name}
-                <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-            </a>
-        </li>
-    ))}
-</ul>
+                        <h4 className="text-lg font-semibold mb-4 text-accent">Happenings</h4>
+                        <ul className="space-y-2 text-sm text-gray-300">
+                            {[
+                                { name: "Events", link: "/events" },
+                                { name: "News", link: "/news" },
+                                { name: "Student Achievements", link: "/pages/studentachievements" },
+                                { name: "Faculty Achievements", link: "/pages/facultyachievements" }
+                            ].map((item, index) => (
+                                <li key={index}>
+                                    <a href={item.link} className="relative group block">
+                                        {item.name}
+                                        <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
 
                     </motion.div>
                 </motion.div>

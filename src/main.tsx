@@ -22,7 +22,7 @@ export function App() {
 				{/* Main Content */}
 				<div
 					className={`${
-						isExcludedRoute ? "" : "flex-grow pt-20 md:pt-24 lg:pt-32"
+						isExcludedRoute ? "" : "flex-grow pt-20 md:pt-24 lg:pt-30"
 					}`}>
 					{" "}
 					{/* Adjust padding for different screen sizes */}
