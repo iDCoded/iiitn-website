@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaBars, FaTimes } from "react-icons/fa"; // Icons for menu toggle
+import { FaBars, FaChevronDown, FaTimes } from "react-icons/fa"; // Icons for menu toggle
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io"; // Icons for dropdowns
 import logo from "../assets/logo.png"; // Logo Image
 import Search from "@/search";
@@ -218,7 +218,7 @@ const Navbar = () => {
 						}`}>अ A
 					</h1>
 					<div className="flex items-center space-x-6">
-						<h1 className="font-medium text-xl">Information for: </h1>
+						<h1 className="hidden lg:flex font-medium text-xl">Information for: </h1>
 						<ul className={`hidden lg:flex space-x-6 font-medium ${isHomePage && !isScrolled ? "text-white" : "text-primary"
 							}`}>
 							{navLinks.map((link, index) => (
@@ -337,38 +337,81 @@ const Navbar = () => {
 			</div>
 
 			{/* 🔹 Mobile Menu Drawer (Visible on Small Screens) */}
-			<div
-				className={`fixed inset-0 bg-black bg-opacity-50 z-50 transform transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-					}`}>
-				<div className="w-3/4 max-w-sm bg-white h-full shadow-lg overflow-y-auto p-6 transform transition-all duration-300 ease-in-out">
+			<div className={`fixed inset-0 bg-black bg-opacity-50 z-50 transform transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
+				<div className="mobile-menu w-3/4 max-w-sm bg-white h-full shadow-lg overflow-y-auto p-6 transform transition-all duration-300 ease-in-out">
 					{/* Close Button */}
-					<button
-						className="text-2xl text-primary mb-4 flex-row"
-						onClick={() => setIsMobileMenuOpen(false)}>
+					<button className="text-2xl text-primary flex items-center justify-between w-full mb-4" onClick={() => setIsMobileMenuOpen(false)}>
 						Menu <FaTimes />
 					</button>
-					{/* Mobile Menu Items */}
+
+					{/* Regular Links */}
 					<ul className="space-y-4">
 						{navLinks.map((link, index) => (
-							<a
-								key={index}
-								href={link.href}
-								className="block text-lg font-medium text-primary hover:text-accent">
-								{link.title}
-							</a>
+							<li key={index}>
+								<a href={link.href} className="block text-lg font-medium text-primary hover:text-accent">
+									{link.title}
+								</a>
+							</li>
 						))}
+
+						{/* Mobile Dropdown Links */}
 						{dropdownLinks.map((item, index) => (
-							<div key={index} className="space-y-2">
-								<p className="font-semibold text-primary">{item.title}</p>
-								{item.links.map((link, i) => (
-									<a
-										key={i}
-										href={link.href}
-										className="block pl-4 text-primary hover:text-accent">
-										{link.name}
-									</a>
-								))}
-							</div>
+							<li key={index} className="border-t pt-3">
+								<button className="flex items-center justify-between w-full font-semibold text-primary hover:text-accent"
+									onClick={() => setOpenDropdown(openDropdown === index ? null : index)}>
+									{item.title}
+									<FaChevronDown className={`transition-transform duration-300 ${openDropdown === index ? "rotate-180" : "rotate-0"}`} />
+								</button>
+
+								{/* Dropdown Content (Expands the container instead of overlapping) */}
+								<div className={`overflow-hidden transition-all duration-300 ${openDropdown === index ? "h-auto opacity-100" : "h-0 opacity-0"}`}>
+									{item.links.map((link, i) => (
+										<div key={i} className="pl-4">
+											{/* Sublink Button */}
+											{link.subLinks ? (
+												<button className="flex items-center justify-between w-full py-2 text-primary hover:text-accent"
+													onClick={() => setOpenSubmenu(openSubmenu === i ? null : i)}>
+													{link.name}
+													<FaChevronDown className={`transition-transform duration-300 ${openSubmenu === i ? "rotate-180" : "rotate-0"}`} />
+												</button>
+											) : (
+												<a href={link.href} className="block py-2 text-primary hover:text-accent">{link.name}</a>
+											)}
+
+											{/* Submenu (Pushes content down instead of overlapping) */}
+											{link.subLinks && (
+												<div className={`overflow-hidden transition-all duration-300 ${openSubmenu === i ? "h-auto opacity-100" : "h-0 opacity-0"}`}>
+													{link.subLinks.map((subLink, j) => (
+														<div key={j} className="pl-4">
+															{/* Nested Sublink Button */}
+															{subLink.nestedLinks ? (
+																<button className="flex items-center justify-between w-full py-2 text-primary hover:text-accent px-4"
+																	onClick={() => setOpenNestedSubmenu(openNestedSubmenu === j ? null : j)}>
+																	{subLink.name}
+																	<FaChevronDown className={`transition-transform duration-300 ${openNestedSubmenu === j ? "rotate-180" : "rotate-0"}`} />
+																</button>
+															) : (
+																<a href={subLink.href} className="block py-2 px-4 text-primary hover:text-accent">{subLink.name}</a>
+															)}
+
+															{/* Nested Submenu */}
+															{subLink.nestedLinks && (
+																<div className={`overflow-hidden transition-all duration-300 ${openNestedSubmenu === j ? "h-auto opacity-100" : "h-0 opacity-0"}`}>
+																	{subLink.nestedLinks.map((nestedLink, k) => (
+																		<a key={k} href={nestedLink.href} className="block py-2 px-4 text-primary hover:text-accent">
+																			{nestedLink.name}
+																		</a>
+																	))}
+																</div>
+															)}
+														</div>
+													))}
+												</div>
+											)}
+										</div>
+									))}
+								</div>
+							</li>
 						))}
 					</ul>
 				</div>
