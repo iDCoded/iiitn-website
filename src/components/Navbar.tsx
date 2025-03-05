@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { FaBars, FaChevronDown, FaTimes } from "react-icons/fa"; // Icons for menu toggle
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io"; // Icons for dropdowns
 import logo from "../assets/logo.png"; // Logo Image
@@ -30,9 +31,11 @@ const Navbar = () => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, [isHomePage]);
 
+	const location = useLocation();
+
 	useEffect(() => {
-		setIsHomePage(window.location.pathname === "/");
-	}, []);
+		setIsHomePage(location.pathname === "/");
+	}, [location]);
 
 	// Navbar Links
 	const navLinks = [
