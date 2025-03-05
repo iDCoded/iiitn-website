@@ -80,6 +80,8 @@ import DetailedDirectory from "./Pages/DetailedDirectory";
 import RtiReports from "./Pages/RtiReports";
 import RtiContact from "./Pages/RtiContact";
 import DetailedRtiDetail from "./Pages/DetailedRtiDetail";
+import AcademicCurriculum from "./Pages/AcademicCurriculum";
+import LoanSchemes from "./Pages/LoanSchemes";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -157,6 +159,7 @@ const AppRoutes = () => (
 		<Route path="/pages/hostelfeepayment" element={<HostelFeePayment />} />
 		<Route path="/pages/scholarships" element={<Scholarships />} />
 		<Route path="/pages/rti" element={<RTI />} />
+		<Route path="/pages/loanschemes" element={<LoanSchemes />} />
 		<Route
 			path="/pages/clinicalcounselling"
 			element={<ClinicalCounselling />}
@@ -214,6 +217,7 @@ const AppRoutes = () => (
 		<Route
 			path="/institute/immutableproperties"
 			element={<ImmutableProperty />}></Route>
+		<Route path="/academics/curricula" element={<AcademicCurriculum />}></Route>
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );

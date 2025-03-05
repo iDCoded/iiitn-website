@@ -111,7 +111,7 @@ const Navbar = () => {
 				{ name: "Courses", href: "/academics/courses" },
 				{
 					name: "Academic Curricula",
-					href: "https://iiitn.ac.in/page.php?id=259",
+					href: "/academics/curricula",
 				},
 				{
 					name: "Time Table",

@@ -1,14 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // Using ShadCN Card
 import StudentCard from "../components/StudentCard";
 import heroimage from "../assets/studentBanner.png";
-import acad_curr from "../assets/academic_curri.jpg"
-import curr_acad from "../assets/college_fees.png"
-
+import acad_curr from "../assets/academic_curri.jpg";
+import curr_acad from "../assets/college_fees.png";
 
 const prospectiveData = [
-    { title: "Academic Curricula", description: "Semester Dates and Deadlines" },
-    { title: "Scholarships and Assistance", description: "Details about Scholarships and Financial Assistance" },
-    { title: "Fees and Financial Aid", description: "Tuition Fees, Payment Methods, etc." },
+    { title: "Academic Curricula", description: "Semester Dates and Deadlines", link: "/academics/curricula" },
+    { title: "Scholarships and Assistance", description: "Details about Scholarships and Financial Assistance", link: "/pages/scholarships" },
+    { title: "Fees and Financial Aid", description: "Tuition Fees, Payment Methods, etc.", link: "/pages/loanschemes" },
+   
 ];
 
 const currentData = [
@@ -16,17 +16,19 @@ const currentData = [
         subTitle: "Academic Resources",
         subDes: "Courses, Timetable, Calendar, Curricula, Fees, etc.",
         arr: [
-            { title: "Courses", description: "Semester Dates and Deadlines" },
-            { title: "Timetable", description: "Important Dates and Deadlines" },
-            { title: "Calendar", description: "Important Dates and Academic Calendar" },
+            { title: "Courses", description: "Semester Dates and Deadlines", link: "/academics/courses" },
+            { title: "Timetable", description: "Important Dates and Deadlines", link: "/timetable" },
+            { title: "Calendar", description: "Important Dates and Academic Calendar", link: "/calendar" },
+            { title: "Examinations", description: "Exam Schedules and Results", link: "/exams" },
         ],
     },
     {
         subTitle: "Student Support",
         subDes: "Resources for counseling and academic support.",
         arr: [
-            { title: "Counseling", description: "Mental well-being services" },
-            { title: "Library", description: "Library Resources and Online Access" },
+            { title: "Counseling", description: "Mental well-being services", link: "/pages/clinicalcounseling" },
+            { title: "Library", description: "Library Resources and Online Access", link: "/library" },
+            { title: "Career Guidance", description: "Internships and Placement Support", link: "/career-guidance" },
         ],
     },
 ];
@@ -52,7 +54,7 @@ function Students() {
                 style={{
                     backgroundImage: `url(${heroimage})`,
                     backgroundSize: "cover",
-                    backgroundPosition: "center"
+                    backgroundPosition: "center",
                 }}
             >
                 {/* Overlay */}
@@ -63,10 +65,9 @@ function Students() {
                 </div>
             </header>
 
-
             {/* Main Content */}
             <div className="container mx-auto flex flex-col lg:flex-row gap-12 px-6 py-10">
-                {/* Left Content (More Space for Main Section) */}
+                {/* Left Content */}
                 <div className="lg:w-3/4 space-y-12">
                     {/* Prospective Students */}
                     <section className="space-y-6 max-w-6xl w-[80vh] mx-auto">
@@ -78,19 +79,22 @@ function Students() {
                         </p>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {prospectiveData.map((item, index) => (
-                                <StudentCard
-                                    key={index}
-                                    title={item.title}
-                                    description={item.description}
-                                    imageSrc={acad_curr}
-                                />
+                                <a href={item.link} key={index}>
+                                    <StudentCard
+                                        title={item.title}
+                                        description={item.description}
+                                        imageSrc={acad_curr}
+                                    />
+                                </a>
                             ))}
                         </div>
                     </section>
 
                     {/* Current Students */}
                     <section className="space-y-6 max-w-6xl w-[80vh] mx-auto">
-                        <h2 className="text-3xl font-semibold text-primary"><span className="text-4xl text-accent">| </span>Current Students</h2>
+                        <h2 className="text-3xl font-semibold text-primary">
+                            <span className="text-4xl text-accent">| </span> Current Students
+                        </h2>
                         <p className="text-gray-500 mb-4 text-sm">
                             Find details on courses, timetables, curricula, and academic resources.
                         </p>
@@ -100,12 +104,13 @@ function Students() {
                                 <p className="text-gray-500 mb-3 text-sm">{section.subDes}</p>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {section.arr.map((item, idx) => (
-                                        <StudentCard
-                                            key={idx}
-                                            title={item.title}
-                                            description={item.description}
-                                            imageSrc={curr_acad}
-                                        />
+                                        <a href={item.link} key={idx}>
+                                            <StudentCard
+                                                title={item.title}
+                                                description={item.description}
+                                                imageSrc={curr_acad}
+                                            />
+                                        </a>
                                     ))}
                                 </div>
                             </div>
