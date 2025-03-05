@@ -362,7 +362,9 @@ const Directory = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.3, delay: index * 0.05 }}
                                 >
-                                    <Card className="shadow-md cursor-pointer hover:shadow-lg transition">
+                                    <Card className="shadow-md cursor-pointer hover:shadow-lg transition"
+                                        onClick={() => navigate(`/faculty/${encodeURIComponent(faculty.name)}`)}
+                                    >
                                         <CardHeader className="text-center">
                                             <div className="flex justify-center">
                                                 <div className="w-24 h-24 rounded-full overflow-hidden">

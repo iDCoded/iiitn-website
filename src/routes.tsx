@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home/page";
 import About from "./About/page";
+import Contact from "./Contact/page.tsx";
 import AdminDashboard from "./Admin/layout";
 import Departments from "./Departments/page";
 import Courses from "./Academics/Courses";
@@ -108,6 +109,7 @@ const AppRoutes = () => (
 	<Routes>
 		<Route path="/" element={<Home />} />
 		<Route path="/about" element={<About />} />
+		<Route path="/contact" element={<Contact />} />
 		<Route
 			path="/admin"
 			element={

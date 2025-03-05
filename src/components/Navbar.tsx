@@ -69,8 +69,16 @@ const Navbar = () => {
 							href: "/institute/annualreports",
 						},
 						{
-							name: "RTI Details and Reports",
+							name: "RTI Reports",
 							href: "/institute/rtireports",
+						},
+						{
+							name: "RTI Details",
+							href: "/institute/rtidetails",
+						},
+						{
+							name: "RTI Officers",
+							href: "/institute/rticontact",
 						},
 						{
 							name: "Minutes of Meeting",
@@ -109,7 +117,7 @@ const Navbar = () => {
 						},
 						{
 							name: "Anti-Ragging Committee",
-							href: "/administration/anti-ragging-committee",
+							href: "https://iiitn.ac.in/Downloads/website-homepage-antiragging-information.pdf",
 						},
 						{ name: "Internal Complaint Committee", href: "/pages/icc" },
 					],
