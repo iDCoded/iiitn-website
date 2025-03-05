@@ -9,7 +9,7 @@ const imgSrc = logo;
 const Navbar = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const [isHomePage, setIsHomePage] = useState(window.location.pathname === "/");
+	const [isHomePage, setIsHomePage] = useState(false);
 	const [openDropdown, setOpenDropdown] = useState<number | null>(null);
 
 	const [openSubmenu, setOpenSubmenu] = useState<number | null>(null);
@@ -26,7 +26,9 @@ const Navbar = () => {
 			}
 		};
 
-		setIsHomePage(window.location.pathname === "/");
+		useEffect(() => {
+			setIsHomePage(window.location.pathname === "/");
+		}, []);
 
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
@@ -42,7 +44,16 @@ const Navbar = () => {
 		{ title: "Tenders", href: "/pages/tenders" },
 	];
 
-	const dropdownLinks = [
+	interface Link {
+		title?: string;
+		name?: string;
+		href?: string;
+		links?: Link[];
+		subLinks?: Link[];
+		nestedLinks?: Link[];
+	}
+
+	const dropdownLinks: Link[] = [
 		{
 			title: "Institute",
 			links: [
@@ -140,25 +151,7 @@ const Navbar = () => {
 						},
 						{ name: "Formats", href: "/pages/formats" },
 						{
-							name: "Loan Schemes",
-							nestedLinks: [
-								{
-									name: "SBI",
-									href: "https://iiitn.ac.in/images/admission2025/SBI_SCHL.jpg",
-								},
-								{
-									name: "Canara Bank",
-									href: "https://iiitn.ac.in/images/admission2024/CANARA_BANK_LOAN_SCHEME%20%282%29.pdf",
-								},
-								{
-									name: "PNB",
-									href: "https://iiitn.ac.in/images/admission2024/PNB%20Bank%20_Loan%20Doc.pdf",
-								},
-								{
-									name: "Bank of Maharashtra",
-									href: "https://iiitn.ac.in/images/admission2024/Edu%20loan%20flyer%20General-1.pdf",
-								},
-							],
+							name: "Loan Schemes", href: "/pages/loanschemes",
 						},
 					],
 				},
@@ -270,7 +263,7 @@ const Navbar = () => {
 										className={`absolute top-full mt-2 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
 									${index === dropdownLinks.length - 1 ? "right-0" : "left-0"} 
 									${openDropdown === index ? "opacity-100 translate-y-0 visible" : "opacity-0 translate-y-[-10px] invisible"}`}>
-										{item.links.map((link, i) => (
+										{item.links && item.links.map((link, i) => (
 											<div
 												key={i}
 												className="relative group"
@@ -297,14 +290,14 @@ const Navbar = () => {
 																	href={subLink.href}
 																	className="px-4 py-2 hover:bg-accent hover:text-white rounded-sm flex justify-between items-center">
 																	{subLink.name}
-																	{subLink.nestedLinks && <IoIosArrowForward />}
+																	{"nestedLinks" in subLink && <IoIosArrowForward />}
 																</a>
 
 																{/* Nested Submenu (if exists) */}
 																{subLink.nestedLinks && (
 																	<ul
 																		className={`absolute top-0 mt-0 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
-				${j === link.subLinks.length - 1 ? "right-full" : "left-full"} 
+				${link.subLinks && j === link.subLinks.length - 1 ? "right-full" : "left-full"} 
 				${openNestedSubmenu === j ? "opacity-100 visible" : "opacity-0 invisible"}`}>
 																		{subLink.nestedLinks &&
 																			subLink.nestedLinks.map(
@@ -365,7 +358,7 @@ const Navbar = () => {
 
 								{/* Dropdown Content (Expands the container instead of overlapping) */}
 								<div className={`overflow-hidden transition-all duration-300 ${openDropdown === index ? "h-auto opacity-100" : "h-0 opacity-0"}`}>
-									{item.links.map((link, i) => (
+									{item.links && item.links.map((link, i) => (
 										<div key={i} className="pl-4">
 											{/* Sublink Button */}
 											{link.subLinks ? (
