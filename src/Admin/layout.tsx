@@ -3,7 +3,7 @@ import { AdminSidebar } from "./admin-sidebar";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ErrorBoundary from "./error-boundary";
-import Fallback from "./fallback";
+
 
 const sidebarData = {
 	navMain: [
