@@ -71,12 +71,15 @@ import Formats from "./Pages/Formats";
 import News from "./News/page";
 import DetailedNews from "./Pages/DetailedNews";
 import AnnualAccountAndReports from "./Pages/AnnualAccountAndReports";
-import RtiDetailsAndReports from "./Pages/RtiDetailsAndReports";
+import RtiDetails from "./Pages/RtiDetails";
 import MinutesOfMeeting from "./Pages/MinutesOfMeeting";
 import ImmutableProperty from "./Pages/ImmutableProperty";
 import EventDetail from "./Events/pages/page";
 import DetailedAnnouncements from "./Pages/DetailedAnnouncements";
 import DetailedDirectory from "./Pages/DetailedDirectory";
+import RtiReports from "./Pages/RtiReports";
+import RtiContact from "./Pages/RtiContact";
+import DetailedRtiDetail from "./Pages/DetailedRtiDetail";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -198,8 +201,13 @@ const AppRoutes = () => (
 			path="/institute/annualreports"
 			element={<AnnualAccountAndReports />}></Route>
 		<Route
+			path="/institute/rtidetails"
+			element={<RtiDetails />}></Route>
+		<Route path="/institute/rtidetails/:rtidetailid" element={<DetailedRtiDetail />} />
+		<Route
 			path="/institute/rtireports"
-			element={<RtiDetailsAndReports />}></Route>
+			element={<RtiReports />}></Route>
+		<Route path="/institute/rticontact" element={<RtiContact />}></Route>
 		<Route
 			path="/institute/minutesofmeeting"
 			element={<MinutesOfMeeting />}></Route>
