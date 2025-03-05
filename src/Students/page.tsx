@@ -5,9 +5,9 @@ import acad_curr from "../assets/academic_curri.jpg";
 import curr_acad from "../assets/college_fees.png";
 
 const prospectiveData = [
-    { title: "Academic Curricula", description: "Semester Dates and Deadlines", link: "/academics/curricula" },
-    { title: "Scholarships and Assistance", description: "Details about Scholarships and Financial Assistance", link: "/pages/scholarships" },
-    { title: "Fees and Financial Aid", description: "Tuition Fees, Payment Methods, etc.", link: "/pages/loanschemes" },
+    { title: "Academic Curricula", description: "Semester Dates and Deadlines", link: "/academics/curricula",imgSrc: acad_curr },
+    { title: "Scholarships and Assistance", description: "Details about Scholarships and Financial Assistance", link: "/pages/scholarships",imgSrc: acad_curr },
+    { title: "Fees and Financial Aid", description: "Tuition Fees, Payment Methods, etc.", link: "/pages/loanschemes",imgSrc: acad_curr },
    
 ];
 
@@ -16,9 +16,9 @@ const currentData = [
         subTitle: "Academic Resources",
         subDes: "Courses, Timetable, Calendar, Curricula, Fees, etc.",
         arr: [
-            { title: "Courses", description: "Semester Dates and Deadlines", link: "/academics/courses" },
-            { title: "Timetable", description: "Important Dates and Deadlines", link: "https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link" },
-            { title: "Calendar", description: "Important Dates and Academic Calendar", link: "/academics/calendar" },
+            { title: "Courses", description: "Semester Dates and Deadlines", link: "/academics/courses",imgSrc: acad_curr },
+            { title: "Timetable", description: "Important Dates and Deadlines", link: "https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link",imgSrc: acad_curr },
+            { title: "Calendar", description: "Important Dates and Academic Calendar", link: "/academics/calendar",imgSrc: acad_curr },
           
         ],
     },
@@ -26,8 +26,8 @@ const currentData = [
         subTitle: "Student Support",
         subDes: "Resources for counseling and academic support.",
         arr: [
-            { title: "Counseling", description: "Mental well-being services", link: "/pages/clinicalcounselling" },
-            {title: "Career Guidance", description: "Internship and Placement Services", link: "/placements/contact"},
+            { title: "Counseling", description: "Mental well-being services", link: "/pages/clinicalcounselling",imgSrc: acad_curr },
+            {title: "Career Guidance", description: "Internship and Placement Services", link: "/placements/contact",imgSrc: curr_acad },
              ],
     },
 ];
@@ -81,7 +81,7 @@ function Students() {
                                     <StudentCard
                                         title={item.title}
                                         description={item.description}
-                                        imageSrc={acad_curr}
+                                        imageSrc={item.imgSrc}
                                     />
                                 </a>
                             ))}
@@ -106,7 +106,7 @@ function Students() {
                                             <StudentCard
                                                 title={item.title}
                                                 description={item.description}
-                                                imageSrc={curr_acad}
+                                                imageSrc={item.imgSrc}
                                             />
                                         </a>
                                     ))}

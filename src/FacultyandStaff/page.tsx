@@ -10,6 +10,7 @@ const prospectiveData = [
 	{
 		title: "Academic Curricula",
 		description: "Semester Dates and deadlines",
+		link: "/academics/curricula",
 		imageSrc:
 			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
 	},
