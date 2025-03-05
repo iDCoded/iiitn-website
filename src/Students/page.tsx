@@ -6,10 +6,9 @@ import curr_acad from "../assets/college_fees.png";
 import NoticesSidebar from "../components/NoticesSidebar.tsx";
 
 const prospectiveData = [
-    { title: "Academic Curricula", description: "Semester Dates and Deadlines", link: "/academics/curricula",imgSrc: acad_curr },
-    { title: "Scholarships and Assistance", description: "Details about Scholarships and Financial Assistance", link: "/pages/scholarships",imgSrc: acad_curr },
-    { title: "Fees and Financial Aid", description: "Tuition Fees, Payment Methods, etc.", link: "/pages/loanschemes",imgSrc: acad_curr },
-   
+    { title: "Academic Curricula", description: "Semester Dates and Deadlines", link: "/academics/curricula", imgSrc: acad_curr },
+    { title: "Scholarships and Assistance", description: "Details about Scholarships and Financial Assistance", link: "/pages/scholarships", imgSrc: acad_curr },
+    { title: "Fees and Financial Aid", description: "Tuition Fees, Payment Methods, etc.", link: "/pages/loanschemes", imgSrc: acad_curr },
 ];
 
 const currentData = [
@@ -17,19 +16,19 @@ const currentData = [
         subTitle: "Academic Resources",
         subDes: "Courses, Timetable, Calendar, Curricula, Fees, etc.",
         arr: [
-            { title: "Courses", description: "Semester Dates and Deadlines", link: "/academics/courses",imgSrc: acad_curr },
-            { title: "Timetable", description: "Important Dates and Deadlines", link: "https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link",imgSrc: acad_curr },
-            { title: "Calendar", description: "Important Dates and Academic Calendar", link: "/academics/calendar",imgSrc: acad_curr },
-          
+            { title: "Courses", description: "Semester Dates and Deadlines", link: "/academics/courses", imgSrc: acad_curr },
+            { title: "Timetable", description: "Important Dates and Deadlines", link: "https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link", imgSrc: acad_curr },
+            { title: "Calendar", description: "Important Dates and Academic Calendar", link: "/academics/calendar", imgSrc: acad_curr },
+
         ],
     },
     {
         subTitle: "Student Support",
         subDes: "Resources for counseling and academic support.",
         arr: [
-            { title: "Counseling", description: "Mental well-being services", link: "/pages/clinicalcounselling",imgSrc: acad_curr },
-            {title: "Career Guidance", description: "Internship and Placement Services", link: "/placements/contact",imgSrc: curr_acad },
-             ],
+            { title: "Counseling", description: "Mental well-being services", link: "/pages/clinicalcounselling", imgSrc: acad_curr },
+            { title: "Career Guidance", description: "Internship and Placement Services", link: "/placements/contact", imgSrc: curr_acad },
+        ],
     },
 ];
 
@@ -136,11 +135,11 @@ function Students() {
                         </CardContent>
                     </Card>
                     <Card className="shadow-sm border border-gray-200 p-4">
-                        <CardHeader>
+                        <CardHeader className="flex justify-between items-center flex-row">
                             <CardTitle className="text-lg font-semibold text-primary">Student Notices</CardTitle>
+                            <a href="/notices" className="text-sm text-accent hover:underline">View All</a>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-gray-600">Important updates and announcements for Students.</p>
                         </CardContent>
                         <NoticesSidebar />
                     </Card>
