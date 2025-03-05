@@ -2,6 +2,8 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AdminSidebar } from "./admin-sidebar";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import ErrorBoundary from "./error-boundary";
+import Fallback from "./fallback";
 
 const sidebarData = {
 	navMain: [
@@ -61,16 +63,18 @@ export default function AdminDashboard({
 	}, [location, lastSelected]);
 
 	return (
-		<SidebarProvider>
-			<div className="flex min-h-screen w-full">
-				<AdminSidebar activeItem={sidebar} data={sidebarData} />
-				<main className="flex-1 relative">
-					<SidebarTrigger className="absolute top-4 left-4" />
-					<div className="min-h-screen py-12 px-6 flex items-center justify-center">
-						<div className="w-full max-w-4xl">{children}</div>
-					</div>
-				</main>
-			</div>
-		</SidebarProvider>
+		<ErrorBoundary>
+			<SidebarProvider>
+				<div className="flex min-h-screen w-full">
+					<AdminSidebar activeItem={sidebar} data={sidebarData} />
+					<main className="flex-1 relative">
+						<SidebarTrigger className="absolute top-4 left-4" />
+						<div className="min-h-screen py-12 px-6 flex items-center justify-center">
+							<div className="w-full max-w-4xl">{children}</div>
+						</div>
+					</main>
+				</div>
+			</SidebarProvider>
+		</ErrorBoundary>
 	);
 }
