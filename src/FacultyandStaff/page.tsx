@@ -28,6 +28,56 @@ const prospectiveData = [
 	},
 ];
 
+
+const currentData = [
+	{
+		title: "Academic Curricula",
+		description: "Semester Dates and deadlines",
+		link: "/academics/curricula",
+		imageSrc:
+			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
+	},
+	{
+		title: "Scholarships and Assistance",
+		description: "Details about Scholarships and financial assistance",
+		imageSrc:
+			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
+	},
+	{
+		title: "Fees and Financial Aid",
+		description: "Tuition Fees, Payment Methods, etc.",
+		imageSrc:
+			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
+	},
+];
+
+const quickLinks = [
+	{
+		title: "Quick Links",
+		items: [
+			{ name: "Faculty & Staff Directory", link: "/pages/directory" },
+			{
+				name: "Academic Curricula",
+				link: "/academics/curricula",
+			},
+			{
+				name: "Time Table",
+				link: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link",
+			},
+			{
+				name: "Faculty Achievements",
+				link: "/pages/facultyachievements",
+			},
+			{
+				name: "Research Publications",
+				link: "/research/publications",
+			},
+			{ name: "Research Projects", link: "/research/projects" },
+		],
+	},
+];
+
+
 function FacultyandStaff() {
 	return (
 		<div className="bg-gray-50 min-h-screen">
@@ -78,7 +128,7 @@ function FacultyandStaff() {
 							faculty and staff.
 						</p>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-							{prospectiveData.map((data, index) => (
+							{currentData.map((data, index) => (
 								<StudentCard
 									key={index}
 									title={data.title}
@@ -111,31 +161,7 @@ function FacultyandStaff() {
 				</div>
 
 				<aside className="hidden md:block w-1/4 space-y-6 top-20 self-start mx-auto">
-					{[
-						{
-							title: "Quick Links",
-							items: [
-								{ name: "Faculty & Staff Directory", link: "/pages/directory" },
-								{
-									name: "Academic Curricula",
-									link: "https://iiitn.ac.in/Downloads/academic/2025/BTech-CSE-Syllabus-1.pdf",
-								},
-								{
-									name: "Time Table",
-									link: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link",
-								},
-								{
-									name: "Faculty Achievements",
-									link: "/pages/facultyachievements",
-								},
-								{
-									name: "Research Publications",
-									link: "/research/publications",
-								},
-								{ name: "Research Projects", link: "/research/projects" },
-							],
-						},
-					].map((section, index) => (
+					{quickLinks.map((section, index) => (
 						<Card key={index} className="shadow-sm border border-gray-200">
 							<CardHeader>
 								<CardTitle className="text-lg font-semibold text-primary">
