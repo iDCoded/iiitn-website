@@ -6,19 +6,19 @@ interface MarkdownData {
 }
 
 const markdownData: MarkdownData = {
-	2024: `## Placement Statistics - 2024  
+	2024: `
   - **Total Students Placed:** 150  
   - **Highest Package:** ₹32 LPA  
   - **Average Package:** ₹12.5 LPA  
   - **Top Recruiters:** Google, Microsoft, Amazon, TCS  
   `,
-	2023: `## Placement Statistics - 2023  
+	2023: `
   - **Total Students Placed:** 135  
   - **Highest Package:** ₹28 LPA  
   - **Average Package:** ₹11 LPA  
   - **Top Recruiters:** Infosys, Wipro, Capgemini, HCL  
   `,
-	2022: `## Placement Statistics - 2022  
+	2022: `
   - **Total Students Placed:** 120  
   - **Highest Package:** ₹25 LPA  
   - **Average Package:** ₹10.2 LPA  
@@ -67,9 +67,16 @@ function Statistics() {
 
 			{/* Markdown Display */}
 			<div className="w-full max-w-4xl mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg border border-gray-200">
+				<h1 className="text-3xl leading-loose font-bold text-primary"><span className="text-5xl text-accent">| </span>Placement Statistics - {selectedYear} </h1>
 				<MarkdownPreview
 					source={markdownData[selectedYear]}
 					className="text-gray-800 text-base sm:text-lg"
+					style={{
+						backgroundColor: "white", // Force background to be white
+						color: "black", // Ensure text color is black
+						padding: "16px", // Maintain spacing
+						borderRadius: "8px", // Smooth edges
+					}}
 				/>
 			</div>
 

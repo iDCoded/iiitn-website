@@ -6,7 +6,7 @@ import AdminDashboard from "./Admin/layout";
 import Departments from "./Departments/page";
 import Courses from "./Academics/Courses";
 import AdmissionsBTech from "./Admissions/BTech/BTech";
- import AdmissionsPG from "./Admissions/PostGraduate";
+import AdmissionsPG from "./Admissions/PostGraduate";
 import Placements from "./Placements/page";
 import Projects from "./Research/Projects/page";
 import Publications from "./Research/Publications/page";
@@ -131,7 +131,7 @@ const AppRoutes = () => (
 			path="/admissions/btech/rulesandregulations"
 			element={<InstRulesAndReg />}
 		/>
-		 <Route path="/admissions/pg" element={<AdmissionsPG />} /> 
+		<Route path="/admissions/pg" element={<AdmissionsPG />} />
 		<Route path="/placements" element={<Placements />} />
 		<Route path="/placements/companies" element={<Companies />} />
 		<Route path="/placements/internships" element={<Internships />} />
@@ -181,7 +181,7 @@ const AppRoutes = () => (
 		<Route path="/pages/convocation" element={<Convocation />} />
 		<Route path="/pages/formats" element={<Formats />} />
 		<Route path="/pages/nirf" element={<NIRF />} />
-		<Route path="/students/hostellife" element={<HostelLife />} /> 
+		<Route path="/students/hostellife" element={<HostelLife />} />
 		<Route path="/pages/grievance" element={<Grievance />} />
 		<Route path="/pages/grievancecomm" element={<GrievanceCommSCSTCell />} />
 		<Route path="/pages/internalcomplt" element={<InternalCompltComm />} />
@@ -199,7 +199,7 @@ const AppRoutes = () => (
 		<Route path="/pages/eoc" element={<EqualOppCell />} />
 		<Route path="/pages/directory" element={<Directory />} />
 		<Route path="/pages/directory/:id" element={<DetailedDirectory />} />
-		<Route path="/news" element={<News/>}></Route>
+		<Route path="/news" element={<News />}></Route>
 		<Route path="/news/:newsId" element={<DetailedNews />} />
 		<Route path="/events/:eventid" element={<EventDetail />} />
 		<Route path="/announcements/:announcementid" element={<DetailedAnnouncements />} />
