@@ -186,9 +186,9 @@ const Navbar = () => {
 				{ name: "Internships", href: "/placements/internships" },
 				{
 					name: "Statistics",
-					href: "https://iiitn.ac.in/page/placement-statistics/45/",
+					href: "/placements/statistics",
 				},
-				{ name: "Companies", href: "/placements/companies" },
+				{ name: "For Companies", href: "/placements/companies" },
 			],
 		},
 		{
