@@ -3,6 +3,7 @@ import StudentCard from "../components/StudentCard";
 import heroimage from "../assets/studentBanner.png";
 import acad_curr from "../assets/academic_curri.jpg";
 import curr_acad from "../assets/college_fees.png";
+import NoticesSidebar from "../components/NoticesSidebar.tsx";
 
 const prospectiveData = [
     { title: "Academic Curricula", description: "Semester Dates and Deadlines", link: "/academics/curricula",imgSrc: acad_curr },
@@ -48,7 +49,7 @@ function Students() {
         <div className="bg-gray-50 min-h-screen">
             {/* Header Section */}
             <header
-                className="relative w-full h-75 flex flex-col justify-center items-center text-white text-center shadow-lg"
+                className="relative w-full h-64 sm:h-80 flex flex-col justify-center items-center text-white text-center shadow-lg"
                 style={{
                     backgroundImage: `url(${heroimage})`,
                     backgroundSize: "cover",
@@ -57,25 +58,25 @@ function Students() {
             >
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black opacity-50"></div>
-                <div className="relative z-10">
-                    <h1 className="text-4xl font-bold">Students</h1>
-                    <p className="text-lg mt-2">Stay connected and contribute to IIIT Nagpur.</p>
+                <div className="relative z-10 px-4">
+                    <h1 className="text-3xl sm:text-4xl font-bold">Students</h1>
+                    <p className="text-sm sm:text-lg mt-2">Stay connected and contribute to IIIT Nagpur.</p>
                 </div>
             </header>
 
             {/* Main Content */}
-            <div className="container mx-auto flex flex-col lg:flex-row gap-12 px-6 py-10">
+            <div className="container mx-auto flex flex-col lg:flex-row gap-12 px-4 sm:px-6 py-10 max-w-6xl">
                 {/* Left Content */}
                 <div className="lg:w-3/4 space-y-12">
                     {/* Prospective Students */}
-                    <section className="space-y-6 max-w-6xl w-[80vh] mx-auto">
-                        <h2 className="text-3xl font-semibold text-primary">
-                            <span className="text-4xl text-accent">| </span> Prospective Students
+                    <section className="space-y-6 max-w-6xl mx-auto w-full">
+                        <h2 className="text-2xl sm:text-3xl font-semibold text-primary">
+                            <span className="text-3xl sm:text-4xl text-accent">| </span> Prospective Students
                         </h2>
-                        <p className="text-gray-500 mb-4 text-sm">
+                        <p className="text-gray-500 mb-4 text-sm sm:text-base">
                             Learn more about programs, fees, and other essential details.
                         </p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             {prospectiveData.map((item, index) => (
                                 <a href={item.link} key={index}>
                                     <StudentCard
@@ -89,18 +90,18 @@ function Students() {
                     </section>
 
                     {/* Current Students */}
-                    <section className="space-y-6 max-w-6xl w-[80vh] mx-auto">
-                        <h2 className="text-3xl font-semibold text-primary">
-                            <span className="text-4xl text-accent">| </span> Current Students
+                    <section className="space-y-6 max-w-6xl mx-auto w-full">
+                        <h2 className="text-2xl sm:text-3xl font-semibold text-primary">
+                            <span className="text-3xl sm:text-4xl text-accent">| </span> Current Students
                         </h2>
-                        <p className="text-gray-500 mb-4 text-sm">
+                        <p className="text-gray-500 mb-4 text-sm sm:text-base">
                             Find details on courses, timetables, curricula, and academic resources.
                         </p>
                         {currentData.map((section, index) => (
                             <div key={index} className="mb-8">
-                                <h3 className="text-lg font-semibold text-primary">{section.subTitle}</h3>
-                                <p className="text-gray-500 mb-3 text-sm">{section.subDes}</p>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <h3 className="text-lg sm:text-xl font-semibold text-primary">{section.subTitle}</h3>
+                                <p className="text-gray-500 mb-3 text-sm sm:text-base">{section.subDes}</p>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                     {section.arr.map((item, idx) => (
                                         <a href={item.link} key={idx}>
                                             <StudentCard
@@ -117,7 +118,7 @@ function Students() {
                 </div>
 
                 {/* Right Sidebar (Quick Links) */}
-                <aside className="lg:w-1/4 space-y-6">
+                <aside className="lg:w-1/4 space-y-6 w-full">
                     <Card className="shadow-sm border border-gray-200 p-4">
                         <CardHeader>
                             <CardTitle className="text-lg font-semibold text-primary">Quick Links</CardTitle>
@@ -134,13 +135,14 @@ function Students() {
                             </ul>
                         </CardContent>
                     </Card>
-                    <Card className="shadow-sm border border-gray-200">
+                    <Card className="shadow-sm border border-gray-200 p-4">
                         <CardHeader>
                             <CardTitle className="text-lg font-semibold text-primary">Student Notices</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <p className="text-gray-600">Important updates and announcements for Students.</p>
                         </CardContent>
+                        <NoticesSidebar />
                     </Card>
                 </aside>
             </div>
