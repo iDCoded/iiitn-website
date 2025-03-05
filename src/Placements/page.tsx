@@ -9,7 +9,7 @@ function Placements() {
 					</p>
 				</div>
 
-				<div className="flex flex-col  p-6 m-4 rounded-lg bg-white shadow-lg">
+				<div className="flex flex-col  p-6 m-4 rounded-lg bg-white shadow-lg max-w-6xl mx-auto">
 					<h1 className="text-3xl font-semibold mb-4">About Us</h1>
 					<p className="text-gray-700 leading-relaxed">
 						At IIITN, the Training & Placement Office is of strategic
@@ -32,7 +32,7 @@ function Placements() {
 							IIIT Nagpur Training & Placement Brochure - Download
 						</a>
 					</p>
-					<div className="p-4 border rounded-lg shadow-md bg-gray-50 mt-6">
+					<div className="p-4 rounded-lg shadow-md bg-gray-50 mt-6">
 						<h2 className="text-2xl font-semibold mb-2">
 							Campus Recruitment Training
 						</h2>
@@ -46,7 +46,7 @@ function Placements() {
 					</div>
 				</div>
 
-				<div className="flex flex-col  p-6 m-4 rounded-lg bg-white shadow-lg">
+				<div className="flex flex-col  p-6 m-4 rounded-lg bg-white shadow-lg max-w-6xl mx-auto">
 					<h1 className="text-3xl font-semibold mb-4">
 						Why Recruit from IIIT Nagpur
 					</h1>
@@ -57,7 +57,7 @@ function Placements() {
 						students are ready to contribute effectively in the corporate world.
 					</p>
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-						<div className="p-4 border rounded-lg shadow-md bg-gray-50">
+						<div className="p-4 rounded-lg shadow-md bg-gray-50">
 							<h2 className="text-xl font-semibold">Admission</h2>
 							<p className="text-gray-700">
 								Established by MHRD, Govt of Maharashtra, and Industry partners.
@@ -66,7 +66,7 @@ function Placements() {
 								candidates taking JEE Mains Exam, make it to IIITN.
 							</p>
 						</div>
-						<div className="p-4 border rounded-lg shadow-md bg-gray-50">
+						<div className="p-4 rounded-lg shadow-md bg-gray-50">
 							<h2 className="text-xl font-semibold">
 								Industry Academia Collaboration
 							</h2>
@@ -75,7 +75,7 @@ function Placements() {
 								MoU with ESIEE Paris for exchange programs.
 							</p>
 						</div>
-						<div className="p-4 border rounded-lg shadow-md bg-gray-50">
+						<div className="p-4 rounded-lg shadow-md bg-gray-50">
 							<h2 className="text-xl font-semibold">Curriculum</h2>
 							<p className="text-gray-700">
 								Industry-relevant curriculum designed by Board of Studies with
@@ -84,20 +84,20 @@ function Placements() {
 								industry internship for full semester in final year B.Tech.
 							</p>
 						</div>
-						<div className="p-4 border rounded-lg shadow-md bg-gray-50">
+						<div className="p-4 rounded-lg shadow-md bg-gray-50">
 							<h2 className="text-xl font-semibold">Research Environment</h2>
 							<p className="text-gray-700">
 								Research work is focused on IT Industry challenges, fostering
 								Industry-Academia Collaboration.
 							</p>
 						</div>
-						<div className="p-4 border rounded-lg shadow-md bg-gray-50">
+						<div className="p-4 rounded-lg shadow-md bg-gray-50">
 							<h2 className="text-xl font-semibold">Students Publications</h2>
 							<p className="text-gray-700">
 								Various student publications are supported and encouraged.
 							</p>
 						</div>
-						<div className="p-4 border rounded-lg shadow-md bg-gray-50">
+						<div className="p-4 rounded-lg shadow-md bg-gray-50">
 							<h2 className="text-xl font-semibold">Technical</h2>
 
 							<p className="text-gray-700">
@@ -105,21 +105,21 @@ function Placements() {
 								Community for fostering coding culture.
 							</p>
 						</div>
-						<div className="p-4 border rounded-lg shadow-md bg-gray-50">
+						<div className="p-4 rounded-lg shadow-md bg-gray-50">
 							<h2 className="text-xl font-semibold">Cultural</h2>
 							<p className="text-gray-700">
 								Music Club, Art Club, and Dance Club bring students together for
 								creative expression.
 							</p>
 						</div>
-						<div className="p-4 border rounded-lg shadow-md bg-gray-50">
+						<div className="p-4 rounded-lg shadow-md bg-gray-50">
 							<h2 className="text-xl font-semibold">Academics and Research</h2>
 							<p className="text-gray-700">
 								REAP: A research club guiding students in their research
 								interests. 7C Club: Communication and Public Speaking club.
 							</p>
 						</div>
-						<div className="p-4 border rounded-lg shadow-md bg-gray-50">
+						<div className="p-4 rounded-lg shadow-md bg-gray-50">
 							<h2 className="text-xl font-semibold">Flagship Annual Events</h2>
 							<p className="text-gray-700">
 								ABHIVYAKTI – The Annual Cultural Festival. TANTRAFIESTA –

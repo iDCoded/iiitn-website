@@ -10,7 +10,7 @@ function Grievance() {
 			</header>
 
 			{/* Introduction Section */}
-			<section className="max-w-5xl mx-auto bg-white p-6 shadow-lg rounded-lg mt-10">
+			<section className="max-w-6xl mx-auto bg-white p-6 shadow-lg rounded-lg mt-10">
 				<h2 className="text-3xl font-semibold text-primary">
 					<span className="text-accent text-4xl">| </span>About the Portal
 				</h2>
@@ -47,7 +47,7 @@ function Grievance() {
 			</main>
 
 			{/* Information Section */}
-			<section className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+			<section className="max-w-6xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
 				<h2 className="text-3xl font-semibold text-primary">
 					<span className="text-accent text-4xl">| </span> How It Works?
 				</h2>
