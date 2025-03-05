@@ -177,7 +177,7 @@ const AppRoutes = () => (
 		<Route path="/pages/convocation" element={<Convocation />} />
 		<Route path="/pages/formats" element={<Formats />} />
 		<Route path="/pages/nirf" element={<NIRF />} />
-		 <Route path="/students/hostellife" element={<HostelLife />} /> 
+		<Route path="/students/hostellife" element={<HostelLife />} /> 
 		<Route path="/pages/grievance" element={<Grievance />} />
 		<Route path="/pages/grievancecomm" element={<GrievanceCommSCSTCell />} />
 		<Route path="/pages/internalcomplt" element={<InternalCompltComm />} />
