@@ -49,12 +49,12 @@ const Footer = () => {
                             {[
                                 { name: "Grievance", link: "/pages/grievance" },
                                 { name: "Grievance Committee SC/ST Cell", link: "/pages/grievance_committee_sc_st" },
-                                { name: "Anti-Ragging Committee", link: data[0] },
+                                { name: "Anti-Ragging Committee", link: "https://iiitn.ac.in/Downloads/website-homepage-antiragging-information.pdf" },
                                 { name: "Internal Complaint Committee", link: "/pages/icc" },
                                 { name: "Equal Opportunity Cell", link: "/pages/eoc" },
                                 { name: "RTI", link: "/pages/rti" },
                                 { name: "Networking Complaint", link: data[0] },
-                                { name: "Policy for Prevention of Sexual Harassment", link: data[0] }
+                                { name: "Policy for Prevention of Sexual Harassment", link:"https://iiitn.ac.in/Downloads/Policy%20of%20Prevention%20of%20Sexual%20Harassment%20of%20Women%20at%20Workplace.pdf      " }
                             ].map((item, index) => (
                                 <li key={index}>
                                     <a
@@ -77,9 +77,9 @@ const Footer = () => {
 <ul className="space-y-2 text-sm text-gray-300">
     {[
         { name: "Courses", link: "/academics/courses" },
-        { name: "Projects", link: "/academics/projects" },
-        { name: "Publications", link: "/academics/publications" },
-        { name: "Academic Calendar", link: "/academics/academic-calendar" },
+        { name: "Projects", link: "/research/projects" },
+        { name: "Publications", link: "/research/publications" },
+        { name: "Academic Calendar", link: "/academics/calendar" },
         { name: "Library", link: "/academics/library" }
     ].map((item, index) => (
         <li key={index}>
@@ -119,10 +119,10 @@ const Footer = () => {
                     <h4 className="text-lg font-semibold mb-4 text-accent">Happenings</h4>
 <ul className="space-y-2 text-sm text-gray-300">
     {[
-        { name: "Events", link: "/happenings/events" },
-        { name: "News", link: "/happenings/news" },
-        { name: "Student Achievements", link: "/happenings/student-achievements" },
-        { name: "Faculty Achievements", link: "/happenings/faculty-achievements" }
+        { name: "Events", link: "/events" },
+        { name: "News", link: "/news" },
+        { name: "Student Achievements", link: "/pages/studentachievements" },
+        { name: "Faculty Achievements", link: "/pages/facultyachievements" }
     ].map((item, index) => (
         <li key={index}>
             <a href={item.link} className="relative group block">

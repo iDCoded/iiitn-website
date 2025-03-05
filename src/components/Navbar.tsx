@@ -39,6 +39,7 @@ const Navbar = () => {
 		{ title: "Alumni", href: "/alumni" },
 		{ title: "Recruitment", href: "/recruitments" },
 		{ title: "Visitors", href: "/visitors" },
+		{ title: "Tenders", href: "/pages/tenders" },
 	];
 
 	const dropdownLinks = [
@@ -194,7 +195,6 @@ const Navbar = () => {
 				{ name: "Electoral Literacy Club", href: "/pages/elclub" },
 				{ name: "Guest House", href: "/pages/guesthouse" },
 				{ name: "Press Release", href: "/pages/pressrelease" },
-				{ name: "Tenders", href: "/pages/tenders" },
 				{ name: "RTI", href: "/pages/rti" },
 				{ name: "Official Documents", href: "/pages/officialdocuments" },
 			],

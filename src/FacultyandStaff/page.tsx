@@ -17,12 +17,14 @@ const prospectiveData = [
 	{
 		title: "Scholarships and Assistance",
 		description: "Details about Scholarships and financial assistance",
+		link: "/academics/curricula",
 		imageSrc:
 			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
 	},
 	{
 		title: "Fees and Financial Aid",
 		description: "Tuition Fees, Payment Methods, etc.",
+		link: "/academics/curricula",
 		imageSrc:
 			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
 	},
@@ -40,12 +42,14 @@ const currentData = [
 	{
 		title: "Scholarships and Assistance",
 		description: "Details about Scholarships and financial assistance",
+		link: "/academics/curricula",
 		imageSrc:
 			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
 	},
 	{
 		title: "Fees and Financial Aid",
 		description: "Tuition Fees, Payment Methods, etc.",
+		link: "/academics/curricula",
 		imageSrc:
 			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
 	},
@@ -107,12 +111,14 @@ function FacultyandStaff() {
 						</p>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
 							{prospectiveData.map((data, index) => (
-								<StudentCard
+								<a href={data.link} key={index}>
+									<StudentCard
 									key={index}
 									title={data.title}
 									description={data.description}
 									imageSrc={data.imageSrc}
 								/>
+								</a>
 							))}
 						</div>
 					</div>
@@ -129,12 +135,14 @@ function FacultyandStaff() {
 						</p>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
 							{currentData.map((data, index) => (
-								<StudentCard
+								<a href={data.link} key={index}>
+									<StudentCard
 									key={index}
 									title={data.title}
 									description={data.description}
 									imageSrc={data.imageSrc}
 								/>
+								</a>
 							))}
 						</div>
 					</div>
