@@ -1,4 +1,5 @@
-import StudentCard from "@/components/StudentCard";
+import StudentCard from "../components/StudentCard";
+import NoticesSidebar from "../components/NoticesSidebar";
 import {
 	Card,
 	CardContent,
@@ -6,29 +7,7 @@ import {
 	CardTitle,
 } from "../components/ui/card";
 
-const prospectiveData = [
-	{
-		title: "Academic Curricula",
-		description: "Semester Dates and deadlines",
-		link: "/academics/curricula",
-		imageSrc:
-			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
-	},
-	{
-		title: "Scholarships and Assistance",
-		description: "Details about Scholarships and financial assistance",
-		link: "/academics/curricula",
-		imageSrc:
-			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
-	},
-	{
-		title: "Fees and Financial Aid",
-		description: "Tuition Fees, Payment Methods, etc.",
-		link: "/academics/curricula",
-		imageSrc:
-			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
-	},
-];
+
 
 
 const currentData = [
@@ -40,16 +19,23 @@ const currentData = [
 			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
 	},
 	{
-		title: "Scholarships and Assistance",
+		title: "Academic Calendar",
 		description: "Details about Scholarships and financial assistance",
-		link: "/academics/curricula",
+		link: "/academics/calendar",
 		imageSrc:
 			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
 	},
 	{
-		title: "Fees and Financial Aid",
-		description: "Tuition Fees, Payment Methods, etc.",
-		link: "/academics/curricula",
+		title: "Courses",
+		description: "All in one academic platform for managinf assignments and additional course materials.",
+		link: "moodle.iiitnagpur.ac.in",
+		imageSrc:
+			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
+	},
+	{
+		title: "Faculty and Staff Portal",
+		description: "All in one academic platform for managinf assignments and additional course materials.",
+		link: "#",
 		imageSrc:
 			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
 	},
@@ -99,34 +85,13 @@ function FacultyandStaff() {
 
 				{/* Main Section */}
 				<div className="flex-1 ">
-					{/* Prospective Faculty & Staff */}
-					<div className="mb-12 max-w-[80vh] mx-auto">
-						<h2 className="text-2xl font-semibold mb-4">
-							<span className="text-accent text-4xl">|&nbsp;</span>Prospective
-							Faculty & Staff
-						</h2>
-						<p className="text-gray-600 leading-relaxed">
-							Get more details on programs, resources, fees, and other
-							information here.
-						</p>
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-							{prospectiveData.map((data, index) => (
-								<a href={data.link} key={index}>
-									<StudentCard
-									key={index}
-									title={data.title}
-									description={data.description}
-									imageSrc={data.imageSrc}
-								/>
-								</a>
-							))}
-						</div>
-					</div>
+					
+					
 
 					{/* Current Faculty & Staff */}
 					<div className="mb-12 max-w-[80vh] mx-auto">
 						<h2 className="text-2xl font-semibold mb-4">
-							<span className="text-accent text-4xl">|&nbsp;</span>Current
+							<span className="text-accent text-4xl">|&nbsp;</span>
 							Faculty & Staff
 						</h2>
 						<p className="text-gray-600 leading-relaxed">
@@ -168,7 +133,7 @@ function FacultyandStaff() {
                     </div> */}
 				</div>
 
-				<aside className="hidden md:block w-1/4 space-y-6 top-20 self-start mx-auto">
+				<aside className="lg:w-1/4 space-y-6 w-full">
 					{quickLinks.map((section, index) => (
 						<Card key={index} className="shadow-sm border border-gray-200">
 							<CardHeader>
@@ -192,18 +157,18 @@ function FacultyandStaff() {
 						</Card>
 					))}
 					{/* Notices */}
-					<Card className="shadow-sm border border-gray-200">
-						<CardHeader>
-							<CardTitle className="text-lg font-semibold text-primary">
-								Notices
-							</CardTitle>
-						</CardHeader>
-						<CardContent>
-							<p className="text-gray-600">
-								Important updates and announcements for faculty and staff.
-							</p>
-						</CardContent>
-					</Card>
+					<Card className="shadow-sm border border-gray-200 p-4">
+                        <CardHeader className="flex justify-between items-center flex-row">
+                            <CardTitle className="text-lg font-semibold text-primary">Faculty Notices</CardTitle>
+                            <a href="/notices" className="text-sm text-accent hover:underline">View All</a>
+                        </CardHeader>
+                        <CardContent>
+                        </CardContent>
+                        <NoticesSidebar />
+                    </Card>
+					
+					
+					
 				</aside>
 			</div>
 		</div>
