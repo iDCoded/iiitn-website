@@ -1,56 +1,54 @@
-import CompanyCard from '../../components/CompanyCard';
-import tcs from "../../assets/tcs2.jpg"
-import hcl from "../../assets/hcl.jpg"
-import infosys from "../../assets/infosys.jpg"
-import capegimini from "../../assets/capegemini.jpg"
-import cognizant from "../../assets/cognizant.jpg"
-import wipro from "../../assets/wipro.jpg"
+import { FaFileAlt } from "react-icons/fa"; // Import an icon for guidelines
 
 function Companies() {
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col">
-
+    <div className="bg-gray-50 min-h-screen flex flex-col">
       {/* Header Section */}
-      <div className="bg-primary text-white py-16 text-center">
-        <h1 className="text-4xl font-bold">Companies</h1>
-        <p className="text-lg mt-2">Stay connected and contribute to the growth of IIIT Nagpur.</p>
-      </div>
-
-      {/* Companies Visited Section */}
-      <div className='flex flex-col h-auto  p-6 m-4 rounded-lg bg-white shadow-lg max-w-6xl mx-auto'>
-        <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Companies Visited</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-          <CompanyCard title='TCS' imageSrc={tcs}  description='Tata Consultancy Services Limited is an Indian multinational information technology services and consulting company headquartered in Mumbai, Maharashtra, India.' />
-          <CompanyCard title='Infosys' imageSrc={infosys} description='Infosys Limited is an Indian multinational corporation that provides business consulting, information technology, and outsourcing services.' />
-          <CompanyCard title='Wipro' imageSrc={wipro} description='Wipro Limited is an Indian multinational corporation that provides IT, consulting, and business process services.' />
-          <CompanyCard title='Capgemini' imageSrc={capegimini} description='Capgemini SE is a multinational information technology services and consulting company headquartered in Paris, France.' />
-          <CompanyCard title='Cognizant' imageSrc={cognizant} description='Cognizant is an American multinational technology company that provides IT services, including digital, technology, consulting, and operations services.' />
-          <CompanyCard title='HCL Technologies' imageSrc={hcl} description='HCL Technologies is an Indian multinational information technology services and consulting company headquartered in Noida, India.' />
+      <header className="relative w-full h-60 sm:h-72 lg:h-80 flex flex-col justify-center items-center text-white text-center shadow-lg bg-primary px-4">
+        <div className="relative z-10 max-w-2xl mx-auto">
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-wide">
+            Companies
+          </h1>
+          <p className="text-base sm:text-lg mt-2 opacity-90">
+            Stay connected and contribute to the growth of IIIT Nagpur.
+          </p>
         </div>
-        <p className="text-center text-lg mt-4 text-gray-600">Go to <a className="text-blue-600 font-medium" href="/placements/statistics">Statistics</a> for detailed info.</p>
-      </div>
+      </header>
 
       {/* Guidelines Section */}
-      <div className="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg mb-24">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Guidelines for Companies</h2>
-        <ul className="space-y-4">
-          <li>
-            <a href="#" className="text-blue-600 hover:underline font-medium">Invitation for Campus Placements</a>
-          </li>
-          <li>
-            <a href="#" className="text-blue-600 hover:underline font-medium">Placement Policy</a>
-          </li>
-          <li>
-            <a href="#" className="text-blue-600 hover:underline font-medium">Placement Brochure</a>
-          </li>
-          <li>
-            <a href="#" className="text-blue-600 hover:underline font-medium">Guidelines for Companies</a>
-          </li>
-          <li>
-            <a href="#" className="text-blue-600 hover:underline font-medium">Job Announcement Form</a>
-          </li>
+      <section className="max-w-4xl w-full mx-auto mt-12 p-6 sm:p-8 bg-white shadow-lg rounded-lg border border-gray-200">
+        <div className="text-left">
+          <h2 className="text-3xl sm:text-3xl font-semibold text-primary">
+            <span className="text-5xl text-accent">| </span>Guidelines for Companies
+          </h2>
+          <p className="text-gray-600 text-sm sm:text-base mt-2">
+            Ensure a smooth recruitment process by following these guidelines.
+          </p>
+        </div>
+
+        <ul className="mt-6 space-y-4 text-gray-700 text-sm sm:text-lg">
+          {[
+            { text: "Invitation for Campus Placements", link: "#" },
+            { text: "Placement Policy", link: "#" },
+            { text: "Placement Brochure", link: "#" },
+            { text: "Guidelines for Companies", link: "#" },
+            { text: "Job Announcement Form", link: "#" },
+          ].map((item, index) => (
+            <li
+              key={index}
+              className="p-3 flex items-center space-x-3 border-b last:border-b-0 hover:bg-gray-100 rounded-md transition-all"
+            >
+              <FaFileAlt className="text-accent text-lg sm:text-xl" />
+              <a href={item.link} className="text-accent font-medium hover:underline">
+                {item.text}
+              </a>
+            </li>
+          ))}
         </ul>
-      </div>
+      </section>
+
+      {/* Footer Spacer */}
+      <div className="mb-16 sm:mb-24"></div>
     </div>
   );
 }
