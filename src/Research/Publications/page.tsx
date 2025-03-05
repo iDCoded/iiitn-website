@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroimage from "@/assets/researchBanner.jpg";
@@ -9,7 +9,7 @@ type Publication = {
     published: string;
 };
 
-const publicationsData: Record<"cse" | "ece" | "basic", Publication[]> = {
+const defaultPublicationsData: Record<"cse" | "ece" | "basic", Publication[]> = {
     cse: [
         { title: "AI Ethics and Case Studies", author: "Dr. Vikrant Dhenge", published: "IEEE IATMSI 2024" },
         { title: "Deep Learning in Security", author: "Dr. ABC", published: "Elsevier 2023" },
@@ -29,6 +29,31 @@ const publicationsData: Record<"cse" | "ece" | "basic", Publication[]> = {
 
 const Publications = () => {
     const [selectedTab, setSelectedTab] = useState<"cse" | "ece" | "basic">("cse");
+    const [publicationsData, setPublicationsData] = useState(defaultPublicationsData);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        const fetchPublications = async () => {
+            try {
+                const response = await fetch(
+                    `${import.meta.env.VITE_API_BASE_URL}/publications`
+                );
+                const data = await response.json();
+                if (Object.keys(data).length > 0) {
+                    setPublicationsData(data);
+                } else {
+                    setPublicationsData(defaultPublicationsData);
+                }
+            } catch (error) {
+                console.error("Error fetching publications:", error);
+                setPublicationsData(defaultPublicationsData);
+                setError(true);
+            }
+            setLoading(false);
+        };
+        fetchPublications();
+    }, []);
 
     return (<>
         <header
@@ -39,7 +64,6 @@ const Publications = () => {
                 backgroundPosition: "center"
             }}
         >
-            {/* Overlay */}
             <div className="absolute inset-0 bg-black opacity-50"></div>
             <div className="relative z-10">
                 <h1 className="text-5xl font-extrabold drop-shadow-lg">Research Publications</h1>
@@ -47,12 +71,10 @@ const Publications = () => {
             </div>
         </header>
         <div className="max-w-6xl mx-auto px-6 py-10">
-            {/* Heading */}
             <h1 className="text-3xl font-bold mb-6 flex items-center">
                 <span className="text-accent text-4xl mr-2">|</span> Research Publications
             </h1>
 
-            {/* Tabs */}
             <div className="flex gap-4 mb-6 border-b border-gray-300">
                 {["cse", "ece", "basic"].map((dept) => (
                     <button
@@ -74,27 +96,32 @@ const Publications = () => {
                 ))}
             </div>
 
-            {/* Publications List with Animation */}
-            <motion.div
-                key={selectedTab}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            >
-                {publicationsData[selectedTab].map((pub, index) => (
-                    <Card key={index} className="shadow-md">
-                        <CardHeader>
-                            <CardTitle className="text-lg">{pub.title}</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-gray-600">Author: <span className="font-medium">{pub.author}</span></p>
-                            <p className="text-gray-600">Published in: <span className="font-medium">{pub.published}</span></p>
-                        </CardContent>
-                    </Card>
-                ))}
-            </motion.div>
+            {loading ? (
+                <p>Loading publications...</p>
+            ) : (error && publicationsData[selectedTab].length < 1) ? (
+                <p className="text-red-600">Failed to load publications. Using default data.</p>
+            ) : (
+                <motion.div
+                    key={selectedTab}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                >
+                    {publicationsData[selectedTab].map((pub, index) => (
+                        <Card key={index} className="shadow-md">
+                            <CardHeader>
+                                <CardTitle className="text-lg">{pub.title}</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-gray-600">Author: <span className="font-medium">{pub.author}</span></p>
+                                <p className="text-gray-600">Published in: <span className="font-medium">{pub.published}</span></p>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </motion.div>
+            )}
         </div>
     </>
     );
