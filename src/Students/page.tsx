@@ -17,25 +17,23 @@ const currentData = [
         subDes: "Courses, Timetable, Calendar, Curricula, Fees, etc.",
         arr: [
             { title: "Courses", description: "Semester Dates and Deadlines", link: "/academics/courses" },
-            { title: "Timetable", description: "Important Dates and Deadlines", link: "/timetable" },
-            { title: "Calendar", description: "Important Dates and Academic Calendar", link: "/calendar" },
-            { title: "Examinations", description: "Exam Schedules and Results", link: "/exams" },
+            { title: "Timetable", description: "Important Dates and Deadlines", link: "https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link" },
+            { title: "Calendar", description: "Important Dates and Academic Calendar", link: "/academics/calendar" },
+          
         ],
     },
     {
         subTitle: "Student Support",
         subDes: "Resources for counseling and academic support.",
         arr: [
-            { title: "Counseling", description: "Mental well-being services", link: "/pages/clinicalcounseling" },
-            { title: "Library", description: "Library Resources and Online Access", link: "/library" },
-            { title: "Career Guidance", description: "Internships and Placement Support", link: "/career-guidance" },
-        ],
+            { title: "Counseling", description: "Mental well-being services", link: "/pages/clinicalcounselling" },
+            {title: "Career Guidance", description: "Internship and Placement Services", link: "/placements/contact"},
+             ],
     },
 ];
 
 const sidebarLinks = [
-    { title: "Hostel Life", link: "/pages/hostellife" },
-    { title: "Sports & Recreation", link: "/pages/recreation" },
+    { title: "Hostel Life", link: "/students/hostellife" },
     { title: "Student Clubs", link: "/pages/studentclubs" },
     { title: "Events and Festivities", link: "/events" },
     { title: "Achievements", link: "/pages/studentachievements" },

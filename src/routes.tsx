@@ -82,6 +82,9 @@ import RtiContact from "./Pages/RtiContact";
 import DetailedRtiDetail from "./Pages/DetailedRtiDetail";
 import AcademicCurriculum from "./Pages/AcademicCurriculum";
 import LoanSchemes from "./Pages/LoanSchemes";
+import AcademicCalendar from "./Pages/AcademicCalendar";
+import Notices from "./Pages/Notices";
+import HostelLife from "./Pages/HostelLife";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -114,6 +117,7 @@ const AppRoutes = () => (
 			}
 		/>
 		<Route path="/departments" element={<Departments />} />
+		<Route path="/notices" element={<Notices />} />
 		<Route path="/departments/:param" element={<PageWrapper />} />
 		<Route path="/academics/courses" element={<Courses />} />
 		<Route path="/admissions/btech" element={<AdmissionsBTech />} />
@@ -173,7 +177,7 @@ const AppRoutes = () => (
 		<Route path="/pages/convocation" element={<Convocation />} />
 		<Route path="/pages/formats" element={<Formats />} />
 		<Route path="/pages/nirf" element={<NIRF />} />
-		{/* <Route path="/pages/hostellife" element={<HostelLife />} /> */}
+		 <Route path="/students/hostellife" element={<HostelLife />} /> 
 		<Route path="/pages/grievance" element={<Grievance />} />
 		<Route path="/pages/grievancecomm" element={<GrievanceCommSCSTCell />} />
 		<Route path="/pages/internalcomplt" element={<InternalCompltComm />} />
@@ -181,6 +185,7 @@ const AppRoutes = () => (
 		<Route path="/pages/howtoreach" element={<HowToReach />} />
 		<Route path="/visitors" element={<Visitors />} />
 		<Route path="/pages/grievance" element={<Grievance />} />
+		<Route path="/academics/calendar" element={<AcademicCalendar />} />
 		<Route
 			path="/pages/grievance_committee_sc_st"
 			element={<GrievanceCommSCSTCell />}
