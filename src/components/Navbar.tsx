@@ -273,7 +273,7 @@ const Navbar = () => {
 									<ul
 										className={`absolute top-full mt-2 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
 									${index === dropdownLinks.length - 1 ? "right-0" : "left-0"} 
-									${openDropdown === index ? "opacity-100 translate-y-0 visible pointer-events-auto" : "opacity-0 translate-y-[-10px] invisible pointer-events-none"}`}>
+									${openDropdown === index ? "opacity-100 translate-y-0 visible" : "opacity-0 translate-y-[-10px] invisible"}`}>
 										{item.links && item.links.map((link, i) => (
 											<div
 												key={i}
@@ -290,7 +290,7 @@ const Navbar = () => {
 													<ul
 														className={`absolute top-0 mt-0 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
 													${index === dropdownLinks.length - 1 ? "right-full" : "left-full"} 
-													${openSubmenu === i ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}>
+													${openSubmenu === i ? "opacity-100 visible" : "opacity-0 invisible"}`}>
 														{link.subLinks.map((subLink, j) => (
 															<li
 																key={j}
@@ -309,7 +309,7 @@ const Navbar = () => {
 																	<ul
 																		className={`absolute top-0 mt-0 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
 				${link.subLinks && j === link.subLinks.length - 1 ? "right-full" : "left-full"} 
-				${openNestedSubmenu === j ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}>
+				${openNestedSubmenu === j ? "opacity-100 visible" : "opacity-0 invisible"}`}>
 																		{subLink.nestedLinks &&
 																			subLink.nestedLinks.map(
 																				(nestedLink, k) => (
