@@ -247,7 +247,7 @@ export default function DepartmentPage({ title }: PageProps) {
 									<div className="mt-4">
 										<Button asChild>
 											<a
-												href={`/pages/directory?department=${title}`}
+												href={`/pages/directory/${title}`}
 												className="text-white">
 												Learn More
 											</a>
