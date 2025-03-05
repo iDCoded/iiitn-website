@@ -26,13 +26,13 @@ const Navbar = () => {
 			}
 		};
 
-		useEffect(() => {
-			setIsHomePage(window.location.pathname === "/");
-		}, []);
-
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, [isHomePage]);
+
+	useEffect(() => {
+		setIsHomePage(window.location.pathname === "/");
+	}, []);
 
 	// Navbar Links
 	const navLinks = [
