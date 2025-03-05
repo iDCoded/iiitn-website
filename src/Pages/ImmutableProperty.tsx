@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, ChevronDown } from "lucide-react"; // Importing icons
+import { ChevronDown } from "lucide-react"; // Importing icons
 
 const immovablePropData = [
     {
