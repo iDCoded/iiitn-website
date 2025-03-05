@@ -6,7 +6,7 @@ import AdminDashboard from "./Admin/layout";
 import Departments from "./Departments/page";
 import Courses from "./Academics/Courses";
 import AdmissionsBTech from "./Admissions/BTech/BTech";
-// import AdmissionsMTech from "./Admissions/PostGraduate";
+ import AdmissionsPG from "./Admissions/PostGraduate";
 import Placements from "./Placements/page";
 import Projects from "./Research/Projects/page";
 import Publications from "./Research/Publications/page";
@@ -86,6 +86,7 @@ import LoanSchemes from "./Pages/LoanSchemes";
 import AcademicCalendar from "./Pages/AcademicCalendar";
 import Notices from "./Pages/Notices";
 import HostelLife from "./Pages/HostelLife";
+import CampusGallery from "./Pages/CampusGallery.tsx";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -130,7 +131,7 @@ const AppRoutes = () => (
 			path="/admissions/btech/rulesandregulations"
 			element={<InstRulesAndReg />}
 		/>
-		{/* <Route path="/admissions/mtech" element={<AdmissionsMTech />} /> */}
+		 <Route path="/admissions/pg" element={<AdmissionsPG />} /> 
 		<Route path="/placements" element={<Placements />} />
 		<Route path="/placements/companies" element={<Companies />} />
 		<Route path="/placements/internships" element={<Internships />} />
@@ -166,6 +167,7 @@ const AppRoutes = () => (
 		<Route path="/pages/scholarships" element={<Scholarships />} />
 		<Route path="/pages/rti" element={<RTI />} />
 		<Route path="/pages/loanschemes" element={<LoanSchemes />} />
+		<Route path="/pages/campusgallery" element={<CampusGallery />} />
 		<Route
 			path="/pages/clinicalcounselling"
 			element={<ClinicalCounselling />}

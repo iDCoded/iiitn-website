@@ -122,7 +122,7 @@ const Navbar = () => {
 						{ name: "Internal Complaint Committee", href: "/pages/icc" },
 					],
 				},
-				{ name: "Campus Photo Gallery", href: "/pages/campusphotogallery" },
+				{ name: "Campus Photo Gallery", href: "/pages/campusgallery" },
 				{ name: "NIRF", href: "/pages/nirf" },
 				{ name: "Facilities", href: "/institute/facilities" },
 			],
@@ -168,7 +168,7 @@ const Navbar = () => {
 				},
 				{
 					name: "Post Graduate",
-					href: "https://iiitn.ac.in/page/postgraduate/41/",
+					href: "/admissions/pg",
 				},
 			],
 		},
