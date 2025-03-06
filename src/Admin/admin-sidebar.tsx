@@ -55,6 +55,8 @@ export function AdminSidebar({
 		// Handle item click if needed
 	};
 
+	// ! Dummy faculty object
+	// ! This faculty will be fetched accessing the logged in faculty member's information (f_id).
 	const testFaculty: Faculty = {
 		f_id: "",
 		p_id: "",
@@ -149,9 +151,9 @@ export function AdminSidebar({
 												<p>Edit your details</p>
 											</Button>
 										</DialogTrigger>
-										<DialogContent>
+										<DialogContent className="text-primary-foreground">
 											<DialogHeader>
-												<DialogTitle>Edit your details</DialogTitle>
+												<DialogTitle>&nbsp;</DialogTitle>
 											</DialogHeader>
 											<FacultyEditDialog faculty={testFaculty} />
 										</DialogContent>
