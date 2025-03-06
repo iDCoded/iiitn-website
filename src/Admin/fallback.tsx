@@ -6,8 +6,11 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Frown } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function Fallback({ error }: { error?: Error }) {
+	const navigate = useNavigate();
+
 	return (
 		<div className="h-svh">
 			<div className="m-auto flex h-full w-full flex-col items-center justify-center gap-4">
@@ -32,7 +35,23 @@ function Fallback({ error }: { error?: Error }) {
 						</AccordionItem>
 					</Accordion>
 				)}
-				<Button>Go Back</Button>
+				<div className="flex flex-row gap-4">
+					<Button
+						onClick={() => {
+							navigate("/admin");
+							window.location.reload();
+						}}>
+						Back to Admin Panel
+					</Button>
+					<Button
+						variant={"secondary"}
+						onClick={() => {
+							navigate("/");
+							window.location.reload();
+						}}>
+						Back to Home
+					</Button>
+				</div>
 			</div>
 		</div>
 	);
