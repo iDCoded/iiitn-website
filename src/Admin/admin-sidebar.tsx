@@ -1,6 +1,23 @@
+import { Button } from "@/components/ui/button";
+import {
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
 	Sidebar,
 	SidebarContent,
+	SidebarFooter,
 	SidebarGroup,
 	SidebarHeader,
 	SidebarMenu,
@@ -11,7 +28,9 @@ import {
 	SidebarMenuSubItem,
 	SidebarRail,
 } from "@/components/ui/sidebar";
-import { User } from "lucide-react";
+import { ChevronsUpDown, User } from "lucide-react";
+import FacultyEditDialog from "./faculties/faculty-edit-dialog";
+import { Faculty } from "@/interfaces/types";
 
 interface AdminSidebarProps {
 	data?: {
@@ -34,6 +53,24 @@ export function AdminSidebar({
 	const handleItemClick = (url: string) => {
 		console.log("URL: ", url);
 		// Handle item click if needed
+	};
+
+	const testFaculty: Faculty = {
+		f_id: "",
+		p_id: "",
+		d_id: "",
+		pub_id: "",
+		name: "",
+		email: "",
+		phone_no: "",
+		media_img_id: 0,
+		join_year: 0,
+		positions: "",
+		education: "",
+		experience: 0,
+		teaching: "",
+		research: "",
+		f_or_s: "Faculty",
 	};
 
 	return (
@@ -87,6 +124,44 @@ export function AdminSidebar({
 					</SidebarMenu>
 				</SidebarGroup>
 			</SidebarContent>
+			<SidebarFooter>
+				<SidebarMenu>
+					<SidebarMenuItem>
+						<DropdownMenu>
+							<DropdownMenuTrigger asChild>
+								<SidebarMenuButton
+									size="lg"
+									className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
+									<span>Profile</span>
+									<ChevronsUpDown className="ml-auto size-4" />
+								</SidebarMenuButton>
+							</DropdownMenuTrigger>
+							<DropdownMenuContent side="right" align="end" sideOffset={8}>
+								<DropdownMenuLabel>Faculty</DropdownMenuLabel>
+								<DropdownMenuSeparator />
+								<DropdownMenuItem asChild>
+									<Dialog>
+										<DialogTrigger asChild>
+											<Button
+												variant={"secondary"}
+												className="bg-primary"
+												size={"lg"}>
+												<p>Edit your details</p>
+											</Button>
+										</DialogTrigger>
+										<DialogContent>
+											<DialogHeader>
+												<DialogTitle>Edit your details</DialogTitle>
+											</DialogHeader>
+											<FacultyEditDialog faculty={testFaculty} />
+										</DialogContent>
+									</Dialog>
+								</DropdownMenuItem>
+							</DropdownMenuContent>
+						</DropdownMenu>
+					</SidebarMenuItem>
+				</SidebarMenu>
+			</SidebarFooter>
 			{data.navMain.length > 0 && <SidebarRail />}
 		</Sidebar>
 	);
