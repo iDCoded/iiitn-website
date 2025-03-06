@@ -70,13 +70,14 @@ function HostelLife() {
 						The hostel administration ensures smooth operations and provides guidance for students regarding rules, policies, and support services.
 					</p>
 
-					{/* SAC Section */}
-					<div className="mt-4 p-4 bg-gray-200 rounded-lg">
-						<h3 className="text-lg sm:text-xl font-semibold text-primary">Student Affairs Committee (SAC)</h3>
-						<p className="text-gray-700 mt-2">
-							The Student Affairs Committee (SAC) is responsible for addressing student concerns, organizing hostel events, and maintaining discipline.
-						</p>
-					</div>
+					{/* CRA Section */}
+<div className="mt-4 p-4 bg-gray-200 rounded-lg">
+    <h3 className="text-lg sm:text-xl font-semibold text-primary">Council of Residential Affairs (CRA)</h3>
+    <p className="text-gray-700 mt-2">
+        The Council of Residential Affairs (CRA) oversees student welfare in hostels, ensuring a comfortable living environment, organizing residential events, and addressing accommodation-related concerns.
+    </p>
+</div>
+
 				</section>
 
 			</div>
