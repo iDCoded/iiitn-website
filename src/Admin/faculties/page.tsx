@@ -7,7 +7,7 @@ import { Faculty } from "@/interfaces/types";
 function FacultyTablePage() {
 	const [facultyData, setFacultyData] = useState<Faculty[]>([]);
 	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
+	const [error, setError] = useState<Error | null>(null);
 
 	useEffect(() => {
 		const fetchFacultyData = async () => {
@@ -31,12 +31,13 @@ function FacultyTablePage() {
 	}, []);
 
 	if (loading) return <p className="text-center text-gray-500">Loading...</p>;
-	if (error) return <p className="text-center text-red-500">Error: {error}</p>;
+	if (error)
+		return <p className="text-center text-red-500">Error: {error.message}</p>;
 
 	return (
 		<div className="container mx-auto py-10 h-screen">
 			<div className="flex flex-col items-end gap-8">
-				<DataTable columns={columns} data={facultyData} />{" "}
+				<DataTable columns={columns} data={facultyData} />
 			</div>
 		</div>
 	);
