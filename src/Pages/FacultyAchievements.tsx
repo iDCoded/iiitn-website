@@ -8,7 +8,7 @@ type Achievement = {
     description: string;
 };
 
-const achievementsData: Record<"cse" | "ece" , Achievement[]> = {
+const achievementsData: Record<"cse" | "ece" | "basic_science" , Achievement[]> = {
     cse: [
         { title: "Best Paper Award at AI Conference", researcher: "Dr. ABC", description: "Awarded for groundbreaking research in AI-powered learning systems." },
         { title: "Patent Granted on Blockchain Security", researcher: "Dr. XYZ", description: "Patent received for innovative methods in blockchain-based authentication." },
@@ -19,11 +19,15 @@ const achievementsData: Record<"cse" | "ece" , Achievement[]> = {
         { title: "NASA Collaboration for Satellite Research", researcher: "Dr. MNO", description: "Selected for an exclusive project with NASA on satellite communications." },
         { title: "Best Research Paper in Renewable Energy", researcher: "Dr. ABC", description: "Honored for contributions to smart grids and renewable energy systems." }
     ],
-   
+    basic_science: [
+        { title: "Climate Change Simulation Model", researcher: "Dr. PQR", description: "Developed a mathematical model for predicting climate change patterns." },
+        { title: "Quantum Cryptography Algorithms", researcher: "Dr. Charu Goel", description: "Innovative quantum algorithms for secure communication systems." },
+        { title: "Astrophysics Research & Observations", researcher: "Dr. XYZ", description: "Published research on astrophysics observations and discoveries." }
+    ]
 };
 
 const FacultyAchievements = () => {
-    const [selectedTab, setSelectedTab] = useState<"cse" | "ece" >("cse");
+    const [selectedTab, setSelectedTab] = useState<"cse" | "ece"| "basic_science" >("cse");
 
     return (
         <div className="max-w-6xl mx-auto px-6 py-10">
@@ -34,16 +38,16 @@ const FacultyAchievements = () => {
 
             {/* Tabs */}
             <div className="flex gap-4 mb-6 border-b border-gray-300">
-                {["cse", "ece"].map((dept) => (
+                {["cse", "ece", "basic_science"].map((dept) => (
                     <button
                         key={dept}
                         className={`relative px-6 py-2 text-lg font-medium transition-all duration-300 ${selectedTab === dept
                                 ? "text-accent font-bold"
                                 : "text-gray-500 hover:text-gray-700"
                             }`}
-                        onClick={() => setSelectedTab(dept as "cse" | "ece" )}
+                        onClick={() => setSelectedTab(dept as "cse" | "ece" | "basic_science")}
                     >
-                        {dept.toUpperCase()}
+                        {dept === "basic_science" ? "BASIC SCIENCE" : dept.toUpperCase()}
                         {selectedTab === dept && (
                             <motion.div
                                 layoutId="underline"

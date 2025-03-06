@@ -23,6 +23,7 @@ interface DepartmentData {
 	heroimage: string;
 	about: string;
 	bos: string;
+	bosdata?: { name: string; role: string; designation: string }[];
 	achievements: string;
 	research: string;
 	facultyandstaff: string;
@@ -41,6 +42,38 @@ const departmentsDemo: Record<string, DepartmentData> = {
 		about:
 			"The Department of Computer Science and Engineering at IIIT Nagpur offers a comprehensive curriculum...",
 		bos: "The Board of Studies (BoS) of the CSE Department is responsible for designing the curriculum, evaluating academic programs, and ensuring the quality of education.",
+		bosdata:
+			[
+				{ name: "Dr Nishat Afshan Ansari", role: "Chairman", designation: "Chairman & HoD, CSE" },
+				{ name: "Dr. P. S. Deshpande", role: "Expert Member", designation: "Professor, CSE, VNIT" },
+				{ name: "Shri. Gandhar Patwardhan", role: "Expert Member", designation: "Managing Director, S2P EDUTECH" },
+				{ name: "Dr. Harsh Gaud", role: "Expert Member", designation: "Head of Department ECE" },
+				{ name: "Dr. Ashish Tiwari", role: "Special Invitee", designation: "Assistant Professor, CSE, VNIT" },
+				{ name: "Dr. Tausif Diwan", role: "Special Invitee", designation: "Associate Dean, IIITN" },
+				{ name: "Dr. Prasad V Joshi", role: "Special Invitee", designation: "Head of Department, BS" },
+				{ name: "Dr Pooja Jain", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Jitendra Tembhurne", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Milind Penurkar", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Mayuri Digalwar", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Richa Makhijani", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Kaushlendra Sharma", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Rahul Semwal", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Khushboo Jain", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Shishupal Kumar", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Anil Kumar Kushwah", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Aishwarya Sagar Anand Ukey", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Vrinda Yadav", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Jagdish Chakole", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Nileshchandra Pikle", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Amol Bhopale", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Suvra Jyoti Choudhury", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Neha Kasture", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Amit Shewale", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Snehal Bankatrao Shinde", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Vasundhara Swapnil Rathod", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Mangesh Ramaji Kose", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr Swati Hira", role: "Member", designation: "Assistant Professor" }
+			],
 		achievements:
 			"The CSE Department has achieved numerous milestones in research, innovation, and academic excellence. Our faculty and students have published research papers, won awards, and participated in hackathons.",
 		research:
@@ -69,6 +102,28 @@ const departmentsDemo: Record<string, DepartmentData> = {
 		about:
 			"The Department of Electronics and Communication Engineering at IIIT Nagpur offers a comprehensive curriculum...",
 		bos: "The Board of Studies (BoS) of the ECE Department...",
+		bosdata:
+			[
+				{ name: "Dr. Harsh Goud", role: "Chairman", designation: "Head of Department, ECE" },
+				{ name: "Dr. Tausif Diwan", role: "Special Invitee", designation: "Associate Dean, IIITN" },
+				{ name: "Shri Vikas Naiyar", role: "Expert Member", designation: "Industry Expert" },
+				{ name: "Dr. Vishal Satpute", role: "Expert Member", designation: "Associate Professor (ECE), VNIT Nagpur" },
+				{ name: "Dr. Nishat Ansari", role: "Special Invitee", designation: "Head of Department, CSE" },
+				{ name: "Dr. Prasad Joshi", role: "Special Invitee", designation: "Head of Department, BS" },
+				{ name: "Dr. Mayur Parate", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Tapan Jain", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Rashmi Pandhare", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Paritosh Peshwe", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Parul Sahare", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Nikhil Agrawal", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Girish Ghivela", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Sushmita Dandeliya", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Shankar Bhattacharjee", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Rajanish Kumar Singh", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Khuraijam Nelson Singh", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Nikhil Dhengre", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Bhukya Venkanna Naik", role: "Member", designation: "Assistant Professor" }
+			],
 		achievements: "The ECE Department has achieved numerous milestones...",
 		research: "The research focus areas include VLSI, Embedded Systems, IoT...",
 		facultyandstaff:
@@ -95,6 +150,25 @@ const departmentsDemo: Record<string, DepartmentData> = {
 		about:
 			"The Department of Basic Sciences at IIIT Nagpur offers a comprehensive curriculum...",
 		bos: "The Board of Studies (BoS) of the Basic Sciences Department...",
+		bosdata:
+			[
+				{ name: "Dr Prasad Joshi", role: "Chairman", designation: "Head of Department, Basic Sciences" },
+				{ name: "Dr. Tausif Diwan", role: "Special Invitee", designation: "Associate Dean" },
+				{ name: "Dr. Harsh Goud", role: "Special Invitee", designation: "Head of Department, ECE" },
+				{ name: "Dr. Nishat Ansari", role: "Special Invitee", designation: "Head of Department, CSE" },
+				{ name: "Dr. Yogesh Deshpande", role: "External Member", designation: "Professor, (Psychology & Management), VNIT Nagpur" },
+				{ name: "Dr. M. Devakar", role: "External Member", designation: "Professor, (Mathematics), VNIT Nagpur" },
+				{ name: "Dr. R.S. Gedam", role: "External Member", designation: "Professor, (Physics), VNIT Nagpur" },
+				{ name: "Dr. Bibhudatta Dash", role: "External Member", designation: "Assistant Professor, (Language), VNIT Nagpur" },
+				{ name: "Dr. Maithili Paikane", role: "External Member", designation: "Assistant Professor, (Social Science)" },
+				{ name: "Shri Varun Pimplapure", role: "External Member", designation: "Industry Expert (Delhivery) (Ex. Army officer)" },
+				{ name: "Dr. Kirti Dorshetwar", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Charu Goel", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Aatish Daryapurkar", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Chandrashekhar Sakode", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Kamaljeet", role: "Member", designation: "Assistant Professor" },
+				{ name: "Dr. Ujwal Warbe", role: "Member", designation: "Assistant Professor" }
+			],
 		achievements:
 			"The Basic Sciences Department has achieved numerous milestones...",
 		research:
@@ -255,6 +329,30 @@ export default function DepartmentPage({ title }: PageProps) {
 									</div>
 								)}
 
+								{/* BOS Section */}
+								{section.id === "bos" && (
+									<div className="mt-4 overflow-x-auto">
+										<table className="min-w-full border border-gray-200 shadow-md rounded-lg">
+											<thead className="bg-primary text-white">
+												<tr>
+													<th className="px-4 py-3 text-left text-sm font-semibold">Name</th>
+													<th className="px-4 py-3 text-left text-sm font-semibold">Role</th>
+													<th className="px-4 py-3 text-left text-sm font-semibold">Designation</th>
+												</tr>
+											</thead>
+											<tbody className="bg-white divide-y divide-gray-200">
+												{data.bosdata?.map((item, index) => (
+													<tr key={index} className="hover:bg-gray-100 transition-all">
+														<td className="px-4 py-3 text-gray-800 font-medium">{item.name}</td>
+														<td className="px-4 py-3 text-gray-700">{item.role}</td>
+														<td className="px-4 py-3 text-gray-700">{item.designation}</td>
+													</tr>
+												))}
+											</tbody>
+										</table>
+									</div>
+								)}
+
 								{/* Projects Section */}
 								{section.id === "projects" && (
 									<div className="mt-4 space-y-2">
@@ -305,9 +403,9 @@ export default function DepartmentPage({ title }: PageProps) {
 										<div className="absolute top-3 left-3 bg-primary text-white text-sm font-bold px-3 py-2 rounded-md shadow-lg transition-all duration-300 transform group-hover:scale-110 group-hover:bg-accent">
 											{event.date
 												? new Date(event.date).toLocaleDateString("en-US", {
-														month: "short",
-														day: "2-digit",
-												  })
+													month: "short",
+													day: "2-digit",
+												})
 												: "TBD"}
 										</div>
 									</div>

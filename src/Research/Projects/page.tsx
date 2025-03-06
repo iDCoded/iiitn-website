@@ -6,62 +6,11 @@ import { useLocation } from "react-router-dom";
 
 type Project = {
 	title: string;
-	researcher: string;
+	lead_name: string;
 	status: string;
-};
-
-const defaultProjectsData: Record<"cse" | "ece" | "bs", Project[]> = {
-	cse: [
-		{
-			title: "AI-Powered Chatbots for Education",
-			researcher: "Dr. ABC",
-			status: "Ongoing",
-		},
-		{
-			title: "Blockchain Security in AI Systems",
-			researcher: "Dr. XYZ",
-			status: "Completed",
-		},
-		{
-			title: "Quantum Computing Algorithms",
-			researcher: "Dr. PQR",
-			status: "Ongoing",
-		},
-	],
-	ece: [
-		{
-			title: "5G-Based IoT Solutions",
-			researcher: "Dr. XYZ",
-			status: "Completed",
-		},
-		{
-			title: "Satellite Communication Enhancements",
-			researcher: "Dr. MNO",
-			status: "Ongoing",
-		},
-		{
-			title: "Smart Grids & Renewable Energy",
-			researcher: "Dr. ABC",
-			status: "Completed",
-		},
-	],
-	bs: [
-		{
-			title: "Mathematical Simulation for Climate Change",
-			researcher: "Dr. PQR",
-			status: "Ongoing",
-		},
-		{
-			title: "Quantum Cryptography Algorithms",
-			researcher: "Dr. Charu Goel",
-			status: "Completed",
-		},
-		{
-			title: "Astrophysics Research & Observations",
-			researcher: "Dr. XYZ",
-			status: "Ongoing",
-		},
-	],
+	content: string;
+	link: string;
+	published_in: string;
 };
 
 const Projects = () => {
@@ -71,7 +20,7 @@ const Projects = () => {
 			? (location.hash.substring(1) as "cse" | "ece" | "bs")
 			: "cse"
 	);
-	const [projectsData, setProjectsData] = useState(defaultProjectsData);
+	const [projectsData, setProjectsData] = useState<Record<"cse" | "ece" | "bs", Project[]>>({ cse: [], ece: [], bs: [] });
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
 
@@ -79,16 +28,29 @@ const Projects = () => {
 		const fetchProjects = async () => {
 			try {
 				const response = await fetch(
-					`${import.meta.env.VITE_API_BASE_URL}/publications`
-				); const data = await response.json();
-				if (Object.keys(data).length > 0) {
-					setProjectsData(data);
-				} else {
-					setProjectsData(defaultProjectsData);
-				}
+					`${import.meta.env.VITE_API_BASE_URL}/publication`
+				);
+				const data = await response.json();
+				const filteredData = data.filter((item: any) => item.type === "Project");
+				const formattedData = { cse: [], ece: [], bs: [] } as Record<"cse" | "ece" | "bs", Project[]>;
+
+				filteredData.forEach((project: any) => {
+					const branchKey = project.branch_enum.toLowerCase() as "cse" | "ece" | "bs";
+					if (["cse", "ece", "bs"].includes(branchKey)) {
+						formattedData[branchKey].push({
+							title: project.title,
+							lead_name: project.lead_name,
+							status: project.status,
+							content: project.content,
+							link: project.link,
+							published_in: project.published_in,
+						});
+					}
+				});
+
+				setProjectsData(formattedData);
 			} catch (error) {
 				console.error("Error fetching projects:", error);
-				setProjectsData(defaultProjectsData);
 				setError(true);
 			}
 			setLoading(false);
@@ -136,8 +98,8 @@ const Projects = () => {
 
 				{loading ? (
 					<p>Loading projects...</p>
-				) : (error && projectsData[selectedTab].length < 1) ? (
-					<p className="text-red-600">Failed to load projects. Using default data.</p>
+				) : error && projectsData[selectedTab].length < 1 ? (
+					<p className="text-red-600">Failed to load projects.</p>
 				) : (
 					<motion.div
 						key={selectedTab}
@@ -150,8 +112,11 @@ const Projects = () => {
 									<CardTitle className="text-lg">{project.title}</CardTitle>
 								</CardHeader>
 								<CardContent>
-									<p className="text-gray-600">Lead Researcher: {project.researcher}</p>
+									<p className="text-gray-600">Lead Researcher: {project.lead_name}</p>
 									<p>Status: {project.status}</p>
+									<p>Published In: {project.published_in}</p>
+									<p>{project.content}</p>
+									<a href={project.link} className="text-blue-500" target="_blank" rel="noopener noreferrer">More Info</a>
 								</CardContent>
 							</Card>
 						))}

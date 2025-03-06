@@ -28,6 +28,7 @@ const UpcomingEvents = () => {
 				);
 				if (!res.ok) throw new Error("Failed to fetch events");
 				const data = await res.json();
+				console.log(data);
 				const eventList = data.map((event: any) => ({
 					id: event.c_id,
 					image: null,
