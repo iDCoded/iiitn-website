@@ -20,6 +20,7 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Person } from "@/interfaces/types";
+import MDEditor from "@uiw/react-md-editor";
 
 const formSchema = z.object({
 	f_id: z.string(),
@@ -28,6 +29,7 @@ const formSchema = z.object({
 	pub_id: z.string(),
 	media_img_id: z.string(),
 	join_year: z.coerce.number().int().gte(1900).lte(new Date().getFullYear()),
+	content: z.string().min(1, "Content is required"),
 	positions: z.string().min(1, { message: "Please enter the positions" }),
 	f_or_s: z.enum(["Faculty", "Staff"], {
 		message: "Please select Faculty or Staff",
@@ -47,6 +49,7 @@ export function FacultyForm({ user }: { user: Person }) {
 			d_id: (Math.floor(Math.random() * 2) + 1).toString(), // Random number b/w 1 - 2.
 			pub_id: "",
 			media_img_id: "",
+			content: "",
 			join_year: new Date().getFullYear(),
 			positions: "",
 			f_or_s: "Faculty",
@@ -87,7 +90,7 @@ export function FacultyForm({ user }: { user: Person }) {
 	};
 
 	return (
-		<div className=" mx-auto">
+		<div className="max-h-[80vh] mx-auto overflow-y-auto">
 			<div className="flex items-center gap-3 mb-8">
 				<div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center">
 					<User className="h-6 w-6 text-primary" />
@@ -108,6 +111,24 @@ export function FacultyForm({ user }: { user: Person }) {
 								<FormLabel htmlFor="join_year">Year of Joining</FormLabel>
 								<FormControl>
 									<Input id="join_year" placeholder="Enter year" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="content"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Content</FormLabel>
+								<FormControl>
+									<MDEditor
+										value={field.value}
+										onChange={field.onChange}
+										data-color-mode="light"
+										preview="edit"
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>

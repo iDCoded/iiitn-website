@@ -27,9 +27,11 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Faculty } from "@/interfaces/types";
+import MDEditor from "@uiw/react-md-editor";
 
 const formSchema = z.object({
 	join_year: z.coerce.number().int().gte(1900).lte(new Date().getFullYear()),
+	content: z.string().min(1, "Content is required"),
 	positions: z.string().min(1, "Please enter the positions"),
 	education: z.string().min(1, "Please enter the education"),
 	experience: z.coerce.number().min(0, "Please enter the experience"),
@@ -76,7 +78,7 @@ const FacultyEditDialog = ({ faculty }: { faculty: Faculty }) => {
 					Edit Faculty
 				</Button>
 			</DialogTrigger>
-			<DialogContent>
+			<DialogContent className="max-h-[80vh] overflow-y-auto">
 				<DialogHeader>
 					<DialogTitle>Edit Faculty</DialogTitle>
 				</DialogHeader>
@@ -93,6 +95,24 @@ const FacultyEditDialog = ({ faculty }: { faculty: Faculty }) => {
 											type="number"
 											{...field}
 											onChange={(e) => field.onChange(Number(e.target.value))}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="content"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Content</FormLabel>
+									<FormControl>
+										<MDEditor
+											value={field.value}
+											onChange={field.onChange}
+											data-color-mode="light"
+											preview="edit"
 										/>
 									</FormControl>
 									<FormMessage />
