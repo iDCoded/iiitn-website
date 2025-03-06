@@ -295,7 +295,7 @@ export function CardForm() {
 											<Input
 												type="file"
 												id={field.name}
-												accept="image/*"
+												accept="*"
 												{...fileRef}
 												placeholder="Upload Media"
 											/>
@@ -303,7 +303,7 @@ export function CardForm() {
 												type="button"
 												variant="outline"
 												onClick={() =>
-													document.getElementById("image")?.click()
+													document.getElementById(field.name)?.click()
 												}>
 												<ImageIcon className="mr-2 h-4 w-4" />
 												Browse
