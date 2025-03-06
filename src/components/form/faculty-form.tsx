@@ -73,6 +73,7 @@ export function FacultyForm({ user }: { user: Person }) {
 			experience: data.experience,
 			teaching: data.teaching,
 			research: data.research,
+			content: data.content,
 		};
 
 		const res = await fetch(
