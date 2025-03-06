@@ -191,8 +191,8 @@ export function CardForm() {
 
 			if (media_request.ok) {
 				const card_data = {
-					c_category: data.c_category,
-					c_sub_category: data.c_sub_category,
+					c_category: data.c_category.toLowerCase(),
+					c_sub_category: data.c_sub_category.toLowerCase(),
 					title: data.title,
 					caption: data.caption,
 					content: data.content,
