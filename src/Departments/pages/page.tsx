@@ -12,12 +12,17 @@ import BS from "../../assets/BS.png";
 import CSE from "../../assets/CSE_grp.png";
 import ECE from "../../assets/ECE_grp.png";
 
+
 interface Event {
 	title: string;
 	date?: string;
 	image?: string;
 	time?: string;
 }
+
+
+ 
+  
 
 interface DepartmentData {
 	heroimage: string;
