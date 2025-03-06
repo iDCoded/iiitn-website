@@ -285,7 +285,6 @@ export function CardForm() {
 					<FormField
 						control={form.control}
 						name="media"
-						// eslint-disable-next-line @typescript-eslint/no-unused-vars
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Media</FormLabel>
