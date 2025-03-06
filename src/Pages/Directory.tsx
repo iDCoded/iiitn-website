@@ -3,6 +3,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
+import ShimmerLoader from "@/components/ShimmerLoader";
 
 interface Faculty {
     f_id: number;
@@ -282,7 +283,7 @@ const Directory = () => {
     }, []); // Only runs once on mount
 
     if (loading) {
-        return <p className="text-center text-gray-600 text-lg mt-10">Loading faculty and staff data...</p>;
+        return <ShimmerLoader/>;
     }
 
     return (
