@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ErrorBoundary from "./error-boundary";
 
-
 const sidebarData = {
 	navMain: [
 		{
