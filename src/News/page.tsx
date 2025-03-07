@@ -4,7 +4,7 @@ import axios from "axios";
 import ShimmerLoader from "../components/ShimmerLoader.tsx"; // Adjust the path as necessary
 
 interface NewsItem {
-	id: string;
+	c_id: string;
 	c_category: string;
 	caption: string;
 	title: string;
@@ -15,7 +15,7 @@ interface NewsItem {
 
 const dataDemo = [
 	{
-		id: "1",
+		c_id: "1",
 		c_category: "news",
 		image: "/default-news.jpg",
 		title: "News Title",
@@ -23,7 +23,7 @@ const dataDemo = [
 		description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti impedit nostrum sapiente consequuntur corporis, maxime et eligendi molestiae itaque. Aspernatur ex quo saepe? Laborum provident asperiores error quia deleniti temporibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium ad nihil doloremque cumque facilis nulla, quis cum! Vitae illum deleniti officiis cumque, voluptate accusamus. Autem, non ipsum sapiente laudantium blanditiis doloribus molestiae commodi rem eos minus adipisci placeat? Perferendis modi magnam nisi quidem ipsum fugiat architecto nesciunt, ullam commodi placeat facere, illum obcaecati repellat neque corporis laborum quaerat optio? Molestias porro dolorem soluta labore voluptatum suscipit numquam ab asperiores, architecto possimus ipsam sequi dolores earum distinctio iusto commodi omnis obcaecati amet repudiandae rerum est consequuntur. Itaque cupiditate ex repudiandae nisi incidunt quisquam eius similique dolorem, vero porro sequi nesciunt non!",
 	},
 	{
-		id: "2",
+		c_id: "2",
 		c_category: "news",
 		image: "/default-news.jpg",
 		title: "News Title",
@@ -31,7 +31,7 @@ const dataDemo = [
 		description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti impedit nostrum sapiente consequuntur corporis, maxime et eligendi molestiae itaque. Aspernatur ex quo saepe? Laborum provident asperiores error quia deleniti temporibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium ad nihil doloremque cumque facilis nulla, quis cum! Vitae illum deleniti officiis cumque, voluptate accusamus. Autem, non ipsum sapiente laudantium blanditiis doloribus molestiae commodi rem eos minus adipisci placeat? Perferendis modi magnam nisi quidem ipsum fugiat architecto nesciunt, ullam commodi placeat facere, illum obcaecati repellat neque corporis laborum quaerat optio? Molestias porro dolorem soluta labore voluptatum suscipit numquam ab asperiores, architecto possimus ipsam sequi dolores earum distinctio iusto commodi omnis obcaecati amet repudiandae rerum est consequuntur. Itaque cupiditate ex repudiandae nisi incidunt quisquam eius similique dolorem, vero porro sequi nesciunt non!"
 	},
 	{
-		id: "3",
+		c_id: "3",
 		c_category: "news",
 		image: "/default-news.jpg",
 		title: "News Title",
@@ -53,6 +53,7 @@ const News = () => {
 				const response = await axios.get(API_URL);
 				setNewsData(response.data);
 				setError(false);
+				console.log(response.data)
 			} catch (error) {
 				console.error("Error fetching news:", error);
 				// setError(true);
@@ -89,7 +90,7 @@ const News = () => {
 			<div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 				{newsData.map((item) => (
 					<motion.div
-						key={item.id}
+						key={item.c_id}
 						initial={{ opacity: 0, scale: 0.9 }}
 						animate={{ opacity: 1, scale: 1 }}
 						transition={{ duration: 0.5, delay: 0.2 }}
@@ -108,7 +109,7 @@ const News = () => {
 
 							{/* Read More Button */}
 							<a
-								href={`/news/${item.id}`}
+								href={`/news/${item.c_id}`}
 								className="block mt-4 text-primary font-medium hover:underline"
 							>
 								Read More →

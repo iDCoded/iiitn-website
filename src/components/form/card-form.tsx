@@ -177,7 +177,7 @@ export function CardForm() {
 
 		const formData = new FormData();
 		formData.append("file", file);
-		formData.append("media_type", file.type);
+		formData.append("media_type", file.name);
 
 		try {
 			const media_request = await fetch(

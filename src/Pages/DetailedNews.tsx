@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import MarkdownPreview from "@uiw/react-markdown-preview";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const newsData = [
 	{
@@ -17,7 +18,7 @@ const newsData = [
 		id: "updates-1",
 		category: "Updates",
 		image:
-			"https://imgs.search.brave.com/WE_FzZkUn2nRyWQI6BE3eBdqnhN49qmN4f_7EdEcY4s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9paWl0/bi5hYy5pbi9pbWFn/ZXMvTmV3c0V2ZW50/cy83ODUvTmV3c0lt/YWdlLkpQRw",
+			"https://imgs.search.brave.com/WE_FzZkUn2nRyWQI6BE3eBdqnhN49qmN4f_7EdEcY4s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9paWl0/bi5hYy5pbi9pbWFn/ZXMvTmV3c0V2ZW50/cy83ODUvTmV3SW1h/Z2UuSlBHRw",
 		title: "2nd Convocation Ceremony",
 		description:
 			"IIIT Nagpur recently held its 2nd convocation ceremony with students receiving their degrees and awards.",
@@ -45,12 +46,15 @@ const newsData = [
 function DetailedNews() {
 	const { newsId } = useParams();
 	const navigate = useNavigate();
-	const [news, setNews] = useState<{
+	interface News {
 		id: string;
 		title: string;
 		image: string;
 		content: string;
-	} | null>(null);
+	}
+
+	const [news, setNews] = useState<News | null>(null);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchNews = async () => {
@@ -62,29 +66,16 @@ function DetailedNews() {
 					throw new Error("Event not found");
 				}
 				const data = await response.json();
-				setNews({
-					id: data.c_id,
-					title: data.title,
-					image: data.media_img_path,
-					content: data.content,
-				});
-				console.log(data);
-
 				let imageUrl = "";
 
-				// If media_img_path exists, try fetching the image
 				if (data.media_img_path) {
 					try {
 						const imgReq = await fetch(
-							`${import.meta.env.VITE_API_BASE_URL}/media/${
-								data.media_img_path
-							}`
+							`${import.meta.env.VITE_API_BASE_URL}/media/${data.media_img_path}`
 						);
 						if (!imgReq.ok) throw new Error("Failed to fetch image");
 						const imgRes = await imgReq.json();
-
 						imageUrl = imgRes.url;
-						console.log(imageUrl);
 					} catch (err) {
 						console.error(`Error fetching image for news ${newsId}:`, err);
 					}
@@ -110,10 +101,21 @@ function DetailedNews() {
 					setNews(null);
 				}
 			}
+			setLoading(false);
 		};
 
 		fetchNews();
 	}, [newsId]);
+
+	if (loading) {
+		return (
+			<div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+				<Skeleton className="w-80 h-6 mb-4" />
+				<Skeleton className="w-96 h-48 mb-4" />
+				<Skeleton className="w-64 h-4" />
+			</div>
+		);
+	}
 
 	if (!news) {
 		return (
@@ -130,41 +132,17 @@ function DetailedNews() {
 
 	return (
 		<div className="bg-gray-100 min-h-screen">
-			{/* Header Section */}
 			<header className="bg-primary text-white py-16 text-center">
 				<h1 className="text-5xl font-bold">Detailed News</h1>
-				<p className="text-lg mt-2 italic">
-					"Celebrating Excellence & Inspiring the Future"
-				</p>
+				<p className="text-lg mt-2 italic">"Celebrating Excellence & Inspiring the Future"</p>
 			</header>
-
-			{/* News Content Section */}
 			<div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-10">
-				{/* News Image */}
-				<img
-					src={news.image}
-					alt={news.title}
-					className="w-full h-80 object-cover rounded-lg mb-6"
-				/>
-
-				{/* News Title */}
+				<img src={news.image} alt={news.title} className="w-full h-80 object-cover rounded-lg mb-6" />
 				<h2 className="text-3xl font-bold text-primary mb-4">{news.title}</h2>
-
-				{/* News Content */}
 				<div className="leading-relaxed whitespace-pre-line">
-					<MarkdownPreview
-						source={news.content}
-						wrapperElement={{ "data-color-mode": "light" }}
-						style={{ padding: 16 }}
-					/>
+					<MarkdownPreview source={news.content} wrapperElement={{ "data-color-mode": "light" }} style={{ padding: 16 }} />
 				</div>
-
-				{/* Back Button */}
-				<button
-					onClick={() => navigate(-1)}
-					className="mt-6 px-6 py-2 bg-primary text-white rounded-md shadow-md hover:bg-[#001530] transition duration-300">
-					← Back
-				</button>
+				<button onClick={() => navigate(-1)} className="mt-6 px-6 py-2 bg-primary text-white rounded-md shadow-md hover:bg-[#001530] transition duration-300">← Back</button>
 			</div>
 		</div>
 	);
