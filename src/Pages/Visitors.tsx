@@ -84,7 +84,9 @@ function Visitors() {
             <AccordionItem value="payment">
               <h3 className="text-lg font-semibold text-primary mb-2">💰 Payment Details</h3>
               <p className="text-gray-800">
-                <a href="#" className="text-accent hover:underline">Guest House Fee Payment through SB Collect</a>
+                <a href="https://www.onlinesbi.sbi/sbicollect/icollecthome.htm?corpID=644817" 
+                target="_blank" rel="noreferrer"
+                className="text-accent hover:underline">Guest House Fee Payment through SB Collect</a>
               </p>
             </AccordionItem>
           </Accordion>
