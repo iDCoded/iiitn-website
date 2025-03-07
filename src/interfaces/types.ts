@@ -61,3 +61,15 @@ export interface IMedia {
 	added_by?: number | null;
 	added_time?: Date;
 }
+
+export interface Publication {
+	pub_id: number;
+	title: string;
+	content: string;
+	link: string;
+	status: string;
+	text: string;
+	branch_enum: "CSE" | "ECE" | "BS";
+	lead_name: string;
+	published_in: string;
+}
