@@ -8,7 +8,7 @@ import UserTablePage from "./users/page";
 const validHashes = ["#card", "#media", "#users", "#allfaculty"];
 
 const AdminPage = () => {
-	const [sidebar, setSidebar] = useState<string | null>("#card");
+	const [sidebar, setSidebar] = useState<string | null>(validHashes[0]);
 	const location = useLocation();
 
 	useEffect(() => {

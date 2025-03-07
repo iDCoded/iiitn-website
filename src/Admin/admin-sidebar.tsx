@@ -1,23 +1,6 @@
-import { Button } from "@/components/ui/button";
-import {
-	Dialog,
-	DialogContent,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from "@/components/ui/dialog";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import {
 	Sidebar,
 	SidebarContent,
-	SidebarFooter,
 	SidebarGroup,
 	SidebarHeader,
 	SidebarMenu,
@@ -28,9 +11,7 @@ import {
 	SidebarMenuSubItem,
 	SidebarRail,
 } from "@/components/ui/sidebar";
-import { ChevronsUpDown, User } from "lucide-react";
-import FacultyEditDialog from "./faculties/faculty-edit-dialog";
-import { Faculty } from "@/interfaces/types";
+import { User } from "lucide-react";
 
 interface AdminSidebarProps {
 	data?: {
@@ -53,26 +34,6 @@ export function AdminSidebar({
 	const handleItemClick = (url: string) => {
 		console.log("URL: ", url);
 		// Handle item click if needed
-	};
-
-	// ! Dummy faculty object
-	// ! This faculty will be fetched accessing the logged in faculty member's information (f_id).
-	const testFaculty: Faculty = {
-		f_id: "",
-		p_id: "",
-		d_id: "",
-		pub_id: "",
-		name: "",
-		email: "",
-		phone_no: "",
-		media_img_id: 0,
-		join_year: 0,
-		positions: "",
-		education: "",
-		experience: 0,
-		teaching: "",
-		research: "",
-		f_or_s: "Faculty",
 	};
 
 	return (
@@ -126,7 +87,7 @@ export function AdminSidebar({
 					</SidebarMenu>
 				</SidebarGroup>
 			</SidebarContent>
-			<SidebarFooter>
+			{/* <SidebarFooter> // ? Include footer with profile options later.
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<DropdownMenu>
@@ -163,7 +124,7 @@ export function AdminSidebar({
 						</DropdownMenu>
 					</SidebarMenuItem>
 				</SidebarMenu>
-			</SidebarFooter>
+			</SidebarFooter> */}
 			{data.navMain.length > 0 && <SidebarRail />}
 		</Sidebar>
 	);
