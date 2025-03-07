@@ -263,7 +263,13 @@ const Navbar = () => {
 									onMouseLeave={() => setOpenDropdown(null)}>
 									<span className="relative inline-block pb-1 text-white transition-all duration-300 ease-in-out group-hover:text-accent group-hover:scale-110">
 										<span className="flex items-center">
-											{item.title} <IoIosArrowDown className="ml-1" />
+											{item.links ? (
+												<>
+													{item.title} <IoIosArrowDown className="ml-1" />
+												</>
+											) : (
+												<a href={item.href}>{item.title}</a>
+											)}
 										</span>
 										{/* Underline Animation */}
 										<span className="absolute left-0 bottom-0 w-0 h-[3px] bg-accent transition-all duration-500 ease-out group-hover:w-full group-hover:opacity-100 opacity-0"></span>

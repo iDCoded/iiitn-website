@@ -65,49 +65,17 @@ export default function NewsCarousel() {
 				);
 				if (!res.ok) throw new Error("Failed to fetch news");
 				const data = await res.json();
-
+				console.log("Fetched news:", data);
 				// Filter only "news" and "updates"
-				const filteredNews = data
-					.filter(
-						(item: any) =>
-							item.c_category.toLowerCase() === "news" ||
-							item.c_category.toLowerCase() === "updates"
-					)
-					.map((news: any) => ({
-						id: news.c_id,
-						image: null, // Will be updated after fetching
-						title: news.title,
-						caption: news.caption,
-						content: news.content,
-						date: news.date,
-						location: news.location,
-						large: false,
-						media_img_path: news.media_img_path, // Store image path for later
-					}));
-
-				// Fetch images asynchronously
-				const updatedNews = await Promise.all(
-					filteredNews.map(async (news: any) => {
-						if (news.media_img_path) {
-							try {
-								const imgReq = await fetch(
-									`${import.meta.env.VITE_API_BASE_URL}/media/${
-										news.media_img_path
-									}`
-								);
-								if (!imgReq.ok) throw new Error("Failed to fetch image");
-								const imgRes = await imgReq.json();
-								return { ...news, image: imgRes.url };
-							} catch (err) {
-								console.error(`Error fetching image for news ${news.id}:`, err);
-								return news;
-							}
-						}
-						return news;
-					})
-				);
-
-				setNewsData(updatedNews.slice(0, 6));
+				const filteredNews = data.map((news: any) => ({
+					id: news.c_id,
+					c_category: news.c_category,
+					image: news.media_img_id || "/default-news.jpg",
+					title: news.title,
+					caption: news.caption,
+				}));
+				console.log("Filtered news:", filteredNews);
+				setNewsData(filteredNews.slice(0, 6));
 			} catch (error) {
 				console.error("Error fetching news:", error);
 			}

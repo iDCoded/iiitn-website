@@ -27,14 +27,14 @@ const currentData = [
 	},
 	{
 		title: "Courses",
-		description: "All in one academic platform for managinf assignments and additional course materials.",
-		link: "moodle.iiitnagpur.ac.in",
+		description: "All in one academic platform for managing assignments and additional course materials.",
+		link: "https://moodle.iiitnagpur.ac.in",
 		imageSrc:
 			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
 	},
 	{
 		title: "Faculty and Staff Portal",
-		description: "All in one academic platform for managinf assignments and additional course materials.",
+		description: "All in one academic platform for managing assignments and additional course materials.",
 		link: "#",
 		imageSrc:
 			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
