@@ -1,26 +1,100 @@
-const recruitmentData = [
+import { useState, useEffect } from "react";
+
+const defrecruitmentData = [
 	{
 		title: "Recruitment for the post of Director, IIIT Nagpur",
 		date: "22-02-2025",
 		lastdate: "29-02-2025",
 		description:
-			"Applications are invited for the post of Director, IIIT Nagpur.",
-		document: "#", // Add actual document link if available
+			" Hi Applications are invited for the post of Director, IIIT Nagpur.",
+		document: "#",
 	},
 	{
 		title: "Recruitment for the post of Registrar, IIIT Nagpur",
 		date: "22-02-2025",
 		lastdate: "29-02-2025",
 		description:
-			"Applications are invited for the post of Director, IIIT Nagpur.",
-		document: "#", // Add actual document link if available
+			" hI Applications are invited for the post of Registrar, IIIT Nagpur.",
+		document: "#",
 	},
 ];
 
 function Recruitments() {
+	interface Recruitment {
+		title: string;
+		date: string;
+		lastdate: string;
+		description: string;
+		document: string;
+	}
+	
+	const [recruitmentData, setRecruitmentData] = useState<Recruitment[]>([]);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		const fetchRecruitments = async () => {
+			try {
+				const res = await fetch(
+					`${import.meta.env.VITE_API_BASE_URL}/card/cards/category/recruitments`
+				);
+				if (!res.ok) {
+					throw new Error("Failed to fetch recruitment data");
+				}
+				const data = await res.json();
+				console.log(data);
+				const recruitmentDataList = data.map((recruitment: any) => ({
+					title: recruitment.title,
+					date: recruitment.date,
+					lastdate: recruitment.lastdate,
+					description: recruitment.content,
+					document: recruitment.media_doc_path,
+				}));
+
+				const updatedRecruitments = await Promise.all(
+					recruitmentDataList.map(async (recruitment: any) => {
+						if (recruitment.media_doc_path) {
+							try {
+								const docReq = await fetch(
+									`${import.meta.env.VITE_API_BASE_URL}/media/${
+										recruitment.media_doc_path
+									}`
+								);
+								if (!docReq.ok) throw new Error("Failed to fetch document");
+								const docRes = await docReq.json();
+
+								return { ...recruitment, document: docRes.url };
+							} catch (err) {
+								console.error(
+									`Error fetching document for recruitment ${recruitment.title}:`,
+									err
+								);
+								return recruitment;
+							}
+						}
+						return recruitment;
+					})
+				);
+
+				setRecruitmentData(updatedRecruitments);
+
+				if (Array.isArray(data) && data.length > 0) {
+					setRecruitmentData(data);
+				} else {
+					setRecruitmentData(defrecruitmentData);
+				}
+			} catch (error) {
+				console.error("Error fetching recruitments:", error);
+				setRecruitmentData(defrecruitmentData);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchRecruitments();
+	}, []);
+
 	return (
 		<div className="bg-gray-100 min-h-screen flex flex-col">
-			{/* Header Section */}
 			<header className="bg-primary text-white py-16 text-center">
 				<h1 className="text-4xl font-bold">Recruitments</h1>
 				<p className="text-lg mt-2">
@@ -28,40 +102,40 @@ function Recruitments() {
 				</p>
 			</header>
 
-			{/* Main Content */}
 			<main className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-				{/* Recruitment Listings */}
 				<section className="mb-8">
 					<h2 className="text-2xl font-semibold text-gray-800 mb-6">
 						Current Openings
 					</h2>
 
-					{/* Recruitment Cards */}
-					<div className="grid gap-6">
-						{recruitmentData.map((job, index) => (
-							<div
-								key={index}
-								className="bg-gray-50 p-5 shadow-md rounded-lg border-l-4 border-primary">
-								<h3 className="text-xl font-semibold text-gray-900">
-									{job.title}
-								</h3>
-								<p className="text-sm text-gray-600 mt-1">
-									📅 Date: {job.date} | ⏳ Last Date: {job.lastdate}
-								</p>
-								<p className="text-gray-700 mt-2">{job.description}</p>
-								<a
-									href={job.document}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="mt-3 inline-block text-primary font-semibold hover:underline">
-									📄 Download Document
-								</a>
-							</div>
-						))}
-					</div>
+					{loading ? (
+						<p className="text-center text-gray-600">Loading...</p>
+					) : (
+						<div className="grid gap-6">
+							{recruitmentData.map((job, index) => (
+								<div
+									key={index}
+									className="bg-gray-50 p-5 shadow-md rounded-lg border-l-4 border-primary">
+									<h3 className="text-xl font-semibold text-gray-900">
+										{job.title}
+									</h3>
+									<p className="text-sm text-gray-600 mt-1">
+										📅 Date: {job.date} | ⏳ Last Date: {job.lastdate}
+									</p>
+									<p className="text-gray-700 mt-2">{job.description}</p>
+									<a
+										href={job.document}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="mt-3 inline-block text-primary font-semibold hover:underline">
+										📄 Download Document
+									</a>
+								</div>
+							))}
+						</div>
+					)}
 				</section>
 
-				{/* Online Application Portal */}
 				<section className="text-center mt-10">
 					<p className="text-lg text-gray-800 font-medium">Apply Online:</p>
 					<a

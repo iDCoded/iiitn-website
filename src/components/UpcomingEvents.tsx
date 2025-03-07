@@ -36,6 +36,7 @@ const UpcomingEvents = () => {
 					caption: event.caption,
 					content: event.content,
 					date: event.date,
+					
 					location: event.location,
 					large: false,
 					media_img_path: event.media_img_path,
