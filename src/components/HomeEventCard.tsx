@@ -7,6 +7,8 @@ type Event = {
 	date: string;
 	location?: string;
 	large?: boolean;
+	preference?: number;
+	club?: string;
 };
 
 const HomeEventCard = ({ event }: { event: Event }) => (
@@ -28,14 +30,20 @@ const HomeEventCard = ({ event }: { event: Event }) => (
 		<div className="absolute bottom-0 w-full bg-primary p-4 bg-opacity-90">
 			<h3 className="text-white font-semibold text-lg">{event.title}</h3>
 			<p className="text-white text-sm">{event.caption}</p>
-
+			{event.club && (
+				<p className="text-white text-sm mt-1">
+					<span className="font-bold">Organized by:</span> {event.club}
+				</p>
+			)}
 			{/* Event Location */}
 			<p className="text-white text-sm mt-1">
 				<span className="font-bold">Location:</span>{" "}
 				{event.location || "IIIT Nagpur Campus"}
 			</p>
+
+
 			{/* Event Date Badge */}
-			<div className="absolute top-[-3vh] right-4 bg-accent text-white text-center px-2 py-1 rounded-md font-bold">
+			<div className="absolute top-[-3vh] right-4 bg-acce</p>nt text-white text-center px-2 py-1 rounded-md font-bold">
 				{event.date}
 			</div>
 

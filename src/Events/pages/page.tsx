@@ -70,38 +70,10 @@ const EventDetail = () => {
 				const data = await response.json();
 				console.table(data);
 
-				let imageUrl = "";
-
-				// If media_img_path exists, try fetching the image
-				if (data.media_img_path) {
-					try {
-						const imgReq = await fetch(
-							`${import.meta.env.VITE_API_BASE_URL}/media/${
-								data.media_img_path
-							}`
-						);
-						if (!imgReq.ok) throw new Error("Failed to fetch image");
-
-						// Check if the response is an image (blob) or JSON
-						const contentType = imgReq.headers.get("content-type");
-						if (contentType && contentType.startsWith("image")) {
-							imageUrl = URL.createObjectURL(await imgReq.blob());
-						} else {
-							const imgRes = await imgReq.json();
-							if (imgRes.url) {
-								imageUrl = imgRes.url;
-							}
-						}
-					} catch (err) {
-						console.error(`Error fetching image for event ${eventid}:`, err);
-						setError(err as Error);
-					}
-				}
-
 				// Set event data including image
 				setEvent({
 					id: data.c_id,
-					image: imageUrl || "", // If image URL is empty, fallback to ""
+					image: data.media_img_id || "", // If image URL is empty, fallback to ""
 					title: data.title,
 					caption: data.caption,
 					content: data.content,
@@ -109,8 +81,9 @@ const EventDetail = () => {
 					location: data.location,
 					large: false,
 				});
-			} catch (error) {
+			} catch (error : any) {
 				console.error("Error fetching event:", error);
+				setError(error);
 			}
 		};
 

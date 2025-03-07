@@ -19,6 +19,19 @@ const UpcomingEvents = () => {
 	const sectionRef = useRef(null);
 	const isInView = useInView(sectionRef, { amount: 0.2 });
 
+	interface Event {
+		id: string;
+		image: string;
+		title: string;
+		caption: string;
+		content: string;
+		date: string;
+		location: string;
+		large: boolean;
+		preference: number;
+		club: string;
+	}
+
 	// Fetch events from API
 	useEffect(() => {
 		const fetchEvents = async () => {
@@ -28,46 +41,21 @@ const UpcomingEvents = () => {
 				);
 				if (!res.ok) throw new Error("Failed to fetch events");
 				const data = await res.json();
-				console.log(data);
 				const eventList = data.map((event: any) => ({
 					id: event.c_id,
-					image: null,
+					image: event.media_img_id || "",
 					title: event.title,
 					caption: event.caption,
 					content: event.content,
 					date: event.date,
-					
 					location: event.location,
+					preference: event.preference,
+					club: event.c_sub_category,
 					large: false,
-					media_img_path: event.media_img_path,
 				}));
 
-				const updatedEvents = await Promise.all(
-					eventList.map(async (event: any) => {
-						if (event.media_img_path) {
-							try {
-								const imgReq = await fetch(
-									`${import.meta.env.VITE_API_BASE_URL}/media/${
-										event.media_img_path
-									}`
-								);
-								if (!imgReq.ok) throw new Error("Failed to fetch image");
-								const imgRes = await imgReq.json();
-
-								return { ...event, image: imgRes.url };
-							} catch (err) {
-								console.error(
-									`Error fetching image for event ${event.id}:`,
-									err
-								);
-								return event;
-							}
-						}
-						return event;
-					})
-				);
-
-				setEvents(updatedEvents);
+				setEvents(eventList.sort((a: Event, b: Event) => a.preference - b.preference).slice(0, 3));
+				console.log("Fetched events:", eventList);
 			} catch (error) {
 				console.error("Error fetching events:", error);
 			}
@@ -96,6 +84,8 @@ const UpcomingEvents = () => {
 				"Annual gathering of students, faculty, and staff. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 			date: "28 Feb",
 			location: "IIIT Nagpur Campus",
+			preference: 1,
+			club: "SAC",
 			large: true,
 		},
 		{
@@ -106,6 +96,8 @@ const UpcomingEvents = () => {
 			content: "Annual gathering of students, faculty, and staff.",
 			date: "27 Aug",
 			location: "IIIT Nagpur Campus",
+			preference: 2,
+			club: "SAC",
 			large: false,
 		},
 		{
@@ -117,6 +109,8 @@ const UpcomingEvents = () => {
 				"The Department of Computer Science & Engineering at IIIT Nagpur presents an exclusive online certification program on Cybersecurity.",
 			date: "22nd March",
 			location: "Online (Hosted by IIIT Nagpur)",
+			preference: 3,
+			club: "CSE Department",
 			large: false,
 		},
 	];
