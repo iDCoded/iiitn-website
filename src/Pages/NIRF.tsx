@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaFilePdf } from "react-icons/fa";
 
-const nirfData = [
+const defnirfData = [
 	{
-		year: 2025,
+		year: "2025",
 		documents: [
 			{ title: "Engineering", link: "#" },
 			{ title: "Overall", link: "#" },
@@ -11,7 +11,7 @@ const nirfData = [
 		],
 	},
 	{
-		year: 2024,
+		year: "2025",
 		documents: [
 			{ title: "Engineering", link: "#" },
 			{ title: "Overall", link: "#" },
@@ -19,7 +19,7 @@ const nirfData = [
 		],
 	},
 	{
-		year: 2023,
+		year: "2025",
 		documents: [
 			{ title: "Engineering", link: "#" },
 			{ title: "Overall", link: "#" },
@@ -27,10 +27,71 @@ const nirfData = [
 		],
 	},
 ];
-
 function NIRF() {
-	const [selectedYear, setSelectedYear] = useState(nirfData[0].year);
+    interface NIRFData {
+        year: string;
+        documents: { title: string; link: string }[];
+    }
+
+    const [nirfData, setNirfData] = useState<NIRFData[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchNIRFData = async () => {
+            try {
+                const res = await fetch(
+                    `${import.meta.env.VITE_API_BASE_URL}/media/media/category/nirf`
+                );
+                if (!res.ok) {
+                    throw new Error("Failed to fetch NIRF data");
+                }
+                const data = await res.json();
+
+                // Grouping data by year (m_sub_category)
+                const groupedData: Record<string, { title: string; link: string }[]> = {};
+
+                data.forEach((nirf: any) => {
+                    const year = nirf.m_sub_category;
+                    const title = nirf.title;
+                    const link = nirf.m_doc_id;
+
+                    if (!groupedData[year]) {
+                        groupedData[year] = [];
+                    }
+
+                    groupedData[year].push({ title, link });
+                });
+
+                // Convert the grouped object into an array
+                const nirfDataList: NIRFData[] = Object.keys(groupedData).map((year) => ({
+                    year,
+                    documents: groupedData[year],
+                }));
+
+                setNirfData(nirfDataList);
+            } catch (error) {
+                console.error("Error fetching NIRF data:", error);
+                setNirfData(defnirfData); // Handle fallback data if needed
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchNIRFData();
+    }, []);
+
+	const [selectedYear, setSelectedYear] = useState<string>("");
 	const selectedData = nirfData.find((data) => data.year === selectedYear);
+
+	useEffect(() => {
+		if (nirfData.length > 0) {
+			setSelectedYear(nirfData[0].year);
+		}
+	}, [nirfData]);
+
+	if (loading) {
+		return <div className="text-center py-10">Loading...</div>;
+	}
 
 	return (
 		<div className="bg-gray-100 min-h-screen">
@@ -61,7 +122,7 @@ function NIRF() {
 					<select
 						className="mt-2 w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
 						value={selectedYear}
-						onChange={(e) => setSelectedYear(Number(e.target.value))}>
+						onChange={(e) => setSelectedYear(e.target.value)}>
 						{nirfData.map((data) => (
 							<option key={data.year} value={data.year}>
 								{data.year}

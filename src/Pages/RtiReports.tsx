@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 
 // Define Report Interface
 interface Report {
@@ -10,7 +11,7 @@ interface Report {
 }
 
 // Data Array
-const reportData: Report[] = [
+const defreportData: Report[] = [
     { year: "2017-2018", Quarterly1: "#", Quarterly2: "#", Quarterly3: "#", Quarterly4: "#" },
     { year: "2018-2019", Quarterly1: "#", Quarterly2: "#", Quarterly3: "#", Quarterly4: "#" },
     { year: "2019-2020", Quarterly1: "#", Quarterly2: "#", Quarterly3: "#", Quarterly4: "#" },
@@ -19,8 +20,56 @@ const reportData: Report[] = [
     { year: "2022-2023", Quarterly1: "#", Quarterly2: "#", Quarterly3: "#", Quarterly4: "#" },
     { year: "2023-2024", Quarterly1: "#", Quarterly2: "#", Quarterly3: "#", Quarterly4: "#" },
 ];
-
 const RtiReports: React.FC = () => {
+    const [reportData, setReportData] = useState<Report[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchReports = async () => {
+            try {
+                const res = await fetch(
+                    `${import.meta.env.VITE_API_BASE_URL}/media/media/category/rti_reports`
+                );
+                if (!res.ok) {
+                    throw new Error("Failed to fetch RTI Reports data");
+                }
+                const data = await res.json();
+
+                // Group reports by year (title)
+                const reportMap: Record<string, Report> = {};
+
+                data.forEach((report: any) => {
+                    const year = report.title; // Year is in the title
+                    const quarter = report.m_sub_category.toLowerCase(); // q1, q2, q3, q4
+                    const link = report.m_doc_id; // Link for the document
+
+                    if (!reportMap[year]) {
+                        reportMap[year] = { year, Quarterly1: "", Quarterly2: "", Quarterly3: "", Quarterly4: "" };
+                    }
+
+                    if (quarter === "q1") reportMap[year].Quarterly1 = link;
+                    else if (quarter === "q2") reportMap[year].Quarterly2 = link;
+                    else if (quarter === "q3") reportMap[year].Quarterly3 = link;
+                    else if (quarter === "q4") reportMap[year].Quarterly4 = link;
+                });
+
+                setReportData(Object.values(reportMap));
+            } catch (error) {
+                console.error("Error fetching RTI Reports:", error);
+                setReportData(defreportData);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchReports();
+    }, []);
+
+
+    if (loading) {
+        return <div className="text-center py-10">Loading...</div>;
+    }
+
     return (
         <div className="bg-gray-100 min-h-screen flex flex-col p-4">
             {/* Header */}

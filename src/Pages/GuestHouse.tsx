@@ -1,9 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionItem } from "@/components/ui/accordion";
 
-const defData = [
-
-];
 
 function GuestHouse() {
 	return (
