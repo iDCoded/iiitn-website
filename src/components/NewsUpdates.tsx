@@ -107,7 +107,7 @@ export default function NewsCarousel() {
 					})
 				);
 
-				setNewsData(updatedNews);
+				setNewsData(updatedNews.slice(0, 6));
 			} catch (error) {
 				console.error("Error fetching news:", error);
 			}

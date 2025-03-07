@@ -3,6 +3,7 @@ import Home from "./Home/page";
 import About from "./About/page";
 import Contact from "./Contact/page.tsx";
 import AdminDashboard from "./Admin/layout";
+import FacultyDashboard from "./Faculty/layout.tsx";
 import Departments from "./Departments/page";
 import Courses from "./Academics/Courses";
 import AdmissionsBTech from "./Admissions/BTech/BTech";
@@ -87,6 +88,7 @@ import AcademicCalendar from "./Pages/AcademicCalendar";
 import Notices from "./Pages/Notices";
 import HostelLife from "./Pages/HostelLife";
 import CampusGallery from "./Pages/CampusGallery.tsx";
+import FacultyPage from "./Faculty/page.tsx";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -117,6 +119,14 @@ const AppRoutes = () => (
 				<AdminDashboard>
 					<AdminPage />
 				</AdminDashboard>
+			}
+		/>
+		<Route
+			path="/faculty"
+			element={
+				<FacultyDashboard>
+					<FacultyPage />
+				</FacultyDashboard>
 			}
 		/>
 		<Route path="/departments" element={<Departments />} />
@@ -202,7 +212,10 @@ const AppRoutes = () => (
 		<Route path="/news" element={<News />}></Route>
 		<Route path="/news/:newsId" element={<DetailedNews />} />
 		<Route path="/events/:eventid" element={<EventDetail />} />
-		<Route path="/announcements/:announcementid" element={<DetailedAnnouncements />} />
+		<Route
+			path="/announcements/:announcementid"
+			element={<DetailedAnnouncements />}
+		/>
 		<Route path="/faculty/:name" element={<FacultyDetail />} />
 		<Route path="/institute/facilities" element={<Facilities />} />
 		<Route
@@ -212,13 +225,12 @@ const AppRoutes = () => (
 		<Route
 			path="/institute/annualreports"
 			element={<AnnualAccountAndReports />}></Route>
+		<Route path="/institute/rtidetails" element={<RtiDetails />}></Route>
 		<Route
-			path="/institute/rtidetails"
-			element={<RtiDetails />}></Route>
-		<Route path="/institute/rtidetails/:rtidetailid" element={<DetailedRtiDetail />} />
-		<Route
-			path="/institute/rtireports"
-			element={<RtiReports />}></Route>
+			path="/institute/rtidetails/:rtidetailid"
+			element={<DetailedRtiDetail />}
+		/>
+		<Route path="/institute/rtireports" element={<RtiReports />}></Route>
 		<Route path="/institute/rticontact" element={<RtiContact />}></Route>
 		<Route
 			path="/institute/minutesofmeeting"
