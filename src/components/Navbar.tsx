@@ -123,7 +123,6 @@ const Navbar = () => {
 					],
 				},
 				{ name: "Campus Photo Gallery", href: "/pages/campusgallery" },
-				{ name: "NIRF", href: "/pages/nirf" },
 				{ name: "Facilities", href: "/institute/facilities" },
 			],
 		},
@@ -191,6 +190,7 @@ const Navbar = () => {
 				{ name: "For Companies", href: "/placements/companies" },
 			],
 		},
+		{ title: "NIRF", href: "/pages/nirf" },
 		{
 			title: "Others",
 			links: [

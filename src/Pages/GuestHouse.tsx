@@ -1,6 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionItem } from "@/components/ui/accordion";
 
+const defData = [
+
+];
+
 function GuestHouse() {
 	return (
 		<div className="bg-gradient-to-b from-gray-50 to-gray-200 min-h-screen">
