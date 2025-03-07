@@ -9,8 +9,8 @@ import "./index.css";
 
 export function App() {
 	const location = useLocation();
-	const isExcludedRoute = ["/admin", "/login", "/signup"].some((path) =>
-		location.pathname.startsWith(path)
+	const isExcludedRoute = ["/admin", "/login", "/signup", "/faculty"].some(
+		(path) => location.pathname.startsWith(path)
 	);
 
 	return (
