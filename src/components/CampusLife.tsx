@@ -64,8 +64,8 @@ const CampusLife = () => {
 								</div>
 							</DialogContent>
 						</Dialog>
-						<a href="/hostellife">
-							<button className="text-white bg-accent py-2 px-4 rounded-sm font-semibold hover:underline">
+						<a href="/students/hostellife">
+							<button className="text-white bg-accent py-2 px-4 rounded-sm font-semibold hover:underline cursor-pointer">
 								More
 							</button>
 						</a>
