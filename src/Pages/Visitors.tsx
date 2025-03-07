@@ -1,6 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Accordion, AccordionItem } from "@/components/ui/accordion";
 import heroimage from "../assets/visitorsBanner.jpeg";
+ // Replace with actual image
 
 function Visitors() {
   return (
@@ -57,41 +56,27 @@ function Visitors() {
         </div>
       </section>
 
-      {/* Guest House Information */}
-      <Card className="max-w-5xl w-full mt-10 shadow-md border border-gray-300">
-        <CardHeader className="bg-primary text-white rounded-t-lg py-5 text-center">
-          <CardTitle className="text-2xl">Guest House Information</CardTitle>
-        </CardHeader>
-        <CardContent className="p-8 space-y-6">
-          <Accordion type="single" collapsible>
-            <AccordionItem value="booking">
-              <h3 className="text-lg font-semibold text-primary mb-2">📅 Booking Information</h3>
-              <ul className="list-disc list-inside text-gray-700">
-                <li><a href="#" className="text-accent hover:underline">Online Booking Form</a></li>
-                <li><a href="#" className="text-accent hover:underline">Requisition Slip</a></li>
-                <li><a href="#" className="text-accent hover:underline">Accommodation Rules & Tariff</a></li>
-              </ul>
-            </AccordionItem>
-
-            <AccordionItem value="contact">
-              <h3 className="text-lg font-semibold text-primary mb-2">📞 Contact for Booking & Queries</h3>
-              <p className="text-gray-800">
-                <strong>Guest House IIIT Nagpur:</strong> <br />
-                📱 Contact No: <span className="font-semibold">9730075010</span>
-              </p>
-            </AccordionItem>
-
-            <AccordionItem value="payment">
-              <h3 className="text-lg font-semibold text-primary mb-2">💰 Payment Details</h3>
-              <p className="text-gray-800">
-                <a href="https://www.onlinesbi.sbi/sbicollect/icollecthome.htm?corpID=644817" 
-                target="_blank" rel="noreferrer"
-                className="text-accent hover:underline">Guest House Fee Payment through SB Collect</a>
-              </p>
-            </AccordionItem>
-          </Accordion>
-        </CardContent>
-      </Card>
+      {/* Guest House Section */}
+      <section className="max-w-5xl w-full bg-white p-8 shadow-md rounded-lg mt-10">
+        <h2 className="text-3xl font-semibold text-primary">🏨 Guest House</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <div>
+            <p className="text-gray-700 leading-relaxed">
+              IIIT Nagpur provides a well-facilitated guest house for visiting faculty, parents, and guests. The guest house
+              is equipped with modern amenities, ensuring a comfortable stay for visitors. Prior booking is required to avail
+              the facility.
+            </p>
+            <a href="/pages/guesthouse">
+            <button className="mt-4 px-6 py-2 bg-primary text-white font-semibold rounded-lg shadow hover:bg-orange-600 cursor-pointer transition">
+              More Details
+            </button>
+            </a>
+          </div>
+          <div>
+            <img src="" alt="Guest House" className="w-full h-64 object-cover rounded-lg shadow" />
+          </div>
+        </div>
+      </section>
     </section>
   );
 }
