@@ -39,8 +39,8 @@ export default function FacultyDashboard({
 }: {
 	children: React.ReactNode;
 }) {
-	const [sidebar, setSidebar] = useState<string | null>(null);
-	const [lastSelected, setLastSelected] = useState<string | null>("#card");
+	const [sidebar, setSidebar] = useState<string | null>("#profile");
+	const [lastSelected, setLastSelected] = useState<string | null>("#profile");
 
 	const location = useLocation();
 
