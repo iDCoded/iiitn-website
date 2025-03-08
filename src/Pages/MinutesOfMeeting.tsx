@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-const minutesOfMeetingData = [
+const defminutesOfMeetingData = [
     {
         heading: "Board of Governors",
         meetings: [
@@ -43,8 +43,72 @@ const minutesOfMeetingData = [
 ];
 
 function MinutesOfMeeting() {
-    const [selectedSection, setSelectedSection] = useState(minutesOfMeetingData[0]);
+    interface Section {
+        heading: string;
+        meetings: { title: string; link: string }[];
+    }
+
+    const [minutesOfMeetingData, setMinutesOfMeetingData] = useState<Section[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchMeetingData = async () => {
+            try {
+                const res = await fetch(
+                    `${import.meta.env.VITE_API_BASE_URL}/media/media/category/minutes_of_meetings`
+                );
+                if (!res.ok) {
+                    throw new Error("Failed to fetch Minutes of Meetings data");
+                }
+                const data = await res.json();
+
+                // Grouping data by heading (title)
+                const groupedData: Record<string, { title: string; link: string }[]> = {};
+
+                data.forEach((meeting: any) => {
+                    const headingKey = meeting.m_sub_category; // API key for category
+                    const title = meeting.title;
+                    const link = meeting.m_doc_id;
+
+                    let heading = "";
+                    if (headingKey === "bog") heading = "Board of Governors";
+                    else if (headingKey === "fc") heading = "Finance Committee";
+                    else if (headingKey === "senate") heading = "Senate";
+                    else if (headingKey === "bwc") heading = "Building Works Committee";
+                    else heading = headingKey; // Fallback if new category appears
+
+                    if (!groupedData[heading]) {
+                        groupedData[heading] = [];
+                    }
+
+                    groupedData[heading].push({ title, link });
+                });
+
+                const formattedData = Object.entries(groupedData).map(([heading, meetings]) => ({
+                    heading,
+                    meetings,
+                }));
+
+                setMinutesOfMeetingData(formattedData.length > 0 ? formattedData : defminutesOfMeetingData);
+            } catch (error) {
+                console.error("Error fetching Minutes of Meetings:", error);
+                setMinutesOfMeetingData(defminutesOfMeetingData);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchMeetingData();
+    }, []);
+
+
+
+    const [selectedSection, setSelectedSection] = useState(defminutesOfMeetingData[0]);
     const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    if (loading) {
+        return <div className="text-center py-10">Loading...</div>;
+    }
 
     return (
         <div className="bg-gray-100 min-h-screen flex flex-col">
