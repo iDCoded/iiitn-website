@@ -17,33 +17,35 @@ import {
 } from "./ui/dialog";
 
 const campusLifeImages = [
-	{ src: img1, title: "Campus" },
-	{ src: img2, title: "Lab" },
-	{ src: img3, title: "Sports" },
-	{ src: img4, title: "Amenities" },
-	{ src: img5, title: "Library" },
+	{ src: img1 },
+	{ src: img2 },
+	{ src: img3 },
+	{ src: img4 },
+	{ src: img5 },
 ];
 
 const CampusLife = () => {
 	const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
 	return (
-		<section ref={ref} className="py-16 px-6 bg-white">
+		<section ref={ref} className="py-20 px-6 bg-gray-50">
 			<motion.div
 				initial={{ opacity: 0, y: 50 }}
 				animate={inView ? { opacity: 1, y: 0 } : {}}
 				transition={{ duration: 0.8, ease: "easeOut" }}
-				className="max-w-6xl mx-auto">
+				className="max-w-7xl mx-auto">
+				
 				{/* Section Header */}
-				<div className="flex flex-col sm:flex-row justify-between items-center mb-6">
-					<h2 className="text-3xl font-bold text-primary flex items-center gap-2">
+				<div className="flex flex-col sm:flex-row justify-between items-center mb-8">
+					<h2 className="text-4xl font-bold text-primary">
 						<span className="text-accent">|</span> Campus Life
 					</h2>
 					<div className="flex gap-4 mt-4 sm:mt-0">
 						<Dialog>
-
 							<DialogTrigger asChild>
-								<Button>Campus Tour</Button>
+								<Button className="px-6 py-3 text-lg font-semibold bg-accent hover:bg-accent-dark text-white transition-all duration-300">
+									Campus Tour
+								</Button>
 							</DialogTrigger>
 							<DialogContent className="max-w-screen-lg w-full">
 								<DialogHeader>
@@ -58,58 +60,60 @@ const CampusLife = () => {
 										title="YouTube video player"
 										frameBorder="0"
 										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-										// referrerpolicy="strict-origin-when-cross-origin"
-										// allowfullscreen
 									/>
 								</div>
 							</DialogContent>
 						</Dialog>
+
 						<a href="/students/hostellife">
-							<button className="text-white bg-accent py-2 px-4 rounded-sm font-semibold hover:underline cursor-pointer">
+							<Button className="px-6 py-3 text-lg font-semibold bg-primary hover:bg-primary-dark text-white transition-all duration-300">
 								More
-							</button>
+							</Button>
 						</a>
 					</div>
 				</div>
+
 				<p className="text-left text-gray-600 mb-8">
 					Discover the vibrant student life at IIIT Nagpur.
 				</p>
 
-				{/* Images Grid */}
-				{/* Bento Grid Layout (3+2 Images) */}
+				{/* Bento Grid Layout (3 in first row, 2 in second row) */}
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 					{campusLifeImages.slice(0, 3).map((item, index) => (
-						<div
+						<motion.div
 							key={index}
-							className="relative rounded-lg overflow-hidden shadow-lg">
+							className="relative rounded-xl overflow-hidden shadow-lg"
+							initial={{ opacity: 0, scale: 0.8 }}
+							animate={inView ? { opacity: 1, scale: 1 } : {}}
+							transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}>
+							
 							<img
 								src={item.src}
-								alt={item.title}
-								className="w-full h-48 sm:h-64 md:h-48 object-cover transition-transform hover:scale-105"
+								alt="Campus Life"
+								className="w-full h-64 object-cover rounded-xl transition-transform duration-500 hover:scale-105"
 							/>
-							<div className="absolute inset-0 bg-black/30 flex items-center justify-center text-white text-lg font-semibold">
-								{item.title}
-							</div>
-						</div>
+						</motion.div>
 					))}
 				</div>
 
 				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
 					{campusLifeImages.slice(3).map((item, index) => (
-						<div
+						<motion.div
 							key={index}
-							className="relative rounded-lg overflow-hidden shadow-lg">
+							className="relative rounded-xl overflow-hidden shadow-lg"
+							initial={{ opacity: 0, scale: 0.8 }}
+							animate={inView ? { opacity: 1, scale: 1 } : {}}
+							transition={{ duration: 0.5, ease: "easeOut", delay: (index + 3) * 0.1 }}>
+							
 							<img
 								src={item.src}
-								alt={item.title}
-								className="w-full h-48 sm:h-64 md:h-48 object-cover transition-transform hover:scale-105"
+								alt="Campus Life"
+								className="w-full h-64 object-cover rounded-xl transition-transform duration-500 hover:scale-105"
 							/>
-							<div className="absolute inset-0 bg-black/30 flex items-center justify-center text-white text-lg font-semibold">
-								{item.title}
-							</div>
-						</div>
+						</motion.div>
 					))}
 				</div>
+
 			</motion.div>
 		</section>
 	);
