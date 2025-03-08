@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import FacultyProfileForm from "./faculty-profile-form";
-import PublicationForm from "./publication-form";
+import FacultyPublicationsTablePage from "./publications/page";
 
 const validHashes = ["#profile", "#publications"];
 
@@ -18,7 +18,7 @@ const FacultyPage = () => {
 	return (
 		<div className="px-8 flex justify-center items-center">
 			{sidebar === "#profile" && <FacultyProfileForm />}
-			{sidebar === "#publications" && <PublicationForm />}
+			{sidebar === "#publications" && <FacultyPublicationsTablePage />}
 		</div>
 	);
 };
