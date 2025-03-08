@@ -122,7 +122,7 @@ const AppRoutes = () => (
 			}
 		/>
 		<Route
-			path="/faculty"
+			path="/fportal"
 			element={
 				<FacultyDashboard>
 					<FacultyPage />

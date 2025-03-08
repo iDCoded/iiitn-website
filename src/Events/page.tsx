@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
@@ -18,11 +17,11 @@ const Events = () => {
 	useEffect(() => {
 		const fetchEvents = async () => {
 			try {
-				const res = await axios.get(
-					`${import.meta.env.VITE_API_BASE_URL}/card/cards/category/events`
-				);
+				const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/card/cards/category/events`);
 
-				const groupedEvents = groupEvents(res.data);
+				const data = await res.json();
+				data.sort((a: Event, b: Event) => a.preference - b.preference);
+				const groupedEvents = groupEvents(data);
 				setEvents(groupedEvents);
 				setSubCategories(Object.keys(groupedEvents.upcoming));
 			} catch (error) {
@@ -143,6 +142,8 @@ interface Event {
 	location: string;
 	content: string;
 	hosted_by?: string;
+	preference: number;
+	club: string;
 }
 
 const EventCard = ({ event, isPast }: { event: Event; isPast: boolean }) => (

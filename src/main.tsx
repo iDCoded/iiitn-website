@@ -9,7 +9,7 @@ import "./index.css";
 
 export function App() {
 	const location = useLocation();
-	const isExcludedRoute = ["/admin", "/login", "/signup", "/faculty"].some(
+	const isExcludedRoute = ["/admin", "/login", "/signup", "/fportal"].some(
 		(path) => location.pathname.startsWith(path)
 	);
 
