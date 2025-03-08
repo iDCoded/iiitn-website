@@ -117,13 +117,14 @@ const Navbar = () => {
 						},
 						{
 							name: "Anti-Ragging Committee",
-							href: "https://iiitn.ac.in/Downloads/website-homepage-antiragging-information.pdf",
+							href: "/pages/antiragging",
 						},
 						{ name: "Internal Complaint Committee", href: "/pages/icc" },
 					],
 				},
 				{ name: "Campus Photo Gallery", href: "/pages/campusgallery" },
 				{ name: "Facilities", href: "/institute/facilities" },
+				{ name: "Notices", href: "/notices" },
 			],
 		},
 		{

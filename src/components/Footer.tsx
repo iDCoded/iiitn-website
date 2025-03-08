@@ -54,7 +54,7 @@ const Footer = () => {
                             {[
                                 { name: "Grievance", link: "/pages/grievance" },
                                 { name: "Grievance Committee SC/ST Cell", link: "/pages/grievance_committee_sc_st" },
-                                { name: "Anti-Ragging Committee", link: "https://iiitn.ac.in/Downloads/website-homepage-antiragging-information.pdf" },
+                                { name: "Anti-Ragging Committee", link: "/pages/antiragging" },
                                 { name: "Internal Complaint Committee", link: "/pages/icc" },
                                 { name: "Equal Opportunity Cell", link: "/pages/eoc" },
                                 { name: "RTI", link: "/pages/rti" },

@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaDownload } from "react-icons/fa";
 
 const AcademicCalendar = () => {
     const [activeTab, setActiveTab] = useState<"firstYear" | "seniors">("firstYear");
 
-    const calendars: { [key in "firstYear" | "seniors"]: { academicCalendar: string; holidayList: string } } = {
+    const defcalendars: { [key in "firstYear" | "seniors"]: { academicCalendar: string; holidayList: string } } = {
         firstYear: {
             academicCalendar: "/pdfs/first-year-academic-calendar.pdf",
             holidayList: "/pdfs/first-year-holiday-list.pdf",
@@ -15,6 +15,67 @@ const AcademicCalendar = () => {
             holidayList: "/pdfs/seniors-holiday-list.pdf",
         },
     };
+
+    interface CalendarData {
+        firstYear: { academicCalendar: string; holidayList: string };
+        seniors: { academicCalendar: string; holidayList: string };
+    }
+
+    const [calendars, setCalendars] = useState<CalendarData>({
+        firstYear: { academicCalendar: "", holidayList: "" },
+        seniors: { academicCalendar: "", holidayList: "" },
+    });
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchCalendars = async () => {
+            try {
+                const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/academic_calendar`);
+                if (!res.ok) throw new Error("Failed to fetch academic calendar data");
+    
+                const data = await res.json();
+    
+                // Initialize calendarData with default empty values
+                const calendarData: CalendarData = {
+                    firstYear: { academicCalendar: "", holidayList: "" },
+                    seniors: { academicCalendar: "", holidayList: "" },
+                };
+    
+                data.forEach((item: any) => {
+                    if (item.m_sub_category === "firstYear") {
+                        if (item.title.toLowerCase().includes("academic")) {
+                            calendarData.firstYear.academicCalendar = item.file_url;
+                        } else if (item.title.toLowerCase().includes("holiday")) {
+                            calendarData.firstYear.holidayList = item.file_url;
+                        }
+                    } else if (item.m_sub_category === "seniors") {
+                        if (item.title.toLowerCase().includes("academic")) {
+                            calendarData.seniors.academicCalendar = item.file_url;
+                        } else if (item.title.toLowerCase().includes("holiday")) {
+                            calendarData.seniors.holidayList = item.file_url;
+                        }
+                    }
+                });
+    
+                setCalendars(calendarData);
+            } catch (error) {
+                console.error("Error fetching academic calendar data:", error);
+                setCalendars(defcalendars); // Fallback to default values
+            } finally {
+                setLoading(false);
+            }
+        };
+    
+        fetchCalendars();
+    }, []);
+    
+    if (loading) {
+        return (
+            <div className="container mx-auto max-w-5xl px-6 py-12 text-center">
+                <p className="text-lg text-gray-600">Loading...</p>
+            </div>
+        );
+    }
 
     return (
         <div className="container mx-auto max-w-5xl px-6 py-12">

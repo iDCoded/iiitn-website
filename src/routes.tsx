@@ -89,6 +89,7 @@ import Notices from "./Pages/Notices";
 import HostelLife from "./Pages/HostelLife";
 import CampusGallery from "./Pages/CampusGallery.tsx";
 import FacultyPage from "./Faculty/page.tsx";
+import AntiRaggingCommittee from "./Pages/AntiRaggingCommittee.tsx";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -199,6 +200,7 @@ const AppRoutes = () => (
 		<Route path="/pages/howtoreach" element={<HowToReach />} />
 		<Route path="/visitors" element={<Visitors />} />
 		<Route path="/pages/grievance" element={<Grievance />} />
+		<Route path="/pages/antiragging" element={<AntiRaggingCommittee />} />
 		<Route path="/academics/calendar" element={<AcademicCalendar />} />
 		<Route
 			path="/pages/grievance_committee_sc_st"
