@@ -21,7 +21,7 @@ const sidebarData = {
 			url: "#",
 			items: [
 				{
-					title: "Create a Publication",
+					title: "Publications",
 					url: "#publications",
 				},
 			],
