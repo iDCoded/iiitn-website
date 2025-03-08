@@ -18,8 +18,4 @@ export const columns: ColumnDef<Publication>[] = [
 		accessorKey: "type",
 		header: "Type",
 	},
-	{
-		accessorKey: "published_in",
-		header: "Published In",
-	},
 ];
