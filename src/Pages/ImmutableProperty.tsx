@@ -71,21 +71,6 @@ function ImmovableProperty() {
                 }
                 const data = await res.json();
 
-               
-                interface FacultyMember {
-                    name: string;
-                    link: string;
-                }
-
-                interface Department {
-                    [key: string]: FacultyMember[];
-                }
-
-                interface YearData {
-                    year: string;
-                    faculty: Department;
-                }
-
                 interface Entry {
                     added_by: number;
                     added_time: string;
@@ -94,7 +79,7 @@ function ImmovableProperty() {
                     m_category: string;
                     m_id: number;
                     m_sub_category: string;
-                    media_doc_id: string ;
+                    media_doc_id: string;
                     media_img_id: string | null;
                     media_vid_id: string | null;
                     preference: number;
@@ -103,15 +88,13 @@ function ImmovableProperty() {
                     updated_time: string;
                 }
                 
-
                 const groupedData: { [key: string]: YearData } = {};
 
                 data.forEach((entry: Entry) => {
                     const year = entry.m_sub_category;
-                    const title = entry.title;
+                    let title = entry.title.replace(/_items$/, ""); // Remove _items
                     const link = entry.media_doc_id;
                     
-
                     let department = "Others";
                     if (title.endsWith("_bs")) department = "Basic Science";
                     else if (title.endsWith("_cse")) department = "Computer Science & Engineering";
@@ -195,5 +178,7 @@ function ImmovableProperty() {
         </div>
     );
 }
+
+
 
 export default ImmovableProperty;

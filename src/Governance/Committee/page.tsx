@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import heroimage from "../../assets/adminBanner.png";   
+import { useEffect, useState } from "react";
 
-const committees = [
+const defcommittees = [
     {
         "title": "Board of Governors",
         "asOnDate": "As on 01/10/2024",
@@ -226,6 +227,77 @@ const committees = [
 
 
 function Committee() {
+    interface Committee {
+        title: string;
+        asOnDate: string;
+        members: { name: string; position: string; details: string }[];
+    }
+    
+    const [committees, setCommittees] = useState<Committee[]>([]);
+    const [loading, setLoading] = useState(true);
+    
+    useEffect(() => {
+        const fetchCommittees = async () => {
+            try {
+                const res = await fetch(
+                    `${import.meta.env.VITE_API_BASE_URL}/card/cards/category/committees`
+                );
+    
+                if (!res.ok) {
+                    throw new Error("Failed to fetch committee data");
+                }
+    
+                const data = await res.json();
+    
+                // Transforming response into required structure
+                const committeeMap: Record<string, { asOnDate: string; members: { name: string; position: string; details: string }[] }> = {};
+    
+                data.forEach((item: any) => {
+                    const title = item.sub_category;
+                    const name = item.title;
+                    const details = item.caption;
+                    const position = item.content;
+                    const updatedDate = item.updated_date;
+    
+                    if (!committeeMap[title]) {
+                        committeeMap[title] = { asOnDate: updatedDate, members: [] };
+                    }
+    
+                    // Update the latest updated_date if a newer one is found
+                    if (new Date(updatedDate) > new Date(committeeMap[title].asOnDate)) {
+                        committeeMap[title].asOnDate = updatedDate;
+                    }
+    
+                    committeeMap[title].members.push({ name, position, details });
+                });
+    
+                // Convert the mapped object into an array
+                const committeeDataList: Committee[] = Object.keys(committeeMap).map((title) => ({
+                    title,
+                    asOnDate: committeeMap[title].asOnDate,
+                    members: committeeMap[title].members,
+                }));
+    
+                setCommittees(committeeDataList);
+            } catch (error) {
+                console.error("Error fetching committees:", error);
+                setCommittees(defcommittees);
+            } finally {
+                setLoading(false);
+            }
+        };
+    
+        fetchCommittees();
+    }, []);
+
+    if(loading) {
+        return (
+            <div className="min-h-screen flex justify-center items-center">
+                <p className="text-primary text-2xl font-semibold">Loading...</p>
+            </div>
+        );
+    }
+    
     return (
         <div className="bg-gray-50 text-gray-900 min-h-screen">
             {/* Hero Section */}
