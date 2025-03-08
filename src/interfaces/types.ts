@@ -68,7 +68,7 @@ export interface Publication {
 	content: string;
 	link: string;
 	status: string;
-	text: string;
+	type: string;
 	branch_enum: "CSE" | "ECE" | "BS";
 	lead_name: string;
 	published_in: string;
