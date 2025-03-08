@@ -176,6 +176,7 @@ const Navbar = () => {
 			links: [
 				{ name: "Publications", href: "/research/publications" },
 				{ name: "Projects", href: "/research/projects" },
+				{ name: "Consultancy", href: "/research/consultancy" },
 			],
 		},
 		{
@@ -194,7 +195,6 @@ const Navbar = () => {
 		{
 			title: "Others",
 			links: [
-				{ name: "Consultancy", href: "/pages/consultancy" },
 				{ name: "Institution Innovation Council", href: "/pages/iic" },
 				{ name: "Electoral Literacy Club", href: "/pages/elclub" },
 				{ name: "Guest House", href: "/pages/guesthouse" },

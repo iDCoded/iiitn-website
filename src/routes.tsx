@@ -167,7 +167,7 @@ const AppRoutes = () => (
 		<Route path="/pages/pressrelease" element={<PressRelease />} />
 		<Route path="/pages/officialdocuments" element={<OfficialDocuments />} />
 		<Route path="/pages/tenders" element={<Tenders />} />
-		<Route path="/pages/consultancy" element={<Consultancy />} />
+		<Route path="/research/consultancy" element={<Consultancy />} />
 		<Route path="/pages/iic" element={<Iic />} />
 		<Route path="/pages/elclub" element={<ElectoralLiteracyClub />} />
 		<Route path="/pages/academicfee" element={<AcademicFeeDetails />} />

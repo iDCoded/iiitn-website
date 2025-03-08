@@ -5,12 +5,12 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const departments = [
-	{ title: "Computer Science & Engineering", link: "/departments/cse" },
-	{ title: "Electronics & Communication Engineering", link: "/departments/ece" },
-	{ title: "Basic Sciences", link: "/departments/basic_science" },
+	{ title: "Computer Science & Engineering", link: "/research/cse", desc: "Innovative research in AI, ML, and software systems." },
+	{ title: "Electronics & Communication Engineering", link: "/research/ece", desc: "Advancements in signal processing, VLSI, and IoT." },
+	{ title: "Basic Sciences", link: "/research/basic_science", desc: "Fundamental research in physics, chemistry, and mathematics." },
 ];
 
-const Departments = () => {
+const ResearchConsultancy = () => {
 	const sectionRef = useRef(null);
 	const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
@@ -27,26 +27,26 @@ const Departments = () => {
 				className="text-center max-w-4xl"
 			>
 				<h2 className="text-5xl font-extrabold tracking-tight mb-4">
-					<span className="text-accent">| </span> Research & Innovation 
+					<span className="text-accent">| </span> Research & Consultancy
 				</h2>
 				<p className="text-gray-300 text-lg">
-					Explore our research departments and academic programs.
+					Explore research initiatives and consultancy services offered by our departments.
 				</p>
 			</motion.div>
 
-			{/* Cards Grid */}
+			{/* Department Cards Section */}
 			<div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl w-full">
 				{departments.map((dept, index) => {
-					const cardRef = useRef(null);
-					const cardInView = useInView(cardRef, { once: true, margin: "-50px" });
+					const deptRef = useRef(null);
+					const deptInView = useInView(deptRef, { once: true, margin: "-50px" });
 
 					return (
 						<motion.div
-							ref={cardRef}
+							ref={deptRef}
 							key={index}
 							className="relative group"
 							initial={{ opacity: 0, y: 50 }}
-							animate={cardInView ? { opacity: 1, y: 0 } : {}}
+							animate={deptInView ? { opacity: 1, y: 0 } : {}}
 							transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.15 }}
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.95 }}
@@ -61,7 +61,7 @@ const Departments = () => {
 										{dept.title}
 									</CardTitle>
 									<p className="text-gray-400 mt-3 group-hover:text-gray-200 transition-all duration-300">
-										Discover research & academic excellence in {dept.title}.
+										{dept.desc}
 									</p>
 
 									{/* View More Link */}
@@ -69,7 +69,7 @@ const Departments = () => {
 										to={dept.link}
 										className="mt-4 inline-block text-accent font-semibold tracking-wide transition-all duration-300 hover:text-accent-light"
 									>
-										View More →
+										View Research →
 									</Link>
 								</CardContent>
 							</Card>
@@ -79,32 +79,21 @@ const Departments = () => {
 			</div>
 
 			{/* Call-to-Action Buttons */}
-			<motion.div
-				initial={{ opacity: 0, y: 50 }}
-				animate={isInView ? { opacity: 1, y: 0 } : {}}
-				transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-				className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-16"
-			>
-				<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} transition={{ duration: 0.3 }}>
-					<Button
-						asChild
-						className="px-8 py-3 text-lg font-semibold bg-accent hover:bg-accent-dark text-white transition-all duration-300"
-					>
-						<Link to="/research/projects">View Projects</Link>
-					</Button>
-				</motion.div>
+			<motion.div className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-16">
+				<Button asChild className="px-8 py-3 text-lg font-semibold bg-accent hover:bg-accent-dark text-white transition-all duration-300">
+					<Link to="/research/projects">View Research Projects</Link>
+				</Button>
 
-				<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} transition={{ duration: 0.3 }}>
-					<Button
-						asChild
-						className="px-8 py-3 text-lg font-semibold bg-secondary hover:bg-secondary-dark text-white transition-all duration-300"
-					>
-						<Link to="/research/publications">View Publications</Link>
-					</Button>
-				</motion.div>
+				<Button asChild className="px-8 py-3 text-lg font-semibold bg-secondary hover:bg-secondary-dark text-white transition-all duration-300">
+					<Link to="/research/publications">View Publications</Link>
+				</Button>
+
+				<Button asChild className="px-8 py-3 text-lg font-semibold bg-primary hover:bg-primary-dark text-white transition-all duration-300">
+					<Link to="/research/consultancy">Consult an Expert</Link>
+				</Button>
 			</motion.div>
 		</section>
 	);
 };
 
-export default Departments;
+export default ResearchConsultancy;
