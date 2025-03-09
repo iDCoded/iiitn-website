@@ -1,3 +1,5 @@
+import { useState,useEffect } from "react";
+
 const scholarshipData = [
 	{
 		state: "Maharashtra",
@@ -146,7 +148,63 @@ const scholarshipData = [
 	},
 ];
 
+const defoverSeasScholarshipData = [
+	{
+		title: "Hindi Version",
+		link: "#",
+	},
+	{
+		title: "English Version",
+		link: "#",
+	},
+	{
+		title: "Instruction Manual",
+		link: "#",
+
+	},
+]
+
 function Scholarships() {
+	interface OverSeasScholarshipData {
+		title: string;
+		link: string;
+	}
+	const [loading, setLoading] = useState(true);
+	const [overSeasScholarshipData, setOverSeasScholarshipData] = useState<OverSeasScholarshipData[]>([]);
+	useEffect(() => {
+		const fetchOverSeasScholarshipData = async () => {
+			try {
+				const res = await fetch(
+					`${import.meta.env.VITE_API_BASE_URL}/media/media/category/scholarships`
+				);
+				if (!res.ok) {
+					throw new Error("Failed to fetch overSeasScholarshipData");
+				}
+				const data = await res.json();
+				setOverSeasScholarshipData(
+					data
+					  .filter((scholarship: any) => scholarship.m_sub_category === "overseas_scholarship") // Filter by category
+					  .map((scholarship: any) => ({
+						title: scholarship.title,
+						link: scholarship.file_url,
+					  }))
+				  );
+				  
+			} catch (error) {
+				console.error("Error fetching overSeasScholarshipData:", error);
+				setOverSeasScholarshipData(defoverSeasScholarshipData);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchOverSeasScholarshipData();
+	}, []);
+
+if(loading){
+	return <div>Loading...</div>
+}
+
 	return (
 		<div className="bg-gray-100 min-h-screen flex flex-col">
 			{/* Header Section */}
@@ -161,24 +219,15 @@ function Scholarships() {
 					National Overseas Scholarship Scheme (NOS)
 				</h2>
 				<ul className="list-disc list-inside text-gray-700">
-					<li>
-						<strong>Hindi Version:</strong>{" "}
-						<a href="#" className="text-blue-600 hover:underline">
+					
+					{overSeasScholarshipData.map((scholarship, index) => (
+						<li key={index}>
+						<strong>{scholarship.title}:</strong>{" "}
+						<a href={scholarship.link} className="text-blue-600 hover:underline">
 							Click Here
 						</a>
 					</li>
-					<li>
-						<strong>English Version:</strong>{" "}
-						<a href="#" className="text-blue-600 hover:underline">
-							Click Here
-						</a>
-					</li>
-					<li>
-						<strong>Instruction Manual:</strong>{" "}
-						<a href="#" className="text-blue-600 hover:underline">
-							Click Here
-						</a>
-					</li>
+					))}
 				</ul>
 
 				{/* Scholarships Table */}

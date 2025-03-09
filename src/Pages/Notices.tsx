@@ -1,22 +1,65 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { motion } from "framer-motion";
-import { FiFileText, FiAlertCircle } from "react-icons/fi"; // Icons for PDFs & Important notices
+import { FiFileText } from "react-icons/fi"; 
 
-const noticesData = [
+
+const defnoticesData = [
   { title: "Notice for Next Semester Fees Payment", link: "/notices/fees.pdf", category: "Student" },
   { title: "Hostel Admission Form", link: "/notices/hostel_admission.pdf", category: "Student" },
-  { title: "Notice for National Scholarship Portal", link: "/notices/scholarship.pdf", category: "Student", important: true },
+  { title: "Notice for National Scholarship Portal", link: "/notices/scholarship.pdf", category: "Student", },
   { title: "Cyber Jaagrookta Diwas (CJD)", link: "/notices/cyber_awareness.pdf", category: "Institute" },
 ];
 
 const categories = ["Faculty", "Student", "Institute"];
 
 const Notices = () => {
+  interface Notice {
+    title: string;
+    link: string;
+    category: string;
+  }
+  const [noticesData, setNoticesData] = useState<Notice[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchNotices = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/notices`);
+        if (!response.ok) throw new Error("Failed to fetch notices");
+        const data = await response.json();
+    
+        const fetchedNotices = data.map((notice: any) => ({
+          title: notice.title,
+          link: notice.media_doc_id, // Adjusted as per response structure
+          category: notice.m_sub_category.charAt(0).toUpperCase() + notice.m_sub_category.slice(1) // Capitalize first letter
+        }));
+    
+        setNoticesData(fetchedNotices);
+      } catch (error) {
+        console.error("Error fetching notices:", error);
+        setNoticesData(defnoticesData); // Fallback data
+      } finally {
+        setLoading(false);
+      }
+    
+    };
+
+    fetchNotices();
+  }, []);
+
+
+
+
+
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const filteredNotices = selectedCategory === "All"
     ? noticesData
     : noticesData.filter((n) => n.category === selectedCategory);
+
+    if(loading){
+      return <div>Loading...</div>
+    }
 
   return (
     <div className="max-w-4xl mx-auto p-6">
@@ -50,11 +93,9 @@ const Notices = () => {
         {filteredNotices.map((notice, index) => (
           <li key={index} className="flex items-center bg-white shadow-md p-4 rounded-lg hover:bg-gray-100 transition">
             {/* Icon */}
-            {notice.important ? (
-              <FiAlertCircle className="text-red-500 text-xl mr-3" />
-            ) : (
+            
               <FiFileText className="text-gray-500 text-xl mr-3" />
-            )}
+            
 
             {/* Notice Link */}
             <a href={notice.link} className="flex-1 text-lg text-blue-600 hover:underline">

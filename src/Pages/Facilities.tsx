@@ -6,8 +6,112 @@ import libray from "../assets/librar.png";
 import control_dignal from "../assets/control.png";
 import cplab from "../assets/cplab.png";
 import db from "../assets/dblab.png";
+import { useState,useEffect } from "react";
+
+const deffacilityData = [
+	{
+		title: "Academic Block",
+		img: acad,
+		description:
+			"State-of-the-art classrooms and lecture halls with modern teaching aids.",
+	},
+	{
+		title: "Library",
+		img: libray,
+		description:
+			"A vast collection of books, journals, and digital resources for students and faculty.",
+	},
+	{
+		title: "Gym",
+		img: gym,
+		description:
+			"Fully equipped gymnasium to promote fitness and well-being.",
+	},
+	{
+		title: "Microprocessor Lab",
+		img: micro,
+		description:
+			"Advanced microprocessor training and research facility.",
+	},
+	{
+		title: "Control System Lab",
+		img: control_dignal,
+		description:
+			"Laboratory for control systems and automation studies.",
+	},
+	{
+		title: "Computer Programming Lab",
+		img: cplab,
+		description:
+			"Well-equipped lab for hands-on programming and software development.",
+	},
+	{
+		title: "Database Lab",
+		img: db,
+		description:
+			"Dedicated lab for database management and research.",
+	},
+	{
+		title: "Data Structure & Algorithm Lab",
+		img: da,
+		description:
+			"Practical exposure to data structures and algorithm design.",
+	},
+	{
+		title: "Nano SciTech Lab",
+		img: "https://iiitn.ac.in/images/facilities/IIT24.jpg",
+		description:
+			"Cutting-edge research in nanotechnology and science.",
+	},
+];
 
 function Facilities() {
+	interface Facility {
+		title: string;
+		img: string;
+		description: string;
+	}
+
+	const [facilityData, setFacilityData] = useState<Facility[]>([]);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		const fetchFacilities = async () => {
+			try {
+				const response = await fetch(
+					`${import.meta.env.VITE_API_BASE_URL}/card/cards/category/facilities`
+				);
+				if (!response.ok) throw new Error("Failed to fetch facilities");
+				const data = await response.json();
+
+				const fetchedFacilities = data.map((facility: any) => ({
+					title: facility.title,
+					img: facility.media_image_id,
+					description: facility.caption,
+				}));
+
+				setFacilityData(fetchedFacilities);
+			} catch (error) {
+				console.error("Error fetching facilities:", error);
+				setFacilityData(deffacilityData);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchFacilities();
+	}, []);
+
+	if (loading) {
+		return (
+			<div className="bg-gray-100 min-h-screen flex items-center justify-center text-gray-800">
+				Loading...
+			</div>
+		);
+	}
+
+
+
 	return (
 		<div className="bg-gray-100 min-h-screen flex flex-col items-center text-gray-800">
 			{/* Header Section */}
@@ -25,62 +129,7 @@ function Facilities() {
 				</h2>
 
 				<div className="grid md:grid-cols-2 gap-10">
-					{[
-						{
-							title: "Academic Block",
-							img: acad,
-							description:
-								"State-of-the-art classrooms and lecture halls with modern teaching aids.",
-						},
-						{
-							title: "Library",
-							img: libray,
-							description:
-								"A vast collection of books, journals, and digital resources for students and faculty.",
-						},
-						{
-							title: "Gym",
-							img: gym,
-							description:
-								"Fully equipped gymnasium to promote fitness and well-being.",
-						},
-						{
-							title: "Microprocessor Lab",
-							img: micro,
-							description:
-								"Advanced microprocessor training and research facility.",
-						},
-						{
-							title: "Control System Lab",
-							img: control_dignal,
-							description:
-								"Laboratory for control systems and automation studies.",
-						},
-						{
-							title: "Computer Programming Lab",
-							img: cplab,
-							description:
-								"Well-equipped lab for hands-on programming and software development.",
-						},
-						{
-							title: "Database Lab",
-							img: db,
-							description:
-								"Dedicated lab for database management and research.",
-						},
-						{
-							title: "Data Structure & Algorithm Lab",
-							img: da,
-							description:
-								"Practical exposure to data structures and algorithm design.",
-						},
-						{
-							title: "Nano SciTech Lab",
-							img: "https://iiitn.ac.in/images/facilities/IIT24.jpg",
-							description:
-								"Cutting-edge research in nanotechnology and science.",
-						},
-					].map((facility, index) => (
+					{facilityData.map((facility, index) => (
 						<div
 							key={index}
 							className="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col items-center">
