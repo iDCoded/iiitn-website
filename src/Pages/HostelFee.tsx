@@ -1,10 +1,53 @@
-// Data
-const hostelFeeData = {
+import { useEffect, useState } from "react";
+const defhostelFeeData = {
 	year: 2022,
 	imgSrc: "#",
 };
 
 function HostelFee() {
+
+	const [hostelFeeData, setHostelFeeData] = useState<{ year: any; imgSrc: any }>({ year: '', imgSrc: '' });
+		const [loading, setLoading] = useState(true);
+		useEffect(() => {
+			const fetchAcadFee = async () => {
+			  try {
+				const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/fee`);
+				if (!res.ok) throw new Error("Failed to fetch academic fee data");
+		  
+				const data = await res.json();
+		  
+				// ✅ Filter data where m_sub_category is "acad_fee"
+				const hostelFeeItem = data.find((item: any) => item.m_sub_category === "hostel_fee");
+		  
+				if (hostelFeeItem) {
+				  const HostelFeeData = {
+					year: hostelFeeItem.title, 
+					imgSrc: hostelFeeItem.media_img_id, 
+				  };
+		  
+				  setHostelFeeData(HostelFeeData);
+				} else {
+				  console.warn("No academic fee data found.");
+				}
+			  } catch (err) {
+				console.error("Error fetching academic fee data:", err);
+				setHostelFeeData(defhostelFeeData);
+			  } finally {
+				setLoading(false);
+			  }
+			};
+		  
+			fetchAcadFee();
+		  }, []); // ✅ Runs only once on mount
+		  
+	
+		if (loading) {
+			return (
+				<div className="min-h-screen flex items-center justify-center">
+					<div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-primary"></div>
+				</div>
+			);
+		}
 	return (
 		<div className="bg-gray-100 min-h-screen flex flex-col">
 			{/* Header Section */}

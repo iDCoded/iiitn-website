@@ -1,12 +1,58 @@
+
 import acadfee from '../assets/acadfee.jpg';
+import { useState,useEffect } from 'react';
 
-
-const acadFeeData = {
-	year: 2024, // Updated to reflect current academic year
-	imgSrc: acadfee, // Replace with actual image URL
+const deacadFeeData = {
+	year: 2024, 
+	imgSrc: acadfee, 
 };
 
 function AcademicFeeDetails() {
+	const [acadFeeData, setAcadFeeData] = useState<{ year: any; imgSrc: any }>({ year: '', imgSrc: '' });
+	const [loading, setLoading] = useState(true);
+	useEffect(() => {
+		const fetchAcadFee = async () => {
+		  try {
+			const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/fee`);
+			if (!res.ok) throw new Error("Failed to fetch academic fee data");
+	  
+			const data = await res.json();
+	  
+			// ✅ Filter data where m_sub_category is "acad_fee"
+			const acadFeeItem = data.find((item: any) => item.m_sub_category === "acad_fee");
+	  
+			if (acadFeeItem) {
+			  const acadFeeData = {
+				year: acadFeeItem.title,
+				imgSrc: acadFeeItem.media_img_id, 
+			  };
+	  
+			  setAcadFeeData(acadFeeData);
+			} else {
+			  console.warn("No academic fee data found.");
+			}
+		  } catch (err) {
+			console.error("Error fetching academic fee data:", err);
+			setAcadFeeData(deacadFeeData);
+		  } finally {
+			setLoading(false);
+		  }
+		};
+	  
+		fetchAcadFee();
+	  }, []); // ✅ Runs only once on mount
+	  
+
+	if (loading) {
+		return (
+			<div className="min-h-screen flex items-center justify-center">
+				<div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-primary"></div>
+			</div>
+		);
+	}
+
+
+
 	return (
 		<div className="bg-gray-50 min-h-screen flex flex-col items-center">
 			{/* 🔹 Header Section */}
