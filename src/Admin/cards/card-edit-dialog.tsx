@@ -104,7 +104,11 @@ const CardEditDialog = ({ card }: { card: ICard }) => {
 								<FormItem>
 									<FormLabel>Content</FormLabel>
 									<FormControl>
-										<Textarea placeholder="Enter content" {...field} />
+										<Textarea
+											className="max-h-[20vh] overflow-y-scroll"
+											placeholder="Enter content"
+											{...field}
+										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>

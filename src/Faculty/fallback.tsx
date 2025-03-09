@@ -22,6 +22,7 @@ function Fallback({ error }: { error?: Error }) {
 				{/* Accordion for showing error details */}
 				{error && (
 					<Accordion
+						defaultValue={import.meta.env.DEV ? "error-details" : ""} // Display the error message by default in DEV mode.
 						type="single"
 						collapsible
 						className="w-[90%] max-w-md text-red-600">
