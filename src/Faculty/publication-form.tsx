@@ -53,18 +53,18 @@ export default function PublicationForm() {
 
 	const handleSubmit = async (data: z.infer<typeof formSchema>) => {
 		console.log(data);
-		// const res = await fetch(
-		// 	`${import.meta.env.VITE_API_BASE_URL}/publication`,
-		// 	{
-		// 		method: "POST",
-		// 		headers: {
-		// 			"Content-Type": "application/json",
-		// 		},
-		// 		body: JSON.stringify(data),
-		// 	}
-		// );
-		// const res_json = await res.json();
-		// console.log("res_json", res_json);
+		const res = await fetch(
+			`${import.meta.env.VITE_API_BASE_URL}/publication`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
+			}
+		);
+		const res_json = await res.json();
+		console.log("res_json", res_json);
 	};
 
 	return (
