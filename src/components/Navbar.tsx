@@ -191,6 +191,9 @@ const Navbar = () => {
 					href: "/placements/statistics",
 				},
 				{ name: "For Companies", href: "/placements/companies" },
+				{
+					name: "Contact T&P", href: "/placements/contact"
+				}
 			],
 		},
 		{ title: "NIRF", href: "/pages/nirf" },
