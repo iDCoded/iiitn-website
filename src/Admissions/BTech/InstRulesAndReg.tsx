@@ -1,4 +1,6 @@
-const rules = [
+import { useEffect, useState } from "react";
+
+const rulesDemo = [
 	{ title: "Anti-Ragging Rules", link: "#" },
 	{ title: "Institute Rules", link: "#" },
 	{ title: "Hostel Rules", link: "#" },
@@ -6,6 +8,34 @@ const rules = [
 ];
 
 function InstRulesAndReg() {
+
+	const [rules,setRules] = useState<Rule[]>([])
+
+	interface Rule {
+		title: string;
+		link: string;
+	}
+
+	// Fetch Rules from API
+	useEffect(() => {
+		const fetchAcadFeeData = async () => {
+			try {
+				const response = await fetch(`${process.env.VITE_API_BASE_URL}/card/cards/category/fees`);
+				const data = await response.json();
+
+				const formattedRules = data.map((item: any) => ({
+					title: item.title,
+					link: item.media_doc_id
+				}));
+				setRules(formattedRules);
+			}
+			catch (error) {
+				console.error("Error fetching academic fee data:", error);
+				setRules(rulesDemo);
+			}
+		}
+		fetchAcadFeeData();
+	}, []);
 	return (
 		<div className="bg-gray-100 min-h-screen flex flex-col">
 			{/* Header Section */}
