@@ -3,9 +3,78 @@ import heroimage from "../../assets/BoGBanner.jpg";
 import chairman from "../../assets/chairman.jpg"
 import director from "../../assets/director.jpg"
 import registrar from "../../assets/registrar.jpg"
+import { useEffect, useState } from "react";
 
+interface Person {
+    id: string;
+    name: string;
+    position: string;
+    email: string;
+    phone?: string;
+    content: string;
+    imageSrc: string;
+}
 
 function Administration() {
+    const [people, setPeople] = useState<Person[]>([
+        {
+            id: "chairman",
+            name: "Shri Ravi Sharma",
+            position: "Chairman, BoG IIIT Nagpur",
+            email: "chairman@iiitn.ac.in",
+            content: "An accomplished former CEO, Ravi Sharma is now a mentor & philanthropist with a mission of 'Spreading Goodness' by supporting initiatives towards...",
+            imageSrc: chairman,
+        },
+        {
+            id: "director",
+            name: "Professor Prem Lal Patel",
+            position: "Director, IIIT Nagpur",
+            email: "director@iiitn.ac.in",
+            content: "Professor Prem Lal Patel took over as Director of IIIT Nagpur on 1st October 2024. He is also the Director of VNIT Nagpur...",
+            imageSrc: director,
+        },
+        {
+            id: "registrar",
+            name: "Shri Kailas N. Dakhale",
+            position: "Registrar, IIIT Nagpur",
+            email: "registrar@iiitn.ac.in",
+            phone: "+91 9421995010",
+            content: "With over 30 years of experience in administration and academics...",
+            imageSrc: registrar,
+        },
+    ]);
+
+    useEffect(() => {
+        const fetchPeople = async () => {
+            try {
+                // Fetch data from the API
+                const response = await fetch(`${process.env.VITE_API_BASE_URL}/faculty/faculty_staff`);
+                const data = await response.json();
+
+                console.log(data);
+
+                const filteredPeople = data.filter((person: any) => 
+                    ["chairman", "director", "registrar"].includes(person.positions.toLowerCase())
+                ).map((person: any) => ({
+                    id: person.positions.toLowerCase(),
+                    name: person.name,
+                    position: person.positions,
+                    email: person.email,
+                    phone: person.phone_no,
+                    content: person.content.split(" ").slice(0, 20).join(" ") + "...",
+                    imageSrc: person.image_path,
+                }));
+
+                setPeople(filteredPeople);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+
+        fetchPeople();
+    }, []);
+
+
     return (
         <div className="bg-gray-100 text-gray-900 min-h-screen">
             {/* Hero Section */}
@@ -52,42 +121,10 @@ function Administration() {
 
                 {/* Content Section */}
                 <div className="w-full md:w-3/4 grid gap-8">
-                    {[
-                        {
-                            id: "chairman",
-                            title: "Chairman",
-                            name: "Shri Ravi Sharma",
-                            position: "Chairman, BoG IIIT Nagpur",
-                            email: "chairman@iiitn.ac.in",
-                            desc: "An accomplished former CEO, Ravi Sharma is now a mentor & philanthropist with a mission of 'Spreading Goodness' by supporting initiatives towards...",
-                            link: "/governance/chairman",
-                            imageSrc: chairman,
-                        },
-                        {
-                            id: "director",
-                            title: "Director",
-                            name: "Professor Prem Lal Patel",
-                            position: "Director, IIIT Nagpur",
-                            email: "director@iiitn.ac.in",
-                            desc: "Professor Prem Lal Patel took over as Director of IIIT Nagpur on 1st October 2024. He is also the Director of VNIT Nagpur...",
-                            link: "/governance/director",
-                            imageSrc: director,
-                        },
-                        {
-                            id: "registrar",
-                            title: "Registrar",
-                            name: "Shri Kailas N. Dakhale",
-                            position: "Registrar, IIIT Nagpur",
-                            email: "registrar@iiitn.ac.in",
-                            phone: "+91 9421995010",
-                            desc: "With over 30 years of experience in administration and academics...",
-                            link: "/governance/registrar",
-                            imageSrc: registrar,
-                        },
-                    ].map((person) => (
+                    {people.map((person) => (
                         <Card key={person.id} id={person.id} className="shadow-lg">
                             <CardHeader className="bg-primary text-white p-4 rounded-t-lg">
-                                <CardTitle>{person.title}</CardTitle>
+                                <CardTitle><span className="text-2xl">{person.position.split(",")[0]}</span></CardTitle>
                             </CardHeader>
                             <CardContent className="p-6 flex flex-col md:flex-row items-center md:items-start text-center md:text-left  space-x-6">
                                 <div>
@@ -114,9 +151,9 @@ function Administration() {
                                             </a>
                                         </p>
                                     )}
-                                    <p className="mt-4">{person.desc}</p>
+                                    <p className="mt-4">{person.content}</p>
                                     <p className="text-accent cursor-pointer mt-4">
-                                        <a href={person.link}>More about {person.title}</a>
+                                        <a href={`/governance/${person.id}`}>More about {person.position.split(',')[0]}</a>
                                     </p>
                                 </div>
                             </CardContent>

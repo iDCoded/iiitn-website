@@ -20,10 +20,6 @@ interface Event {
 	time?: string;
 }
 
-
- 
-  
-
 interface DepartmentData {
 	heroimage: string;
 	about: string;

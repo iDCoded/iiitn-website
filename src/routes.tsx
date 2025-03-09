@@ -96,19 +96,6 @@ const PageWrapper = () => {
 	return <DepartmentPage title={param || "defaultTitle"} />;
 };
 
-const AdminWrapper = () => {
-	const { param } = useParams();
-	if (param === "chairman") {
-		return <AdministrationPage title="chairman" />;
-	} else if (param === "director") {
-		return <AdministrationPage title="director" />;
-	} else if (param === "registrar") {
-		return <AdministrationPage title="registrar" />;
-	} else {
-		return <NotFound />;
-	}
-};
-
 const AppRoutes = () => (
 	<Routes>
 		<Route path="/" element={<Home />} />
@@ -162,7 +149,7 @@ const AppRoutes = () => (
 		<Route path="/signup" element={<SignupPage />} />
 		<Route path="/initiatives" element={<Initiatives />} />
 		<Route path="/governance/administration" element={<Administration />} />
-		<Route path="/governance/:param" element={<AdminWrapper />} />
+		<Route path="/governance/:id" element={<AdministrationPage />} />
 		<Route path="/governance/committee" element={<Committee />} />
 		<Route path="/pages/guesthouse" element={<GuestHouse />} />
 		<Route path="/pages/pressrelease" element={<PressRelease />} />

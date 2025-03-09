@@ -67,15 +67,15 @@ const rtiDetailsData = [
     },
 ];
 
+interface Section {
+    heading: string;
+    data: { id: string; sId: string; title: string }[];
+}
+
 function RTIDetails() {
-    const [selectedSection, setSelectedSection] = useState(rtiDetailsData[0]);
+    const [selectedSection, setSelectedSection] = useState<Section>(rtiDetailsData[0]);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const navigate = useNavigate(); // 🔹 Initialize navigation
-
-    function cn(...classes: string[]): string {
-        return classes.filter(Boolean).join(' ');
-    }
-
 
     return (
         <div className="bg-gray-50 min-h-screen flex flex-col">
@@ -98,12 +98,12 @@ function RTIDetails() {
                         {rtiDetailsData.map((section, index) => (
                             <li
                                 key={index}
-                                className={cn(
-                                    "p-3 text-center cursor-pointer",
-                                    selectedSection.heading === section.heading
+                                className={`
+                                    p-3 text-center cursor-pointer
+                                    ${selectedSection.heading === section.heading
                                         ? "bg-primary text-white"
-                                        : "hover:bg-gray-200"
-                                )}
+                                        : "hover:bg-gray-200"}
+                                )`}
                                 onClick={() => {
                                     setSelectedSection(section);
                                     setDropdownOpen(false);
@@ -125,12 +125,12 @@ function RTIDetails() {
                         {rtiDetailsData.map((section, index) => (
                             <li
                                 key={index}
-                                className={cn(
-                                    "cursor-pointer p-2 rounded-md transition",
-                                    selectedSection.heading === section.heading
+                                className={`
+                                    cursor-pointer p-2 rounded-md transition
+                                    ${selectedSection.heading === section.heading
                                         ? "bg-primary text-white"
-                                        : "hover:bg-gray-300"
-                                )}
+                                        : "hover:bg-gray-300"}
+                                )`}
                                 onClick={() => setSelectedSection(section)}
                             >
                                 {section.heading}
