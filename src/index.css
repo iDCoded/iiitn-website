@@ -5,6 +5,7 @@
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
+
 @layer base {
 	:root {
 		--sidebar-background: 0 0% 98%;
@@ -19,19 +20,26 @@
 }
 
 :root {
-	--background: #f4f4f4; /* Soft Gray */
-	--foreground: #31363f; /* Dark Slate */
-	--card: #f4f4f4; /* Deep Graphite */
+	--background: #f4f4f4;
+	/* Soft Gray */
+	--foreground: #31363f;
+	/* Dark Slate */
+	--card: #f4f4f4;
+	/* Deep Graphite */
 	--card-foreground: #222831;
 	--popover: #222831;
 	--popover-foreground: #f4f4f4;
-	--primary: #222831; /* Deep Graphite */
+	--primary: #222831;
+	/* Deep Graphite */
 	--primary-foreground: #f4f4f4;
-	--secondary: #393e46; /* Muted Black-Blue */
+	--secondary: #393e46;
+	/* Muted Black-Blue */
 	--secondary-foreground: #f4f4f4;
 	--muted: #f4f4f4;
-	--muted-foreground: #31363f; /* Dark Slate */
-	--accent: #f05454; /* Soft Tomato Red for CTAs */
+	--muted-foreground: #31363f;
+	/* Dark Slate */
+	--accent: #f05454;
+	/* Soft Tomato Red for CTAs */
 	--accent-foreground: #f4f4f4;
 	--destructive: #ef4444;
 	--destructive-foreground: #f4f4f4;
@@ -132,6 +140,7 @@
 	* {
 		@apply border-border outline-ring/50;
 	}
+
 	body {
 		@apply bg-background text-foreground;
 	}
@@ -143,8 +152,10 @@
 		height: 0;
 		opacity: 1;
 	}
+
 	to {
-		width: 300vh; /* Adjust for card size */
+		width: 300vh;
+		/* Adjust for card size */
 		height: 300vh;
 		opacity: 1;
 	}
@@ -154,6 +165,8 @@
 	position: absolute;
 	width: 0;
 	height: 0;
-	background: rgb(0, 0, 0); /* Adjust for better contrast */
+	background: radial-gradient(circle, rgb(240, 84, 84) 20%, rgba(232, 119, 34, 0) 80%);
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
 	animation: rippleEffect 0.6s linear forwards;
 }
