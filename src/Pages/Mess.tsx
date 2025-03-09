@@ -5,8 +5,36 @@ import {
 	FaCommentDots,
 	FaInfoCircle,
 } from "react-icons/fa";
+import { useState,useEffect } from "react";
+
+const defmessMenuLink = "#";
 
 function Mess() {
+  const [messMenuLink, setMessMenuLink] = useState(defmessMenuLink);
+  const [loading, setLoading] = useState(true); // ✅ Initialize loading state
+
+  useEffect(() => {
+    const fetchMessMenuLink = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/mess`);
+        if (!res.ok) throw new Error("Failed to fetch mess menu link");
+        
+        const data = await res.json();
+        setMessMenuLink(data[0].file_url);
+      } catch (error) {
+        console.error("Error fetching mess menu link:", error);
+      } finally {
+        setLoading(false); // ✅ Ensure loading is false after fetching
+      }
+    };
+
+    fetchMessMenuLink();
+  }, []); // ✅ Empty dependency array ensures it runs only once
+
+  if (loading) {
+	return <div className="text-center py-10">Loading...</div>;
+}
+
 	return (
 		<div className="bg-gray-100 min-h-screen flex flex-col">
 			{/* Header Section */}
@@ -69,7 +97,7 @@ function Mess() {
 						Check out the delicious and nutritious meals served in the mess:
 					</p>
 					<a
-						href="#"
+						href={messMenuLink}
 						className="block mt-3 text-white text-center bg-primary py-3 rounded-md hover:bg-[#001730] transition">
 						📄 View Mess Menu
 					</a>
@@ -116,8 +144,8 @@ function Mess() {
 						<FaInfoCircle className="text-yellow-600" /> Important Notice
 					</h2>
 					<p className="text-gray-700 mt-2">
-						📢 **Timings must be strictly followed to avoid inconvenience.** 🚫
-						**Unauthorized persons are not allowed inside the mess.**
+						📢 <b>Timings must be strictly followed to avoid inconvenience.</b><br></br> 🚫
+						<b>Unauthorized persons are not allowed inside the mess.</b>
 					</p>
 				</section>
 			</main>

@@ -150,7 +150,8 @@ const Navbar = () => {
 					name: "B.Tech",
 					subLinks: [
 						{ name: "Admission Process", href: "/admissions/btech" },
-						{ name: "Fees", href: "/admissions/btech/acadfees" },
+						{ name: "Academic Fees", href: "/admissions/btech/acadfees" },
+						{ name: "Hostel Fees", href: "/admissions/btech/hostelfees" },
 						{ name: "Scholarships", href: "/pages/scholarships" },
 						{
 							name: "Academic Rule Book",

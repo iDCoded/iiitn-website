@@ -16,7 +16,7 @@ const currentData = [
         subTitle: "Academic Resources",
         subDes: "Courses, Timetable, Calendar, Curricula, Fees, etc.",
         arr: [
-            { title: "Courses", description: "Semester Dates and Deadlines", link: "/academics/courses", imgSrc: acad_curr },
+            { title: "Programs", description: "Semester Dates and Deadlines", link: "/academics/courses", imgSrc: acad_curr },
             { title: "Timetable", description: "Important Dates and Deadlines", link: "https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link", imgSrc: acad_curr },
             { title: "Calendar", description: "Important Dates and Academic Calendar", link: "/academics/calendar", imgSrc: acad_curr },
 

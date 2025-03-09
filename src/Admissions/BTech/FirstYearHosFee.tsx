@@ -1,49 +1,53 @@
 import { useEffect, useState } from "react";
+const defhostelFeeData = {
+	year: 2022,
+	imgSrc: "#",
+};
 
 function FirstYearHosFee() {
-	const [hostelFeeData, setHostelFeeData] = useState({
-		year: "2021-22",
-		imgSrc: "/images/fee-structure/academic-fee-2021-22",
-	});
 
-	useEffect(() => {
-		const fetchAcadFeeData = async () => {
-			try {
-				const response = await fetch(`${process.env.VITE_API_BASE_URL}/media/media/category/fees`);
-				const data = await response.json();
-
-				const getAcademicYear = () => {
-					const currentDate = new Date();
-					const currentYear = currentDate.getFullYear();
-					const currentMonth = currentDate.getMonth() + 1;
-
-					if (currentMonth < 7) {
-						return `${currentYear - 1}-${currentYear}`;
-					} else {
-						return `${currentYear}-${currentYear + 1}`;
-					}
-				};
-
-				const academicYear = getAcademicYear();
-				const acadFeeData = data.find((item: any) => {
-					item.title.includes(academicYear) && item.m_sub_category === "first year hostel fee";
-				});
-
-				if (acadFeeData) {
-					setHostelFeeData({
-						year: acadFeeData.year,
-						imgSrc: acadFeeData.media_img_id,
-					});
+	const [hostelFeeData, setHostelFeeData] = useState<{ year: any; imgSrc: any }>({ year: '', imgSrc: '' });
+		const [loading, setLoading] = useState(true);
+		useEffect(() => {
+			const fetchAcadFee = async () => {
+			  try {
+				const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/fee`);
+				if (!res.ok) throw new Error("Failed to fetch academic fee data");
+		  
+				const data = await res.json();
+		  
+				// ✅ Filter data where m_sub_category is "acad_fee"
+				const hostelFeeItem = data.find((item: any) => item.m_sub_category === "first_hostel_fee");
+		  
+				if (hostelFeeItem) {
+				  const HostelFeeData = {
+					year: hostelFeeItem.title, 
+					imgSrc: hostelFeeItem.media_img_id, 
+				  };
+		  
+				  setHostelFeeData(HostelFeeData);
+				} else {
+				  console.warn("No academic fee data found.");
 				}
-			} catch (error) {
-				console.error("Error fetching academic fee data:", error);
-			}
-		};
-
-		fetchAcadFeeData();
-	}, []);
-
-
+			  } catch (err) {
+				console.error("Error fetching academic fee data:", err);
+				setHostelFeeData(defhostelFeeData);
+			  } finally {
+				setLoading(false);
+			  }
+			};
+		  
+			fetchAcadFee();
+		  }, []); // ✅ Runs only once on mount
+		  
+	
+		if (loading) {
+			return (
+				<div className="min-h-screen flex items-center justify-center">
+					<div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-primary"></div>
+				</div>
+			);
+		}
 	return (
 		<div className="bg-gray-100 min-h-screen flex flex-col">
 			{/* Header Section */}
