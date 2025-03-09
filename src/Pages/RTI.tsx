@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import rti from "../assets/rti.png";
+import rtiImage from "../assets/rti.png";
 
 function RTI() {
     interface RTIData {
@@ -27,7 +27,7 @@ function RTI() {
                 const newLinks: { [key: string]: string } = {};
                 data.forEach((item: RTIData) => {
                     if (item.m_sub_category) {
-                        newLinks[item.m_sub_category] = item.media_doc_id;
+                        newLinks[item.m_sub_category] = `${import.meta.env.VITE_API_BASE_URL}/media/${item.media_doc_id}`;
                     }
                 });
                 
@@ -85,22 +85,30 @@ function RTI() {
 						</h2>
 						<div className="grid md:grid-cols-2 gap-4 mt-4">
 							<a
-								href={rtiData.rtiEng}
+								href={rtiLinks["English"] || "#"}
+								target="_blank"
+								rel="noopener noreferrer"
 								className="block bg-primary text-white text-center py-3 rounded-md hover:bg-[#001730] transition">
 								📄 RTI Act, 2005 (English)
 							</a>
 							<a
-								href={rtiData.rtiHindi}
+								href={rtiLinks["Hindi"] || "#"}
+								target="_blank"
+								rel="noopener noreferrer"
 								className="block bg-primary text-white text-center py-3 rounded-md hover:bg-[#001730] transition">
 								📄 RTI Act, 2005 (Hindi)
 							</a>
 							<a
-								href={rtiData.rtiMarathi}
+								href={rtiLinks["Marathi"] || "#"}
+								target="_blank"
+								rel="noopener noreferrer"
 								className="block bg-primary text-white text-center py-3 rounded-md hover:bg-[#001730] transition">
 								📄 RTI Act, 2005 (Marathi)
 							</a>
 							<a
-								href={rtiData.rtiGuide}
+								href={rtiLinks["Guide"] || "#"}
+								target="_blank"
+								rel="noopener noreferrer"
 								className="block bg-primary text-white text-center py-3 rounded-md hover:bg-[#001730] transition">
 								📖 Guide to RTI Act (English)
 							</a>
@@ -128,7 +136,7 @@ function RTI() {
 				{/* Right Side - Image */}
 				<div className="lg:w-2/3 w-full p-6 flex justify-center">
 					<img
-						src={rtiData.imageSrc}
+						src={rtiImage}
 						alt="RTI Illustration"
 						className="rounded-lg shadow-lg w-full"
 					/>
