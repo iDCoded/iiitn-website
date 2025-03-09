@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Card } from "@/components/ui/card";
 
 const rtiDetailsData = [
     {
@@ -71,8 +72,14 @@ function RTIDetails() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const navigate = useNavigate(); // 🔹 Initialize navigation
 
+    function cn(...classes: string[]): string {
+        return classes.filter(Boolean).join(' ');
+    }
+
+
     return (
-        <div className="bg-gray-100 min-h-screen flex flex-col">
+        <div className="bg-gray-50 min-h-screen flex flex-col">
+            {/* Header */}
             <header className="bg-primary text-white py-12 text-center">
                 <h1 className="text-3xl md:text-5xl font-bold">RTI Details</h1>
             </header>
@@ -91,9 +98,12 @@ function RTIDetails() {
                         {rtiDetailsData.map((section, index) => (
                             <li
                                 key={index}
-                                className={`p-3 text-center cursor-pointer ${
-                                    selectedSection.heading === section.heading ? "bg-primary text-white" : "hover:bg-gray-200"
-                                }`}
+                                className={cn(
+                                    "p-3 text-center cursor-pointer",
+                                    selectedSection.heading === section.heading
+                                        ? "bg-primary text-white"
+                                        : "hover:bg-gray-200"
+                                )}
                                 onClick={() => {
                                     setSelectedSection(section);
                                     setDropdownOpen(false);
@@ -106,7 +116,7 @@ function RTIDetails() {
                 )}
             </div>
 
-            {/* Main Layout */}
+            {/* Layout */}
             <div className="flex flex-1">
                 {/* Sidebar */}
                 <aside className="hidden md:block md:w-1/4 bg-gray-200 p-6 min-h-screen">
@@ -115,9 +125,12 @@ function RTIDetails() {
                         {rtiDetailsData.map((section, index) => (
                             <li
                                 key={index}
-                                className={`cursor-pointer p-2 ${
-                                    selectedSection.heading === section.heading ? "bg-primary text-white" : "hover:bg-gray-300"
-                                }`}
+                                className={cn(
+                                    "cursor-pointer p-2 rounded-md transition",
+                                    selectedSection.heading === section.heading
+                                        ? "bg-primary text-white"
+                                        : "hover:bg-gray-300"
+                                )}
                                 onClick={() => setSelectedSection(section)}
                             >
                                 {section.heading}
@@ -126,26 +139,29 @@ function RTIDetails() {
                     </ul>
                 </aside>
 
-                {/* Table Content */}
+                {/* Content */}
                 <div className="w-full md:w-3/4 p-4 md:p-8">
                     <h2 className="text-2xl font-semibold text-primary border-b-4 border-primary pb-2 mb-4">
                         {selectedSection.heading}
                     </h2>
 
-                    <table className="w-full max-w-2xl mx-auto bg-white shadow-md rounded-lg">
-                        <tbody>
-                            {selectedSection.data.map((item) => (
-                                <tr
-                                    key={item.id}
-                                    className="border-b hover:bg-gray-100 cursor-pointer"
-                                    onClick={() => navigate(`/institute/rtidetails/${item.id}`)} // 🔹 Navigate with ID
-                                >
-                                    <td className="p-4 text-center w-1/4">{item.sId}</td>
-                                    <td className="p-4 text-center w-3/4">{item.title}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                    {/* Table inside a Card */}
+                    <Card className="w-full max-w-2xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+                        <table className="w-full">
+                            <tbody>
+                                {selectedSection.data.map((item) => (
+                                    <tr
+                                        key={item.id}
+                                        className="border-b hover:bg-gray-100 transition cursor-pointer"
+                                        onClick={() => navigate(`/institute/rtidetails/${item.id}`)}
+                                    >
+                                        <td className="p-4 text-center w-1/4 font-medium text-gray-700">{item.sId}</td>
+                                        <td className="p-4 text-left w-3/4 text-gray-600">{item.title}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </Card>
                 </div>
             </div>
         </div>
