@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const pressData = [
+const defpressData = [
 	{ title: "IIIT Nagpur Hosts AI Conference", date: "2023-10-15", link: "#" },
 	{ title: "New Research Lab Inaugurated", date: "2023-08-22", link: "#" },
 	{ title: "Collaboration with Industry Leaders", date: "2023-07-05", link: "#" },
@@ -21,11 +21,52 @@ const pressData = [
 ];
 
 // Function to sort by date (latest first)
-const getSortedPressReleases = () => {
-	return pressData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-};
+
 
 function PressRelease() {
+	interface PressRelease {
+		title: string;
+		date: string;
+		link: string;
+	}
+
+	const [pressData, setPressData] = useState<PressRelease[]>([]);
+	const [loading, setLoading] = useState(true);
+	useEffect(() => {
+		const fetchPressReleases = async () => {
+			try {
+				const res = await fetch(
+					`${import.meta.env.VITE_API_BASE_URL}/card/cards/category/press_releases`
+				);
+				if (!res.ok) {
+					throw new Error("Failed to fetch press releases data");
+				}
+				const data = await res.json();
+				const pressDataList = data.map((press: any) => ({
+					title: press.title,
+					date: press.date,
+					link: press.media_doc_path,
+				}));
+				setPressData(pressDataList);
+			} catch (error) {
+				console.error("Error fetching press releases:", error);
+				setPressData(defpressData);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchPressReleases();
+	}, []);
+
+
+	
+
+	const getSortedPressReleases = () => {
+		return pressData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+	};
+
+
 	const sortedPressReleases = getSortedPressReleases();
 	const [currentPage, setCurrentPage] = useState(1);
 	const [itemsPerPage, setItemsPerPage] = useState(12);
@@ -45,6 +86,15 @@ function PressRelease() {
 	const totalPages = Math.ceil(sortedPressReleases.length / itemsPerPage);
 	const startIndex = (currentPage - 1) * itemsPerPage;
 	const currentItems = sortedPressReleases.slice(startIndex, startIndex + itemsPerPage);
+
+
+	if(loading){
+		return (
+			<div className="min-h-screen flex justify-center items-center">
+				<div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+			</div>
+		);
+	}
 
 	return (
 		<div className="bg-gray-100 min-h-screen flex flex-col">

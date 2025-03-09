@@ -1,6 +1,39 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
+
+const defData = [
+  {
+    title: "Loan Scheme 1",
+    media_img_id: "media_1.jpg",
+    media_doc_id: "media_1.pdf",
+    caption: "Caption 1",
+    content: "Content 1",
+  },
+  {
+    title: "Loan Scheme 1",
+    media_img_id: "media_1.jpg",
+    media_doc_id: "media_1.pdf",
+    caption: "Caption 1",
+    content: "Content 1",
+  },
+  {
+    title: "Loan Scheme 1",
+    media_img_id: "media_1.jpg",
+    media_doc_id: "media_1.pdf",
+    caption: "Caption 1",
+    content: "Content 1",
+  },
+  {
+    title: "Loan Scheme 1",
+    media_img_id: "media_1.jpg",
+    media_doc_id: "media_1.pdf",
+    caption: "Caption 1",
+    content: "Content 1",
+  },
+ 
+]
+
 interface LoanScheme {
   title: string;
   media_img_id: string;
@@ -31,6 +64,7 @@ function LoanSchemes() {
         )
       } catch (error) {
         console.error("Failed to fetch loan schemes:", error);
+        setLoanSchemes(defData);
       } finally {
         setLoading(false);
       }

@@ -164,7 +164,7 @@ function FacultyandStaff() {
                         </CardHeader>
                         <CardContent>
                         </CardContent>
-                        <NoticesSidebar />
+                        <NoticesSidebar category="faculty"/>
                     </Card>
 					
 					
