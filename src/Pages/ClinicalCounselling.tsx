@@ -61,7 +61,7 @@ function ClinicalCounselling() {
 						{counsellingInfo ? (
 							<MarkdownPreview
 								source={counsellingInfo.content}
-								className="prose max-w-none bg-white text-gray-800 p-4 rounded-md shadow"
+								className="prose max-w-none !bg-white !text-gray-800 p-4 rounded-md shadow"
 							/>
 						) : (
 							<p className="text-gray-600">Loading counselling information...</p>
