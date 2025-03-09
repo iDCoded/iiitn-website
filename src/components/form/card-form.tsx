@@ -308,7 +308,7 @@ export function CardForm() {
 												Browse
 											</Button>
 										</div>
-										{field.value && (
+										{field.value && field.value[0].type.includes("image") && (
 											<div className="rounded-lg border bg-card">
 												<img
 													src={
