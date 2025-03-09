@@ -27,7 +27,7 @@ function RTI() {
                 const newLinks: { [key: string]: string } = {};
                 data.forEach((item: RTIData) => {
                     if (item.m_sub_category) {
-                        newLinks[item.m_sub_category] = `${import.meta.env.VITE_API_BASE_URL}/media/${item.media_doc_id}`;
+                        newLinks[item.m_sub_category] = item.media_doc_id;
                     }
                 });
                 
