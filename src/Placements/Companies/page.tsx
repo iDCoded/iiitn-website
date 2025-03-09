@@ -1,6 +1,22 @@
 import { FaFileAlt } from "react-icons/fa"; // Import an icon for guidelines
+import { useEffect, useState } from "react";
 
 function Companies() {
+  const [pdfLinks, setPdfLinks] = useState<{ title: string; link: string }[]>([]);
+
+  useEffect(() => {
+    fetch(`${process.env.VITE_API_BASE_URL}/media/media/category/companies`)
+      .then((response) => response.json())
+      .then((data) => {
+        const pdfData = data.map((item: any) => ({
+          title: item.title,
+          link: item.media_doc_id,
+        }));
+        setPdfLinks(pdfData);
+      })
+      .catch((error) => console.error("Error fetching PDF links:", error));
+  }, []);
+
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
       {/* Header Section */}
@@ -27,20 +43,14 @@ function Companies() {
         </div>
 
         <ul className="mt-6 space-y-4 text-gray-700 text-sm sm:text-lg">
-          {[
-            { text: "Invitation for Campus Placements", link: "#" },
-            { text: "Placement Policy", link: "#" },
-            { text: "Placement Brochure", link: "#" },
-            { text: "Guidelines for Companies", link: "#" },
-            { text: "Job Announcement Form", link: "#" },
-          ].map((item, index) => (
+          {pdfLinks.map((item, index) => (
             <li
               key={index}
               className="p-3 flex items-center space-x-3 border-b last:border-b-0 hover:bg-gray-100 rounded-md transition-all"
             >
               <FaFileAlt className="text-accent text-lg sm:text-xl" />
               <a href={item.link} className="text-accent font-medium hover:underline">
-                {item.text}
+                {item.title}
               </a>
             </li>
           ))}

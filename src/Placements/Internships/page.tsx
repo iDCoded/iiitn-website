@@ -1,5 +1,23 @@
+import { useEffect, useState } from "react";
 
 const InternshipProgram = () => {
+  const [pdfLinks, setPdfLinks] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    fetch(`${process.env.VITE_API_BASE_URL}/media/media/category/internship_program`)
+      .then((response) => response.json())
+      .then((data) => {
+      const links = data.reduce((acc: Record<string, string>, item: { media_doc_id: string, title: string }) => {
+        if (item.media_doc_id) {
+        acc[item.title] = item.media_doc_id;
+        }
+        return acc;
+      }, {});
+      setPdfLinks(links);
+      })
+      .catch((error) => console.error("Error fetching PDF links:", error));
+  }, []);
+
   return (
     <div className="max-w-7xl mx-auto p-6">
       {/* Hero Section */}
@@ -94,7 +112,7 @@ const InternshipProgram = () => {
               ))}
             </tbody>
           </table>
-          Note: 
+          Note:
         </div>
 
         {/* Bank Details */}
@@ -114,27 +132,26 @@ const InternshipProgram = () => {
       </section>
 
       {/* Internship Registration Form and Report Accordion */}
-      <section className="my-6">
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold text-accent border-b-2 pb-2">Internship Registration Form and Report</h2>
-          <div className="mt-4 space-y-4">
-            <div className="flex-row flex space-x-8">
-              <h3 className="text-lg text-primary font-semibold">Internship Application Form</h3>
-              <a href="https://iiitn.ac.in/Downloads/internship/newformat2025/1_Application_Form_for_Internship_Program.pdf" className="text-blue-500 mt-2 block">Download</a>
+      <section className="bg-white p-6 rounded-lg shadow-md my-6">
+        <h2 className="text-2xl font-bold text-accent">
+          <span className="text-primary font-bold mr-2">|</span> Internship Registration & Reports
+        </h2>
+        <div className="mt-4 space-y-4">
+          {[
+            { title: "Internship Application Form", key: "application_form.pdf" },
+            { title: "Internship Joining Application", key: "joining_application.pdf" },
+            { title: "Internship Report Submission Guidelines", key: "report_guidelines.docx" },
+            { title: "Internship Evaluation Form", key: "evaluation_form.pdf" }
+          ].map((doc, index) => (
+            <div key={index} className="flex items-center justify-between">
+              <h3 className="text-lg text-primary font-semibold">{doc.title}</h3>
+              {pdfLinks[doc.key] ? (
+                <a href={pdfLinks[doc.key]} className="text-blue-500">Download</a>
+              ) : (
+                <span className="text-gray-500">Not Available</span>
+              )}
             </div>
-            <div className="flex-row flex space-x-8">
-              <h3 className="text-lg text-primary font-semibold">Internship Joining Application</h3>
-              <a href="https://iiitn.ac.in/Downloads/internship/newformat2025/2_Internship_Joining_Application.pdf" className="text-blue-500 mt-2 block">Download</a>
-            </div>
-            <div className="flex-row flex space-x-8">
-              <h3 className="text-lg text-primary font-semibold">Internship Report Submission Guideline</h3>
-              <a href="https://iiitn.ac.in/Downloads/internship/newformat2025/3_Internship_Report_Submission_Guidelines.docx" className="text-blue-500 mt-2 block">Download</a>
-            </div>
-            <div className="flex-row flex space-x-8">
-              <h3 className="text-lg text-primary font-semibold">Internship Evaluation Form</h3>
-              <a href="https://iiitn.ac.in/Downloads/internship/newformat2025/4_Internship_Evaluation_Form.pdf" className="text-blue-500 mt-2 block">Download</a>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
     </div>

@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 
 interface MarkdownData {
 	[year: number]: string;
 }
 
-const markdownData: MarkdownData = {
+// Initial Static Data
+const initialMarkdownData: MarkdownData = {
 	2024: `
   - **Total Students Placed:** 150  
   - **Highest Package:** ₹32 LPA  
@@ -27,7 +28,34 @@ const markdownData: MarkdownData = {
 };
 
 function Statistics() {
-	const [selectedYear, setSelectedYear] = useState(2024);
+	const [selectedYear, setSelectedYear] = useState<number>(2024);
+	const [markdownData, setMarkdownData] = useState<MarkdownData>(initialMarkdownData);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await fetch(`${process.env.VITE_API_BASE_URL}/media/media/category/placement_statistics`)
+				const data = await response.json();
+				const newMarkdownData: MarkdownData = { ...initialMarkdownData }; // Merge static data with fetched data
+
+				data.forEach((item: { year: number; markdown: string }) => {
+					newMarkdownData[item.year] = item.markdown;
+				});
+
+				setMarkdownData(newMarkdownData);
+
+				// Ensure the dropdown includes all fetched years
+				if (!newMarkdownData[selectedYear]) {
+					const latestYear = Math.max(...Object.keys(newMarkdownData).map(Number));
+					setSelectedYear(latestYear);
+				}
+			} catch (error) {
+				console.error("Error fetching data:", error);
+			}
+		};
+
+		fetchData();
+	}, []);
 
 	return (
 		<div className="bg-gray-50 min-h-screen flex flex-col">
@@ -56,7 +84,8 @@ function Statistics() {
 					className="mt-2 w-full sm:w-1/2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-accent focus:border-accent text-gray-700"
 				>
 					{Object.keys(markdownData)
-						.reverse()
+						.map(Number)
+						.sort((a, b) => b - a)
 						.map((year) => (
 							<option key={year} value={year}>
 								{year}
@@ -67,15 +96,17 @@ function Statistics() {
 
 			{/* Markdown Display */}
 			<div className="w-full max-w-4xl mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg border border-gray-200">
-				<h1 className="text-3xl leading-loose font-bold text-primary"><span className="text-5xl text-accent">| </span>Placement Statistics - {selectedYear} </h1>
+				<h1 className="text-3xl leading-loose font-bold text-primary">
+					<span className="text-5xl text-accent">| </span>Placement Statistics - {selectedYear}
+				</h1>
 				<MarkdownPreview
-					source={markdownData[selectedYear]}
+					source={markdownData[selectedYear] || "*No data available for this year.*"}
 					className="text-gray-800 text-base sm:text-lg"
 					style={{
-						backgroundColor: "white", // Force background to be white
-						color: "black", // Ensure text color is black
-						padding: "16px", // Maintain spacing
-						borderRadius: "8px", // Smooth edges
+						backgroundColor: "white",
+						color: "black",
+						padding: "16px",
+						borderRadius: "8px",
 					}}
 				/>
 			</div>
