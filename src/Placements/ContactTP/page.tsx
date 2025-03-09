@@ -42,7 +42,7 @@ function ContactTP() {
     const fetchContactData = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/faculty/faculty_staff`);
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/user/placement_officer`);
         const data = await response.json();
         const filteredData = data.filter((contact: ContactTPdata) => contact.positions.includes("Training and Placement Officer"));
         setContactData(
