@@ -1,42 +1,106 @@
-const instituteFormats = [
+import {useState, useEffect } from "react";
+
+
+const definstituteFormats = [
 	{
-		id: 1,
 		name: "Undertaking For Cast Validity (Maharashtra Only)",
 		link: "/pdfs/undertaking_cast_validity.pdf",
 	},
 	{
-		id: 2,
 		name: "Undertaking For Correctness in Admission Form",
 		link: "/pdfs/undertaking_correctness.pdf",
 	},
 	{
-		id: 3,
 		name: "Undertaking For Non-Available Documents",
 		link: "/pdfs/undertaking_non_available.pdf",
 	},
 	{
-		id: 4,
 		name: "Affidavit For Gap Certificate",
 		link: "/pdfs/affidavit_gap_certificate.pdf",
 	},
 ];
 
-const categoryFormats = [
-	{ id: 1, name: "FORM-GEN-EWS", link: "/pdfs/form_gen_ews.pdf" },
-	{ id: 2, name: "FORM-OBC-NCL", link: "/pdfs/form_obc_ncl.pdf" },
-	{ id: 3, name: "FORM-SC-ST", link: "/pdfs/form_sc_st.pdf" },
-	{ id: 4, name: "FORM-PwD (II)", link: "/pdfs/form_pwd_ii.pdf" },
-	{ id: 5, name: "FORM-PwD (III)", link: "/pdfs/form_pwd_iii.pdf" },
-	{ id: 6, name: "FORM-PwD (IV)", link: "/pdfs/form_pwd_iv.pdf" },
-	{ id: 7, name: "FORM-DYSLEXIC-1", link: "/pdfs/form_dyslexic_1.pdf" },
-	{ id: 8, name: "FORM-DYSLEXIC-2", link: "/pdfs/form_dyslexic_2.pdf" },
-	{ id: 9, name: "FORM-DS", link: "/pdfs/form_ds.pdf" },
+const defcentralFormats = [
+	{ name: "FORM-GEN-EWS", link: "/pdfs/form_gen_ews.pdf" },
+	{ name: "FORM-OBC-NCL", link: "/pdfs/form_obc_ncl.pdf" },
+	{ name: "FORM-SC-ST", link: "/pdfs/form_sc_st.pdf" },
+	{ name: "FORM-PwD (II)", link: "/pdfs/form_pwd_ii.pdf" },
+	{ name: "FORM-PwD (III)", link: "/pdfs/form_pwd_iii.pdf" },
+	{ name: "FORM-PwD (IV)", link: "/pdfs/form_pwd_iv.pdf" },
+	{ name: "FORM-DYSLEXIC-1", link: "/pdfs/form_dyslexic_1.pdf" },
+	{ name: "FORM-DYSLEXIC-2", link: "/pdfs/form_dyslexic_2.pdf" },
+	{ name: "FORM-DS", link: "/pdfs/form_ds.pdf" },
 ];
 
 function Formats() {
+	interface Format {
+		name: string;
+		link: string;
+	}
+
+	interface ApiResponseFormat {
+		title: string;
+		media_doc_id: string;
+		m_sub_category: string;
+	}
+
+	const [instituteFormats, setInstituteFormats] = useState<Format[]>([]);
+	const [centralFormats, setCentralFormats] = useState<Format[]>([]);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		const fetchFormats = async () => {
+			try {
+				const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/formats`);
+				if (!res.ok) throw new Error("Failed to fetch formats data");
+
+				const data: ApiResponseFormat[] = await res.json(); // Ensure it's typed correctly
+
+				// ✅ Filter and Map only the required fields
+				const instituteFormats: Format[] = data
+					.filter((format: ApiResponseFormat) => format.m_sub_category === "institute")
+					.map((format: ApiResponseFormat) => ({
+						name: format.title,
+						link: format.media_doc_id,
+					}));
+
+				const centralFormats: Format[] = data
+					.filter((format: ApiResponseFormat) => format.m_sub_category === "central")
+					.map((format: ApiResponseFormat) => ({
+						name: format.title,
+						link: format.media_doc_id,
+					}));
+
+				setInstituteFormats(instituteFormats.length ? instituteFormats : definstituteFormats);
+				setCentralFormats(centralFormats.length ? centralFormats : defcentralFormats);
+			} catch (err) {
+				console.error("Error fetching formats data:", err);
+				setInstituteFormats(definstituteFormats);
+				setCentralFormats(defcentralFormats);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchFormats();
+	}, []);
+  
+
+
+	if(loading){
+
+		return (
+			<div className="bg-gray-100 min-h-screen">
+				<div className="min-h-screen flex items-center justify-center">
+					<div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-primary"></div>
+				</div>
+			</div>
+		);
+
+	}
+
 	return (
 		<div className="bg-gray-100 min-h-screen">
-			{/* Header Section */}
 			<header className="bg-primary text-white py-16 text-center">
 				<h1 className="text-5xl font-bold">Formats</h1>
 				<p className="text-lg mt-2 italic">
@@ -44,9 +108,7 @@ function Formats() {
 				</p>
 			</header>
 
-			{/* Content Section */}
 			<div className="max-w-4xl mx-auto py-10">
-				{/* Institute Formats Table */}
 				<h2 className="text-2xl font-semibold text-primary mb-4">
 					Institute Formats
 				</h2>
@@ -60,9 +122,9 @@ function Formats() {
 							</tr>
 						</thead>
 						<tbody>
-							{instituteFormats.map((format) => (
-								<tr key={format.id} className="border-b">
-									<td className="px-4 py-3 text-center">{format.id}</td>
+							{instituteFormats.map((format, index) => (
+								<tr key={index} className="border-b">
+									<td className="px-4 py-3 text-center">{index + 1}</td>
 									<td className="px-4 py-3">{format.name}</td>
 									<td className="px-4 py-3 text-center">
 										<a
@@ -79,7 +141,6 @@ function Formats() {
 					</table>
 				</div>
 
-				{/* Category Formats Table */}
 				<h2 className="text-2xl font-semibold text-primary mt-10 mb-4">
 					Central Formats
 				</h2>
@@ -93,9 +154,9 @@ function Formats() {
 							</tr>
 						</thead>
 						<tbody>
-							{categoryFormats.map((format) => (
-								<tr key={format.id} className="border-b">
-									<td className="px-4 py-3 text-center">{format.id}</td>
+							{centralFormats.map((format, index) => (
+								<tr key={index} className="border-b">
+									<td className="px-4 py-3 text-center">{index + 1}</td>
 									<td className="px-4 py-3">{format.name}</td>
 									<td className="px-4 py-3 text-center">
 										<a
