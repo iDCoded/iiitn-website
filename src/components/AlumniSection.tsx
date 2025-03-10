@@ -64,7 +64,7 @@ const AlumniSection = () => {
             </div>
 
             {/* Content Section */}
-            <div ref={ref} className="relative z-10 w-full max-w-3xl p-10 rounded-xl bg-white/20 backdrop-blur-lg shadow-lg border border-white/30">
+            <div ref={ref} className="relative z-10 w-full max-w-3xl p-10  bg-white/20 backdrop-blur-lg shadow-lg border border-white/30">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={index}

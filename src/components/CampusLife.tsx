@@ -82,7 +82,7 @@ const CampusLife = () => {
 					{campusLifeImages.slice(0, 3).map((item, index) => (
 						<motion.div
 							key={index}
-							className="relative rounded-xl overflow-hidden shadow-lg group"
+							className="relative  overflow-hidden shadow-lg group"
 							initial={{ opacity: 0, scale: 0.8 }}
 							animate={inView ? { opacity: 1, scale: 1 } : {}}
 							transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}>
@@ -91,7 +91,7 @@ const CampusLife = () => {
 							<img
 								src={item.src}
 								alt="Campus Life"
-								className="w-full h-64 object-cover rounded-xl transition-transform duration-500 group-hover:scale-95"
+								className="w-full h-64 object-cover  transition-transform duration-500 group-hover:scale-95"
 							/>
 
 							{/* Overlay with Blur Effect */}
@@ -106,7 +106,7 @@ const CampusLife = () => {
 					{campusLifeImages.slice(3).map((item, index) => (
 						<motion.div
 							key={index}
-							className="relative rounded-xl overflow-hidden shadow-lg group"
+							className="relative overflow-hidden shadow-lg group"
 							initial={{ opacity: 0, scale: 0.8 }}
 							animate={inView ? { opacity: 1, scale: 1 } : {}}
 							transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}>
@@ -115,7 +115,7 @@ const CampusLife = () => {
 							<img
 								src={item.src}
 								alt="Campus Life"
-								className="w-full h-64 object-cover rounded-xl transition-transform duration-500 group-hover:scale-95"
+								className="w-full h-64 object-cover  transition-transform duration-500 group-hover:scale-95"
 							/>
 
 							{/* Overlay with Blur Effect */}
