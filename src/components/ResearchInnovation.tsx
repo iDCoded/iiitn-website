@@ -38,12 +38,41 @@ const ResearchConsultancy = () => {
                     initial={{ opacity: 0, y: 30 }}
 					animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}>
-                    Explore research initiatives and consultancy services offered by our departments.
+						Explore research,projects and consultancy services offered by our Institute.
+                   
                 </motion.p>
-				<p className="text-gray-300 text-lg">
+			
 					
-				</p>
+				
 			</motion.div>
+
+			{/* Call-to-Action Buttons */}
+			<motion.div className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-16">
+    <Button asChild className="w-[240px] h-[40px] text-lg font-semibold bg-accent hover:bg-secondary text-white transition-all duration-300 text-center flex items-center justify-center">
+        <Link to="/research/projects">View Research Projects</Link>
+    </Button>
+
+    <Button asChild className="w-[240px] h-[40px] text-lg font-semibold bg-accent hover:bg-secondary text-white transition-all duration-300 text-center flex items-center justify-center">
+        <Link to="/research/publications">View Publications</Link>
+    </Button>
+
+    <Button asChild className="w-[240px] h-[40px] text-lg font-semibold bg-accent hover:bg-secondary text-white transition-all duration-300 text-center flex items-center justify-center">
+        <Link to="/research/consultancy">Consult an Expert</Link>
+    </Button>
+</motion.div>
+
+<motion.div>
+<motion.p
+                    className="mt-2 sm:mt-4 text-gray-200 text-sm sm:text-lg"
+                    initial={{ opacity: 0, y: 30 }}
+					animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}>
+						 Explore research initiatives and consultancy services offered by our departments.
+                    
+                </motion.p>
+</motion.div>
+
+
 
 			{/* Department Cards Section */}
 			<div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl w-full">
@@ -53,56 +82,44 @@ const ResearchConsultancy = () => {
 
 					return (
 						<motion.div
-							ref={deptRef}
-							key={index}
-							className="relative group"
-							initial={{ opacity: 0, y: 50 }}
-							animate={deptInView ? { opacity: 1, y: 0 } : {}}
-							transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.15 }}
-							whileHover={{ scale: 1.05 }}
-							whileTap={{ scale: 0.95 }}
-						>
-							<Card className="relative bg-gray-900/40 backdrop-blur-xl border border-gray-600 shadow-xl rounded-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:border-accent">
-								{/* Glow Effect on Hover */}
-								<div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-accent/20 blur-xl"></div>
+    ref={deptRef}
+    key={index}
+    className="relative group w-[300px] h-[250px]" // Fixed dimensions
+    initial={{ opacity: 0, y: 50 }}
+    animate={deptInView ? { opacity: 1, y: 0 } : {}}
+    transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.15 }}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+>
+    <Card className="relative bg-gray-900/40 backdrop-blur-xl border border-gray-600 shadow-xl rounded-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:border-accent w-full h-full">
+        {/* Glow Effect on Hover */}
+        <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-accent/20 blur-xl"></div>
 
-								{/* Card Content */}
-								<CardContent className="p-8 text-center relative z-10">
-									<CardTitle className="text-xl font-bold text-gray-100 group-hover:text-white transition-all duration-300">
-										{dept.title}
-									</CardTitle>
-									<p className="text-gray-400 mt-3 group-hover:text-gray-200 transition-all duration-300">
-										{dept.desc}
-									</p>
+        {/* Card Content */}
+        <CardContent className="p-8 text-center relative z-10 flex flex-col justify-center items-center h-full">
+            <CardTitle className="text-xl font-bold text-gray-100 group-hover:text-white transition-all duration-300">
+                {dept.title}
+            </CardTitle>
+            <p className="text-gray-400 mt-3 group-hover:text-gray-200 transition-all duration-300">
+                {dept.desc}
+            </p>
 
-									{/* View More Link */}
-									<Link
-										to={dept.link}
-										className="mt-4 inline-block text-accent font-semibold tracking-wide transition-all duration-300 hover:text-accent-light"
-									>
-										View Research →
-									</Link>
-								</CardContent>
-							</Card>
-						</motion.div>
+            {/* View More Link */}
+            <Link
+                to={dept.link}
+                className="mt-4 inline-block text-accent font-semibold tracking-wide transition-all duration-300 hover:text-accent-light"
+            >
+                View Research →
+            </Link>
+        </CardContent>
+    </Card>
+</motion.div>
+
 					);
 				})}
 			</div>
 
-			{/* Call-to-Action Buttons */}
-			<motion.div className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-16">
-				<Button asChild className="px-8 py-3 text-lg font-semibold bg-accent hover:bg-accent-dark text-white transition-all duration-300">
-					<Link to="/research/projects">View Research Projects</Link>
-				</Button>
-
-				<Button asChild className="px-8 py-3 text-lg font-semibold bg-secondary hover:bg-secondary-dark text-white transition-all duration-300">
-					<Link to="/research/publications">View Publications</Link>
-				</Button>
-
-				<Button asChild className="px-8 py-3 text-lg font-semibold bg-primary hover:bg-primary-dark text-white transition-all duration-300">
-					<Link to="/research/consultancy">Consult an Expert</Link>
-				</Button>
-			</motion.div>
+			
 		</section>
 	);
 };

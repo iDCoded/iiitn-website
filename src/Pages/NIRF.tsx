@@ -53,7 +53,7 @@ function NIRF() {
                 data.forEach((nirf: any) => {
                     const year = nirf.m_sub_category;
                     const title = nirf.title;
-                    const link = nirf.m_doc_id;
+                    const link = nirf.media_doc_id;
 
                     if (!groupedData[year]) {
                         groupedData[year] = [];
@@ -133,19 +133,31 @@ function NIRF() {
 
 				{/* NIRF Reports - Display Below the Paragraph */}
 				<div className="mt-6 bg-white p-6 shadow-lg rounded-lg border-l-4 border-accent-600">
-					<h3 className="text-2xl font-bold text-primary">📑 NIRF Reports - {selectedYear}</h3>
-					<div className="mt-4">
-						{selectedData?.documents.map((doc, index) => (
-							<a
-								key={index}
-								href={doc.link}
-								className="flex items-center text-accent-600 hover:text-orange-800 mt-2 text-lg font-medium">
-								<FaFilePdf className="mr-2 text-blue-600" />
-								{doc.title}
-							</a>
-						))}
-					</div>
-				</div>
+    <h3 className="text-2xl font-bold text-primary">
+        📑 NIRF Reports - {selectedYear}
+    </h3>
+
+    <div className="mt-4">
+        {selectedData?.documents?.map((doc, index) => {
+            console.log("Link:", doc.link); // Debugging
+
+            return (
+                <a
+                    key={index}
+                    href={doc.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-accent-600 hover:text-orange-800 mt-2 text-lg font-medium"
+                    style={{ cursor: "pointer", zIndex: 10 }} // Ensure it's clickable
+                >
+                    <FaFilePdf className="mr-2 text-blue-600" />
+                    {doc.title}
+                </a>
+            );
+        })}
+    </div>
+</div>
+
 			</section>
 		</div>
 	);
