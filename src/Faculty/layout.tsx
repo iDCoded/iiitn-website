@@ -67,7 +67,7 @@ export default function FacultyDashboard({
 					<main className="flex-1 relative">
 						<TooltipProvider>
 							<Tooltip delayDuration={800}>
-								<TooltipTrigger className="absolute top-4 left-4">
+								<TooltipTrigger className="absolute top-4 left-4" asChild>
 									<SidebarTrigger />
 								</TooltipTrigger>
 								<TooltipContent>Toggle Sidebar</TooltipContent>
