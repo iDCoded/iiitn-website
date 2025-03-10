@@ -43,7 +43,7 @@ const HomeEventCard = ({ event }: { event: Event }) => (
 
 
 			{/* Event Date Badge */}
-			<div className="absolute top-[-3vh] right-4 bg-acce</p>nt text-white text-center px-2 py-1  font-bold">
+			<div className="absolute top-[-3vh] right-4 bg-accent text-white text-center px-2 py-1  font-bold">
 				{event.date}
 			</div>
 
