@@ -15,12 +15,14 @@ import { Check, ImageIcon, PlusCircle } from "lucide-react";
 import MDEditor from "@uiw/react-md-editor";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { ICard } from "@/interfaces/types";
 
 const formSchema = z.object({
 	title: z.string().min(1, "Title is required"),
 	caption: z.string().min(1, "Description is required"),
 	content: z.string().min(1, "Description is required"),
 	location: z.string().min(1, "Location is required"),
+	preference: z.coerce.number(),
 	c_category: z.string().min(1, "Category is required"),
 	c_sub_category: z.string().min(1, "Sub-category is required"),
 	date: z.date(),
@@ -77,6 +79,7 @@ export function CardForm() {
 			updated_by: 1,
 			added_by: 1,
 			media: undefined,
+			preference: 0,
 		},
 	});
 
@@ -190,7 +193,7 @@ export function CardForm() {
 			const media_res = await media_request.json();
 
 			if (media_request.ok) {
-				const card_data = {
+				const card_data: ICard = {
 					c_category: data.c_category.toLowerCase(),
 					c_sub_category: data.c_sub_category.toLowerCase(),
 					title: data.title,
@@ -203,6 +206,10 @@ export function CardForm() {
 					updated_time: new Date(),
 					added_by: 1,
 					added_time: new Date(),
+					preference: 1,
+					c_id: "",
+					expiry_date: undefined,
+					visibility: false,
 				};
 				console.log(card_data);
 
