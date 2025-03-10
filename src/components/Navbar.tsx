@@ -280,7 +280,7 @@ const Navbar = () => {
 
 									{/* Dropdown Menu */}
 									<ul
-										className={`absolute top-full mt-2 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
+										className={`absolute top-[85%] mt-2 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
 									${index === dropdownLinks.length - 1 ? "right-0" : "left-0"} 
 									${openDropdown === index ? "opacity-100 translate-y-0 visible" : "opacity-0 translate-y-[-10px] invisible"}`}>
 										{item.links && item.links.map((link, i) => (
