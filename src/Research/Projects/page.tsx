@@ -24,7 +24,7 @@ const Projects = () => {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
 	const [searchQuery, setSearchQuery] = useState("");
-	
+
 	useEffect(() => {
 		const fetchProjects = async () => {
 			try {
@@ -89,36 +89,42 @@ const Projects = () => {
 					<span className="text-accent text-4xl mr-2">|</span> Research Projects & Patents
 				</h1>
 
-				<div className="flex gap-4 mb-6 border-b border-gray-300">
-					{["cse", "ece", "bs"].map((dept) => (
-						<button
-							key={dept}
-							className={`relative px-6 py-2 text-lg font-medium transition-all duration-300 ${selectedTab === dept
-								? "text-accent font-bold"
-								: "text-gray-500 hover:text-gray-700"
-							}`}
-							onClick={() => setSelectedTab(dept as "cse" | "ece" | "bs")}>
-							{dept.toUpperCase()}
-						</button>
-					))}
-				</div>
-				<div>
+				<div className="flex gap-4 mb-6 border-b border-gray-300 justify-between">
+					<div>
+						{["cse", "ece", "bs"].map((dept) => (
+							<button
+								key={dept}
+								className={`relative px-6 py-2 text-lg font-medium transition-all duration-300 ${selectedTab === dept
+									? "text-accent font-bold"
+									: "text-gray-500 hover:text-gray-700"
+									}`}
+								onClick={() => setSelectedTab(dept as "cse" | "ece" | "bs")}>
+								{dept.toUpperCase()}
+								{selectedTab === dept && (
+									<motion.div
+										layoutId="underline"
+										className="absolute left-0 bottom-0 h-[3px] bg-accent w-full"
+									/>
+								)}
+							</button>
+						))}
+					</div>
 					<input
 						type="text"
-						placeholder="Search Projects"
-						className="w-full px-4 py-2 border border-gray-300 rounded-md"
+						placeholder="Search Projects..."
 						value={searchQuery}
 						onChange={(e) => setSearchQuery(e.target.value)}
+						className="w-full md:w-[300px] px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
 					/>
 				</div>
 
 				{loading ? (
-                    <p>Loading projects...</p>
-                ) : error ? (
-                    <p className="text-red-600">Failed to load publications.</p>
-                ) : filteredProjects.length === 0 ? (
-                    <p className="text-gray-500 italic">No projects found.</p>
-                ) : (
+					<p>Loading projects...</p>
+				) : error ? (
+					<p className="text-red-600">Failed to load publications.</p>
+				) : filteredProjects.length === 0 ? (
+					<p className="text-gray-500 italic">No projects found.</p>
+				) : (
 					<motion.div
 						key={selectedTab}
 						initial={{ opacity: 0, y: 10 }}
@@ -139,8 +145,8 @@ const Projects = () => {
 											<a href={project.link} className="text-blue-500" target="_blank" rel="noopener noreferrer">More Info</a>
 										)
 									}
-									</CardContent>
-									
+								</CardContent>
+
 							</Card>
 						))}
 					</motion.div>

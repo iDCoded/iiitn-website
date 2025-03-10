@@ -68,8 +68,9 @@ const Projects = () => {
 
     return (
         <>
+            {/* 🔹 Hero Section */}
             <header
-                className="relative w-full h-75 flex flex-col justify-center items-center text-white text-center shadow-lg z-1"
+                className="relative w-full h-[60vh] flex flex-col justify-center items-center text-white text-center shadow-lg"
                 style={{
                     backgroundImage: `url(${heroimage})`,
                     backgroundSize: "cover",
@@ -90,33 +91,40 @@ const Projects = () => {
                     <span className="text-accent text-4xl mr-2">|</span> Consultancy Projects & Patents
                 </h1>
 
-                <div className="flex gap-4 mb-6 border-b border-gray-300">
-                    {["cse", "ece", "bs"].map((dept) => (
-                        <button
-                            key={dept}
-                            className={`relative px-6 py-2 text-lg font-medium transition-all duration-300 ${selectedTab === dept
-                                ? "text-accent font-bold"
-                                : "text-gray-500 hover:text-gray-700"
-                                }`}
-                            onClick={() => setSelectedTab(dept as "cse" | "ece" | "bs")}>
-                            {dept.toUpperCase()}
-                        </button>
-                    ))}
-                </div>
-
-                <div>
+                <div className="flex gap-4 mb-6 border-b border-gray-300 justify-between">
+                    <div>
+                        {["cse", "ece", "bs"].map((dept) => (
+                            <button
+                                key={dept}
+                                className={`relative px-6 py-2 text-lg font-medium transition-all duration-300 ${selectedTab === dept
+                                    ? "text-accent font-bold"
+                                    : "text-gray-500 hover:text-gray-700"
+                                    }`}
+                                onClick={() => setSelectedTab(dept as "cse" | "ece" | "bs")}>
+                                {dept.toUpperCase()}
+                                {selectedTab === dept && (
+                                <motion.div
+                                    layoutId="underline"
+                                    className="absolute left-0 bottom-0 h-[3px] bg-accent w-full"
+                                />
+                            )}
+                            </button>
+                        ))}
+                    </div>
                     <input
                         type="text"
-                        placeholder="Search Projects"
-                    	value={searchQuery}
-						onChange={(e) => setSearchQuery(e.target.value)}
-					/>
+                        placeholder="Search Projects..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full md:w-[300px] px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+                    />
                 </div>
 
+                {/* 🔹 Project Listings */}
                 {loading ? (
-                    <p>Loading projects...</p>
+                    <p className="text-center text-gray-600">Loading projects...</p>
                 ) : error && projectsData[selectedTab].length < 1 ? (
-                    <p className="text-red-600">Failed to load projects.</p>
+                    <p className="text-red-600 text-center">Failed to load projects.</p>
                 ) : (
                     <motion.div
                         key={selectedTab}

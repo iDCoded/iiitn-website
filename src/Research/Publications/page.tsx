@@ -78,7 +78,8 @@ const Publications = () => {
                     <span className="text-accent text-4xl mr-2">|</span> Research Publications
                 </h1>
 
-                <div className="flex gap-4 mb-6 border-b border-gray-300">
+                <div className="flex gap-4 mb-6 border-b border-gray-300 justify-between">
+                    <div>
                     {["CSE", "ECE", "BASIC"].map((branch) => (
                         <button
                             key={branch}
@@ -96,14 +97,12 @@ const Publications = () => {
                         </button>
                     ))}
                 </div>
-                
-                <div>
                     <input
                         type="text"
-                        placeholder="Search for Publications"
-                        className="w-full p-2 border border-gray-300 rounded-md"
+                        placeholder="Search Projects..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full md:w-[300px] px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
                     />
                 </div>
 
