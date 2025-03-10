@@ -205,7 +205,7 @@ const AppRoutes = () => (
 			path="/announcements/:announcementid"
 			element={<DetailedAnnouncements />}
 		/>
-		<Route path="/faculty/:name" element={<FacultyDetail />} />
+		<Route path="/faculty/:id" element={<FacultyDetail />} />
 		<Route path="/institute/facilities" element={<Facilities />} />
 		<Route
 			path="/institute/institutesprofile"

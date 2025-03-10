@@ -151,7 +151,7 @@ function DetailedDirectory() {
                                     <div className="flex flex-col" key={index}>
                                         <Card
                                             className="shadow-lg border-2 border-accent mx-auto max-w-3xl cursor-pointer hover:shadow-xl transition"
-                                            onClick={() => navigate(`/faculty/${encodeURIComponent(faculty.name)}`)}
+                                            onClick={() => navigate(`/faculty/${faculty.f_id}`)}
                                         >
                                             <CardHeader className="text-center">
                                                 <h2 className="text-xl font-bold text-accent">Head of dept_name (HOD)</h2>
