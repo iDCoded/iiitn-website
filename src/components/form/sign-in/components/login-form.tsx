@@ -65,7 +65,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 			const res_json = await res.json();
 			console.log("data", res_json);
 			if (res.ok) {
-				login(res_json.user, res_json.access_token); // TODO: Send user object from the server
+				login(res_json.user, res_json.access_token, res_json.refresh_token); // TODO: Send user object from the server
 				navigate("/admin");
 			}
 		} catch (error) {
@@ -108,9 +108,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 								</FormItem>
 							)}
 						/>
-						<Button
-							className="mt-2 bg-accent-foreground text-foreground"
-							disabled={isLoading}>
+						<Button className="mt-2" disabled={isLoading}>
 							Login
 						</Button>
 					</div>
