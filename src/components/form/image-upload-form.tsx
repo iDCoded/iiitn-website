@@ -47,7 +47,7 @@ export function ImageUploadForm() {
 		if (data.file) {
 			const formData = new FormData();
 			formData.append("file", data.file);
-			formData.append("media_type", "image");
+			formData.append("media_type", data.file.name);
 
 			try {
 				const mediaRes = await fetch(
@@ -123,7 +123,7 @@ export function ImageUploadForm() {
 							<Input
 								type="file"
 								id="image"
-								accept="image/*"
+								accept="*"
 								onChange={handleFileChange}
 								required
 								className="flex-1"
