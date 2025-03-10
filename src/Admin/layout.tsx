@@ -40,6 +40,16 @@ const sidebarData = {
 				},
 			],
 		},
+		{
+			title: "Publications",
+			url: "#",
+			items: [
+				{
+					title: "View All Publications",
+					url: "#publications",
+				},
+			],
+		},
 	],
 };
 

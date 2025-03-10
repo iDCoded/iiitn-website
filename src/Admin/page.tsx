@@ -4,8 +4,15 @@ import FacultyTablePage from "./faculties/page";
 import CardTablePage from "./cards/page";
 import MediaTablePage from "./media/page";
 import UserTablePage from "./users/page";
+import FacultyPublicationsTablePage from "@/Faculty/publications/page";
 
-const validHashes = ["#card", "#media", "#users", "#allfaculty"];
+const validHashes = [
+	"#card",
+	"#media",
+	"#users",
+	"#allfaculty",
+	"#publications",
+];
 
 const AdminPage = () => {
 	const [sidebar, setSidebar] = useState<string | null>(validHashes[0]);
@@ -23,6 +30,7 @@ const AdminPage = () => {
 			{sidebar === "#card" && <CardTablePage />}
 			{sidebar === "#media" && <MediaTablePage />}
 			{sidebar === "#allfaculty" && <FacultyTablePage />}
+			{sidebar === "#publications" && <FacultyPublicationsTablePage />}
 		</div>
 	);
 };
