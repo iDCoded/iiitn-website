@@ -65,6 +65,9 @@ export interface IMedia {
 	updated_time?: Date;
 	added_by?: number | null;
 	added_time?: Date;
+	preference: number;
+	date: Date;
+	expiry_date?: Date;
 }
 
 export interface Publication {
