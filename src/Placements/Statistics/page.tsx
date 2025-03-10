@@ -5,31 +5,9 @@ interface MarkdownData {
 	[year: number]: string;
 }
 
-// Initial Static Data
-const initialMarkdownData: MarkdownData = {
-	2024: `
-  - **Total Students Placed:** 150  
-  - **Highest Package:** ₹32 LPA  
-  - **Average Package:** ₹12.5 LPA  
-  - **Top Recruiters:** Google, Microsoft, Amazon, TCS  
-  `,
-	2023: `
-  - **Total Students Placed:** 135  
-  - **Highest Package:** ₹28 LPA  
-  - **Average Package:** ₹11 LPA  
-  - **Top Recruiters:** Infosys, Wipro, Capgemini, HCL  
-  `,
-	2022: `
-  - **Total Students Placed:** 120  
-  - **Highest Package:** ₹25 LPA  
-  - **Average Package:** ₹10.2 LPA  
-  - **Top Recruiters:** Cognizant, Deloitte, Accenture, IBM  
-  `,
-};
-
 function Statistics() {
 	const [selectedYear, setSelectedYear] = useState<number>(2024);
-	const [markdownData, setMarkdownData] = useState<MarkdownData>(initialMarkdownData);
+	const [markdownData, setMarkdownData] = useState<MarkdownData>();
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -37,7 +15,7 @@ function Statistics() {
 				const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/card/cards/category/placement_statistics`);
 				const data = await response.json();
 
-				const newMarkdownData: MarkdownData = {...initialMarkdownData}; // Merge static data with fetched data
+				const newMarkdownData: MarkdownData = {}; // Merge static data with fetched data
 
 				data.forEach((item: { c_sub_category: string; title: string; content: string }) => {
 					// Extract the year from either c_sub_category or title
@@ -104,7 +82,7 @@ function Statistics() {
 					<span className="text-5xl text-accent">| </span>Placement Statistics - {selectedYear}
 				</h1>
 				<MarkdownPreview
-					source={markdownData[selectedYear] || "*No data available for this year.*"}
+					source={(markdownData?.[selectedYear] || "*No data available for this year.*")}
 					className="text-gray-800 text-base sm:text-lg"
 					style={{
 						backgroundColor: "white",
