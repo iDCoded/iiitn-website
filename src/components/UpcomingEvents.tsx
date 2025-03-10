@@ -62,12 +62,13 @@ const UpcomingEvents = () => {
 
   return (
     <div className="bg-gray-100 py-12 px-6">
-      <h2 className="text-3xl font-bold text-center mb-8">
+      <h2 className="text-2xl sm:text-4xl font-bold text-center mb-8">
         <span className="text-accent">| </span>Upcoming Events
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {events.slice(0, 4).map((event, index) => (
-          <div key={index} className="bg-white shadow-lg  overflow-hidden h-[60vh]">
+          <div onClick={() => navigate(`/events/${event.id}`)}
+		  key={index} className="bg-white shadow-lg  overflow-hidden h-[60vh] hover:cursor-pointer transition duration-300 ease-in-out transform hover:translate-y-[-12px] hover:shadow-primary hover:shadow-6xl">
             <div className="relative">
               <img
                 src={event.image}
