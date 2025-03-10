@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { IMedia } from "@/interfaces/types";
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import ViewMediaDialog from "./media-view-dialog";
 
 const deleteMedia = async (mediaId: number) => {
@@ -41,6 +41,37 @@ export const columns: ColumnDef<IMedia>[] = [
 	{
 		accessorKey: "m_sub_category",
 		header: "Sub Category",
+	},
+	{
+		accessorKey: "date",
+		header: ({ column }) => {
+			return (
+				<Button
+					variant={"ghost"}
+					onClick={() => {
+						column.toggleSorting(column.getIsSorted() === "asc");
+					}}>
+					Date
+					<ArrowUpDown />
+				</Button>
+			);
+		},
+		cell: ({ row }) => {
+			const { date } = row.original;
+			const displayDate = new Date(date);
+
+			return <p>{displayDate.toDateString()}</p>;
+		},
+	},
+	{
+		accessorKey: "expiry_date",
+		header: "Expiry Date",
+		cell: ({ row }) => {
+			const { date } = row.original;
+			const displayDate = new Date(date); // * Edit to show nothing if no date is specified.
+
+			return <p>{displayDate.toDateString()}</p>;
+		},
 	},
 	{
 		id: "actions",
