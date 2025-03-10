@@ -1,46 +1,5 @@
 import { useState, useEffect } from "react";
-import { ChevronDown } from "lucide-react"; // Importing icons
-
-const defimmovablePropData = [
-    {
-        year: "2023",
-        faculty: {
-            "Basic Science": [
-                { name: "Dr. Aatish Daryapurkar", link: "#" },
-                { name: "Dr. Anuradha Singh", link: "#" },
-                { name: "Dr. Charu Goel", link: "#" },
-                { name: "Dr. Kirti Dorshetwar", link: "#" },
-                { name: "Dr. Deepmala Baghel", link: "#" },
-            ],
-            "Computer Science & Engineering": [
-                { name: "Dr. Pooja Jain", link: "#" },
-                { name: "Dr. Jitendra Tembhurne", link: "#" },
-                { name: "Dr. Tausif Diwan", link: "#" },
-                { name: "Dr. Nishat Afshan Ansari", link: "#" },
-                { name: "Dr. Milind Penurkar", link: "#" },
-            ],
-        },
-    },
-    {
-        year: "2022",
-        faculty: {
-            "Basic Science": [
-                { name: "Dr. Aatish Daryapurkar", link: "#" },
-                { name: "Dr. Anuradha Singh", link: "#" },
-                { name: "Dr. Charu Goel", link: "#" },
-                { name: "Dr. Kirti Dorshetwar", link: "#" },
-                { name: "Dr. Deepmala Baghel", link: "#" },
-            ],
-            "Computer Science & Engineering": [
-                { name: "Dr. Pooja Jain", link: "#" },
-                { name: "Dr. Jitendra Tembhurne", link: "#" },
-                { name: "Dr. Tausif Diwan", link: "#" },
-                { name: "Dr. Nishat Afshan Ansari", link: "#" },
-                { name: "Dr. Milind Penurkar", link: "#" },
-            ],
-        },
-    },
-];
+import { ChevronDown } from "lucide-react";
 
 function ImmovableProperty() {
     interface FacultyMember {
@@ -58,8 +17,8 @@ function ImmovableProperty() {
     }
     
     const [immovablePropData, setImmovablePropData] = useState<YearData[]>([]);
+    const [selectedYear, setSelectedYear] = useState<YearData | null>(null);
     const [loading, setLoading] = useState(true);
-    const [selectedYear, setSelectedYear] = useState<YearData>(defimmovablePropData[0]);
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     useEffect(() => {
@@ -72,29 +31,18 @@ function ImmovableProperty() {
                 const data = await res.json();
 
                 interface Entry {
-                    added_by: number;
-                    added_time: string;
-                    date: string | null;
-                    expiry_date: string | null;
-                    m_category: string;
-                    m_id: number;
                     m_sub_category: string;
-                    media_doc_id: string;
-                    media_img_id: string | null;
-                    media_vid_id: string | null;
-                    preference: number;
                     title: string;
-                    updated_by: number;
-                    updated_time: string;
+                    media_doc_id: string;
                 }
                 
                 const groupedData: { [key: string]: YearData } = {};
-
+                
                 data.forEach((entry: Entry) => {
                     const year = entry.m_sub_category;
-                    let title = entry.title.replace(/_items$/, ""); // Remove _items
+                    let title = entry.title.replace(/_items$/, "");
                     const link = entry.media_doc_id;
-                    
+
                     let department = "Others";
                     if (title.endsWith("_bs")) department = "Basic Science";
                     else if (title.endsWith("_cse")) department = "Computer Science & Engineering";
@@ -109,11 +57,12 @@ function ImmovableProperty() {
                 });
 
                 const formattedData = Object.values(groupedData);
-                setImmovablePropData(formattedData.length > 0 ? formattedData : defimmovablePropData);
-                setSelectedYear(formattedData.length > 0 ? formattedData[0] : defimmovablePropData[0]);
+                setImmovablePropData(formattedData);
+                setSelectedYear(formattedData.length > 0 ? formattedData[0] : null);
             } catch (error) {
                 console.error("Error fetching immovable properties:", error);
-                setImmovablePropData(defimmovablePropData);
+                setImmovablePropData([]);
+                setSelectedYear(null);
             } finally {
                 setLoading(false);
             }
@@ -126,11 +75,14 @@ function ImmovableProperty() {
         return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
     }
 
+    if (!selectedYear) {
+        return <div className="min-h-screen flex items-center justify-center">No data available.</div>;
+    }
+
     return (
         <div className="bg-gray-100 min-h-screen flex flex-col">
             <header className="bg-primary text-white py-8 text-center">
                 <h1 className="text-3xl md:text-5xl font-bold">Immovable Properties</h1>
-                <p className="text-base md:text-lg mt-2 italic">"Navigate your way to IIIT Nagpur with ease."</p>
             </header>
 
             <div className="md:hidden p-4">
@@ -178,7 +130,5 @@ function ImmovableProperty() {
         </div>
     );
 }
-
-
 
 export default ImmovableProperty;
