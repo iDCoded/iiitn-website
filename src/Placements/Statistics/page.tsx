@@ -34,12 +34,19 @@ function Statistics() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch(`${process.env.VITE_API_BASE_URL}/media/media/category/placement_statistics`)
+				const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/placement_statistics`);
 				const data = await response.json();
-				const newMarkdownData: MarkdownData = { ...initialMarkdownData }; // Merge static data with fetched data
 
-				data.forEach((item: { year: number; markdown: string }) => {
-					newMarkdownData[item.year] = item.markdown;
+				const newMarkdownData: MarkdownData = {...initialMarkdownData}; // Merge static data with fetched data
+
+				data.forEach((item: { c_sub_category: string; title: string; content: string }) => {
+					// Extract the year from either c_sub_category or title
+					const year = parseInt(item.c_sub_category) || parseInt(item.title);
+
+					// Only update if the year is valid
+					if (!isNaN(year)) {
+						newMarkdownData[year] = item.content; // Store the markdown content
+					}
 				});
 
 				setMarkdownData(newMarkdownData);
@@ -71,10 +78,7 @@ function Statistics() {
 
 			{/* Year Selector */}
 			<div className="w-full max-w-4xl mx-auto mt-8 px-4">
-				<label
-					htmlFor="year"
-					className="block text-lg font-semibold text-gray-700"
-				>
+				<label htmlFor="year" className="block text-lg font-semibold text-gray-700">
 					Select Year:
 				</label>
 				<select
@@ -83,7 +87,7 @@ function Statistics() {
 					onChange={(e) => setSelectedYear(parseInt(e.target.value))}
 					className="mt-2 w-full sm:w-1/2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-accent focus:border-accent text-gray-700"
 				>
-					{Object.keys(markdownData)
+					{Object.keys(markdownData || {})
 						.map(Number)
 						.sort((a, b) => b - a)
 						.map((year) => (
