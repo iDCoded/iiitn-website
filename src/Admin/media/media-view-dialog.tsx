@@ -25,9 +25,9 @@ const ViewMediaDialog = ({ media }: { media: IMedia }) => {
 					</DialogHeader>
 					<Card className="shadow-lg rounded-lg">
 						<img
-							src={"/placeholder.svg"}
+							src={media.media_img_id?.toString() || "/placeholder.svg"}
 							alt={media.title}
-							className="w-full h-40 object-cover"
+							className="w-full h-40 object-cover rounded-lg"
 						/>
 					</Card>
 				</DialogContent>

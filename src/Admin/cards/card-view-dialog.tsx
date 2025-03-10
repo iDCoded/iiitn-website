@@ -26,9 +26,9 @@ const ViewCardDialog = ({ card }: { card: ICard }) => {
 					</DialogHeader>
 					<Card className="shadow-lg rounded-lg">
 						<img
-							src={"/placeholder.svg"}
-							alt={card.caption}
-							className="w-full h-40 object-cover"
+							src={card.media_img_id?.toString() || "placeholder.svg"}
+							alt={card.title}
+							className="w-full h-40 object-cover rounded-t-lg"
 						/>
 						<CardContent className="p-4 max-h-96 overflow-y-auto">
 							<h3 className="text-lg font-semibold text-[#002147]">
