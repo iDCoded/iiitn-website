@@ -31,18 +31,18 @@ export const columns: ColumnDef<Faculty>[] = [
 		accessorKey: "email",
 		header: "Email",
 	},
+	// {
+	// 	accessorKey: "phone_no",
+	// 	header: "Phone Number",
+	// },
 	{
-		accessorKey: "phone_no",
-		header: "Phone Number",
-	},
-	{
-		accessorKey: "experience",
+		accessorKey: "preference",
 		header: ({ column }) => {
 			return (
 				<Button
 					variant={"ghost"}
 					onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-					Experience
+					Preference
 					<ArrowUpDown />
 				</Button>
 			);
@@ -52,25 +52,30 @@ export const columns: ColumnDef<Faculty>[] = [
 		},
 	},
 	{
-		accessorKey: "positions",
-		header: "Positions",
+		accessorKey: "experience",
+		header: "Experience",
 	},
 	{
-		accessorKey: "research",
-		header: "Research",
+		accessorKey: "positions",
+		header: "Position",
 	},
+	// {
+	// 	accessorKey: "research",
+	// 	header: "Research",
+	// },
 	{
 		accessorKey: "join_year",
-		header: ({ column }) => {
-			return (
-				<Button
-					variant={"ghost"}
-					onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-					Join Year
-					<ArrowUpDown />
-				</Button>
-			);
-		},
+		header: "Join Year",
+		// header: ({ column }) => {
+		// 	return (
+		// 		<Button
+		// 			variant={"ghost"}
+		// 			onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+		// 			Join Year
+		// 			<ArrowUpDown />
+		// 		</Button>
+		// 	);
+		// },
 		cell: ({ row }) => {
 			return <p className="text-center">{row.original.join_year}</p>;
 		},
