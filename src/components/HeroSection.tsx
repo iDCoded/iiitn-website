@@ -1,5 +1,4 @@
 import hero from "../assets/IIIT22.jpg";
-import Announcements from "./Announcements";
 import { useState, useEffect } from "react";
 
 const HeroSection = () => {
@@ -45,11 +44,6 @@ const HeroSection = () => {
                         An Institution of National Importance
                     </p>
                 </div>
-            </div>
-
-            {/* 📢 Announcements - Fixed at the bottom of the screen */}
-            <div className="absolute bottom-0 left-0 w-full">
-                <Announcements />
             </div>
         </section>
     );

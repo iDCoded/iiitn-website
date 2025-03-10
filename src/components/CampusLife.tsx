@@ -17,11 +17,11 @@ import {
 } from "./ui/dialog";
 
 const campusLifeImages = [
-	{ src: img1 },
-	{ src: img2 },
-	{ src: img3 },
-	{ src: img4 },
-	{ src: img5 },
+	{ src: img1, content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque porro dolor eligendi doloribus, recusandae ex? Fugiat voluptates quae quo! Dolores." },
+	{ src: img2, content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque porro dolor eligendi doloribus, recusandae ex? Fugiat voluptates quae quo! Dolores."},
+	{ src: img3, content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque porro dolor eligendi doloribus, recusandae ex? Fugiat voluptates quae quo! Dolores."},
+	{ src: img4, content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque porro dolor eligendi doloribus, recusandae ex? Fugiat voluptates quae quo! Dolores, nihil placeat voluptate est voluptatem consequatur aliquid inventore exercitationem soluta nobis temporibus magnam iste culpa eaque sapiente?"},
+	{ src: img5, content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque porro dolor eligendi doloribus, recusandae ex? Fugiat voluptates quae quo! Dolores, nihil placeat voluptate est voluptatem consequatur aliquid inventore exercitationem soluta nobis temporibus magnam iste culpa eaque sapiente?"},
 ];
 
 const CampusLife = () => {
@@ -34,7 +34,7 @@ const CampusLife = () => {
 				animate={inView ? { opacity: 1, y: 0 } : {}}
 				transition={{ duration: 0.8, ease: "easeOut" }}
 				className="max-w-7xl mx-auto">
-				
+
 				{/* Section Header */}
 				<div className="flex flex-col sm:flex-row justify-between items-center mb-8">
 					<h2 className="text-4xl font-bold text-primary">
@@ -82,16 +82,22 @@ const CampusLife = () => {
 					{campusLifeImages.slice(0, 3).map((item, index) => (
 						<motion.div
 							key={index}
-							className="relative rounded-xl overflow-hidden shadow-lg"
+							className="relative rounded-xl overflow-hidden shadow-lg group"
 							initial={{ opacity: 0, scale: 0.8 }}
 							animate={inView ? { opacity: 1, scale: 1 } : {}}
 							transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}>
-							
+
+							{/* Image */}
 							<img
 								src={item.src}
 								alt="Campus Life"
-								className="w-full h-64 object-cover rounded-xl transition-transform duration-500 hover:scale-105"
+								className="w-full h-64 object-cover rounded-xl transition-transform duration-500 group-hover:scale-95"
 							/>
+
+							{/* Overlay with Blur Effect */}
+							<div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-10">
+								<p className="text-white text-lg font-semibold">{item.content}</p>
+							</div>
 						</motion.div>
 					))}
 				</div>
@@ -100,18 +106,25 @@ const CampusLife = () => {
 					{campusLifeImages.slice(3).map((item, index) => (
 						<motion.div
 							key={index}
-							className="relative rounded-xl overflow-hidden shadow-lg"
+							className="relative rounded-xl overflow-hidden shadow-lg group"
 							initial={{ opacity: 0, scale: 0.8 }}
 							animate={inView ? { opacity: 1, scale: 1 } : {}}
-							transition={{ duration: 0.5, ease: "easeOut", delay: (index + 3) * 0.1 }}>
-							
+							transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}>
+
+							{/* Image */}
 							<img
 								src={item.src}
 								alt="Campus Life"
-								className="w-full h-64 object-cover rounded-xl transition-transform duration-500 hover:scale-105"
+								className="w-full h-64 object-cover rounded-xl transition-transform duration-500 group-hover:scale-95"
 							/>
+
+							{/* Overlay with Blur Effect */}
+							<div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-10">
+								<p className="text-white text-lg font-semibold">{item.content}</p>
+							</div>
 						</motion.div>
 					))}
+
 				</div>
 
 			</motion.div>

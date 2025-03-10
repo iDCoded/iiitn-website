@@ -76,52 +76,27 @@ const Announcements: React.FC = () => {
     }, []);
 
     return (
-        <div className="relative w-full overflow-hidden bg-primary text-white flex items-center h-12">
-            {/* Announcement Label */}
-            <div className="bg-accent text-white px-4 py-2 font-semibold flex-shrink-0">
-                Announcements:
-            </div>
+        <div className="flex w-full h-[70vh] gap-4 px-6">
+            {/* Left Section: Announcements (1/3rd) */}
+            <div className="w-1/3 bg-primary text-white flex flex-col py-4 rounded-lg shadow-lg">
+                {/* Announcement Label */}
+                <div className="bg-accent text-white px-4 py-2 font-semibold text-center">
+                    Announcements:
+                </div>
 
-            {/* Scrolling Marquee */}
-            <div className="marquee-container flex items-center overflow-hidden">
-                <div className="marquee-content flex whitespace-nowrap">
-                    {announcements.length > 0 && (
-                        <>
-                            {/* Duplicate for seamless looping */}
-                            {[...announcements, ...announcements].map((announcement, index) => (
-                                <span
-                                    key={index}
-                                    onClick={() => navigate(`/announcements/${announcement.id}`)}
-                                    className="px-6 border-r border-gray-400 text-sm cursor-pointer hover:text-yellow-300"
-                                >
-                                    {announcement.title}
-                                </span>
-                            ))}
-                        </>
-                    )}
+                {/* Vertical List of Announcements */}
+                <div className="flex-1 overflow-y-auto px-4">
+                    {announcements.slice(0, 5).map((announcement) => (
+                        <div
+                            key={announcement.id}
+                            onClick={() => navigate(`/announcements/${announcement.id}`)}
+                            className="py-3 border-b border-gray-400 text-sm cursor-pointer hover:text-yellow-300 hover:bg-accent/50 transition-all duration-200"
+                        >
+                            {announcement.title}
+                        </div>
+                    ))}
                 </div>
             </div>
-
-            {/* Marquee Styling */}
-            <style>{`
-                .marquee-container {
-                    flex: 1;
-                    min-width: 0;
-                    overflow: hidden;
-                    position: relative;
-                }
-                .marquee-content {
-                    display: flex;
-                    animation: marquee 30s linear infinite;
-                }
-                @keyframes marquee {
-                    0% { transform: translateX(0); }
-                    100% { transform: translateX(-50%); }
-                }
-                .marquee-container:hover .marquee-content {
-                    animation-play-state: paused;
-                }
-            `}</style>
         </div>
     );
 };
