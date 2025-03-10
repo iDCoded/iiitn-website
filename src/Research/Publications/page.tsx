@@ -19,6 +19,7 @@ const Publications = () => {
         ECE: [],
         BASIC: [],
     });
+    const [searchQuery, setSearchQuery] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -30,18 +31,16 @@ const Publications = () => {
                 console.log(data);
                 const filteredData = data.filter((type: any) => type.type === "Research");
 
-                // Initialize empty structure for expected branches
                 const formattedData: Record<string, Publication[]> = {
                     CSE: [],
                     ECE: [],
                     BASIC: [],
                 };
 
-                // Process API data
                 filteredData.forEach((pub: any) => {
                     let branch = pub.branch_enum.toUpperCase();
-                    if (branch === "BS") branch = "BASIC"; // Normalize "BS" to "BASIC"
-                    if (!formattedData[branch]) formattedData[branch] = []; // Ensure branch exists
+                    if (branch === "BS") branch = "BASIC";
+                    if (!formattedData[branch]) formattedData[branch] = [];
                     formattedData[branch].push(pub);
                 });
 
@@ -55,9 +54,14 @@ const Publications = () => {
         fetchPublications();
     }, []);
 
+    const filteredPublications = publicationsData[selectedTab].filter(
+        (pub) =>
+            pub.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            pub.lead_name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <>
-            {/* Hero Section */}
             <header
                 className="relative w-full h-75 flex flex-col justify-center items-center text-white text-center shadow-lg z-1"
                 style={{ backgroundImage: `url(${heroimage})`, backgroundSize: "cover", backgroundPosition: "center" }}
@@ -69,13 +73,11 @@ const Publications = () => {
                 </div>
             </header>
 
-            {/* Main Content */}
             <div className="max-w-6xl mx-auto px-6 py-10">
                 <h1 className="text-3xl font-bold mb-6 flex items-center">
                     <span className="text-accent text-4xl mr-2">|</span> Research Publications
                 </h1>
 
-                {/* Tabs */}
                 <div className="flex gap-4 mb-6 border-b border-gray-300">
                     {["CSE", "ECE", "BASIC"].map((branch) => (
                         <button
@@ -94,14 +96,23 @@ const Publications = () => {
                         </button>
                     ))}
                 </div>
+                
+                <div>
+                    <input
+                        type="text"
+                        placeholder="Search for Publications"
+                        className="w-full p-2 border border-gray-300 rounded-md"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                </div>
 
-                {/* Publications List */}
                 {loading ? (
                     <p>Loading publications...</p>
                 ) : error ? (
                     <p className="text-red-600">Failed to load publications.</p>
-                ) : publicationsData[selectedTab].length === 0 ? (
-                    <p className="text-gray-500 italic">No publications available for this department.</p>
+                ) : filteredPublications.length === 0 ? (
+                    <p className="text-gray-500 italic">No publications found.</p>
                 ) : (
                     <motion.div
                         key={selectedTab}
@@ -111,7 +122,7 @@ const Publications = () => {
                         transition={{ duration: 0.3 }}
                         className="grid grid-cols-1 md:grid-cols-2 gap-6"
                     >
-                        {publicationsData[selectedTab].map((pub, index) => (
+                        {filteredPublications.map((pub, index) => (
                             <Card key={index} className="shadow-md">
                                 <CardHeader>
                                     <CardTitle className="text-lg">{pub.title}</CardTitle>

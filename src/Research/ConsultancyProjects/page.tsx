@@ -23,6 +23,8 @@ const Projects = () => {
     const [projectsData, setProjectsData] = useState<Record<"cse" | "ece" | "bs", Project[]>>({ cse: [], ece: [], bs: [] });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+
 
     useEffect(() => {
         const fetchProjects = async () => {
@@ -57,6 +59,12 @@ const Projects = () => {
         };
         fetchProjects();
     }, []);
+
+    const filteredConsultancyProjects = projectsData[selectedTab].filter(
+        (project) =>
+            project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            project.lead_name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return (
         <>
@@ -96,6 +104,15 @@ const Projects = () => {
                     ))}
                 </div>
 
+                <div>
+                    <input
+                        type="text"
+                        placeholder="Search Projects"
+                    	value={searchQuery}
+						onChange={(e) => setSearchQuery(e.target.value)}
+					/>
+                </div>
+
                 {loading ? (
                     <p>Loading projects...</p>
                 ) : error && projectsData[selectedTab].length < 1 ? (
@@ -106,7 +123,7 @@ const Projects = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {projectsData[selectedTab].map((project, index) => (
+                        {filteredConsultancyProjects.map((project, index) => (
                             <Card key={index} className="shadow-md">
                                 <CardHeader>
                                     <CardTitle className="text-lg">{project.title}</CardTitle>

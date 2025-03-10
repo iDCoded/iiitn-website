@@ -23,7 +23,8 @@ const Projects = () => {
 	const [projectsData, setProjectsData] = useState<Record<"cse" | "ece" | "bs", Project[]>>({ cse: [], ece: [], bs: [] });
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
-
+	const [searchQuery, setSearchQuery] = useState("");
+	
 	useEffect(() => {
 		const fetchProjects = async () => {
 			try {
@@ -58,6 +59,12 @@ const Projects = () => {
 		fetchProjects();
 	}, []);
 
+	const filteredProjects = projectsData[selectedTab].filter(
+		(project) =>
+			project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+			project.lead_name.toLowerCase().includes(searchQuery.toLowerCase())
+	);
+
 	return (
 		<>
 			<header
@@ -89,35 +96,51 @@ const Projects = () => {
 							className={`relative px-6 py-2 text-lg font-medium transition-all duration-300 ${selectedTab === dept
 								? "text-accent font-bold"
 								: "text-gray-500 hover:text-gray-700"
-								}`}
+							}`}
 							onClick={() => setSelectedTab(dept as "cse" | "ece" | "bs")}>
 							{dept.toUpperCase()}
 						</button>
 					))}
 				</div>
+				<div>
+					<input
+						type="text"
+						placeholder="Search Projects"
+						className="w-full px-4 py-2 border border-gray-300 rounded-md"
+						value={searchQuery}
+						onChange={(e) => setSearchQuery(e.target.value)}
+					/>
+				</div>
 
 				{loading ? (
-					<p>Loading projects...</p>
-				) : error && projectsData[selectedTab].length < 1 ? (
-					<p className="text-red-600">Failed to load projects.</p>
-				) : (
+                    <p>Loading projects...</p>
+                ) : error ? (
+                    <p className="text-red-600">Failed to load publications.</p>
+                ) : filteredProjects.length === 0 ? (
+                    <p className="text-gray-500 italic">No projects found.</p>
+                ) : (
 					<motion.div
 						key={selectedTab}
 						initial={{ opacity: 0, y: 10 }}
 						animate={{ opacity: 1, y: 0 }}
 						className="grid grid-cols-1 md:grid-cols-2 gap-6">
-						{projectsData[selectedTab].map((project, index) => (
+						{filteredProjects.map((project, index) => (
 							<Card key={index} className="shadow-md">
 								<CardHeader>
 									<CardTitle className="text-lg">{project.title}</CardTitle>
 								</CardHeader>
 								<CardContent>
 									<p className="text-gray-600">Lead Researcher: {project.lead_name}</p>
-									<p>Status: {project.status}</p>
-									<p>Published In: {project.published_in}</p>
-									<p>{project.content}</p>
-									<a href={project.link} className="text-blue-500" target="_blank" rel="noopener noreferrer">More Info</a>
-								</CardContent>
+									<p className="text-gray-600">Status: {project.status}</p>
+									<p className="text-gray-600">Published in: {project.published_in}</p>
+									<p className="text-gray-600">{project.content}</p>
+									{
+										project.link && (
+											<a href={project.link} className="text-blue-500" target="_blank" rel="noopener noreferrer">More Info</a>
+										)
+									}
+									</CardContent>
+									
 							</Card>
 						))}
 					</motion.div>
@@ -125,6 +148,6 @@ const Projects = () => {
 			</div>
 		</>
 	);
-};
+}
 
 export default Projects;

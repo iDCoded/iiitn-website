@@ -82,37 +82,19 @@ const Navbar = () => {
 				},
 				{ name: "Institute Profile ", href: " /institute/institutesprofile" },
 				{
-					name: "Administration ",
+					name: "Governance",
 					subLinks: [
 						{
-							name: "Board Of Governors",
-							href: "/governance/committee#Board-of-Governors",
+							name: "Committees",
+							href: "/governance/committee",
 						},
 						{
-							name: "Finance Committee",
-							href: "/governance/committee#Finance-Committee",
-						},
-						{ name: "Senate", href: "/governance/committee#Senate" },
-						{
-							name: "Building Works Committee",
-							href: "/governance/committee#Building-Works-Committee",
-						},
-						{
-							name: "Academic Administration",
+							name: "Administration",
 							href: "/governance/administration",
 						},
-						{
-							name: "Grievance Committee SC/ST Cell",
-							href: "/pages/grievancecomm",
-						},
-						{
-							name: "Anti-Ragging Committee",
-							href: "/pages/antiragging",
-						},
-						{ name: "Internal Complaint Committee", href: "/pages/icc" },
-					],
+						],
 				},
-				{ name: "Campus Photo Gallery", href: "/pages/campusgallery" },
+				{ name: "Campus Gallery", href: "/pages/campusgallery" },
 				{ name: "Facilities", href: "/institute/facilities" },
 				{ name: "Notices", href: "/notices" },
 			],

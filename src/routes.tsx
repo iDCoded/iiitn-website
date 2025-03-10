@@ -91,6 +91,7 @@ import HostelLife from "./Pages/HostelLife";
 import CampusGallery from "./Pages/CampusGallery.tsx";
 import FacultyPage from "./Faculty/page.tsx";
 import AntiRaggingCommittee from "./Pages/AntiRaggingCommittee.tsx";
+import ConsultancyProjects from "./Research/ConsultancyProjects/page.tsx";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -230,6 +231,7 @@ const AppRoutes = () => (
 			path="/institute/immutableproperties"
 			element={<ImmutableProperty />}></Route>
 		<Route path="/academics/curricula" element={<AcademicCurriculum />}></Route>
+		<Route path="/research/consultancyprojects" element={<ConsultancyProjects />}></Route>
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );
