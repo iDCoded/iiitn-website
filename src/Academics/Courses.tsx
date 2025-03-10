@@ -157,7 +157,7 @@ function Courses() {
 		<div className="bg-gray-100 min-h-screen">
 			{/* Header Section */}
 			<header className="bg-primary text-white py-16 text-center">
-				<h1 className="text-5xl font-bold">Courses at IIIT Nagpur</h1>
+				<h1 className="text-5xl font-bold">Academic Programs at IIIT Nagpur</h1>
 				<p className="text-lg mt-2 italic">"Celebrating Excellence & Inspiring the Future"</p>
 			</header>
 

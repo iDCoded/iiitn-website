@@ -21,12 +21,8 @@ const AnnualAccountAndReports = () => {
                 }
                 
                 const data = await res.json();
-                console.log("Parsed Data:", data);
-    
-                if (!Array.isArray(data)) {
-                    throw new Error("Expected an array but received something else");
-                }
-    
+                console.log(data);
+        
                 // Mapping sub_category names to appropriate headings
                 const categoryMapping: { [key: string]: string } = {
                     ann_reports: "Annual Reports",
