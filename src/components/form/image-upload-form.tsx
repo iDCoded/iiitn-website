@@ -22,7 +22,7 @@ const imageUploadSchema = z.object({
 	file: z.instanceof(File).optional(),
 });
 
-export function ImageUploadForm() {
+export function MediaUploadForm() {
 	const [preview, setPreview] = useState<string | null>(null);
 
 	const form = useForm({
@@ -94,9 +94,9 @@ export function ImageUploadForm() {
 					<ImageIcon className="h-6 w-6 text-primary" />
 				</div>
 				<div>
-					<h2 className="text-2xl font-semibold">Upload Image</h2>
+					<h2 className="text-2xl font-semibold">Upload Media</h2>
 					<p className="text-sm text-gray-500">
-						Add a new image to the college gallery
+						Add a new media to the college gallery
 					</p>
 				</div>
 			</div>
@@ -110,7 +110,7 @@ export function ImageUploadForm() {
 							<FormItem>
 								<FormLabel>Title</FormLabel>
 								<FormControl>
-									<Input placeholder="Enter image title" {...field} />
+									<Input placeholder="Enter media title" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -118,11 +118,11 @@ export function ImageUploadForm() {
 					/>
 
 					<div className="space-y-2">
-						<Label htmlFor="image">Select Image</Label>
+						<Label htmlFor="image">Select Media</Label>
 						<div className="flex items-center gap-3">
 							<Input
 								type="file"
-								id="image"
+								id="media"
 								accept="*"
 								onChange={handleFileChange}
 								required
@@ -131,7 +131,7 @@ export function ImageUploadForm() {
 							<Button
 								type="button"
 								variant="outline"
-								onClick={() => document.getElementById("image")?.click()}>
+								onClick={() => document.getElementById("media")?.click()}>
 								<ImageIcon className="mr-2 h-4 w-4" />
 								Browse
 							</Button>
@@ -185,7 +185,7 @@ export function ImageUploadForm() {
 						size="lg"
 						className="w-full"
 						disabled={!preview}>
-						<Upload className="mr-2 h-4 w-4" /> Upload Image
+						<Upload className="mr-2 h-4 w-4" /> Upload Media
 					</Button>
 				</form>
 			</Form>

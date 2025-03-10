@@ -7,7 +7,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
-import { ImageUploadForm } from "@/components/form/image-upload-form";
+import { MediaUploadForm } from "@/components/form/image-upload-form";
 
 export function MediaUpload() {
 	return (
@@ -22,7 +22,7 @@ export function MediaUpload() {
 				<DialogHeader>
 					<DialogTitle>&nbsp;</DialogTitle>
 				</DialogHeader>
-				<ImageUploadForm />
+				<MediaUploadForm />
 			</DialogContent>
 		</Dialog>
 	);
