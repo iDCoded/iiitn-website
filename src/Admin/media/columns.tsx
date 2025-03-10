@@ -4,6 +4,7 @@ import {
 	DropdownMenuContent,
 	DropdownMenuItem,
 	DropdownMenuLabel,
+	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { IMedia } from "@/interfaces/types";
@@ -88,6 +89,19 @@ export const columns: ColumnDef<IMedia>[] = [
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align="end">
 						<DropdownMenuLabel>Actions</DropdownMenuLabel>
+						<DropdownMenuSeparator />
+						<DropdownMenuItem
+							onClick={() => {
+								if (media.media_img_id)
+									navigator.clipboard.writeText(media.media_img_id.toString());
+								else if (media.media_doc_id)
+									navigator.clipboard.writeText(media.media_doc_id.toString());
+								else if (media.media_vid_id)
+									navigator.clipboard.writeText(media.media_vid_id.toString());
+							}}>
+							Copy Public URL
+						</DropdownMenuItem>
+						<DropdownMenuSeparator />
 						<DropdownMenuItem
 							className="text-red-400"
 							onClick={() => {
