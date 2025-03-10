@@ -13,12 +13,12 @@ type Event = {
 
 const HomeEventCard = ({ event }: { event: Event }) => (
 	<div
-		className={`relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all bg-white backdrop-blur-lg border border-gray-200
+		className={`relative overflow-hidden  shadow-lg hover:shadow-xl transition-all bg-white backdrop-blur-lg border border-gray-200
             ${
 							event.large ? "md:h-full" : "md:h-[200px]"
 						} min-h-[250px] sm:min-h-[300px] flex flex-col`}>
 		{/* Event Image */}
-		<div className="absolute inset-0 overflow-hidden rounded-lg bg-black">
+		<div className="absolute inset-0 overflow-hidden  bg-black">
 			<img
 				src={event.image || "/default-event.jpg"}
 				alt={event.title}
@@ -43,14 +43,14 @@ const HomeEventCard = ({ event }: { event: Event }) => (
 
 
 			{/* Event Date Badge */}
-			<div className="absolute top-[-3vh] right-4 bg-acce</p>nt text-white text-center px-2 py-1 rounded-md font-bold">
+			<div className="absolute top-[-3vh] right-4 bg-acce</p>nt text-white text-center px-2 py-1  font-bold">
 				{event.date}
 			</div>
 
 			{/* Event Link */}
 			<a
 				href={`/events/${event.id}`}
-				className="bg-white text-primary px-4 py-2 rounded-lg font-semibold shadow-md hover:bg-accent hover:text-white transition mt-2 justify-self-end flex">
+				className="bg-white text-primary px-4 py-2  font-semibold shadow-md hover:bg-accent hover:text-white hover:rounded-md transition mt-2 justify-self-end flex">
 				View Details
 			</a>
 		</div>

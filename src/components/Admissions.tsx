@@ -108,7 +108,7 @@ const Admissions = () => {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                         >
                             <Card
-                                className="h-48 sm:h-64 relative overflow-hidden bg-white shadow-lg rounded-lg border border-gray-200 transition-transform duration-300 ease-in-out transform hover:scale-[1.05] hover:shadow-2xl group"
+                                className="h-48 sm:h-64 relative overflow-hidden bg-white shadow-lg  border border-gray-200 transition-transform duration-300 ease-in-out transform hover:scale-[1.05] hover:shadow-2xl group"
                                 onMouseEnter={(e) => {
                                     handleMouseEnter(e, index);
                                     setHovered(index);
@@ -121,7 +121,7 @@ const Admissions = () => {
                                 {/* Ripple Effect */}
                                 {ripple.index === index && (
                                     <div
-                                        className="absolute bg-white/30 rounded-full opacity-60 animate-ripple"
+                                        className="absolute bg-white/30  opacity-60 animate-ripple"
                                         style={{
                                             left: ripple.x,
                                             top: ripple.y,

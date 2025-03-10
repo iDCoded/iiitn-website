@@ -86,9 +86,9 @@ const ResearchConsultancy = () => {
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.95 }}
 						>
-							<Card className="relative bg-gray-900/40 backdrop-blur-xl border border-gray-600 shadow-xl rounded-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:border-accent w-full h-full">
+							<Card className="relative bg-gray-900/40 backdrop-blur-xl border border-gray-600 shadow-xl  overflow-hidden transition-all duration-500 hover:shadow-2xl hover:border-accent w-full h-full">
 								{/* Glow Effect on Hover */}
-								<div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-accent/20 blur-xl"></div>
+								<div className="absolute inset-0  opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-accent/20 blur-xl"></div>
 
 								{/* Card Content */}
 								<CardContent className="p-8 text-center relative z-10 flex flex-col justify-center items-center h-full">

@@ -165,7 +165,7 @@ const UpcomingEvents = () => {
 								animate={isInView ? { opacity: 1, x: 0 } : {}}
 								transition={{ duration: 0.6, delay: index * 0.2 }}
 								onClick={() => navigate(`/events/${event.id}`)}
-								className="cursor-pointer transition-all duration-300 hover:shadow-lg rounded-lg">
+								className="cursor-pointer transition-all duration-300 hover:shadow-lg ">
 								<HomeEventCard event={event} />
 							</motion.div>
 						))}
