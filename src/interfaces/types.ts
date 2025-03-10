@@ -15,7 +15,7 @@ export interface Person {
 export interface Faculty {
 	f_id: string;
 	p_id: string;
-	d_id: string;
+	b_id: string;
 	pub_id: string;
 	name: string;
 	email: string;
@@ -25,6 +25,7 @@ export interface Faculty {
 	positions: string;
 	education: string;
 	experience: number;
+	preference: number;
 	teaching: string;
 	research: string;
 	f_or_s: "Faculty" | "Staff";
