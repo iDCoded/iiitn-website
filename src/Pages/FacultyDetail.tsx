@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
+import MDEditor from "@uiw/react-md-editor";
 
 interface Faculty {
     f_id: number;
@@ -18,8 +19,9 @@ interface Faculty {
     research?: string | null;
     param?: string;
     image: string;
-    designation: string;
+   
     dept_name: string;
+    content: string;
 }
 
 const FacultyDetail = () => {
@@ -55,8 +57,9 @@ const FacultyDetail = () => {
                     research: data.research,
                     param: data.param,
                     image: data.image_path || "/default-profile.png", // Fallback Image
-                    designation: data.designation,
+                   
                     dept_name: data.dept_name,
+                    content: data.content,
                 });
             } catch (error) {
                 console.error("Error fetching faculty data:", error);
@@ -91,11 +94,11 @@ const FacultyDetail = () => {
         );
     }
 
-    // Function to safely split comma-separated strings into lists
-    const formatList = (text?: string | null) => {
-        if (!text) return null;
-        return text.split(",").map((item) => item.trim());
-    };
+    // // Function to safely split comma-separated strings into lists
+    // const formatList = (text?: string | null) => {
+    //     if (!text) return null;
+    //     return text.split(",").map((item) => item.trim());
+    // };
 
     return (
         <div className="max-w-4xl mx-auto px-6 py-10">
@@ -115,65 +118,15 @@ const FacultyDetail = () => {
                         />
                     </div>
                     <h2 className="text-2xl font-bold mt-4">{faculty.name}</h2>
-                    <p className="text-gray-600">{faculty.designation}</p>
+                 
                 </CardHeader>
 
                 <CardContent className="text-left space-y-4">
-                    <p><strong>Department:</strong> {faculty.dept_name}</p>
-                    <p><strong>Joining Year:</strong> {faculty.join_year}</p>
+                <MDEditor.Markdown 
+    source={faculty.content} 
+    style={{ backgroundColor: "transparent", color: "black" }} 
+/>
 
-                    {faculty.education && (
-                        <div>
-                            <strong>Education:</strong>
-                            <ul className="list-disc list-inside text-gray-700 mt-1">
-                                {formatList(faculty.education)?.map((edu, index) => (
-                                    <li key={index}>{edu}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-
-                    {faculty.experience && (
-                        <div>
-                            <strong>Experience:</strong>
-                            <ul className="list-disc list-inside text-gray-700 mt-1">
-                                {formatList(faculty.experience)?.map((exp, index) => (
-                                    <li key={index}>{exp}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-
-                    {faculty.positions && (
-                        <div>
-                            <strong>Teaching Positions:</strong>
-                            <ul className="list-disc list-inside text-gray-700 mt-1">
-                                {formatList(faculty.positions)?.map((pos, index) => (
-                                    <li key={index}>{pos}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-
-                    {faculty.research && (
-                        <div>
-                            <strong>Research & Publications:</strong>
-                            <ul className="list-disc list-inside text-gray-700 mt-1">
-                                {formatList(faculty.research)?.map((res, index) => (
-                                    <li key={index}>{res}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-
-                    <div>
-                        <strong>Contact:</strong>
-                        <p className="text-gray-700 mt-1">{faculty.phone_no || "Not Available"}</p>
-                    </div>
-                    <div>
-                        <strong>Email:</strong>
-                        <p className="text-gray-700 mt-1">{faculty.email || "Not Available"}</p>
-                    </div>
                 </CardContent>
             </Card>
         </div>
