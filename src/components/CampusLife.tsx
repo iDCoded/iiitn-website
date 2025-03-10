@@ -95,7 +95,7 @@ const CampusLife = () => {
 							/>
 
 							{/* Overlay with Blur Effect */}
-							<div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-10">
+							<div className="absolute inset-0 bg-accent/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-10">
 								<p className="text-white text-lg font-semibold">{item.content}</p>
 							</div>
 						</motion.div>
@@ -119,7 +119,7 @@ const CampusLife = () => {
 							/>
 
 							{/* Overlay with Blur Effect */}
-							<div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-10">
+							<div className="absolute inset-0 bg-accent/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-10">
 								<p className="text-white text-lg font-semibold">{item.content}</p>
 							</div>
 						</motion.div>
