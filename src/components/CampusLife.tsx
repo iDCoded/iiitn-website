@@ -43,9 +43,9 @@ const CampusLife = () => {
 					<div className="flex gap-4 mt-4 sm:mt-0">
 						<Dialog>
 							<DialogTrigger asChild>
-								<Button className="px-6 py-3 text-lg font-semibold bg-accent hover:bg-accent-dark text-white transition-all duration-300">
+								<button className="px-6 py-3 h-10 flex items-center hover:cursor-pointer text-lg font-semibold bg-accent hover:bg-accent-dark text-white transition-all duration-300">
 									Campus Tour
-								</Button>
+								</button>
 							</DialogTrigger>
 							<DialogContent className="max-w-screen-lg w-full">
 								<DialogHeader>
@@ -66,9 +66,9 @@ const CampusLife = () => {
 						</Dialog>
 
 						<a href="/students/hostellife">
-							<Button className="px-6 py-3 text-lg font-semibold bg-primary hover:bg-primary-dark text-white transition-all duration-300">
+							<button className="px-6 py-3 text-lg h-10 flex  items-center font-semibold bg-primary hover:bg-primary-dark hover:cursor-pointer text-white transition-all duration-300">
 								More
-							</Button>
+							</button>
 						</a>
 					</div>
 				</div>

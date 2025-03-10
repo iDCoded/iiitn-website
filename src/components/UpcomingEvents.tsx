@@ -67,7 +67,7 @@ const UpcomingEvents = () => {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {events.slice(0, 4).map((event, index) => (
-          <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden h-[60vh]">
+          <div key={index} className="bg-white shadow-lg  overflow-hidden h-[60vh]">
             <div className="relative">
               <img
                 src={event.image}
@@ -93,7 +93,7 @@ const UpcomingEvents = () => {
       </div>
       <div className="text-center mt-8">
         <a href="/events">
-          <button className="bg-accent text-white px-6 py-2 font-semibold hover:bg-red-700 rounded-md">
+          <button className="bg-accent text-white px-6 py-2 font-semibold hover:bg-red-700 ">
             More events
           </button>
         </a>
