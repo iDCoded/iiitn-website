@@ -39,7 +39,7 @@ export interface ICard {
 	c_category: string;
 	c_sub_category: string;
 	date: Date;
-	expiry_date: Date;
+	expiry_date?: Date;
 	media_img_id?: number;
 	media_vid_id?: number;
 	media_doc_id?: number;
