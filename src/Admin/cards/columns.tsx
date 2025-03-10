@@ -100,6 +100,15 @@ export const columns: ColumnDef<ICard>[] = [
 		header: "Sub Category",
 	},
 	{
+		accessorKey: "preference",
+		id: "pref",
+		header: "Preference",
+	},
+	{
+		accessorKey: "location",
+		header: "Location",
+	},
+	{
 		accessorKey: "date",
 		header: ({ column }) => {
 			return (
@@ -116,6 +125,16 @@ export const columns: ColumnDef<ICard>[] = [
 		cell: ({ row }) => {
 			const { date } = row.original;
 			const displayDate = new Date(date);
+
+			return <p>{displayDate.toDateString()}</p>;
+		},
+	},
+	{
+		accessorKey: "expiry_date",
+		header: "Expiry Date",
+		cell: ({ row }) => {
+			const { date } = row.original;
+			const displayDate = new Date(date); // * Edit to show nothing if no date is specified.
 
 			return <p>{displayDate.toDateString()}</p>;
 		},
