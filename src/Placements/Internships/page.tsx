@@ -4,7 +4,7 @@ const InternshipProgram = () => {
   const [pdfLinks, setPdfLinks] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    fetch(`${process.env.VITE_API_BASE_URL}/media/media/category/internship_program`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/internship_program`)
       .then((response) => response.json())
       .then((data) => {
       const links = data.reduce((acc: Record<string, string>, item: { media_doc_id: string, title: string }) => {

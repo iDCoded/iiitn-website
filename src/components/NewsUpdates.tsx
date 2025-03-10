@@ -45,30 +45,37 @@ export default function NewsSection() {
 	}, []);
 
 	return (
-		<div className="flex w-full h-[70vh] gap-4 px-6">
-			{/* Left 2/3rd - News Cards */}
-			<div className="w-2/3 grid grid-cols-1 md:grid-cols-2 gap-4">
-				{newsData.slice(0, 2).map((news) => (
-					<div key={news.id} className="bg-white shadow-md rounded-lg overflow-hidden">
-						<img src={news.image} alt={news.title} className="w-full h-48 object-cover" />
-						<div className="p-4">
-							<h3 className="text-lg font-bold text-primary mb-2">{news.title}</h3>
-							<p className="text-gray-700 text-sm">{news.caption}</p>
-							<button
-								onClick={() => navigate(`/news/${news.id}`)}
-								className="mt-3 text-accent font-semibold hover:underline"
-							>
-								Read More →
-							</button>
+		<section className="relative w-full bg-background">
+			{/* News Section */}
+			<div className="text-primary text-left py-4 max-w-6xl mx-auto">
+				<h2 className="text-4xl font-bold"><span className="text-accent text-5xl">|</span>Latest News & Updates</h2>
+				<p className="text-lg">Stay updated with the latest happenings at IIIT Nagpur.</p>
+			</div>
+			<div className="flex w-full gap-4 px-6 py-4 z-1 bg-background max-w-6xl mx-auto">
+				{/* Left 2/3rd - News Cards */}
+				<div className="w-2/3 grid grid-cols-1 md:grid-cols-2 gap-4">
+					{newsData.slice(0, 2).map((news) => (
+						<div key={news.id} className="bg-white shadow-md rounded-lg overflow-hidden m-2 h-auto">
+							<img src={news.image} alt={news.title} className="w-full h-48 object-cover" />
+							<div className="p-4">
+								<h3 className="text-lg font-bold text-primary mb-2">{news.title}</h3>
+								<p className="text-gray-700 text-sm">{news.caption}</p>
+								<button
+									onClick={() => navigate(`/news/${news.id}`)}
+									className="mt-3 text-accent font-semibold hover:underline"
+								>
+									Read More →
+								</button>
+							</div>
 						</div>
-					</div>
-				))}
-			</div>
+					))}
+				</div>
 
-			{/* Right 1/3rd - Announcements */}
-			<div className="w-1/3">
-				<Announcements />
+				{/* Right 1/3rd - Announcements */}
+				<div className="w-1/3 m-2">
+					<Announcements />
+				</div>
 			</div>
-		</div>
+		</section>
 	);
 }
