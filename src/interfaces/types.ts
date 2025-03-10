@@ -39,12 +39,16 @@ export interface ICard {
 	c_category: string;
 	c_sub_category: string;
 	date: Date;
-	media_img_id: number;
-	media_vid_id: number;
-	media_doc_id: number;
+	expiry_date: Date;
+	media_img_id?: number;
+	media_vid_id?: number;
+	media_doc_id?: number;
 	updated_by: number;
+	updated_time?: Date;
 	added_by: number;
+	added_time?: Date;
 	media?: FileList;
+	preference: number;
 	visibility: boolean;
 }
 
