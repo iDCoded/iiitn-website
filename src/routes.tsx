@@ -65,6 +65,7 @@ import EqualOppCell from "./Pages/EqualOppCell";
 import HowToReach from "./Pages/HowToReach";
 import FacultyAchievements from "./Pages/FacultyAchievements";
 import StudentsClubs from "./Pages/StudentsClubs";
+import ClubDetails from "./Pages/ClubDetails.tsx";
 import Directory from "./Pages/Directory";
 import FacultyDetail from "./Pages/FacultyDetail";
 import Facilities from "./Pages/Facilities";
@@ -194,6 +195,7 @@ const AppRoutes = () => (
 			element={<GrievanceCommSCSTCell />}
 		/>
 		<Route path="/pages/studentclubs" element={<StudentsClubs />} />
+		<Route path="/clubs/:id" element={<ClubDetails />} />
 		<Route path="/pages/icc" element={<InternalCompltComm />} />
 		<Route path="/pages/eoc" element={<EqualOppCell />} />
 		<Route path="/pages/directory" element={<Directory />} />

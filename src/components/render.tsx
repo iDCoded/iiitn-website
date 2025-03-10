@@ -75,29 +75,6 @@ const CardDetails = ({ card }: { card: Card }) => {
                     </p>
                 )}
             </div>
-
-            {/* Updated & Added Info */}
-            <div className="text-sm text-gray-600 space-y-2">
-                {card.updated_by && card.updated_time && (
-                    <p>✏️ Updated by {card.updated_by} on {card.updated_time}</p>
-                )}
-                {card.added_by && card.added_time && (
-                    <p>➕ Added by {card.added_by} on {card.added_time}</p>
-                )}
-            </div>
-
-            {/* Visibility & Preference */}
-            {(card.visibility || card.preference) && (
-                <p className="text-sm text-gray-500 mt-4">
-                    {card.visibility && <span>👀 Visibility: {card.visibility}</span>}
-                    {card.preference && <span> | ⭐ Preference: {card.preference}</span>}
-                </p>
-            )}
-
-            {/* Expiry Date */}
-            {card.expiry_date && (
-                <p className="text-sm text-red-500 mt-4">⏳ Expires on: {card.expiry_date}</p>
-            )}
         </div>
     );
 };
