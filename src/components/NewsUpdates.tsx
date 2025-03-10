@@ -45,34 +45,66 @@ export default function NewsSection() {
 	}, []);
 
 	return (
-		<section className="relative w-full bg-background">
-			{/* News Section */}
-			<div className="text-primary text-left py-4 max-w-6xl mx-auto">
-				<h2 className="text-4xl font-bold"><span className="text-accent text-5xl">|</span>Latest News & Updates</h2>
-				<p className="text-lg">Stay updated with the latest happenings at IIIT Nagpur.</p>
-			</div>
-			<div className="flex w-full gap-4 px-6 py-4 z-1 bg-background max-w-6xl mx-auto">
-				{/* Left 2/3rd - News Cards */}
-				<div className="w-2/3 grid grid-cols-1 md:grid-cols-2 gap-4">
+		<section className="relative w-full bg-background px-6 py-12">
+			{/* Section Heading */}
+			<div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+				{/* Headers */}
+				<div className="md:col-span-2">
+					<h2 className="text-2xl sm:text-4xl font-bold drop-shadow-lg tracking-wide mb-8">
+						<span className="text-accent">| </span>Latest News
+					</h2>
+				</div>
+				<div className="md:col-span-1">
+					<h2 className="text-2xl sm:text-4xl font-bold drop-shadow-lg tracking-wide mb-8">
+						<span className="text-accent">| </span>Announcements
+					</h2>
+				</div>
+
+				{/* News Cards (2/3 width on medium+ screens) */}
+				<div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
 					{newsData.slice(0, 2).map((news) => (
-						<div key={news.id} className="bg-white shadow-md rounded-lg overflow-hidden m-2 h-auto">
-							<img src={news.image} alt={news.title} className="w-full h-48 object-cover" />
-							<div className="p-4">
-								<h3 className="text-lg font-bold text-primary mb-2">{news.title}</h3>
-								<p className="text-gray-700 text-sm">{news.caption}</p>
-								<button
+						<div
+							key={news.id}
+							className="w-full bg-white border border-gray-300 shadow-md overflow-hidden"
+						>
+							{/* News Image */}
+							<img className="w-full h-52 object-cover" src={news.image} alt={news.title} />
+
+							{/* News Content */}
+							<div className="p-6">
+								<h5 className="mb-3 text-xl font-bold text-gray-900">{news.title}</h5>
+								<p className="text-gray-700">{news.caption}</p>
+
+								{/* Read More Link */}
+								<a
 									onClick={() => navigate(`/news/${news.id}`)}
-									className="mt-3 text-accent font-semibold hover:underline"
+									className="inline-flex items-center text-sm font-medium text-accent hover:underline cursor-pointer mt-3"
 								>
-									Read More →
-								</button>
+									Read more
+									<svg
+										className="w-4 h-4 ml-2"
+										aria-hidden="true"
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 14 10"
+									>
+										<path
+											stroke="currentColor"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth="2"
+											d="M1 5h12m0 0L9 1m4 4L9 9"
+										/>
+									</svg>
+								</a>
 							</div>
 						</div>
 					))}
 				</div>
 
-				{/* Right 1/3rd - Announcements */}
-				<div className="w-1/3 m-2">
+				{/* Announcements Section (1/3 width on medium+ screens) */}
+				<div className="md:col-span-1">
+					{/* Announcements Component */}
 					<Announcements />
 				</div>
 			</div>

@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 
 const defrecruitmentData = [
     {
-        title: "Recruitment for the post of Director, IIIT Nagpur",
+        title: "Recruitment for the post of Registrar, IIIT Nagpur",
         date: "22-02-2025",
-        lastdate: "01-04-2025",
-        description: "Applications are invited for the post of Director, IIIT Nagpur.",
+        lastdate: "01-06-2025",
+        description: "Applications are invited for the post of Registrar, IIIT Nagpur.",
         document: "#",
     },
     {
@@ -75,7 +75,7 @@ function Recruitments() {
                 </p>
             </header>
 
-            <main className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+            <main className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg ">
                 <section className="mb-8">
                     <h2 className="text-2xl font-semibold text-gray-800 mb-6">
                         Current Openings
@@ -91,7 +91,7 @@ function Recruitments() {
                                 recruitmentData.map((job, index) => (
                                     <div
                                         key={index}
-                                        className="bg-gray-50 p-5 shadow-md rounded-lg border-l-4 border-primary">
+                                        className="bg-gray-50 p-5 shadow-md  border-l-4 border-primary">
                                         <h3 className="text-xl font-semibold text-gray-900">
                                             {job.title}
                                         </h3>
