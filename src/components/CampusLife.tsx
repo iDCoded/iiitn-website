@@ -6,7 +6,7 @@ import img2 from "../assets/IIIT26.jpg";
 import img3 from "../assets/IIIT21(1).jpg";
 import img4 from "../assets/gym.jpg";
 import img5 from "../assets/IIIT12.jpg";
-import { Button } from "./ui/button";
+
 import {
 	DialogContent,
 	DialogHeader,
