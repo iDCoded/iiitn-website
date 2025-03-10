@@ -21,6 +21,7 @@ interface Faculty {
     image: string;
     designation: string;
     dept_name: string;
+    preference: number;
 }
 
 interface Staff {
@@ -83,27 +84,33 @@ const Directory = () => {
                         teaching: person.teaching || "Not provided",
                         research: person.research || "Not provided",
                         param: person.param || "",
-                        image: person.image_path || "https://via.placeholder.com/150", // Default image if missing
+                        image: person.image_path || "https://via.placeholder.com/150",
                         designation: person.positions?.includes("HOD") ? "Head of Department" : "Faculty",
-                        dept_name: person.dept_name || "Unknown Department"
-                    }));
+                        dept_name: person.dept_name || "Unknown Department",
+                        preference: person.preference || 999 // Default high number if preference is missing
+                    }))
+                    .sort((a: Faculty, b: Faculty) => a.preference - b.preference); // Sorting by preference
 
-                const staff: Staff[] = data.filter((person: any) => person.f_or_s.toLowerCase() === "staff").map((person: any) => ({
-                    f_id: person.f_id,
-                    p_id: person.p_id,
-                    name: person.name.trim(),
-                    email: person.email || "N/A",
-                    phone_no: person.phone_no || "N/A",
-                    join_year: person.join_year,
-                    positions: person.positions || "Staff",
-                    f_or_s: person.f_or_s,
-                    education: person.education || "Not provided",
-                    experience: person.experience || "Not provided",
-                    teaching: person.teaching || "Not provided",
-                    research: person.research || "Not provided",
-                    image_path: person.image_path || "https://via.placeholder.com/150", // Default image if missing
-                    dept_name: person.dept_name || "Unknown Department"
-                }));
+                const staff: Staff[] = data
+                    .filter((person: any) => person.f_or_s.toLowerCase() === "staff")
+                    .map((person: any) => ({
+                        f_id: person.f_id,
+                        p_id: person.p_id,
+                        name: person.name.trim(),
+                        email: person.email || "N/A",
+                        phone_no: person.phone_no || "N/A",
+                        join_year: person.join_year,
+                        positions: person.positions || "Staff",
+                        f_or_s: person.f_or_s,
+                        education: person.education || "Not provided",
+                        experience: person.experience || "Not provided",
+                        teaching: person.teaching || "Not provided",
+                        research: person.research || "Not provided",
+                        image_path: person.image_path || "https://via.placeholder.com/150",
+                        dept_name: person.dept_name || "Unknown Department",
+                        preference: person.preference || 999 // Default high number if preference is missing
+                    }))
+                    .sort((a: Staff, b: Staff) => a.preference - b.preference); // Sorting by preference
 
                 setFacultyData(faculty);
                 setStaffData(staff);
@@ -118,6 +125,7 @@ const Directory = () => {
 
         fetchData();
     }, []);
+
 
     if (loading) {
         return <ShimmerLoader />;
