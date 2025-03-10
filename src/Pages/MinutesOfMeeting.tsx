@@ -1,55 +1,16 @@
 import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-const defminutesOfMeetingData = [
-    {
-        heading: "Board of Governors",
-        meetings: [
-            { title: "1st BoG", link: "https://iiitn.ac.in/minutes-of-meetings/BOG/1st-BOG-Meeting.pdf" },
-            { title: "2nd BoG", link: "#" },
-            { title: "3rd BoG", link: "#" },
-            { title: "4th BoG", link: "#" },
-            { title: "5th BoG", link: "#" },
-        ],
-    },
-    {
-        heading: "Finance Committee",
-        meetings: [
-            { title: "1st FC", link: "#" },
-            { title: "2nd FC", link: "#" },
-            { title: "3rd FC", link: "#" },
-            { title: "4th FC", link: "#" },
-            { title: "5th FC", link: "#" },
-        ],
-    },
-    {
-        heading: "Senate",
-        meetings: [
-            { title: "2nd Senate", link: "#" },
-            { title: "3rd Senate", link: "#" },
-            { title: "4th Senate", link: "#" },
-            { title: "5th Senate", link: "#" },
-        ],
-    },
-    {
-        heading: "Building Works Committee",
-        meetings: [
-            { title: "1st BWC", link: "#" },
-            { title: "2nd BWC", link: "#" },
-            { title: "3rd BWC", link: "#" },
-            { title: "4th BWC", link: "#" },
-        ],
-    },
-];
-
 function MinutesOfMeeting() {
     interface Section {
         heading: string;
-        meetings: { title: string; link: string }[];
+        meetings: { title: string; link: string | null }[];
     }
 
     const [minutesOfMeetingData, setMinutesOfMeetingData] = useState<Section[]>([]);
     const [loading, setLoading] = useState(true);
+    const [selectedSection, setSelectedSection] = useState<Section | null>(null);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
 
     useEffect(() => {
         const fetchMeetingData = async () => {
@@ -62,20 +23,20 @@ function MinutesOfMeeting() {
                 }
                 const data = await res.json();
 
-                // Grouping data by heading (title)
-                const groupedData: Record<string, { title: string; link: string }[]> = {};
+                // Grouping data by heading
+                const groupedData: Record<string, { title: string; link: string | null }[]> = {};
 
                 data.forEach((meeting: any) => {
-                    const headingKey = meeting.m_sub_category; // API key for category
+                    const headingKey = meeting.m_sub_category;
                     const title = meeting.title;
-                    const link = meeting.m_doc_id;
+                    const link = meeting.media_doc_id || null;
 
                     let heading = "";
                     if (headingKey === "bog") heading = "Board of Governors";
                     else if (headingKey === "fc") heading = "Finance Committee";
                     else if (headingKey === "senate") heading = "Senate";
                     else if (headingKey === "bwc") heading = "Building Works Committee";
-                    else heading = headingKey; // Fallback if new category appears
+                    else heading = headingKey;
 
                     if (!groupedData[heading]) {
                         groupedData[heading] = [];
@@ -89,10 +50,10 @@ function MinutesOfMeeting() {
                     meetings,
                 }));
 
-                setMinutesOfMeetingData(formattedData.length > 0 ? formattedData : defminutesOfMeetingData);
+                setMinutesOfMeetingData(formattedData);
+                setSelectedSection(formattedData.length > 0 ? formattedData[0] : null);
             } catch (error) {
                 console.error("Error fetching Minutes of Meetings:", error);
-                setMinutesOfMeetingData(defminutesOfMeetingData);
             } finally {
                 setLoading(false);
             }
@@ -101,13 +62,12 @@ function MinutesOfMeeting() {
         fetchMeetingData();
     }, []);
 
-
-
-    const [selectedSection, setSelectedSection] = useState(defminutesOfMeetingData[0]);
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-
     if (loading) {
         return <div className="text-center py-10">Loading...</div>;
+    }
+
+    if (!selectedSection) {
+        return <div className="text-center py-10">No data available.</div>;
     }
 
     return (
@@ -134,7 +94,11 @@ function MinutesOfMeeting() {
                         {minutesOfMeetingData.map((section, index) => (
                             <li
                                 key={index}
-                                className={`p-3 text-center cursor-pointer ${selectedSection.heading === section.heading ? 'bg-primary text-white' : 'hover:bg-gray-200'}`}
+                                className={`p-3 text-center cursor-pointer ${
+                                    selectedSection.heading === section.heading
+                                        ? "bg-primary text-white"
+                                        : "hover:bg-gray-200"
+                                }`}
                                 onClick={() => {
                                     setSelectedSection(section);
                                     setDropdownOpen(false);
@@ -156,7 +120,11 @@ function MinutesOfMeeting() {
                         {minutesOfMeetingData.map((section, index) => (
                             <li
                                 key={index}
-                                className={`cursor-pointer p-2 ${selectedSection.heading === section.heading ? 'bg-primary text-white' : 'hover:bg-gray-300'}`}
+                                className={`cursor-pointer p-2 ${
+                                    selectedSection.heading === section.heading
+                                        ? "bg-primary text-white"
+                                        : "hover:bg-gray-300"
+                                }`}
                                 onClick={() => setSelectedSection(section)}
                             >
                                 {section.heading}
@@ -168,10 +136,10 @@ function MinutesOfMeeting() {
                 {/* Main Content */}
                 <div className="w-full md:w-3/4 p-4 md:p-8">
                     <h2 className="text-2xl md:text-3xl font-semibold text-primary border-b-4 border-primary pb-2 mb-4">
-                    <span className="text-accent text-4xl mr-2">|</span> {selectedSection.heading}
+                        <span className="text-accent text-4xl mr-2">|</span> {selectedSection.heading}
                     </h2>
 
-                    {/* Table Layout (Centered & Limited Width) */}
+                    {/* Table Layout */}
                     <div className="overflow-x-auto flex justify-center">
                         <table className="w-full max-w-2xl bg-white shadow-md rounded-lg overflow-hidden mx-auto">
                             <thead className="bg-primary text-white">
@@ -185,9 +153,18 @@ function MinutesOfMeeting() {
                                     <tr key={index} className="border-b hover:bg-gray-100">
                                         <td className="p-4 text-center">{meeting.title}</td>
                                         <td className="p-4 text-center">
-                                            <a href={meeting.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                                                Click Here
-                                            </a>
+                                            {meeting.link ? (
+                                                <a
+                                                    href={meeting.link}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-blue-600 hover:underline"
+                                                >
+                                                    Click Here
+                                                </a>
+                                            ) : (
+                                                <span className="text-gray-500">No Document Available</span>
+                                            )}
                                         </td>
                                     </tr>
                                 ))}
