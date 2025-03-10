@@ -26,11 +26,22 @@ const ResearchConsultancy = () => {
 				transition={{ duration: 1, ease: "easeOut" }}
 				className="text-center max-w-4xl"
 			>
-				<h2 className="text-5xl font-extrabold tracking-tight mb-4">
-					<span className="text-accent">| </span> Research & Consultancy
-				</h2>
+					<motion.h2
+                    className="text-2xl sm:text-4xl font-bold drop-shadow-lg tracking-wide"
+                    initial={{ opacity: 0, y: 30 }}
+					animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}>
+                    <span className="text-accent">| </span>Research & Consultancy
+                </motion.h2>
+				<motion.p
+                    className="mt-2 sm:mt-4 text-gray-200 text-sm sm:text-lg"
+                    initial={{ opacity: 0, y: 30 }}
+					animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}>
+                    Explore research initiatives and consultancy services offered by our departments.
+                </motion.p>
 				<p className="text-gray-300 text-lg">
-					Explore research initiatives and consultancy services offered by our departments.
+					
 				</p>
 			</motion.div>
 

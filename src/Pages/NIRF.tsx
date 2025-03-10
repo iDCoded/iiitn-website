@@ -1,32 +1,32 @@
 import { useEffect, useState } from "react";
 import { FaFilePdf } from "react-icons/fa";
 
-const defnirfData = [
-	{
-		year: "2025",
-		documents: [
-			{ title: "Engineering", link: "#" },
-			{ title: "Overall", link: "#" },
-			{ title: "Innovation", link: "#" },
-		],
-	},
-	{
-		year: "2025",
-		documents: [
-			{ title: "Engineering", link: "#" },
-			{ title: "Overall", link: "#" },
-			{ title: "Innovation", link: "#" },
-		],
-	},
-	{
-		year: "2025",
-		documents: [
-			{ title: "Engineering", link: "#" },
-			{ title: "Overall", link: "#" },
-			{ title: "Innovation", link: "#" },
-		],
-	},
-];
+// const defnirfData = [
+// 	{
+// 		year: "2025",
+// 		documents: [
+// 			{ title: "Engineering", link: "#" },
+// 			{ title: "Overall", link: "#" },
+// 			{ title: "Innovation", link: "#" },
+// 		],
+// 	},
+// 	{
+// 		year: "2025",
+// 		documents: [
+// 			{ title: "Engineering", link: "#" },
+// 			{ title: "Overall", link: "#" },
+// 			{ title: "Innovation", link: "#" },
+// 		],
+// 	},
+// 	{
+// 		year: "2025",
+// 		documents: [
+// 			{ title: "Engineering", link: "#" },
+// 			{ title: "Overall", link: "#" },
+// 			{ title: "Innovation", link: "#" },
+// 		],
+// 	},
+// ];
 function NIRF() {
     interface NIRFData {
         year: string;
@@ -71,7 +71,7 @@ function NIRF() {
                 setNirfData(nirfDataList);
             } catch (error) {
                 console.error("Error fetching NIRF data:", error);
-                setNirfData(defnirfData); // Handle fallback data if needed
+               
             } finally {
                 setLoading(false);
             }
