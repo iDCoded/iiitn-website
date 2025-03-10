@@ -25,7 +25,7 @@ import MDEditor from "@uiw/react-md-editor";
 const formSchema = z.object({
 	f_id: z.string(),
 	p_id: z.string(),
-	d_id: z.string(),
+	b_id: z.string(),
 	pub_id: z.string(),
 	media_img_id: z.string(),
 	join_year: z.coerce.number().int().gte(1900).lte(new Date().getFullYear()),
@@ -46,7 +46,7 @@ export function FacultyForm({ user }: { user: Person }) {
 		defaultValues: {
 			f_id: "",
 			p_id: "",
-			d_id: (Math.floor(Math.random() * 2) + 1).toString(), // Random number b/w 1 - 2.
+			b_id: "1",
 			pub_id: "",
 			media_img_id: "",
 			content: "",
@@ -63,7 +63,7 @@ export function FacultyForm({ user }: { user: Person }) {
 	const handleSubmit = async (data: z.infer<typeof formSchema>) => {
 		const facultyData = {
 			p_id: user.p_id.toString(),
-			d_id: (Math.floor(Math.random() * 2) + 1).toString(), // ! Remove in production -> Random number b/w 1 - 2
+			b_id: "1",
 			pub_id: "1",
 			media_img_id: 1,
 			join_year: data.join_year,

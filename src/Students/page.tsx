@@ -139,9 +139,8 @@ function Students() {
                             <CardTitle className="text-lg font-semibold text-primary">Student Notices</CardTitle>
                             <a href="/notices" className="text-sm text-accent hover:underline">View All</a>
                         </CardHeader>
-                        <CardContent>
-                        </CardContent>
-                        <NoticesSidebar />
+                      
+                        <NoticesSidebar category="student"/>
                     </Card>
                 </aside>
             </div>
