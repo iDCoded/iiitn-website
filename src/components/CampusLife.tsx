@@ -17,11 +17,11 @@ import {
 } from "./ui/dialog";
 
 const campusLifeImages = [
-	{ src: img1, content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque porro dolor eligendi doloribus, recusandae ex? Fugiat voluptates quae quo! Dolores." },
-	{ src: img2, content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque porro dolor eligendi doloribus, recusandae ex? Fugiat voluptates quae quo! Dolores."},
-	{ src: img3, content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque porro dolor eligendi doloribus, recusandae ex? Fugiat voluptates quae quo! Dolores."},
-	{ src: img4, content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque porro dolor eligendi doloribus, recusandae ex? Fugiat voluptates quae quo! Dolores, nihil placeat voluptate est voluptatem consequatur aliquid inventore exercitationem soluta nobis temporibus magnam iste culpa eaque sapiente?"},
-	{ src: img5, content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque porro dolor eligendi doloribus, recusandae ex? Fugiat voluptates quae quo! Dolores, nihil placeat voluptate est voluptatem consequatur aliquid inventore exercitationem soluta nobis temporibus magnam iste culpa eaque sapiente?"},
+	{ src: img1, content: "A modern and vibrant academic hub fostering innovation" },
+	{ src: img2, content: "Hands-on learning with state-of-the-art equipment"},
+	{ src: img3, content: "Stay active with dynamic sports facilities."},
+	{ src: img4, content: "A fully-equipped gym to fuel both body and mind"},
+	{ src: img5, content: "A serene library for deep learning and exploration"},
 ];
 
 const CampusLife = () => {
