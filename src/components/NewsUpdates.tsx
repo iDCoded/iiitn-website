@@ -114,47 +114,24 @@ export default function NewsSection() {
 					>
 						{/* Scrollable Announcements */}
 						<div
-							className="text-black flex flex-col py-4 w-full"
-							style={{ height: "50vh" }} // Fixed height in vh
+							className="flex-1 overflow-y-auto px-4 scrollbar-thin scrollbar-thumb-accent scrollbar-track-gray-200 scrollbar-thumb-rounded-full scrollbar-track-rounded-full hover:scrollbar-thumb-accent-dark"
 						>
-							{/* Scrollable Announcements */}
-							<div className="flex-1 overflow-y-auto px-4 scrollbar-none">
-								{announcements.map((announcement, index) => (
-									<div
-										key={announcement.id}
-										onClick={() => navigate(`/announcements/${announcement.id}`)}
-										className="relative py-3 px-4 border-b text-md cursor-pointer font-medium transition-all duration-300 ease-in-out"
-										style={{
-											transform: "skewX(-10deg)", // Tilts the div
-											marginTop: index === 0 ? "0" : "-1vh", // Slight overlap for stacking
-											background: "var(--accent)", // Accent color
-											color: "white", // Default text color
-											transition: "all 0.3s ease-in-out",
-										}}
-										onMouseEnter={(e) => {
-											e.currentTarget.style.background = "white";
-											e.currentTarget.style.color = "var(--accent)";
-											e.currentTarget.style.transform = "skewX(0deg)"; // Removes tilt
-											e.currentTarget.style.zIndex = "10"; // Brings to top
-										}}
-										onMouseLeave={(e) => {
-											e.currentTarget.style.background = "var(--accent)";
-											e.currentTarget.style.color = "white";
-											e.currentTarget.style.transform = "skewX(-10deg)"; // Restores tilt
-											e.currentTarget.style.zIndex = "1"; // Resets z-index
-										}}
-									>
-										{announcement.title}
-									</div>
-								))}
-							</div>
+							{announcements.map((announcement) => (
+								<div
+									key={announcement.id}
+									onClick={() => navigate(`/announcements/${announcement.id}`)}
+									className="relative py-4 px-6 border border-transparent bg-accent text-white text-md cursor-pointer 
+									transition-all duration-300 skew-x-[-10deg] shadow-md 
+									hover:bg-white hover:text-accent hover:border-accent"
+								>
+									<span className="block skew-x-[10deg]">{announcement.title}</span>
+								</div>
+							))}
 						</div>
-
 					</div>
-
 				</div>
-			</div >
-		</section >
+			</div>
+		</section>
 
 	);
 }
