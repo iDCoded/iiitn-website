@@ -1,5 +1,6 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CardDetails from "../components/render"; // Adjust the path accordingly
+import { useEffect, useState } from "react";
 
 interface Card {
     title?: string;
@@ -22,11 +23,50 @@ interface Card {
 }
 
 function ClubDetails() {
-    const location = useLocation();
-    const card: Card | undefined = location.state?.card;
+    const { id } = useParams();
+    const [card, setCard] = useState<Card>();
+    const [error, setError] = useState<Error>();
+
+    useEffect(() => {
+        const fetchClub = async () => {
+            try {
+                const res = await fetch(
+                    `${import.meta.env.VITE_API_BASE_URL}/card/cards/${id}`
+                );
+                const data = await res.json();
+                setCard({
+                    title: data.title,
+                    c_category: data.c_category,
+                    c_sub_category: data.c_sub_category,
+                    caption: data.caption,
+                    content: data.content,
+                    date: data.date,
+                    location: data.location,
+                    media_img_id: data.media_img_id || "",
+                    media_vid_id: data.media_vid_id,
+                    media_doc_id: data.media_doc_id,
+                    updated_by: data.updated_by,
+                    updated_time: data.updated_time,
+                    added_by: data.added_by,
+                    added_time: data.added_time,
+                    visibility: data.visibility,
+                    preference: data.preference,
+                    expiry_date: data.expiry_date,
+                });
+            } catch (error) {
+                console.error("Error fetching club:", error);
+                setError(error as Error);
+            }
+        }
+        fetchClub();
+    }, [id]);
 
     if (!card) {
         return <div className="text-center text-xl mt-10">Club not found</div>;
+    }
+
+    if(error) {
+        <div className="text-center text-xl mt-10 text-red-500">Error fetching club: {error.message}</div>;
     }
 
     return (
