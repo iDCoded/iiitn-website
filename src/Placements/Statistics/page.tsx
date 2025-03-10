@@ -34,7 +34,7 @@ function Statistics() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/placement_statistics`);
+				const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/card/cards/category/placement_statistics`);
 				const data = await response.json();
 
 				const newMarkdownData: MarkdownData = {...initialMarkdownData}; // Merge static data with fetched data
