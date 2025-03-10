@@ -94,7 +94,7 @@ const UpcomingEvents = () => {
       </div>
       <div className="text-center mt-8">
         <a href="/events">
-          <button className="bg-accent text-white px-6 py-2 font-semibold hover:bg-red-700 ">
+          <button className="bg-accent text-white px-6 py-2 font-semibold hover:bg-red-700 hover:cursor-pointer transition-all duration-300">
             More events
           </button>
         </a>

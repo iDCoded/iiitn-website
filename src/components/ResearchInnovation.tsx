@@ -1,5 +1,4 @@
 import { Card, CardContent, CardTitle } from "./ui/card";
-import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -45,17 +44,18 @@ const ResearchConsultancy = () => {
 			{/* Call-to-Action Buttons */}
 			<motion.div className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-12">
 				{["/research/projects", "/research/publications", "/research/consultancy"].map((link, index) => (
-					<Button
-						asChild
+					<button
 						key={index}
-						className="w-[240px] h-[50px] text-lg font-semibold bg-accent hover:bg-secondary text-white transition-all duration-300 flex items-center justify-center"
+						
+						
+						className="w-[240px] h-[50px] text-lg font-semibold bg-accent hover:bg-secondary text-white transition-all duration-300 flex items-center justify-center hover:cursor-pointer hover:shadow-lg hover:scale-110"
 					>
 						<Link to={link}>
 							{link.includes("projects") ? "View Research Projects" :
 								link.includes("publications") ? "View Publications" :
 									"Consult an Expert"}
 						</Link>
-					</Button>
+					</button>
 				))}
 			</motion.div>
 
