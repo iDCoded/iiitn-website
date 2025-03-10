@@ -7,11 +7,11 @@ function Login() {
 		<Card className="p-6">
 			<div className="flex flex-col space-y-2 text-left">
 				<h1 className="text-2xl font-semibold tracking-tight">Login</h1>
-				<p className="text-sm text-muted">
+				<p className="text-sm">
 					Enter your email and password below <br />
 					to log into your account
 				</p>
-				<p className="text-sm text-muted">
+				<p className="text-sm">
 					Don't have an account?{" "}
 					<Link
 						to="/signup"
@@ -21,7 +21,7 @@ function Login() {
 				</p>
 			</div>
 			<LoginForm />
-			<p className="mt-4 px-8 text-center text-sm text-muted">
+			<p className="mt-4 px-8 text-center text-sm">
 				By clicking login, you agree to our{" "}
 				<a
 					href="/terms"
