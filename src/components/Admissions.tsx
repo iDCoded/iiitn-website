@@ -53,7 +53,7 @@ const Admissions = () => {
         <section
             ref={ref}
             className="relative flex flex-col items-center justify-center h-screen overflow-hidden px-4 sm:px-6 lg:px-8">
-            
+
             {/* 📌 Background Image with Scroll-Zoom */}
             <motion.div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -69,7 +69,7 @@ const Admissions = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 1, ease: "easeOut" }}>
-                
+
                 {/* Section Title */}
                 <motion.h2
                     className="text-2xl sm:text-4xl font-bold drop-shadow-lg tracking-wide"
@@ -108,7 +108,7 @@ const Admissions = () => {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                         >
                             <Card
-                                className="h-48 sm:h-64 relative overflow-hidden bg-white shadow-lg rounded-lg border border-gray-200 transition-transform duration-300 ease-in-out transform hover:scale-[1.05] hover:shadow-2xl"
+                                className="h-48 sm:h-64 relative overflow-hidden bg-white shadow-lg rounded-lg border border-gray-200 transition-transform duration-300 ease-in-out transform hover:scale-[1.05] hover:shadow-2xl group"
                                 onMouseEnter={(e) => {
                                     handleMouseEnter(e, index);
                                     setHovered(index);
@@ -121,7 +121,7 @@ const Admissions = () => {
                                 {/* Ripple Effect */}
                                 {ripple.index === index && (
                                     <div
-                                        className="absolute bg-accent rounded-full opacity-60 animate-ripple"
+                                        className="absolute bg-white/30 rounded-full opacity-60 animate-ripple"
                                         style={{
                                             left: ripple.x,
                                             top: ripple.y,
@@ -132,25 +132,26 @@ const Admissions = () => {
 
                                 <CardContent className="p-4 sm:p-6 text-center relative z-10">
                                     <CardTitle
-                                        className={`text-sm sm:text-lg font-bold text-primary transition-colors duration-300 ${hovered === index ? "text-[#f4f4f4]" : ""}`}
+                                        className={`text-sm sm:text-lg font-bold text-primary transition-colors duration-300`}
                                     >
                                         {program.title}
                                     </CardTitle>
                                     <p
-                                        className={`mt-1 sm:mt-2 text-gray-600 text-xs sm:text-base transition-colors duration-300 ${hovered === index ? "text-white/50" : ""}`}
+                                        className={`mt-1 sm:mt-2 text-gray-700 text-xs sm:text-base transition-colors duration-300 ${hovered === index ? "text-gray-300" : ""}`}
                                     >
                                         {program.description}
                                     </p>
 
                                     {/* Learn More Button */}
-                                    <a href={program.link}>
-                                        <div className="mt-2 sm:mt-4 flex items-center justify-center text-accent font-semibold cursor-pointer transition-colors duration-300">
+                                    <a href={program.link} className="group">
+                                        <div className="mt-2 sm:mt-4 flex items-center justify-center text-accent font-semibold cursor-pointer transition-colors duration-300 group-hover:text-white">
                                             <span>Learn More</span>
                                             <FaArrowRight className="ml-1 sm:ml-2 transform transition-transform duration-300" />
                                         </div>
                                     </a>
                                 </CardContent>
                             </Card>
+
                         </motion.div>
                     ))}
                 </motion.div>
