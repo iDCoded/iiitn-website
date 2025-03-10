@@ -98,7 +98,7 @@ export default function NewsCarousel() {
 			<div className="max-w-6xl mx-auto px-6">
 				<div className="flex justify-between items-center mb-6">
 					<h2 className="text-3xl font-bold text-primary">
-						<span className="text-accent">|</span> Latest News & Updates
+						<span className="text-accent">|</span> Latest News
 					</h2>
 					<a href="/news" className="text-accent hover:underline flex flex-row">
 						View All{" "}

@@ -131,7 +131,7 @@ const Navbar = () => {
 			title: "Academics",
 			links: [
 				{ name: "Departments", href: "/departments" },
-				{ name: "Courses", href: "/academics/courses" },
+				{ name: "Programs", href: "/academics/courses" },
 				{
 					name: "Academic Curricula",
 					href: "/academics/curricula",

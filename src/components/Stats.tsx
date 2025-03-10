@@ -38,7 +38,7 @@ const Stats = () => {
                             {/* Number & Title Container */}
                             <div className="flex flex-col items-center justify-center space-y-2">
                                 {/* Bold Number */}
-                                <h3 className="text-6xl font-bold text-[#A4161A] font-[playfair] leading-tight">
+                                <h3 className="text-6xl font-bold text-accent font-[playfair] leading-tight">
                                     {inView ? <CountUp end={stat.value} duration={2} /> : "..."}
                                     {stat.label === "Students" ? "K" : ""}
                                 </h3>
