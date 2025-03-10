@@ -5,7 +5,7 @@ function Companies() {
   const [pdfLinks, setPdfLinks] = useState<{ title: string; link: string }[]>([]);
 
   useEffect(() => {
-    fetch(`${process.env.VITE_API_BASE_URL}/media/media/category/companies`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/companies`)
       .then((response) => response.json())
       .then((data) => {
         const pdfData = data.map((item: any) => ({

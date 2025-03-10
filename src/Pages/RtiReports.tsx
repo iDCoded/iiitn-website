@@ -10,16 +10,7 @@ interface Report {
     Quarterly4: string;
 }
 
-// Data Array
-const defreportData: Report[] = [
-    { year: "2017-2018", Quarterly1: "#", Quarterly2: "#", Quarterly3: "#", Quarterly4: "#" },
-    { year: "2018-2019", Quarterly1: "#", Quarterly2: "#", Quarterly3: "#", Quarterly4: "#" },
-    { year: "2019-2020", Quarterly1: "#", Quarterly2: "#", Quarterly3: "#", Quarterly4: "#" },
-    { year: "2020-2021", Quarterly1: "#", Quarterly2: "#", Quarterly3: "#", Quarterly4: "#" },
-    { year: "2021-2022", Quarterly1: "#", Quarterly2: "#", Quarterly3: "#", Quarterly4: "#" },
-    { year: "2022-2023", Quarterly1: "#", Quarterly2: "#", Quarterly3: "#", Quarterly4: "#" },
-    { year: "2023-2024", Quarterly1: "#", Quarterly2: "#", Quarterly3: "#", Quarterly4: "#" },
-];
+
 const RtiReports: React.FC = () => {
     const [reportData, setReportData] = useState<Report[]>([]);
     const [loading, setLoading] = useState(true);
@@ -56,7 +47,7 @@ const RtiReports: React.FC = () => {
                 setReportData(Object.values(reportMap));
             } catch (error) {
                 console.error("Error fetching RTI Reports:", error);
-                setReportData(defreportData);
+                
             } finally {
                 setLoading(false);
             }
