@@ -139,7 +139,7 @@ export default function DepartmentPage({ title }: PageProps) {
 				const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/card/cards/category/bosData`)
 
 				const data = await response.json()
-				const filteredData = Array.isArray(data) ? data.filter((item: any) => item.c_sub_category === title) : [];
+				const filteredData = Array.isArray(data) ? data.filter((item: any) => item.c_sub_category.toLowerCase() === title.toLowerCase()) : [];
 				setBosData(filteredData);
 				setLoading(false);
 			} catch (error) {
