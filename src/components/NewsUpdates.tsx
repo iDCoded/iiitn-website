@@ -58,9 +58,14 @@ export default function NewsSection() {
 			<div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
 				{/* News Section */}
 				<div className="md:col-span-2 flex flex-col" ref={newsSectionRef}>
+					<div className="flex items-center justify-between">
 					<h2 className="text-2xl sm:text-4xl font-bold tracking-wide mb-6">
 						<span className="text-accent">| </span> Latest News
 					</h2>
+					<a href="/news" className="text-accent text-md font-semibold transition duration-200 ease-in-out hover:underline hover:text-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">
+  View All →
+</a>
+</div>
 					<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 						{newsData.slice(0, 2).map((news) => (
 							<div
