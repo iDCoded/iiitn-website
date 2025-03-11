@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import ShimmerLoader from "@/components/ShimmerLoader";
+import { useGlobalDependency } from "../context/GlobalContext";
+
 
 interface Faculty {
     f_id: number;
@@ -53,6 +55,7 @@ const departments = [
 ];
 
 const Directory = () => {
+    const globalDependency = useGlobalDependency();
     const [facultyData, setFacultyData] = useState<Faculty[]>([]);
     const [staffData, setStaffData] = useState<Staff[]>([]);
     const [selectedDepartment, setSelectedDepartment] = useState<"cse" | "ece" | "basic_science">("cse");
@@ -124,7 +127,7 @@ const Directory = () => {
         };
 
         fetchData();
-    }, []);
+    }, [globalDependency]);
 
 
     if (loading) {
