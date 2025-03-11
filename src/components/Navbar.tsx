@@ -95,7 +95,7 @@ const Navbar = () => {
 						
 						],
 				},
-				{ name: "Campus Photo Gallery", href: "/pages/campusgallery" },
+				{ name: "Campus Gallery", href: "/pages/campusgallery" },
 				{ name: "Facilities", href: "/institute/facilities" },
 				{ name: "Notices", href: "/notices" },
 			],

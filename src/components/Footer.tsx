@@ -59,7 +59,7 @@ const Footer = () => {
                                 { name: "Equal Opportunity Cell", link: "/pages/eoc" },
                                 { name: "RTI", link: "/pages/rti" },
                                 { name: "Networking Complaint", link: data[0] },
-                                { name: "Policy for Prevention of Sexual Harassment", link: "https://iiitn.ac.in/Downloads/Policy%20of%20Prevention%20of%20Sexual%20Harassment%20of%20Women%20at%20Workplace.pdf      " }
+                                { name: "Policy for Prevention of Sexual Harassment", link: "https://iiitn.ac.in/Downloads/Policy%20of%20Prevention%20of%20Sexual%20Harassment%20of%20Women%20at%20Workplace.pdf" }
                             ].map((item, index) => (
                                 <li key={index}>
                                     <a
@@ -98,27 +98,6 @@ const Footer = () => {
 
                     </motion.div>
 
-                    {/* Campus Life */}
-                    <motion.div variants={fadeInUp}>
-                        <h4 className="text-lg font-semibold mb-4 text-accent">Campus Life</h4>
-                        <ul className="space-y-2 text-sm text-gray-300">
-                            {[
-                                { name: "Clubs", link: "/pages/studentclubs" },
-                                { name: "Festivals", link: "/campus-life/festivals" },
-                                { name: "Sports", link: "/campus-life/sports" },
-                                { name: "Student Governance", link: "/campus-life/student-governance" }
-                            ].map((item, index) => (
-                                <li key={index}>
-                                    <a href={item.link} className="relative group block">
-                                        {item.name}
-                                        <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-
-                    </motion.div>
-
                     {/* Happenings */}
                     <motion.div variants={fadeInUp}>
                         <h4 className="text-lg font-semibold mb-4 text-accent">Happenings</h4>
@@ -141,10 +120,18 @@ const Footer = () => {
                     </motion.div>
                 </motion.div>
 
-                {/* Institute Logo and Info */}
+                {/* Institute Logo, Info, and Address */}
                 <motion.div variants={fadeInUp} className="flex flex-col items-center space-y-3 mt-8">
                     <img src={imgSrc} alt="IIIT Nagpur Logo" className="h-12" />
                     <p className="text-gray-400 text-sm">Indian Institute of Information Technology, Nagpur</p>
+                    <p className="text-gray-400 text-sm text-center">
+                        Survey No. 140,141/1 Behind Br. Sheshrao Wankhade Shetkari Sahkari Soot Girni, <br />
+                        Waranga, PO: Dongargaon(Butibori), District: Nagpur - 441108, Maharashtra, India.
+                    </p>
+                    <motion.div className="text-gray-400 text-sm text-center">
+                        📞 <a href="tel:+919405215010" className="hover:text-accent transition-colors duration-300">9405215010</a> <br />
+                        ✉️ <a href="mailto:registrar@iiitn.ac.in" className="hover:text-accent transition-colors duration-300">registrar@iiitn.ac.in</a>
+                    </motion.div>
                 </motion.div>
 
                 {/* Social Media */}
@@ -159,14 +146,6 @@ const Footer = () => {
                 {/* Copyright & Legal Links */}
                 <motion.div variants={fadeInUp} className="flex flex-col md:flex-row justify-between text-xs text-gray-400 mt-6">
                     <p>© 2025 IIIT Nagpur. All rights reserved.</p>
-                    <div className="flex space-x-4">
-                        {["Accessibility", "Privacy Policy", "Terms of Use", "Sitemap"].map((item, index) => (
-                            <a key={index} href="#" className="relative group">
-                                {item}
-                                <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-                            </a>
-                        ))}
-                    </div>
                 </motion.div>
             </div>
         </motion.footer>

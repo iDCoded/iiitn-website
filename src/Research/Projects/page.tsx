@@ -110,12 +110,12 @@ const Projects = () => {
 						))}
 					</div>
 					<input
-						type="text"
-						placeholder="Search Projects..."
-						value={searchQuery}
-						onChange={(e) => setSearchQuery(e.target.value)}
-						className="w-full md:w-[300px] px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
-					/>
+                        type="text"
+                        placeholder="Search Projects..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full md:w-[300px] px-4 py-2 border border-black-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent text-black"
+                    />
 				</div>
 
 				{loading ? (
