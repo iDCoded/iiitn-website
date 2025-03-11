@@ -81,18 +81,20 @@ const InternshipProgram = () => {
       {/* Faculty List */}
       <section className="bg-white p-6 rounded-lg shadow-md my-6">
         <h2 className="text-2xl font-bold text-accent border-b-2 pb-2">Faculty List</h2>
-        {Object.keys(faculty).length > 0 ? (
-          <div className="mt-4">
-          {Object.keys(faculty).map((title) => (
-            <div key={title} className="flex items-center justify-between">
-              <h3 className="text-lg text-primary font-semibold">{title}</h3>
-              <a href={faculty[title]} className="text-blue-500">Download</a>
+        <ul className="list-disc pl-5 mt-2 text-gray-700 space-y-3">
+          {Object.keys(faculty).length > 0 ? (
+            <div className="space-y-2">
+              <p className="text-gray-700 mt-2">
+                Please go through this PDF to know about the area of expertise of the faculty at IIIT Nagpur:
+              </p>
+              <li>
+                <a href={faculty.media_doc_id} className="text-blue-500">{faculty.title}</a>
+              </li>
             </div>
-          ))}
-          </div>
-        ) : (
-          <p className="text-gray-500 mt-4">No faculty list available.</p>
-        )}
+          ) : (
+            <li className="text-gray-500">Faculty list not available</li>
+          )}
+        </ul>
       </section>
 
       {/* Registration Fee Structure */}
