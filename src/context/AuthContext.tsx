@@ -1,7 +1,13 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { User } from "@/interfaces/types";
-import { createContext, useState, useContext, ReactNode } from "react";
+import {
+	createContext,
+	useState,
+	useContext,
+	ReactNode,
+	useEffect,
+} from "react";
 
 interface AuthContextType {
 	user: User | null;
@@ -18,7 +24,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [token, setToken] = useState<string | null>(null);
 	const [refreshToken, setRefreshToken] = useState<string | null>(null);
 
-	const login = (user: any, access_token: string, refresh_token: string) => {
+	useEffect(() => {
+		console.log("Auth User", user);
+	}, [user]);
+
+	const login = (user: User, access_token: string, refresh_token: string) => {
 		localStorage.setItem("access_token", access_token); // ! Use secure Cookies in production
 		localStorage.setItem("refresh_token", refresh_token); // ! Use secure Cookies in production
 		setUser(user);
