@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { FaBars, FaChevronDown, FaTimes } from "react-icons/fa"; // Icons for menu toggle
+import { FaBars, FaChevronDown, FaSearch, FaTimes } from "react-icons/fa"; // Icons for menu toggle
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io"; // Icons for dropdowns
 import logo from "../assets/logo.png"; // Logo Image
 import Search from "@/search";
@@ -106,8 +106,7 @@ const Navbar = () => {
 							name: "Committees",
 							href: "/governance/committee",
 						},
-						
-						],
+					],
 				},
 				{ name: "Campus Gallery", href: "/pages/campusgallery" },
 				{ name: "Facilities", href: "/institute/facilities" },
@@ -206,6 +205,8 @@ const Navbar = () => {
 		}
 	];
 
+	const [isSearchOpen, setIsSearchOpen] = useState(false);
+
 	return (
 		<>
 			{/* Transparent Overlay (Only for Home Page) */}
@@ -216,70 +217,77 @@ const Navbar = () => {
 
 			{/* Fixed Navbar */}
 			<div className="fixed top-0 left-0 w-full z-50 transition-transform duration-200">
-				{/* 🔸 Top Orange Bar */}
-			
+				{/* 🔸 Top Navigation Bar */}
+				<nav
+					className={`w-full px-6 py-2 flex justify-between items-center lg:flex 
+        ${isHomePage && !isScrolled ? "bg-transparent shadow-none text-white" : "bg-accent shadow-md text-primary"}`}>
 
+					{/* 🔹 Left Section - Logo */}
+					<a href="/">
+						<div className="flex items-center space-x-4">
+							<img src={imgSrc} alt="IIITN Logo" className="h-16 w-16" />
+							{isScrolled && (
+								<h1 className="font-bold text-xl hidden lg:block">
+									Indian Institute of Information Technology, Nagpur
+								</h1>
+							)}
+						</div>
+					</a>
 
+					{/* 🔹 Center Section - Language Switcher & Search */}
+					<div className="flex items-center space-x-4">
+						{/* 🌍 Language Buttons */}
+						<div className="flex space-x-2">
+							<button
+								onClick={() => changeLanguage("en")}
+								className="px-3 py-1 border border-white text-white rounded-md hover:bg-white hover:text-primary transition-all"
+							>
+								A
+							</button>
+							<button
+								onClick={() => changeLanguage("hi")}
+								className="px-3 py-1 border border-white text-white rounded-md hover:bg-white hover:text-primary transition-all"
+							>
+								अ
+							</button>
+						</div>
 
+						{/* 🔍 Search Input with Toggle */}
+						<div className="relative flex items-center">
+							{isSearchOpen && (
+								<input
+									type="text"
+									placeholder="Search..."
+									className="px-4 py-1.5 rounded-md bg-transparent border border-white text-white focus:outline-none focus:ring-2 focus:ring-white placeholder-white transition-all duration-300"
+								/>
+							)}
+							<button
+								onClick={() => setIsSearchOpen(!isSearchOpen)}
+								className="ml-2 text-white"
+							>
+								<FaSearch />
+							</button>
+						</div>
 
-    <nav
-      className={`w-full px-6 py-2 flex justify-between items-center lg:flex ${
-        isHomePage && !isScrolled
-          ? "bg-transparent shadow-none text-white"
-          : "bg-accent shadow-md text-primary"
-      }`}
-    >
-      <a href="/">
-        <div className="flex items-center space-x-4">
-          <img src={imgSrc} alt="IIITN Logo" className="h-16 w-16" />
-          <div className="flex flex-col">
-            {isScrolled && (
-              <h1 className="font-bold text-xl hidden lg:block">
-                Indian Institute of Information Technology, Nagpur
-              </h1>
-            )}
-          </div>
-        </div>
-      </a>
+						{/* 🔹 Right Section - Translator */}
+						<Translator />
+					</div>
 
-      <div className="flex items-center space-x-6">
-        <h1
-          className={`font-bold text-xl ${
-            isHomePage && !isScrolled ? "text-white" : "text-primary"
-          }`}
-        >
-          
-        </h1>
-
-        {/* Language Change Buttons */}
-        <div
-          onClick={() => changeLanguage("en")}
-          className="px-4 py-1 border rounded-md bg-white text-primary hover:bg-gray-200"
-        >
-         A
-        </div>
-        <div
-          onClick={() => changeLanguage("hi")}
-          className="px-4 py-1 border rounded-md bg-white text-primary hover:bg-gray-200"
-        >
-          अ 
-        </div>
-      </div>
-
-      <Translator />
-    </nav>
+					{/* 🔹 Right Section - Translator */}
+					<Translator />
+				</nav>
 
 				{/* 🔹 Middle Section with Logo and Mobile Menu Button */}
 				<nav
-					className={`w-full px-8 py-1.5 flex justify-center items-center ${isHomePage && !isScrolled ? "bg-transparent" : "bg-primary"}`}>
+					className={`w-full px-8 py-1.5 flex justify-center items-center 
+        ${isHomePage && !isScrolled ? "bg-transparent" : "bg-primary"}`}>
 
-					{/* Mobile Menu Toggle Button (Now in Blue Navbar) */}
-					<button
-						className="lg:hidden text-white text-2xl"
-						onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+					{/* 📱 Mobile Menu Toggle */}
+					<button className="lg:hidden text-white text-2xl" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
 						{isMobileMenuOpen ? <FaTimes /> : <FaBars />}
 					</button>
 
+					{/* 🔹 Desktop Menu */}
 					<div className="hidden lg:block px-6 py-2">
 						<ul className="flex space-x-10 text-lg text-white font-medium">
 							{dropdownLinks.map((item, index) => (
@@ -288,6 +296,7 @@ const Navbar = () => {
 									className="relative group cursor-pointer transition-all duration-300 ease-in-out"
 									onMouseEnter={() => setOpenDropdown(index)}
 									onMouseLeave={() => setOpenDropdown(null)}>
+
 									<span className="relative inline-block pb-1 text-white transition-all duration-300 ease-in-out group-hover:text-accent group-hover:scale-110">
 										<span className="flex items-center">
 											{item.links ? (
@@ -298,15 +307,15 @@ const Navbar = () => {
 												<a href={item.href}>{item.title}</a>
 											)}
 										</span>
-										{/* Underline Animation */}
 										<span className="absolute left-0 bottom-0 w-0 h-[3px] bg-accent transition-all duration-500 ease-out group-hover:w-full group-hover:opacity-100 opacity-0"></span>
 									</span>
 
-									{/* Dropdown Menu */}
+									{/* 🔽 Dropdown Menu */}
 									<ul
 										className={`absolute top-[75%] mt-2 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
-							${index === dropdownLinks.length - 1 ? "right-0" : "left-0"} 
-							${openDropdown === index ? "opacity-100 translate-y-0 visible" : "opacity-0 translate-y-[-10px] invisible"}`}>
+                                ${index === dropdownLinks.length - 1 ? "right-0" : "left-0"} 
+                                ${openDropdown === index ? "opacity-100 translate-y-0 visible" : "opacity-0 translate-y-[-10px] invisible"}`}>
+
 										{item.links &&
 											item.links.map((link, i) => (
 												<div
@@ -314,6 +323,7 @@ const Navbar = () => {
 													className="relative group"
 													onMouseEnter={() => setOpenSubmenu(i)}
 													onMouseLeave={() => setOpenSubmenu(null)}>
+
 													<a href={link.href}>
 														<li className="px-4 py-2 hover:bg-accent hover:rounded-sm hover:text-white flex justify-between items-center">
 															{link.name}
@@ -321,18 +331,20 @@ const Navbar = () => {
 														</li>
 													</a>
 
-													{/* Submenu */}
+													{/* ▶️ Submenu */}
 													{link.subLinks && (
 														<ul
 															className={`absolute top-0 mt-0 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
-												${index === dropdownLinks.length - 1 ? "right-full" : "left-full"} 
-												${openSubmenu === i ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+                                                    ${index === dropdownLinks.length - 1 ? "right-full" : "left-full"} 
+                                                    ${openSubmenu === i ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+
 															{link.subLinks.map((subLink, j) => (
 																<li
 																	key={j}
 																	className="relative group"
 																	onMouseEnter={() => setOpenNestedSubmenu(j)}
 																	onMouseLeave={() => setOpenNestedSubmenu(null)}>
+
 																	<a
 																		href={subLink.href}
 																		className="px-4 py-2 hover:bg-primary hover:text-white rounded-sm flex justify-between items-center">
@@ -340,12 +352,12 @@ const Navbar = () => {
 																		{"nestedLinks" in subLink && <IoIosArrowForward />}
 																	</a>
 
-																	{/* Nested Submenu */}
+																	{/* ▶️ Nested Submenu */}
 																	{subLink.nestedLinks && (
 																		<ul
 																			className={`absolute top-0 mt-0 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
-																${link.subLinks && j === link.subLinks.length - 1 ? "right-full" : "left-full"} 
-																${openNestedSubmenu === j ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+                                                                    ${link.subLinks && j === link.subLinks.length - 1 ? "right-full" : "left-full"} 
+                                                                    ${openNestedSubmenu === j ? "opacity-100 visible" : "opacity-0 invisible"}`}>
 																			{subLink.nestedLinks.map((nestedLink, k) => (
 																				<li key={k}>
 																					<a
@@ -369,10 +381,8 @@ const Navbar = () => {
 						</ul>
 					</div>
 				</nav>
-
-
-				{/* 🔹 Desktop Menu (Only Visible for Large Screens) */}
 			</div>
+
 
 			{/* 🔹 Mobile Menu Drawer (Visible on Small Screens) */}
 			<div className={`fixed inset-0 bg-black bg-opacity-50 z-50 transform transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
