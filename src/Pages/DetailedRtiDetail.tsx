@@ -50,7 +50,7 @@ function DetailedRtiDetail() {
           <h1 className="text-2xl font-bold mb-4">{rtidetailid}: {rtiDetail.title}</h1>
 
           <div className="border p-4 rounded-lg bg-gray-100 shadow-md">
-            <MarkdownPreview source={rtiDetail.content} className="p-4 rounded-lg !bg-transparent !text-black"
+            <MarkdownPreview source={rtiDetail.content} className="p-4 rounded-lg !bg-white !text-black"
             />
           </div>
 
