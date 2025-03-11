@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const rulesDemo = [
 	{ title: "Anti-Ragging Rules", link: "#" },
@@ -10,6 +11,8 @@ const rulesDemo = [
 function InstRulesAndReg() {
 
 	const [rules,setRules] = useState<Rule[]>([])
+
+	const navigate = useNavigate();
 
 	interface Rule {
 		title: string;
@@ -60,11 +63,11 @@ function InstRulesAndReg() {
 							<span className="text-lg font-medium text-gray-700">
 								{rule.title}
 							</span>
-							<a
-								href={rule.link}
+							<button
+								onClick={() => navigate(rule.link)}
 								className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition">
 								View Details
-							</a>
+							</button>
 						</li>
 					))}
 				</ul>

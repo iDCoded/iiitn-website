@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 interface SidebarProps {
 	sections: { id: string; title: string }[];
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ sections }) => {
+	const navigate = useNavigate();
 	return (
 		<aside className="hidden md:block sticky top-20 self-start">
 			<div className="p-4 border rounded-lg shadow-sm bg-white">
@@ -13,7 +16,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sections }) => {
 					{sections.map((section) => (
 						<li key={section.id} className="pt-2">
 							<a
-								href={`#${section.id}`}
+								onClick={() => navigate(`#${section.id}`)}
 								className="block text-gray-700 hover:text-accent transition">
 								{section.title}
 							</a>

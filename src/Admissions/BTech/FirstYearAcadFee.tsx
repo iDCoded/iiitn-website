@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import acadfee from '../../assets/acadfee.jpg';
+import { useNavigate } from "react-router-dom";
 const defacadFeeData = {
 	year: 2024,
 	imgSrc: acadfee,
@@ -8,6 +9,9 @@ const defacadFeeData = {
 function FirstYearAcadFee() {
 	const [acadFeeData, setAcadFeeData] = useState<{ year: any; imgSrc: any }>({ year: '', imgSrc: '' });
 	const [loading, setLoading] = useState(true);
+
+	const navigate = useNavigate();
+
 	useEffect(() => {
 		const fetchAcadFee = async () => {
 			try {
@@ -79,18 +83,18 @@ function FirstYearAcadFee() {
 
 				{/* 📌 Action Buttons */}
 				<div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center">
-					<a
-						href="/pages/academicfee"
+					<p
+						onClick={() => navigate("/pages/academicfee")}
 						className="bg-primary text-white px-5 py-2 rounded-md text-center hover:bg-[#001a36] transition"
 					>
 						View Complete Fee Structure
-					</a>
-					<a
-						href="/pages/academicfeepayment"
+					</p>
+					<p
+						onClick={() => navigate("/pages/academicfeedetails")}
 						className="bg-accent text-white px-5 py-2 rounded-md text-center hover:bg-[#d8691d] transition"
 					>
 						Academic Fee Payment Details
-					</a>
+					</p>
 				</div>
 			</main>
 		</div>

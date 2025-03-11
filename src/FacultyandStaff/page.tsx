@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import StudentCard from "../components/StudentCard";
 import NoticesSidebar from "../components/NoticesSidebar";
 import {
@@ -24,20 +25,20 @@ const currentData = [
 		title: "Academic Calendar",
 		description: "Details about Scholarships and financial assistance",
 		link: "/academics/calendar",
-		imageSrc:curr_acad,
-		},
+		imageSrc: curr_acad,
+	},
 	{
 		title: "Courses",
 		description: "All in one academic platform for managing assignments and additional course materials.",
 		link: "://moodle.iiitnagpur.ac.in",
-		imageSrc:curr_acad,
-		},
+		imageSrc: curr_acad,
+	},
 	{
 		title: "Faculty and Staff Portal",
 		description: "All in one academic platform for managing assignments and additional course materials.",
 		link: "#",
-		imageSrc:curr_acad,
-		},
+		imageSrc: curr_acad,
+	},
 ];
 
 const quickLinks = [
@@ -68,6 +69,7 @@ const quickLinks = [
 
 
 function FacultyandStaff() {
+	const navigate = useNavigate();
 	return (
 		<div className="bg-gray-50 min-h-screen">
 			{/* Hero Section */}
@@ -84,8 +86,8 @@ function FacultyandStaff() {
 
 				{/* Main Section */}
 				<div className="flex-1 ">
-					
-					
+
+
 
 					{/* Current Faculty & Staff */}
 					<div className="mb-12 max-w-[80vh] mx-auto">
@@ -99,13 +101,15 @@ function FacultyandStaff() {
 						</p>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
 							{currentData.map((data, index) => (
-								<a href={data.link} key={index}>
+								<a
+									onClick={() => navigate(data.link)}
+									key={index}>
 									<StudentCard
-									key={index}
-									title={data.title}
-									description={data.description}
-									imageSrc={data.imageSrc}
-								/>
+										key={index}
+										title={data.title}
+										description={data.description}
+										imageSrc={data.imageSrc}
+									/>
 								</a>
 							))}
 						</div>
@@ -145,7 +149,7 @@ function FacultyandStaff() {
 									{section.items.map((item, i) => (
 										<li key={i}>
 											<a
-												href={item.link}
+												onClick={() => navigate(item.link)}
 												className="text-accent hover:underline">
 												{item.name}
 											</a>
@@ -157,17 +161,17 @@ function FacultyandStaff() {
 					))}
 					{/* Notices */}
 					<Card className="shadow-sm border border-gray-200 p-4">
-                        <CardHeader className="flex justify-between items-center flex-row">
-                            <CardTitle className="text-lg font-semibold text-primary">Faculty Notices</CardTitle>
-                            <a href="/notices" className="text-sm text-accent hover:underline">View All</a>
-                        </CardHeader>
-                        <CardContent>
-                        </CardContent>
-                        <NoticesSidebar category="faculty"/>
-                    </Card>
-					
-					
-					
+						<CardHeader className="flex justify-between items-center flex-row">
+							<CardTitle className="text-lg font-semibold text-primary">Faculty Notices</CardTitle>
+							<button onClick={() => navigate("/notices")} className="text-sm text-accent hover:underline">View All</button>
+						</CardHeader>
+						<CardContent>
+						</CardContent>
+						<NoticesSidebar category="faculty" />
+					</Card>
+
+
+
 				</aside>
 			</div>
 		</div>

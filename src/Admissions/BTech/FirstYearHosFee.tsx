@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 const defhostelFeeData = {
 	year: 2022,
 	imgSrc: "#",
@@ -8,6 +9,9 @@ function FirstYearHosFee() {
 
 	const [hostelFeeData, setHostelFeeData] = useState<{ year: any; imgSrc: any }>({ year: '', imgSrc: '' });
 	const [loading, setLoading] = useState(true);
+
+	const navigate = useNavigate();
+
 	useEffect(() => {
 		const fetchAcadFee = async () => {
 			try {
@@ -78,16 +82,16 @@ function FirstYearHosFee() {
 
 				{/* Action Buttons */}
 				<div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center">
-					<a
-						href="/pages/hostelfee"
+					<p
+						onClick={() => navigate("/pages/hostelfeestructure")}
 						className="bg-blue-600 text-white px-5 py-2 rounded-md text-center hover:bg-blue-700 transition">
 						View Complete Hostel Fee Structure
-					</a>
-					<a
-						href="/pages/hostelfeepayment"
+					</p>
+					<p
+						onClick={() => navigate("/pages/hostelfeepayment")}
 						className="bg-green-600 text-white px-5 py-2 rounded-md text-center hover:bg-green-700 transition">
 						Hostel Fee Payment Details
-					</a>
+					</p>
 				</div>
 			</main>
 		</div>

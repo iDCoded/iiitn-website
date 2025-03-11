@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardTitle } from "./ui/card";
 import { FaArrowRight } from "react-icons/fa";
 import admission from "../assets/IIIT9.jpg"; // 🎨 Background Image
@@ -24,6 +25,8 @@ const programs = [
 ];
 
 const Admissions = () => {
+    const navigate = useNavigate();
+
     const [hovered, setHovered] = useState<number | null>(null);
     const [ripple, setRipple] = useState<{ x: number; y: number; index: number | null }>({
         x: 0,
@@ -144,12 +147,14 @@ const Admissions = () => {
                                     </p>
 
                                     {/* Learn More Button */}
-                                    <a href={program.link} className="group">
+                                    <button
+                                        onClick={() => navigate(program.link)}
+                                        className="group">
                                         <div className="mt-2 sm:mt-4 flex items-center justify-center text-accent font-semibold cursor-pointer transition-colors duration-300">
                                             <span>Learn More</span>
                                             <FaArrowRight className="ml-1 sm:ml-2 transform transition-transform duration-300" />
                                         </div>
-                                    </a>
+                                    </button>
                                 </CardContent>
                             </Card>
 

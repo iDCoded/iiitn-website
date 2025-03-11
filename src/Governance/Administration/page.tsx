@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import heroimage from "../../assets/BoGBanner.jpg";
-
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 interface Person {
@@ -15,6 +15,8 @@ interface Person {
 
 function Administration() {
     const [people, setPeople] = useState<Person[]>([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchPeople = async () => {
@@ -79,7 +81,7 @@ function Administration() {
                         </CardHeader>
                         <CardContent>
                             <ul className="space-y-2 text-sm">
-                                {["Chairman", "Director", "Registrar", ].map((item, index) => (
+                                {["Chairman", "Director", "Registrar",].map((item, index) => (
                                     <li key={index}>
                                         <a href={`#${item.toLowerCase().replace(/\s/g, "-")}`} className="text-accent hover:underline">
                                             {item}
@@ -137,15 +139,12 @@ function Administration() {
 
                                     {/* 🔗 More Info Link */}
                                     <p className="text-accent text-lg font-medium mt-4 cursor-pointer hover:underline">
-                                        <a href={`/governance/${person.id}`}>More about {person.position.split(',')[0]}</a>
+                                        <a onClick={() => navigate(`/governance/${person.id}`)}>More about {person.position.split(',')[0]}</a>
                                     </p>
                                 </div>
                             </CardContent>
                         </Card>
-
                     ))}
-
-                  
                 </div>
             </div>
         </div>

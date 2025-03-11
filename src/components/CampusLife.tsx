@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-
+import { useNavigate } from "react-router-dom";
 import img1 from "../assets/IIIT22.jpg";
 import img2 from "../assets/IIIT26.jpg";
 import img3 from "../assets/IIIT21(1).jpg";
@@ -18,13 +18,14 @@ import {
 
 const campusLifeImages = [
 	{ src: img1, content: "A modern and vibrant academic hub fostering innovation" },
-	{ src: img2, content: "Hands-on learning with state-of-the-art equipment"},
-	{ src: img3, content: "Stay active with dynamic sports facilities."},
-	{ src: img4, content: "A fully-equipped gym to fuel both body and mind"},
-	{ src: img5, content: "A serene library for deep learning and exploration"},
+	{ src: img2, content: "Hands-on learning with state-of-the-art equipment" },
+	{ src: img3, content: "Stay active with dynamic sports facilities." },
+	{ src: img4, content: "A fully-equipped gym to fuel both body and mind" },
+	{ src: img5, content: "A serene library for deep learning and exploration" },
 ];
 
 const CampusLife = () => {
+	const navigate = useNavigate();
 	const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
 	return (
@@ -65,11 +66,11 @@ const CampusLife = () => {
 							</DialogContent>
 						</Dialog>
 
-						<a href="/students/hostellife">
+						<button onClick={() => navigate("/students/hostellife")} className="px-6 py-3 text-lg h-10 flex items-center font-semibold bg-primary hover:bg-primary-dark hover:cursor-pointer text-white transition-all duration-300">
 							<button className="px-6 py-3 text-lg h-10 flex  items-center font-semibold bg-primary hover:bg-primary-dark hover:cursor-pointer text-white transition-all duration-300">
 								More
 							</button>
-						</a>
+						</button>
 					</div>
 				</div>
 

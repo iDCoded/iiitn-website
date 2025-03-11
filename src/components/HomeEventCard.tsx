@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 type Event = {
 	id: string;
 	image?: string;
@@ -10,13 +12,12 @@ type Event = {
 	preference?: number;
 	club?: string;
 };
-
+const navigate = useNavigate();
 const HomeEventCard = ({ event }: { event: Event }) => (
 	<div
 		className={`relative overflow-hidden  shadow-lg hover:shadow-xl transition-all bg-white backdrop-blur-lg border border-gray-200
-            ${
-							event.large ? "md:h-full" : "md:h-[200px]"
-						} min-h-[250px] sm:min-h-[300px] flex flex-col`}>
+            ${event.large ? "md:h-full" : "md:h-[200px]"
+			} min-h-[250px] sm:min-h-[300px] flex flex-col`}>
 		{/* Event Image */}
 		<div className="absolute inset-0 overflow-hidden  bg-black">
 			<img
@@ -48,11 +49,11 @@ const HomeEventCard = ({ event }: { event: Event }) => (
 			</div>
 
 			{/* Event Link */}
-			<a
-				href={`/events/${event.id}`}
+			<button
+				onClick={() => navigate(`/events/${event.id}`)}
 				className="bg-white text-primary px-4 py-2  font-semibold shadow-md hover:bg-accent hover:text-white hover:rounded-md transition mt-2 justify-self-end flex">
 				View Details
-			</a>
+			</button>
 		</div>
 	</div>
 );

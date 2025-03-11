@@ -1,7 +1,9 @@
 import { FaFileAlt } from "react-icons/fa"; // Import an icon for guidelines
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Companies() {
+  const navigate = useNavigate();
   const [pdfLinks, setPdfLinks] = useState<{ title: string; link: string }[]>([]);
 
   useEffect(() => {
@@ -49,9 +51,12 @@ function Companies() {
               className="p-3 flex items-center space-x-3 border-b last:border-b-0 hover:bg-gray-100 rounded-md transition-all"
             >
               <FaFileAlt className="text-accent text-lg sm:text-xl" />
-              <a href={item.link} className="text-accent font-medium hover:underline">
+                <button
+                onClick={() => navigate(item.link)}
+                className="text-accent font-medium hover:underline"
+                >
                 {item.title}
-              </a>
+                </button>
             </li>
           ))}
         </ul>

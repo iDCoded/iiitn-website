@@ -136,11 +136,11 @@ const UpcomingEvents = () => {
 					<h2 className="text-3xl font-bold text-left text-primary">
 						<span className="text-4xl text-accent">|</span> Events & Clubs
 					</h2>
-					<a href="/events">
-						<Button className="text-accent font-semibold hover:underline bg-transparent transition-all duration-300 hover:bg-primary hover:text-white">
-							View All <FaArrowRight />
-						</Button>
-					</a>
+					<Button 
+						onClick={() => navigate("/events")}
+					className="text-accent font-semibold hover:underline bg-transparent transition-all duration-300 hover:bg-primary hover:text-white">
+						View All <FaArrowRight />
+					</Button>
 				</motion.div>
 
 				{/* Events Grid */}

@@ -82,13 +82,13 @@ export default function NewsSection() {
 				{/* News Section */}
 				<div className="md:col-span-2 flex flex-col" ref={newsSectionRef}>
 					<div className="flex items-center justify-between">
-					<h2 className="text-2xl sm:text-4xl font-bold tracking-wide mb-6">
-						<span className="text-accent">| </span> Latest News
-					</h2>
-					<a href="/news" className="text-accent text-md font-semibold transition duration-200 ease-in-out hover:underline hover:text-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">
-  View All →
-</a>
-</div>
+						<h2 className="text-2xl sm:text-4xl font-bold tracking-wide mb-6">
+							<span className="text-accent">| </span> Latest News
+						</h2>
+						<a href="/news" className="text-accent text-md font-semibold transition duration-200 ease-in-out hover:underline hover:text-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">
+							View All →
+						</a>
+					</div>
 					<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 						{newsData.slice(0, 2).map((news) => (
 							<div
@@ -168,9 +168,9 @@ export default function NewsSection() {
 
 						{/* View All Announcements */}
 						<div className="px-4 mt-4 text-right">
-							<a href="/announcements" className="text-accent font-medium hover:underline">
+							<button onClick={() => navigate("/announcements")} className="text-accent font-medium hover:underline">
 								View All →
-							</a>
+							</button>
 						</div>
 					</div>
 

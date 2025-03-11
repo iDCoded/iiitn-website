@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // Using ShadCN Card
 import StudentCard from "../components/StudentCard";
 import heroimage from "../assets/studentBanner.png";
@@ -50,6 +51,7 @@ const sidebarLinks = [
 ];
 
 function Students() {
+    const navigate = useNavigate();
     return (
         <div className="bg-gray-50 min-h-screen">
             {/* Header Section */}
@@ -83,7 +85,9 @@ function Students() {
                         </p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             {prospectiveData.map((item, index) => (
-                                <a href={item.link} key={index}>
+                                <a
+                                    onClick={() => navigate(item.link)}
+                                    key={index}>
                                     <StudentCard
                                         title={item.title}
                                         description={item.description}
@@ -108,7 +112,9 @@ function Students() {
                                 <p className="text-gray-500 mb-3 text-sm sm:text-base">{section.subDes}</p>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                     {section.arr.map((item, idx) => (
-                                        <a href={item.link} key={idx}>
+                                        <a
+                                            onClick={() => navigate(item.link)}
+                                            key={idx}>
                                             <StudentCard
                                                 title={item.title}
                                                 description={item.description}
@@ -132,9 +138,11 @@ function Students() {
                             <ul className="space-y-2 text-sm">
                                 {sidebarLinks.map((item, index) => (
                                     <li key={index}>
-                                        <a href={item.link} className="text-accent hover:underline">
+                                        <p
+                                            onClick={() => navigate(item.link)}
+                                            className="text-accent hover:underline">
                                             {item.title}
-                                        </a>
+                                        </p>
                                     </li>
                                 ))}
                             </ul>
@@ -143,10 +151,10 @@ function Students() {
                     <Card className="shadow-sm border border-gray-200 p-4">
                         <CardHeader className="flex justify-between items-center flex-row">
                             <CardTitle className="text-lg font-semibold text-primary">Student Notices</CardTitle>
-                            <a href="/notices" className="text-sm text-accent hover:underline">View All</a>
+                            <a onClick={() => navigate("/notices")} className="text-sm text-accent hover:underline">View All</a>
                         </CardHeader>
-                      
-                        <NoticesSidebar category="student"/>
+
+                        <NoticesSidebar category="student" />
                     </Card>
                 </aside>
             </div>

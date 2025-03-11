@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 interface FSCardProps {
 	title: string;
 	description: string;
@@ -5,6 +7,8 @@ interface FSCardProps {
 }
 
 function FSCard({ title, description, imageSrc }: FSCardProps) {
+	const navigate = useNavigate();
+
 	return (
 		<>
 			<div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
@@ -15,8 +19,8 @@ function FSCard({ title, description, imageSrc }: FSCardProps) {
 					<p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
 						{description}
 					</p>
-					<a
-						href="/pages/directory"
+					<button
+						onClick={() => navigate("/pages/directory")}
 						className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 						Browse Faculty by Derpartment
 						<svg
@@ -33,7 +37,7 @@ function FSCard({ title, description, imageSrc }: FSCardProps) {
 								d="M1 5h12m0 0L9 1m4 4L9 9"
 							/>
 						</svg>
-					</a>
+					</button>
 				</div>
 			</div>
 		</>

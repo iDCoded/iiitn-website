@@ -17,7 +17,6 @@ export default function AboutUs() {
         m_id: number;
     }
 
-  
     const [documents, setDocuments] = useState<{ actDocs: Document[]; statuteDocs: Document[] }>({
         actDocs: [],
         statuteDocs: [],
@@ -32,7 +31,7 @@ export default function AboutUs() {
         )
             .then((response) => response.json())
             .then((data) => {
-                
+
                 const actDocs = data.filter((doc: Document) => doc.m_sub_category.toLowerCase() === "act");
                 const statuteDocs = data.filter((doc: Document) => doc.m_sub_category.toLowerCase() === "statute");
                 const mouDocs = data.filter((doc: Document) => doc.m_sub_category.toLowerCase() === "mou");
@@ -75,53 +74,53 @@ export default function AboutUs() {
 " />
                 ))}
                 {documents.statuteDocs.map((doc) => (
-                   <Section
-                   key={doc.m_id}
-                   title={doc.title}
-                   link={doc.media_doc_id}
-                   content={`The Indian Institute of Information Technology, Nagpur governs by the Statutes formulated by GoI.\n\nThese Statutes may be called the Statutes of the Indian Institute of Information Technology, Nagpur, 2017.`}
-               />
+                    <Section
+                        key={doc.m_id}
+                        title={doc.title}
+                        link={doc.media_doc_id}
+                        content={`The Indian Institute of Information Technology, Nagpur governs by the Statutes formulated by GoI.\n\nThese Statutes may be called the Statutes of the Indian Institute of Information Technology, Nagpur, 2017.`}
+                    />
                 ))}
 
                 <div className="space-y-8">
                     <h2 className="text-3xl font-bold text-primary flex items-center">
                         <span className="text-accent mr-3 text-4xl">|</span> Memorandums of Understanding (MoUs)
                     </h2>
-                  
+
 
 
                     <Accordion
-            type="single"
-            collapsible
-            value={openItem}
-            onValueChange={(value) => setOpenItem(value === openItem ? undefined : value)}
-        >
-            {mouData.map(({ title, media_doc_id, media_img_id, date, m_id }) => (
-                <AccordionItem key={m_id} value={m_id.toString()} className="border-b border-gray-200">
-                    <AccordionTrigger className="py-4 text-lg font-semibold hover:text-accent transition duration-200">
-                        {title}
-                    </AccordionTrigger>
-                    <AccordionContent className="p-5 text-text leading-relaxed">
-                        {date && <p>Signed on {new Date(date).toDateString()}</p>}
-                        {media_img_id && (
-                            <div className="mt-4">
-                                <img src={media_img_id} alt={title} className="w-full rounded-lg shadow-md" />
-                            </div>
-                        )}
-                        {media_doc_id && (
-                            <a
-                                href={media_doc_id}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-accent hover:underline block mt-2"
-                            >
-                                View Document
-                            </a>
-                        )}
-                    </AccordionContent>
-                </AccordionItem>
-            ))}
-        </Accordion>
+                        type="single"
+                        collapsible
+                        value={openItem}
+                        onValueChange={(value) => setOpenItem(value === openItem ? undefined : value)}
+                    >
+                        {mouData.map(({ title, media_doc_id, media_img_id, date, m_id }) => (
+                            <AccordionItem key={m_id} value={m_id.toString()} className="border-b border-gray-200">
+                                <AccordionTrigger className="py-4 text-lg font-semibold hover:text-accent transition duration-200">
+                                    {title}
+                                </AccordionTrigger>
+                                <AccordionContent className="p-5 text-text leading-relaxed">
+                                    {date && <p>Signed on {new Date(date).toDateString()}</p>}
+                                    {media_img_id && (
+                                        <div className="mt-4">
+                                            <img src={media_img_id} alt={title} className="w-full rounded-lg shadow-md" />
+                                        </div>
+                                    )}
+                                    {media_doc_id && (
+                                        <a
+                                            href={media_doc_id}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-accent hover:underline block mt-2"
+                                        >
+                                            View Document
+                                        </a>
+                                    )}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </Accordion>
 
                 </div>
             </div>

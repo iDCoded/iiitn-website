@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 const seatDemoData = [
 	{
@@ -34,6 +35,8 @@ function BTech() {
 	const [otherDocs, setOtherDocs] = useState<Document[]>([]);
 	const [seatData, setSeatData] = useState<Seat[]>([]);
 	let total = 637;
+
+	const navigate = useNavigate();
 
 	interface Document {
 		title: string;
@@ -153,12 +156,12 @@ function BTech() {
 								</tbody>
 							</table>
 						</div>
-						<a
-							href="/academics/courses"
-							className="mt-4 block text-accent hover:underline text-center"
+						<button
+							onClick={()=> navigate("/academics/courses")}
+							className="mt-4 block text-accent hover:underline text-center cursor-pointer"
 						>
 							More Details About Courses
-						</a>
+						</button>
 					</CardContent>
 				</Card>
 

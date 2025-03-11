@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FaFacebook, FaLinkedin, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const imgSrc = logo;
 
@@ -14,6 +15,7 @@ const fadeInUp = {
 };
 
 const Footer = () => {
+    const navigate = useNavigate();
     return (
         <motion.footer
             className="bg-primary text-white py-10"
@@ -34,14 +36,14 @@ const Footer = () => {
                     { title: "Directory", href: "/pages/directory" },
                     { title: "Contact", href: "/contact" }
                     ].map((item, index) => (
-                        <a
+                        <button
                             key={index}
-                            href={item.href}
+                            onClick={() => navigate(item.href)}
                             className="relative group inline-block"
                         >
                             {item.title}
                             <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-                        </a>
+                        </button>
                     ))}
                 </motion.div>
 
@@ -89,10 +91,12 @@ const Footer = () => {
                                 { name: "Library", link: "/academics/library" }
                             ].map((item, index) => (
                                 <li key={index}>
-                                    <a href={item.link} className="relative group inline-block">
+                                    <p
+                                        onClick={() => navigate(item.link)}
+                                        className="relative group inline-block">
                                         {item.name}
                                         <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-                                    </a>
+                                    </p>
                                 </li>
                             ))}
                         </ul>
@@ -109,10 +113,12 @@ const Footer = () => {
                                 { name: "Faculty Achievements", link: "/pages/facultyachievements" }
                             ].map((item, index) => (
                                 <li key={index}>
-                                    <a href={item.link} className="relative group inline-block">
+                                    <p
+                                        onClick={() => navigate(item.link)}
+                                        className="relative group inline-block">
                                         {item.name}
                                         <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-                                    </a>
+                                    </p>
                                 </li>
                             ))}
                         </ul>

@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 interface DepartmentCardProps {
     title: string;
     imageSrc: string;
@@ -6,6 +8,7 @@ interface DepartmentCardProps {
 }
 
 function DepartmentCard({ title, imageSrc, description, link }: DepartmentCardProps) {
+    const navigate = useNavigate();
     return (
         <div className="relative w-96 bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl group flex flex-col">
             {/* Image Section */}
@@ -33,15 +36,15 @@ function DepartmentCard({ title, imageSrc, description, link }: DepartmentCardPr
 
                 {/* Learn More Button at the Bottom */}
                 <div className="mt-4">
-                    <a
-                        href={link}
+                    <button
+                        onClick={() => navigate(link)}
                         className="inline-flex items-center justify-center w-full py-2 text-white bg-accent font-semibold text-base rounded-md transition-all duration-300 hover:bg-[#d1651d] hover:shadow-md"
                     >
                         Learn More
                         <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
                             →
                         </span>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
