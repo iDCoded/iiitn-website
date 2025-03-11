@@ -10,23 +10,25 @@ interface NewsItem {
 	caption: string;
 }
 
-const announcements = [
-	{ id: "1", title: "Announcement 1" },
-	{ id: "2", title: "Announcement 2 Announcement 1 " },
-	{ id: "3", title: "Announcement 3" },
-	{ id: "4", title: "Announcement 4" },
-	{ id: "5", title: "Announcement 5" },
-	{ id: "6", title: "Announcement 6" },
-	{ id: "7", title: "Announcement 7" },
-	{ id: "8", title: "Announcement 8" },
-	{ id: "9", title: "Announcement 9" },
-	{ id: "10", title: "Announcement 10" },
+const defaultAnnouncements = [
+	{ id: "1", title: "Announcement 1", date: "2021-10-01" },
+	{ id: "2", title: "Announcement 2 Announcement 1", date: "2021-10-02" },
+	{ id: "3", title: "Announcement 3", date: "2021-10-03" },
+	{ id: "4", title: "Announcement 4", date: "2021-10-04" },
+	{ id: "5", title: "Announcement 5", date: "2021-10-05" },
+	{ id: "6", title: "Announcement 6", date: "2021-10-06" },
+	{ id: "7", title: "Announcement 7", date: "2021-10-07" },
+	{ id: "8", title: "Announcement 8", date: "2021-10-08" },
+	{ id: "9", title: "Announcement 9", date: "2021-10-09" },
+	{ id: "10", title: "Announcement 10", date: "2021-10-10" },
 ];
 
 export default function NewsSection() {
 	const [newsData, setNewsData] = useState<NewsItem[]>([]);
 	const navigate = useNavigate();
 	const newsSectionRef = useRef<HTMLDivElement>(null);
+
+	const [announcements, setAnnouncements] = useState<{ id: string; title: string; date: string }[]>([]);
 
 	useEffect(() => {
 		const fetchNews = async () => {
@@ -50,7 +52,28 @@ export default function NewsSection() {
 			}
 		};
 
+		const fetchAnnouncements = async () => {
+			try {
+				const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/card/cards/category/announcements`);
+				const data = await response.json();
+				const announcementsArray = Array.isArray(data) ? data : [];
+				setAnnouncements(announcementsArray.map((announcement: any) => {
+					const date = new Date(announcement.date);
+					const formattedDate = date.toLocaleDateString('en-US', { day: '2-digit', month: 'short' });
+					return {
+						id: announcement.c_id,
+						title: announcement.title,
+						date: formattedDate,
+					};
+				}));
+			} catch (error) {
+				console.error("Error fetching announcements:", error);
+				setAnnouncements(defaultAnnouncements);
+			}
+		};
+
 		fetchNews();
+		fetchAnnouncements();
 	}, []);
 
 	return (
@@ -65,7 +88,7 @@ export default function NewsSection() {
 						{newsData.slice(0, 2).map((news) => (
 							<div
 								key={news.id}
-								className="bg-white border border-gray-300 shadow-md overflow-hidden flex flex-col h-[60vh]" // Fixed height in vh
+								className="bg-white border border-gray-300 shadow-xl	 overflow-hidden flex flex-col h-[60vh]" // Fixed height in vh
 							>
 								<img
 									className="w-full h-[30vh] object-cover" // Responsive image height
@@ -109,26 +132,43 @@ export default function NewsSection() {
 					<h2 className="text-2xl sm:text-4xl font-bold tracking-wide mb-6">
 						<span className="text-accent">| </span> Announcements
 					</h2>
-					<div
-						className="bg-background text-black flex flex-col py-4 w-full h-[60vh]" // Fixed height in vh
-					>
+
+					<div className="bg-background text-black flex flex-col py-6 w-full h-[60vh]">
 						{/* Scrollable Announcements */}
-						<div
-							className="flex-1 overflow-y-auto px-4 scrollbar-thin scrollbar-thumb-accent scrollbar-track-gray-200 scrollbar-thumb-rounded-full scrollbar-track-rounded-full hover:scrollbar-thumb-accent-dark"
-						>
+						<div className="flex-1 overflow-y-auto px-4 scrollbar-thin scrollbar-thumb-primary scrollbar-track-gray-200 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
 							{announcements.map((announcement) => (
 								<div
 									key={announcement.id}
 									onClick={() => navigate(`/announcements/${announcement.id}`)}
-									className="relative py-4 px-6 border border-transparent bg-accent text-white text-md cursor-pointer 
-									transition-all duration-300 skew-x-[-10deg] shadow-md 
-									hover:bg-white hover:text-accent hover:border-accent"
+									className="flex items-center gap-6 py-4 border-b border-gray-200 cursor-pointer transition-all duration-300 
+                       hover:bg-gray-100 hover:shadow-sm hover:scale-[1.01] rounded-md px-4"
 								>
-									<span className="block skew-x-[10deg]">{announcement.title}</span>
+									{/* Date Section */}
+									<div className="flex flex-col items-end w-20">
+										<span className="text-lg font-semibold text-accent">{announcement.date.split(' ')[1]}</span> {/* Month */}
+										<span className="text-2xl font-bold text-accent">{announcement.date.split(' ')[0]}</span> {/* Day */}
+									</div>
+
+									{/* Vertical Divider - More subtle */}
+									<div className="w-[1.5px] bg-gray-300 h-12"></div>
+
+									{/* Announcement Title */}
+									<div className="flex flex-col">
+										<span className="text-lg font-medium text-gray-900">{announcement.title}</span>
+									</div>
 								</div>
 							))}
 						</div>
+
+
+						{/* View All Announcements */}
+						<div className="px-4 mt-4 text-right">
+							<a href="/announcements" className="text-accent font-medium hover:underline">
+								View All →
+							</a>
+						</div>
 					</div>
+
 				</div>
 			</div>
 		</section>
