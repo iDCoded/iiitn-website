@@ -4,18 +4,25 @@ const InternshipProgram = () => {
   const [pdfLinks, setPdfLinks] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/internship_program`)
-      .then((response) => response.json())
-      .then((data) => {
-      const links = data.reduce((acc: Record<string, string>, item: { media_doc_id: string, title: string }) => {
-        if (item.media_doc_id) {
-        acc[item.title] = item.media_doc_id;
-        }
-        return acc;
-      }, {});
-      setPdfLinks(links);
-      })
-      .catch((error) => console.error("Error fetching PDF links:", error));
+    const fetchPdfLinks = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/internship_program`);
+        const data = await response.json();
+        const links = data.reduce((acc: Record<string, string>, item: { media_doc_id: string, title: string }) => {
+          if (item.media_doc_id) {
+            acc[item.title] = item.media_doc_id;
+          }
+          return acc;
+        }, {});
+        setPdfLinks(links);
+      } catch (error) {
+        console.error("Error fetching PDF links:", error);
+      }
+    };
+
+    useEffect(() => {
+      fetchPdfLinks();
+    }, []);
   }, []);
 
   return (
