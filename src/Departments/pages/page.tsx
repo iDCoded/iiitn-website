@@ -139,8 +139,9 @@ export default function DepartmentPage({ title }: PageProps) {
 				const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/card/cards/category/bosData`)
 
 				const data = await response.json()
-				const filteredData = Array.isArray(data) ? data.filter((item: any) => item.c_sub_category.toLowerCase() === title.toLowerCase()) : [];
-				setBosData(filteredData);
+				const filteredData = Array.isArray(data) ? data.filter((item: any) => item.c_sub_category === title) : [];
+				setBosData(filteredData[0].content);
+
 				setLoading(false);
 			} catch (error) {
 				console.error(error)
@@ -271,11 +272,11 @@ export default function DepartmentPage({ title }: PageProps) {
 												</tr>
 											</thead>
 											<tbody className="bg-white divide-y divide-gray-200">
-												{bosdata && bosdata.length > 0 ? (
-														<MarkdownPreview
-															source={bosdata.content}
-															className="prose prose-lg max-w-none"
-														/>
+												{bosdata ? (
+													<MarkdownPreview
+														className="prose !bg-transparent !text-primary"
+														source={bosdata}
+													/>
 												) : (
 													<p className="text-gray-600">No data available.</p>
 												)}
