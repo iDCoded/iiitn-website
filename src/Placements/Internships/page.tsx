@@ -2,27 +2,36 @@ import { useEffect, useState } from "react";
 
 const InternshipProgram = () => {
   const [pdfLinks, setPdfLinks] = useState<Record<string, string>>({});
+  const [faculty, setFaculty] = useState<Record<string, string>>({});
 
   useEffect(() => {
     const fetchPdfLinks = async () => {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/internship_program`);
         const data = await response.json();
-        const links = data.reduce((acc: Record<string, string>, item: { media_doc_id: string, title: string }) => {
+
+        const links: Record<string, string> = {};
+        const faculty: Record<string, string> = {};
+
+        data.forEach((item: { media_doc_id: string, title: string, sub_category?: string }) => {
           if (item.media_doc_id) {
-            acc[item.title] = item.media_doc_id;
+            if (item.sub_category === "facultylist") {
+              faculty[item.title] = item.media_doc_id;
+            } else {
+              links[item.title] = item.media_doc_id;
+            }
           }
-          return acc;
-        }, {});
+        });
+
         setPdfLinks(links);
+        setFaculty(faculty);
       } catch (error) {
         console.error("Error fetching PDF links:", error);
       }
+
     };
 
-    useEffect(() => {
-      fetchPdfLinks();
-    }, []);
+    fetchPdfLinks();
   }, []);
 
   return (
@@ -72,28 +81,18 @@ const InternshipProgram = () => {
       {/* Faculty List */}
       <section className="bg-white p-6 rounded-lg shadow-md my-6">
         <h2 className="text-2xl font-bold text-accent border-b-2 pb-2">Faculty List</h2>
-        <table className="w-full mt-4 border-collapse border border-gray-300">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="border p-3">Name</th>
-              <th className="border p-3">Email</th>
-              <th className="border p-3">Expertise</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[
-              { name: "Dr. Tausif Diwan", email: "tdiwan@iiitn.ac.in", expertise: "Deep Learning" },
-              { name: "Dr. Jitendra Tembhurne", email: "jtembhurne@iiitn.ac.in", expertise: "Quantum Computing, AI" },
-              { name: "Dr. Pooja Jain", email: "poojajain@iiitn.ac.in", expertise: "NLP, Machine Learning" }
-            ].map((faculty, index) => (
-              <tr key={index} className="text-center">
-                <td className="border p-3">{faculty.name}</td>
-                <td className="border p-3 text-blue-500">{faculty.email}</td>
-                <td className="border p-3">{faculty.expertise}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {Object.keys(faculty).length > 0 ? (
+          <div className="mt-4">
+          {Object.keys(faculty).map((title) => (
+            <div key={title} className="flex items-center justify-between">
+              <h3 className="text-lg text-primary font-semibold">{title}</h3>
+              <a href={faculty[title]} className="text-blue-500">Download</a>
+            </div>
+          ))}
+          </div>
+        ) : (
+          <p className="text-gray-500 mt-4">No faculty list available.</p>
+        )}
       </section>
 
       {/* Registration Fee Structure */}
