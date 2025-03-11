@@ -25,7 +25,7 @@ const Footer = () => {
 
                 {/* Quick Links */}
                 <motion.div
-                    className="flex flex-wrap justify-center space-x-4 text-sm text-gray-300 mb-6"
+                    className="flex flex-wrap justify-start space-x-4 text-sm text-gray-300 mb-6"
                     variants={fadeInUp}
                 >
                     {[{ title: "Students", href: "/students" },
@@ -37,16 +37,17 @@ const Footer = () => {
                         <a
                             key={index}
                             href={item.href}
-                            className="relative group"
+                            className="relative group inline-block"
                         >
                             {item.title}
-                            <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
+                            <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
                         </a>
                     ))}
                 </motion.div>
 
                 {/* Grid Sections */}
-                <motion.div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <motion.div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-left">
+
                     {/* Important Links */}
                     <motion.div variants={fadeInUp}>
                         <h4 className="text-lg font-semibold mb-4 text-accent">Important Links</h4>
@@ -66,7 +67,7 @@ const Footer = () => {
                                         href={item.link}
                                         target={item.link.startsWith("http") ? "_blank" : "_self"}
                                         rel="noopener noreferrer"
-                                        className="relative group block"
+                                        className="relative group inline-block"
                                     >
                                         {item.name}
                                         <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
@@ -88,14 +89,13 @@ const Footer = () => {
                                 { name: "Library", link: "/academics/library" }
                             ].map((item, index) => (
                                 <li key={index}>
-                                    <a href={item.link} className="relative group block">
+                                    <a href={item.link} className="relative group inline-block">
                                         {item.name}
                                         <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
                                     </a>
                                 </li>
                             ))}
                         </ul>
-
                     </motion.div>
 
                     {/* Happenings */}
@@ -109,67 +109,55 @@ const Footer = () => {
                                 { name: "Faculty Achievements", link: "/pages/facultyachievements" }
                             ].map((item, index) => (
                                 <li key={index}>
-                                    <a href={item.link} className="relative group block">
+                                    <a href={item.link} className="relative group inline-block">
                                         {item.name}
                                         <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
                                     </a>
                                 </li>
                             ))}
                         </ul>
-
-                    </motion.div>
-                    <motion.div variants={fadeInUp} className="flex flex-col items-center space-y-3 ">
-                    <h4 className="text-lg font-semibold mb-4 text-accent">Address</h4>
-                    <p className="text-gray-400 text-sm font-semibold">
-        Indian Institute of Information Technology, Nagpur
-    </p>
-    <p className="text-gray-400 text-sm text-center">
-        Survey No. 140,141/1 Behind Br. Sheshrao Wankhade Shetkari Sahkari Soot Girni, <br />
-        Waranga, PO: Dongargaon(Butibori), District: Nagpur - 441108, Maharashtra, India.
-    </p>
-   
-        <div className="flex items-center space-x-2">
-            📞 
-            <a href="tel:+919405215010" className="hover:text-accent transition-colors duration-300">
-                +91 9405215010
-            </a>
-        </div>
-        <div className="flex items-center space-x-2">
-            ✉️ 
-            <a href="mailto:registrar@iiitn.ac.in" className="hover:text-accent transition-colors duration-300">
-                registrar@iiitn.ac.in
-            </a>
-        </div>
-   
-    
                     </motion.div>
 
+                    {/* Address */}
+                    <motion.div variants={fadeInUp} className="space-y-3">
+                        <h4 className="text-lg font-semibold mb-4 text-accent">Address</h4>
+                        <p className="text-gray-400 text-sm font-semibold">
+                            Indian Institute of Information Technology, Nagpur
+                        </p>
+                        <p className="text-gray-400 text-sm">
+                            Survey No. 140,141/1 Behind Br. Sheshrao Wankhade Shetkari Sahkari Soot Girni, <br />
+                            Waranga, PO: Dongargaon(Butibori), District: Nagpur - 441108, Maharashtra, India.
+                        </p>
+
+                        <div className="flex items-center space-x-2">
+                            📞
+                            <a href="tel:+919405215010" className="hover:text-accent transition-colors duration-300">
+                                +91 9405215010
+                            </a>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            ✉️
+                            <a href="mailto:registrar@iiitn.ac.in" className="hover:text-accent transition-colors duration-300">
+                                registrar@iiitn.ac.in
+                            </a>
+                        </div>
+                    </motion.div>
                 </motion.div>
 
-                {/* Institute Logo, Info, and Address */}
-               
+                {/* Social Media & Copyright */}
+                <motion.div variants={fadeInUp} className="flex flex-col items-center text-left mt-6">
+                    <img src={imgSrc} alt="IIIT Nagpur Logo" className="h-12 mb-4" />
 
-                {/* Social Media */}
-                <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center space-x-4 text-xl mt-4">
-                    <div>
-                    <img src={imgSrc} alt="IIIT Nagpur Logo" className="h-12" />
+                    <div className="flex space-x-4">
+                        {[FaFacebook, FaLinkedin, FaTwitter, FaInstagram, FaYoutube].map((Icon, index) => (
+                            <a key={index} href="#" className="hover:text-accent transition-colors duration-300">
+                                <Icon />
+                            </a>
+                        ))}
                     </div>
-               
-                <div className="flex space-x-4 mt-4">
-                    
-                {[FaFacebook, FaLinkedin, FaTwitter, FaInstagram, FaYoutube].map((Icon, index) => (
-                        <a key={index} href="#" className="hover:text-accent transition-colors duration-300">
-                            <Icon />
-                        </a>
-                    ))}
-                </div>
-                 {/* Copyright & Legal Links */}
-                 <motion.div variants={fadeInUp} className="flex flex-col md:flex-row justify-between items-center text-xs text-gray-400 mt-6">
-                    <p>© 2025 IIIT Nagpur. All rights reserved.</p>
-                </motion.div>
-                </motion.div>
 
-               
+                    <p className="text-xs text-gray-400 mt-4">© 2025 IIIT Nagpur. All rights reserved.</p>
+                </motion.div>
             </div>
         </motion.footer>
     );
