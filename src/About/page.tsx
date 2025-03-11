@@ -17,21 +17,7 @@ export default function AboutUs() {
         m_id: number;
     }
 
-    const defData: Document[] = [
-        { m_id: 1, title: "Act (PPP)", m_sub_category: "act",media_doc_id: "#", media_img_id: "", date: "2025-03-06" },
-        { m_id: 2, title: "Statute", m_sub_category: "statute",media_doc_id: "#",  media_img_id: "", date: "2025-03-06" },
-        { m_id: 3, title: "Sample Document", m_sub_category: "mou", media_img_id: "", date: "2025-03-06" },
-        { m_id: 23, title: "Sample MoU Document", m_sub_category: "mou", media_img_id: "", date: "2025-03-06" },
-        { m_id: 456, title: "Sample MoU Docment", m_sub_category: "mou", media_img_id: "", date: "2025-03-06" },
-        { m_id: 78, title: "Sample MoU Dment", m_sub_category: "mou", media_img_id: "", date: "2025-03-06" },
-        { m_id: 67, title: "Sample MoUment", m_sub_category: "mou", media_img_id: "", date: "2025-03-06" },
-        { m_id: 45, title: "Sample MoU Document", m_sub_category: "mou", media_img_id: "", date: "2025-03-06" },
-        { m_id: 19, title: "Sample MoU Document", m_sub_category: "mou", media_img_id: "", date: "2025-03-06" },
-        { m_id: 6, title: "Sample MoU Dment", m_sub_category: "mou", media_img_id: "", date: "2025-03-06" },
-        { m_id: 5, title: "Sample MoU Doent", m_sub_category: "mou", media_img_id: "", date: "2025-03-06" },
-        { m_id: 4, title: "Sample MoU Docment", m_sub_category: "mou", media_img_id: "", date: "2025-03-10" },
-    ];
-
+  
     const [documents, setDocuments] = useState<{ actDocs: Document[]; statuteDocs: Document[] }>({
         actDocs: [],
         statuteDocs: [],
@@ -46,9 +32,7 @@ export default function AboutUs() {
         )
             .then((response) => response.json())
             .then((data) => {
-                if (!data || data.length === 0) {
-                    data = defData;
-                }
+                
                 const actDocs = data.filter((doc: Document) => doc.m_sub_category.toLowerCase() === "act");
                 const statuteDocs = data.filter((doc: Document) => doc.m_sub_category.toLowerCase() === "statute");
                 const mouDocs = data.filter((doc: Document) => doc.m_sub_category.toLowerCase() === "mou");
@@ -59,11 +43,6 @@ export default function AboutUs() {
             })
             .catch((error) => {
                 console.error("Error fetching documents:", error);
-                setDocuments({
-                    actDocs: defData.filter(doc => doc.m_sub_category === "act"),
-                    statuteDocs: defData.filter(doc => doc.m_sub_category === "statute")
-                });
-                setMouData(defData.filter(doc => doc.m_sub_category === "mou"));
                 setLoading(false);
             });
     }, []);

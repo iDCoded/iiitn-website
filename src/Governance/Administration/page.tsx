@@ -28,7 +28,7 @@ function Administration() {
                 const filteredPeople = data.filter((person: any) => 
                     ["chairman", "director", "registrar"].includes(person.positions.toLowerCase())
                 ).map((person: any) => ({
-                    id: person.positions.toLowerCase(),
+                    id: person.f_id,
                     name: person.name,
                     position: person.positions,
                     email: person.email,
@@ -79,7 +79,7 @@ function Administration() {
                         </CardHeader>
                         <CardContent>
                             <ul className="space-y-2 text-sm">
-                                {["Chairman", "Director", "Registrar", "Staff Directory"].map((item, index) => (
+                                {["Chairman", "Director", "Registrar", ].map((item, index) => (
                                     <li key={index}>
                                         <a href={`#${item.toLowerCase().replace(/\s/g, "-")}`} className="text-accent hover:underline">
                                             {item}
@@ -132,18 +132,7 @@ function Administration() {
                         </Card>
                     ))}
 
-                    {/* Staff Directory */}
-                    <Card id="staff-directory" className="shadow-lg">
-                        <CardHeader className="bg-primary text-white p-4 ">
-                            <CardTitle>Staff Directory</CardTitle>
-                        </CardHeader>
-                        <CardContent className="p-6 text-center">
-                            <p>IIIT Nagpur is supported by a dedicated administrative staff that ensures smooth operations across various departments.</p>
-                            <p className="text-accent cursor-pointer mt-4">
-                                <a href="/pages/directory">View Full Staff Directory</a>
-                            </p>
-                        </CardContent>
-                    </Card>
+                  
                 </div>
             </div>
         </div>
