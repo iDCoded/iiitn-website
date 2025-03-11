@@ -91,7 +91,7 @@ function StudentsClubs() {
 										<img src={club.media_img_id} alt={club.title} className="w-full h-48 object-cover" />
 										<div className="p-6">
 											<h3 className="text-xl font-bold text-primary">{club.title}</h3>
-											<p className="text-accent font-medium">{club.c_sub_category}</p>
+											<p className="text-accent font-medium">{club.caption}</p>
 											<a
 												href={`/clubs/${club.id}`}
 												className="mt-4 inline-block text-white bg-accent px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#d46b1d] transition"
