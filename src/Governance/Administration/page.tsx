@@ -25,7 +25,7 @@ function Administration() {
 
                 console.log(data);
 
-                const filteredPeople = data.filter((person: any) => 
+                const filteredPeople = data.filter((person: any) =>
                     ["chairman", "director", "registrar"].includes(person.positions.toLowerCase())
                 ).map((person: any) => ({
                     id: person.f_id,
@@ -98,38 +98,51 @@ function Administration() {
                             <CardHeader className="bg-primary text-white p-4 ">
                                 <CardTitle><span className="text-2xl">{person.position.split(",")[0]}</span></CardTitle>
                             </CardHeader>
-                            <CardContent className="p-6 flex flex-col md:flex-row items-center md:items-start text-center md:text-left  space-x-6">
-                                <div>
+
+                            <CardContent className="p-8 flex flex-col md:flex-row items-center md:items-start space-x-8">
+                                {/* 🏅 Large Profile Picture (LEFT) */}
+                                <div className="flex-shrink-0">
                                     <img
                                         src={person.imageSrc}
                                         alt={person.name}
-                                        className="w-24 h-24 object-cover m-auto p-auto shadow-lg"
+                                        className="w-48 h-48 object-cover shadow-md"
                                     />
                                 </div>
-                                <div className="flex flex-col space-y-2">
-                                    <p className="font-bold">{person.name}</p>
-                                    <p>{person.position}</p>
-                                    <p>
-                                        Email:{" "}
-                                        <a href={`mailto:${person.email}`} className="text-blue-600 hover:underline">
-                                            {person.email}
-                                        </a>
-                                    </p>
-                                    {person.phone && (
+
+                                {/* ℹ️ Person Details (RIGHT) */}
+                                <div className="flex flex-col space-y-3">
+                                    <p className="text-2xl font-bold text-gray-900">{person.name}</p>
+                                    <p className="text-gray-600 text-lg">{person.position}</p>
+
+                                    <div className="text-gray-700 text-md">
                                         <p>
-                                            Contact:{" "}
-                                            <a href={`tel:${person.phone}`} className="text-blue-600 hover:underline">
-                                                {person.phone}
+                                            📧 Email:{" "}
+                                            <a href={`mailto:${person.email}`} className="text-blue-600 font-medium hover:underline">
+                                                {person.email}
                                             </a>
                                         </p>
-                                    )}
-                                    <p className="mt-4">{person.content}</p>
-                                    <p className="text-accent cursor-pointer mt-4">
+
+                                        {person.phone && (
+                                            <p>
+                                                📞 Contact:{" "}
+                                                <a href={`tel:${person.phone}`} className="text-blue-600 font-medium hover:underline">
+                                                    {person.phone}
+                                                </a>
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    {/* 📜 About Content */}
+                                    <p className="mt-3 text-gray-700 leading-relaxed">{person.content}</p>
+
+                                    {/* 🔗 More Info Link */}
+                                    <p className="text-accent text-lg font-medium mt-4 cursor-pointer hover:underline">
                                         <a href={`/governance/${person.id}`}>More about {person.position.split(',')[0]}</a>
                                     </p>
                                 </div>
                             </CardContent>
                         </Card>
+
                     ))}
 
                   
