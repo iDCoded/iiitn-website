@@ -49,7 +49,7 @@ function BTech() {
 	useEffect(() => {
 		const fetchDocuments = async () => {
 			try {
-				const response = await fetch(`${process.env.VITE_API_BASE_URL}/media/media/category/btech_admission`);
+				const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/btech_admission`);
 				const data = await response.json();
 
 				// Filter and sort data into two categories

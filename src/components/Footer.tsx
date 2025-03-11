@@ -118,35 +118,58 @@ const Footer = () => {
                         </ul>
 
                     </motion.div>
+                    <motion.div variants={fadeInUp} className="flex flex-col items-center space-y-3 ">
+                    <h4 className="text-lg font-semibold mb-4 text-accent">Address</h4>
+                    <p className="text-gray-400 text-sm font-semibold">
+        Indian Institute of Information Technology, Nagpur
+    </p>
+    <p className="text-gray-400 text-sm text-center">
+        Survey No. 140,141/1 Behind Br. Sheshrao Wankhade Shetkari Sahkari Soot Girni, <br />
+        Waranga, PO: Dongargaon(Butibori), District: Nagpur - 441108, Maharashtra, India.
+    </p>
+   
+        <div className="flex items-center space-x-2">
+            📞 
+            <a href="tel:+919405215010" className="hover:text-accent transition-colors duration-300">
+                +91 9405215010
+            </a>
+        </div>
+        <div className="flex items-center space-x-2">
+            ✉️ 
+            <a href="mailto:registrar@iiitn.ac.in" className="hover:text-accent transition-colors duration-300">
+                registrar@iiitn.ac.in
+            </a>
+        </div>
+   
+    
+                    </motion.div>
+
                 </motion.div>
 
                 {/* Institute Logo, Info, and Address */}
-                <motion.div variants={fadeInUp} className="flex flex-col items-center space-y-3 mt-8">
-                    <img src={imgSrc} alt="IIIT Nagpur Logo" className="h-12" />
-                    <p className="text-gray-400 text-sm">Indian Institute of Information Technology, Nagpur</p>
-                    <p className="text-gray-400 text-sm text-center">
-                        Survey No. 140,141/1 Behind Br. Sheshrao Wankhade Shetkari Sahkari Soot Girni, <br />
-                        Waranga, PO: Dongargaon(Butibori), District: Nagpur - 441108, Maharashtra, India.
-                    </p>
-                    <motion.div className="text-gray-400 text-sm text-center">
-                        📞 <a href="tel:+919405215010" className="hover:text-accent transition-colors duration-300">9405215010</a> <br />
-                        ✉️ <a href="mailto:registrar@iiitn.ac.in" className="hover:text-accent transition-colors duration-300">registrar@iiitn.ac.in</a>
-                    </motion.div>
-                </motion.div>
+               
 
                 {/* Social Media */}
-                <motion.div variants={fadeInUp} className="flex justify-center space-x-4 text-xl mt-4">
-                    {[FaFacebook, FaLinkedin, FaTwitter, FaInstagram, FaYoutube].map((Icon, index) => (
+                <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center space-x-4 text-xl mt-4">
+                    <div>
+                    <img src={imgSrc} alt="IIIT Nagpur Logo" className="h-12" />
+                    </div>
+               
+                <div className="flex space-x-4 mt-4">
+                    
+                {[FaFacebook, FaLinkedin, FaTwitter, FaInstagram, FaYoutube].map((Icon, index) => (
                         <a key={index} href="#" className="hover:text-accent transition-colors duration-300">
                             <Icon />
                         </a>
                     ))}
-                </motion.div>
-
-                {/* Copyright & Legal Links */}
-                <motion.div variants={fadeInUp} className="flex flex-col md:flex-row justify-between text-xs text-gray-400 mt-6">
+                </div>
+                 {/* Copyright & Legal Links */}
+                 <motion.div variants={fadeInUp} className="flex flex-col md:flex-row justify-between items-center text-xs text-gray-400 mt-6">
                     <p>© 2025 IIIT Nagpur. All rights reserved.</p>
                 </motion.div>
+                </motion.div>
+
+               
             </div>
         </motion.footer>
     );
