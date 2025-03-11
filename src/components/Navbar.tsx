@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { FaBars, FaChevronDown, FaSearch, FaTimes } from "react-icons/fa"; // Icons for menu toggle
+import { FaBars, FaChevronDown, FaTimes } from "react-icons/fa"; // Icons for menu toggle
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io"; // Icons for dropdowns
 import logo from "../assets/logo.png"; // Logo Image
 import Search from "@/search";
@@ -205,8 +205,6 @@ const Navbar = () => {
 		}
 	];
 
-	const [isSearchOpen, setIsSearchOpen] = useState(false);
-
 	return (
 		<>
 			{/* Transparent Overlay (Only for Home Page) */}
@@ -226,7 +224,10 @@ const Navbar = () => {
 					<a href="/">
 						<div className="flex items-center space-x-4">
 							<img src={imgSrc} alt="IIITN Logo" className="h-16 w-16" />
-							{isScrolled && (
+							{isHomePage ? (isScrolled && (
+								<h1 className="font-bold text-xl hidden lg:block">
+									Indian Institute of Information Technology, Nagpur
+								</h1>)) : (
 								<h1 className="font-bold text-xl hidden lg:block">
 									Indian Institute of Information Technology, Nagpur
 								</h1>
@@ -240,13 +241,13 @@ const Navbar = () => {
 						<div className="flex space-x-2">
 							<button
 								onClick={() => changeLanguage("en")}
-								className="px-3 py-1 border border-white text-white rounded-md hover:bg-white hover:text-primary transition-all"
+								className="px-3 py-1 border border-primary text-primary font-bold rounded-md hover:bg-white hover:border-white hover:text-primary transition-all"
 							>
 								A
 							</button>
 							<button
 								onClick={() => changeLanguage("hi")}
-								className="px-3 py-1 border border-white text-white rounded-md hover:bg-white hover:text-primary transition-all"
+								className="px-3 py-1 border border-primary text-primary font-bold rounded-md hover:bg-white hover:border-white hover:text-primary transition-all"
 							>
 								अ
 							</button>
@@ -254,19 +255,7 @@ const Navbar = () => {
 
 						{/* 🔍 Search Input with Toggle */}
 						<div className="relative flex items-center">
-							{isSearchOpen && (
-								<input
-									type="text"
-									placeholder="Search..."
-									className="px-4 py-1.5 rounded-md bg-transparent border border-white text-white focus:outline-none focus:ring-2 focus:ring-white placeholder-white transition-all duration-300"
-								/>
-							)}
-							<button
-								onClick={() => setIsSearchOpen(!isSearchOpen)}
-								className="ml-2 text-white"
-							>
-								<FaSearch />
-							</button>
+							<Search />
 						</div>
 
 						{/* 🔹 Right Section - Translator */}
