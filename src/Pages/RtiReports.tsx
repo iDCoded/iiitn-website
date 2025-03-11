@@ -25,14 +25,17 @@ const RtiReports: React.FC = () => {
                     throw new Error("Failed to fetch RTI Reports data");
                 }
                 const data = await res.json();
+              
 
                 // Group reports by year (title)
                 const reportMap: Record<string, Report> = {};
 
                 data.forEach((report: any) => {
                     const year = report.title; // Year is in the title
+                   
                     const quarter = report.m_sub_category.toLowerCase(); // q1, q2, q3, q4
-                    const link = report.m_doc_id; // Link for the document
+
+                    const link = report.media_doc_id; // Link for the document
 
                     if (!reportMap[year]) {
                         reportMap[year] = { year, Quarterly1: "", Quarterly2: "", Quarterly3: "", Quarterly4: "" };
@@ -45,6 +48,7 @@ const RtiReports: React.FC = () => {
                 });
 
                 setReportData(Object.values(reportMap));
+               
             } catch (error) {
                 console.error("Error fetching RTI Reports:", error);
                 
@@ -62,12 +66,12 @@ const RtiReports: React.FC = () => {
     }
 
     return (
-        <div className="bg-gray-100 min-h-screen flex flex-col p-4">
+        <div className="bg-gray-100 min-h-screen flex flex-col ">
             {/* Header */}
             <header className="bg-primary text-white py-8 text-center">
                 <h1 className="text-3xl md:text-5xl font-bold">RTI Reports</h1>
-                <p className="text-base md:text-lg mt-2 italic">
-                    "Navigate your way to IIIT Nagpur with ease."
+                <p className="text-base md:text-lg mt-2 ">
+                    Navigate your way to IIIT Nagpur with ease.
                 </p>
             </header>
 
@@ -97,10 +101,11 @@ const RtiReports: React.FC = () => {
                                     {(["Quarterly1", "Quarterly2", "Quarterly3", "Quarterly4"] as (keyof Report)[]).map((q, i) => (
                                         <td key={i} className="p-4">
                                             <a
+                                            
                                                 href={report[q]}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-blue-500 underline hover:text-blue-700"
+                                                className="text-blue-500 underline hover:text-blue-700 hover:cursor-pointer"
                                             >
                                                 Click Here
                                             </a>
