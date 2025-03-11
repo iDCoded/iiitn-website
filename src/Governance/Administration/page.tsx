@@ -1,8 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import heroimage from "../../assets/BoGBanner.jpg";
-import chairman from "../../assets/chairman.jpg"
-import director from "../../assets/director.jpg"
-import registrar from "../../assets/registrar.jpg"
+
 import { useEffect, useState } from "react";
 
 interface Person {
@@ -16,39 +14,13 @@ interface Person {
 }
 
 function Administration() {
-    const [people, setPeople] = useState<Person[]>([
-        {
-            id: "chairman",
-            name: "Shri Ravi Sharma",
-            position: "Chairman, BoG IIIT Nagpur",
-            email: "chairman@iiitn.ac.in",
-            content: "An accomplished former CEO, Ravi Sharma is now a mentor & philanthropist with a mission of 'Spreading Goodness' by supporting initiatives towards...",
-            imageSrc: chairman,
-        },
-        {
-            id: "director",
-            name: "Professor Prem Lal Patel",
-            position: "Director, IIIT Nagpur",
-            email: "director@iiitn.ac.in",
-            content: "Professor Prem Lal Patel took over as Director of IIIT Nagpur on 1st October 2024. He is also the Director of VNIT Nagpur...",
-            imageSrc: director,
-        },
-        {
-            id: "registrar",
-            name: "Shri Kailas N. Dakhale",
-            position: "Registrar, IIIT Nagpur",
-            email: "registrar@iiitn.ac.in",
-            phone: "+91 9421995010",
-            content: "With over 30 years of experience in administration and academics...",
-            imageSrc: registrar,
-        },
-    ]);
+    const [people, setPeople] = useState<Person[]>([]);
 
     useEffect(() => {
         const fetchPeople = async () => {
             try {
                 // Fetch data from the API
-                const response = await fetch(`${process.env.VITE_API_BASE_URL}/faculty/faculty_staff`);
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/faculty/faculty_staff`);
                 const data = await response.json();
 
                 console.log(data);
@@ -162,13 +134,13 @@ function Administration() {
 
                     {/* Staff Directory */}
                     <Card id="staff-directory" className="shadow-lg">
-                        <CardHeader className="bg-primary text-white p-4 rounded-t-lg">
+                        <CardHeader className="bg-primary text-white p-4 ">
                             <CardTitle>Staff Directory</CardTitle>
                         </CardHeader>
                         <CardContent className="p-6 text-center">
                             <p>IIIT Nagpur is supported by a dedicated administrative staff that ensures smooth operations across various departments.</p>
                             <p className="text-accent cursor-pointer mt-4">
-                                <a href="/staff">View Full Staff Directory</a>
+                                <a href="/pages/directory">View Full Staff Directory</a>
                             </p>
                         </CardContent>
                     </Card>

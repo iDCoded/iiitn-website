@@ -7,6 +7,9 @@ import {
 	CardTitle,
 } from "../components/ui/card";
 
+import acad_curr from "../assets/academic_curri.jpg";
+import curr_acad from "../assets/academic_curri.jpg";
+
 
 
 
@@ -15,30 +18,26 @@ const currentData = [
 		title: "Academic Curricula",
 		description: "Semester Dates and deadlines",
 		link: "/academics/curricula",
-		imageSrc:
-			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
+		imageSrc: acad_curr,
 	},
 	{
 		title: "Academic Calendar",
 		description: "Details about Scholarships and financial assistance",
 		link: "/academics/calendar",
-		imageSrc:
-			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
-	},
+		imageSrc:curr_acad,
+		},
 	{
 		title: "Courses",
 		description: "All in one academic platform for managing assignments and additional course materials.",
-		link: "https://moodle.iiitnagpur.ac.in",
-		imageSrc:
-			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
-	},
+		link: "://moodle.iiitnagpur.ac.in",
+		imageSrc:curr_acad,
+		},
 	{
 		title: "Faculty and Staff Portal",
 		description: "All in one academic platform for managing assignments and additional course materials.",
 		link: "#",
-		imageSrc:
-			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
-	},
+		imageSrc:curr_acad,
+		},
 ];
 
 const quickLinks = [
@@ -52,7 +51,7 @@ const quickLinks = [
 			},
 			{
 				name: "Time Table",
-				link: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link",
+				link: "://docs.google.com/spreadsheets/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link",
 			},
 			{
 				name: "Faculty Achievements",
@@ -119,7 +118,7 @@ function FacultyandStaff() {
                             <FSCard
                                 title="Dr. ABC"
                                 description="Professor"
-                                imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
+                                imageSrc="://.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
                             />
                         </div>
                         <div>
@@ -127,7 +126,7 @@ function FacultyandStaff() {
                             <FSCard
                                 title="Dr. ABC"
                                 description="Professor"
-                                imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
+                                imageSrc="://.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
                             />
                         </div>
                     </div> */}

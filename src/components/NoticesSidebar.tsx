@@ -12,21 +12,9 @@ interface NoticesSidebarProps {
     category: "student" | "faculty";
 }
 
-const defaultNotices: Record<"student" | "faculty", Notice[]> = {
-    student: [
-        { title: "Student Notice 1", link: "#" },
-        { title: "Student Notice 2", link: "#" },
-        { title: "Student Notice 3", link: "#" },
-    ],
-    faculty: [
-        { title: "Faculty Notice 1", link: "#" },
-        { title: "Faculty Notice 2", link: "#" },
-        { title: "Faculty Notice 3", link: "#" },
-    ],
-};
 
 const NoticesSidebar = ({ category }: NoticesSidebarProps) => {
-    const [notices, setNotices] = useState<Notice[]>(defaultNotices[category]);
+    const [notices, setNotices] = useState<Notice[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -44,7 +32,7 @@ const NoticesSidebar = ({ category }: NoticesSidebarProps) => {
                         link: `${import.meta.env.VITE_API_BASE_URL}/media/${notice.media_doc_id}`,
                     }));
 
-                setNotices(filteredNotices.length > 0 ? filteredNotices : defaultNotices[category]);
+                setNotices(filteredNotices);
             } catch (error) {
                 console.error("Failed to fetch notices", error);
             } finally {
