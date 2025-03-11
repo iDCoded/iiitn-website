@@ -101,6 +101,7 @@ const Admissions = () => {
                     {programs.map((program, index) => (
                         <motion.div
                             key={index}
+                            className="hover:cursor-pointer"
                             variants={{
                                 hidden: { opacity: 0, y: 40 },
                                 visible: { opacity: 1, y: 0 },

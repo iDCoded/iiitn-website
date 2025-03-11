@@ -4,10 +4,24 @@ import { FaBars, FaChevronDown, FaTimes } from "react-icons/fa"; // Icons for me
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io"; // Icons for dropdowns
 import logo from "../assets/logo.png"; // Logo Image
 import Search from "@/search";
+import Translator from "../Translator/page";
 
 const imgSrc = logo;
 
 const Navbar = () => {
+
+	interface ChangeLanguageFunction {
+		(lang: string): void;
+	}
+
+	const changeLanguage: ChangeLanguageFunction = (lang) => {
+		const select = document.querySelector("select.goog-te-combo") as HTMLSelectElement;
+		if (select) {
+			select.value = lang;
+			select.dispatchEvent(new Event("change"));
+		}
+	};
+
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [isHomePage, setIsHomePage] = useState(false);
@@ -203,35 +217,57 @@ const Navbar = () => {
 			{/* Fixed Navbar */}
 			<div className="fixed top-0 left-0 w-full z-50 transition-transform duration-200">
 				{/* 🔸 Top Orange Bar */}
-				<nav className={`w-full px-6 py-2 flex justify-between items-center lg:flex ${isHomePage && !isScrolled ? "bg-transparent shadow-none text-white" : "bg-accent shadow-md text-primary"
-					}`}>
-					<a href="/">
-						<div className="flex items-center space-x-4">
-							<img src={imgSrc} alt="IIITN Logo" className="h-16 w-16" />
-							<div className="flex flex-col">
-								{ isScrolled &&
-									<h1 className="font-bold text-xl hidden lg:block">Indian Institute of Information Technology, Nagpur</h1>}
-							</div>
-						</div>
-					</a>
-					{/* <div className="flex items-center space-x-6">
-						<h1 className="hidden lg:flex font-medium text-xl">Information for: </h1>
-						<ul className={`hidden lg:flex space-x-6 font-medium ${isHomePage && !isScrolled ? "text-white" : "text-primary"
-							}`}>
-							{navLinks.map((link, index) => (
-								<a key={index} href={link.href} className="hover:text-white">
-									{link.title}
-								</a>
-							))}
-						</ul>
-					</div> */}
-					<div className="flex items-center space-x-6">
-						<Search />
-						<h1 className={`font-bold text-xl ${isHomePage && !isScrolled ? "text-white" : "text-primary"
-							}`}>अ A
-						</h1>
-					</div>
-				</nav>
+			
+
+
+
+
+    <nav
+      className={`w-full px-6 py-2 flex justify-between items-center lg:flex ${
+        isHomePage && !isScrolled
+          ? "bg-transparent shadow-none text-white"
+          : "bg-accent shadow-md text-primary"
+      }`}
+    >
+      <a href="/">
+        <div className="flex items-center space-x-4">
+          <img src={imgSrc} alt="IIITN Logo" className="h-16 w-16" />
+          <div className="flex flex-col">
+            {isScrolled && (
+              <h1 className="font-bold text-xl hidden lg:block">
+                Indian Institute of Information Technology, Nagpur
+              </h1>
+            )}
+          </div>
+        </div>
+      </a>
+
+      <div className="flex items-center space-x-6">
+        <h1
+          className={`font-bold text-xl ${
+            isHomePage && !isScrolled ? "text-white" : "text-primary"
+          }`}
+        >
+          
+        </h1>
+
+        {/* Language Change Buttons */}
+        <div
+          onClick={() => changeLanguage("en")}
+          className="px-4 py-1 border rounded-md bg-white text-primary hover:bg-gray-200"
+        >
+         A
+        </div>
+        <div
+          onClick={() => changeLanguage("hi")}
+          className="px-4 py-1 border rounded-md bg-white text-primary hover:bg-gray-200"
+        >
+          अ 
+        </div>
+      </div>
+
+      <Translator />
+    </nav>
 
 				{/* 🔹 Middle Section with Logo and Mobile Menu Button */}
 				<nav

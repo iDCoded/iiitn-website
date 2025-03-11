@@ -70,7 +70,7 @@ const Projects = () => {
         <>
             {/* 🔹 Hero Section */}
             <header
-                className="relative w-full h-[60vh] flex flex-col justify-center items-center text-white text-center shadow-lg"
+                className="relative w-full h-[30vh] flex flex-col justify-center items-center text-white text-center shadow-lg"
                 style={{
                     backgroundImage: `url(${heroimage})`,
                     backgroundSize: "cover",
@@ -88,7 +88,7 @@ const Projects = () => {
             </header>
             <div className="max-w-6xl mx-auto px-6 py-10">
                 <h1 className="text-3xl font-bold mb-6 flex items-center">
-                    <span className="text-accent text-4xl mr-2">|</span> Consultancy Projects & Patents
+                    <span className="text-accent text-4xl mr-2">|</span> Consultancy Projects
                 </h1>
 
                 <div className="flex gap-4 mb-6 border-b border-gray-300 justify-between">

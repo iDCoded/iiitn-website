@@ -63,7 +63,7 @@ const Publications = () => {
     return (
         <>
             <header
-                className="relative w-full h-75 flex flex-col justify-center items-center text-white text-center shadow-lg z-1"
+                className="relative w-full h-[30vh] flex flex-col justify-center items-center text-white text-center shadow-lg z-1"
                 style={{ backgroundImage: `url(${heroimage})`, backgroundSize: "cover", backgroundPosition: "center" }}
             >
                 <div className="absolute inset-0 bg-black opacity-50"></div>

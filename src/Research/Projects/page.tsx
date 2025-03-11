@@ -68,7 +68,7 @@ const Projects = () => {
 	return (
 		<>
 			<header
-				className="relative w-full h-75 flex flex-col justify-center items-center text-white text-center shadow-lg z-1"
+				className="relative w-full h-[30vh] flex flex-col justify-center items-center text-white text-center shadow-lg z-1"
 				style={{
 					backgroundImage: `url(${heroimage})`,
 					backgroundSize: "cover",
