@@ -20,7 +20,7 @@ function InstRulesAndReg() {
 	useEffect(() => {
 		const fetchAcadFeeData = async () => {
 			try {
-				const response = await fetch(`${process.env.VITE_API_BASE_URL}/card/cards/category/fees`);
+				const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/card/cards/category/fees`);
 				const data = await response.json();
 
 				const formattedRules = data.map((item: any) => ({
