@@ -95,7 +95,7 @@ function Administration() {
                 <div className="w-full md:w-3/4 grid gap-8">
                     {people.map((person) => (
                         <Card key={person.id} id={person.id} className="shadow-lg">
-                            <CardHeader className="bg-primary text-white p-4 rounded-t-lg">
+                            <CardHeader className="bg-primary text-white p-4 ">
                                 <CardTitle><span className="text-2xl">{person.position.split(",")[0]}</span></CardTitle>
                             </CardHeader>
                             <CardContent className="p-6 flex flex-col md:flex-row items-center md:items-start text-center md:text-left  space-x-6">
