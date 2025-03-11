@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import MarkdownPreview from "@uiw/react-markdown-preview";
-import MDEditor from "@uiw/react-md-editor";
 
 function DetailedRtiDetail() {
 
