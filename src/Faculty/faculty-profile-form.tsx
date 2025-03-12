@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ImageIcon, User } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertCircle, ImageIcon, User } from "lucide-react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,29 +21,37 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import MDEditor from "@uiw/react-md-editor";
+import { useAuth } from "@/context/AuthContext";
 
 const formSchema = z.object({
-	f_id: z.string(),
-	p_id: z.string(),
-	b_id: z.string(),
-	pub_id: z.string(),
-	media_img_id: z.string(),
-	media: z
-		.instanceof(FileList)
-		.refine((fileList) => fileList.length > 0, { message: "No file selected" }),
-	join_year: z.coerce.number().int().gte(1900).lte(new Date().getFullYear()),
-	content: z.string().min(1, "Content is required"),
-	positions: z.string().min(1, { message: "Please enter the positions" }),
-	f_or_s: z.enum(["Faculty", "Staff"], {
-		message: "Please select Faculty or Staff",
-	}),
-	education: z.string().min(1, { message: "Please enter the education" }),
-	experience: z.coerce.number(),
-	teaching: z.string().min(1, { message: "Please enter the teaching" }),
-	research: z.string().min(1, { message: "Please enter the research" }),
+	f_id: z.string().optional(),
+	p_id: z.string().optional(),
+	b_id: z.string().optional(),
+	pub_id: z.string().optional(),
+	media_img_id: z.string().optional(),
+	media: z.instanceof(FileList).optional(),
+	join_year: z.coerce
+		.number()
+		.int()
+		.gte(1900)
+		.lte(new Date().getFullYear())
+		.optional(),
+	content: z.string().optional(),
+	positions: z.string().optional(),
+	f_or_s: z
+		.enum(["Faculty", "Staff"], {
+			message: "Please select Faculty or Staff",
+		})
+		.optional(),
+	education: z.string().optional(),
+	experience: z.coerce.number().optional(),
+	teaching: z.string().optional(),
+	research: z.string().optional(),
 });
 
 export default function FacultyForm() {
+	const { user } = useAuth();
+
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -67,54 +76,89 @@ export default function FacultyForm() {
 
 	const handleSubmit = async (data: z.infer<typeof formSchema>) => {
 		// Upload the profile picture and get it's media ID
-		const file = data.media[0];
+		if (data.media && data.media.length > 0) {
+			const file = data.media[0];
 
-		const formData = new FormData();
-		formData.append("file", file);
-		formData.append("media_type", file.name);
+			const formData = new FormData();
+			formData.append("file", file);
+			formData.append("media_type", file.name);
 
-		try {
-			const media_request = await fetch(
-				`${import.meta.env.VITE_API_BASE_URL}/media/upload`,
-				{
-					method: "POST",
-					body: formData,
-				}
-			);
-			const media_res = await media_request.json();
-
-			if (media_request.ok) {
-				const facultyData = {
-					p_id: 1, // ! Remove in production -> Get user ID from logged in user
-					b_id: 1, // ! Remove in production
-					pub_id: "1",
-					media_img_id: media_res.media_img_id,
-					join_year: data.join_year,
-					positions: data.positions,
-					f_or_s: data.f_or_s,
-					education: data.education,
-					experience: data.experience,
-					teaching: data.teaching,
-					research: data.research,
-					content: data.content,
-					media: data.media,
-				};
-
-				const res = await fetch(
-					`${import.meta.env.VITE_API_BASE_URL}/faculty/faculty_staff/${1}`, // ! Faculty ID is hardcoded
+			try {
+				const media_request = await fetch(
+					`${import.meta.env.VITE_API_BASE_URL}/media/upload`,
 					{
-						method: "PUT",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						body: JSON.stringify(facultyData),
+						method: "POST",
+						body: formData,
 					}
 				);
-				const res_json = await res.json();
-				console.log("res_json", res_json);
+				const media_res = await media_request.json();
+
+				if (media_request.ok) {
+					const facultyData = {
+						p_id: user?.id,
+						b_id: 1, // ! Remove in production
+						pub_id: "1",
+						media_img_id: media_res.media_img_id,
+						join_year: data.join_year,
+						positions: data.positions,
+						f_or_s: data.f_or_s,
+						education: data.education,
+						experience: data.experience,
+						teaching: data.teaching,
+						research: data.research,
+						content: data.content,
+						media: data.media,
+					};
+
+					const res = await fetch(
+						`${import.meta.env.VITE_API_BASE_URL}/faculty/faculty_staff/${
+							user?.id
+						}`,
+						{
+							method: "PATCH",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify(facultyData),
+						}
+					);
+					const res_json = await res.json();
+					console.log("res_json", res_json);
+				}
+			} catch (error) {
+				console.error(error);
 			}
-		} catch (error) {
-			console.error(error);
+		} else {
+			const facultyData = {
+				p_id: user?.id,
+				b_id: 1, // ! Remove in production
+				pub_id: "1",
+				// // media_img_id: media_res.media_img_id,
+				join_year: data.join_year,
+				positions: data.positions,
+				f_or_s: data.f_or_s,
+				education: data.education,
+				experience: data.experience,
+				teaching: data.teaching,
+				research: data.research,
+				content: data.content,
+				media: data.media,
+			};
+
+			const res = await fetch(
+				`${import.meta.env.VITE_API_BASE_URL}/faculty/faculty_staff/${
+					user?.id
+				}`,
+				{
+					method: "PATCH",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(facultyData),
+				}
+			);
+			const res_json = await res.json();
+			console.log("res_json", res_json);
 		}
 	};
 
@@ -128,6 +172,19 @@ export default function FacultyForm() {
 					<h2 className="text-2xl font-semibold">Enter your details</h2>
 					<p className="text-sm text-gray-500">Specify your details</p>
 				</div>
+			</div>
+
+			<div className="pb-4">
+				<Alert variant={"destructive"}>
+					<AlertCircle className="h-4 w-4" />
+					<AlertTitle>Do not leave the fields blank</AlertTitle>
+					<AlertDescription>
+						Do not leave any field blank as it will result in clearing that
+						field from the database.
+						<br />
+						This will be fixed later
+					</AlertDescription>
+				</Alert>
 			</div>
 
 			<Form {...form}>
