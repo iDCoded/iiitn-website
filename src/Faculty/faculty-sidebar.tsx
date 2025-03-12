@@ -124,7 +124,8 @@ export function FacultySidebar({
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
 								<SidebarMenuButton>
-									<User2 /> {faculty.name}
+									<User2 /> {faculty.name}{" "}
+									{import.meta.env.DEV && <div>| {faculty.id}</div>}
 									<ChevronUp className="ml-auto" />
 								</SidebarMenuButton>
 							</DropdownMenuTrigger>
