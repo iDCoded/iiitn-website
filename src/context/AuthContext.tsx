@@ -1,5 +1,4 @@
 /* eslint-disable react-refresh/only-export-components */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { User } from "@/interfaces/types";
 import {
 	createContext,
@@ -11,9 +10,8 @@ import {
 
 interface AuthContextType {
 	user: User | null;
-	token: string | null;
-	refreshToken: string | null;
-	login: (user: any, access_token: string, refresh_token: string) => void;
+	login: (email: string, password: string) => Promise<boolean>;
+	loading: boolean;
 	logout: () => void;
 }
 
@@ -21,29 +19,86 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [user, setUser] = useState<User | null>(null);
-	const [token, setToken] = useState<string | null>(null);
-	const [refreshToken, setRefreshToken] = useState<string | null>(null);
+	const [loading, setLoading] = useState(true);
 
+	function getCookie(name: string): string {
+		const match = document.cookie.match(
+			new RegExp("(^| )" + name + "=([^;]+)")
+		);
+		return match ? match[2] : "";
+	}
+
+	// Function to refresh the access token
+	const refreshAccessToken = async () => {
+		try {
+			const res = await fetch(
+				`${import.meta.env.VITE_API_BASE_URL}/auth/refresh`,
+				{
+					method: "POST",
+					credentials: "include",
+					headers: {
+						"X-CSRF-TOKEN": getCookie("csrf_refresh_token"),
+					},
+				}
+			);
+			if (res.ok) {
+				const data = await res.json();
+				setUser(data.user);
+				return true;
+			}
+		} catch {
+			setUser(null);
+		}
+		return false;
+	};
+
+	// Fetch user on mount & attempt refresh if needed
 	useEffect(() => {
-		console.log("Auth User", user);
-	}, [user]);
+		const fetchUser = async () => {
+			try {
+				const res = await fetch(
+					`${import.meta.env.VITE_API_BASE_URL}/auth/user`,
+					{ credentials: "include" }
+				);
+				if (res.ok) {
+					const data = await res.json();
+					setUser(data.user);
+				} else {
+					await refreshAccessToken();
+				}
+			} catch {
+				setUser(null);
+			} finally {
+				setLoading(false);
+			}
+		};
 
-	const login = (user: User, access_token: string, refresh_token: string) => {
-		localStorage.setItem("access_token", access_token); // ! Use secure Cookies in production
-		localStorage.setItem("refresh_token", refresh_token); // ! Use secure Cookies in production
-		setUser(user);
-		setToken(access_token);
-		setRefreshToken(refreshToken);
+		fetchUser();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const login = async (email: string, password: string): Promise<boolean> => {
+		const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/login`, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			credentials: "include", // Ensures cookies are sent/received
+			body: JSON.stringify({ email, password }),
+		});
+
+		if (res.ok) {
+			const data = await res.json();
+			setUser(data.user); // Only store the user, JWT is in cookies
+			return true;
+		}
+		return false;
 	};
 
 	const logout = () => {
 		setUser(null);
-		setToken(null);
-		setRefreshToken(null);
 	};
 
 	return (
-		<AuthContext.Provider value={{ user, token, refreshToken, login, logout }}>
+		<AuthContext.Provider value={{ user, login, logout, loading }}>
 			{children}
 		</AuthContext.Provider>
 	);

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { User } from "lucide-react";
+import { ImageIcon, User } from "lucide-react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,6 +27,9 @@ const formSchema = z.object({
 	p_id: z.string(),
 	b_id: z.string(),
 	pub_id: z.string(),
+	proflie_picture: z
+		.instanceof(FileList)
+		.refine((fileList) => fileList.length > 0, { message: "No file selected" }),
 	media_img_id: z.string(),
 	join_year: z.coerce.number().int().gte(1900).lte(new Date().getFullYear()),
 	content: z.string().min(1, "Content is required"),
@@ -44,10 +47,9 @@ export function FacultyForm({ user }: { user: Person }) {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			f_id: "",
-			p_id: "",
-			b_id: "1",
+			b_id: "1", // ! Branch ID is hard coded
 			pub_id: "",
+			proflie_picture: undefined,
 			media_img_id: "",
 			content: "",
 			join_year: new Date().getFullYear(),
@@ -60,34 +62,57 @@ export function FacultyForm({ user }: { user: Person }) {
 		},
 	});
 
-	const handleSubmit = async (data: z.infer<typeof formSchema>) => {
-		const facultyData = {
-			p_id: user.p_id.toString(),
-			b_id: "1",
-			pub_id: "1",
-			media_img_id: 1,
-			join_year: data.join_year,
-			positions: data.positions,
-			f_or_s: data.f_or_s,
-			education: data.education,
-			experience: data.experience,
-			teaching: data.teaching,
-			research: data.research,
-			content: data.content,
-		};
+	const fileRef = form.register("proflie_picture");
 
-		const res = await fetch(
-			`${import.meta.env.VITE_API_BASE_URL}/faculty/faculty_staff`,
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(facultyData),
+	const handleSubmit = async (data: z.infer<typeof formSchema>) => {
+		const file = data.proflie_picture[0];
+
+		const formData = new FormData();
+		formData.append("file", file);
+		formData.append("media_type", file.name);
+
+		try {
+			const media_request = await fetch(
+				`${import.meta.env.VITE_API_BASE_URL}/media/upload`,
+				{
+					method: "POST",
+					body: formData,
+				}
+			);
+			const media_res = await media_request.json();
+
+			if (media_request.ok) {
+				const facultyData = {
+					p_id: user.p_id,
+					b_id: "1",
+					pub_id: "1",
+					media_img_id: media_res.media_id,
+					join_year: data.join_year,
+					positions: data.positions,
+					f_or_s: data.f_or_s,
+					education: data.education,
+					experience: data.experience,
+					teaching: data.teaching,
+					research: data.research,
+					content: data.content,
+				};
+				console.table(facultyData);
+				const res = await fetch(
+					`${import.meta.env.VITE_API_BASE_URL}/faculty/faculty_staff`,
+					{
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify(facultyData),
+					}
+				);
+				const res_json = await res.json();
+				console.log("res_json", res_json);
 			}
-		);
-		const res_json = await res.json();
-		console.log("res_json", res_json);
+		} catch (media_error) {
+			console.error(media_error);
+		}
 	};
 
 	return (
@@ -114,6 +139,54 @@ export function FacultyForm({ user }: { user: Person }) {
 									<Input id="join_year" placeholder="Enter year" {...field} />
 								</FormControl>
 								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="proflie_picture"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Profile Picture</FormLabel>
+								<FormControl>
+									<div className="flex flex-col gap-4">
+										<div className="flex items-center gap-3">
+											<Input
+												type="file"
+												id={field.name}
+												accept="image/*"
+												{...fileRef}
+												placeholder="Upload Media"
+											/>
+											<Button
+												type="button"
+												variant="outline"
+												onClick={() =>
+													document.getElementById(field.name)?.click()
+												}>
+												<ImageIcon className="mr-2 h-4 w-4" />
+												Browse
+											</Button>
+										</div>
+										{field.value && field.value[0].type.includes("image") && (
+											<div className="rounded-lg border bg-card">
+												<img
+													src={
+														URL.createObjectURL(field.value[0]) ||
+														"/placeholder.svg"
+													}
+													alt="Preview"
+													className="w-full h-[200px] object-cover rounded-t-lg"
+												/>
+												<div className="p-3">
+													<p className="text-sm text-gray-500">
+														Selected file: {field.value[0].name}
+													</p>
+												</div>
+											</div>
+										)}{" "}
+									</div>
+								</FormControl>
 							</FormItem>
 						)}
 					/>
