@@ -21,6 +21,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [user, setUser] = useState<User | null>(null);
 	const [loading, setLoading] = useState(true);
 
+	function getCookie(name: string): string {
+		const match = document.cookie.match(
+			new RegExp("(^| )" + name + "=([^;]+)")
+		);
+		return match ? match[2] : "";
+	}
+
 	// Function to refresh the access token
 	const refreshAccessToken = async () => {
 		try {
@@ -29,6 +36,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 				{
 					method: "POST",
 					credentials: "include",
+					headers: {
+						"X-CSRF-TOKEN": getCookie("csrf_refresh_token"),
+					},
 				}
 			);
 			if (res.ok) {
