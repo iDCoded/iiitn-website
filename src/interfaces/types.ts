@@ -47,9 +47,9 @@ export interface ICard {
 	c_sub_category: string;
 	date: Date;
 	expiry_date?: Date;
-	media_img_id?: number;
-	media_vid_id?: number;
-	media_doc_id?: number;
+	media_img_id?: string;
+	media_vid_id?: string;
+	media_doc_id?: string;
 	updated_by: number;
 	updated_time?: Date;
 	added_by: number;
