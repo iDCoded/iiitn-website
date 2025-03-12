@@ -1,6 +1,6 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { FacultySidebar } from "./faculty-sidebar";
 import ErrorBoundary from "./error-boundary";
 import {
@@ -50,8 +50,7 @@ export default function FacultyDashboard({
 	const [lastSelected, setLastSelected] = useState<string | null>("#profile");
 
 	const location = useLocation();
-	// const navigate = useNavigate();
-	const { user } = useAuth();
+	const { user, loading } = useAuth();
 
 	if (user) {
 		const { role } = user;
@@ -71,7 +70,13 @@ export default function FacultyDashboard({
 		}
 	}, [location, lastSelected]);
 
-	if (!user) return;
+	if (loading) {
+		return <h1>Loading...</h1>;
+	}
+
+	if (!user) {
+		return <Navigate to={"/login"} replace />;
+	}
 
 	return (
 		<ErrorBoundary>
