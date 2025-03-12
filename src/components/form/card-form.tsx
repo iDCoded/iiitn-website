@@ -26,6 +26,7 @@ const formSchema = z.object({
 	c_category: z.string().min(1, "Category is required"),
 	c_sub_category: z.string().min(1, "Sub-category is required"),
 	date: z.date(),
+	expiry_date: z.date(),
 	media_img_id: z.number().optional(),
 	media_vid_id: z.number().optional(),
 	media_doc_id: z.number().optional(),
@@ -208,7 +209,7 @@ export function CardForm() {
 					added_time: new Date(),
 					preference: 1,
 					c_id: "",
-					expiry_date: undefined,
+					expiry_date: data.expiry_date,
 					visibility: false,
 				};
 				console.log(card_data);
@@ -346,6 +347,48 @@ export function CardForm() {
 									<FormLabel>Location</FormLabel>
 									<FormControl>
 										<Input placeholder="Enter the location" {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="preference"
+							render={({ field }) => (
+								<FormItem className="w-full">
+									<FormLabel>Preference</FormLabel>
+									<FormControl>
+										<Input
+											placeholder="Specify the preference"
+											{...field}
+											type="number"
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+					</div>
+					<div className="flex flex-row justify-around gap-2">
+						<FormField
+							control={form.control}
+							name="expiry_date"
+							render={({ field }) => (
+								<FormItem className="w-full">
+									<FormLabel>Expiry Date</FormLabel>
+									<FormControl>
+										<Input
+											type="date"
+											placeholder="Enter the date"
+											{...field}
+											value={
+												field.value
+													? field.value.toISOString().split("T")[0]
+													: ""
+											}
+											onChange={(e) => field.onChange(new Date(e.target.value))}
+										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
