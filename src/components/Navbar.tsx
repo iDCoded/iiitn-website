@@ -163,6 +163,7 @@ const Navbar = () => {
 						{ name: "Overview", href: "/phd/overview" },
 						{ name: "Resources", href: "/phd/resources" },
 						{ name: "Admission Guidelines", href: "/phd/admission" },
+						{ name: "Structure & Research Areas", href: "/phd/structure" },
 					],
 				},
 			],
