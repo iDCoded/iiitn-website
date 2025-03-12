@@ -20,7 +20,7 @@ const programs = [
     {
         title: "Doctoral Programs (Ph.D.)",
         description: "Research opportunities in various cutting-edge fields.",
-        link: "/admissions/pg",
+        link: "/phd/overview",
     },
 ];
 

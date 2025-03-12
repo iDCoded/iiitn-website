@@ -157,6 +157,14 @@ const Navbar = () => {
 					name: "Post Graduate",
 					href: "/admissions/pg",
 				},
+				{
+					name: "Ph.D.",
+					subLinks: [
+						{ name: "Overview", href: "/phd/overview" },
+						{ name: "Resources", href: "/phd/resources" },
+						{ name: "Admission Guidelines", href: "/phd/admission" },
+					],
+				},
 			],
 		},
 		{
@@ -241,13 +249,13 @@ const Navbar = () => {
 						<div className="flex space-x-2">
 							<button
 								onClick={() => changeLanguage("en")}
-								className="px-3 py-1 border border-primary text-primary font-bold rounded-md hover:bg-white hover:border-white hover:text-primary transition-all"
+								className={`px-3 py-1 border font-bold rounded-md transition-all ${isHomePage && !isScrolled ? "border-white text-white hover:bg-primary hover:border-primary hover:text-white" : "border-primary text-primary hover:bg-white hover:border-white hover:text-primary"}`}
 							>
 								A
 							</button>
 							<button
 								onClick={() => changeLanguage("hi")}
-								className="px-3 py-1 border border-primary text-primary font-bold rounded-md hover:bg-white hover:border-white hover:text-primary transition-all"
+								className={`px-3 py-1 border font-bold rounded-md transition-all ${isHomePage && !isScrolled ? "border-white text-white hover:bg-primary hover:border-primary hover:text-white" : "border-primary text-primary hover:bg-white hover:border-white hover:text-primary"}`}
 							>
 								अ
 							</button>
