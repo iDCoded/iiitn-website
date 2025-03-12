@@ -193,7 +193,26 @@ export function CardForm() {
 			const media_res = await media_request.json();
 
 			if (media_request.ok) {
-				const card_data = {
+				type CardDataType = {
+					c_category: string;
+					c_sub_category: string;
+					title: string;
+					caption: string;
+					content: string;
+					date: Date;
+					location: string;
+					updated_by: number;
+					updated_time: Date;
+					added_by: number;
+					added_time: Date;
+					preference: number;
+					expiry_date: Date;
+					visibility: boolean;
+					media_img_id?: number;
+					media_vid_id?: number;
+					media_doc_id?: number;
+				};
+				let card_data: CardDataType = {
 					c_category: data.c_category.toLowerCase(),
 					c_sub_category: data.c_sub_category.toLowerCase(),
 					title: data.title,
@@ -201,7 +220,6 @@ export function CardForm() {
 					content: data.content,
 					date: data.date,
 					location: data.location,
-					media_img_id: media_res.media_id,
 					updated_by: 1,
 					updated_time: new Date(),
 					added_by: 1,
@@ -211,6 +229,14 @@ export function CardForm() {
 					visibility: false,
 				};
 				console.log(card_data);
+
+				if (file.type.includes("image")) {
+					card_data = { ...card_data, media_img_id: media_res.media_id };
+				} else if (file.type.includes("video")) {
+					card_data = { ...card_data, media_vid_id: media_res.media_id };
+				} else {
+					card_data = { ...card_data, media_doc_id: media_res.media_id };
+				}
 
 				const card_req = await fetch(
 					`${import.meta.env.VITE_API_BASE_URL}/card/cards`,
