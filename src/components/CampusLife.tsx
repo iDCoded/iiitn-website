@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
-import img1 from "../assets/IIIT22.jpg";
 import img2 from "../assets/IIIT26.jpg";
 import img3 from "../assets/IIIT21(1).jpg";
 import img4 from "../assets/gym.jpg";
 import img5 from "../assets/IIIT12.jpg";
+import campusnight from "../assets/campusnight.jpeg";
 
 import {
 	DialogContent,
@@ -17,7 +17,7 @@ import {
 } from "./ui/dialog";
 
 const campusLifeImages = [
-	{ src: img1, content: "A modern and vibrant academic hub fostering innovation" },
+	{ src: campusnight, content: "Unforgettable nights of music, culture, and camaraderie under the open sky." },
 	{ src: img2, content: "Hands-on learning with state-of-the-art equipment" },
 	{ src: img3, content: "Stay active with dynamic sports facilities." },
 	{ src: img4, content: "A fully-equipped gym to fuel both body and mind" },
