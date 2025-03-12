@@ -64,7 +64,10 @@ function LeadershipPage() {
 
 	if (loading) return <div className="text-center py-10">Loading...</div>;
 
-	if (!info) return <div className="text-center py-10 text-red-500">Data not found.</div>;
+	if (!info)
+		return (
+			<div className="text-center py-10 text-red-500">Data not found.</div>
+		);
 
 	return (
 		<div className="bg-gray-50 text-gray-900 min-h-screen">
@@ -77,8 +80,7 @@ function LeadershipPage() {
 			{/* Mobile Sidebar Toggle */}
 			<button
 				className="md:hidden fixed top-4 left-4 bg-accent text-white p-2 rounded-full z-50"
-				onClick={toggleSidebar}
-			>
+				onClick={toggleSidebar}>
 				{isOpen ? <X size={24} /> : <Menu size={24} />}
 			</button>
 
@@ -106,8 +108,7 @@ function LeadershipPage() {
 									Email:{" "}
 									<a
 										href={`mailto:${info.email}`}
-										className="text-blue-600 hover:underline"
-									>
+										className="text-blue-600 hover:underline">
 										{info.email}
 									</a>
 								</p>
@@ -116,8 +117,7 @@ function LeadershipPage() {
 										Phone:{" "}
 										<a
 											href={`tel:${info.phone}`}
-											className="text-blue-600 hover:underline"
-										>
+											className="text-blue-600 hover:underline">
 											{info.phone}
 										</a>
 									</p>
@@ -125,7 +125,10 @@ function LeadershipPage() {
 
 								{/* Bio Content */}
 								<div className="mt-4 space-y-4 text-gray-700 leading-relaxed">
-									<MarkdownPreview source={info.content || "No content available."} />
+									<MarkdownPreview
+										source={info.content || "No content available."}
+										wrapperElement={{ "data-color-mode": "light" }}
+									/>
 								</div>
 							</div>
 						</div>

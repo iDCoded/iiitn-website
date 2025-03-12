@@ -8,7 +8,8 @@ interface CounsellingData {
 }
 
 function ClinicalCounselling() {
-	const [counsellingInfo, setCounsellingInfo] = useState<CounsellingData | null>(null);
+	const [counsellingInfo, setCounsellingInfo] =
+		useState<CounsellingData | null>(null);
 
 	useEffect(() => {
 		const fetchCounsellingData = async () => {
@@ -55,16 +56,21 @@ function ClinicalCounselling() {
 			<main className="w-full max-w-4xl mx-auto px-4 md:px-8 py-12">
 				<Card className="shadow-lg border border-gray-300">
 					<CardHeader className="bg-primary text-white rounded-t-lg py-5">
-						<CardTitle className="text-2xl">{counsellingInfo?.title || "Clinical Counselling"}</CardTitle>
+						<CardTitle className="text-2xl">
+							{counsellingInfo?.title || "Clinical Counselling"}
+						</CardTitle>
 					</CardHeader>
 					<CardContent className="p-8 space-y-8">
 						{counsellingInfo ? (
 							<MarkdownPreview
+								wrapperElement={{ "data-color-mode": "light" }}
 								source={counsellingInfo.content}
 								className="prose max-w-none !bg-white !text-gray-800 p-4 rounded-md shadow"
 							/>
 						) : (
-							<p className="text-gray-600">Loading counselling information...</p>
+							<p className="text-gray-600">
+								Loading counselling information...
+							</p>
 						)}
 					</CardContent>
 				</Card>

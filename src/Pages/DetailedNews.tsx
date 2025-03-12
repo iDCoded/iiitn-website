@@ -60,7 +60,9 @@ function DetailedNews() {
 	useEffect(() => {
 		const fetchNews = async () => {
 			try {
-				const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/card/cards/${newsId}`);
+				const response = await fetch(
+					`${import.meta.env.VITE_API_BASE_URL}/card/cards/${newsId}`
+				);
 				const data = await response.json();
 				setNews({
 					id: data.c_id,
@@ -91,7 +93,9 @@ function DetailedNews() {
 	if (error) {
 		return (
 			<div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-				<p className="text-2xl text-red-500 font-semibold">Failed to fetch news</p>
+				<p className="text-2xl text-red-500 font-semibold">
+					Failed to fetch news
+				</p>
 				<button
 					onClick={() => window.location.reload()}
 					className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700 transition duration-300">
@@ -118,15 +122,29 @@ function DetailedNews() {
 		<div className="bg-gray-100 min-h-screen">
 			<header className="bg-primary text-white py-16 text-center">
 				<h1 className="text-5xl font-bold">Detailed News</h1>
-				<p className="text-lg mt-2 italic">"Celebrating Excellence & Inspiring the Future"</p>
+				<p className="text-lg mt-2 italic">
+					"Celebrating Excellence & Inspiring the Future"
+				</p>
 			</header>
 			<div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-10">
-				<img src={news.image} alt={news.title} className="w-full h-80 object-cover rounded-lg mb-6" />
+				<img
+					src={news.image}
+					alt={news.title}
+					className="w-full h-80 object-cover rounded-lg mb-6"
+				/>
 				<h2 className="text-3xl font-bold text-primary mb-4">{news.title}</h2>
 				<div className="leading-relaxed whitespace-pre-line">
-					<MarkdownPreview source={news.content} wrapperElement={{ "data-color-mode": "light" }} style={{ padding: 16 }} />
+					<MarkdownPreview
+						source={news.content}
+						wrapperElement={{ "data-color-mode": "light" }}
+						style={{ padding: 16 }}
+					/>
 				</div>
-				<button onClick={() => navigate(-1)} className="mt-6 px-6 py-2 bg-primary text-white rounded-md shadow-md hover:bg-[#001530] transition duration-300">← Back</button>
+				<button
+					onClick={() => navigate(-1)}
+					className="mt-6 px-6 py-2 bg-primary text-white rounded-md shadow-md hover:bg-[#001530] transition duration-300">
+					← Back
+				</button>
 			</div>
 		</div>
 	);

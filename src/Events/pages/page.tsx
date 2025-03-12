@@ -81,7 +81,7 @@ const EventDetail = () => {
 					location: data.location,
 					large: false,
 				});
-			} catch (error : any) {
+			} catch (error: any) {
 				console.error("Error fetching event:", error);
 				setError(error);
 			}
@@ -94,7 +94,7 @@ const EventDetail = () => {
 		return <div className="text-center text-xl mt-10">Loading...</div>;
 	}
 
-	if(error) {
+	if (error) {
 		return (
 			<div className="text-center text-xl mt-10">
 				Failed to fetch event data.{" "}

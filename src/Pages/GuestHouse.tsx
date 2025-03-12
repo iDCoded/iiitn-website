@@ -8,7 +8,9 @@ interface GuestHouseData {
 }
 
 function GuestHouse() {
-	const [guestHouseInfo, setGuestHouseInfo] = useState<GuestHouseData | null>(null);
+	const [guestHouseInfo, setGuestHouseInfo] = useState<GuestHouseData | null>(
+		null
+	);
 
 	useEffect(() => {
 		const fetchGuestHouseData = async () => {
@@ -46,23 +48,30 @@ function GuestHouse() {
 			{/* Header Section */}
 			<header className="bg-primary text-white py-16 text-center shadow-md mb-10">
 				<h1 className="text-4xl font-bold">Guest House</h1>
-				<p className="text-lg mt-2">Stay connected and contribute to the growth of IIIT Nagpur.</p>
+				<p className="text-lg mt-2">
+					Stay connected and contribute to the growth of IIIT Nagpur.
+				</p>
 			</header>
 
 			{/* Content Section */}
 			<main className="max-w-4xl mx-auto px-6 py-12 space-y-10">
 				<Card className="shadow-lg border border-gray-300">
 					<CardHeader className="bg-primary text-white rounded-t-lg py-5">
-						<CardTitle className="text-2xl">{guestHouseInfo?.title || "Guest House Information"}</CardTitle>
+						<CardTitle className="text-2xl">
+							{guestHouseInfo?.title || "Guest House Information"}
+						</CardTitle>
 					</CardHeader>
 					<CardContent className="p-12 space-y-8">
 						{guestHouseInfo ? (
-							<MarkdownPreview 
-							source={guestHouseInfo.content} 
-							className="prose max-w-none !bg-white !text-gray-800 p-4 rounded-md shadow"
-						/>
+							<MarkdownPreview
+								source={guestHouseInfo.content}
+								wrapperElement={{ "data-color-mode": "light" }}
+								className="prose max-w-none !bg-white !text-gray-800 p-4 rounded-md shadow"
+							/>
 						) : (
-							<p className="text-gray-600">Loading guest house information...</p>
+							<p className="text-gray-600">
+								Loading guest house information...
+							</p>
 						)}
 					</CardContent>
 				</Card>
