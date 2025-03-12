@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from "react-icons/md";
 
 interface NewsItem {
 	id: string;
@@ -102,59 +102,67 @@ export default function NewsSection() {
 						</a>
 					</div>
 
-					{/* News Carousel */}
-					<div className="relative w-full h-[60vh] overflow-hidden">
-						{/* Left Button */}
-						<button
-							onClick={prevSlide}
-							className="absolute left-[-10] top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75 z-10"
-						>
-							<FaArrowLeft />
-						</button>
-
-						{/* Animated News Item */}
-						<AnimatePresence>
-							<motion.div
-								key={newsData[currentIndex]?.id}
-								className="absolute w-full h-full"
-								initial={{ opacity: 0, x: 100 }}
-								animate={{ opacity: 1, x: 0 }}
-								exit={{ opacity: 0, x: -100 }}
-								transition={{ duration: 0.5 }}
+					{/* News Section Wrapper */}
+					<div className="relative w-full flex flex-col items-center">
+						{/* Navigation Arrows (Placed Outside) */}
+						<div className="absolute top-1/2 left-[-50px] transform -translate-y-1/2 z-10">
+							<button
+								onClick={prevSlide}
+								className="bg-gray-800 bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75"
 							>
-								<img
-									src={newsData[currentIndex]?.image}
-									alt={newsData[currentIndex]?.title}
-									className="w-full h-full object-cover rounded-lg"
-								/>
-								<div className="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-10 justify-center">
-									<h2 className="text-white text-xl font-bold text-center px-4">
-										{newsData[currentIndex]?.title}
-									</h2>
-								</div>
-							</motion.div>
-						</AnimatePresence>
+								<MdKeyboardArrowLeft />
+							</button>
+						</div>
 
-						{/* Right Button */}
-						<button
-							onClick={nextSlide}
-							className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 z-10"
-						>
-							<FaArrowRight />
-						</button>
+						{/* News Carousel */}
+						<div className="relative w-full h-[60vh] overflow-hidden">
+							<AnimatePresence>
+								<motion.div
+									key={newsData[currentIndex]?.id}
+									className="absolute w-full h-full"
+									initial={{ opacity: 0, x: 100 }}
+									animate={{ opacity: 1, x: 0 }}
+									exit={{ opacity: 0, x: -100 }}
+									transition={{ duration: 0.5 }}
+								>
+									<img
+										src={newsData[currentIndex]?.image}
+										alt={newsData[currentIndex]?.title}
+										className="w-full h-full object-cover rounded-lg"
+									/>
+									<div className="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-10 justify-center">
+										<h2 className="text-white text-xl font-bold text-center px-4">
+											{newsData[currentIndex]?.title}
+										</h2>
+									</div>
+								</motion.div>
+							</AnimatePresence>
+						</div>
 
-						{/* Pagination Dots */}
-						<div className="absolute bottom-4 w-full flex justify-center gap-2">
-							{newsData.map((_, index) => (
-								<div
-									key={index}
-									onClick={() => setCurrentIndex(index)}
-									className={`h-3 w-3 rounded-full cursor-pointer ${currentIndex === index ? "bg-accent" : "bg-gray-400"}`}
-								/>
-							))}
+						{/* Right Navigation Arrow (Placed Outside) */}
+						<div className="absolute top-1/2 right-[-50px] transform -translate-y-1/2 z-10">
+							<button
+								onClick={nextSlide}
+								className="bg-gray-800 bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75"
+							>
+								<MdKeyboardArrowRight />
+							</button>
 						</div>
 					</div>
+
+					{/* Pagination Dots (Placed Outside Below) */}
+					<div className="w-full flex justify-center gap-2 mt-4">
+						{newsData.map((_, index) => (
+							<div
+								key={index}
+								onClick={() => setCurrentIndex(index)}
+								className={`h-3 w-3 rounded-full cursor-pointer ${currentIndex === index ? "bg-accent" : "bg-gray-400"
+									}`}
+							/>
+						))}
+					</div>
 				</div>
+
 
 				{/* Announcements Section */}
 				<div className="flex flex-col w-full">

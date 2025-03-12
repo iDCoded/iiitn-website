@@ -17,10 +17,10 @@ import {
 } from "./ui/dialog";
 
 const campusLifeImages = [
-	{ src: campusnight, content: "Unforgettable nights of music, culture, and camaraderie under the open sky." },
+	{ src: img4, content: "A fully-equipped gym to fuel both body and mind" },
 	{ src: img2, content: "Hands-on learning with state-of-the-art equipment" },
 	{ src: img3, content: "Stay active with dynamic sports facilities." },
-	{ src: img4, content: "A fully-equipped gym to fuel both body and mind" },
+	{ src: campusnight, content: "Unforgettable nights of music, culture, and camaraderie under the open sky." },
 	{ src: img5, content: "A serene library for deep learning and exploration" },
 ];
 
@@ -39,7 +39,7 @@ const CampusLife = () => {
 				{/* Section Header */}
 				<div className="flex flex-col sm:flex-row justify-between items-center mb-8">
 					<h2 className="text-4xl font-bold text-primary">
-						<span className="text-accent">|</span> Campus Life
+						<span className="text-accent">|</span> Explore the Campus Vibes
 					</h2>
 					<div className="flex gap-4 mt-4 sm:mt-0">
 						<Dialog>

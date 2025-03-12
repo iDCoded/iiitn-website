@@ -3,9 +3,9 @@ import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
 const stats = [
-    { label: "Students", value: 2, description: "Students Enrolled" },
-    { label: "Professors", value: 50, description: "Professors & Lecturers" },
-    { label: "Research", value: 75, description: "Research Papers Published" },
+    { label: "Students", value: 2000, suffix: "+", description: "Students Enrolled" },
+    { label: "Professors", value: 75, suffix: "+", description: "Professors & Lecturers" },
+    { label: "Research", value: 100, suffix: "+", description: "Research Papers Published" },
 ];
 
 const Stats = () => {
@@ -16,31 +16,29 @@ const Stats = () => {
     return (
         <section className="py-16 px-6 bg-white">
             <div className="max-w-6xl mx-auto text-center">
-                <motion.div 
-                    className="grid grid-cols-1 sm:grid-cols-3 gap-10 items-center" 
+                <motion.div
+                    className="grid grid-cols-1 sm:grid-cols-3 gap-10 items-center"
                     ref={ref}
                     initial="hidden"
                     animate={inView ? "visible" : "hidden"}
                     variants={{
-                        visible: {
-                            transition: { staggerChildren: 0.3 }, // Stagger delay between elements
-                        },
+                        visible: { transition: { staggerChildren: 0.3 } },
                     }}
                 >
                     {stats.map((stat, index) => (
-                        <motion.div 
-                            key={index} 
+                        <motion.div
+                            key={index}
                             className="relative flex flex-col items-center"
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 30 }}
-                            transition={{ duration: 0.8, delay: index * 0.3 }} // Delays each div
+                            transition={{ duration: 0.8, delay: index * 0.3 }}
                         >
                             {/* Number & Title Container */}
                             <div className="flex flex-col items-center justify-center space-y-2">
                                 {/* Bold Number */}
                                 <h3 className="text-6xl font-bold text-accent font-[playfair] leading-tight">
                                     {inView ? <CountUp end={stat.value} duration={2} /> : "..."}
-                                    {stat.label === "Students" ? "K" : ""}
+                                    {stat.suffix}
                                 </h3>
 
                                 {/* Title */}
