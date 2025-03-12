@@ -155,7 +155,7 @@ export default function NewsSection() {
 									</div>
 
 									{/* Vertical Divider - More subtle */}
-									<div className="w-[1.5px] bg-gray-300 h-12"></div>
+									<div className="w-[1.5px] bg-gray-500 h-12"></div>
 
 									{/* Announcement Title */}
 									<div className="flex flex-col">
