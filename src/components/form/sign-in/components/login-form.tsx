@@ -16,7 +16,6 @@ import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/password-input";
 import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { User } from "@/interfaces/types";
 
 type UserAuthFormProps = HTMLAttributes<HTMLDivElement>;
 
@@ -51,26 +50,17 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 
 	async function onSubmit(data: z.infer<typeof formSchema>) {
 		setIsLoading(true);
-		console.table(data);
 		try {
-			const res = await fetch(
-				`${import.meta.env.VITE_API_BASE_URL}/auth/login`,
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(data),
-				}
-			);
-			const res_json: {
-				access_token: string;
-				refresh_token: string;
-				user: User;
-			} = await res.json();
-			console.log("data", res_json);
-			if (res.ok) {
-				login(res_json.user, res_json.access_token, res_json.refresh_token); // TODO: Send user object from the server
+			const success = await login(data.email, data.password);
+			if (success) {
+				// Redirect based on user role
+				const res = await fetch(
+					`${import.meta.env.VITE_API_BASE_URL}/auth/user`,
+					{
+						credentials: "include",
+					}
+				);
+				const res_json = await res.json();
 				if (res_json.user.role === "faculty") navigate("/fportal");
 				else if (res_json.user.role === "admin") navigate("/admin");
 			}
