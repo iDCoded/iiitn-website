@@ -92,7 +92,7 @@ import CampusGallery from "./Pages/CampusGallery.tsx";
 import FacultyPage from "./Faculty/page.tsx";
 import AntiRaggingCommittee from "./Pages/AntiRaggingCommittee.tsx";
 import ConsultancyProjects from "./Research/ConsultancyProjects/page.tsx";
-import PhDProgram from "./Admissions/Phd/Phd.tsx";
+import PhDProgram from "./Admissions/Phd.tsx";
 import PhDOverview from "./Admissions/Phd/PhdOverview.tsx";
 import PhDStructure from "./Admissions/Phd/PhdStructure.tsx";
 import PhDResources from "./Admissions/Phd/PhdResources.tsx";
@@ -240,6 +240,7 @@ const AppRoutes = () => (
 			element={<ImmutableProperty />}></Route>
 		<Route path="/academics/curricula" element={<AcademicCurriculum />}></Route>
 		<Route path="/research/consultancyprojects" element={<ConsultancyProjects />}></Route>
+		<Route path="/research/consultancyprojects/:param" element={<ConsultancyProjects />}></Route>
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );

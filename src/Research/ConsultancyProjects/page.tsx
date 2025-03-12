@@ -16,8 +16,10 @@ type Project = {
 const Projects = () => {
     const location = useLocation();
     const [selectedTab, setSelectedTab] = useState<"cse" | "ece" | "bs">(
-        ["cse", "ece", "bs"].includes(location.hash.substring(1))
-            ? (location.hash.substring(1) as "cse" | "ece" | "bs")
+        location.pathname.includes("ece")
+            ? "ece"
+            : location.pathname.includes("basic_science")
+            ? "bs"
             : "cse"
     );
     const [projectsData, setProjectsData] = useState<Record<"cse" | "ece" | "bs", Project[]>>({ cse: [], ece: [], bs: [] });
