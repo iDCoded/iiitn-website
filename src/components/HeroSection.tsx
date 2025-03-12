@@ -33,14 +33,14 @@ const HeroSection = () => {
             </div>
 
             {/* 🎯 Hero Content */}
-            <div className="fixed z-[-1]">
+            <div className="fixed z-[-1] w-full px-4 md:px-6">
                 <div className="text-center">
-                    <p className="font-extrabold text-white  text-4xl lg:text-6xl">
+                    <p className="font-extrabold text-white text-xl sm:text-2xl md:text-3xl lg:text-5xl">
                         {isEnglish
                             ? "Indian Institute of Information Technology Nagpur"
                             : "भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर"}
                     </p>
-                    <p className="font-light lg:text-4xl text-white">
+                    <p className="font-light text-xs sm:text-sm md:text-base lg:text-2xl text-white mt-2">
                         An Institution of National Importance
                     </p>
                 </div>

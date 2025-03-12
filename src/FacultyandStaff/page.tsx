@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import StudentCard from "../components/StudentCard";
 import NoticesSidebar from "../components/NoticesSidebar";
 import {
@@ -7,6 +8,9 @@ import {
 	CardTitle,
 } from "../components/ui/card";
 
+import acad_curr from "../assets/academic_curri.jpg";
+import curr_acad from "../assets/academic_curri.jpg";
+
 
 
 
@@ -15,29 +19,25 @@ const currentData = [
 		title: "Academic Curricula",
 		description: "Semester Dates and deadlines",
 		link: "/academics/curricula",
-		imageSrc:
-			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
+		imageSrc: acad_curr,
 	},
 	{
 		title: "Academic Calendar",
 		description: "Details about Scholarships and financial assistance",
 		link: "/academics/calendar",
-		imageSrc:
-			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
+		imageSrc: curr_acad,
 	},
 	{
 		title: "Courses",
 		description: "All in one academic platform for managing assignments and additional course materials.",
-		link: "https://moodle.iiitnagpur.ac.in",
-		imageSrc:
-			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
+		link: "://moodle.iiitnagpur.ac.in",
+		imageSrc: curr_acad,
 	},
 	{
 		title: "Faculty and Staff Portal",
 		description: "All in one academic platform for managing assignments and additional course materials.",
 		link: "#",
-		imageSrc:
-			"https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png",
+		imageSrc: curr_acad,
 	},
 ];
 
@@ -52,7 +52,7 @@ const quickLinks = [
 			},
 			{
 				name: "Time Table",
-				link: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link",
+				link: "://docs.google.com/spreadsheets/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link",
 			},
 			{
 				name: "Faculty Achievements",
@@ -69,6 +69,7 @@ const quickLinks = [
 
 
 function FacultyandStaff() {
+	const navigate = useNavigate();
 	return (
 		<div className="bg-gray-50 min-h-screen">
 			{/* Hero Section */}
@@ -85,8 +86,8 @@ function FacultyandStaff() {
 
 				{/* Main Section */}
 				<div className="flex-1 ">
-					
-					
+
+
 
 					{/* Current Faculty & Staff */}
 					<div className="mb-12 max-w-[80vh] mx-auto">
@@ -100,13 +101,15 @@ function FacultyandStaff() {
 						</p>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
 							{currentData.map((data, index) => (
-								<a href={data.link} key={index}>
+								<a
+									onClick={() => navigate(data.link)}
+									key={index}>
 									<StudentCard
-									key={index}
-									title={data.title}
-									description={data.description}
-									imageSrc={data.imageSrc}
-								/>
+										key={index}
+										title={data.title}
+										description={data.description}
+										imageSrc={data.imageSrc}
+									/>
 								</a>
 							))}
 						</div>
@@ -119,7 +122,7 @@ function FacultyandStaff() {
                             <FSCard
                                 title="Dr. ABC"
                                 description="Professor"
-                                imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
+                                imageSrc="://.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
                             />
                         </div>
                         <div>
@@ -127,7 +130,7 @@ function FacultyandStaff() {
                             <FSCard
                                 title="Dr. ABC"
                                 description="Professor"
-                                imageSrc="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
+                                imageSrc="://.wikimedia.org/wikipedia/en/thumb/f/f5/Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg/330px-Indian_Institute_of_Information_Technology%2C_Nagpur_Logo.svg.png"
                             />
                         </div>
                     </div> */}
@@ -146,7 +149,7 @@ function FacultyandStaff() {
 									{section.items.map((item, i) => (
 										<li key={i}>
 											<a
-												href={item.link}
+												onClick={() => navigate(item.link)}
 												className="text-accent hover:underline">
 												{item.name}
 											</a>
@@ -158,17 +161,17 @@ function FacultyandStaff() {
 					))}
 					{/* Notices */}
 					<Card className="shadow-sm border border-gray-200 p-4">
-                        <CardHeader className="flex justify-between items-center flex-row">
-                            <CardTitle className="text-lg font-semibold text-primary">Faculty Notices</CardTitle>
-                            <a href="/notices" className="text-sm text-accent hover:underline">View All</a>
-                        </CardHeader>
-                        <CardContent>
-                        </CardContent>
-                        <NoticesSidebar category="faculty"/>
-                    </Card>
-					
-					
-					
+						<CardHeader className="flex justify-between items-center flex-row">
+							<CardTitle className="text-lg font-semibold text-primary">Faculty Notices</CardTitle>
+							<button onClick={() => navigate("/notices")} className="text-sm text-accent hover:underline">View All</button>
+						</CardHeader>
+						<CardContent>
+						</CardContent>
+						<NoticesSidebar category="faculty" />
+					</Card>
+
+
+
 				</aside>
 			</div>
 		</div>

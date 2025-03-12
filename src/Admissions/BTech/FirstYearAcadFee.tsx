@@ -1,45 +1,49 @@
 import { useEffect, useState } from "react";
 import acadfee from '../../assets/acadfee.jpg';
+import { useNavigate } from "react-router-dom";
 const defacadFeeData = {
-	year: 2024, 
-	imgSrc: acadfee, 
+	year: 2024,
+	imgSrc: acadfee,
 };
 
 function FirstYearAcadFee() {
 	const [acadFeeData, setAcadFeeData] = useState<{ year: any; imgSrc: any }>({ year: '', imgSrc: '' });
 	const [loading, setLoading] = useState(true);
+
+	const navigate = useNavigate();
+
 	useEffect(() => {
 		const fetchAcadFee = async () => {
-		  try {
-			const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/fee`);
-			if (!res.ok) throw new Error("Failed to fetch academic fee data");
-	  
-			const data = await res.json();
-	  
-			// ✅ Filter data where m_sub_category is "acad_fee"
-			const acadFeeItem = data.find((item: any) => item.m_sub_category === "first_acad_fee");
-	  
-			if (acadFeeItem) {
-			  const acadFeeData = {
-				year: acadFeeItem.title,
-				imgSrc: acadFeeItem.media_img_id, 
-			  };
-	  
-			  setAcadFeeData(acadFeeData);
-			} else {
-			  console.warn("No academic fee data found.");
+			try {
+				const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/fee`);
+				if (!res.ok) throw new Error("Failed to fetch academic fee data");
+
+				const data = await res.json();
+
+				// ✅ Filter data where m_sub_category is "acad_fee"
+				const acadFeeItem = data.find((item: any) => item.m_sub_category === "first_acad_fee");
+
+				if (acadFeeItem) {
+					const acadFeeData = {
+						year: acadFeeItem.title,
+						imgSrc: acadFeeItem.media_img_id,
+					};
+
+					setAcadFeeData(acadFeeData);
+				} else {
+					console.warn("No academic fee data found.");
+				}
+			} catch (err) {
+				console.error("Error fetching academic fee data:", err);
+				setAcadFeeData(defacadFeeData);
+			} finally {
+				setLoading(false);
 			}
-		  } catch (err) {
-			console.error("Error fetching academic fee data:", err);
-			setAcadFeeData(defacadFeeData);
-		  } finally {
-			setLoading(false);
-		  }
 		};
-	  
+
 		fetchAcadFee();
-	  }, []); // ✅ Runs only once on mount
-	  
+	}, []); // ✅ Runs only once on mount
+
 
 	if (loading) {
 		return (
@@ -79,18 +83,18 @@ function FirstYearAcadFee() {
 
 				{/* 📌 Action Buttons */}
 				<div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center">
-					<a
-						href="/pages/academicfee"
+					<p
+						onClick={() => navigate("/pages/academicfee")}
 						className="bg-primary text-white px-5 py-2 rounded-md text-center hover:bg-[#001a36] transition"
 					>
 						View Complete Fee Structure
-					</a>
-					<a
-						href="/pages/academicfeepayment"
+					</p>
+					<p
+						onClick={() => navigate("/pages/academicfeedetails")}
 						className="bg-accent text-white px-5 py-2 rounded-md text-center hover:bg-[#d8691d] transition"
 					>
 						Academic Fee Payment Details
-					</a>
+					</p>
 				</div>
 			</main>
 		</div>

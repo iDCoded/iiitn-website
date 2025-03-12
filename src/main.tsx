@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
+import { GlobalProvider } from "./context/GlobalContext";
 import "./index.css";
 
 export function App() {
@@ -49,9 +50,11 @@ export default function ScrollToTop() {
 // Wrap the entire app with Router and AuthProvider
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<Router>
+		<GlobalProvider>
 		<ScrollToTop />
 		<AuthProvider>
 			<App />
 		</AuthProvider>
+		</GlobalProvider>
 	</Router>
 );

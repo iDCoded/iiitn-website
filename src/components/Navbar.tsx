@@ -4,10 +4,24 @@ import { FaBars, FaChevronDown, FaTimes } from "react-icons/fa"; // Icons for me
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io"; // Icons for dropdowns
 import logo from "../assets/logo.png"; // Logo Image
 import Search from "@/search";
+import Translator from "../Translator/page";
 
 const imgSrc = logo;
 
 const Navbar = () => {
+
+	interface ChangeLanguageFunction {
+		(lang: string): void;
+	}
+
+	const changeLanguage: ChangeLanguageFunction = (lang) => {
+		const select = document.querySelector("select.goog-te-combo") as HTMLSelectElement;
+		if (select) {
+			select.value = lang;
+			select.dispatchEvent(new Event("change"));
+		}
+	};
+
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [isHomePage, setIsHomePage] = useState(false);
@@ -36,16 +50,6 @@ const Navbar = () => {
 	useEffect(() => {
 		setIsHomePage(location.pathname === "/");
 	}, [location]);
-
-	// Navbar Links
-	const navLinks = [
-		{ title: "Students", href: "/students" },
-		{ title: "Faculty & Staff", href: "/facultyandstaff" },
-		{ title: "Alumni", href: "/alumni" },
-		{ title: "Recruitment", href: "/recruitments" },
-		{ title: "Visitors", href: "/visitors" },
-		{ title: "Tenders", href: "/pages/tenders" },
-	];
 
 	interface Link {
 		title?: string;
@@ -95,34 +99,16 @@ const Navbar = () => {
 					name: "Administration ",
 					subLinks: [
 						{
-							name: "Board Of Governors",
-							href: "/governance/committee#Board-of-Governors",
-						},
-						{
-							name: "Finance Committee",
-							href: "/governance/committee#Finance-Committee",
-						},
-						{ name: "Senate", href: "/governance/committee#Senate" },
-						{
-							name: "Building Works Committee",
-							href: "/governance/committee#Building-Works-Committee",
-						},
-						{
-							name: "Academic Administration",
+							name: "Administration",
 							href: "/governance/administration",
 						},
 						{
-							name: "Grievance Committee SC/ST Cell",
-							href: "/pages/grievancecomm",
+							name: "Committees",
+							href: "/governance/committee",
 						},
-						{
-							name: "Anti-Ragging Committee",
-							href: "/pages/antiragging",
-						},
-						{ name: "Internal Complaint Committee", href: "/pages/icc" },
 					],
 				},
-				{ name: "Campus Photo Gallery", href: "/pages/campusgallery" },
+				{ name: "Campus Gallery", href: "/pages/campusgallery" },
 				{ name: "Facilities", href: "/institute/facilities" },
 				{ name: "Notices", href: "/notices" },
 			],
@@ -171,6 +157,15 @@ const Navbar = () => {
 					name: "Post Graduate",
 					href: "/admissions/pg",
 				},
+				{
+					name: "Ph.D.",
+					subLinks: [
+						{ name: "Overview", href: "/phd/overview" },
+						{ name: "Resources", href: "/phd/resources" },
+						{ name: "Admission Guidelines", href: "/phd/admission" },
+						{ name: "Structure & Research Areas", href: "/phd/structure" },
+					],
+				},
 			],
 		},
 		{
@@ -206,6 +201,17 @@ const Navbar = () => {
 				{ name: "Official Documents", href: "/pages/officialdocuments" },
 			],
 		},
+		{
+			title: "Information for",
+			links: [
+				{ name: "Students", href: "/students" },
+				{ name: "Faculty & Staff", href: "/facultyandstaff" },
+				{ name: "Alumni", href: "/alumni" },
+				{ name: "Recruitment", href: "/recruitments" },
+				{ name: "Visitors", href: "/visitors" },
+				{ name: "Tenders", href: "/pages/tenders" },
+			],
+		}
 	];
 
 	return (
@@ -218,48 +224,68 @@ const Navbar = () => {
 
 			{/* Fixed Navbar */}
 			<div className="fixed top-0 left-0 w-full z-50 transition-transform duration-200">
-				{/* 🔸 Top Orange Bar */}
-				<nav className={`w-full px-6 py-2 flex justify-between items-center lg:flex ${isHomePage && !isScrolled ? "bg-transparent shadow-none text-white" : "bg-background shadow-md text-primary"
-					}`}>
+				{/* 🔸 Top Navigation Bar */}
+				<nav
+					className={`w-full px-24 py-2 flex justify-between items-center lg:flex 
+        ${isHomePage && !isScrolled ? "bg-transparent shadow-none text-white" : "bg-accent shadow-md text-primary"}`}>
+
+					{/* 🔹 Left Section - Logo */}
 					<a href="/">
 						<div className="flex items-center space-x-4">
 							<img src={imgSrc} alt="IIITN Logo" className="h-16 w-16" />
-							<div className="flex flex-col">
-								<h1 className="font-bold text-xl hidden lg:block">Indian Institute of Information Technology, Nagpur</h1>
-								<h1 className="font-bold text-xl hidden lg:block">भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर</h1>
-							</div>
+							{isHomePage ? (isScrolled && (
+								<h1 className="font-bold text-xl hidden lg:block">
+									Indian Institute of Information Technology, Nagpur
+								</h1>)) : (
+								<h1 className="font-bold text-xl hidden lg:block">
+									Indian Institute of Information Technology, Nagpur
+								</h1>
+							)}
 						</div>
 					</a>
-					{/* <div className="flex items-center space-x-6">
-						<h1 className="hidden lg:flex font-medium text-xl">Information for: </h1>
-						<ul className={`hidden lg:flex space-x-6 font-medium ${isHomePage && !isScrolled ? "text-white" : "text-primary"
-							}`}>
-							{navLinks.map((link, index) => (
-								<a key={index} href={link.href} className="hover:text-white">
-									{link.title}
-								</a>
-							))}
-						</ul>
-					</div> */}
-					<div className="flex items-center space-x-6">
-						<Search />
-						<h1 className={`font-bold text-xl ${isHomePage && !isScrolled ? "text-white" : "text-primary"
-							}`}>अ A
-						</h1>
+
+					{/* 🔹 Center Section - Language Switcher & Search */}
+					<div className="flex items-center space-x-4">
+						{/* 🌍 Language Buttons */}
+						<div className="flex space-x-2">
+							<button
+								onClick={() => changeLanguage("en")}
+								className={`px-3 py-1 border font-bold rounded-md transition-all ${isHomePage && !isScrolled ? "border-white text-white hover:bg-primary hover:border-primary hover:text-white" : "border-primary text-primary hover:bg-white hover:border-white hover:text-primary"}`}
+							>
+								A
+							</button>
+							<button
+								onClick={() => changeLanguage("hi")}
+								className={`px-3 py-1 border font-bold rounded-md transition-all ${isHomePage && !isScrolled ? "border-white text-white hover:bg-primary hover:border-primary hover:text-white" : "border-primary text-primary hover:bg-white hover:border-white hover:text-primary"}`}
+							>
+								अ
+							</button>
+						</div>
+
+						{/* 🔍 Search Input with Toggle */}
+						<div className="relative flex items-center">
+							<Search />
+						</div>
+
+						{/* 🔹 Right Section - Translator */}
+						<Translator />
 					</div>
+
+					{/* 🔹 Right Section - Translator */}
+					<Translator />
 				</nav>
 
 				{/* 🔹 Middle Section with Logo and Mobile Menu Button */}
 				<nav
-					className={`w-full px-8 py-1.5 flex justify-center items-center ${isHomePage && !isScrolled ? "bg-transparent" : "bg-accent"}`}>
+					className={`w-full px-8 py-1.5 flex justify-center items-center 
+        ${isHomePage && !isScrolled ? "bg-transparent" : "bg-primary"}`}>
 
-					{/* Mobile Menu Toggle Button (Now in Blue Navbar) */}
-					<button
-						className="lg:hidden text-white text-2xl"
-						onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+					{/* 📱 Mobile Menu Toggle */}
+					<button className="lg:hidden text-white text-2xl" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
 						{isMobileMenuOpen ? <FaTimes /> : <FaBars />}
 					</button>
 
+					{/* 🔹 Desktop Menu */}
 					<div className="hidden lg:block px-6 py-2">
 						<ul className="flex space-x-10 text-lg text-white font-medium">
 							{dropdownLinks.map((item, index) => (
@@ -268,7 +294,8 @@ const Navbar = () => {
 									className="relative group cursor-pointer transition-all duration-300 ease-in-out"
 									onMouseEnter={() => setOpenDropdown(index)}
 									onMouseLeave={() => setOpenDropdown(null)}>
-									<span className="relative inline-block pb-1 text-white transition-all duration-300 ease-in-out group-hover:text-primary group-hover:scale-110">
+
+									<span className="relative inline-block pb-1 text-white transition-all duration-300 ease-in-out group-hover:text-accent group-hover:scale-110">
 										<span className="flex items-center">
 											{item.links ? (
 												<>
@@ -278,15 +305,15 @@ const Navbar = () => {
 												<a href={item.href}>{item.title}</a>
 											)}
 										</span>
-										{/* Underline Animation */}
-										<span className="absolute left-0 bottom-0 w-0 h-[3px] bg-primary transition-all duration-500 ease-out group-hover:w-full group-hover:opacity-100 opacity-0"></span>
+										<span className="absolute left-0 bottom-0 w-0 h-[3px] bg-accent transition-all duration-500 ease-out group-hover:w-full group-hover:opacity-100 opacity-0"></span>
 									</span>
 
-									{/* Dropdown Menu */}
+									{/* 🔽 Dropdown Menu */}
 									<ul
-										className={`absolute top-[75%] mt-2 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
-							${index === dropdownLinks.length - 1 ? "right-0" : "left-0"} 
-							${openDropdown === index ? "opacity-100 translate-y-0 visible" : "opacity-0 translate-y-[-10px] invisible"}`}>
+										className={`absolute top-[75%] mt-2 w-48 bg-white text-primary text-base border shadow-lg rounded-md transition-all duration-200 
+								${index === dropdownLinks.length - 1 ? "right-0" : "left-0"} 
+								${openDropdown === index ? "opacity-100 translate-y-0 visible" : "opacity-0 translate-y-[-10px] invisible"}`}>
+
 										{item.links &&
 											item.links.map((link, i) => (
 												<div
@@ -294,25 +321,27 @@ const Navbar = () => {
 													className="relative group"
 													onMouseEnter={() => setOpenSubmenu(i)}
 													onMouseLeave={() => setOpenSubmenu(null)}>
+
 													<a href={link.href}>
-														<li className="px-4 py-2 hover:bg-primary hover:rounded-sm hover:text-white flex justify-between items-center">
+														<li className="px-4 py-2 hover:bg-accent hover:rounded-sm hover:text-white flex justify-between items-center">
 															{link.name}
 															{link.subLinks && <IoIosArrowForward />}
 														</li>
 													</a>
 
-													{/* Submenu */}
+													{/* ▶️ Submenu */}
 													{link.subLinks && (
 														<ul
 															className={`absolute top-0 mt-0 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
-												${index === dropdownLinks.length - 1 ? "right-full" : "left-full"} 
-												${openSubmenu === i ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+													${index === dropdownLinks.length - 1 ? "right-full" : "left-full"} 
+													${openSubmenu === i ? "opacity-100 visible" : "opacity-0 invisible"}`}>
 															{link.subLinks.map((subLink, j) => (
 																<li
 																	key={j}
 																	className="relative group"
 																	onMouseEnter={() => setOpenNestedSubmenu(j)}
 																	onMouseLeave={() => setOpenNestedSubmenu(null)}>
+
 																	<a
 																		href={subLink.href}
 																		className="px-4 py-2 hover:bg-primary hover:text-white rounded-sm flex justify-between items-center">
@@ -320,12 +349,12 @@ const Navbar = () => {
 																		{"nestedLinks" in subLink && <IoIosArrowForward />}
 																	</a>
 
-																	{/* Nested Submenu */}
+																	{/* ▶️ Nested Submenu */}
 																	{subLink.nestedLinks && (
 																		<ul
 																			className={`absolute top-0 mt-0 w-48 bg-white text-primary border shadow-lg rounded-md transition-all duration-200 
-																${link.subLinks && j === link.subLinks.length - 1 ? "right-full" : "left-full"} 
-																${openNestedSubmenu === j ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+																	${link.subLinks && j === link.subLinks.length - 1 ? "right-full" : "left-full"} 
+																	${openNestedSubmenu === j ? "opacity-100 visible" : "opacity-0 invisible"}`}>
 																			{subLink.nestedLinks.map((nestedLink, k) => (
 																				<li key={k}>
 																					<a
@@ -349,10 +378,8 @@ const Navbar = () => {
 						</ul>
 					</div>
 				</nav>
-
-
-				{/* 🔹 Desktop Menu (Only Visible for Large Screens) */}
 			</div>
+
 
 			{/* 🔹 Mobile Menu Drawer (Visible on Small Screens) */}
 			<div className={`fixed inset-0 bg-black bg-opacity-50 z-50 transform transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
@@ -364,13 +391,13 @@ const Navbar = () => {
 
 					{/* Regular Links */}
 					<ul className="space-y-4">
-						{navLinks.map((link, index) => (
+						{/* {navLinks.map((link, index) => (
 							<li key={index}>
 								<a href={link.href} className="block text-lg font-medium text-primary hover:text-accent">
 									{link.title}
 								</a>
 							</li>
-						))}
+						))} */}
 
 						{/* Mobile Dropdown Links */}
 						{dropdownLinks.map((item, index) => (

@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-
-import img1 from "../assets/IIIT22.jpg";
+import { useNavigate } from "react-router-dom";
 import img2 from "../assets/IIIT26.jpg";
 import img3 from "../assets/IIIT21(1).jpg";
 import img4 from "../assets/gym.jpg";
 import img5 from "../assets/IIIT12.jpg";
-import { Button } from "./ui/button";
+import campusnight from "../assets/campusnight.jpeg";
+
 import {
 	DialogContent,
 	DialogHeader,
@@ -17,14 +17,15 @@ import {
 } from "./ui/dialog";
 
 const campusLifeImages = [
-	{ src: img1, content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque porro dolor eligendi doloribus, recusandae ex? Fugiat voluptates quae quo! Dolores." },
-	{ src: img2, content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque porro dolor eligendi doloribus, recusandae ex? Fugiat voluptates quae quo! Dolores."},
-	{ src: img3, content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque porro dolor eligendi doloribus, recusandae ex? Fugiat voluptates quae quo! Dolores."},
-	{ src: img4, content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque porro dolor eligendi doloribus, recusandae ex? Fugiat voluptates quae quo! Dolores, nihil placeat voluptate est voluptatem consequatur aliquid inventore exercitationem soluta nobis temporibus magnam iste culpa eaque sapiente?"},
-	{ src: img5, content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque porro dolor eligendi doloribus, recusandae ex? Fugiat voluptates quae quo! Dolores, nihil placeat voluptate est voluptatem consequatur aliquid inventore exercitationem soluta nobis temporibus magnam iste culpa eaque sapiente?"},
+	{ src: img4, content: "A fully-equipped gym to fuel both body and mind" },
+	{ src: img2, content: "Hands-on learning with state-of-the-art equipment" },
+	{ src: img3, content: "Stay active with dynamic sports facilities." },
+	{ src: campusnight, content: "Unforgettable nights of music, culture, and camaraderie under the open sky." },
+	{ src: img5, content: "A serene library for deep learning and exploration" },
 ];
 
 const CampusLife = () => {
+	const navigate = useNavigate();
 	const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
 	return (
@@ -38,14 +39,14 @@ const CampusLife = () => {
 				{/* Section Header */}
 				<div className="flex flex-col sm:flex-row justify-between items-center mb-8">
 					<h2 className="text-4xl font-bold text-primary">
-						<span className="text-accent">|</span> Campus Life
+						<span className="text-accent">|</span> Explore the Campus Vibes
 					</h2>
 					<div className="flex gap-4 mt-4 sm:mt-0">
 						<Dialog>
 							<DialogTrigger asChild>
-								<Button className="px-6 py-3 text-lg font-semibold bg-accent hover:bg-accent-dark text-white transition-all duration-300">
+								<button className="px-6 py-3 h-10 flex items-center hover:cursor-pointer text-lg font-semibold bg-accent hover:bg-accent-dark text-white transition-all duration-300">
 									Campus Tour
-								</Button>
+								</button>
 							</DialogTrigger>
 							<DialogContent className="max-w-screen-lg w-full">
 								<DialogHeader>
@@ -65,11 +66,11 @@ const CampusLife = () => {
 							</DialogContent>
 						</Dialog>
 
-						<a href="/students/hostellife">
-							<Button className="px-6 py-3 text-lg font-semibold bg-primary hover:bg-primary-dark text-white transition-all duration-300">
+						<button onClick={() => navigate("/students/hostellife")} className="px-6 py-3 text-lg h-10 flex items-center font-semibold bg-primary hover:bg-primary-dark hover:cursor-pointer text-white transition-all duration-300">
+							<p className="px-6 py-3 text-lg h-10 flex  items-center font-semibold bg-primary hover:bg-primary-dark hover:cursor-pointer text-white transition-all duration-300">
 								More
-							</Button>
-						</a>
+							</p>
+						</button>
 					</div>
 				</div>
 
@@ -95,7 +96,7 @@ const CampusLife = () => {
 							/>
 
 							{/* Overlay with Blur Effect */}
-							<div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-10">
+							<div className="absolute inset-0 bg-accent/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-10">
 								<p className="text-white text-lg font-semibold">{item.content}</p>
 							</div>
 						</motion.div>
@@ -119,7 +120,7 @@ const CampusLife = () => {
 							/>
 
 							{/* Overlay with Blur Effect */}
-							<div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-10">
+							<div className="absolute inset-0 bg-accent/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-10">
 								<p className="text-white text-lg font-semibold">{item.content}</p>
 							</div>
 						</motion.div>

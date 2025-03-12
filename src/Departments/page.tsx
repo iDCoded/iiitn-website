@@ -37,7 +37,7 @@ function Departments() {
 						title="Basic Science"
 						imageSrc={basic}
 						description="Department of Basic Sciences at Indian Institute of Information Technology, Nagpur is a vibrant academic department."
-						link="departments/basic_science"
+						link="/departments/basic_science"
 					/>
 
 					{/* Department 2 */}
@@ -45,7 +45,7 @@ function Departments() {
 						title="Computer Science & Engineering"
 						imageSrc={cse}
 						description="The Department of Computer Science & Engineering offers cutting-edge research and education in computer science, software development, and AI."
-						link="departments/cse"
+						link="/departments/cse"
 					/>
 
 					{/* Department 3 */}
@@ -53,7 +53,7 @@ function Departments() {
 						title="Electronics & Communication"
 						imageSrc={ece}
 						description="The Department of Electronics & Communication at IIIT Nagpur is focused on advanced networking and signal processing."
-						link="departments/ece"
+						link="/departments/ece"
 					/>
 				</div>
 			</div>

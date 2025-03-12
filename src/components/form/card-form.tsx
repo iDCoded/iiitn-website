@@ -15,7 +15,6 @@ import { Check, ImageIcon, PlusCircle } from "lucide-react";
 import MDEditor from "@uiw/react-md-editor";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { ICard } from "@/interfaces/types";
 
 const formSchema = z.object({
 	title: z.string().min(1, "Title is required"),
@@ -26,6 +25,7 @@ const formSchema = z.object({
 	c_category: z.string().min(1, "Category is required"),
 	c_sub_category: z.string().min(1, "Sub-category is required"),
 	date: z.date(),
+	expiry_date: z.date(),
 	media_img_id: z.number().optional(),
 	media_vid_id: z.number().optional(),
 	media_doc_id: z.number().optional(),
@@ -193,7 +193,26 @@ export function CardForm() {
 			const media_res = await media_request.json();
 
 			if (media_request.ok) {
-				const card_data: ICard = {
+				type CardDataType = {
+					c_category: string;
+					c_sub_category: string;
+					title: string;
+					caption: string;
+					content: string;
+					date: Date;
+					location: string;
+					updated_by: number;
+					updated_time: Date;
+					added_by: number;
+					added_time: Date;
+					preference: number;
+					expiry_date: Date;
+					visibility: boolean;
+					media_img_id?: number;
+					media_vid_id?: number;
+					media_doc_id?: number;
+				};
+				let card_data: CardDataType = {
 					c_category: data.c_category.toLowerCase(),
 					c_sub_category: data.c_sub_category.toLowerCase(),
 					title: data.title,
@@ -201,17 +220,23 @@ export function CardForm() {
 					content: data.content,
 					date: data.date,
 					location: data.location,
-					media_img_id: media_res.media_id,
 					updated_by: 1,
 					updated_time: new Date(),
 					added_by: 1,
 					added_time: new Date(),
-					preference: 1,
-					c_id: "",
-					expiry_date: undefined,
+					preference: data.preference,
+					expiry_date: data.expiry_date,
 					visibility: false,
 				};
 				console.log(card_data);
+
+				if (file.type.includes("image")) {
+					card_data = { ...card_data, media_img_id: media_res.media_id };
+				} else if (file.type.includes("video")) {
+					card_data = { ...card_data, media_vid_id: media_res.media_id };
+				} else {
+					card_data = { ...card_data, media_doc_id: media_res.media_id };
+				}
 
 				const card_req = await fetch(
 					`${import.meta.env.VITE_API_BASE_URL}/card/cards`,
@@ -346,6 +371,48 @@ export function CardForm() {
 									<FormLabel>Location</FormLabel>
 									<FormControl>
 										<Input placeholder="Enter the location" {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="preference"
+							render={({ field }) => (
+								<FormItem className="w-full">
+									<FormLabel>Preference</FormLabel>
+									<FormControl>
+										<Input
+											placeholder="Specify the preference"
+											{...field}
+											type="number"
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+					</div>
+					<div className="flex flex-row justify-around gap-2">
+						<FormField
+							control={form.control}
+							name="expiry_date"
+							render={({ field }) => (
+								<FormItem className="w-full">
+									<FormLabel>Expiry Date</FormLabel>
+									<FormControl>
+										<Input
+											type="date"
+											placeholder="Enter the date"
+											{...field}
+											value={
+												field.value
+													? field.value.toISOString().split("T")[0]
+													: ""
+											}
+											onChange={(e) => field.onChange(new Date(e.target.value))}
+										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>

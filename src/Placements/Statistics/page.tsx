@@ -12,26 +12,38 @@ function Statistics() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/card/cards/category/placement_statistics`);
+				const response = await fetch(
+					`${
+						import.meta.env.VITE_API_BASE_URL
+					}/card/cards/category/placement_statistics`
+				);
 				const data = await response.json();
 
 				const newMarkdownData: MarkdownData = {}; // Merge static data with fetched data
 
-				data.forEach((item: { c_sub_category: string; title: string; content: string }) => {
-					// Extract the year from either c_sub_category or title
-					const year = parseInt(item.c_sub_category) || parseInt(item.title);
+				data.forEach(
+					(item: {
+						c_sub_category: string;
+						title: string;
+						content: string;
+					}) => {
+						// Extract the year from either c_sub_category or title
+						const year = parseInt(item.c_sub_category) || parseInt(item.title);
 
-					// Only update if the year is valid
-					if (!isNaN(year)) {
-						newMarkdownData[year] = item.content; // Store the markdown content
+						// Only update if the year is valid
+						if (!isNaN(year)) {
+							newMarkdownData[year] = item.content; // Store the markdown content
+						}
 					}
-				});
+				);
 
 				setMarkdownData(newMarkdownData);
 
 				// Ensure the dropdown includes all fetched years
 				if (!newMarkdownData[selectedYear]) {
-					const latestYear = Math.max(...Object.keys(newMarkdownData).map(Number));
+					const latestYear = Math.max(
+						...Object.keys(newMarkdownData).map(Number)
+					);
 					setSelectedYear(latestYear);
 				}
 			} catch (error) {
@@ -56,15 +68,16 @@ function Statistics() {
 
 			{/* Year Selector */}
 			<div className="w-full max-w-4xl mx-auto mt-8 px-4">
-				<label htmlFor="year" className="block text-lg font-semibold text-gray-700">
+				<label
+					htmlFor="year"
+					className="block text-lg font-semibold text-gray-700">
 					Select Year:
 				</label>
 				<select
 					id="year"
 					value={selectedYear}
 					onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-					className="mt-2 w-full sm:w-1/2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-accent focus:border-accent text-gray-700"
-				>
+					className="mt-2 w-full sm:w-1/2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-accent focus:border-accent text-gray-700">
 					{Object.keys(markdownData || {})
 						.map(Number)
 						.sort((a, b) => b - a)
@@ -79,10 +92,14 @@ function Statistics() {
 			{/* Markdown Display */}
 			<div className="w-full max-w-4xl mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg border border-gray-200">
 				<h1 className="text-3xl leading-loose font-bold text-primary">
-					<span className="text-5xl text-accent">| </span>Placement Statistics - {selectedYear}
+					<span className="text-5xl text-accent">| </span>Placement Statistics -{" "}
+					{selectedYear}
 				</h1>
 				<MarkdownPreview
-					source={(markdownData?.[selectedYear] || "*No data available for this year.*")}
+					source={
+						markdownData?.[selectedYear] || "*No data available for this year.*"
+					}
+					wrapperElement={{ "data-color-mode": "light" }}
 					className="text-gray-800 text-base sm:text-lg"
 					style={{
 						backgroundColor: "white",

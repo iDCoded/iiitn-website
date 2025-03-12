@@ -170,11 +170,11 @@ function Courses() {
 							{dept.programs.map((course, idx) => (
 								<div key={idx} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
 									<h3 className="text-xl font-semibold text-accent mb-2">{course.name}</h3>
-									<ul className="text-gray-700 mb-4 list-disc list-inside">
-										{course.content.map((point, i) => (
-											<li key={i}>{point}</li>
-										))}
-									</ul>
+									<div>
+									{
+										course.content
+									}
+									</div>
 									{course.scheme && (
 										<a
 											href={course.scheme}

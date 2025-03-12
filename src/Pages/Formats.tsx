@@ -1,36 +1,8 @@
 import {useState, useEffect } from "react";
 
 
-const definstituteFormats = [
-	{
-		name: "Undertaking For Cast Validity (Maharashtra Only)",
-		link: "/pdfs/undertaking_cast_validity.pdf",
-	},
-	{
-		name: "Undertaking For Correctness in Admission Form",
-		link: "/pdfs/undertaking_correctness.pdf",
-	},
-	{
-		name: "Undertaking For Non-Available Documents",
-		link: "/pdfs/undertaking_non_available.pdf",
-	},
-	{
-		name: "Affidavit For Gap Certificate",
-		link: "/pdfs/affidavit_gap_certificate.pdf",
-	},
-];
 
-const defcentralFormats = [
-	{ name: "FORM-GEN-EWS", link: "/pdfs/form_gen_ews.pdf" },
-	{ name: "FORM-OBC-NCL", link: "/pdfs/form_obc_ncl.pdf" },
-	{ name: "FORM-SC-ST", link: "/pdfs/form_sc_st.pdf" },
-	{ name: "FORM-PwD (II)", link: "/pdfs/form_pwd_ii.pdf" },
-	{ name: "FORM-PwD (III)", link: "/pdfs/form_pwd_iii.pdf" },
-	{ name: "FORM-PwD (IV)", link: "/pdfs/form_pwd_iv.pdf" },
-	{ name: "FORM-DYSLEXIC-1", link: "/pdfs/form_dyslexic_1.pdf" },
-	{ name: "FORM-DYSLEXIC-2", link: "/pdfs/form_dyslexic_2.pdf" },
-	{ name: "FORM-DS", link: "/pdfs/form_ds.pdf" },
-];
+
 
 function Formats() {
 	interface Format {
@@ -71,12 +43,11 @@ function Formats() {
 						link: format.media_doc_id,
 					}));
 
-				setInstituteFormats(instituteFormats.length ? instituteFormats : definstituteFormats);
-				setCentralFormats(centralFormats.length ? centralFormats : defcentralFormats);
+				setInstituteFormats(instituteFormats);
+				setCentralFormats(centralFormats);
 			} catch (err) {
 				console.error("Error fetching formats data:", err);
-				setInstituteFormats(definstituteFormats);
-				setCentralFormats(defcentralFormats);
+			
 			} finally {
 				setLoading(false);
 			}

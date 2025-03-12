@@ -47,7 +47,7 @@ const DetailedAnnouncement = () => {
 				setLoading(false);
 			}
 		};
-		
+
 		fetchAnnouncement();
 	}, [announcementid]);
 
@@ -63,9 +63,7 @@ const DetailedAnnouncement = () => {
 	// Error state
 	if (error) {
 		return (
-			<div className="text-center text-xl text-red-500 mt-10">
-				{error} 😢
-			</div>
+			<div className="text-center text-xl text-red-500 mt-10">{error} 😢</div>
 		);
 	}
 
@@ -84,16 +82,14 @@ const DetailedAnnouncement = () => {
 			animate={{ opacity: 1, y: 0 }}
 			exit={{ opacity: 0, y: -50 }}
 			transition={{ duration: 0.5, ease: "easeInOut" }}
-			className="max-w-4xl mx-auto p-6 md:p-10 bg-white/10 backdrop-blur-lg shadow-lg rounded-2xl my-10"
-		>
+			className="max-w-4xl mx-auto p-6 md:p-10 bg-white/10 backdrop-blur-lg shadow-lg rounded-2xl my-10">
 			{/* Title & Date */}
 			<div className="text-center mb-6">
 				<motion.h1
 					initial={{ opacity: 0, y: -20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ delay: 0.2, duration: 0.5 }}
-					className="text-3xl md:text-4xl font-bold text-primary"
-				>
+					className="text-3xl md:text-4xl font-bold text-primary">
 					{announcement.title}
 				</motion.h1>
 				{announcement.date && (
@@ -101,8 +97,7 @@ const DetailedAnnouncement = () => {
 						initial={{ opacity: 0, y: -10 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ delay: 0.3, duration: 0.5 }}
-						className="text-primary mt-2 text-lg"
-					>
+						className="text-primary mt-2 text-lg">
 						📅 {announcement.date}
 					</motion.p>
 				)}
@@ -114,8 +109,7 @@ const DetailedAnnouncement = () => {
 					initial={{ opacity: 0, scale: 0.9 }}
 					animate={{ opacity: 1, scale: 1 }}
 					transition={{ delay: 0.4, duration: 0.5 }}
-					className="mt-6 rounded-lg overflow-hidden shadow-md mb-6"
-				>
+					className="mt-6 rounded-lg overflow-hidden shadow-md mb-6">
 					<img
 						src={announcement.image}
 						alt={announcement.title}
@@ -130,8 +124,7 @@ const DetailedAnnouncement = () => {
 					initial={{ opacity: 0, y: 10 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ delay: 0.5, duration: 0.5 }}
-					className="text-primary/50 mt-4 text-lg text-center px-4 mb-6"
-				>
+					className="text-primary/50 mt-4 text-lg text-center px-4 mb-6">
 					{announcement.description}
 				</motion.p>
 			)}
@@ -142,8 +135,7 @@ const DetailedAnnouncement = () => {
 					initial={{ opacity: 0, y: 10 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ delay: 0.6, duration: 0.5 }}
-					className="mt-6 text-primary text-lg leading-relaxed mb-6"
-				>
+					className="mt-6 text-primary text-lg leading-relaxed mb-6">
 					<MarkdownPreview
 						source={announcement.content}
 						wrapperElement={{ "data-color-mode": "light" }}
@@ -159,8 +151,7 @@ const DetailedAnnouncement = () => {
 					whileHover={{ scale: 1.05 }}
 					whileTap={{ scale: 0.95 }}
 					onClick={() => navigate(-1)}
-					className="bg-gray-800 text-white px-5 py-2 rounded-lg font-semibold transition-all duration-300 hover:bg-gray-700 flex items-center gap-2"
-				>
+					className="bg-gray-800 text-white px-5 py-2 rounded-lg font-semibold transition-all duration-300 hover:bg-gray-700 flex items-center gap-2">
 					← Go Back
 				</motion.button>
 			</div>

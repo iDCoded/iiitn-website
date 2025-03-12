@@ -1,8 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import heroimage from "../../assets/BoGBanner.jpg";
-import chairman from "../../assets/chairman.jpg"
-import director from "../../assets/director.jpg"
-import registrar from "../../assets/registrar.jpg"
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 interface Person {
@@ -16,47 +14,23 @@ interface Person {
 }
 
 function Administration() {
-    const [people, setPeople] = useState<Person[]>([
-        {
-            id: "chairman",
-            name: "Shri Ravi Sharma",
-            position: "Chairman, BoG IIIT Nagpur",
-            email: "chairman@iiitn.ac.in",
-            content: "An accomplished former CEO, Ravi Sharma is now a mentor & philanthropist with a mission of 'Spreading Goodness' by supporting initiatives towards...",
-            imageSrc: chairman,
-        },
-        {
-            id: "director",
-            name: "Professor Prem Lal Patel",
-            position: "Director, IIIT Nagpur",
-            email: "director@iiitn.ac.in",
-            content: "Professor Prem Lal Patel took over as Director of IIIT Nagpur on 1st October 2024. He is also the Director of VNIT Nagpur...",
-            imageSrc: director,
-        },
-        {
-            id: "registrar",
-            name: "Shri Kailas N. Dakhale",
-            position: "Registrar, IIIT Nagpur",
-            email: "registrar@iiitn.ac.in",
-            phone: "+91 9421995010",
-            content: "With over 30 years of experience in administration and academics...",
-            imageSrc: registrar,
-        },
-    ]);
+    const [people, setPeople] = useState<Person[]>([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchPeople = async () => {
             try {
                 // Fetch data from the API
-                const response = await fetch(`${process.env.VITE_API_BASE_URL}/faculty/faculty_staff`);
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/faculty/faculty_staff`);
                 const data = await response.json();
 
                 console.log(data);
 
-                const filteredPeople = data.filter((person: any) => 
+                const filteredPeople = data.filter((person: any) =>
                     ["chairman", "director", "registrar"].includes(person.positions.toLowerCase())
                 ).map((person: any) => ({
-                    id: person.positions.toLowerCase(),
+                    id: person.f_id,
                     name: person.name,
                     position: person.positions,
                     email: person.email,
@@ -107,7 +81,7 @@ function Administration() {
                         </CardHeader>
                         <CardContent>
                             <ul className="space-y-2 text-sm">
-                                {["Chairman", "Director", "Registrar", "Staff Directory"].map((item, index) => (
+                                {["Chairman", "Director", "Registrar",].map((item, index) => (
                                     <li key={index}>
                                         <a href={`#${item.toLowerCase().replace(/\s/g, "-")}`} className="text-accent hover:underline">
                                             {item}
@@ -123,55 +97,54 @@ function Administration() {
                 <div className="w-full md:w-3/4 grid gap-8">
                     {people.map((person) => (
                         <Card key={person.id} id={person.id} className="shadow-lg">
-                            <CardHeader className="bg-primary text-white p-4 rounded-t-lg">
+                            <CardHeader className="bg-primary text-white p-4 ">
                                 <CardTitle><span className="text-2xl">{person.position.split(",")[0]}</span></CardTitle>
                             </CardHeader>
-                            <CardContent className="p-6 flex flex-col md:flex-row items-center md:items-start text-center md:text-left  space-x-6">
-                                <div>
+
+                            <CardContent className="p-8 flex flex-col md:flex-row items-center md:items-start space-x-8">
+                                {/* 🏅 Large Profile Picture (LEFT) */}
+                                <div className="flex-shrink-0">
                                     <img
                                         src={person.imageSrc}
                                         alt={person.name}
-                                        className="w-24 h-24 object-cover m-auto p-auto shadow-lg"
+                                        className="w-48 h-48 object-cover shadow-md"
                                     />
                                 </div>
-                                <div className="flex flex-col space-y-2">
-                                    <p className="font-bold">{person.name}</p>
-                                    <p>{person.position}</p>
-                                    <p>
-                                        Email:{" "}
-                                        <a href={`mailto:${person.email}`} className="text-blue-600 hover:underline">
-                                            {person.email}
-                                        </a>
-                                    </p>
-                                    {person.phone && (
+
+                                {/* ℹ️ Person Details (RIGHT) */}
+                                <div className="flex flex-col space-y-3">
+                                    <p className="text-2xl font-bold text-gray-900">{person.name}</p>
+                                    <p className="text-gray-600 text-lg">{person.position}</p>
+
+                                    <div className="text-gray-700 text-md">
                                         <p>
-                                            Contact:{" "}
-                                            <a href={`tel:${person.phone}`} className="text-blue-600 hover:underline">
-                                                {person.phone}
+                                            📧 Email:{" "}
+                                            <a href={`mailto:${person.email}`} className="text-blue-600 font-medium hover:underline">
+                                                {person.email}
                                             </a>
                                         </p>
-                                    )}
-                                    <p className="mt-4">{person.content}</p>
-                                    <p className="text-accent cursor-pointer mt-4">
-                                        <a href={`/governance/${person.id}`}>More about {person.position.split(',')[0]}</a>
+
+                                        {person.phone && (
+                                            <p>
+                                                📞 Contact:{" "}
+                                                <a href={`tel:${person.phone}`} className="text-blue-600 font-medium hover:underline">
+                                                    {person.phone}
+                                                </a>
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    {/* 📜 About Content */}
+                                    <p className="mt-3 text-gray-700 leading-relaxed">{person.content}</p>
+
+                                    {/* 🔗 More Info Link */}
+                                    <p className="text-accent text-lg font-medium mt-4 cursor-pointer hover:underline">
+                                        <a onClick={() => navigate(`/governance/${person.id}`)}>More about {person.position.split(',')[0]}</a>
                                     </p>
                                 </div>
                             </CardContent>
                         </Card>
                     ))}
-
-                    {/* Staff Directory */}
-                    <Card id="staff-directory" className="shadow-lg">
-                        <CardHeader className="bg-primary text-white p-4 rounded-t-lg">
-                            <CardTitle>Staff Directory</CardTitle>
-                        </CardHeader>
-                        <CardContent className="p-6 text-center">
-                            <p>IIIT Nagpur is supported by a dedicated administrative staff that ensures smooth operations across various departments.</p>
-                            <p className="text-accent cursor-pointer mt-4">
-                                <a href="/staff">View Full Staff Directory</a>
-                            </p>
-                        </CardContent>
-                    </Card>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 const seatDemoData = [
 	{
@@ -35,6 +36,8 @@ function BTech() {
 	const [seatData, setSeatData] = useState<Seat[]>([]);
 	let total = 637;
 
+	const navigate = useNavigate();
+
 	interface Document {
 		title: string;
 		media_doc_id: string;
@@ -49,7 +52,7 @@ function BTech() {
 	useEffect(() => {
 		const fetchDocuments = async () => {
 			try {
-				const response = await fetch(`${process.env.VITE_API_BASE_URL}/media/media/category/btech_admission`);
+				const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/btech_admission`);
 				const data = await response.json();
 
 				// Filter and sort data into two categories
@@ -153,12 +156,12 @@ function BTech() {
 								</tbody>
 							</table>
 						</div>
-						<a
-							href="/academics/courses"
-							className="mt-4 block text-accent hover:underline text-center"
+						<button
+							onClick={()=> navigate("/academics/courses")}
+							className="mt-4 block text-accent hover:underline text-center cursor-pointer"
 						>
 							More Details About Courses
-						</a>
+						</button>
 					</CardContent>
 				</Card>
 
