@@ -9,14 +9,6 @@ const consultancyProjects = [
 	},
 ];
 
-const completedProjects = [
-	{
-		name: "Department of Basic Sciences",
-		link: "/departments/basic_sciences/projects",
-	},
-	{ name: "Department of CSE", link: "/departments/cse/projects" },
-	{ name: "Department of ECE", link: "/departments/ece/projects" },
-];
 
 function Consultancy() {
 	return (
@@ -104,16 +96,11 @@ function Consultancy() {
 					<h2 className="text-2xl font-semibold text-primary mb-6">
 						Completed & Ongoing Projects
 					</h2>
-					<p>If you are interested in </p>
+					<p>If you are interested in check our previous consultancy projects </p>
 					<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-						{completedProjects.map((project, index) => (
-							<a
-								key={index}
-								href={project.link}
-								className="block bg-primary text-white p-4 rounded-md shadow-md text-center hover:bg-[#011c3c] transition">
-								{project.name}
-							</a>
-						))}
+						<a href="/research/consultancyprojects" className="bg-accent text-white px-4 py-2 rounded-lg hover:bg-[#c2651c] transition">
+							View Projects
+						</a>
 					</div>
 				</section>
 			</main>

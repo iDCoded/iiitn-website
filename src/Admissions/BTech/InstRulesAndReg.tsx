@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const rulesDemo = [
 	{ title: "Anti-Ragging Rules", link: "#" },
@@ -11,6 +12,8 @@ function InstRulesAndReg() {
 
 	const [rules,setRules] = useState<Rule[]>([])
 
+	const navigate = useNavigate();
+
 	interface Rule {
 		title: string;
 		link: string;
@@ -20,7 +23,7 @@ function InstRulesAndReg() {
 	useEffect(() => {
 		const fetchAcadFeeData = async () => {
 			try {
-				const response = await fetch(`${process.env.VITE_API_BASE_URL}/card/cards/category/fees`);
+				const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/card/cards/category/fees`);
 				const data = await response.json();
 
 				const formattedRules = data.map((item: any) => ({
@@ -60,11 +63,11 @@ function InstRulesAndReg() {
 							<span className="text-lg font-medium text-gray-700">
 								{rule.title}
 							</span>
-							<a
-								href={rule.link}
+							<button
+								onClick={() => navigate(rule.link)}
 								className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition">
 								View Details
-							</a>
+							</button>
 						</li>
 					))}
 				</ul>

@@ -1,14 +1,21 @@
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // Using ShadCN Card
 import StudentCard from "../components/StudentCard";
 import heroimage from "../assets/studentBanner.png";
 import acad_curr from "../assets/academic_curri.jpg";
 import curr_acad from "../assets/college_fees.png";
+import ac from "../assets/ac.jpg";
 import NoticesSidebar from "../components/NoticesSidebar.tsx";
+import counsellor from "../assets/counselling.jpg";
+import cg from "../assets/cg.jpg";
+import tt from "../assets/ttable.jpg";
+import sc from "../assets/sc.jpg";
+import fees from "../assets/fees.jpg";
 
 const prospectiveData = [
     { title: "Academic Curricula", description: "Semester Dates and Deadlines", link: "/academics/curricula", imgSrc: acad_curr },
-    { title: "Scholarships and Assistance", description: "Details about Scholarships and Financial Assistance", link: "/pages/scholarships", imgSrc: acad_curr },
-    { title: "Fees and Financial Aid", description: "Tuition Fees, Payment Methods, etc.", link: "/pages/loanschemes", imgSrc: acad_curr },
+    { title: "Scholarships and Assistance", description: "Details about Scholarships and Financial Assistance", link: "/pages/scholarships", imgSrc: sc },
+    { title: "Fees and Financial Aid", description: "Tuition Fees, Payment Methods, etc.", link: "/pages/loanschemes", imgSrc: fees },
 ];
 
 const currentData = [
@@ -16,9 +23,9 @@ const currentData = [
         subTitle: "Academic Resources",
         subDes: "Courses, Timetable, Calendar, Curricula, Fees, etc.",
         arr: [
-            { title: "Programs", description: "Semester Dates and Deadlines", link: "/academics/courses", imgSrc: acad_curr },
-            { title: "Timetable", description: "Important Dates and Deadlines", link: "https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link", imgSrc: acad_curr },
-            { title: "Calendar", description: "Important Dates and Academic Calendar", link: "/academics/calendar", imgSrc: acad_curr },
+            { title: "Programs", description: "Semester Dates and Deadlines", link: "/academics/courses", imgSrc: ac },
+            { title: "Timetable", description: "Important Dates and Deadlines", link: "https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vSp2JfZZCxiV3e3n3uKekiLFOeh2XQzDov_YDAU4QLRIGD5H6HCoWmQKORMAd8chLib0p-I0749s1Uj/pubhtml?gid=371376379&single=true&urp=gmail_link", imgSrc: tt },
+            { title: "Calendar", description: "Important Dates and Academic Calendar", link: "/academics/calendar", imgSrc: curr_acad },
 
         ],
     },
@@ -26,8 +33,8 @@ const currentData = [
         subTitle: "Student Support",
         subDes: "Resources for counseling and academic support.",
         arr: [
-            { title: "Counseling", description: "Mental well-being services", link: "/pages/clinicalcounselling", imgSrc: acad_curr },
-            { title: "Career Guidance", description: "Internship and Placement Services", link: "/placements/contact", imgSrc: curr_acad },
+            { title: "Counseling", description: "Mental well-being services", link: "/pages/clinicalcounselling", imgSrc: counsellor },
+            { title: "Career Guidance", description: "Internship and Placement Services", link: "/placements/contact", imgSrc: cg },
         ],
     },
 ];
@@ -44,6 +51,7 @@ const sidebarLinks = [
 ];
 
 function Students() {
+    const navigate = useNavigate();
     return (
         <div className="bg-gray-50 min-h-screen">
             {/* Header Section */}
@@ -77,7 +85,9 @@ function Students() {
                         </p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             {prospectiveData.map((item, index) => (
-                                <a href={item.link} key={index}>
+                                <a
+                                    onClick={() => navigate(item.link)}
+                                    key={index}>
                                     <StudentCard
                                         title={item.title}
                                         description={item.description}
@@ -102,7 +112,9 @@ function Students() {
                                 <p className="text-gray-500 mb-3 text-sm sm:text-base">{section.subDes}</p>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                     {section.arr.map((item, idx) => (
-                                        <a href={item.link} key={idx}>
+                                        <a
+                                            onClick={() => navigate(item.link)}
+                                            key={idx}>
                                             <StudentCard
                                                 title={item.title}
                                                 description={item.description}
@@ -126,9 +138,11 @@ function Students() {
                             <ul className="space-y-2 text-sm">
                                 {sidebarLinks.map((item, index) => (
                                     <li key={index}>
-                                        <a href={item.link} className="text-accent hover:underline">
+                                        <p
+                                            onClick={() => navigate(item.link)}
+                                            className="text-accent hover:underline">
                                             {item.title}
-                                        </a>
+                                        </p>
                                     </li>
                                 ))}
                             </ul>
@@ -137,10 +151,10 @@ function Students() {
                     <Card className="shadow-sm border border-gray-200 p-4">
                         <CardHeader className="flex justify-between items-center flex-row">
                             <CardTitle className="text-lg font-semibold text-primary">Student Notices</CardTitle>
-                            <a href="/notices" className="text-sm text-accent hover:underline">View All</a>
+                            <a onClick={() => navigate("/notices")} className="text-sm text-accent hover:underline">View All</a>
                         </CardHeader>
-                      
-                        <NoticesSidebar category="student"/>
+
+                        <NoticesSidebar category="student" />
                     </Card>
                 </aside>
             </div>

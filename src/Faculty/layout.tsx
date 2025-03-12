@@ -9,7 +9,6 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useAuth } from "@/context/AuthContext";
 
 const sidebarData = {
 	navMain: [
@@ -50,17 +49,6 @@ export default function FacultyDashboard({
 	const [lastSelected, setLastSelected] = useState<string | null>("#profile");
 
 	const location = useLocation();
-	// const navigate = useNavigate();
-	const { user } = useAuth();
-
-	if (user) {
-		const { role } = user;
-		if (role === "faculty") {
-			console.log("Welcome ", user.name);
-		} else {
-			console.log("nikal lawde");
-		}
-	}
 
 	useEffect(() => {
 		if (validHashes.includes(location.hash)) {
@@ -71,17 +59,11 @@ export default function FacultyDashboard({
 		}
 	}, [location, lastSelected]);
 
-	if (!user) return;
-
 	return (
 		<ErrorBoundary>
 			<SidebarProvider>
 				<div className="flex min-h-screen w-full">
-					<FacultySidebar
-						activeItem={sidebar}
-						data={sidebarData}
-						faculty={user}
-					/>
+					<FacultySidebar activeItem={sidebar} data={sidebarData} />
 					<main className="flex-1 relative">
 						<TooltipProvider>
 							<Tooltip delayDuration={800}>

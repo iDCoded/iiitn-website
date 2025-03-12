@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardTitle } from "./ui/card";
 import { FaArrowRight } from "react-icons/fa";
 import admission from "../assets/IIIT9.jpg"; // 🎨 Background Image
@@ -19,11 +20,13 @@ const programs = [
     {
         title: "Doctoral Programs (Ph.D.)",
         description: "Research opportunities in various cutting-edge fields.",
-        link: "/admissions/pg",
+        link: "/phd/overview",
     },
 ];
 
 const Admissions = () => {
+    const navigate = useNavigate();
+
     const [hovered, setHovered] = useState<number | null>(null);
     const [ripple, setRipple] = useState<{ x: number; y: number; index: number | null }>({
         x: 0,
@@ -101,6 +104,7 @@ const Admissions = () => {
                     {programs.map((program, index) => (
                         <motion.div
                             key={index}
+                            className="hover:cursor-pointer"
                             variants={{
                                 hidden: { opacity: 0, y: 40 },
                                 visible: { opacity: 1, y: 0 },
@@ -132,23 +136,25 @@ const Admissions = () => {
 
                                 <CardContent className="p-4 sm:p-6 text-center relative z-10">
                                     <CardTitle
-                                        className={`text-sm sm:text-lg font-bold text-primary transition-colors duration-300`}
+                                        className={`text-sm sm:text-lg font-bold text-primary transition-colors duration-300 group-hover:text-accent`}
                                     >
                                         {program.title}
                                     </CardTitle>
                                     <p
-                                        className={`mt-1 sm:mt-2 text-gray-700 text-xs sm:text-base transition-colors duration-300 ${hovered === index ? "text-gray-300" : ""}`}
+                                        className={`mt-1 sm:mt-2 text-gray-700 text-xs sm:text-base transition-colors duration-300 group-hover:text-white/70 ${hovered === index ? "text-gray-300" : ""}`}
                                     >
                                         {program.description}
                                     </p>
 
                                     {/* Learn More Button */}
-                                    <a href={program.link} className="group">
-                                        <div className="mt-2 sm:mt-4 flex items-center justify-center text-accent font-semibold cursor-pointer transition-colors duration-300 group-hover:text-white">
+                                    <button
+                                        onClick={() => navigate(program.link)}
+                                        className="group">
+                                        <div className="mt-2 sm:mt-4 flex items-center justify-center text-accent font-semibold cursor-pointer transition-colors duration-300">
                                             <span>Learn More</span>
                                             <FaArrowRight className="ml-1 sm:ml-2 transform transition-transform duration-300" />
                                         </div>
-                                    </a>
+                                    </button>
                                 </CardContent>
                             </Card>
 

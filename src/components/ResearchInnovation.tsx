@@ -1,13 +1,12 @@
 import { Card, CardContent, CardTitle } from "./ui/card";
-import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const departments = [
-	{ title: "Computer Science & Engineering", link: "/research/cse", desc: "Innovative research in AI, ML, and software systems." },
-	{ title: "Electronics & Communication Engineering", link: "/research/ece", desc: "Advancements in signal processing, VLSI, and IoT." },
-	{ title: "Basic Sciences", link: "/research/basic_science", desc: "Fundamental research in physics, chemistry, and mathematics." },
+	{ title: "Computer Science & Engineering", link: "/research/consultancyprojects/cse", desc: "Innovative research in AI, ML, and software systems." },
+	{ title: "Electronics & Communication Engineering", link: "/research/consultancyprojects/ece", desc: "Advancements in signal processing, VLSI, and IoT." },
+	{ title: "Basic Sciences", link: "/research/consultancyprojects/basic_science", desc: "Fundamental research in physics, chemistry, and mathematics." },
 ];
 
 const ResearchConsultancy = () => {
@@ -27,35 +26,36 @@ const ResearchConsultancy = () => {
 				className="text-center max-w-4xl"
 			>
 				<motion.h2
-                    className="text-2xl sm:text-4xl font-bold drop-shadow-lg tracking-wide"
-                    initial={{ opacity: 0, y: 30 }}
+					className="text-2xl sm:text-4xl font-bold drop-shadow-lg tracking-wide"
+					initial={{ opacity: 0, y: 30 }}
 					animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}>
-                    <span className="text-accent">| </span>Research & Consultancy
-                </motion.h2>
+					transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}>
+					<span className="text-accent">| </span>Research & Consultancy
+				</motion.h2>
 				<motion.p
-                    className="mt-4 text-gray-200 text-sm sm:text-lg"
-                    initial={{ opacity: 0, y: 30 }}
+					className="mt-4 text-gray-200 text-sm sm:text-lg"
+					initial={{ opacity: 0, y: 30 }}
 					animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}>
-						Explore research projects and consultancy services offered by our Institute.
-                </motion.p>
+					transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}>
+					Explore research projects and consultancy services offered by our Institute.
+				</motion.p>
 			</motion.div>
 
 			{/* Call-to-Action Buttons */}
 			<motion.div className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-12">
 				{["/research/projects", "/research/publications", "/research/consultancy"].map((link, index) => (
-					<Button
-						asChild
+					<button
 						key={index}
-						className="w-[240px] h-[50px] text-lg font-semibold bg-accent hover:bg-secondary text-white transition-all duration-300 flex items-center justify-center"
+
+
+						className="w-[240px] h-[50px] text-lg font-semibold bg-accent hover:bg-secondary text-white transition-all duration-300 flex items-center justify-center hover:cursor-pointer hover:shadow-lg hover:scale-110"
 					>
 						<Link to={link}>
 							{link.includes("projects") ? "View Research Projects" :
 								link.includes("publications") ? "View Publications" :
 									"Consult an Expert"}
 						</Link>
-					</Button>
+					</button>
 				))}
 			</motion.div>
 

@@ -3,13 +3,6 @@ import { motion } from "framer-motion";
 import { FiFileText } from "react-icons/fi"; 
 
 
-const defnoticesData = [
-  { title: "Notice for Next Semester Fees Payment", link: "/notices/fees.pdf", category: "Student" },
-  { title: "Notice for Next Semester Fees Payment", link: "/notices/fees.pdf", category: "Faculty" },
-  { title: "Hostel Admission Form", link: "/notices/hostel_admission.pdf", category: "Student" },
-  { title: "Notice for National Scholarship Portal", link: "/notices/scholarship.pdf", category: "Student", },
-  { title: "Cyber Jaagrookta Diwas (CJD)", link: "/notices/cyber_awareness.pdf", category: "Institute" },
-];
 
 const categories = ["Faculty", "Student", "Institute"];
 
@@ -38,7 +31,6 @@ const Notices = () => {
         setNoticesData(fetchedNotices);
       } catch (error) {
         console.error("Error fetching notices:", error);
-        setNoticesData(defnoticesData); // Fallback data
       } finally {
         setLoading(false);
       }
@@ -99,7 +91,10 @@ const Notices = () => {
             
 
             {/* Notice Link */}
-            <a href={notice.link} className="flex-1 text-lg text-blue-600 hover:underline">
+            <a href={notice.link} 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 text-lg text-blue-600 hover:underline">
               {notice.title}
             </a>
           </li>

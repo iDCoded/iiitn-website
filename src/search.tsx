@@ -90,8 +90,8 @@ export default function Search() {
 		setFilteredRoutes(
 			value
 				? Object.entries(routes).filter(([, label]) =>
-						label.toLowerCase().includes(value)
-				  )
+					label.toLowerCase().includes(value)
+				)
 				: []
 		);
 	};
@@ -116,10 +116,10 @@ export default function Search() {
 				<div style={{ position: "relative" }} className="bg-background rounded-sm border-none text-primary">
 					<input
 						type="text"
-						placeholder="Search anything..."
+						placeholder="Search..."
 						value={query}
 						onChange={handleChange}
-						style={{ padding: "5px", width: "200px"}}
+						className="px-4 py-1.5 rounded-md bg-transparent border border-white text-primary focus:outline-none focus:ring-2 focus:ring-white placeholder-primary transition-all duration-300"
 					/>
 					{filteredRoutes.length > 0 && (
 						<ul

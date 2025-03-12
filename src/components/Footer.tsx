@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FaFacebook, FaLinkedin, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const imgSrc = logo;
 
@@ -14,6 +15,7 @@ const fadeInUp = {
 };
 
 const Footer = () => {
+    const navigate = useNavigate();
     return (
         <motion.footer
             className="bg-primary text-white py-10"
@@ -25,7 +27,7 @@ const Footer = () => {
 
                 {/* Quick Links */}
                 <motion.div
-                    className="flex flex-wrap justify-center space-x-4 text-sm text-gray-300 mb-6"
+                    className="flex flex-wrap justify-start space-x-4 text-sm text-gray-300 mb-6"
                     variants={fadeInUp}
                 >
                     {[{ title: "Students", href: "/students" },
@@ -34,19 +36,20 @@ const Footer = () => {
                     { title: "Directory", href: "/pages/directory" },
                     { title: "Contact", href: "/contact" }
                     ].map((item, index) => (
-                        <a
+                        <button
                             key={index}
-                            href={item.href}
-                            className="relative group"
+                            onClick={() => navigate(item.href)}
+                            className="relative group inline-block"
                         >
                             {item.title}
-                            <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
-                        </a>
+                            <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+                        </button>
                     ))}
                 </motion.div>
 
                 {/* Grid Sections */}
-                <motion.div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <motion.div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-left">
+
                     {/* Important Links */}
                     <motion.div variants={fadeInUp}>
                         <h4 className="text-lg font-semibold mb-4 text-accent">Important Links</h4>
@@ -59,14 +62,14 @@ const Footer = () => {
                                 { name: "Equal Opportunity Cell", link: "/pages/eoc" },
                                 { name: "RTI", link: "/pages/rti" },
                                 { name: "Networking Complaint", link: data[0] },
-                                { name: "Policy for Prevention of Sexual Harassment", link: "https://iiitn.ac.in/Downloads/Policy%20of%20Prevention%20of%20Sexual%20Harassment%20of%20Women%20at%20Workplace.pdf      " }
+                                { name: "Policy for Prevention of Sexual Harassment", link: "https://iiitn.ac.in/Downloads/Policy%20of%20Prevention%20of%20Sexual%20Harassment%20of%20Women%20at%20Workplace.pdf" }
                             ].map((item, index) => (
                                 <li key={index}>
                                     <a
                                         href={item.link}
                                         target={item.link.startsWith("http") ? "_blank" : "_self"}
                                         rel="noopener noreferrer"
-                                        className="relative group block"
+                                        className="relative group inline-block"
                                     >
                                         {item.name}
                                         <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
@@ -88,35 +91,15 @@ const Footer = () => {
                                 { name: "Library", link: "/academics/library" }
                             ].map((item, index) => (
                                 <li key={index}>
-                                    <a href={item.link} className="relative group block">
+                                    <p
+                                        onClick={() => navigate(item.link)}
+                                        className="relative group inline-block">
                                         {item.name}
                                         <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-                                    </a>
+                                    </p>
                                 </li>
                             ))}
                         </ul>
-
-                    </motion.div>
-
-                    {/* Campus Life */}
-                    <motion.div variants={fadeInUp}>
-                        <h4 className="text-lg font-semibold mb-4 text-accent">Campus Life</h4>
-                        <ul className="space-y-2 text-sm text-gray-300">
-                            {[
-                                { name: "Clubs", link: "/pages/studentclubs" },
-                                { name: "Festivals", link: "/campus-life/festivals" },
-                                { name: "Sports", link: "/campus-life/sports" },
-                                { name: "Student Governance", link: "/campus-life/student-governance" }
-                            ].map((item, index) => (
-                                <li key={index}>
-                                    <a href={item.link} className="relative group block">
-                                        {item.name}
-                                        <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-
                     </motion.div>
 
                     {/* Happenings */}
@@ -130,43 +113,56 @@ const Footer = () => {
                                 { name: "Faculty Achievements", link: "/pages/facultyachievements" }
                             ].map((item, index) => (
                                 <li key={index}>
-                                    <a href={item.link} className="relative group block">
+                                    <p
+                                        onClick={() => navigate(item.link)}
+                                        className="relative group inline-block">
                                         {item.name}
                                         <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-                                    </a>
+                                    </p>
                                 </li>
                             ))}
                         </ul>
+                    </motion.div>
 
+                    {/* Address */}
+                    <motion.div variants={fadeInUp} className="space-y-3">
+                        <h4 className="text-lg font-semibold mb-4 text-accent">Address</h4>
+                        <p className="text-gray-400 text-sm font-semibold">
+                            Indian Institute of Information Technology, Nagpur
+                        </p>
+                        <p className="text-gray-400 text-sm">
+                            Survey No. 140,141/1 Behind Br. Sheshrao Wankhade Shetkari Sahkari Soot Girni, <br />
+                            Waranga, PO: Dongargaon(Butibori), District: Nagpur - 441108, Maharashtra, India.
+                        </p>
+
+                        <div className="flex items-center space-x-2">
+                            📞
+                            <a href="tel:+919405215010" className="hover:text-accent transition-colors duration-300">
+                                +91 9405215010
+                            </a>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            ✉️
+                            <a href="mailto:registrar@iiitn.ac.in" className="hover:text-accent transition-colors duration-300">
+                                registrar@iiitn.ac.in
+                            </a>
+                        </div>
                     </motion.div>
                 </motion.div>
 
-                {/* Institute Logo and Info */}
-                <motion.div variants={fadeInUp} className="flex flex-col items-center space-y-3 mt-8">
-                    <img src={imgSrc} alt="IIIT Nagpur Logo" className="h-12" />
-                    <p className="text-gray-400 text-sm">Indian Institute of Information Technology, Nagpur</p>
-                </motion.div>
+                {/* Social Media & Copyright */}
+                <motion.div variants={fadeInUp} className="flex flex-col items-center text-left mt-6">
+                    <img src={imgSrc} alt="IIIT Nagpur Logo" className="h-12 mb-4" />
 
-                {/* Social Media */}
-                <motion.div variants={fadeInUp} className="flex justify-center space-x-4 text-xl mt-4">
-                    {[FaFacebook, FaLinkedin, FaTwitter, FaInstagram, FaYoutube].map((Icon, index) => (
-                        <a key={index} href="#" className="hover:text-accent transition-colors duration-300">
-                            <Icon />
-                        </a>
-                    ))}
-                </motion.div>
-
-                {/* Copyright & Legal Links */}
-                <motion.div variants={fadeInUp} className="flex flex-col md:flex-row justify-between text-xs text-gray-400 mt-6">
-                    <p>© 2025 IIIT Nagpur. All rights reserved.</p>
                     <div className="flex space-x-4">
-                        {["Accessibility", "Privacy Policy", "Terms of Use", "Sitemap"].map((item, index) => (
-                            <a key={index} href="#" className="relative group">
-                                {item}
-                                <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+                        {[FaFacebook, FaLinkedin, FaTwitter, FaInstagram, FaYoutube].map((Icon, index) => (
+                            <a key={index} href="#" className="hover:text-accent transition-colors duration-300">
+                                <Icon />
                             </a>
                         ))}
                     </div>
+
+                    <p className="text-xs text-gray-400 mt-4">© 2025 IIIT Nagpur. All rights reserved.</p>
                 </motion.div>
             </div>
         </motion.footer>

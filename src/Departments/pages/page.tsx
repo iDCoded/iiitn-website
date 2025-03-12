@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
 	Card,
 	CardContent,
@@ -133,6 +134,8 @@ export default function DepartmentPage({ title }: PageProps) {
 	const [error, setError] = useState<string | null>(null);
 	const [bosdata, setBosData] = useState<any>(null);
 
+	const navigate = useNavigate();
+
 	useEffect(() => {
 		const fetchBosData = async () => {
 			try {
@@ -140,7 +143,12 @@ export default function DepartmentPage({ title }: PageProps) {
 
 				const data = await response.json()
 				const filteredData = Array.isArray(data) ? data.filter((item: any) => item.c_sub_category === title) : [];
-				setBosData(filteredData);
+				if (filteredData.length > 0) {
+					setBosData(filteredData[0].content);
+				} else {
+					setBosData(null);
+				}
+
 				setLoading(false);
 			} catch (error) {
 				console.error(error)
@@ -210,7 +218,7 @@ export default function DepartmentPage({ title }: PageProps) {
 									{sections.map((section) => (
 										<li key={section.id}>
 											<a
-												href={`#${section.id}`}
+												onClick={() => navigate(`#${section.id}`)}
 												className="text-accent hover:underline">
 												{section.title}
 											</a>
@@ -251,7 +259,7 @@ export default function DepartmentPage({ title }: PageProps) {
 									<div className="mt-4">
 										<Button asChild>
 											<a
-												href={`/pages/directory/${title}`}
+												onClick={() => {navigate(`/pages/directory/${title}`)}}
 												className="text-white">
 												Learn More
 											</a>
@@ -271,15 +279,20 @@ export default function DepartmentPage({ title }: PageProps) {
 												</tr>
 											</thead>
 											<tbody className="bg-white divide-y divide-gray-200">
-												{bosdata && bosdata.length > 0 ? (
-														<MarkdownPreview
-															source={bosdata.content}
-															className="prose prose-lg max-w-none"
-														/>
+												{(bosdata && !bosdata) ? (
+													<tr>
+														<td colSpan={3}>
+															<MarkdownPreview
+																className="prose !bg-transparent !text-primary"
+																source={bosdata}
+															/>
+														</td>
+													</tr>
 												) : (
-													<p className="text-gray-600">No data available.</p>
+													<tr>
+														<td colSpan={3} className="text-gray-600">No data available.</td>
+													</tr>
 												)}
-
 											</tbody>
 										</table>
 									</div>
@@ -289,7 +302,7 @@ export default function DepartmentPage({ title }: PageProps) {
 								{section.id === "projects" && (
 									<div className="mt-4 space-y-2">
 										<Button asChild>
-											<a href="/research/projects">Learn More</a>
+											<a onClick={() => navigate("/research/projects")}>Learn More</a>
 										</Button>
 									</div>
 								)}
@@ -298,7 +311,7 @@ export default function DepartmentPage({ title }: PageProps) {
 								{section.id === "research" && (
 									<div className="mt-4 space-y-2">
 										<Button asChild>
-											<a href="/research/publications">
+											<a onClick={() => navigate("/research/publications")}>
 												Explore Research Areas
 											</a>
 										</Button>

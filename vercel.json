@@ -12,5 +12,10 @@
             "source": "/(.*)",
             "destination": "/index.html"
         }
-    ]
+    ],
+    "git": {
+        "deploymentsEnabled": {
+            "auth": false
+        }
+    }
 }

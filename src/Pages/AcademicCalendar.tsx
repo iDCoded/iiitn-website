@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaDownload } from "react-icons/fa";
 
 const AcademicCalendar = () => {
     const [activeTab, setActiveTab] = useState<"firstYear" | "seniors">("firstYear");
+
+    const navigate = useNavigate();
 
     const defcalendars: { [key in "firstYear" | "seniors"]: { academicCalendar: string; holidayList: string } } = {
         firstYear: {
@@ -32,15 +35,15 @@ const AcademicCalendar = () => {
             try {
                 const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/media/media/category/academic_calendar`);
                 if (!res.ok) throw new Error("Failed to fetch academic calendar data");
-    
+
                 const data = await res.json();
-    
+
                 // Initialize calendarData with default empty values
                 const calendarData: CalendarData = {
                     firstYear: { academicCalendar: "", holidayList: "" },
                     seniors: { academicCalendar: "", holidayList: "" },
                 };
-    
+
                 data.forEach((item: any) => {
                     if (item.m_sub_category === "firstYear") {
                         if (item.title.toLowerCase().includes("academic")) {
@@ -56,7 +59,7 @@ const AcademicCalendar = () => {
                         }
                     }
                 });
-    
+
                 setCalendars(calendarData);
             } catch (error) {
                 console.error("Error fetching academic calendar data:", error);
@@ -65,10 +68,10 @@ const AcademicCalendar = () => {
                 setLoading(false);
             }
         };
-    
+
         fetchCalendars();
     }, []);
-    
+
     if (loading) {
         return (
             <div className="container mx-auto max-w-5xl px-6 py-12 text-center">
@@ -90,9 +93,8 @@ const AcademicCalendar = () => {
                 {(["firstYear", "seniors"] as Array<"firstYear" | "seniors">).map((tab) => (
                     <button
                         key={tab}
-                        className={`px-6 py-3 mx-2 text-lg font-medium rounded-lg transition-all duration-300 ${
-                            activeTab === tab ? "bg-primary text-white shadow-lg" : "bg-gray-200 text-primary"
-                        }`}
+                        className={`px-6 py-3 mx-2 text-lg font-medium rounded-lg transition-all duration-300 ${activeTab === tab ? "bg-primary text-white shadow-lg" : "bg-gray-200 text-primary"
+                            }`}
                         onClick={() => setActiveTab(tab)}
                     >
                         {tab === "firstYear" ? "First Year" : "Seniors"}
@@ -122,7 +124,7 @@ const AcademicCalendar = () => {
                                 <h3 className="text-lg font-medium text-gray-800">Academic Calendar</h3>
                                 <p className="text-gray-600 mt-2">View the detailed academic schedule for the year.</p>
                                 <a
-                                    href={calendars[activeTab].academicCalendar}
+                                    onClick={() => navigate(calendars[activeTab].academicCalendar)}
                                     className="inline-flex items-center mt-4 px-5 py-3 bg-accent text-white rounded-md text-lg hover:bg-opacity-80 transition"
                                     download
                                 >
@@ -139,7 +141,7 @@ const AcademicCalendar = () => {
                                 <h3 className="text-lg font-medium text-gray-800">List of Holidays</h3>
                                 <p className="text-gray-600 mt-2">Check the list of holidays for the academic year.</p>
                                 <a
-                                    href={calendars[activeTab].holidayList}
+                                    onClick={() => navigate(calendars[activeTab].holidayList)}
                                     className="inline-flex items-center mt-4 px-5 py-3 bg-accent text-white rounded-md text-lg hover:bg-opacity-80 transition"
                                     download
                                 >

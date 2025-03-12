@@ -1,13 +1,6 @@
 import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
 	Sidebar,
 	SidebarContent,
-	SidebarFooter,
 	SidebarGroup,
 	SidebarHeader,
 	SidebarMenu,
@@ -18,8 +11,7 @@ import {
 	SidebarMenuSubItem,
 	SidebarRail,
 } from "@/components/ui/sidebar";
-import { User as Faculty } from "@/interfaces/types";
-import { ChevronUp, User, User2 } from "lucide-react";
+import { User } from "lucide-react";
 // // import { Faculty } from "@/interfaces/types";
 
 interface FacultySidebarProps {
@@ -34,13 +26,11 @@ interface FacultySidebarProps {
 		}[];
 	};
 	activeItem: string | null;
-	faculty: Faculty;
 }
 
 export function FacultySidebar({
 	data = { navMain: [] },
 	activeItem,
-	faculty,
 }: FacultySidebarProps) {
 	const handleItemClick = (url: string) => {
 		console.log("URL: ", url);
@@ -118,25 +108,6 @@ export function FacultySidebar({
 					</SidebarMenu>
 				</SidebarGroup>
 			</SidebarContent>
-			<SidebarFooter>
-				<SidebarMenu>
-					<SidebarMenuItem>
-						<DropdownMenu>
-							<DropdownMenuTrigger asChild>
-								<SidebarMenuButton>
-									<User2 /> {faculty.name}
-									<ChevronUp className="ml-auto" />
-								</SidebarMenuButton>
-							</DropdownMenuTrigger>
-							<DropdownMenuContent side="top">
-								<DropdownMenuItem>
-									<span>Sign out</span>
-								</DropdownMenuItem>
-							</DropdownMenuContent>
-						</DropdownMenu>
-					</SidebarMenuItem>
-				</SidebarMenu>
-			</SidebarFooter>
 
 			{data.navMain.length > 0 && <SidebarRail />}
 		</Sidebar>

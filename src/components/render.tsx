@@ -68,7 +68,7 @@ const CardDetails = ({ card }: { card: Card }) => {
                     </video>
                 )}
                 {card.media_doc_id && (
-                    <p className="text-blue-500">
+                    <p className="text-accent">
                         📄 <a href={card.media_doc_id} target="_blank" rel="noopener noreferrer">
                             View Document
                         </a>

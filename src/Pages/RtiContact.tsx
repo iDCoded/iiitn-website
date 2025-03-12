@@ -1,22 +1,7 @@
 import { useEffect, useState } from "react";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 
-const defofficerData = [
-    {
-        title: "Central Public Information Officer",
-        name: "Ms. Shilpa Pawankar",
-        designation: "Assistant Registrar (Accounts)",
-        content: "phone email as markdown",
-        image: "https://iiitn.ac.in/images/Staff/Ms.%20Shilpa%20M.%20Pawankar.JPG",
-    },
-    {
-        title: "First Appellate Authority",
-        name: "Shri Kailas N. Dakhale",
-        designation: "Registrar",
-        content: "phone email as markdown",
-        image: "https://iiitn.ac.in/images/Staff/registrar.jpg",
-    },
-];
+
 
 function RtiContact() {
     interface Officer {
@@ -27,7 +12,7 @@ function RtiContact() {
         image: string;
     }
 
-    const [officerData, setOfficerData] = useState<Officer[]>(defofficerData);
+    const [officerData, setOfficerData] = useState<Officer[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -41,18 +26,23 @@ function RtiContact() {
                 }
                 const data = await res.json();
 
+           
+
                 const officerDataList = data.map((officer: any) => ({
+                 
                     title: officer.c_sub_category,
                     name: officer.title,
                     designation: officer.caption,
                     content: officer.content,
-                    image: officer.media_image_id || "https://via.placeholder.com/150", // Fallback image
+                    image: officer.media_img_id , // Fallback image
                 }));
+
+             
 
                 setOfficerData(officerDataList);
             } catch (error) {
                 console.error("Error fetching RTI officer data:", error);
-                setOfficerData(defofficerData);
+               
             } finally {
                 setLoading(false);
             }
@@ -66,8 +56,8 @@ function RtiContact() {
             {/* Header */}
             <header className="bg-primary text-white py-12 text-center">
                 <h1 className="text-3xl md:text-5xl font-bold">RTI Officer Details</h1>
-                <p className="text-base md:text-lg mt-2 italic">
-                    "Transparency and Accountability at IIIT Nagpur."
+                <p className="text-base md:text-lg mt-2 ">
+                    Transparency and Accountability at IIIT Nagpur.
                 </p>
             </header>
 

@@ -72,7 +72,7 @@ const RTIDetails = () => {
         heading: string;
         data: { id: string; sId: string; title: string }[];
     }
-    
+
     const [rtiDetailsData, setRTIDetailsData] = useState<RTISection[]>([]);
     const [selectedSection, setSelectedSection] = useState<RTISection | null>(null);
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -82,15 +82,14 @@ const RTIDetails = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("/card/cards/category/rtidetails");
-                if (response.status === 200 && response.headers.get('content-type')?.includes('application/json')) {
-                    const data = await response.json();
-                    const groupedData = groupBySubCategory(data);
-                    setRTIDetailsData(groupedData as RTISection[]);
-                    setSelectedSection(groupedData[0]); // Set default selected section
-                } else {
-                    console.error("Unexpected response format:", response);
-                }
+                const res = await fetch(
+                    `${import.meta.env.VITE_API_BASE_URL}/card/cards/category/rtidetails`
+                );
+                if (!res.ok) throw new Error("Failed to fetch events");
+                const data = await res.json();
+                const groupedData = groupBySubCategory(data);
+                setRTIDetailsData(groupedData as RTISection[]);
+                setSelectedSection(groupedData[0]); // Set default selected section
             } catch (error) {
                 console.error("Error fetching RTI details:", error);
             }

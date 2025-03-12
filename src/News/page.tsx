@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
 import ShimmerLoader from "../components/ShimmerLoader.tsx"; // Adjust the path as necessary
@@ -41,6 +42,7 @@ const dataDemo = [
 ];
 
 const News = () => {
+	const navigate = useNavigate();
 	const [newsData, setNewsData] = useState<NewsItem[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
@@ -109,7 +111,7 @@ const News = () => {
 
 							{/* Read More Button */}
 							<a
-								href={`/news/${item.c_id}`}
+								onClick={() => navigate(`/news/${item.c_id}`)}
 								className="block mt-4 text-primary font-medium hover:underline"
 							>
 								Read More →

@@ -16,13 +16,17 @@ type Project = {
 const Projects = () => {
     const location = useLocation();
     const [selectedTab, setSelectedTab] = useState<"cse" | "ece" | "bs">(
-        ["cse", "ece", "bs"].includes(location.hash.substring(1))
-            ? (location.hash.substring(1) as "cse" | "ece" | "bs")
+        location.pathname.includes("ece")
+            ? "ece"
+            : location.pathname.includes("basic_science")
+            ? "bs"
             : "cse"
     );
     const [projectsData, setProjectsData] = useState<Record<"cse" | "ece" | "bs", Project[]>>({ cse: [], ece: [], bs: [] });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+
 
     useEffect(() => {
         const fetchProjects = async () => {
@@ -58,10 +62,17 @@ const Projects = () => {
         fetchProjects();
     }, []);
 
+    const filteredConsultancyProjects = projectsData[selectedTab].filter(
+        (project) =>
+            project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            project.lead_name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <>
+            {/* 🔹 Hero Section */}
             <header
-                className="relative w-full h-75 flex flex-col justify-center items-center text-white text-center shadow-lg z-1"
+                className="relative w-full h-[30vh] flex flex-col justify-center items-center text-white text-center shadow-lg"
                 style={{
                     backgroundImage: `url(${heroimage})`,
                     backgroundSize: "cover",
@@ -79,34 +90,50 @@ const Projects = () => {
             </header>
             <div className="max-w-6xl mx-auto px-6 py-10">
                 <h1 className="text-3xl font-bold mb-6 flex items-center">
-                    <span className="text-accent text-4xl mr-2">|</span> Consultancy Projects & Patents
+                    <span className="text-accent text-4xl mr-2">|</span> Consultancy Projects
                 </h1>
 
-                <div className="flex gap-4 mb-6 border-b border-gray-300">
-                    {["cse", "ece", "bs"].map((dept) => (
-                        <button
-                            key={dept}
-                            className={`relative px-6 py-2 text-lg font-medium transition-all duration-300 ${selectedTab === dept
-                                ? "text-accent font-bold"
-                                : "text-gray-500 hover:text-gray-700"
-                                }`}
-                            onClick={() => setSelectedTab(dept as "cse" | "ece" | "bs")}>
-                            {dept.toUpperCase()}
-                        </button>
-                    ))}
+                <div className="flex gap-4 mb-6 border-b border-gray-300 justify-between">
+                    <div>
+                        {["cse", "ece", "bs"].map((dept) => (
+                            <button
+                                key={dept}
+                                className={`relative px-6 py-2 text-lg font-medium transition-all duration-300 ${selectedTab === dept
+                                    ? "text-accent font-bold"
+                                    : "text-gray-500 hover:text-gray-700"
+                                    }`}
+                                onClick={() => setSelectedTab(dept as "cse" | "ece" | "bs")}>
+                                {dept.toUpperCase()}
+                                {selectedTab === dept && (
+                                <motion.div
+                                    layoutId="underline"
+                                    className="absolute left-0 bottom-0 h-[3px] bg-accent w-full"
+                                />
+                            )}
+                            </button>
+                        ))}
+                    </div>
+                    <input
+                        type="text"
+                        placeholder="Search Projects..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full md:w-[300px] px-4 py-2 border border-black-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent text-black"
+                    />
                 </div>
 
+                {/* 🔹 Project Listings */}
                 {loading ? (
-                    <p>Loading projects...</p>
+                    <p className="text-center text-gray-600">Loading projects...</p>
                 ) : error && projectsData[selectedTab].length < 1 ? (
-                    <p className="text-red-600">Failed to load projects.</p>
+                    <p className="text-red-600 text-center">Failed to load projects.</p>
                 ) : (
                     <motion.div
                         key={selectedTab}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {projectsData[selectedTab].map((project, index) => (
+                        {filteredConsultancyProjects.map((project, index) => (
                             <Card key={index} className="shadow-md">
                                 <CardHeader>
                                     <CardTitle className="text-lg">{project.title}</CardTitle>

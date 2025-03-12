@@ -124,8 +124,7 @@ const FacultyDetail = () => {
                 <CardContent className="text-left space-y-4">
                 <MDEditor.Markdown 
     source={faculty.content} 
-    style={{ backgroundColor: "transparent", color: "black" }} 
-/>
+    style={{ backgroundColor: "transparent", color: "black" }} />
 
                 </CardContent>
             </Card>

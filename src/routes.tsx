@@ -91,6 +91,11 @@ import HostelLife from "./Pages/HostelLife";
 import CampusGallery from "./Pages/CampusGallery.tsx";
 import FacultyPage from "./Faculty/page.tsx";
 import AntiRaggingCommittee from "./Pages/AntiRaggingCommittee.tsx";
+import ConsultancyProjects from "./Research/ConsultancyProjects/page.tsx";
+import PhDProgram from "./Admissions/Phd.tsx";
+import PhDOverview from "./Admissions/Phd/PhdOverview.tsx";
+import PhDStructure from "./Admissions/Phd/PhdStructure.tsx";
+import PhDResources from "./Admissions/Phd/PhdResources.tsx";
 
 const PageWrapper = () => {
 	const { param } = useParams();
@@ -131,6 +136,10 @@ const AppRoutes = () => (
 			element={<InstRulesAndReg />}
 		/>
 		<Route path="/admissions/pg" element={<AdmissionsPG />} />
+		<Route path="/phd/overview" element={<PhDOverview />} />
+		<Route path="/phd/structure" element={<PhDStructure />} />
+		<Route path="/phd/resources" element={<PhDResources />} />		
+		<Route path="/admissions/phd" element={<PhDProgram />}></Route>
 		<Route path="/placements" element={<Placements />} />
 		<Route path="/placements/companies" element={<Companies />} />
 		<Route path="/placements/internships" element={<Internships />} />
@@ -230,6 +239,8 @@ const AppRoutes = () => (
 			path="/institute/immutableproperties"
 			element={<ImmutableProperty />}></Route>
 		<Route path="/academics/curricula" element={<AcademicCurriculum />}></Route>
+		<Route path="/research/consultancyprojects" element={<ConsultancyProjects />}></Route>
+		<Route path="/research/consultancyprojects/:param" element={<ConsultancyProjects />}></Route>
 		<Route path="*" element={<NotFound />} /> {/* 404 page */}
 	</Routes>
 );
