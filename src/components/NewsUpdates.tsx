@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 interface NewsItem {
 	id: string;
@@ -12,22 +14,15 @@ interface NewsItem {
 
 const defaultAnnouncements = [
 	{ id: "1", title: "Announcement 1", date: "2021-10-01" },
-	{ id: "2", title: "Announcement 2 Announcement 1", date: "2021-10-02" },
+	{ id: "2", title: "Announcement 2", date: "2021-10-02" },
 	{ id: "3", title: "Announcement 3", date: "2021-10-03" },
-	{ id: "4", title: "Announcement 4", date: "2021-10-04" },
-	{ id: "5", title: "Announcement 5", date: "2021-10-05" },
-	{ id: "6", title: "Announcement 6", date: "2021-10-06" },
-	{ id: "7", title: "Announcement 7", date: "2021-10-07" },
-	{ id: "8", title: "Announcement 8", date: "2021-10-08" },
-	{ id: "9", title: "Announcement 9", date: "2021-10-09" },
-	{ id: "10", title: "Announcement 10", date: "2021-10-10" },
 ];
 
 export default function NewsSection() {
 	const [newsData, setNewsData] = useState<NewsItem[]>([]);
+	const [currentIndex, setCurrentIndex] = useState(0);
 	const navigate = useNavigate();
 	const newsSectionRef = useRef<HTMLDivElement>(null);
-
 	const [announcements, setAnnouncements] = useState<{ id: string; title: string; date: string }[]>([]);
 
 	useEffect(() => {
@@ -76,64 +71,93 @@ export default function NewsSection() {
 		fetchAnnouncements();
 	}, []);
 
+	// Auto-slide effect every 5 seconds
+	useEffect(() => {
+		const interval = setInterval(() => {
+			nextSlide();
+		}, 5000);
+		return () => clearInterval(interval);
+	}, [currentIndex, newsData]);
+
+	// Navigation functions
+	const prevSlide = () => {
+		setCurrentIndex((prevIndex) => (prevIndex === 0 ? newsData.length - 1 : prevIndex - 1));
+	};
+
+	const nextSlide = () => {
+		setCurrentIndex((prevIndex) => (prevIndex === newsData.length - 1 ? 0 : prevIndex + 1));
+	};
+
 	return (
 		<section className="relative w-full px-4 sm:px-6 lg:px-12 py-12 bg-background">
-			<div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+			<div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
 				{/* News Section */}
-				<div className="md:col-span-2 flex flex-col" ref={newsSectionRef}>
+				<div className="flex flex-col h-full w-full" ref={newsSectionRef}>
 					<div className="flex items-center justify-between">
 						<h2 className="text-2xl sm:text-4xl font-bold tracking-wide mb-6">
 							<span className="text-accent">| </span> Latest News
 						</h2>
-						<a href="/news" className="text-accent text-md font-semibold transition duration-200 ease-in-out hover:underline hover:text-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">
+						<a href="/news" className="text-accent text-md font-semibold hover:underline">
 							View All →
 						</a>
 					</div>
-					<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-						{newsData.slice(0, 2).map((news) => (
-							<div
-								key={news.id}
-								className="bg-white border border-gray-300 shadow-xl	 overflow-hidden flex flex-col h-[60vh]" // Fixed height in vh
+
+					{/* News Carousel */}
+					<div className="relative w-full h-[60vh] overflow-hidden">
+						{/* Left Button */}
+						<button
+							onClick={prevSlide}
+							className="absolute left-[-10] top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75 z-10"
+						>
+							<FaArrowLeft />
+						</button>
+
+						{/* Animated News Item */}
+						<AnimatePresence>
+							<motion.div
+								key={newsData[currentIndex]?.id}
+								className="absolute w-full h-full"
+								initial={{ opacity: 0, x: 100 }}
+								animate={{ opacity: 1, x: 0 }}
+								exit={{ opacity: 0, x: -100 }}
+								transition={{ duration: 0.5 }}
 							>
 								<img
-									className="w-full h-[30vh] object-cover" // Responsive image height
-									src={news.image}
-									alt={news.title}
+									src={newsData[currentIndex]?.image}
+									alt={newsData[currentIndex]?.title}
+									className="w-full h-full object-cover rounded-lg"
 								/>
-								<div className="p-4 flex flex-col flex-grow">
-									<h5 className="text-lg font-bold text-gray-900">{news.title}</h5>
-									<p className="text-gray-700 text-sm line-clamp-2 flex-grow">
-										{news.caption}
-									</p>
-									<a
-										onClick={() => navigate(`/news/${news.id}`)}
-										className="inline-flex items-center text-sm font-medium text-accent hover:underline cursor-pointer mt-auto"
-									>
-										Read more
-										<svg
-											className="w-4 h-4 ml-2"
-											aria-hidden="true"
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 14 10"
-										>
-											<path
-												stroke="currentColor"
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												strokeWidth="2"
-												d="M1 5h12m0 0L9 1m4 4L9 9"
-											/>
-										</svg>
-									</a>
+								<div className="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-10 justify-center">
+									<h2 className="text-white text-xl font-bold text-center px-4">
+										{newsData[currentIndex]?.title}
+									</h2>
 								</div>
-							</div>
-						))}
+							</motion.div>
+						</AnimatePresence>
+
+						{/* Right Button */}
+						<button
+							onClick={nextSlide}
+							className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 z-10"
+						>
+							<FaArrowRight />
+						</button>
+
+						{/* Pagination Dots */}
+						<div className="absolute bottom-4 w-full flex justify-center gap-2">
+							{newsData.map((_, index) => (
+								<div
+									key={index}
+									onClick={() => setCurrentIndex(index)}
+									className={`h-3 w-3 rounded-full cursor-pointer ${currentIndex === index ? "bg-accent" : "bg-gray-400"}`}
+								/>
+							))}
+						</div>
 					</div>
 				</div>
 
 				{/* Announcements Section */}
-				<div className="md:col-span-1 flex flex-col">
+				<div className="flex flex-col w-full">
 					<h2 className="text-2xl sm:text-4xl font-bold tracking-wide mb-6">
 						<span className="text-accent">| </span> Announcements
 					</h2>
@@ -145,26 +169,29 @@ export default function NewsSection() {
 								<div
 									key={announcement.id}
 									onClick={() => navigate(`/announcements/${announcement.id}`)}
-									className="flex items-center gap-6 py-4 border-b border-gray-200 cursor-pointer transition-all duration-300 
-                       hover:bg-gray-100 hover:shadow-sm hover:scale-[1.01] rounded-md px-4"
+									className="flex items-center gap-4 py-4 border-b border-gray-200 cursor-pointer transition-all duration-300 
+				   hover:bg-gray-100 hover:shadow-sm hover:scale-[1.01] rounded-md px-4"
 								>
-									{/* Date Section */}
-									<div className="flex flex-col items-end w-20">
-										<span className="text-lg font-semibold text-accent">{announcement.date.split(' ')[1]}</span> {/* Month */}
-										<span className="text-2xl font-bold text-accent">{announcement.date.split(' ')[0]}</span> {/* Day */}
+									{/* Date Section - Center Aligned */}
+									<div className="flex flex-col items-center w-16 flex-shrink-0">
+										<span className="text-lg font-semibold text-accent leading-none">
+											{announcement.date.split(' ')[1]} {/* Month */}
+										</span>
+										<span className="text-2xl font-bold text-accent leading-none">
+											{announcement.date.split(' ')[0]} {/* Day */}
+										</span>
 									</div>
 
-									{/* Vertical Divider - More subtle */}
-									<div className="w-[1.5px] bg-gray-500 h-12"></div>
+									{/* Vertical Divider */}
+									<div className="w-[2px] bg-gray-400 h-10"></div>
 
 									{/* Announcement Title */}
-									<div className="flex flex-col">
+									<div className="flex flex-col w-full">
 										<span className="text-lg font-medium text-gray-900">{announcement.title}</span>
 									</div>
 								</div>
 							))}
 						</div>
-
 
 						{/* View All Announcements */}
 						<div className="px-4 mt-4 text-right">
@@ -173,10 +200,11 @@ export default function NewsSection() {
 							</button>
 						</div>
 					</div>
-
 				</div>
+
 			</div>
 		</section>
+
 
 	);
 }
