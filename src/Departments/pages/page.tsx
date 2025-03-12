@@ -143,7 +143,11 @@ export default function DepartmentPage({ title }: PageProps) {
 
 				const data = await response.json()
 				const filteredData = Array.isArray(data) ? data.filter((item: any) => item.c_sub_category === title) : [];
-				setBosData(filteredData[0].content);
+				if (filteredData.length > 0) {
+					setBosData(filteredData[0].content);
+				} else {
+					setBosData(null);
+				}
 
 				setLoading(false);
 			} catch (error) {
@@ -275,15 +279,20 @@ export default function DepartmentPage({ title }: PageProps) {
 												</tr>
 											</thead>
 											<tbody className="bg-white divide-y divide-gray-200">
-												{bosdata ? (
-													<MarkdownPreview
-														className="prose !bg-transparent !text-primary"
-														source={bosdata}
-													/>
+												{(bosdata && !bosdata) ? (
+													<tr>
+														<td colSpan={3}>
+															<MarkdownPreview
+																className="prose !bg-transparent !text-primary"
+																source={bosdata}
+															/>
+														</td>
+													</tr>
 												) : (
-													<p className="text-gray-600">No data available.</p>
+													<tr>
+														<td colSpan={3} className="text-gray-600">No data available.</td>
+													</tr>
 												)}
-
 											</tbody>
 										</table>
 									</div>
