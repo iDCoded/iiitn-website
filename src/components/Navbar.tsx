@@ -226,7 +226,7 @@ const Navbar = () => {
 			<div className="fixed top-0 left-0 w-full z-50 transition-transform duration-200">
 				{/* 🔸 Top Navigation Bar */}
 				<nav
-					className={`w-full px-15 py-2 flex justify-between items-center lg:flex 
+					className={`w-full px-24 py-2 flex justify-between items-center lg:flex 
         ${isHomePage && !isScrolled ? "bg-transparent shadow-none text-white" : "bg-accent shadow-md text-primary"}`}>
 
 					{/* 🔹 Left Section - Logo */}
