@@ -67,9 +67,9 @@ const CampusLife = () => {
 						</Dialog>
 
 						<button onClick={() => navigate("/students/hostellife")} className="px-6 py-3 text-lg h-10 flex items-center font-semibold bg-primary hover:bg-primary-dark hover:cursor-pointer text-white transition-all duration-300">
-							<button className="px-6 py-3 text-lg h-10 flex  items-center font-semibold bg-primary hover:bg-primary-dark hover:cursor-pointer text-white transition-all duration-300">
+							<p className="px-6 py-3 text-lg h-10 flex  items-center font-semibold bg-primary hover:bg-primary-dark hover:cursor-pointer text-white transition-all duration-300">
 								More
-							</button>
+							</p>
 						</button>
 					</div>
 				</div>
