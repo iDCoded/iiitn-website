@@ -15,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/password-input";
 import { Textarea } from "@/components/ui/textarea";
-import { useAuth } from "@/context/AuthContext";
+// import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Checkbox } from "@/components/ui/checkbox";
 
@@ -64,7 +64,7 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
 	const navigate = useNavigate();
 
 	const [isLoading, setIsLoading] = useState(false);
-	const { login } = useAuth();
+	// const { login } = useAuth();
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -100,7 +100,7 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
 			const res_json = await res.json();
 			console.log("data", res_json);
 			if (res.ok) {
-				login(res_json.user, res_json.access_token); // TODO: Send user object from the server
+				// // login(res_json.user, res_json.access_token, res_json.refresh_token);
 				navigate("/admin");
 			}
 		} catch (error) {

@@ -1,33 +1,49 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Person } from "@/interfaces/types";
-import { createContext, useState, useContext, ReactNode } from "react";
+import { User } from "@/interfaces/types";
+import {
+	createContext,
+	useState,
+	useContext,
+	ReactNode,
+	useEffect,
+} from "react";
 
 interface AuthContextType {
-	user: Person | null;
+	user: User | null;
 	token: string | null;
-	login: (user: any, token: string) => void;
+	refreshToken: string | null;
+	login: (user: any, access_token: string, refresh_token: string) => void;
 	logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-	const [user, setUser] = useState<Person | null>(null);
+	const [user, setUser] = useState<User | null>(null);
 	const [token, setToken] = useState<string | null>(null);
+	const [refreshToken, setRefreshToken] = useState<string | null>(null);
 
-	const login = (user: any, token: string) => {
+	useEffect(() => {
+		console.log("Auth User", user);
+	}, [user]);
+
+	const login = (user: User, access_token: string, refresh_token: string) => {
+		localStorage.setItem("access_token", access_token); // ! Use secure Cookies in production
+		localStorage.setItem("refresh_token", refresh_token); // ! Use secure Cookies in production
 		setUser(user);
-		setToken(token);
+		setToken(access_token);
+		setRefreshToken(refreshToken);
 	};
 
 	const logout = () => {
 		setUser(null);
 		setToken(null);
+		setRefreshToken(null);
 	};
 
 	return (
-		<AuthContext.Provider value={{ user, token, login, logout }}>
+		<AuthContext.Provider value={{ user, token, refreshToken, login, logout }}>
 			{children}
 		</AuthContext.Provider>
 	);

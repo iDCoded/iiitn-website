@@ -1,3 +1,9 @@
+export interface User {
+	email: string;
+	name: string;
+	role: string;
+}
+
 export interface Person {
 	p_id: number;
 	email_pri: string;
