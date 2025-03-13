@@ -69,7 +69,7 @@ function StudentsClubs() {
 						<p className="text-lg mt-2">Explore various student clubs at IIIT Nagpur</p>
 					</header>
 
-					<div className="max-w-6xl mx-auto px-6 py-12">
+					<div className="max-w-7xl mx-auto px-6 py-12">
 						<h2 className="text-3xl font-semibold text-primary mb-8 text-center">
 							Our Student Clubs
 						</h2>
@@ -77,7 +77,8 @@ function StudentsClubs() {
 						{studentClubs.length === 0 ? (
 							<div className="text-center text-xl text-gray-500">No clubs available</div>
 						) : (
-							<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+							<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 
+							w-full md:w-[90vw] lg:w-[80vw] xl:w-[75vw] max-w-5xl mx-auto">
 								{studentClubs.map((club, index) => (
 									<motion.div
 										key={club.id || index}
@@ -85,10 +86,16 @@ function StudentsClubs() {
 										initial={{ opacity: 0, y: 20 }}
 										animate={{ opacity: 1, y: 0 }}
 										transition={{ duration: 0.6, delay: index * 0.1 }}
-										whileHover={{ scale: 1.02 }}
-										className="cursor-pointer bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+										whileHover={{ scale: 1.03 }}
+										className="cursor-pointer bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 w-full"
 									>
-										<img src={club.media_img_id} alt={club.title} className="w-full h-48 object-cover" />
+										{club.media_img_id && (
+											<img
+												src={club.media_img_id}
+												alt={club.title}
+												className="w-full h-56 object-cover"
+											/>
+										)}
 										<div className="p-6">
 											<h3 className="text-xl font-bold text-primary">{club.title}</h3>
 											<p className="text-accent font-medium">{club.caption}</p>
